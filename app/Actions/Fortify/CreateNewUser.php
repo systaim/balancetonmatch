@@ -23,7 +23,7 @@ class CreateNewUser implements CreatesNewUsers
             'last_name' => ['required', 'string', 'max:255'],
             'first_name' => ['required', 'string', 'max:255'],
             'pseudo' => ['required', 'string', 'max:50'],
-            'date_of_birth' => ['required', 'date'],
+            'date_of_birth' => ['nullable', 'date'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => $this->passwordRules(),
         ])->validate();
