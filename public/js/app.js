@@ -19409,9 +19409,9 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Systa\Documents\CALLAC SOFT COLLEGE\PROJETS\commentaires-live\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! C:\Users\Systa\Documents\CALLAC SOFT COLLEGE\PROJETS\commentaires-live\resources\css\app.css */"./resources/css/app.css");
-module.exports = __webpack_require__(/*! C:\Users\Systa\Documents\CALLAC SOFT COLLEGE\PROJETS\commentaires-live\resources\css\styles.css */"./resources/css/styles.css");
+__webpack_require__(/*! C:\Users\Systa\Documents\CALLAC SOFT COLLEGE\PROJETS\BalanceTonMatch\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! C:\Users\Systa\Documents\CALLAC SOFT COLLEGE\PROJETS\BalanceTonMatch\resources\css\app.css */"./resources/css/app.css");
+module.exports = __webpack_require__(/*! C:\Users\Systa\Documents\CALLAC SOFT COLLEGE\PROJETS\BalanceTonMatch\resources\css\styles.css */"./resources/css/styles.css");
 
 
 /***/ })

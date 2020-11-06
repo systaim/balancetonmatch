@@ -5,10 +5,12 @@ namespace App\Models;
 use Brick\Math\Exception\MathException;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Commentaire extends Model
 {
     use HasFactory;
+    use SoftDeletes;
 
     protected $fillable = ['user_id','player_id','match_id','type_comments', 'comments','minute','team_action'];
 
