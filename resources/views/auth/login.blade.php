@@ -1,11 +1,13 @@
 @extends('layout')
 @section('content')
+
 @if (session('status'))
 <div class="mb-4 font-medium text-sm text-green-600">
     {{ session('status') }}
 </div>
 @endif
 
+<h2 class="text-center bg-primary text-secondary text-2xl py-1 my-4 rounded">Se connecter</h2>
 <form action="{{ route('login') }}" method="post">
     @csrf
     <div class="bg-primary rounded-lg relative text-white my-12 p-3">

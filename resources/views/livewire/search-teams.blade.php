@@ -1,15 +1,19 @@
 <div class="h-auto">
     <h2 class="text-center my-6">Liste des clubs</h2>
-    <form wire:submit.prevent="searchByName">
+    <!-- <form wire:submit.prevent="searchByName">
         <div class="relative flex flex-wrap w-10/12 items-stretch mb-3 m-auto">
             <input autofocus type="text" wire:model.defer="name" placeholder="Recherche" class="focus px-3 py-3 placeholder-gray-800 text-gray-700 relative bg-white rounded text-sm shadow outline-none focus:outline-none focus:shadow-outline w-full pr-10" />
             <span class="z-10 h-full leading-snug font-normal text-center text-gray-900 absolute bg-transparent rounded text-base items-center justify-center w-8 right-0 pr-3 py-3">
                 <input type="submit" value="🔍">
             </span>
         </div>
-    </form>
-    <div wire:loading wire:target="searchByName" class="text-center m-auto bg-primary text-secondary mx-5 px-2 hidden">
+    </form> -->
+    <!-- <div wire:loading wire:target="searchByName" class="text-center m-auto bg-primary text-secondary mx-5 px-2 hidden">
         Loading...
+    </div> -->
+    <div class="flex justify-center">
+        <label for="query" class="sr-only">Search</label>
+        <input autofocus type="search" class="inputForm focus:outline-none focus:shadow-outline w-full my-1 mx-2" id="query" placeholder="Ex: Nantes" wire:model="query">
     </div>
     <div>
         @if (session()->has('message'))
@@ -41,5 +45,8 @@
     </div>
     <div wire:loading.remove wire:target="searchByName" class="mb-5 text-center">
         <p>{{$messageNoClub}}</p>
+    </div>
+    <div class="mx-12">
+        {{ $clubs->links() }}
     </div>
 </div>

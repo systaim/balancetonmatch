@@ -10,36 +10,20 @@ class SearchTeams extends Component
 {
     use WithPagination;
 
-    // public $search = "";
     public $name;
-    public $clubs;
     public $messageNoClub;
-    
-    public function mount(){
-        $this->clubs = [];
-    }
 
-    public function searchByName()
+    public $query;
+
+    public function updatingQuery()
     {
-
-        if (!empty($this->name)) {
-            
-            sleep(1);
-
-            $results = Club::searchByName($this->name);
-
-            if (empty($results)) {
-
-                session()->flash('message', 'Aucune correspondance pour "' . $this->name . '"');
-            }
-
-            $this->clubs = $results;
-            $this->messageNoClub = "Votre club n'apparait pas ? soumettez le ici";
-        }
+        $this->resetPage();
     }
 
     public function render()
     {
-        return view('livewire.search-teams');
+        return view('livewire.search-teams', [
+            'clubs' => Club::where('name', 'like', '%' . $this->query . '%')->inRandomOrder()->paginate(15),
+        ]);
     }
 }
