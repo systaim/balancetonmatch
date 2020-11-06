@@ -32,6 +32,7 @@ class CreateUsersTable extends Migration
             $table->text('profile_photo_path')->nullable();
             $table->integer('rank')->nullable();
             $table->timestamps();
+            $table->timestamp('deleted_at')->nullable();
         });
     }
 

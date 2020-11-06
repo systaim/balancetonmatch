@@ -21,6 +21,7 @@ class CreateStaffsTable extends Migration
             $table->unsignedBigInteger('club_id');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
+            $table->timestamp('deleted_at')->nullable();
 
             $table->foreign('club_id')->references('id')->on('clubs');
             $table->foreign('user_id')->references('id')->on('users');

@@ -23,6 +23,7 @@ class CreatePlayersTable extends Migration
             $table->unsignedBigInteger('club_id')->nullable();
             $table->unsignedBigInteger('user_id')->nullable();
             $table->timestamps();
+            $table->timestamp('deleted_at')->nullable();
 
             $table->foreign('club_id')->references('id')->on('clubs');
             $table->foreign('user_id')->references('id')->on('users');

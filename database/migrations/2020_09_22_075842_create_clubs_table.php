@@ -27,6 +27,7 @@ class CreateClubsTable extends Migration
             $table->string('primary_color')->nullable();
             $table->string('secondary_color')->nullable();
             $table->timestamps();
+            $table->timestamp('deleted_at')->nullable();
 
             $table->foreign('region_id')->references('id')->on('regions');
 

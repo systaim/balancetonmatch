@@ -30,6 +30,7 @@ class CreateMatchesTable extends Migration
             $table->unsignedBigInteger('region_region_id');
             $table->unsignedBigInteger('group_id');
             $table->timestamps();
+            $table->timestamp('deleted_at')->nullable();
 
             $table->foreign('competition_id')->references('id')->on('competitions');
             $table->foreign('division_department_id')->references('id')->on('divisions_departments');

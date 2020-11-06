@@ -22,6 +22,7 @@ class CreateCommentairesTable extends Migration
             $table->integer('minute');
             $table->enum('team_action', ['home','away','match']);
             $table->timestamps();
+            $table->timestamp('deleted_at')->nullable();
 
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('match_id')->references('id')->on('matchs');
