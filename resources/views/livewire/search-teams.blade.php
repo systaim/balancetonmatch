@@ -2,7 +2,7 @@
     <h2 class="text-center my-6">Liste des clubs</h2>
     <form wire:submit.prevent="searchByName">
         <div class="relative flex flex-wrap w-10/12 items-stretch mb-3 m-auto">
-            <input type="text" wire:model.defer="name" placeholder="Recherche" class="focus px-3 py-3 placeholder-gray-800 text-gray-700 relative bg-white rounded text-sm shadow outline-none focus:outline-none focus:shadow-outline w-full pr-10" />
+            <input autofocus type="text" wire:model.defer="name" placeholder="Recherche" class="focus px-3 py-3 placeholder-gray-800 text-gray-700 relative bg-white rounded text-sm shadow outline-none focus:outline-none focus:shadow-outline w-full pr-10" />
             <span class="z-10 h-full leading-snug font-normal text-center text-gray-900 absolute bg-transparent rounded text-base items-center justify-center w-8 right-0 pr-3 py-3">
                 <input type="submit" value="🔍">
             </span>

@@ -10,8 +10,8 @@
             <!-- <div class="h-72 w-96 bg-darkGray text-white">
             </div> -->
             <div class="pl-4 h-72 w-96 bg-darkGray text-white">
-                <div class="diagonale pb-4">
-                Mes teams <i class="fas fa-heart text-red-700"></i>
+                <div class="p-4">
+                    <h2>Mes teams <i class="fas fa-heart text-red-700"></i></h2>
                 </div>
                 @auth
                 @foreach($user->favoris as $favori)
