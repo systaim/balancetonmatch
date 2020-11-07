@@ -29,7 +29,7 @@ class FormCommentaires extends Component
     public $stats;
     public $listGoal = ['GOOOOAAL !', 'BUUUUT !!!', 'GOAL GOAL GOAL !!'];
     public $mitempsJoueurs = ['Les joueurs rentrent aux vestiaires', 'Tout le monde à la buv... euuuh aux vestiaires !'];
-
+    
     public function mount($match, $clubHome, $clubAway, $commentsMatch)
     {
         $this->clubHome = $clubHome;

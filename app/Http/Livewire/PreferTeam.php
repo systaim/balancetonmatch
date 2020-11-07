@@ -3,7 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Club;
-use App\Models\Favori;
+use App\Models\Favoristeam;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,8 +13,7 @@ class PreferTeam extends Component
     public $heart = "";
     public $club;
     public $user;
-    public $favoris;
-    public $favoriClass;
+    public $nbrFavoris;
     public $login;
 
     public function mount(Club $club)
@@ -26,24 +25,27 @@ class PreferTeam extends Component
                 $this->heart = "far";
             }
         }
+
     }
 
     public function clickLogin()
     {
-        $this->login = "Vous ne pouvez pas suivre cette équipe";
+        $this->login = "Vous souhaitez suivre cette équipe ?";
     }
 
     public function myTeam(Club $club)
     {
         if ($this->user->isFavori($club)) {
-            $teamData = Favori::where('user_id', $this->user->id)->where('club_id', $this->club->id)->delete();
+            $teamData = Favoristeam::where('user_id', $this->user->id)->where('club_id', $this->club->id)->delete();
             $this->heart = "far";
+            $this->nbrFavoris-=1;
             session()->flash('messageMyTeam', 'Equipe supprimée de mes favoris');
         } else {
             $data['user_id'] = $this->user->id;
             $data['club_id'] = $club->id;
-            $teamData = Favori::create($data);
+            $teamData = Favoristeam::create($data);
             $this->heart = "fas";
+            $this->nbrFavoris+=1;
             session()->flash('messageMyTeam', 'Equipe ajoutée à mes favoris');
         }
     }

@@ -76,16 +76,12 @@ class User extends Authenticatable
         return $this->hasMany(Commentaire::class);
     }
 
-    public function club(){
-        return $this->belongsTo(Club::class, 'prefer_team_id');
-    }
-
-    public function favoris(){
-    return $this->hasMany(Favori::class);
+    public function favoristeams(){
+    return $this->hasMany(Favoristeam::class);
     }
 
     public function isFavori($club){
-        return $this->favoris->contains(function ($favori) use ($club) { 
+        return $this->favoristeams->contains(function ($favori) use ($club) { 
             return $favori->club_id == $club->id; 
         });
     }

@@ -14,14 +14,14 @@
                     <h2>Mes teams <i class="fas fa-heart text-red-700"></i></h2>
                 </div>
                 @auth
-                @foreach($user->favoris as $favori)
-                <a href="{{ route('clubs.show', $favori->club->id) }}">
+                @foreach($user->favoristeams as $favoriteam)
+                <a href="{{ route('clubs.show', $favoriteam->club->id) }}">
                     <div class="flex items-center my-2">
                         <div class="logo h-10 w-10 cursor-pointer">
-                            <img class="object-contain" src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $favori->club->numAffiliation }}.jpg" alt="logo">
+                            <img class="object-contain" src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $favoriteam->club->numAffiliation }}.jpg" alt="logo">
                         </div>
                         <div class="diagonale ml-2">
-                            {{ $favori->club->name }}
+                            {{ $favoriteam->club->name }}
                         </div>
                     </div>
                 </a>

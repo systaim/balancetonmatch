@@ -1,5 +1,5 @@
 <div>
-    <h2 class="text-center bg-primary text-secondary text-2xl py-1 my-8 rounded mx-2">Créer un match</h2>
+    <h2 class="titlePage">Créer un match</h2>
     <form wire:submit.prevent="saveMatch">
         <div class="bg-primary rounded-lg relative text-white my-2 p-3">
             <div>

@@ -44,6 +44,11 @@ class Club extends Model
         return $this->hasManyThrough(Statistic::class, Player::class);
     }
 
+    public function favoristeams()
+    {
+        $this->hasMany(Favoristeam::class);
+    }
+
     public static function searchByName(string $name){
         return self::searchBy('name', $name);
     }

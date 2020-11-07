@@ -1,5 +1,5 @@
 <div class="h-auto">
-    <h2 class="text-center my-6">Liste des clubs</h2>
+    <h2 class="titlePage">Liste des clubs</h2>
     <!-- <form wire:submit.prevent="searchByName">
         <div class="relative flex flex-wrap w-10/12 items-stretch mb-3 m-auto">
             <input autofocus type="text" wire:model.defer="name" placeholder="Recherche" class="focus px-3 py-3 placeholder-gray-800 text-gray-700 relative bg-white rounded text-sm shadow outline-none focus:outline-none focus:shadow-outline w-full pr-10" />

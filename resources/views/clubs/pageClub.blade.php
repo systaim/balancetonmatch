@@ -5,7 +5,7 @@
         <div class="logo h-24 w-24">
             <img class="object-contain" src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{$club->numAffiliation}}.jpg" alt="logo">
         </div>
-        @livewire('prefer-team', ['user' =>$user, 'club'=>$club,'favoris'=> $favoris])
+        @livewire('prefer-team', ['user' =>$user, 'club'=>$club,'nbrFavoris'=> $nbrFavoris])
         <div class="text-xl my-4 w-full">
             <div class="flex">
                 <div class="h-2 w-full" style="background-color:{{ $club->primary_color }}"></div>
@@ -19,7 +19,17 @@
         </div>
     </div>
     <div>
+        @if($nbrFavoris > 0)
+        <div class=" bg-primary text-white rounded-lg relative my-2 flex flex-col p-3 w-full">
+            @if($nbrFavoris == 1)
+            <p>Suivi par {{ $nbrFavoris }} fan</p>
+            @else
+            <p>Suivi par {{ $nbrFavoris }} fans</p>
+            @endif
+        </div>
+        @endif
         <div>
+        <h3 class="text-center mt-4">Bientôt</h3>
             @foreach($matchs as $match)
             @if($match->date_match > now())
             <div class="text-center flex justify-center font-bold">

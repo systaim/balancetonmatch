@@ -53,6 +53,22 @@ h6 {
   outline: 0
 }
 
+.titlePage{
+  text-align: center;
+  --bg-opacity: 1;
+  background-color: #091c3e;
+  background-color: rgba(9, 28, 62, var(--bg-opacity));
+  --text-opacity: 1;
+  color: #cdfb0a;
+  color: rgba(205, 251, 10, var(--text-opacity));
+  font-size: 1.5rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 0.25rem
+}
+
 /*************************
           BUTTONS
   *************************/

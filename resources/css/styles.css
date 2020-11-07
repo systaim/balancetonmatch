@@ -40,6 +40,10 @@ h6 {
     @apply px-3 py-3 text-primary bg-white rounded shadow outline-none
 }
 
+.titlePage{
+    @apply text-center bg-primary text-secondary text-2xl py-1 my-4 rounded
+}
+
 
 /*************************
           BUTTONS
