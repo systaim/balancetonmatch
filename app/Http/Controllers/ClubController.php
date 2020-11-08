@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Club;
+use App\Models\Favorismatch;
 use App\Models\Favoristeam;
 use App\Models\Match;
 use App\Models\Player;
@@ -56,8 +57,9 @@ class ClubController extends Controller
     {
         $user = Auth::user();
         $nbrFavoris = Favoristeam::where('club_id', $club->id)->count();
+        $suiviMatch = Favorismatch::all();
         $matchs = Match::where('home_team_id', $club->id)->orwhere('away_team_id', $club->id)->orderBy('date_match','desc')->get();
-        return view('clubs.pageClub', compact('club', 'matchs','user','nbrFavoris'));
+        return view('clubs.pageClub', compact('club', 'matchs','user','nbrFavoris', 'suiviMatch'));
     }
 
     /**

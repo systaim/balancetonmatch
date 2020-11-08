@@ -169,8 +169,7 @@
         </div>
         <!-- fin du formulaire -->
         <div>
-
-            <div class="my-6 w-11/12 md:w-1/2 m-auto">
+            <div class="my-6 w-11/12 m-auto">
                 @if($match->live == 'reporte')
                 <div class="w-full h-full py-3 bg-red-600 font-bold rounded-lg shadow-lg">
                     <p class="text-center">Match reporté</p>
@@ -255,26 +254,24 @@
                     </div>
                     @endforeach
                 </div>
-
             </div>
-
-            <!-- <div class="bg-white rounded-b-lg border-white border-4 my-10 h-36 w-3/5 m-auto">
-            @if($match->user)
-                <div class="bg-primary text-secondary">
-                    <h3 class="text-center">{{$match->user->pseudo}}</h3>
+            <div class="bg-white rounded-lg border-white w-11/12 m-auto my-8 shadow-2xl">
+                @if($match->user)
+                <div class="bg-primary text-secondary rounded-t-lg">
+                    <h3 class="text-center py-2">Le "Thierry Roland" du jour</h3>
                 </div>
-                <div class="flex justify-evenly items-center">
+                <div class="flex justify-evenly items-center p-4">
+                    <div>
+                        <p>{{$match->user->pseudo}}</p>
+                    </div>
                     <div class="flex items-center justify-center bg-secondary h-12 w-12 rounded-full m-2">
                         <div class="text-primary font-bold">
                             <p>{{ $match->user->note }}</p>
                         </div>
                     </div>
-                    <div>
-                        <button class="btn btnSecondary">Merci ! <i class="far fa-smile-beam"></i></button>
-                    </div>
+                    @endif
                 </div>
-                @endif
-            </div> -->
+            </div>
         </div>
     </div>
 </form>
