@@ -86,6 +86,7 @@ class CreateMatch extends Component
         // dd($match->region_id);
         $match->user_id = $user->id;
         $match->save();
+        return redirect()->to('matches');
     }
 
     public function render()
