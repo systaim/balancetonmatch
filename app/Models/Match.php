@@ -35,6 +35,11 @@ class Match extends Model
         return $this->belongsTo(Club::class, 'away_team_id');
     }
 
+    public function region()
+    {
+        return $this->belongsTo(Region::class, 'region_id');
+    }
+
     public function competition(){
         return $this->belongsTo(Competition::class, 'competition_id');
     }
