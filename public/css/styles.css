@@ -400,6 +400,7 @@ input:checked + .inputAction.home {
 
 .alertFavori{
   opacity:0;
+  background-color: black;
   -webkit-animation-name: disparition;
           animation-name: disparition;
   -webkit-animation-duration: 5s;

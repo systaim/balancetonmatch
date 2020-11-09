@@ -6,6 +6,7 @@ use App\Models\Commentaire;
 use App\Models\Match;
 use App\Models\Statistic;
 use App\Models\User;
+use Carbon\Carbon;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
 
@@ -27,9 +28,12 @@ class FormCommentaires extends Component
     public $away_score;
     public $tpsMatch;
     public $stats;
+    public $dateMatch;
+    public $heureMatch;
+    public $matchNonDispo = "";
     public $listGoal = ['GOOOOAAL !', 'BUUUUT !!!', 'GOAL GOAL GOAL !!'];
     public $mitempsJoueurs = ['Les joueurs rentrent aux vestiaires', 'Tout le monde à la buv... euuuh aux vestiaires !'];
-    
+
     public function mount($match, $clubHome, $clubAway, $commentsMatch)
     {
         $this->clubHome = $clubHome;
@@ -41,7 +45,7 @@ class FormCommentaires extends Component
         $this->away_score = $match->away_score;
         $this->heureMatch = $match->time;
         $this->user = $match->user_id;
-        $this->tpsMatch = $match->time;
+        $this->dateMatch = $match->date_match;
     }
 
     public function updateHomeScore()
@@ -61,44 +65,52 @@ class FormCommentaires extends Component
     {
         $user = Auth::user();
 
+        if ($this->dateMatch->diffInMinutes(now()) > -30 && $this->dateMatch->diffInHours(now()) < 24) {
         $this->match->live = 'reporte';
         $this->match->user_id = $user->id;
         $this->match->save();
+        } else {
+            session()->flash('messageAnnulation', "Il est possible de commenter 30 minutes avant le match et jusque 24h après");
+        }
     }
 
     public function timeZero()
     {
         $user = Auth::user();
 
-        $this->match->live = "debut";
-        $this->match->user_id = $user->id;
-        $this->match->save();
-
-        if ($this->home_score == null) {
-            $this->home_score = 0;
-            $this->match->home_score = 0;
+        if ($this->dateMatch->diffInMinutes(now()) > -30 && $this->dateMatch->diffInHours(now()) < 24) {
+            $this->match->live = "debut";
+            $this->match->user_id = $user->id;
             $this->match->save();
-        }
 
-        if ($this->away_score == null) {
-            $this->away_score = 0;
-            $this->match->away_score = 0;
-            $this->match->save();
-        }
+            if ($this->home_score == null) {
+                $this->home_score = 0;
+                $this->match->home_score = 0;
+                $this->match->save();
+            }
 
-        $commentData['type_comments'] = "Début du match ! 🤩";
-        $commentData['minute'] = 0;
-        $commentData['team_action'] = 'match';
+            if ($this->away_score == null) {
+                $this->away_score = 0;
+                $this->match->away_score = 0;
+                $this->match->save();
+            }
 
-        $comment = Commentaire::create($commentData);
+            $commentData['type_comments'] = "Début du match ! 🤩";
+            $commentData['minute'] = 0;
+            $commentData['team_action'] = 'match';
 
-        if ($comment) {
+            $comment = Commentaire::create($commentData);
 
-            $comment->user()->associate($user);
-            $comment->match()->associate($this->match);
-            $comment->save();
-            $this->commentsMatch =  $this->match->commentaires()->orderBy('minute', 'desc')->orderBy('updated_at', 'desc')->get();
-            // session()->flash('messageComment', 'Merci pour ce commentaire 😉');
+            if ($comment) {
+
+                $comment->user()->associate($user);
+                $comment->match()->associate($this->match);
+                $comment->save();
+                $this->commentsMatch =  $this->match->commentaires()->orderBy('minute', 'desc')->orderBy('updated_at', 'desc')->get();
+                // session()->flash('messageComment', 'Merci pour ce commentaire 😉');
+            }
+        } else {
+            session()->flash('messageCom', "Il est possible de commenter 30 minutes avant le match et jusque 24h après");
         }
     }
 
@@ -208,10 +220,8 @@ class FormCommentaires extends Component
             }
             if ($this->type_carton == '2e carton jaune') {
                 $statData['action'] = "yellow_card";
-
                 $statData2['action'] = "red_card";
                 $statData2['player_id'] = $this->player;
-                // dd($statData2);
             }
             if ($this->type_carton == 'Carton rouge') {
                 $statData['action'] = "red_card";
@@ -248,5 +258,4 @@ class FormCommentaires extends Component
     {
         return view('livewire.form-commentaires');
     }
-
 }

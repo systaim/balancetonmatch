@@ -6,6 +6,8 @@ use App\Models\Match;
 use App\Models\Commentaire;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Auth\Access\Response;
+use Illuminate\Support\Facades\Gate;
 
 class CommentaireController extends Controller
 {
@@ -52,14 +54,13 @@ class CommentaireController extends Controller
         ]);
 
         $match->update($dataMatch);
-        
+
         $dataComment['match_id'] = $match->id;
-            // dd($request->all());
+        // dd($request->all());
         $comment = Commentaire::create($dataComment);
         $comment->user()->associate($user);
         $comment->save();
         return back();
-
     }
 
     /**
@@ -93,7 +94,7 @@ class CommentaireController extends Controller
      */
     public function update(Request $request, Commentaire $commentaire)
     {
-        //
+        
     }
 
     /**

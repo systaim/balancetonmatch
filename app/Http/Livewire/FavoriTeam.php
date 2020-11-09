@@ -7,7 +7,7 @@ use App\Models\Favoristeam;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
 
-class PreferTeam extends Component
+class FavoriTeam extends Component
 {
 
     public $heart = "";
@@ -52,6 +52,6 @@ class PreferTeam extends Component
 
     public function render()
     {
-        return view('livewire.prefer-team');
+        return view('livewire.favori-team');
     }
 }

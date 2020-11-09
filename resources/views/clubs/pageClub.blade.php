@@ -5,7 +5,7 @@
         <div class="logo h-24 w-24">
             <img class="object-contain" src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{$club->numAffiliation}}.jpg" alt="logo">
         </div>
-        @livewire('prefer-team', ['user' =>$user, 'club'=>$club,'nbrFavoris'=> $nbrFavoris])
+        @livewire('favori-team', ['user' =>$user, 'club'=>$club,'nbrFavoris'=> $nbrFavoris])
         <div class="text-xl my-4 w-full">
             <div class="flex">
                 <div class="h-2 w-full" style="background-color:{{ $club->primary_color }}"></div>

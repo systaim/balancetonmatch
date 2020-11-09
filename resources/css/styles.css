@@ -212,6 +212,7 @@ input:checked + .inputAction.home {
 
 .alertFavori{
     opacity:0;
+    background-color: black;
     animation-name: disparition;
     animation-duration: 5s;
 }

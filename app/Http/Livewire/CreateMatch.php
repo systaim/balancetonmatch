@@ -8,7 +8,6 @@ use App\Models\Match;
 use App\Models\Region;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
-use PhpParser\Node\Expr\New_;
 
 class CreateMatch extends Component
 {
@@ -53,6 +52,7 @@ class CreateMatch extends Component
 
     public function saveMatch(Match $match)
     {
+
         $user = Auth::user();
 
         $validateData = $this->validate([

@@ -68,10 +68,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="text-center flex justify-center font-bold">
-                    <p class="px-4 bg-primary text-secondary rounded-tl-md">{{ $match->date_match->formatLocalized('%d/%m/%y')}}</p>
-                    <p class="px-4 bg-primary text-secondary rounded-tr-md">{{ date('H:i', strtotime($match->time))}}</p>
+                <div>
+                    <div class="text-center flex justify-center font-bold">
+                        <p class="px-4 bg-primary text-secondary rounded-tl-md">{{ $match->date_match->formatLocalized('%d/%m/%y')}}</p>
+                        <p class="px-4 bg-primary text-secondary rounded-tr-md">{{ date('H:i', strtotime($match->time)) }}</p>
+                    </div>
                 </div>
+
             </div>
         </div>
         @if($team_action == 'home' || $team_action == 'away')
@@ -172,27 +175,41 @@
             <div class="my-6 w-11/12 m-auto">
                 @if($match->live == 'reporte')
                 <div class="w-full h-full py-3 bg-red-600 font-bold rounded-lg shadow-lg">
-                    <p class="text-center">Match reporté</p>
+                    <p class="text-center">Le match est reporté à une date ultérieure</p>
                 </div>
                 @endif
                 @if($match->live == 'attente')
                 <div class="w-full h-full py-3 bg-primary text-secondary font-bold rounded-lg shadow-lg">
                     <p class="text-center">En attente d'un commentateur</p>
                 </div>
-                <button type="button" class="commentaires h-20 bg-white commandeMatch items-stretch w-full" wire:click="timeZero" wire:model="type_comments">
+                <button type="button" class="relative commentaires h-20 bg-white commandeMatch items-stretch w-full focus:outline-none" wire:click="timeZero" wire:model="type_comments">
                     <div class="minuteCommentaires w-24 commandeMatch">
                         <img src="{{asset('images/whistle-white.png')}}" alt="">
                     </div>
                     <div class="bg-white w-full h-full p-3 flex flex-col justify-center">
                         <p class="text-center">Je souhaite commenter ⏱</p>
+                        <div>
+                            @if (session()->has('messageCom'))
+                            <div wire:loading.class.remove="alertFavori" class="flex items-center absolute top-0 right-0 bottom-0 left-0 bg-black text-white text-xs p-2 rounded-l-lg alertFavori">
+                                {{ session('messageCom') }}
+                            </div>
+                            @endif
+                        </div>
                     </div>
                 </button>
-                <button type="button" class="commentaires h-20 bg-white commandeMatch items-stretch w-full" wire:click="matchReporte">
+                <button type="button" class="relative commentaires h-20 bg-white commandeMatch items-stretch w-full focus:outline-none" wire:click="matchReporte">
                     <div class="minuteCommentaires w-24 commandeMatch">
                         <img src="{{asset('images/danger.png')}}" alt="">
                     </div>
                     <div class="bg-white w-full h-full p-3 flex flex-col justify-center">
                         <p class="text-center">Le match est reporté ou annulé</p>
+                        <div>
+                            @if (session()->has('messageAnnulation'))
+                            <div wire:loading.class.remove="alertFavori" class="flex items-center absolute top-0 right-0 bottom-0 left-0 bg-black text-white text-xs p-2 rounded-l-lg alertFavori">
+                                {{ session('messageAnnulation') }}
+                            </div>
+                            @endif
+                        </div>
                     </div>
                 </button>
                 @endif
