@@ -46,6 +46,12 @@ class FormCommentaires extends Component
         $this->heureMatch = $match->time;
         $this->user = $match->user_id;
         $this->dateMatch = $match->date_match;
+        
+    }
+
+    public function miseAJour()
+    {
+        $this->commentsMatch = $this->match->commentaires()->orderBy('minute', 'desc')->orderBy('updated_at', 'desc')->get();
     }
 
     public function updateHomeScore()

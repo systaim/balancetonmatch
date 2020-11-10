@@ -48,7 +48,7 @@ class CreateMatch extends Component
             'competition' => 'required',
             'divisionsRegions' => 'nullable',
             'divisionsDepartments' => 'nullable',
-            'regions' => 'required',
+            'regions' => 'nullable',
             'group' => 'nullable',
         ]);
 
