@@ -32,6 +32,15 @@
                     <option value="3">R3</option>
                 </select>
             </div>
+            <div>
+                <label for="group">Groupe</label>
+                <select  class="inputForm focus:outline-none focus:shadow-outline w-full my-1" name="group" id="group" wire:model="group">
+                    <option>Choisissez un groupe</option>
+                    @foreach($groups as $group)
+                    <option value="{{ $group->name}}">{{ $group->name }}</option>
+                    @endforeach
+                </select>
+            </div>
             @endif
             @if($competition == "2")
             <div>
@@ -43,6 +52,15 @@
                     <option value="3">D3</option>
                     <option value="4">D4</option>
                     <option value="5">D5</option>
+                </select>
+            </div>
+            <div>
+                <label for="group">Groupe</label>
+                <select  class="inputForm focus:outline-none focus:shadow-outline w-full my-1" name="group" id="group" wire:model="group">
+                    <option>Choisissez un groupe</option>
+                    @foreach($groups as $group)
+                    <option value="{{ $group->name}}">{{ $group->name }}</option>
+                    @endforeach
                 </select>
             </div>
             @endif

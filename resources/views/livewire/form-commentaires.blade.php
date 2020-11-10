@@ -4,7 +4,9 @@
             <div class="backMatch">
                 <div class=" py-6 ">
                     <div class="bg-primary text-white m-auto text-center rounded-lg shadow-2xl w-3/4 p-2">
-                    <h2>{{ $match->region->name }}</h2>
+                        @if($match->region)
+                        <h2>{{ $match->region->name }}</h2>
+                        @endif
                         <h3 class="text-sm">{{ $match->competition->name }}</h3>
                         <div class="flex flex-row justify-center">
                             @if($match->divisionRegion)
