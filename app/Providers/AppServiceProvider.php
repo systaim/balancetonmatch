@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\URL;
 
 use Illuminate\Support\ServiceProvider;
 use Carbon\Carbon;
@@ -29,5 +30,6 @@ class AppServiceProvider extends ServiceProvider
 
         setlocale(LC_ALL, "fr");
         Carbon::setLocale('fr');
+        URL::forceScheme('https');
     }
 }

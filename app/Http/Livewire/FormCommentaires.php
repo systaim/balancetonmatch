@@ -51,6 +51,8 @@ class FormCommentaires extends Component
 
     public function miseAJour()
     {
+        $this->home_score = $this->match->home_score;
+        $this->away_score = $this->match->away_score;
         $this->commentsMatch = $this->match->commentaires()->orderBy('minute', 'desc')->orderBy('updated_at', 'desc')->get();
     }
 
