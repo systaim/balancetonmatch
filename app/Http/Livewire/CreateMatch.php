@@ -56,6 +56,7 @@ class CreateMatch extends Component
         $awayTeam = Club::where('name', $validateData['searchAway'])->first();
         $regionMatch = Region::where('name', $validateData['region'])->first();
         $groupMatch = Group::where('name', $validateData['group'])->first();
+        $dateAndTime = $this->dateMatch. "T" .$this->timeMatch;
 
         $match = new Match;
         $match->home_team_id = $homeTeam->id;
@@ -63,8 +64,7 @@ class CreateMatch extends Component
         if($this->region != null){
             $match->region_id = $regionMatch->id;
         }
-        $match->time = $this->timeMatch;
-        $match->date_match = $this->dateMatch;
+        $match->date_match = $dateAndTime;
         $match->competition_id = $this->competition;
         if($this->group != null){
             $match->group_id = $groupMatch->id;
@@ -76,7 +76,7 @@ class CreateMatch extends Component
             $match->division_department_id = $this->divisionsDepartments;
         }
 
-        // dd($match->region_id);
+        // dd($match->date_match);
         $match->user_id = $user->id;
         $match->save();
         return redirect()->to('matches');

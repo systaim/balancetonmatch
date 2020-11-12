@@ -30,7 +30,7 @@ class MatchController extends Controller
         $clubs = Club::all();
         $players = Player::all();
         $competitions = Competition::all();
-        $matches = Match::where('date_match', '>', Carbon::now()->yesterday())->orderBy('date_match','asc')->orderBy('time','asc')->get();
+        $matches = Match::where('date_match', '>', Carbon::now()->yesterday())->orderBy('date_match','asc')->get();
         return view('matches.listMatchs', compact('clubs', 'players', 'competitions', 'matches'));
     }
 

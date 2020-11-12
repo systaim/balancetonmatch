@@ -19,8 +19,7 @@ class CreateMatchesTable extends Migration
             $table->integer('home_score')->nullable();
             $table->unsignedBigInteger('away_team_id');
             $table->integer('away_score')->nullable();
-            $table->date('date_match');
-            $table->time('time');
+            $table->datetime('date_match');
             $table->string('location')->nullable();
             $table->enum('live',['attente','debut','mitemps','repriseMT','finDeMatch','reporte','annule','arrete'])->default('attente');
             $table->unsignedBigInteger('player_id')->nullable();

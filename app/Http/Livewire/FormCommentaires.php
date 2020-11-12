@@ -55,6 +55,9 @@ class FormCommentaires extends Component
         $this->home_score = $this->match->home_score;
         $this->away_score = $this->match->away_score;
         $this->commentsMatch = $this->match->commentaires()->orderBy('minute', 'desc')->orderBy('updated_at', 'desc')->get();
+        // if($this->dateMatch->diffInHours(now(), true) > 24){
+        //     $this->match->live = "finDeMatch";
+        // }
     }
 
     public function updateHomeScore()
@@ -74,8 +77,8 @@ class FormCommentaires extends Component
     {
         $user = Auth::user();
 
-        dd($this->dateMatch);
-        if ($this->dateMatch->diffInMinutes(now(), false) < -30) {
+        dd($this->dateMatch->diffInMinutes(now()->tz('Europe/Paris'), false));
+        if ($this->dateMatch->diffInMinutes(now(), false) > -30 && $this->dateMatch->diffInMinutes(now()) < 180) {
         $this->match->live = 'reporte';
         $this->match->user_id = $user->id;
         $this->match->save();
