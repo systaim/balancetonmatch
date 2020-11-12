@@ -1,4 +1,4 @@
-<form wire:submit.prevent="saveComment"  wire:poll.5000ms="miseAJour">
+<form wire:submit.prevent="saveComment">
     <!-- affichage bannière du match -->
     <div>
         <div class="backMatch">
@@ -86,7 +86,7 @@
     <div id="menuTeam" class="flex flex-col jsutify-center z-10 absolute h-auto top-0 right-0 left-0 bottom-0 espaceCom {{ $team_action}}">
         <div class="flex flex-col items-center">
             <div class="m-4 flex flex-row justify-center">
-                <div class="flex flex-col jsutify-center" wire:poll>
+                <div class="flex flex-col jsutify-center">
                     <label class="inputAction {{$team_action}}" for="minute">Temps de jeu</label>
                     <input class="p-3 bg-white rounded shadow outline-none focus:outline-none focus:shadow-outline text-center" type="number" name="minute" wire:model="minute" min="1" max="99">
                 </div>
@@ -256,7 +256,7 @@
             </div>
             @endif
             @endauth
-            <div class="my-4">
+            <div class="my-4" wire:poll.5000ms="miseAJour">
                 @foreach($commentsMatch as $comment)
                 <div class="commentaires minHeight16 h-auto {{ $comment->team_action }}">
                     <div class="minuteCommentaires w-24 sm:w-32 {{ $comment->team_action }}">

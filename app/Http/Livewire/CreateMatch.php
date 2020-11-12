@@ -60,11 +60,15 @@ class CreateMatch extends Component
         $match = new Match;
         $match->home_team_id = $homeTeam->id;
         $match->away_team_id = $awayTeam->id;
-        $match->region_id = $regionMatch->id;
+        if($this->region != null){
+            $match->region_id = $regionMatch->id;
+        }
         $match->time = $this->timeMatch;
         $match->date_match = $this->dateMatch;
         $match->competition_id = $this->competition;
-        $match->group_id = $groupMatch->id;
+        if($this->group != null){
+            $match->group_id = $groupMatch->id;
+        }        
         if($this->competition == "1"){
             $match->division_region_id = $this->divisionsRegions;
         }

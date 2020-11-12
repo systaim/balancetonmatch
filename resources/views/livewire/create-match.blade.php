@@ -3,15 +3,6 @@
     <form wire:submit.prevent="saveMatch">
         <div class="bg-primary rounded-lg relative text-white my-2 p-3">
             <div>
-                <label for="region">Région</label>
-                <select class="inputForm focus:outline-none focus:shadow-outline w-full my-1" name="region" id="region" wire:model="region">
-                    <option>Choisissez la région</option>
-                    @foreach($regions as $region)
-                    <option value="{{ $region->name }}">{{ $region->name }}</option>
-                    @endforeach
-                </select>
-            </div>
-            <div>
                 <label for="competition">Compétition</label>
                 <select class="inputForm focus:outline-none focus:shadow-outline w-full my-1" name="compétition" id="competition" wire:model="competition">
                     <option>Choisissez une compet'</option>
@@ -20,6 +11,17 @@
                     <option value="3">Coupe de France</option>
                     <option value="4">Coupe régionale</option>
                     <option value="5">Coupe départementale</option>
+                </select>
+            </div>
+            @if($competition)
+            <div>
+                @if($competition != 3)
+                <label for="region">Région</label>
+                <select class="inputForm focus:outline-none focus:shadow-outline w-full my-1" name="region" id="region" wire:model="region">
+                    <option>Choisissez la région</option>
+                    @foreach($regions as $region)
+                    <option value="{{ $region->name }}">{{ $region->name }}</option>
+                    @endforeach
                 </select>
             </div>
             @if($competition == "1")
@@ -34,7 +36,7 @@
             </div>
             <div>
                 <label for="group">Groupe</label>
-                <select  class="inputForm focus:outline-none focus:shadow-outline w-full my-1" name="group" id="group" wire:model="group">
+                <select class="inputForm focus:outline-none focus:shadow-outline w-full my-1" name="group" id="group" wire:model="group">
                     <option>Choisissez un groupe</option>
                     @foreach($groups as $group)
                     <option value="{{ $group->name}}">{{ $group->name }}</option>
@@ -56,13 +58,14 @@
             </div>
             <div>
                 <label for="group">Groupe</label>
-                <select  class="inputForm focus:outline-none focus:shadow-outline w-full my-1" name="group" id="group" wire:model="group">
+                <select class="inputForm focus:outline-none focus:shadow-outline w-full my-1" name="group" id="group" wire:model="group">
                     <option>Choisissez un groupe</option>
                     @foreach($groups as $group)
                     <option value="{{ $group->name}}">{{ $group->name }}</option>
                     @endforeach
                 </select>
             </div>
+            @endif
             @endif
             <div>
                 <label for="home_team">Equipe à domicile</label>
@@ -79,7 +82,7 @@
                 <datalist id="teams" wire:model="clubs">
                     @foreach ($clubs as $club)
                     <option value="{{ $club->name }}">{{ $club->name }}</option>
-                        @endforeach
+                    @endforeach
                 </datalist>
             </div>
             <div>
@@ -94,5 +97,6 @@
                 <input class="btn btnPrimary" type="submit" value="C'est parti !">
             </div>
         </div>
+        @endif
     </form>
 </div>

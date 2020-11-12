@@ -20,7 +20,7 @@ class FormCommentaires extends Component
     public $type_comments;
     public $type_but = "";
     public $type_carton = "";
-    public $minute;
+    public $minute = 0;
     public $team_action = '';
     public $live;
     public $player;
@@ -46,11 +46,12 @@ class FormCommentaires extends Component
         $this->heureMatch = $match->time;
         $this->user = $match->user_id;
         $this->dateMatch = $match->date_match;
-        
+        $this->heureMatch = $match->time;
     }
 
     public function miseAJour()
     {
+        $this->minute +=1;
         $this->home_score = $this->match->home_score;
         $this->away_score = $this->match->away_score;
         $this->commentsMatch = $this->match->commentaires()->orderBy('minute', 'desc')->orderBy('updated_at', 'desc')->get();
@@ -73,7 +74,8 @@ class FormCommentaires extends Component
     {
         $user = Auth::user();
 
-        if ($this->dateMatch->diffInMinutes(now()) > -30 && $this->dateMatch->diffInHours(now()) < 24) {
+        dd($this->dateMatch);
+        if ($this->dateMatch->diffInMinutes(now(), false) < -30) {
         $this->match->live = 'reporte';
         $this->match->user_id = $user->id;
         $this->match->save();
@@ -86,7 +88,7 @@ class FormCommentaires extends Component
     {
         $user = Auth::user();
 
-        if ($this->dateMatch->diffInMinutes(now()) > -30 && $this->dateMatch->diffInHours(now()) < 24) {
+        if ($this->dateMatch->diffInMinutes(now()) > -30) {
             $this->match->live = "debut";
             $this->match->user_id = $user->id;
             $this->match->save();
