@@ -10,7 +10,7 @@ class LoginResponse implements LoginResponseContract
 {
     public function toResponse($request)
     {
-        dd($request);
+        // dd($request);
         return $request->wantsJson()
             ? response()->json(['two_factor' => false])
             : redirect()->intended(); // This is the line you want to modify so the application behaves the way you want.

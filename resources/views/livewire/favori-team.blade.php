@@ -8,7 +8,7 @@
         @endif
     </div>
     <div class="absolute top-10 left-10">
-        @if ($user->isfavori($club))
+        @if ($user->isfavoriTeam($club))
         <div class="flex flex-col items-center">
             <i wire:model="heart" class="{{ $heart }} fa-heart text-3xl text-red-700 cursor-pointer" wire:click="myTeam({{ $club->id }})"></i>
         </div>

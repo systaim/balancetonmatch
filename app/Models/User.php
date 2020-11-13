@@ -90,9 +90,16 @@ class User extends Authenticatable
         return $this->hasMany(Commentator::class);
     }
 
-    public function isFavori($club){
+    public function isFavoriTeam($club){
         return $this->favoristeams->contains(function ($favori) use ($club) { 
             return $favori->club_id == $club->id; 
+        });
+    }
+
+    public function isFavoriMatch($match)
+    {
+        return $this->favorismatchs->contains( function($favori) use ($match){
+            return $favori->match_id == $match->id;
         });
     }
 

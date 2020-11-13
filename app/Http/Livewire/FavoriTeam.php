@@ -19,7 +19,7 @@ class FavoriTeam extends Component
     public function mount(Club $club)
     {
         if ($this->user) {
-            if ($this->user->isFavori($club)) {
+            if ($this->user->isFavoriTeam($club)) {
                 $this->heart = "fas";
             } else {
                 $this->heart = "far";
@@ -34,7 +34,7 @@ class FavoriTeam extends Component
 
     public function myTeam(Club $club)
     {
-        if ($this->user->isFavori($club)) {
+        if ($this->user->isFavoriTeam($club)) {
             $teamData = Favoristeam::where('user_id', $this->user->id)->where('club_id', $this->club->id)->delete();
             $this->heart = "far";
             $this->nbrFavoris-=1;
