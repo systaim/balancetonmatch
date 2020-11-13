@@ -267,7 +267,7 @@
                         <p class="text-lg font-bold">{{ $comment->type_comments}}</p>
                         <p>{{ $comment->comments }}</p>
                         @if($comment->statistic)
-                        <p class="font-bold">{{ $comment->statistic->player->first_name}} {{ $comment->statistic->player->name}}</p>
+                        <p class="font-bold"><span class="capitalize">{{ $comment->statistic->player->first_name}}</span> <span class="uppercase">{{ $comment->statistic->player->name}}</span></p>
                         @endif
                     </div>
                 </div>
