@@ -7,16 +7,10 @@
         <button class="btn btnPrimary">Créer un match</button>
     </a>
 </div>
-<div class="my-4">
+<div class="my-4 relative">
     @foreach($matches as $match)
-    <div class="text-center flex justify-center font-bold">
-        <p class="px-4 bg-primary text-secondary rounded-tl-md">{{ $match->date_match->formatLocalized('%d/%m/%y')}}</p>
-        <p class="px-4 bg-primary text-secondary rounded-tr-md">{{ $match->date_match->formatLocalized('%H:%M')}}</p>
-    </div>
-    <a href="{{route('matches.show',$match)}}">
-        @include('match')
-    </a>
-    @livewire('favori-match', ['user' =>$user, 'match'=>$match])
+    @livewire('favori-match', ['user' => $user, 'match' => $match])
+    @include('match')
     @endforeach
 </div>
 @endsection

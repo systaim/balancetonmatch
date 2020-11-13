@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Str;
+
 
 class Match extends Model
 {
@@ -18,6 +20,11 @@ class Match extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function favorismatches()
+    {
+        $this->hasMany(Favorismatch::class);
     }
 
     public function club()
@@ -68,10 +75,5 @@ class Match extends Model
     public function group()
     {
         return $this->belongsTo(Group::class, 'group_id');
-    }
-
-    public function derniersCommentaires($limit = null)
-    {
-        return Commentaire::popular($this->id, $limit)->get();
     }
 }

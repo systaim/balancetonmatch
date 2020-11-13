@@ -34,11 +34,6 @@ class Club extends Model
         return $this->hasMany(Match::class);
     }
 
-    public function dernierMatch($limit = null)
-    {
-        return Match::popular($this->id, $limit)->get();
-    }
-
     public function statistics()
     {
         return $this->hasManyThrough(Statistic::class, Player::class);

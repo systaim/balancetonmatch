@@ -68,19 +68,22 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
-    public function testDatabase(){
+    public function testDatabase()
+    {
         $users = User::factory()->count(10);
     }
 
-    public function comments(){
+    public function comments()
+    {
         return $this->hasMany(Commentaire::class);
     }
 
-    public function favoristeams(){
-    return $this->hasMany(Favoristeam::class);
+    public function favoristeams()
+    {
+        return $this->hasMany(Favoristeam::class);
     }
 
-    public function favorismatchs()
+    public function favorismatches()
     {
         return $this->hasMany(Favorismatch::class);
     }
@@ -90,17 +93,17 @@ class User extends Authenticatable
         return $this->hasMany(Commentator::class);
     }
 
-    public function isFavoriTeam($club){
-        return $this->favoristeams->contains(function ($favori) use ($club) { 
-            return $favori->club_id == $club->id; 
+    public function isFavoriTeam($club)
+    {
+        return $this->favoristeams->contains(function ($favori) use ($club) {
+            return $favori->club_id == $club->id;
         });
     }
 
     public function isFavoriMatch($match)
     {
-        return $this->favorismatchs->contains( function($favori) use ($match){
+        return $this->favorismatches->contains(function ($favori) use ($match) {
             return $favori->match_id == $match->id;
         });
     }
-
 }

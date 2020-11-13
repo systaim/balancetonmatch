@@ -57,9 +57,8 @@ class ClubController extends Controller
     {
         $user = Auth::user();
         $nbrFavoris = Favoristeam::where('club_id', $club->id)->count();
-        $suiviMatch = Favorismatch::all();
         $matchs = Match::where('home_team_id', $club->id)->orwhere('away_team_id', $club->id)->orderBy('date_match','desc')->get();
-        return view('clubs.pageClub', compact('club', 'matchs','user','nbrFavoris', 'suiviMatch'));
+        return view('clubs.pageClub', compact('club', 'matchs','user','nbrFavoris'));
     }
 
     /**

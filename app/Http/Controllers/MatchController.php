@@ -8,11 +8,13 @@ use App\Models\Commentaire;
 use App\Models\Department;
 use App\Models\DivisionsDepartment;
 use App\Models\DivisionsRegion;
+use App\Models\Favorismatch;
 use App\Models\Group;
 use App\Models\Player;
 use App\Models\Match;
 use App\Models\Region;
 use App\Models\Statistic;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -24,14 +26,15 @@ class MatchController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Match $match)
     {
-        // $match = Match::with(['homeClub', 'homeAway'])->get();
         $clubs = Club::all();
+        $user = Auth::user();
         $players = Player::all();
         $competitions = Competition::all();
-        $matches = Match::where('date_match', '>=', Carbon::now()->subHours(12))->orderBy('date_match','asc')->get();
-        return view('matches.listMatchs', compact('clubs', 'players', 'competitions', 'matches'));
+        $nbrFavoris = Favorismatch::where('match_id', $match->id)->count();
+        $matches = Match::where('date_match', '>=', Carbon::now()->subHours(12))->orderBy('date_match', 'asc')->get();
+        return view('matches.listMatchs', compact('clubs', 'players', 'competitions', 'matches', 'user'));
     }
 
     /**
@@ -48,8 +51,7 @@ class MatchController extends Controller
         $groups = Group::all();
         $divisionsDepartments = DivisionsDepartment::all();
         $divisionsRegions = DivisionsRegion::all();
-        return redirect()->intended('login');
-        return View('matches.create', compact('clubs', 'regions','groups','departments','divisionsRegions', 'divisionsDepartments'));
+        return View('matches.create', compact('clubs', 'regions', 'groups', 'departments', 'divisionsRegions', 'divisionsDepartments'));
     }
 
     /**
@@ -62,14 +64,14 @@ class MatchController extends Controller
     {
         $user = Auth::user();
         $competition = Competition::all();
-        
+
 
         $data = $request->validate([
             'home_team' => ['required', 'exists:clubs,name'],
             'away_team' => ['required', 'exists:clubs,name'],
             'date_match' => ['required', 'date', 'after:yesterday'],
             'location' => ['min:3'],
-            'time' => ['required','date_format:H:i'],
+            'time' => ['required', 'date_format:H:i'],
         ]);
         $clubHome = Club::where('name', $data['home_team'])->first();
         $clubAway = Club::where('name', $data['away_team'])->first();
@@ -82,7 +84,6 @@ class MatchController extends Controller
         // $match->user()->associate($user);
         $match->save();
         return back();
-
     }
 
     /**
@@ -93,14 +94,13 @@ class MatchController extends Controller
      */
     public function show(Match $match)
     {
-        
+
         $commentsMatch = $match->commentaires()->with(['statistic'])->orderBy('minute', 'desc')->orderBy('updated_at', 'desc')->get();
         $clubHome = $match->homeClub()->get();
         $clubAway = $match->awayClub()->get();
         $stats = Statistic::all();
-
         $competitions = $match->competition()->get();
-        return view('matches.show',compact('match', 'commentsMatch', 'clubHome','clubAway','competitions','stats'));
+        return view('matches.show', compact('match', 'commentsMatch', 'clubHome', 'clubAway', 'competitions', 'stats'));
     }
 
     /**
