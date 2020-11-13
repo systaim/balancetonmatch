@@ -43,7 +43,4 @@
             </div>
         </div>
     </div>
-    <div class="text-darkGray flex items-center py-2 rounded-b-lg font-bold">
-        <p><i class="far fa-star text-lg mx-2"></i>Je veux suivre ce match</p>
-    </div>
 </div>

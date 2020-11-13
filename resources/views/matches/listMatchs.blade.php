@@ -16,6 +16,7 @@
     <a href="{{route('matches.show',$match)}}">
         @include('match')
     </a>
+    @livewire('favori-match', ['user' =>$user, 'match'=>$match])
     @endforeach
 </div>
 @endsection
