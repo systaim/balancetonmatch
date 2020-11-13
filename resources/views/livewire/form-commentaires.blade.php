@@ -280,9 +280,9 @@
         @if($nbrFavoris > 0)
         <div class="bg-secondary text-primary rounded-lg relative my-2 flex justify-center m-auto p-1 w-11/12">
             @if($nbrFavoris == 1)
-            <p>{{ $nbrFavoris }} personne souhaite un direct</p>
+            <p>{{ $nbrFavoris }} personne souhaite un LIVE</p>
             @else
-            <p>{{ $nbrFavoris }} personnes souhaitent un direct</p>
+            <p>{{ $nbrFavoris }} personnes souhaitent un LIVE</p>
             @endif
         </div>
         @endif
