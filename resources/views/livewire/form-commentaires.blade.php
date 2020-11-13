@@ -83,12 +83,12 @@
 
     <!-- Formulaire d'action équipe -->
     @if($team_action == 'home' || $team_action == 'away')
-    <div id="menuTeam" class="flex flex-col jsutify-center z-10 absolute h-auto top-0 right-0 left-0 bottom-0 espaceCom {{ $team_action}}">
+    <div id="menuTeam" class="flex flex-col jsutify-center z-10 absolute h-auto top-0 right-0 left-0 espaceCom {{ $team_action}}">
         <div class="flex flex-col items-center">
             <div class="m-4 flex flex-row justify-center">
                 <div class="flex flex-col jsutify-center">
                     <label class="inputAction {{$team_action}}" for="minute">Temps de jeu</label>
-                    <input class="p-3 bg-white rounded shadow outline-none focus:outline-none focus:shadow-outline text-center" type="number" name="minute" wire:model="minute" min="1" max="99">
+                    <input wire:poll.60000ms.keep-alive="chrono" class="p-3 bg-white rounded shadow outline-none focus:outline-none focus:shadow-outline text-center" type="number" name="minute" wire:model="minute" min="1" max="90">
                 </div>
             </div>
             <div class="actionsMatch">
@@ -170,6 +170,7 @@
         </div>
         @endif
     </div>
+    
     <!-- fin Formulaire d'action équipe -->
 
     <div>
@@ -251,12 +252,12 @@
                     <img src="{{asset('images/whistle-white.png')}}" alt="">
                 </div>
                 <div class="bg-white w-full pt-3">
-                    <p class="text-xl font-bold items-center text-center">Merci d'avoir commenter ! 😍</p>
+                    <p class="flex text-center px-4">Les commentaires sont fermés ! Merci</p>
                 </div>
             </div>
             @endif
             @endauth
-            <div class="my-4" wire:poll.5000ms="miseAJour">
+            <div class="my-4" wire:poll.10000ms="miseAJourCom">
                 @foreach($commentsMatch as $comment)
                 <div class="commentaires minHeight16 h-auto {{ $comment->team_action }}">
                     <div class="minuteCommentaires w-24 sm:w-32 {{ $comment->team_action }}">

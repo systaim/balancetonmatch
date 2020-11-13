@@ -43,21 +43,31 @@ class FormCommentaires extends Component
         $this->live = $match->live;
         $this->home_score = $match->home_score;
         $this->away_score = $match->away_score;
-        $this->heureMatch = $match->time;
         $this->user = $match->user_id;
         $this->dateMatch = $match->date_match;
-        $this->heureMatch = $match->time;
+        $this->minute = now()->diffInMinutes($this->dateMatch);
+        if (now()->diffInMinutes($this->dateMatch) >= 45 && now()->diffInMinutes($this->dateMatch) <= 60) {
+            $this->minute = 45;
+        } elseif (now()->diffInMinutes($this->dateMatch) > 60) {
+            $this->minute = now()->diffInMinutes($this->dateMatch) - 15;
+        }
+        // dd(now()->diffInHours($this->dateMatch, false));
+        if (now()->diffInHours($this->dateMatch, false) < -24) {
+            $this->match->live = "finDeMatch";
+            $this->match->save();
+        }
     }
 
-    public function miseAJour()
+    public function chrono()
     {
-        $this->minute +=1;
+        $this->minute += 1;
+    }
+
+    public function miseAJourCom()
+    {
         $this->home_score = $this->match->home_score;
         $this->away_score = $this->match->away_score;
         $this->commentsMatch = $this->match->commentaires()->orderBy('minute', 'desc')->orderBy('updated_at', 'desc')->get();
-        // if($this->dateMatch->diffInHours(now(), true) > 24){
-        //     $this->match->live = "finDeMatch";
-        // }
     }
 
     public function updateHomeScore()
@@ -77,13 +87,12 @@ class FormCommentaires extends Component
     {
         $user = Auth::user();
 
-        dd($this->dateMatch->diffInMinutes(now()->tz('Europe/Paris'), false));
-        if ($this->dateMatch->diffInMinutes(now(), false) > -30 && $this->dateMatch->diffInMinutes(now()) < 180) {
-        $this->match->live = 'reporte';
-        $this->match->user_id = $user->id;
-        $this->match->save();
+        if ($this->dateMatch->diffInMinutes(now(), false) > -30) {
+            $this->match->live = 'reporte';
+            $this->match->user_id = $user->id;
+            $this->match->save();
         } else {
-            session()->flash('messageAnnulation', "Il est possible de commenter 30 minutes avant le match et jusque 24h après");
+            session()->flash('messageAnnulation', "Revenez 30 minutes avant le coup d'envoi");
         }
     }
 
@@ -91,7 +100,9 @@ class FormCommentaires extends Component
     {
         $user = Auth::user();
 
-        if ($this->dateMatch->diffInMinutes(now()) > -30) {
+        // dd($this->dateMatch->diffInMinutes(now(), false) > - 30);
+
+        if ($this->dateMatch->diffInMinutes(now(), false) > -30) {
             $this->match->live = "debut";
             $this->match->user_id = $user->id;
             $this->match->save();
@@ -123,7 +134,7 @@ class FormCommentaires extends Component
                 // session()->flash('messageComment', 'Merci pour ce commentaire 😉');
             }
         } else {
-            session()->flash('messageCom', "Il est possible de commenter 30 minutes avant le match et jusque 24h après");
+            session()->flash('messageCom', "Revenez 30 minutes avant le coup d'envoi");
         }
     }
 

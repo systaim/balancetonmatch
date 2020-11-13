@@ -34,7 +34,7 @@
             @if($match->date_match > now())
             <div class="text-center flex justify-center font-bold">
                 <p class="px-4 bg-primary text-secondary rounded-tl-md">{{ $match->date_match->formatLocalized('%d/%m/%y')}}</p>
-                <p class="px-4 bg-primary text-secondary rounded-tr-md">{{ date('H:i', strtotime($match->time))}}</p>
+                <p class="px-4 bg-primary text-secondary rounded-tr-md">{{ $match->date_match->formatLocalized('%H:%M') }}</p>
             </div>
             <a href="{{route('matches.show',$match)}}">
                 @include('match')
@@ -59,7 +59,7 @@
         @foreach($matchs as $match)
         @if($match->date_match < now()) <div class="text-center flex justify-center font-bold">
             <p class="px-4 bg-primary text-secondary rounded-tl-md">{{ $match->date_match->formatLocalized('%d/%m/%y')}}</p>
-            <p class="px-4 bg-primary text-secondary rounded-tr-md">{{ date('H:i', strtotime($match->time))}}</p>
+            <p class="px-4 bg-primary text-secondary rounded-tr-md">{{ $match->date_match->formatLocalized('%H:%M')}}</p>
     </div>
     <a href="{{route('matches.show',$match)}}">
         <div class="grid grid-cols-12 pb-4">
