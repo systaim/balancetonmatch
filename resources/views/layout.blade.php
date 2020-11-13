@@ -53,25 +53,6 @@
                 </div>
                 @endauth
             </div>
-            @auth
-            <div class="pl-4 h-72 w-96">
-                <div class="p-4">
-                    <h2>Mes teams <i class="fas fa-heart text-red-700"></i></h2>
-                </div>
-                @foreach($user->favoristeams as $favoriteam)
-                <a href="{{ route('clubs.show', $favoriteam->club->id) }}">
-                    <div class="flex items-center my-2">
-                        <div class="logo h-10 w-10 cursor-pointer">
-                            <img class="object-contain" src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $favoriteam->club->numAffiliation }}.jpg" alt="logo">
-                        </div>
-                        <div class="ml-2">
-                            {{ $favoriteam->club->name }}
-                        </div>
-                    </div>
-                </a>
-                @endforeach
-            </div>
-            @endauth
         </div>
     </header>
     @yield('content')

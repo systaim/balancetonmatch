@@ -19,6 +19,8 @@ class RouteServiceProvider extends ServiceProvider
      */
     public const HOME = '/';
 
+    public const MATCH = 'matches/create';
+
     /**
      * If specified, this namespace is automatically applied to your controller routes.
      *

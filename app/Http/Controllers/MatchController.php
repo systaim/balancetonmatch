@@ -48,7 +48,6 @@ class MatchController extends Controller
         $groups = Group::all();
         $divisionsDepartments = DivisionsDepartment::all();
         $divisionsRegions = DivisionsRegion::all();
-        return redirect()->intended('login');
         return View('matches.create', compact('clubs', 'regions','groups','departments','divisionsRegions', 'divisionsDepartments'));
     }
 
