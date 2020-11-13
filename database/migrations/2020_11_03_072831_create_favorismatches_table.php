@@ -19,8 +19,8 @@ class CreateFavorismatchesTable extends Migration
             $table->unsignedBigInteger('match_id');
             $table->timestamps();
 
-            $table->foreign('region_id')->references('id')->on('users');
-            $table->foreign('region_id')->references('id')->on('matches');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('match_id')->references('id')->on('matches');
 
         });
     }

@@ -11,27 +11,37 @@ class Match extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable =['home_team','home_score','away_team','away_score','date_match','time','location','weather','competition_id','live','stat_id'];
+    protected $fillable = ['home_team', 'home_score', 'away_team', 'away_score', 'date_match', 'time', 'location', 'weather', 'competition_id', 'live', 'stat_id'];
 
     protected $dates = ['date_match'];
-    
-    public function user(){
+
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
-    public function club(){
+    public function club()
+    {
         return $this->belongsTo(Club::class);
     }
 
-    public function commentaires(){
+    public function commentaires()
+    {
         return $this->hasMany(Commentaire::class);
     }
 
-    public function homeClub(){
+    public function commentateurs()
+    {
+        return $this->hasMany(Commentator::class);
+    }
+
+    public function homeClub()
+    {
         return $this->belongsTo(Club::class, 'home_team_id');
     }
 
-    public function awayClub(){
+    public function awayClub()
+    {
         return $this->belongsTo(Club::class, 'away_team_id');
     }
 
@@ -40,24 +50,28 @@ class Match extends Model
         return $this->belongsTo(Region::class, 'region_id');
     }
 
-    public function competition(){
+    public function competition()
+    {
         return $this->belongsTo(Competition::class, 'competition_id');
     }
 
-    public function divisionRegion(){
+    public function divisionRegion()
+    {
         return $this->belongsTo(DivisionsRegion::class, 'division_region_id');
     }
 
-    public function divisionDepartment(){
+    public function divisionDepartment()
+    {
         return $this->belongsTo(DivisionsDepartment::class, 'division_department_id');
     }
-    
-    public function group(){
+
+    public function group()
+    {
         return $this->belongsTo(Group::class, 'group_id');
     }
 
-    public function derniersCommentaires($limit = null){
+    public function derniersCommentaires($limit = null)
+    {
         return Commentaire::popular($this->id, $limit)->get();
     }
-
 }

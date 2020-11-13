@@ -85,6 +85,11 @@ class User extends Authenticatable
         return $this->hasMany(Favorismatch::class);
     }
 
+    public function commentateurs()
+    {
+        return $this->hasMany(Commentator::class);
+    }
+
     public function isFavori($club){
         return $this->favoristeams->contains(function ($favori) use ($club) { 
             return $favori->club_id == $club->id; 

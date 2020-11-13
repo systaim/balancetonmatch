@@ -19,8 +19,8 @@ class CreateFavoristeamsTable extends Migration
             $table->unsignedBigInteger('club_id');
             $table->timestamps();
 
-            $table->foreign('region_id')->references('id')->on('users');
-            $table->foreign('region_id')->references('id')->on('clubs');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('club_id')->references('id')->on('clubs');
 
         });
     }
