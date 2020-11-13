@@ -19,6 +19,6 @@ class Favorismatch extends Model
 
     public function match()
     {
-        return $this->belongsTo(Match::class, 'club_id');
+        return $this->belongsTo(Match::class, 'match_id');
     }
 }

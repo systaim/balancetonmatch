@@ -25,7 +25,6 @@ class FavoriTeam extends Component
                 $this->heart = "far";
             }
         }
-
     }
 
     public function clickLogin()

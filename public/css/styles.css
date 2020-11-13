@@ -469,14 +469,13 @@ input:checked + .inputAction.home {
   top: 0;
   right: 0;
   left: 0;
-  bottom: 0;
   padding-top: 5rem;
   text-align: center;
   background: var(--secondary-color);
   opacity: 0;
   z-index: -1;
   visibility: hidden;
-  transition: all .375s;
+  transition: all 0.5s;
 }
 
 .main-nav.is-open {
@@ -508,7 +507,6 @@ input:checked + .inputAction.home {
 
 .main-nav ul {
   flex-direction: column;
-  height: 93%;
   align-items: flex-end;
   justify-content: center;
 }

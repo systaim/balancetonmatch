@@ -170,9 +170,9 @@
         </div>
         @endif
     </div>
-    
-    <!-- fin Formulaire d'action équipe -->
 
+    <!-- fin Formulaire d'action équipe -->
+    <!-- formulaire de commentaires -->
     <div>
         <div class="my-6 w-11/12 m-auto">
             @if($match->live == 'reporte')
@@ -257,6 +257,8 @@
             </div>
             @endif
             @endauth
+            <!-- fin de formulaire de commentaires -->
+            
             <div class="my-4" wire:poll.10000ms="miseAJourCom">
                 @foreach($commentsMatch as $comment)
                 <div class="commentaires minHeight16 h-auto {{ $comment->team_action }}">
@@ -280,13 +282,13 @@
                 <h3 class="text-center py-2">Le "Thierry Roland" du jour</h3>
             </div>
             <div class="flex justify-evenly items-center p-4">
-                <div>
+                <!-- <div>
                     <p>{{$match->user->pseudo}}</p>
-                </div>
+                </div> -->
                 <div class="flex items-center justify-center bg-secondary h-12 w-12 rounded-full m-2">
-                    <div class="text-primary font-bold">
+                    <!-- <div class="text-primary font-bold">
                         <p>{{ $match->user->note }}</p>
-                    </div>
+                    </div> -->
                 </div>
                 @endif
             </div>

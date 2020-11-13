@@ -52,7 +52,7 @@ class FormCommentaires extends Component
             $this->minute = now()->diffInMinutes($this->dateMatch) - 15;
         }
         // dd(now()->diffInHours($this->dateMatch, false));
-        if (now()->diffInHours($this->dateMatch, false) < -24) {
+        if (now()->diffInHours($this->dateMatch, false) < -6) {
             $this->match->live = "finDeMatch";
             $this->match->save();
         }
