@@ -184,6 +184,7 @@
             <div class="w-full h-full py-3 bg-primary text-secondary font-bold rounded-lg shadow-lg">
                 <p class="text-center">En attente d'un commentateur</p>
             </div>
+            @auth
             <button type="button" class="relative commentaires h-20 bg-white commandeMatch items-stretch w-full focus:outline-none" wire:click="timeZero" wire:model="type_comments">
                 <div class="minuteCommentaires w-24 commandeMatch">
                     <img src="{{asset('images/whistle-white.png')}}" alt="">
@@ -214,6 +215,7 @@
                     </div>
                 </div>
             </button>
+            @endauth
             @endif
             @auth
             @if($match->live == 'debut')
