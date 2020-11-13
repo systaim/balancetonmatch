@@ -260,7 +260,6 @@
             @endif
             @endauth
             <!-- fin de formulaire de commentaires -->
-            
             <div class="my-4" wire:poll.10000ms="miseAJourCom">
                 @foreach($commentsMatch as $comment)
                 <div class="commentaires minHeight16 h-auto {{ $comment->team_action }}">
@@ -278,6 +277,15 @@
                 @endforeach
             </div>
         </div>
+        @if($nbrFavoris > 0)
+        <div class="bg-secondary text-primary rounded-lg relative my-2 flex justify-center m-auto p-1 w-11/12">
+            @if($nbrFavoris == 1)
+            <p>{{ $nbrFavoris }} personne souhaite un direct</p>
+            @else
+            <p>{{ $nbrFavoris }} personnes souhaitent un direct</p>
+            @endif
+        </div>
+        @endif
         <div class="bg-white rounded-lg border-white w-11/12 m-auto my-8 shadow-2xl">
             @if($match->user)
             <div class="bg-primary text-secondary rounded-t-lg">

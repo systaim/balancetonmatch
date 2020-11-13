@@ -32,7 +32,6 @@ class MatchController extends Controller
         $user = Auth::user();
         $players = Player::all();
         $competitions = Competition::all();
-        $nbrFavoris = Favorismatch::where('match_id', $match->id)->count();
         $matches = Match::where('date_match', '>=', Carbon::now()->subHours(12))->orderBy('date_match', 'asc')->get();
         return view('matches.listMatchs', compact('clubs', 'players', 'competitions', 'matches', 'user'));
     }
@@ -94,13 +93,14 @@ class MatchController extends Controller
      */
     public function show(Match $match)
     {
-
+        $users = User::all();
         $commentsMatch = $match->commentaires()->with(['statistic'])->orderBy('minute', 'desc')->orderBy('updated_at', 'desc')->get();
         $clubHome = $match->homeClub()->get();
         $clubAway = $match->awayClub()->get();
         $stats = Statistic::all();
+        $nbrFavoris = Favorismatch::where('match_id', $match->id)->count();
         $competitions = $match->competition()->get();
-        return view('matches.show', compact('match', 'commentsMatch', 'clubHome', 'clubAway', 'competitions', 'stats'));
+        return view('matches.show', compact('match', 'commentsMatch', 'clubHome', 'clubAway', 'competitions', 'stats', 'nbrFavoris'));
     }
 
     /**

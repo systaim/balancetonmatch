@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 class FormCommentaires extends Component
 {
 
+    public $users;
     public $match;
     public $clubHome;
     public $clubAway;
@@ -31,6 +32,7 @@ class FormCommentaires extends Component
     public $dateMatch;
     public $heureMatch;
     public $matchNonDispo = "";
+    public $nbrFavoris;
     public $listGoal = ['GOOOOAAL !', 'BUUUUT !!!', 'GOAL GOAL GOAL !!'];
     public $mitempsJoueurs = ['Les joueurs rentrent aux vestiaires', 'Tout le monde à la buv... euuuh aux vestiaires !'];
 
@@ -55,6 +57,7 @@ class FormCommentaires extends Component
         if (now()->diffInHours($this->dateMatch, false) < -6) {
             $this->match->live = "finDeMatch";
             $this->match->save();
+            $this->nbrFavoris = 0;
         }
     }
 
@@ -189,6 +192,7 @@ class FormCommentaires extends Component
         $user = Auth::user();
         $this->match->live = "finDeMatch";
         $this->match->save();
+        $this->nbrFavoris = 0;
 
         $commentData['type_comments'] = "FIN DU MATCH !!!";
         $commentData['minute'] = 90;
