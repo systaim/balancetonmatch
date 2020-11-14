@@ -1,11 +1,18 @@
 @extends('layout')
-
 @section('content')
+<section>
+    <div class="border-2 border-darkGray h-96 p-4">
+        <h3>Le site pour suivre le foot amateur de n'importe où !</h3>
+        <p>Tu n'es pas dispo pour aller encourager votre équipe favorite ce week-end ?</p>
+        <p>Tu souhaites connaitre l'évolution du match d'un adversaire</p>
+        <p>Tu peux le suivre en direct LIVE</p>
+    </div>
+</section>
 <section>
     <div class="w-11/12 m-auto">
         <div class="bg-white rounded-lg border-white m-auto my-8 shadow-2xl">
             <div class="bg-primary text-secondary rounded-t-lg">
-                <h3 class="text-center py-2"><i class="fas fa-heart text-red-700"></i> Mes teams <i class="fas fa-heart text-red-700"></i></h3>
+                <h3 class="text-center py-2"><i class="fas fa-heart text-red-700"></i> Les teams que je suis <i class="fas fa-heart text-red-700"></i></h3>
             </div>
             <div class="p-2 height-mini-10">
                 @auth
@@ -26,7 +33,7 @@
         </div>
         <div class="bg-white rounded-lg border-white m-auto my-8 shadow-2xl">
             <div class="bg-primary text-secondary rounded-t-lg">
-                <h3 class="text-center py-2"><i class="fas fa-star text-red-700"></i> à suivre <i class="fas fa-star text-red-700"></i></h3>
+                <h3 class="text-center py-2"><i class="fas fa-star text-red-700"></i> Mes matchs en favoris <i class="fas fa-star text-red-700"></i></h3>
             </div>
             <div class="p-2 height-mini-10">
                 @auth
@@ -62,27 +69,6 @@
                     </div>
                 </a>
                 @endif
-                @endforeach
-                @endauth
-            </div>
-        </div>
-        <div class="bg-white rounded-lg border-white m-auto my-8 shadow-2xl">
-            <div class="bg-primary text-secondary rounded-t-lg">
-                <h3 class="text-center py-2">Mes teams <i class="fas fa-heart text-red-700"></i></h3>
-            </div>
-            <div class="p-2 height-mini-10">
-                @auth
-                @foreach($user->favoristeams as $favoriteam)
-                <a href="{{ route('clubs.show', $favoriteam->club->id) }}">
-                    <div class="flex items-center my-2 px-4">
-                        <div class="logo h-10 w-10 cursor-pointer">
-                            <img class="object-contain" src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $favoriteam->club->numAffiliation }}.jpg" alt="logo">
-                        </div>
-                        <div class="ml-2">
-                            <p class="font-bold">{{ $favoriteam->club->name }}</p>
-                        </div>
-                    </div>
-                </a>
                 @endforeach
                 @endauth
             </div>
