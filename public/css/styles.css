@@ -69,6 +69,10 @@ h6 {
   border-radius: 0.25rem
 }
 
+.height-mini-10{
+  min-height: 10rem;
+}
+
 /*************************
           BUTTONS
   *************************/

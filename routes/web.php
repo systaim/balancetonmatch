@@ -29,8 +29,9 @@ Route::get('/', function () {
     $players = Player::all();
     $dateJour = Carbon::now();
     $user = Auth::user();
+    $today = now();
 
-    return view('welcome', compact('matchesToday','matchesTomorrow','clubs','players','dateJour','user'));
+    return view('welcome', compact('matchesToday','matchesTomorrow','clubs','players','dateJour','user', 'today'));
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
