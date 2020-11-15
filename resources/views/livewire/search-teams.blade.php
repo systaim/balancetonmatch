@@ -27,7 +27,7 @@
         @foreach ($clubs as $club)
         @if($clubs)
         <a href="{{ route('clubs.show', $club) }}">
-            <div class="flex flex-col mb-3 w-full diagonale">
+            <div class="flex flex-col mb-3 w-full">
                 <div class="flex flex-row items-center bg-primary rounded-full">
                     <div class="w-16 m-2">
                         <div class="logo h-12 w-12">

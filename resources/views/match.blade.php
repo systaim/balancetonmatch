@@ -19,11 +19,11 @@
             </div>
             <div class="col-span-2 bg-gradient-to-r from-primary to-secondary flex flex-row justify-center items-center">
                 @if($match->live == 'attente')
-                <p class="z-10 bg-indigo-700 text-xs text-center text-white rounded-md px-2 shadow-md border-b-2 border-r-2 border-white">A VENIR</p>
+                <p class="bg-indigo-700 text-xs text-center text-white rounded-md px-2 shadow-md border-b-2 border-r-2 border-white">A VENIR</p>
                 @elseif($match->live != 'finDeMatch' && $match->live != 'reporte' && $match->live != 'attente')
-                <p class="z-10 bg-red-700 text-xs text-white rounded-md px-2 shadow-md border-b-2 border-r-2 border-white">LIVE</p>
+                <p class="bg-red-700 text-xs text-white rounded-md px-2 shadow-md border-b-2 border-r-2 border-white">LIVE</p>
                 @elseif($match->live == 'reporte')
-                <p class="z-10 bg-green-600 text-xs text-white rounded-md px-2 shadow-md border-b-2 border-r-2 border-white">REPORTÉ</p>
+                <p class="bg-green-600 text-xs text-white rounded-md px-2 shadow-md border-b-2 border-r-2 border-white">REPORTÉ</p>
                 @elseif($match->live == 'finDeMatch')
                 <div class="flex justify-center">
                     <div class="bg-white rounded-sm mr-1">

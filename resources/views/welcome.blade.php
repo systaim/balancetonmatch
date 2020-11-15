@@ -47,7 +47,7 @@
                         </div>
                         <div class="grid grid-cols-3">
                             <div class="flex flex-col items-center justify-center overflow-hidden">
-                                <div class="logo h-20 w-20 cursor-pointer">
+                                <div class="logo h-14 w-14 cursor-pointer">
                                     <img class="object-contain" src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $favorimatch->match->homeClub->numAffiliation }}.jpg" alt="logo">
                                 </div>
                                 <div class="ml-2">
@@ -55,10 +55,10 @@
                                 </div>
                             </div>
                             <div class="flex items-center justify-center text-secondary">
-                                <p class="text-6xl p-2 font-bold">VS</p>
+                                <p class="text-3xl p-2 font-bold">VS</p>
                             </div>
                             <div class="flex flex-col items-center justify-center overflow-hidden">
-                                <div class="logo h-20 w-20 cursor-pointer">
+                                <div class="logo h-14 w-14 cursor-pointer">
                                     <img class="object-contain" src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $favorimatch->match->awayClub->numAffiliation }}.jpg" alt="logo">
                                 </div>
                                 <div class="ml-2">
