@@ -2,7 +2,7 @@
 @section('content')
 
 @livewire('form-commentaires', [
-    'commentator'=> $commentator, 
+    'commentators'=> $commentators, 
     'nbrFavoris'=> $nbrFavoris, 
     'match' =>$match, 
     'clubHome' => $clubHome, 

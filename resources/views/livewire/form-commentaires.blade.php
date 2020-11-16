@@ -25,9 +25,11 @@
                 <div class="col-span-5 overflow-hidden">
                     <div class="bg-primary p-2 text-secondary flex flex-col">
                         <div class="flex justify-center">
-                            @if($match->live == 'debut' || $match->live == 'repriseMT')
+                            @foreach($commentators as $commentator)
+                            @if(($match->live == 'debut' || $match->live == 'repriseMT') && $commentator->user->id == Auth::user()->id)
                             <input class="hidden" type="radio" wire:model="team_action" id="homeAction" name="team_action" value="home">
                             @endif
+                            @endforeach
                             <label for="homeAction">
                                 <div class="logo h-20 w-20 cursor-pointer">
                                     <img class="object-contain" src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $match->homeClub->numAffiliation }}.jpg" alt="logo">
@@ -54,9 +56,11 @@
                 <div class="col-span-5 overflow-hidden z-0">
                     <div class="bg-secondary p-2 text-primary flex flex-col">
                         <div class="flex justify-center">
-                            @if($match->live == 'debut' || $match->live == 'repriseMT')
+                            @foreach($commentators as $commentator)
+                            @if(($match->live == 'debut' || $match->live == 'repriseMT') && $commentator->user_id == Auth::user()->id)
                             <input class="hidden" type="radio" wire:model="team_action" id="awayAction" name="team_action" value="away">
                             @endif
+                            @endforeach
                             <label for="awayAction">
                                 <div class="logo h-20 w-20 cursor-pointer">
                                     <img class="object-contain" src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $match->awayClub->numAffiliation }}.jpg" alt="logo">
@@ -217,7 +221,9 @@
             </button>
             @endauth
             @endif
-            @auth
+
+            @foreach($commentators as $commentator)
+            @if($commentator->user_id == Auth::user()->id)
             @if($match->live == 'debut')
             <button type="button" class="commentaires h-12 bg-white commandeMatch items-stretch w-full" wire:click="timeMitemps" wire:model="type_comments">
                 <div class="minuteCommentaires w-24 sm:w-32 commandeMatch">
@@ -258,9 +264,10 @@
                 </div>
             </div>
             @endif
-            @endauth
+            @endif
+            @endforeach
             <!-- fin de formulaire de commentaires -->
-            <div class="my-4" wire:poll.10000ms="miseAJourCom">
+            <div class="my-4" wire:poll.5000ms="miseAJourCom">
                 @foreach($commentsMatch as $comment)
                 <div class="relative commentaires minHeight16 h-auto {{ $comment->team_action }}">
                     <div class="minuteCommentaires w-24 sm:w-32 {{ $comment->team_action }}">
@@ -269,7 +276,7 @@
                     <div class="relative bg-white w-full px-4 pt-2">
                         <p class="text-lg font-bold">{{ $comment->type_comments}}</p>
                         <p>{{ $comment->comments }}</p>
-                        
+
                     </div>
                     <div class="absolute top-2 right-2 px-3 py-1 cursor-pointer hover:bg-gray-200 rounded-full" wire:click="sousMenu">
                         <div class="h-1 w-1 bg-darkGray rounded-full m-1"></div>
@@ -277,12 +284,12 @@
                         <div class="h-1 w-1 bg-darkGray rounded-full m-1"></div>
                     </div>
                     @if($sousMenu == 1)
-                        <div class="absolute top-0 right-0 bottom-0 left-0 bg-gray-200 rounded-lg">
-                            <ul class="flex flex-row justify-center text-xs mt-4">
-                                <li class="mr-2">Modifier</li>
-                                <li class="mr-2">Supprimer</li>
-                            </ul>
-                        </div>
+                    <div class="absolute top-0 right-0 bottom-0 left-0 bg-gray-200 rounded-lg">
+                        <ul class="flex flex-row justify-center text-xs mt-4">
+                            <li class="mr-2">Modifier</li>
+                            <li class="mr-2">Supprimer</li>
+                        </ul>
+                    </div>
                     @endif
                 </div>
                 @endforeach
@@ -301,15 +308,18 @@
             <div class="bg-primary text-secondary rounded-t-lg">
                 <h3 class="text-center py-2">Le "Thierry Roland" du jour</h3>
             </div>
-            @if($match->commentateur)
             <div class="flex justify-evenly items-center p-4">
                 <div>
-                    <p>{{$match->commentateur->user->pseudo}}</p>
+                    @foreach($commentators as $commentator)
+                    <p>{{$commentator->user->pseudo}}</p>
+                    @endforeach
                 </div>
                 <div class="flex items-center justify-center bg-secondary h-12 w-12 rounded-full m-2">
+                    @foreach($commentators as $commentator)
+                    <p>{{$commentator->user->note}}</p>
+                    @endforeach
                 </div>
             </div>
-            @endif
         </div>
     </div>
 </form>

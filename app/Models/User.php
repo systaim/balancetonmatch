@@ -88,9 +88,9 @@ class User extends Authenticatable
         return $this->hasMany(Favorismatch::class);
     }
 
-    public function commentateurs()
+    public function commentateur()
     {
-        return $this->hasMany(Commentator::class);
+        return $this->hasOne(Commentator::class);
     }
 
     public function isFavoriTeam($club)

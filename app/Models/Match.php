@@ -17,10 +17,10 @@ class Match extends Model
 
     protected $dates = ['date_match'];
 
-    // public function user()
-    // {
-    //     return $this->belongsTo(User::class);
-    // }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
     public function favorismatches()
     {
