@@ -104,16 +104,24 @@
                 <div class="p-6 border-2 border-{{ $team_action }}">
                     <div class="flex flex-col">
                         <div>
-                            <input class="hidden" type="radio" id="tete" wire:model="type_but" name="type_but" value="But de la tête">
-                            <label class="inputAction {{ $team_action }}" for="tete">But de la tête</label>
+                            <input class="hidden" type="radio" id="butCF" wire:model="type_but" name="type_but" value="But sur coup-franc">
+                            <label class="inputAction {{ $team_action }}" for="butCF">But sur coup-franc</label>
                         </div>
                         <div>
-                            <input class="hidden" type="radio" id="pied_droit" wire:model="type_but" name="type_but" value="But du pied droit">
-                            <label class="inputAction {{ $team_action }}" for="pied_droit">But du pied droit</label>
+                            <input class="hidden" type="radio" id="butCorner" wire:model="type_but" name="type_but" value="But sur corner">
+                            <label class="inputAction {{ $team_action }}" for="butCorner">But sur corner</label>
                         </div>
                         <div>
-                            <input class="hidden" type="radio" id="pied_gauche" wire:model="type_but" name="type_but" value="But du pied gauche">
-                            <label class="inputAction {{ $team_action }}" for="pied_gauche">But du pied gauche</label>
+                            <input class="hidden" type="radio" id="ext-surface" wire:model="type_but" name="type_but" value="Frappe de l'extérieur de la suface">
+                            <label class="inputAction {{ $team_action }}" for="ext-surface">Frappe de l'extérieur de la suface</label>
+                        </div>
+                        <div>
+                            <input class="hidden" type="radio" id="int-surface" wire:model="type_but" name="type_but" value="Frappe de l'intérieur de la surface">
+                            <label class="inputAction {{ $team_action }}" for="int-surface">Frappe de l'intérieur de la surface</label>
+                        </div>
+                        <div>
+                            <input class="hidden" type="radio" id="penalty" wire:model="type_but" name="type_but" value="But sur pénalty">
+                            <label class="inputAction {{ $team_action }}" for="penalty">But sur pénalty</label>
                         </div>
                         @error('type_but')
                         <span class="error">{{ $message }}</span>
@@ -316,14 +324,14 @@
             <div class="flex justify-evenly items-center p-4">
                 <div>
                     @foreach($commentators as $commentator)
-                    <p>{{$commentator->user->pseudo}}</p>
+                    <p class="font-bold">{{$commentator->user->pseudo}}</p>
                     @endforeach
                 </div>
-                <div class="flex items-center justify-center bg-secondary h-12 w-12 rounded-full m-2">
+                <!-- <div class="flex items-center justify-center bg-secondary h-12 w-12 rounded-full m-2">
                     @foreach($commentators as $commentator)
                     <p>{{$commentator->user->note}}</p>
                     @endforeach
-                </div>
+                </div> -->
             </div>
         </div>
     </div>

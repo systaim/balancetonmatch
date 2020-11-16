@@ -22,6 +22,7 @@ class FormCommentaires extends Component
     public $type_comments;
     public $type_but = "";
     public $type_carton = "";
+    // public $type_actionMatch = "";
     public $minute = 0;
     public $team_action = '';
     public $live;
@@ -60,7 +61,7 @@ class FormCommentaires extends Component
         } else {
             $this->minute = 90;
         }
-        if (now()->diffInHours($this->dateMatch, false) < -6) {
+        if (now()->diffInHours($this->dateMatch, false) < -4) {
             $this->match->live = "finDeMatch";
             $this->match->save();
             $this->nbrFavoris = 0;
@@ -178,7 +179,7 @@ class FormCommentaires extends Component
             }
             $comment->save();
             $this->commentsMatch =  $this->match->commentaires()->orderBy('minute', 'desc')->orderBy('updated_at', 'desc')->get();
-            session()->flash('messageComment', 'Merci pour ce commentaire 😉');
+            session()->flash('messageComment', 'Évènement bien pris en compte');
         }
     }
 
@@ -201,7 +202,7 @@ class FormCommentaires extends Component
             }
             $comment->save();
             $this->commentsMatch =  $this->match->commentaires()->orderBy('minute', 'desc')->orderBy('updated_at', 'desc')->get();
-            session()->flash('messageComment', 'Merci pour ce commentaire 😉');
+            session()->flash('messageComment', 'Évènement bien pris en compte');
         }
     }
 
@@ -225,7 +226,7 @@ class FormCommentaires extends Component
             }
             $comment->save();
             $this->commentsMatch =  $this->match->commentaires()->orderBy('minute', 'desc')->orderBy('updated_at', 'desc')->get();
-            session()->flash('messageComment', 'Merci pour ce commentaire 😉');
+            session()->flash('messageComment', '😍 MERCI MERCI MERCI 😍');
         }
     }
 
