@@ -412,11 +412,8 @@ input:checked + .inputAction.home {
 }
 
 .alertComment {
-  opacity: 0;
-  height: 0px;
-  padding: 1rem;
-  font-weight: bold;
-  background-color: var(--secondary-color);
+  opacity:0;
+  background-color: var(--primary-color);
   -webkit-animation-name: disparition;
           animation-name: disparition;
   -webkit-animation-duration: 5s;

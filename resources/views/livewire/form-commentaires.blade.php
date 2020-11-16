@@ -177,6 +177,11 @@
 
     <!-- fin Formulaire d'action équipe -->
     <!-- formulaire de commentaires -->
+    @if (session()->has('messageComment'))
+    <div wire:loading.class.remove="alertComment" class="m-auto w-1/2 my-1 flex justify-center items-center text-white p-2 rounded-lg alertComment">
+        {{ session('messageComment') }}
+    </div>
+    @endif
     <div>
         <div class="my-6 w-11/12 m-auto">
             @if($match->live == 'reporte')
