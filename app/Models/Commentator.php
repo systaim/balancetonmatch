@@ -9,6 +9,8 @@ class Commentator extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['user_id', 'match_id'];
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
@@ -16,6 +18,11 @@ class Commentator extends Model
 
     public function match()
     {
-        return $this->belongsTo(Match::class, 'match_id');
+        return $this->hasMany(Match::class, 'match_id');
+    }
+
+    public function commentaires()
+    {
+        return $this->hasMany(Commentaire::class, 'commentator_id');
     }
 }

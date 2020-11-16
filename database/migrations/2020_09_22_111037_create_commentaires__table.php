@@ -15,8 +15,7 @@ class CreateCommentairesTable extends Migration
     {
         Schema::create('comment_user_match', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('match_id');
+            $table->unsignedBigInteger('commentator_id');
             $table->string('type_comments');
             $table->text('comments')->nullable();
             $table->integer('minute');
@@ -24,8 +23,7 @@ class CreateCommentairesTable extends Migration
             $table->timestamps();
             $table->timestamp('deleted_at')->nullable();
 
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('match_id')->references('id')->on('matchs');
+            $table->foreign('commentator_id')->references('id')->on('commentators');
         });
     }
 

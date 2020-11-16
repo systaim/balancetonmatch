@@ -83,7 +83,7 @@
 
     <!-- Formulaire d'action équipe -->
     @if($team_action == 'home' || $team_action == 'away')
-    <div id="menuTeam" class="flex flex-col jsutify-center z-10 absolute h-auto top-0 right-0 left-0 espaceCom {{ $team_action}}">
+    <div id="menuTeam" class="flex flex-col justify-center z-10 rounded-b-lg absolute h-auto top-0 right-0 left-0 espaceCom {{ $team_action}}">
         <div class="flex flex-col items-center">
             <div class="m-4 flex flex-row justify-center">
                 <div class="flex flex-col jsutify-center">
@@ -262,17 +262,28 @@
             <!-- fin de formulaire de commentaires -->
             <div class="my-4" wire:poll.10000ms="miseAJourCom">
                 @foreach($commentsMatch as $comment)
-                <div class="commentaires minHeight16 h-auto {{ $comment->team_action }}">
+                <div class="relative commentaires minHeight16 h-auto {{ $comment->team_action }}">
                     <div class="minuteCommentaires w-24 sm:w-32 {{ $comment->team_action }}">
                         <p class="text-lg">{{ $comment->minute}}'</p>
                     </div>
                     <div class="relative bg-white w-full px-4 pt-2">
                         <p class="text-lg font-bold">{{ $comment->type_comments}}</p>
                         <p>{{ $comment->comments }}</p>
-                        @if($comment->statistic)
-                        <p class="font-bold"><span class="capitalize">{{ $comment->statistic->player->first_name}}</span> <span class="uppercase">{{ $comment->statistic->player->name}}</span></p>
-                        @endif
+                        
                     </div>
+                    <div class="absolute top-2 right-2 px-3 py-1 cursor-pointer hover:bg-gray-200 rounded-full" wire:click="sousMenu">
+                        <div class="h-1 w-1 bg-darkGray rounded-full m-1"></div>
+                        <div class="h-1 w-1 bg-darkGray rounded-full m-1"></div>
+                        <div class="h-1 w-1 bg-darkGray rounded-full m-1"></div>
+                    </div>
+                    @if($sousMenu == 1)
+                        <div class="absolute top-0 right-0 bottom-0 left-0 bg-gray-200 rounded-lg">
+                            <ul class="flex flex-row justify-center text-xs mt-4">
+                                <li class="mr-2">Modifier</li>
+                                <li class="mr-2">Supprimer</li>
+                            </ul>
+                        </div>
+                    @endif
                 </div>
                 @endforeach
             </div>
@@ -280,28 +291,25 @@
         @if($nbrFavoris > 0)
         <div class="bg-secondary text-primary rounded-lg relative my-2 flex justify-center m-auto p-1 w-11/12">
             @if($nbrFavoris == 1)
-            <p>{{ $nbrFavoris }} personne souhaite un LIVE</p>
+            <p>{{ $nbrFavoris }} personne souhaite un direct LIVE</p>
             @else
-            <p>{{ $nbrFavoris }} personnes souhaitent un LIVE</p>
+            <p>{{ $nbrFavoris }} personnes souhaitent un direct LIVE</p>
             @endif
         </div>
         @endif
         <div class="bg-white rounded-lg border-white w-11/12 m-auto my-8 shadow-2xl">
-            @if($match->user)
             <div class="bg-primary text-secondary rounded-t-lg">
                 <h3 class="text-center py-2">Le "Thierry Roland" du jour</h3>
             </div>
+            @if($match->commentateur)
             <div class="flex justify-evenly items-center p-4">
-                <!-- <div>
-                    <p>{{$match->user->pseudo}}</p>
-                </div> -->
-                <div class="flex items-center justify-center bg-secondary h-12 w-12 rounded-full m-2">
-                    <!-- <div class="text-primary font-bold">
-                        <p>{{ $match->user->note }}</p>
-                    </div> -->
+                <div>
+                    <p>{{$match->commentateur->user->pseudo}}</p>
                 </div>
-                @endif
+                <div class="flex items-center justify-center bg-secondary h-12 w-12 rounded-full m-2">
+                </div>
             </div>
+            @endif
         </div>
     </div>
 </form>

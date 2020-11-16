@@ -12,10 +12,15 @@ class Commentaire extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable = ['user_id','player_id','match_id','type_comments', 'comments','minute','team_action'];
+    protected $fillable = ['commentator_id','player_id','match_id','type_comments', 'comments','minute','team_action'];
 
-    public function user(){
-        return $this->belongsTo(User::class);
+    // public function user(){
+    //     return $this->belongsTo(User::class);
+    // }
+
+    public function commentator()
+    {
+        return $this->belongsTo(Commentator::class);
     }
 
     public function match(){
