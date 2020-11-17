@@ -1,18 +1,18 @@
 @extends('layout')
 @section('content')
 <section>
-    <div class="border-2 border-darkGray h-96 p-4">
-        <h3>Le site pour suivre le foot amateur de n'importe où !</h3>
-        <p>Tu n'es pas dispo pour aller encourager votre équipe favorite ce week-end ?</p>
-        <p>Tu souhaites connaitre l'évolution du match d'un adversaire</p>
-        <p>Tu peux le suivre en direct LIVE</p>
+    <div class=" h-auto p-4">
+        <!-- <h3 class="text-center text-3xl">Le site pour suivre le foot amateur de n'importe où !</h3> -->
+        <p class=" bg-primary text-white rounded-lg relative my-2 flex flex-col p-3 w-full">Pas dispo pour aller encourager ton équipe favorite ?</p>
+        <p class=" bg-primary text-white rounded-lg relative my-2 flex flex-col p-3 w-full">Tu souhaites connaitre l'évolution d'un match ?</p>
+        <p class=" bg-primary text-white rounded-lg relative my-2 flex flex-col p-3 w-full">Tu peux le suivre en direct LIVE</p>
     </div>
 </section>
 <section>
     <div class="w-11/12 m-auto">
-        <div class="bg-white rounded-lg border-white m-auto my-8 shadow-2xl">
+        <div class="bg-white rounded-lg border-white m-auto my-4 shadow-2xl">
             <div class="bg-primary text-secondary rounded-t-lg">
-                <h3 class="text-center py-2"><i class="fas fa-heart text-red-700"></i> Les teams que je suis <i class="fas fa-heart text-red-700"></i></h3>
+                <h3 class="text-center py-2"><i class="fas fa-heart text-red-700"></i> Mes teams favorites <i class="fas fa-heart text-red-700"></i></h3>
             </div>
             <div class="p-2 height-mini-10">
                 @auth
@@ -28,6 +28,8 @@
                     </div>
                 </a>
                 @endforeach
+                @else
+                <p>Connecte toi pour ajouter des équipes</p>
                 @endauth
             </div>
         </div>
@@ -70,6 +72,8 @@
                 </a>
                 @endif
                 @endforeach
+                @else 
+                <p>Connecte toi pour ajouter des matchs</p>
                 @endauth
             </div>
         </div>
