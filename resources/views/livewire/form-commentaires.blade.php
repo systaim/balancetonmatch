@@ -45,9 +45,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-span-2 bg-gradient-to-r from-primary to-secondary flex flex-col justify-center items-center">
-                    <div class="flex justify-center">
-                        <div class="bg-white rounded-sm mr-1">
+                <div class="relative col-span-2 bg-gradient-to-r from-primary to-secondary flex flex-col justify-center items-center">
+                    <div class="absolute top-1 text-white font-bold text-xl">
+                        <p>{{ $minute }}'</p>
+                    </div>
+                    <div class="flex justify-center mt-2">
+                        <div class="bg-white rounded-sm mr-1 z-10">
                             <p class="flex justify-center w-4 text-3xl px-4 font-bold">{{$home_score}}</p>
                         </div>
                         <div class="bg-white rounded-sm ml-1 z-10">
@@ -296,7 +299,7 @@
             @endif
             @endforeach
             @endauth
-            
+
             <!-- fin de formulaire de commentaires -->
             <div class="my-4" wire:poll.5000ms="miseAJourCom">
                 @foreach($commentsMatch as $comment)
@@ -309,6 +312,9 @@
                         <p>{{ $comment->comments }}</p>
 
                     </div>
+                    @auth
+                    @foreach($commentators as $commentator)
+                    @if($commentator->user_id == Auth::user()->id)
                     <div class="absolute top-2 right-2 px-3 py-1 cursor-pointer hover:bg-gray-200 rounded-full" wire:click="sousMenu">
                         <div class="h-1 w-1 bg-darkGray rounded-full m-1"></div>
                         <div class="h-1 w-1 bg-darkGray rounded-full m-1"></div>
@@ -322,6 +328,9 @@
                         </ul>
                     </div>
                     @endif
+                    @endif
+                    @endforeach
+                    @endauth
                 </div>
                 @endforeach
             </div>
