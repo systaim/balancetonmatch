@@ -31,6 +31,7 @@ class CreateUsersTable extends Migration
             $table->boolean('is_player')->nullable();
             $table->text('profile_photo_path')->nullable();
             $table->integer('rank')->nullable();
+            $table->boolean('first_com')->default(1);
             $table->timestamps();
             $table->timestamp('deleted_at')->nullable();
         });

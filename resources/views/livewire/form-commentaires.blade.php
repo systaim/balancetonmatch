@@ -237,7 +237,7 @@
 
             @foreach($commentators as $commentator)
             @if($commentator->user_id == Auth::user()->id)
-            @if($match->live == 'debut')
+            @if($match->live == 'debut' && now()->diffInMinutes($match->date_match) >= 40))
             <button type="button" class="commentaires h-12 bg-white commandeMatch items-stretch w-full" wire:click="timeMitemps" wire:model="type_comments">
                 <div class="minuteCommentaires w-24 sm:w-32 commandeMatch">
                     <img src="{{asset('images/whistle-white.png')}}" alt="">
@@ -246,6 +246,17 @@
                     <p class="text-center">Valider la mi-temps</p>
                 </div>
             </button>
+            @endif
+            @if($firstCom == 1)
+                <div class="bg-primary w-full h-96 rounded-lg p-4 text-white text-xs text-center">
+                    <h3 class="text-secondary text-center text-base mb-4">Comment bien commenter ?</h3>
+                    <p>Envie de commenter ? Rien de plus simple !</p>
+                    <p>Il te suffit de cliquer sur un des deux logo pour afficher le menu ACTIONS</p>
+                    <p>Le temps est donné à titre indicatif, le chrono démarre à l'heure du match. Tu peux le modifier facilement
+                        si besoin. Tu choisis une action, un joueur et tu valides.</p>
+                        <p>C'est tout !</p>
+                    <button class="btn btnSecondary" wire:click="clickFirstCom" wire:model="firstCom">J'ai compris</button>
+                </div>
             @endif
             @if($match->live == 'mitemps')
             <button type="button" class="commentaires h-12 bg-white commandeMatch items-stretch w-full" wire:click="timeReprise" wire:model="type_comments">

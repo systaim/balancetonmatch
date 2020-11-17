@@ -10,6 +10,7 @@
     'commentsMatch' => $commentsMatch, 
     'competitions' => $competitions, 
     'stats' => $stats,
+    'users' => $users
     ])
 
 @endsection

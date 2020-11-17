@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Auth;
 
 class FormCommentaires extends Component
 {
-
     public $users;
     public $match;
     public $clubHome;
@@ -37,11 +36,13 @@ class FormCommentaires extends Component
     public $nbrFavoris;
     public $sousMenu;
     public $commentators;
+    public $firstCom;
     public $listGoal = ['GOOOOAAL !', 'BUUUUT !!!', 'GOAL GOAL GOAL !!'];
     public $mitempsJoueurs = ['Les joueurs rentrent aux vestiaires', 'Tout le monde à la buv... euuuh aux vestiaires !'];
 
     public function mount($match, $clubHome, $clubAway, $commentsMatch)
     {
+
         $this->clubHome = $clubHome;
         $this->clubAway = $clubAway;
         $this->commentsMatch = $commentsMatch;
@@ -52,7 +53,7 @@ class FormCommentaires extends Component
         $this->user = $match->user_id;
         $this->dateMatch = $match->date_match;
         $this->minute = now()->diffInMinutes($this->dateMatch);
-        if(now()->diffInMinutes($this->dateMatch) >= 0 && now()->diffInMinutes($this->dateMatch) <= 45){
+        if (now()->diffInMinutes($this->dateMatch) >= 0 && now()->diffInMinutes($this->dateMatch) <= 45) {
             $this->minute = now()->diffInMinutes($this->dateMatch);
         } elseif (now()->diffInMinutes($this->dateMatch) >= 45 && now()->diffInMinutes($this->dateMatch) <= 60) {
             $this->minute = 45;
@@ -65,6 +66,10 @@ class FormCommentaires extends Component
             $this->match->live = "finDeMatch";
             $this->match->save();
             $this->nbrFavoris = 0;
+        }
+
+        foreach ($this->commentators as $comm) {
+            $this->firstCom = $comm->user->first_com;
         }
     }
 
@@ -98,6 +103,14 @@ class FormCommentaires extends Component
         $this->away_score += 1;
         $this->match->away_score += 1;
         $this->match->save();
+    }
+
+    public function clickFirstCom()
+    {
+        $user = Auth::user();
+        $this->firstCom = 0;
+        $user->first_com = 0;
+        $user->save();
     }
 
     public function matchReporte()

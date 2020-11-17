@@ -20,7 +20,7 @@
                 <span class="burger-text">Menu</span>
             </button>
         </div>
-        <div class="text-primary text-center pb-4 diagonale pt-3">
+        <div class="m-auto w-2/3 text-primary text-center pb-4 diagonale pt-3">
             <a href="/">
                 <h1 class="text-lg"><span class="text-lg">balance ton match</h1>
                 <p class="text-xs">Quand la touche part en live...</p>
