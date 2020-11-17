@@ -25,11 +25,13 @@
                 <div class="col-span-5 overflow-hidden">
                     <div class="bg-primary p-2 text-secondary flex flex-col">
                         <div class="flex justify-center">
+                            @auth
                             @foreach($commentators as $commentator)
                             @if(($match->live == 'debut' || $match->live == 'repriseMT') && $commentator->user->id == Auth::user()->id)
                             <input class="hidden" type="radio" wire:model="team_action" id="homeAction" name="team_action" value="home">
                             @endif
                             @endforeach
+                            @endauth
                             <label for="homeAction">
                                 <div class="logo h-20 w-20 cursor-pointer">
                                     <img class="object-contain" src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $match->homeClub->numAffiliation }}.jpg" alt="logo">
@@ -56,11 +58,13 @@
                 <div class="col-span-5 overflow-hidden z-0">
                     <div class="bg-secondary p-2 text-primary flex flex-col">
                         <div class="flex justify-center">
+                            @auth
                             @foreach($commentators as $commentator)
                             @if(($match->live == 'debut' || $match->live == 'repriseMT') && $commentator->user_id == Auth::user()->id)
                             <input class="hidden" type="radio" wire:model="team_action" id="awayAction" name="team_action" value="away">
                             @endif
                             @endforeach
+                            @endauth
                             <label for="awayAction">
                                 <div class="logo h-20 w-20 cursor-pointer">
                                     <img class="object-contain" src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $match->awayClub->numAffiliation }}.jpg" alt="logo">
@@ -235,6 +239,7 @@
             @endauth
             @endif
 
+            @auth
             @foreach($commentators as $commentator)
             @if($commentator->user_id == Auth::user()->id)
             @if($match->live == 'debut' && now()->diffInMinutes($match->date_match) >= 40))
@@ -248,15 +253,15 @@
             </button>
             @endif
             @if($firstCom == 1)
-                <div class="bg-primary w-full h-96 rounded-lg p-4 text-white text-xs text-center">
-                    <h3 class="text-secondary text-center text-base mb-4">Comment bien commenter ?</h3>
-                    <p>Envie de commenter ? Rien de plus simple !</p>
-                    <p>Il te suffit de cliquer sur un des deux logo pour afficher le menu ACTIONS</p>
-                    <p>Le temps est donné à titre indicatif, le chrono démarre à l'heure du match. Tu peux le modifier facilement
-                        si besoin. Tu choisis une action, un joueur et tu valides.</p>
-                        <p>C'est tout !</p>
-                    <button class="btn btnSecondary" wire:click="clickFirstCom" wire:model="firstCom">J'ai compris</button>
-                </div>
+            <div class="bg-primary w-full h-96 rounded-lg p-4 text-white text-xs text-center">
+                <h3 class="text-secondary text-center text-base mb-4">Comment bien commenter ?</h3>
+                <p>Envie de commenter ? Rien de plus simple !</p>
+                <p>Il te suffit de cliquer sur un des deux logo pour afficher le menu ACTIONS</p>
+                <p>Le temps est donné à titre indicatif, le chrono démarre à l'heure du match. Tu peux le modifier facilement
+                    si besoin. Tu choisis une action, un joueur et tu valides.</p>
+                <p>C'est tout !</p>
+                <button class="btn btnSecondary" wire:click="clickFirstCom" wire:model="firstCom">J'ai compris</button>
+            </div>
             @endif
             @if($match->live == 'mitemps')
             <button type="button" class="commentaires h-12 bg-white commandeMatch items-stretch w-full" wire:click="timeReprise" wire:model="type_comments">
@@ -290,6 +295,8 @@
             @endif
             @endif
             @endforeach
+            @endauth
+            
             <!-- fin de formulaire de commentaires -->
             <div class="my-4" wire:poll.5000ms="miseAJourCom">
                 @foreach($commentsMatch as $comment)
