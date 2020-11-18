@@ -18,8 +18,8 @@
             <h5 class="text-secondary text-center">Ajouter un membre du staff</h5>
             <div class="m-5">
                 <div>
-                    <label for="name">Nom de famille</label>
-                    <input class="inputForm focus:outline-none focus:shadow-outline w-full my-1" type="text" name="name" id="name" placeholder="DUPONT">
+                    <label for="last_name">Nom de famille</label>
+                    <input class="inputForm focus:outline-none focus:shadow-outline w-full my-1" type="text" name="last_name" id="last_name" placeholder="DUPONT">
                 </div>
                 <div>
                     <label for="first_name">Prénom</label>

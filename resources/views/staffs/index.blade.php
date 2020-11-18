@@ -22,7 +22,7 @@
                 <p class="text-center font-bold mb-2 text-xl">{{ $staff->quality}}</p>
             </div>
             <div>
-                <h4 class="capitalize text-secondary text-center">{{ $staff->first_name}} <span class="uppercase">{{ $staff->name}}</span></h4>
+                <h4 class="capitalize text-secondary text-center">{{ $staff->first_name}} <span class="uppercase">{{ $staff->last_name}}</span></h4>
             </div>
         </div>
     </div>

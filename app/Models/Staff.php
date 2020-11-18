@@ -11,11 +11,11 @@ class Staff extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable = ['first_name', 'name', 'quality', 'club_id','user_id'];
+    protected $fillable = ['first_name', 'last_name', 'quality', 'club_id','user_id'];
 
     public function club()
     {
-        return $this->belongsTo(Club::class);
+        return $this->belongsTo(Club::class, 'club_id');
     }
 
     public function user()

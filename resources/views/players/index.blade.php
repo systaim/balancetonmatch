@@ -24,7 +24,7 @@
         <div class="flex flex-col">
 
             <div>
-                <h4 class="capitalize text-secondary">{{ $player->first_name}} <span class="uppercase">{{ $player ->  name}}</span></h4>
+                <h4 class="capitalize text-secondary">{{ $player->first_name}} <span class="uppercase">{{ $player -> last_name}}</span></h4>
             </div>
             <div>
                 <p>{{ $player->position}}</p>

@@ -11,14 +11,14 @@ class Player extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable = ['name','first_name','date_of_birth','team','position', 'user_id', 'club_id'];
+    protected $fillable = ['last_name','first_name','date_of_birth','team','position', 'user_id', 'club_id'];
 
     protected $date = [
         'date_of_birth',
     ];
 
     public function club(){
-        return $this->belongsTo(Club::class);
+        return $this->belongsTo(Club::class, 'club_id');
     }
 
     public function match(){

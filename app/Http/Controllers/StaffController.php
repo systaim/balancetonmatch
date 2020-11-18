@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\StaffMail;
 use App\Models\Staff;
 use App\Models\Club;
 use App\Models\Player;
 use App\Models\Match;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class StaffController extends Controller
 {
@@ -45,21 +47,34 @@ class StaffController extends Controller
     public function store(Request $request, Club $club)
     {
         $user = Auth::user();
-        $players = Player::all();
         $matchs = Match::where('home_team_id', $club->id)->orwhere('away_team_id', $club->id)->orderBy('date_match','desc')->get();
 
         $dataStaff = $request->validate([
-            'name' => ['required', 'max:50', 'min:2'],
+            'last_name' => ['required', 'max:50', 'min:2'],
             'first_name' => ['required', 'max:50', 'min:2'],
             'quality' => ['required', 'min:3'],
         ]);
             
         $dataStaff['club_id'] = $club->id;
 
-        $player = Staff::create($dataStaff);
-        $player->user()->associate($user);
-        $player->save();
-        return view('staffs.index', compact('user','club', 'players', 'matchs'));
+        $staff = Staff::create($dataStaff);
+        $staff->user()->associate($user);
+        $staff->save();
+
+        $staffCreate = [
+            'last_name' => $staff->last_name,
+            'first_name' => $staff->first_name,
+            'quality' => $staff->quality,
+            'club_id' => $staff->club->name,
+            'user_first_name' => $staff->user->first_name,
+            'user_last_name' => $staff->user->last_name,
+            'user_id' => $staff->user_id,
+        ];
+
+        Mail::to('systaim@gmail.com')
+            ->send(new StaffMail($staffCreate));
+
+        return view('staffs.index', compact('user','club', 'matchs'));
     }
 
     /**

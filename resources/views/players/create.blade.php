@@ -18,8 +18,8 @@
             <h5 class="text-secondary text-center">Ajouter un joueur</h5>
             <div>
                 <div>
-                    <label class="flex flex-col" for="name">Nom de famille</label>
-                    <input class="inputForm focus:outline-none focus:shadow-outline w-full my-1" type="text" name="name" id="name" placeholder="DUPONT">
+                    <label class="flex flex-col" for="last_name">Nom de famille</label>
+                    <input class="inputForm focus:outline-none focus:shadow-outline w-full my-1" type="text" name="last_name" id="last_name" placeholder="DUPONT">
                 </div>
                 <div>
                     <label class="flex flex-col" for="first_name">Prénom</label>

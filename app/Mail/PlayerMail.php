@@ -2,24 +2,25 @@
 
 namespace App\Mail;
 
-use App\Models\Match;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class MatchCreate extends Mailable
+class PlayerMail extends Mailable
 {
     use Queueable, SerializesModels;
+
+    public $player;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(Match $match)
+    public function __construct(array $player)
     {
-        $this->match = $match;
+        $this->player = $player;
     }
 
     /**
@@ -29,6 +30,7 @@ class MatchCreate extends Mailable
      */
     public function build()
     {
-        return $this->view('mails.matchCreate');
+        return $this->from('test@btm.com')
+            ->view('mails.player');
     }
 }

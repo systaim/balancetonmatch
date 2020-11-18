@@ -6,8 +6,11 @@ use App\Models\Club;
 use App\Models\Player;
 use App\Models\Statistic;
 use App\Models\Match;
+use App\Mail\PlayerMail;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\Request;
+use App\Http\Requests\PlayerRequest;
 use Illuminate\Support\Facades\Auth;
 
 class PlayerController extends Controller
@@ -52,9 +55,9 @@ class PlayerController extends Controller
         $matchs = Match::where('home_team_id', $club->id)->orwhere('away_team_id', $club->id)->orderBy('date_match','desc')->get();
 
         $dataPlayer = $request->validate([
-            'name' => ['required', 'max:50', 'min:2'],
+            'last_name' => ['required', 'max:50', 'min:2'],
             'first_name' => ['required', 'max:50', 'min:2'],
-            'date_of_birth' => ['date'],
+            'date_of_birth' => ['nullable','date'],
             'position' => ['max:15'],
         ]);
         $dataPlayer['club_id'] = $club->id;
@@ -63,6 +66,20 @@ class PlayerController extends Controller
         $player->user()->associate($user);
 
         $player->save();
+        
+        $playerCreate = [
+            'last_name' => $player->last_name,
+            'first_name' => $player->first_name,
+            'date_of_birth' => $player->date_of_birth,
+            'position' => $player->position,
+            'club_id' => $player->club->name,
+            'user_first_name' => $player->user->first_name,
+            'user_last_name' => $player->user->last_name,
+            'user_id' => $player->user_id,
+        ];
+
+        Mail::to('systaim@gmail.com')
+            ->send(new PlayerMail($playerCreate));
         
         return view('players.index', compact('user','club', 'players', 'matchs'));
     }
