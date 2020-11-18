@@ -47,7 +47,7 @@
                 </div>
                 <div class="relative col-span-2 bg-gradient-to-r from-primary to-secondary flex flex-col justify-center items-center">
                     <div class="absolute top-1 text-white font-bold text-xl">
-                        @if($match->live != 'attente' && $match->live != 'finDeMatch')
+                        @if($match->live != 'attente' && $match->live != 'finDeMatch' && $match->live != 'reporte')
                         <p>{{ $minute }}'</p>
                         @endif
                     </div>
@@ -194,7 +194,7 @@
 
     <!-- fin Formulaire d'action équipe -->
     <!-- formulaire de commentaires -->
-    @if (session()->has('messageComment'))
+    @if (session()->has('messageDebut'))
     <div wire:loading.class.remove="alertComment" class="m-auto w-11/12 my-1 flex justify-center items-center text-white p-2 rounded-lg alertComment">
         {{ session('messageComment') }}
     </div>

@@ -29,7 +29,7 @@ class FavoriTeam extends Component
 
     public function clickLogin()
     {
-        $this->login = "Vous souhaitez suivre cette équipe ?";
+        $this->login = "Tu souhaites suivre cette équipe ?";
     }
 
     public function myTeam(Club $club)
@@ -38,14 +38,14 @@ class FavoriTeam extends Component
             $teamData = Favoristeam::where('user_id', $this->user->id)->where('club_id', $this->club->id)->delete();
             $this->heart = "far";
             $this->nbrFavoris-=1;
-            session()->flash('messageMyTeam', 'Equipe supprimée de mes favoris');
+            session()->flash('messageMyTeam', 'Equipe supprimée de tes favoris');
         } else {
             $data['user_id'] = $this->user->id;
             $data['club_id'] = $club->id;
             $teamData = Favoristeam::create($data);
             $this->heart = "fas";
             $this->nbrFavoris+=1;
-            session()->flash('messageMyTeam', 'Equipe ajoutée à mes favoris');
+            session()->flash('messageMyTeam', 'Equipe ajoutée à tes favoris');
         }
     }
 

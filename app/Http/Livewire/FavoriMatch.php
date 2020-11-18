@@ -33,20 +33,20 @@ class FavoriMatch extends Component
             $matchData = Favorismatch::where('user_id', $this->user->id)->where('match_id', $this->match->id)->delete();
             $this->star = "far";
             $this->nbrFavoris-=1;
-            session()->flash('messageMyMatch', 'Vous ne suivez plus ce match.');
+            session()->flash('messageMyMatch', 'Tu ne suis plus ce match.');
         } else {
             $data['user_id'] = $this->user->id;
             $data['match_id'] = $match->id;
             $teamData = Favorismatch::create($data);
             $this->star = "fas";
             $this->nbrFavoris+=1;
-            session()->flash('messageMyMatch', 'Vous suivez ce match.');
+            session()->flash('messageMyMatch', 'Tu suis ce match.');
         }
     }
 
     public function clickLogin()
     {
-        $this->login = "Vous souhaitez suivre ce match ?";
+        $this->login = "Tu souhiates suivre ce match ?";
     }
 
     public function render()

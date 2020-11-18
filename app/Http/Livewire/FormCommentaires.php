@@ -61,7 +61,7 @@ class FormCommentaires extends Component
         } else {
             $this->minute = 0;
         }
-        if (now()->diffInHours($this->dateMatch, false) < -4) {
+        if (now()->diffInHours($this->dateMatch, false) < -3) {
             $this->match->live = "finDeMatch";
             $this->match->save();
 
@@ -164,7 +164,7 @@ class FormCommentaires extends Component
                 $comment->commentator()->associate($commentateur);
                 $comment->save();
                 $this->commentsMatch =  $this->match->commentaires()->orderBy('minute', 'desc')->orderBy('updated_at', 'desc')->get();
-                session()->flash('messageComment', 'Bon Match ! 😉');
+                session()->flash('messageCom', 'Bon Match ! 😉');
                 return back();
             }
         } else {
@@ -240,7 +240,7 @@ class FormCommentaires extends Component
             }
             $comment->save();
             $this->commentsMatch =  $this->match->commentaires()->orderBy('minute', 'desc')->orderBy('updated_at', 'desc')->get();
-            session()->flash('messageComment', '😍 MERCI MERCI MERCI 😍');
+            session()->flash('messageCom', '😍 MERCI MERCI MERCI 😍');
         }
     }
 

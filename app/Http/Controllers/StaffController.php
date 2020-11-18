@@ -44,7 +44,6 @@ class StaffController extends Controller
      */
     public function store(Request $request, Club $club)
     {
-        // dd($request->all());
         $user = Auth::user();
         $players = Player::all();
         $matchs = Match::where('home_team_id', $club->id)->orwhere('away_team_id', $club->id)->orderBy('date_match','desc')->get();
@@ -59,9 +58,8 @@ class StaffController extends Controller
 
         $player = Staff::create($dataStaff);
         $player->user()->associate($user);
-        // dd($request->all());
         $player->save();
-        return view('clubs.pageClub', compact('club', 'players', 'matchs'));
+        return view('staffs.index', compact('user','club', 'players', 'matchs'));
     }
 
     /**
