@@ -23,10 +23,6 @@ class Commentaire extends Model
         return $this->belongsTo(Commentator::class);
     }
 
-    public function match(){
-        return $this->belongsTo(Match::class);
-    }
-
     public function statistic(){
         return $this->hasOne(Statistic::class);
     }

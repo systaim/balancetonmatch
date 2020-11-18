@@ -52,20 +52,20 @@ class FormCommentaires extends Component
         $this->away_score = $match->away_score;
         $this->user = $match->user_id;
         $this->dateMatch = $match->date_match;
-        $this->minute = now()->diffInMinutes($this->dateMatch);
-        if (now()->diffInMinutes($this->dateMatch) >= 0 && now()->diffInMinutes($this->dateMatch) <= 45) {
+        if ($this->dateMatch->diffInMinutes(now(), false) >= 0 && now()->diffInMinutes($this->dateMatch) <= 45) {
             $this->minute = now()->diffInMinutes($this->dateMatch);
         } elseif (now()->diffInMinutes($this->dateMatch) >= 45 && now()->diffInMinutes($this->dateMatch) <= 60) {
             $this->minute = 45;
-        } elseif (now()->diffInMinutes($this->dateMatch) > 60 && now()->diffInMinutes($this->dateMatch) < 90) {
+        } elseif (now()->diffInMinutes($this->dateMatch) >= 60 && now()->diffInMinutes($this->dateMatch) <= 90) {
             $this->minute = now()->diffInMinutes($this->dateMatch) - 15;
         } else {
-            $this->minute = 90;
+            $this->minute = 0;
         }
         if (now()->diffInHours($this->dateMatch, false) < -4) {
             $this->match->live = "finDeMatch";
             $this->match->save();
-            $this->nbrFavoris = 0;
+
+            // session()->flash('messageCloture', 'Les commentaires sont cloturés... A bientôt !');
         }
 
         foreach ($this->commentators as $comm) {
@@ -164,10 +164,11 @@ class FormCommentaires extends Component
                 $comment->commentator()->associate($commentateur);
                 $comment->save();
                 $this->commentsMatch =  $this->match->commentaires()->orderBy('minute', 'desc')->orderBy('updated_at', 'desc')->get();
-                session()->flash('messageComment', 'Merci pour ce commentaire 😉');
+                session()->flash('messageComment', 'Bon Match ! 😉');
+                return back();
             }
         } else {
-            session()->flash('messageCom', "Revenez 30 minutes avant le coup d'envoi");
+            session()->flash('messageComment', "Revenez 30 minutes avant le coup d'envoi");
         }
     }
 
@@ -245,73 +246,78 @@ class FormCommentaires extends Component
 
     public function saveComment()
     {
-        $statData2['action'] = '';
-        $validateData = $this->validate([
-            'type_comments' => 'required',
-            'minute' => 'required',
-            'team_action' => 'required',
-        ]);
+        if ($this->dateMatch->diffInMinutes(now(), false) >= 0) {
 
-        $commentData = ['minute' => $this->minute, 'team_action' => $this->team_action];
+            $statData2['action'] = '';
+            $validateData = $this->validate([
+                'type_comments' => 'required',
+                'minute' => 'required',
+                'team_action' => 'required',
+            ]);
 
-        if ($this->type_comments == "but") {
-            $commentData['type_comments'] = $this->listGoal[array_rand($this->listGoal)];
-            $commentData['comments'] = $this->type_but;
+            $commentData = ['minute' => $this->minute, 'team_action' => $this->team_action];
 
-            $statData['action'] = "goal";
+            if ($this->type_comments == "but") {
+                $commentData['type_comments'] = $this->listGoal[array_rand($this->listGoal)];
+                $commentData['comments'] = $this->type_but;
+
+                $statData['action'] = "goal";
 
 
-            if ($this->team_action == 'home') {
-                $this->home_score += 1;
-                $this->match->home_score += 1;
-                $this->match->save();
+                if ($this->team_action == 'home') {
+                    $this->home_score += 1;
+                    $this->match->home_score += 1;
+                    $this->match->save();
+                }
+                if ($this->team_action == 'away') {
+                    $this->away_score += 1;
+                    $this->match->away_score += 1;
+                    $this->match->save();
+                }
+            } elseif ($this->type_comments == "carton") {
+
+                $commentData['type_comments'] = $this->type_carton;
+
+                if ($this->type_carton == 'Carton jaune') {
+                    $statData['action'] = "yellow_card";
+                }
+                if ($this->type_carton == '2e carton jaune') {
+                    $statData['action'] = "yellow_card";
+                    $statData2['action'] = "red_card";
+                    $statData2['player_id'] = $this->player;
+                }
+                if ($this->type_carton == 'Carton rouge') {
+                    $statData['action'] = "red_card";
+                }
+            } else {
+                $commentData['type_comments'] = $this->type_comments;
             }
-            if ($this->team_action == 'away') {
-                $this->away_score += 1;
-                $this->match->away_score += 1;
-                $this->match->save();
-            }
-        } elseif ($this->type_comments == "carton") {
 
-            $commentData['type_comments'] = $this->type_carton;
+            $comment = Commentaire::create($commentData);
 
-            if ($this->type_carton == 'Carton jaune') {
-                $statData['action'] = "yellow_card";
-            }
-            if ($this->type_carton == '2e carton jaune') {
-                $statData['action'] = "yellow_card";
-                $statData2['action'] = "red_card";
-                $statData2['player_id'] = $this->player;
-            }
-            if ($this->type_carton == 'Carton rouge') {
-                $statData['action'] = "red_card";
+            if ($comment) {
+                foreach ($this->commentators as $comm) {
+                    $comment->commentator()->associate($comm->id);
+                }
+
+                $comment->save();
+
+                $statData['commentaire_id'] = $comment->id;
+                $statData['player_id'] = $this->player;
+                $statComment = Statistic::create($statData);
+                $statComment->commentaire()->associate($comment);
+                $statComment->save();
+                if ($statData2['action'] != '') {
+                    $statComment2 = Statistic::create($statData2);
+                    $statComment2->commentaire()->associate($comment);
+                    $statComment2->save();
+                }
+                $this->commentsMatch = $this->match->commentaires()->orderBy('minute', 'desc')->orderBy('updated_at', 'desc')->get();
+                session()->flash('messageComment', 'Merci pour ce commentaire 😉');
+                $this->team_action = false;
             }
         } else {
-            $commentData['type_comments'] = $this->type_comments;
-        }
-
-        $comment = Commentaire::create($commentData);
-
-        if ($comment) {
-            foreach ($this->commentators as $comm) {
-                $comment->commentator()->associate($comm->id);
-            }
-
-            $comment->save();
-
-            $statData['commentaire_id'] = $comment->id;
-            $statData['player_id'] = $this->player;
-            $statComment = Statistic::create($statData);
-            $statComment->commentaire()->associate($comment);
-            $statComment->save();
-            if ($statData2['action'] != '') {
-                $statComment2 = Statistic::create($statData2);
-                $statComment2->commentaire()->associate($comment);
-                $statComment2->save();
-            }
-            $this->commentsMatch = $this->match->commentaires()->orderBy('minute', 'desc')->orderBy('updated_at', 'desc')->get();
-            session()->flash('messageComment', 'Merci pour ce commentaire 😉');
-            $this->team_action = false;
+            session()->flash('messageDebutDeMatch', "Le match n'est pas encore commencé...");
         }
     }
 

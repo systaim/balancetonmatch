@@ -22,6 +22,11 @@ use Illuminate\Support\Facades\Auth;
 
 class MatchController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth')->only('create');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -33,7 +38,7 @@ class MatchController extends Controller
         $user = Auth::user();
         $players = Player::all();
         $competitions = Competition::all();
-        $matches = Match::where('date_match', '>=', Carbon::now()->subHours(12))->orderBy('date_match', 'asc')->get();
+        $matches = Match::where('date_match', '>=', Carbon::now()->subHours(6))->orderBy('date_match', 'asc')->get();
         return view('matches.listMatchs', compact('clubs', 'players', 'competitions', 'matches', 'user'));
     }
 

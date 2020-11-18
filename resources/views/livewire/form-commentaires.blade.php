@@ -47,7 +47,9 @@
                 </div>
                 <div class="relative col-span-2 bg-gradient-to-r from-primary to-secondary flex flex-col justify-center items-center">
                     <div class="absolute top-1 text-white font-bold text-xl">
+                        @if($match->live != 'attente' && $match->live != 'finDeMatch')
                         <p>{{ $minute }}'</p>
+                        @endif
                     </div>
                     <div class="flex justify-center mt-2">
                         <div class="bg-white rounded-sm mr-1 z-10">
@@ -193,7 +195,7 @@
     <!-- fin Formulaire d'action équipe -->
     <!-- formulaire de commentaires -->
     @if (session()->has('messageComment'))
-    <div wire:loading.class.remove="alertComment" class="m-auto w-1/2 my-1 flex justify-center items-center text-white p-2 rounded-lg alertComment">
+    <div wire:loading.class.remove="alertComment" class="m-auto w-11/12 my-1 flex justify-center items-center text-white p-2 rounded-lg alertComment">
         {{ session('messageComment') }}
     </div>
     @endif
@@ -216,9 +218,9 @@
                 <div class="bg-white w-full h-full p-3 flex flex-col justify-center">
                     <p class="text-center">Je souhaite commenter ⏱</p>
                     <div>
-                        @if (session()->has('messageCom'))
+                        @if (session()->has('messageComment'))
                         <div wire:loading.class.remove="alertFavori" class="flex items-center absolute top-0 right-0 bottom-0 left-0 bg-black text-white text-xs p-2 rounded-l-lg alertFavori">
-                            {{ session('messageCom') }}
+                            {{ session('messageComment') }}
                         </div>
                         @endif
                     </div>
@@ -245,7 +247,7 @@
             @auth
             @foreach($commentators as $commentator)
             @if($commentator->user_id == Auth::user()->id)
-            @if($match->live == 'debut' && now()->diffInMinutes($match->date_match) >= 40))
+            @if($match->live == 'debut' && now()->diffInMinutes($match->date_match) >= 40)
             <button type="button" class="commentaires h-12 bg-white commandeMatch items-stretch w-full" wire:click="timeMitemps" wire:model="type_comments">
                 <div class="minuteCommentaires w-24 sm:w-32 commandeMatch">
                     <img src="{{asset('images/whistle-white.png')}}" alt="">
@@ -286,21 +288,16 @@
                 </div>
             </button>
             @endif
-            @if($match->live == 'finDeMatch')
-            <div class="commentaires h-24 commandeMatch items-stretch w-full">
-                <div class="minuteCommentaires w-24 sm:w-32 commandeMatch">
-                    <img src="{{asset('images/whistle-white.png')}}" alt="">
-                </div>
-                <div class="bg-white w-full pt-3">
-                    <p class="flex text-center px-4">Les commentaires sont fermés ! Merci</p>
-                </div>
-            </div>
-            @endif
             @endif
             @endforeach
             @endauth
 
             <!-- fin de formulaire de commentaires -->
+            @if($match->live == "finDeMatch")
+            <div class="m-auto w-11/12 my-1 flex justify-center items-center bg-primary text-white p-2 rounded-lg">
+                <p>Les commentaires sont cloturés... A bientôt !</p>
+            </div>
+            @endif
             <div class="my-4" wire:poll.5000ms="miseAJourCom">
                 @foreach($commentsMatch as $comment)
                 <div class="relative commentaires minHeight16 h-auto {{ $comment->team_action }}">
@@ -310,7 +307,6 @@
                     <div class="relative bg-white w-full px-4 pt-2">
                         <p class="text-lg font-bold">{{ $comment->type_comments}}</p>
                         <p>{{ $comment->comments }}</p>
-
                     </div>
                     @auth
                     @foreach($commentators as $commentator)
@@ -344,15 +340,14 @@
             @endif
         </div>
         @endif
+        @foreach($commentators as $commentator)
         <div class="bg-white rounded-lg border-white w-11/12 m-auto my-8 shadow-2xl">
             <div class="bg-primary text-secondary rounded-t-lg">
                 <h3 class="text-center py-2">Le "Thierry Roland" du jour</h3>
             </div>
             <div class="flex justify-evenly items-center p-4">
                 <div>
-                    @foreach($commentators as $commentator)
                     <p class="font-bold">{{$commentator->user->pseudo}}</p>
-                    @endforeach
                 </div>
                 <!-- <div class="flex items-center justify-center bg-secondary h-12 w-12 rounded-full m-2">
                     @foreach($commentators as $commentator)
@@ -361,5 +356,6 @@
                 </div> -->
             </div>
         </div>
+        @endforeach
     </div>
 </form>
