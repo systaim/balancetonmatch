@@ -2,7 +2,7 @@
     <p>Un nouveau joueur a été créé pour le club <span class="font-bold">{{ $player['club_id'] }}</span></p>
 </div>
 <div>
-    <p>Voici les informations données par 
+    <p>Voici les informations envoyées par 
         <span class="capitalize">{{ $player['user_first_name'] }}</span> <span class="uppercase">{{ $player['user_last_name'] }}</span> ({{ $player['user_id'] }}) : </p>
 </div>
 <div>

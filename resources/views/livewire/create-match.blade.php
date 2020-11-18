@@ -1,6 +1,7 @@
 <div>
     <h2 class="titlePage">Créer un match</h2>
     <form wire:submit.prevent="saveMatch">
+        @csrf
         <div class="bg-primary rounded-lg relative text-white my-2 p-3">
             <div>
                 <label for="competition">Compétition</label>
@@ -93,9 +94,15 @@
                 <label for="heure">Heure</label>
                 <input class="inputForm focus:outline-none focus:shadow-outline w-full my-1" type="time" name="time" id="time" wire:model="timeMatch">
             </div>
-            <div class="flex justify-center">
-                <input class="btn btnPrimary" type="submit" value="C'est parti !">
+            <div>
+                <div class="flex justify-center">
+                    <input class="btn btnPrimary" type="submit" value="C'est parti !">
+                </div>
+                <div class="text-center">
+                    <p>{{$messageErreur}}</p>
+                </div>
             </div>
+
         </div>
         @endif
     </form>
