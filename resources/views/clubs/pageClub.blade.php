@@ -28,20 +28,6 @@
             @endif
         </div>
         @endif
-        <div>
-            <h3 class="text-center mt-4">Matchs futurs (ou pas...)</h3>
-            @foreach($matchs as $match)
-            @if($match->date_match > now())
-            <div class="text-center flex justify-center font-bold">
-                <p class="px-4 bg-primary text-secondary rounded-tl-md">{{ $match->date_match->formatLocalized('%d/%m/%y')}}</p>
-                <p class="px-4 bg-primary text-secondary rounded-tr-md">{{ $match->date_match->formatLocalized('%H:%M') }}</p>
-            </div>
-            <a href="{{route('matches.show',$match)}}">
-                @include('match')
-            </a>
-            @endif
-            @endforeach
-        </div>
     </div>
     <div class=" bg-primary text-white rounded-lg relative my-2 flex flex-col p-3 w-full">
         <h3 class="text-center text-secondary">Infos du club</h3>
@@ -51,17 +37,28 @@
             <a class="font-bold bg-secondary text-primary px-2 border-2 border-primary rounded-lg shadow-lg" href="{{ route('clubs.staffs.index', $club) }}">Voir le staff</a>
         </div>
     </div>
-
 </section>
 <section class="w-11/12 m-auto">
-    <h3 class="text-center mt-4">Historique de la saison</h3>
     <div>
+        <h3 class="text-center my-4 border-b-2 border-darkGray">Prochain match</h3>
         @foreach($matchs as $match)
-        @if($match->date_match < now()) <div class="text-center flex justify-center font-bold">
+        @if($match->date_match > now())
+        <a href="{{route('matches.show',$match)}}">
+            @include('match')
+        </a>
+        @endif
+        @endforeach
     </div>
-    @include('match')
-    @endif
-    @endforeach
+    <div>
+        <h3 class="text-center my-4 border-b-2 border-darkGray">Historique des matchs</h3>
+        @foreach($matchs as $match)
+        @if($match->date_match < now()) 
+        <a href="{{route('matches.show',$match)}}">
+            @include('match')
+        </a>
+            @endif
+            @endforeach
     </div>
+
 </section>
 @endsection
