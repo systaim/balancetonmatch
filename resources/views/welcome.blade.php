@@ -16,6 +16,7 @@
             </div>
             <div class="p-2 height-mini-10">
                 @auth
+                @if(count($user->favoristeams) > 0 )
                 @foreach($user->favoristeams as $favoriteam)
                 <a href="{{ route('clubs.show', $favoriteam->club->id) }}">
                     <div class="flex items-center my-2 px-4">
@@ -29,6 +30,17 @@
                 </a>
                 @endforeach
                 @else
+                <div>
+                    <div class="my-2">
+                        <p class="text-center font-bold">Tu n'as pas encore de clubs en favoris</p>
+                    </div>
+                    <div class="flex justify-between items-center px-3 rounded-lg bg-secondary">
+                        <p>Fais ta recherche ici</p>
+                        <a class="btn btnPrimary m-2" href="{{ route('clubs.index') }}">Go !</a>
+                    </div>
+                </div>
+                @endif
+                @else
                 <p>Connecte toi pour ajouter des équipes</p>
                 @endauth
             </div>
@@ -39,6 +51,7 @@
             </div>
             <div class="p-2 height-mini-10">
                 @auth
+                @if(count($user->favorismatches) > 0 )
                 @foreach($user->favorismatches as $favorimatch)
                 @if($favorimatch->match->date_match > $today)
                 <a href="{{route('matches.show',$favorimatch->match)}}">
@@ -72,7 +85,18 @@
                 </a>
                 @endif
                 @endforeach
-                @else 
+                @else
+                <div>
+                    <div class="my-2">
+                        <p class="text-center font-bold">Envie de suivre un match ?</p>
+                    </div>
+                    <div class="flex justify-between items-center px-3 rounded-lg bg-secondary">
+                        <p>La liste est ici </p>
+                        <a class="btn btnPrimary m-2" href="{{ route('matches.index') }}">Go !</a>
+                    </div>
+                </div>
+                @endif
+                @else
                 <p>Connecte toi pour ajouter des matchs</p>
                 @endauth
             </div>
