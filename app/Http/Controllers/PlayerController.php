@@ -56,11 +56,12 @@ class PlayerController extends Controller
             'first_name' => ['required', 'max:50', 'min:2'],
             'date_of_birth' => ['date'],
             'position' => ['max:15'],
-
+        ]);
         $dataPlayer['club_id'] = $club->id;
-        
+
         $player = Player::create($dataPlayer);
         $player->user()->associate($user);
+
         $player->save();
         
         return view('players.index', compact('user','club', 'players', 'matchs'));
