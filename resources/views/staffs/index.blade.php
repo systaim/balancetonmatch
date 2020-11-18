@@ -1,13 +1,18 @@
 @extends('layout')
 @section('content')
-<div class="flex flex-col justify-center items-center mb-4">
-    <div class="logo h-16 w-16 m-4">
-        <img class="object-contain" src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{$club->numAffiliation}}.jpg" alt="logo">
+<a href="{{route('clubs.show', $club) }}">
+    <div class="flex flex-col justify-center items-center mb-4">
+        <div class="logo h-16 w-16 m-4">
+            <img class="object-contain" src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{$club->numAffiliation}}.jpg" alt="logo">
+        </div>
+        <div class="bg-primary text-secondary rounded-lg">
+            <h2 class="mx-2 text-xl">{{ $club->name }}</h2>
+        </div>
+        <div>
+            <p>← Retour page club</p>
+        </div>
     </div>
-    <div class="bg-primary text-secondary">
-        <h2 class="mx-2 text-xl">{{ $club->name }}</h2>
-    </div>
-</div>
+</a>
 <div class="my-8">
     <h3 class="text-center mt-4">Le staff</h3>
     @foreach($club->staffs as $staff)

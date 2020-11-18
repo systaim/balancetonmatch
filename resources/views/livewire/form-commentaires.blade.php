@@ -48,7 +48,7 @@
                 <div class="relative col-span-2 bg-gradient-to-r from-primary to-secondary flex flex-col justify-center items-center">
                     <div class="absolute top-1 text-white font-bold text-xl">
                         @if($match->live != 'attente' && $match->live != 'finDeMatch' && $match->live != 'reporte')
-                        <p>{{ $minute }}'</p>
+                        <p wire:poll.60s.keep-alive="chrono">{{ $minute }}'</p>
                         @endif
                     </div>
                     <div class="flex justify-center mt-2">
@@ -101,7 +101,7 @@
             <div class="m-4 flex flex-row justify-center">
                 <div class="flex flex-col jsutify-center">
                     <label class="inputAction {{$team_action}}" for="minute">Temps de jeu</label>
-                    <input wire:poll.60000ms.keep-alive="chrono" class="p-3 bg-white rounded shadow outline-none focus:outline-none focus:shadow-outline text-center" type="number" name="minute" wire:model="minute" min="1" max="90">
+                    <input wire:poll.60s.keep-alive="chrono" class="p-3 bg-white rounded shadow outline-none focus:outline-none focus:shadow-outline text-center" type="number" name="minute" wire:model="minute" min="1" max="90">
                 </div>
             </div>
             <div class="actionsMatch">
