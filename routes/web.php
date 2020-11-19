@@ -38,10 +38,6 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::get('matches/create', function (){
-
-})->middleware('auth');
-
 Route::resource('clubs', 'App\Http\Controllers\ClubController');
 Route::resource('players', 'App\Http\Controllers\PlayerController');
 Route::resource('matches', 'App\Http\Controllers\MatchController');

@@ -48,8 +48,8 @@
                 </div>
                 @else
                 <div class="flex py-4 justify-center">
-                    <a class="btn btnPrimary" href="/login">Login</a>
-                    <a class="btn btnPrimary" href="/register">Register</a>
+                    <a class="btn btnPrimary" href="/login">{{ __('Login') }}</a>
+                    <a class="btn btnPrimary" href="/register">{{ __('Register') }}</a>
                 </div>
                 @endauth
             </div>

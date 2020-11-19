@@ -293,7 +293,7 @@
             @endauth
 
             <!-- fin de formulaire de commentaires -->
-            @if($match->live == "finDeMatch")
+            @if($match->live == "finDeMatch" && now()->diffInMinutes($match->date_match) >= 100)
             <div class="m-auto w-11/12 my-1 flex justify-center items-center bg-primary text-white p-2 rounded-lg">
                 <p>Les commentaires sont cloturés... A bientôt !</p>
             </div>

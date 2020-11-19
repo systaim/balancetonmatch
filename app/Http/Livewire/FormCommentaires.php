@@ -52,11 +52,11 @@ class FormCommentaires extends Component
         $this->away_score = $match->away_score;
         $this->user = $match->user_id;
         $this->dateMatch = $match->date_match;
-        if ($this->dateMatch->diffInMinutes(now(), false) >= 0 && now()->diffInMinutes($this->dateMatch) <= 45) {
+        if ($this->dateMatch->diffInMinutes(now(), false) >= 0 && $this->dateMatch->diffInMinutes(now(), false) <= 45) {
             $this->minute = now()->diffInMinutes($this->dateMatch);
-        } elseif (now()->diffInMinutes($this->dateMatch) >= 45 && now()->diffInMinutes($this->dateMatch) <= 60) {
+        } elseif ($this->dateMatch->diffInMinutes(now(), false) >= 45 && $this->dateMatch->diffInMinutes(now(), false) <= 60) {
             $this->minute = 45;
-        } elseif (now()->diffInMinutes($this->dateMatch) >= 60 && now()->diffInMinutes($this->dateMatch) <= 90) {
+        } elseif ($this->dateMatch->diffInMinutes(now(), false) >= 60 && $this->dateMatch->diffInMinutes(now(), false) <= 90) {
             $this->minute = now()->diffInMinutes($this->dateMatch) - 15;
         } else {
             $this->minute = 0;
