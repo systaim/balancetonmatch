@@ -73,6 +73,11 @@ h6 {
   min-height: 10rem;
 }
 
+.bg-menu{
+  background-image: url('/images/menu.jpg');
+  background-size: cover;
+}
+
 /*************************
           BUTTONS
   *************************/
@@ -468,9 +473,9 @@ input:checked + .inputAction.home {
   top: 0;
   right: 0;
   left: 0;
-  padding-top: 5rem;
-  text-align: center;
-  background: var(--secondary-color);
+  /* padding-top: 5rem; */
+  /* text-align: center; */
+  /* background: var(--primary-color); */
   opacity: 0;
   z-index: -1;
   visibility: hidden;
@@ -539,7 +544,7 @@ input:checked + .inputAction.home {
 
 .main-nav a {
   display: block;
-  color: var(--primary-color);
+  color: #fff;
   text-decoration: none;
   font-weight: bold;
 }
@@ -567,7 +572,7 @@ input:checked + .inputAction.home {
   width: 28px;
   height: 4px;
   margin: 0 auto;
-  background: var(--primary-color);
+  background: var(--secondary-color);
   transform: skew(5deg);
   transition: all .275s;
 }
@@ -577,7 +582,7 @@ input:checked + .inputAction.home {
   content: '';
   display: block;
   height: 100%;
-  background: var(--primary-color);
+  background: var(--secondary-color);
   transition: all .275s;
 }
 
@@ -618,7 +623,7 @@ input:checked + .inputAction.home {
   text-transform: uppercase;
   font-weight: 500;
   text-align: center;
-  color: var(--primary-color);
+  color: var(--secondary-color);
 }
 
 
