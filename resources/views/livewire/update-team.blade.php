@@ -1,3 +1,4 @@
+
 <div>
     <div class="mb-2">
         @if($club->city == null || $club->zip_code == null)
@@ -31,8 +32,9 @@
                 <div>
                     <p wire:click="citySave()">🖊</p>
                 </div>
-                @endif
+            </div>
         </form>
+        @endif
     </div>
     <!-- <div class="mb-2">
         @if($club->number_teams == null)

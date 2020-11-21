@@ -37,11 +37,6 @@ class Match extends Model
         return $this->hasManyThrough(Commentaire::class, Commentator::class);
     }
 
-    public function commentateur()
-    {
-        return $this->belongsTo(Commentator::class);
-    }
-
     public function homeClub()
     {
         return $this->belongsTo(Club::class, 'home_team_id');

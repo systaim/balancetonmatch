@@ -23,6 +23,6 @@ class Commentator extends Model
 
     public function commentaires()
     {
-        return $this->hasMany(Commentaire::class, 'commentator_id');
+        return $this->hasMany(Commentaire::class);
     }
 }

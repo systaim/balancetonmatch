@@ -4,15 +4,18 @@ namespace App\Http\Livewire;
 
 use App\Models\Commentaire;
 use App\Models\Commentator;
-use App\Models\Match;
 use App\Models\Statistic;
-use App\Models\User;
-use Carbon\Carbon;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
+use Livewire\WithFileUploads;
+
+
 
 class FormCommentaires extends Component
 {
+
+    use WithFileUploads;
+
     public $users;
     public $match;
     public $clubHome;
@@ -37,6 +40,7 @@ class FormCommentaires extends Component
     public $sousMenu;
     public $commentators;
     public $firstCom;
+    public $file;
     public $listGoal = ['GOOOOAAL !', 'BUUUUT !!!', 'GOAL GOAL GOAL !!'];
     public $mitempsJoueurs = ['Les joueurs rentrent aux vestiaires', 'Tout le monde à la buv... euuuh aux vestiaires !'];
 
@@ -137,21 +141,6 @@ class FormCommentaires extends Component
             $commentateur = new Commentator;
             $commentateur['user_id'] = $user->id;
             $commentateur['match_id'] = $this->match->id;
-            $commentateur->save();
-            $this->match->live = "debut";
-            $this->match->save();
-
-            if ($this->home_score == null) {
-                $this->home_score = 0;
-                $this->match->home_score = 0;
-                $this->match->save();
-            }
-
-            if ($this->away_score == null) {
-                $this->away_score = 0;
-                $this->match->away_score = 0;
-                $this->match->save();
-            }
 
             $commentData['type_comments'] = "Début du match ! 🤩";
             $commentData['minute'] = 0;
@@ -160,12 +149,24 @@ class FormCommentaires extends Component
             $comment = Commentaire::create($commentData);
 
             if ($comment) {
+                $commentateur->save();
+                $this->match->live = "debut";
+
+                $this->home_score = 0;
+                $this->match->home_score = 0;
+
+                $this->away_score = 0;
+                $this->match->away_score = 0;
+
+                $this->match->save();
 
                 $comment->commentator()->associate($commentateur);
                 $comment->save();
+
                 $this->commentsMatch =  $this->match->commentaires()->orderBy('minute', 'desc')->orderBy('updated_at', 'desc')->get();
-                session()->flash('messageCom', 'Bon Match ! 😉');
-                return back();
+                session()->flash('successMessage', 'Bon Match ! 😉');
+            } else{
+                session()->flash('successMessage', 'Un problème s\'est produit');
             }
         } else {
             session()->flash('messageComment', "Revenez 30 minutes avant le coup d'envoi");
@@ -193,7 +194,7 @@ class FormCommentaires extends Component
             }
             $comment->save();
             $this->commentsMatch =  $this->match->commentaires()->orderBy('minute', 'desc')->orderBy('updated_at', 'desc')->get();
-            session()->flash('messageComment', 'Évènement bien pris en compte');
+            session()->flash('successMessage', 'Évènement bien pris en compte');
         }
     }
 
@@ -216,7 +217,7 @@ class FormCommentaires extends Component
             }
             $comment->save();
             $this->commentsMatch =  $this->match->commentaires()->orderBy('minute', 'desc')->orderBy('updated_at', 'desc')->get();
-            session()->flash('messageComment', 'Évènement bien pris en compte');
+            session()->flash('successMessage', 'Évènement bien pris en compte');
         }
     }
 
@@ -240,19 +241,21 @@ class FormCommentaires extends Component
             }
             $comment->save();
             $this->commentsMatch =  $this->match->commentaires()->orderBy('minute', 'desc')->orderBy('updated_at', 'desc')->get();
-            session()->flash('messageCom', '😍 MERCI MERCI MERCI 😍');
+            session()->flash('successMessage', '😍 MERCI MERCI MERCI 😍');
         }
     }
 
     public function saveComment()
     {
+
         if ($this->dateMatch->diffInMinutes(now(), false) >= 0) {
 
             $statData2['action'] = '';
-            $validateData = $this->validate([
+            $this->validate([
                 'type_comments' => 'required',
                 'minute' => 'required',
                 'team_action' => 'required',
+                'file' => 'image|max:4096'
             ]);
 
             $commentData = ['minute' => $this->minute, 'team_action' => $this->team_action];
@@ -300,6 +303,10 @@ class FormCommentaires extends Component
                     $comment->commentator()->associate($comm->id);
                 }
 
+                $path = $this->file->store('uploads');
+                $comment->images = $path;
+
+
                 $comment->save();
 
                 $statData['commentaire_id'] = $comment->id;
@@ -313,7 +320,7 @@ class FormCommentaires extends Component
                     $statComment2->save();
                 }
                 $this->commentsMatch = $this->match->commentaires()->orderBy('minute', 'desc')->orderBy('updated_at', 'desc')->get();
-                session()->flash('messageComment', 'Merci pour ce commentaire 😉');
+                session()->flash('successMessage', 'Merci pour ce commentaire 😉');
                 $this->team_action = false;
             }
         } else {

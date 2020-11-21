@@ -73,10 +73,10 @@ class User extends Authenticatable
         $users = User::factory()->count(10);
     }
 
-    // public function comments()
-    // {
-    //     return $this->hasMany(Commentaire::class);
-    // }
+    public function commentator()
+    {
+        return $this->hasManyThrough(Commentaire::class, Commentator::class);
+    }
 
     public function favoristeams()
     {
@@ -86,11 +86,6 @@ class User extends Authenticatable
     public function favorismatches()
     {
         return $this->hasMany(Favorismatch::class);
-    }
-
-    public function commentateur()
-    {
-        return $this->hasOne(Commentator::class);
     }
 
     public function isFavoriTeam($club)

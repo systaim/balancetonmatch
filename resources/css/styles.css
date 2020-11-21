@@ -130,7 +130,7 @@ h6 {
 }
 
 .minuteCommentaires {
-    @apply flex flex-col justify-center text-center rounded-l-lg px-4 text-lg font-bold;
+    @apply text-center rounded-l-lg px-4 text-lg font-bold pt-4;
 }
 
 .minuteCommentaires.home {

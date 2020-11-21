@@ -228,9 +228,6 @@ h6 {
 }
 
 .minuteCommentaires {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   text-align: center;
   border-top-left-radius: 0.5rem;
   border-bottom-left-radius: 0.5rem;
@@ -238,6 +235,7 @@ h6 {
   padding-right: 1rem;
   font-size: 1.125rem;
   font-weight: 700;
+  padding-top: 1rem;
 }
 
 .minuteCommentaires.home {

@@ -30,8 +30,8 @@
         @endif
     </div>
     <div class=" bg-primary text-white rounded-lg relative my-2 flex flex-col p-3 w-full">
-        <h3 class="text-center text-secondary">Infos du club</h3>
-        @livewire('update-team',['club' => $club])
+        <h3 class="text-center text-secondary mb-4">Infos du club</h3>
+        {{--@livewire('update-team',['club' => $club])--}}
         <div class="flex justify-evenly">
             <a class="font-bold bg-secondary text-primary px-2 border-2 border-primary rounded-lg shadow-lg" href="{{ route('clubs.players.index', $club) }}">Voir les joueurs</a>
             <a class="font-bold bg-secondary text-primary px-2 border-2 border-primary rounded-lg shadow-lg" href="{{ route('clubs.staffs.index', $club) }}">Voir le staff</a>
