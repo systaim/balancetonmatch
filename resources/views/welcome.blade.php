@@ -1,12 +1,19 @@
 @extends('layout')
 @section('content')
-<section>
-    <div class=" h-auto p-4">
-        <!-- <h3 class="text-center text-3xl">Le site pour suivre le foot amateur de n'importe où !</h3> -->
-        <p class=" bg-primary text-white rounded-lg relative my-2 flex flex-col p-3 w-full">Pas dispo pour aller encourager ton équipe favorite ?</p>
-        <p class=" bg-primary text-white rounded-lg relative my-2 flex flex-col p-3 w-full">Tu souhaites connaitre l'évolution d'un match ?</p>
-        <p class=" bg-primary text-white rounded-lg relative my-2 flex flex-col p-3 w-full">Tu peux le suivre en direct LIVE</p>
-    </div>
+<section class="h-64 bg-primary rounded-b-lg p-4 text-white">
+    <h2 class="text-center">Le foot live pour les amateurs <br>par les amateurs</h2>
+    <!-- <div class=" h-auto p-4">
+        <h3 class="text-center text-3xl">Le site pour suivre le foot amateur de n'importe où !</h3>
+        <div>
+            <p class=" bg-primary text-white rounded-lg relative my-2 p-3 w-full">Pas dispo pour aller encourager ton équipe favorite ?</p>
+        </div>
+        <div>
+            <p class=" bg-primary text-white rounded-lg relative my-2 p-3 w-full">Tu souhaites connaitre l'évolution d'un match ?</p>
+        </div>
+        <div>
+            <p class=" bg-primary text-white rounded-lg relative my-2 p-3 w-full">Tu peux le suivre en direct LIVE</p>
+        </div>
+    </div> -->
 </section>
 <section>
     <div class="w-11/12 m-auto">

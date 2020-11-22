@@ -32,7 +32,7 @@
                     @auth
                     <div class="py-4 h-64 flex flex-col justify-end">
                         <div class="flex flex-row items-center mb-8 mx-4">
-                            <div class="h-24 w-24 bg-gray-600 rounded-full m-4 overflow-hidden">
+                            <div class="h-24 w-24 bg-white rounded-full m-4 overflow-hidden">
                                 <img class="object-contain" src="/images/avatar.png" alt="">
                             </div>
                             <div>
@@ -67,11 +67,7 @@
         </div>
     </header>
     @yield('content')
-    <section class="m-0">
-        <footer class="bg-gray-900 h-24">
-            <h2 class="flex justify-center pt-10 text-secondary diagonale">Pied de page</h2>
-        </footer>
-    </section>
+    @include('footer')
 
     <script src="{{ asset('js/app.js') }}"></script>
     @livewireScripts
