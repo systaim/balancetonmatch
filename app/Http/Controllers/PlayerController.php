@@ -56,7 +56,8 @@ class PlayerController extends Controller
     public function store(Request $request, Club $club)
     {
         $user = Auth::user();
-        $players = Player::all();
+        $matchs = Match::where('home_team_id', $club->id)->orwhere('away_team_id', $club->id)->orderBy('date_match','desc')->get();
+
 
         $dataPlayer = $request->validate([
             'last_name' => ['required', 'max:50', 'min:2'],
@@ -87,7 +88,7 @@ class PlayerController extends Controller
         Mail::to('systaim@gmail.com')
             ->send(new PlayerMail($playerCreate));
 
-        return view('players.index', compact('user', 'club', 'players', 'matchs'));
+        return view('players.index', compact('user', 'club', 'matchs'));
     }
 
     /**

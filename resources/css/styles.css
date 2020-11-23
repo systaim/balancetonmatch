@@ -28,10 +28,6 @@ h6 {
     min-height: 4rem;
 }
 
-.top--2{
-    top:-rem;
-}
-
 .right--2{
     right:-2rem;
 }
@@ -53,6 +49,9 @@ h6 {
     background-size: cover;
 }
 
+.top--3{
+    top:-3rem;
+}
 
 /*************************
           BUTTONS

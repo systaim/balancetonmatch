@@ -15,10 +15,9 @@
 </a>
 <div class="my-8">
     <h3 class="text-center mt-4">Les joueurs</h3>
-    @foreach($players as $player)
+    @foreach($club->players as $player)
     @if($player->first_name != 'numéro')
     <div class=" bg-primary text-white rounded-lg relative my-2 flex flex-row p-3">
-    @dump($player->id)
         @livewire('update-player', ['player' => $player])
         <div class="flex flex-col">
             <div>

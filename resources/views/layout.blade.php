@@ -30,29 +30,39 @@
             <div class="w-full rounded-b-lg shadow-xl bg-darkGray pt-16 pb-4 bg-menu">
                 <div>
                     @auth
-                    <div class="py-4 h-64 flex flex-col justify-end">
-                        <div class="flex flex-row items-center mb-8 mx-4">
-                            <div class="h-24 w-24 bg-white rounded-full m-4 overflow-hidden">
-                                <img class="object-contain" src="/images/avatar.png" alt="">
+                    <div class="h-64 flex flex-col justify-end">
+                        <div class="relative p-4 bg-darkGray rounded-lg text-white w-11/12 m-auto">
+                            <div class="flex flex-row justify-center items-center px-4">
+                                <div class="h-24 w-24 bg-white rounded-full overflow-hidden absolute top--3 shadow-xl">
+                                    <img class="object-contain" src="{{ asset(Auth::user()->profile_photo_path) }}" alt="">
+                                </div>
+                                <div class="overflow-hidden">
+                                    <p class="font-bold capitalize text-lg mt-8 mb-4">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</p>
+                                    <ul class="ml-3">
+                                        <li class="mb-2"><a href="/user/profile">Mon profil</a></li>
+                                        @if(Auth::user()->club)
+                                        <li class="mb-2 truncate"><a href="/clubs/{{Auth::user()->club->id }}">{{Auth::user()->club->name }}</a></li>
+                                        @endif
+                                        <li class="mb-2">
+                                            <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();">
+                                                {{ __('Logout') }}
+                                            </a>
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                                @csrf
+                                            </form>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
-                            <div>
-                                <p class="font-bold px-4 capitalize z-auto text-white bg-darkGray rounded-lg">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</p>
-                            </div>
-                        </div>
-                        <div>
-                            <a class="btn text-center" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
-                            </a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                @csrf
-                            </form>
                         </div>
                     </div>
                     @else
-                    <div class="w-full h-64 uppercase text-center rounded-lg flex flex-col justify-end">
-                        <a class="btn" href="/login">{{ __('Login') }}</a>
-                        <a class="btn" href="/register">{{ __('Register') }}</a>
+                    <div class="w-full h-64 uppercase text-center flex flex-row justify-evenly items-center">
+                        <div class="rounded-lg bg-darkGray flex flex-row justify-evenly items-center py-8 w-11/12">
+                            <a class="" href="/login">{{ __('Login') }}</a>
+                            <a class="btn" href="/register">{{ __('Register') }}</a>
+                        </div>
                     </div>
                     @endauth
                 </div>

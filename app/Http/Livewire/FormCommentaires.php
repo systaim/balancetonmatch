@@ -255,7 +255,7 @@ class FormCommentaires extends Component
                 'type_comments' => 'required',
                 'minute' => 'required',
                 'team_action' => 'required',
-                'file' => 'image|max:4096'
+                'file' => 'nullable|image|max:4096'
             ]);
 
             $commentData = ['minute' => $this->minute, 'team_action' => $this->team_action];

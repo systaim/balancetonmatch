@@ -342,7 +342,6 @@
                     <div class="mb-4">
                         <p class="text-lg font-bold">{{ $comment->type_comments}}</p>
                         <p>{{ $comment->comments }}</p>
-                        @dump($comment->id)
                     </div>
                     @if($comment->images != null)
                     <div class="flex justify-center">

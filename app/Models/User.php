@@ -73,6 +73,10 @@ class User extends Authenticatable
         $users = User::factory()->count(10);
     }
 
+    public function club(){
+        return $this->belongsTo(Club::class, 'prefer_team_id');
+    }
+
     public function commentator()
     {
         return $this->hasManyThrough(Commentaire::class, Commentator::class);
