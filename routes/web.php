@@ -45,9 +45,3 @@ Route::resource('matches', 'App\Http\Controllers\MatchController');
 Route::resource('matches.commentaires', 'App\Http\Controllers\CommentaireController');
 Route::resource('clubs.players', 'App\Http\Controllers\PlayerController');
 Route::resource('clubs.staffs', 'App\Http\Controllers\StaffController');
-
-Route::get('mailable', function () {
-    $invoice = App\Models\Invoice::find(1);
-
-    return new App\Mail\InvoicePaid($invoice);
-});

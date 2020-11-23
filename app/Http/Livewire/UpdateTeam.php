@@ -8,7 +8,6 @@ class UpdateTeam extends Component
 {
 
     public $club;
-
     public $city;
     public $inputCity;
     public $inputZip;

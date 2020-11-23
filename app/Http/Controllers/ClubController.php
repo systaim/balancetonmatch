@@ -53,7 +53,7 @@ class ClubController extends Controller
      * @param  \App\Models\Club  $club
      * @return \Illuminate\Http\Response
      */
-    public function show(Club $club, User $user)
+    public function show(Club $club)
     {
         $user = Auth::user();
         $nbrFavoris = Favoristeam::where('club_id', $club->id)->count();

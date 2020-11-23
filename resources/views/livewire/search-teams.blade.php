@@ -1,4 +1,5 @@
 <div class="h-auto">
+
     <h2 class="titlePage">Liste des clubs</h2>
     <!-- <form wire:submit.prevent="searchByName">
         <div class="relative flex flex-wrap w-10/12 items-stretch mb-3 m-auto">

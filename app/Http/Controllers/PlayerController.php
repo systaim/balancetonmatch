@@ -29,7 +29,12 @@ class PlayerController extends Controller
      */
     public function index(Club $club)
     {
-        return view('players.index', ['club' => $club]);
+        $user = Auth::user();
+        $players = Player::where('club_id', $club->id)
+            ->orderBy('last_name', 'asc')
+            ->orderBy('first_name', 'asc')
+            ->get();
+        return view('players.index', compact('club', 'players','user'));
     }
 
     /**
@@ -52,12 +57,11 @@ class PlayerController extends Controller
     {
         $user = Auth::user();
         $players = Player::all();
-        $matchs = Match::where('home_team_id', $club->id)->orwhere('away_team_id', $club->id)->orderBy('date_match','desc')->get();
 
         $dataPlayer = $request->validate([
             'last_name' => ['required', 'max:50', 'min:2'],
             'first_name' => ['required', 'max:50', 'min:2'],
-            'date_of_birth' => ['nullable','date'],
+            'date_of_birth' => ['nullable', 'date'],
             'position' => ['max:15'],
         ]);
         $dataPlayer['club_id'] = $club->id;
@@ -66,7 +70,9 @@ class PlayerController extends Controller
         $player->user()->associate($user);
 
         $player->save();
-        
+
+        //envoi d'un mail avec les informations du joueur
+
         $playerCreate = [
             'last_name' => $player->last_name,
             'first_name' => $player->first_name,
@@ -80,8 +86,8 @@ class PlayerController extends Controller
 
         Mail::to('systaim@gmail.com')
             ->send(new PlayerMail($playerCreate));
-        
-        return view('players.index', compact('user','club', 'players', 'matchs'));
+
+        return view('players.index', compact('user', 'club', 'players', 'matchs'));
     }
 
     /**
