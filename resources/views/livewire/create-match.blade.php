@@ -2,10 +2,10 @@
     <h2 class="titlePage">Créer un match</h2>
     <form wire:submit.prevent="saveMatch">
         @csrf
-        <div class="bg-primary rounded-lg relative text-white my-2 p-3">
+        <div class="bg-primary rounded-lg relative text-white my-2 px-3 py-3">
             <div>
                 <label for="competition">Compétition</label>
-                <select class="inputForm focus:outline-none focus:shadow-outline w-full my-1" name="compétition" id="competition" wire:model="competition">
+                <select class="inputForm focus:outline-none focus:shadow-outline w-full my-1" name="competition" id="competition" wire:model="competition">
                     <option>Choisissez une compet'</option>
                     <option value="1">Championnat régional</option>
                     <option value="2">Championnat départemental</option>
@@ -13,6 +13,14 @@
                     <option value="4">Coupe régionale</option>
                     <option value="5">Coupe départementale</option>
                 </select>
+            </div>
+            <div class="flex flex-row justify-center">
+                <div class="hidden p-4" wire:loading wire:target="competition">
+                    <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                </div>
             </div>
             @if($competition)
             <div>
@@ -95,8 +103,18 @@
                 <input class="inputForm focus:outline-none focus:shadow-outline w-full my-1" type="time" name="time" id="time" wire:model="timeMatch">
             </div>
             <div>
-                <div class="flex justify-center">
-                    <input class="btn btnPrimary" type="submit" value="C'est parti !">
+                <div class="flex justify-center items-center">
+                    <button class="relative btn flex" type="submit" wire:model="saveMatch">
+                        <div class="mr-3">
+                            <p>Créer un match</p>
+                        </div>
+                        <div class="hidden" wire:loading wire:target="saveMatch">
+                            <svg wire:target="saveMatch" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                        </div>
+                    </button>
                 </div>
                 <div class="text-center">
                     <p>{{$messageErreur}}</p>
