@@ -19362,11 +19362,6 @@ burger.addEventListener('click', function () {
   nav.classList.toggle('is-open');
   header.classList.toggle('height-100');
 });
-var loadTeam = getElementById('loadTeam');
-
-function chargementTeam() {
-  loadTeam.style.display = 'block';
-}
 
 /***/ }),
 

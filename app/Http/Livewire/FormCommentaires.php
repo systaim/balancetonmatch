@@ -65,7 +65,7 @@ class FormCommentaires extends Component
         } else {
             $this->minute = 0;
         }
-        if (now()->diffInHours($this->dateMatch, false) < -3) {
+        if (now()->diffInMinutes($this->dateMatch, false) < -150) {
             $this->match->live = "finDeMatch";
             $this->match->save();
 
@@ -162,6 +162,7 @@ class FormCommentaires extends Component
 
                 $comment->commentator()->associate($commentateur);
                 $comment->save();
+                $this->commentators->push($commentateur);
 
                 $this->commentsMatch =  $this->match->commentaires()->orderBy('minute', 'desc')->orderBy('updated_at', 'desc')->get();
                 session()->flash('successMessage', 'Bon Match ! 😉');
@@ -255,7 +256,7 @@ class FormCommentaires extends Component
                 'type_comments' => 'required',
                 'minute' => 'required',
                 'team_action' => 'required',
-                'file' => 'nullable|image|max:4096'
+                'file' => 'nullable|max:4096'
             ]);
 
             $commentData = ['minute' => $this->minute, 'team_action' => $this->team_action];
@@ -302,11 +303,11 @@ class FormCommentaires extends Component
                 foreach ($this->commentators as $comm) {
                     $comment->commentator()->associate($comm->id);
                 }
-
-                $path = $this->file->store('uploads');
+                if($this->file){
+                    $path = $this->file->store('uploads');
                 $comment->images = $path;
-
-
+                }
+                
                 $comment->save();
 
                 $statData['commentaire_id'] = $comment->id;

@@ -174,7 +174,7 @@ input:checked + .inputCom {
 }
 
 .inputAction {
-    @apply block cursor-pointer text-lg py-4 px-2;
+    @apply block cursor-pointer text-lg py-4 px-2 rounded-t-lg;
 }
 
 .inputAction.home {
@@ -195,6 +195,23 @@ input:checked + .inputAction.home {
 
 .error{
     @apply text-danger bg-black
+}
+
+.openComment {
+
+    animation-name: down;
+    animation-duration: 5s;
+}
+
+@keyframes down {
+    0% {
+
+        height: 0vh;
+    }
+
+    100% {
+        height: 100vh;
+    }
 }
 
 
@@ -264,11 +281,12 @@ input:checked + .inputAction.home {
     top: 0;
     right: 0;
     left: 0;
+    bottom:0;
     /* padding-top: 5rem; */
     /* text-align: center; */
     /* background: var(--primary-color); */
     opacity: 0;
-    z-index: -1;
+    z-index: 9999;
     visibility: hidden;
     transition: all 0.5s;
 }
@@ -358,7 +376,7 @@ input:checked + .inputAction.home {
 	width: 28px;
 	height: 4px;
 	margin: 0 auto;
-	background: var(--secondary-color);
+	background: #fff;
 	transform: skew(5deg);
 	transition: all .275s;
 }
@@ -368,7 +386,7 @@ input:checked + .inputAction.home {
 	content: '';
 	display: block;
 	height: 100%;
-	background: var(--secondary-color);
+	background: #fff;
 	transition: all .275s;
 }
 
@@ -408,7 +426,7 @@ input:checked + .inputAction.home {
 	text-transform: uppercase;
 	font-weight: 500;
 	text-align: center;
-	color: var(--secondary-color);
+	color: #fff;
 }
 
 

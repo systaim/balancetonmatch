@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     <link rel="stylesheet" href="{{ mix('css/styles.css') }}" />
     <script src="https://kit.fontawesome.com/c03c2336c3.js" crossorigin="anonymous"></script>
-    <script src="{{ asset('js/app.js') }}"></script>
 
 </head>
 
@@ -26,7 +25,7 @@
                 <p class="text-xs">Quand la touche part en live...</p>
             </a>
         </div>
-        <div id="main-nav" class="main-nav">
+        <div id="main-nav" class="main-nav bg-primary">
             <div class="w-full rounded-b-lg shadow-xl bg-darkGray pt-16 pb-4 bg-menu">
                 <div>
                     @auth

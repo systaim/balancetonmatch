@@ -42,8 +42,7 @@
                     @enderror
                 </div>
                 <div class="flex flex-col">
-                    <label for="prefer_team">Mon équipe actuelle</label>
-                    <input class="inputForm focus:outline-none focus:shadow-outline w-full my-1" type="text" name="prefer_team" id="prefer_team" :value="old('prefer_team')" autocomplete="prefer_team">
+                    <!-- <x-clubselect /> -->
                     @error('prefer_team')
                     <div class="alert alert-danger">{{ $message }}</div>
                     @enderror

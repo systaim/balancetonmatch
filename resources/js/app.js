@@ -10,9 +10,3 @@ burger.addEventListener('click', function(){
 	header.classList.toggle('height-100');
 });
 
-let loadTeam = getElementById('loadTeam');
-
-function chargementTeam(){
-	loadTeam.style.display = 'block';
-}
-

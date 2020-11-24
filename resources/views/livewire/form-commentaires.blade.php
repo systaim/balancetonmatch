@@ -97,12 +97,15 @@
 
     <!-- Formulaire d'action équipe -->
     @if($team_action == 'home' || $team_action == 'away')
-    <div id="menuTeam" class="flex flex-col justify-center z-10 rounded-b-lg absolute h-auto top-0 right-0 left-0 espaceCom {{ $team_action}}">
-        <div class="flex flex-col items-center">
+    <div id="menuTeam" class="flex flex-col justify-center z-10 rounded-b-lg absolute top-0 espaceCom {{ $team_action}}">
+        <div class="flex flex-col items-center openComment">
             <div class="m-4 flex flex-row justify-center">
                 <div class="flex flex-col jsutify-center">
                     <label class="inputAction {{$team_action}}" for="minute">Temps de jeu</label>
                     <input wire:poll.60s.keep-alive="chrono" class="p-3 bg-white rounded shadow outline-none focus:outline-none focus:shadow-outline text-center" type="number" name="minute" wire:model="minute" min="1" max="90">
+                    @error('minute')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                 </div>
             </div>
             <div class="actionsMatch">
@@ -111,7 +114,7 @@
                     But !
                 </label>
                 @if($type_comments == "but")
-                <div class="p-6 border-2 border-{{ $team_action }}">
+                <div class="p-6 border-2 border-{{ $team_action }} rounded-b-lg shadow-2xl">
                     <div class="flex flex-col">
                         <div>
                             <input class="hidden" type="radio" id="butCF" wire:model="type_but" name="type_but" value="But sur coup-franc">
@@ -144,7 +147,7 @@
                     Carton !
                 </label>
                 @if($type_comments == 'carton')
-                <div class="p-6 border-2 border-{{ $team_action }}">
+                <div class="p-6 border-2 border-{{ $team_action }} rounded-b-lg">
                     <div class="actionsMatch">
                         <input class="hidden" type="radio" id="cartonJaune1" wire:model="type_carton" name="type_comments" value="Carton jaune">
                         <label class="inputAction {{ $team_action }}" for="cartonJaune1">1er carton jaune</label>
@@ -167,7 +170,7 @@
             <select class="inputForm focus:outline-none focus:shadow-outline my-1" name="player" id="player" wire:model="player">
                 <option value="">Choisissez un joueur</option>
                 @foreach($match->homeClub->players as $player)
-                <option value="{{ $player->id}}">{{$player->first_name}} {{$player->name}}</option>
+                <option value="{{ $player->id}}">{{$player->first_name}} {{$player->last_name}}</option>
                 @endforeach
             </select>
             <div class="text-white m-auto my-4">
@@ -191,7 +194,7 @@
             <select class="inputForm focus:outline-none focus:shadow-outline my-1" name="player" id="player" wire:model="player">
                 <option value="">Choisissez un joueur</option>
                 @foreach($match->awayClub->players as $player)
-                <option value="{{ $player->id}}">{{$player->first_name}} {{$player->name}}</option>
+                <option value="{{ $player->id}}">{{$player->first_name}} {{$player->last_name}}</option>
                 @endforeach
             </select>
             <div class="text-white m-auto my-4">
