@@ -25,6 +25,7 @@ $club = ClubController::class;
 Route::get('/', function () {
     $matchesToday = Match::whereBetween('date_match', [Carbon::now()->startOfDay(), Carbon::now()->endOfDay()])->get();
     $matchesTomorrow = Match::where('date_match', [Carbon::tomorrow()])->get();
+    $matches = Match::where('date_match', '>=', Carbon::now()->subHours(6))->orderBy('date_match', 'asc')->get();
     $clubs = Club::all();
     $players = Player::all();
     $dateJour = Carbon::now();

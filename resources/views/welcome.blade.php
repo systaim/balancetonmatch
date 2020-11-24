@@ -1,19 +1,13 @@
 @extends('layout')
 @section('content')
-<section class="h-64 bg-primary rounded-b-lg p-4 text-white">
-    <h2 class="text-center">Le foot live pour les amateurs <br>par les amateurs</h2>
-    <!-- <div class=" h-auto p-4">
-        <h3 class="text-center text-3xl">Le site pour suivre le foot amateur de n'importe où !</h3>
-        <div>
-            <p class=" bg-primary text-white rounded-lg relative my-2 p-3 w-full">Pas dispo pour aller encourager ton équipe favorite ?</p>
-        </div>
-        <div>
-            <p class=" bg-primary text-white rounded-lg relative my-2 p-3 w-full">Tu souhaites connaitre l'évolution d'un match ?</p>
-        </div>
-        <div>
-            <p class=" bg-primary text-white rounded-lg relative my-2 p-3 w-full">Tu peux le suivre en direct LIVE</p>
-        </div>
-    </div> -->
+<section class="h-auto bg-primary rounded-b-lg p-4 text-white flex flex-col justify-center">
+    <h2 class="text-center mb-6">Envie de suivre les matchs amateurs en direct live ? </h2>
+    <hr>
+    <p class="text-center mt-6">N'importe qui peut devenir commentateur facilement ou simplement suivre un match.</p>
+    <p class="text-center mb-6">Voici la liste des matchs prévus</p>
+    <a class="m-auto" href="{{ route('matches.index') }}">
+        <button class="btn btnSecondary">Je vais voir</button>
+    </a>
 </section>
 <section>
     <div class="w-11/12 m-auto">
