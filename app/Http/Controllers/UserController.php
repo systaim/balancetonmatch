@@ -13,5 +13,6 @@ class UserController extends Controller
 {
 
     use Notifiable;
+    
 
 }

@@ -2,10 +2,10 @@
 @section('content')
 <form method="POST" action="{{ route('register') }}">
     @csrf
-    <div>
-        <h2 class="text-center bg-primary text-secondary text-2xl py-1 my-4 rounded">S'enregistrer</h2>
+    <div class="m-4">
+        <h2 class="text-primary text-center text-xl py-4">S'enregistrer</h2>
         <form method="POST" action="{{ route('register') }}">
-            <div class="bg-primary rounded-lg relative text-white my-2 p-3">
+            <div class="relative my-2 p-3">
                 <div class="flex flex-col">
                     <label for="last_name">Nom de famille</label>
                     <input class="inputForm focus:outline-none focus:shadow-outline w-full my-1" type="text" name="last_name" id="last_name" :value="old('last_name')" required autocomplete="last_name">
@@ -37,7 +37,14 @@
                 <div class="flex flex-col">
                     <label for="date_of_birth">Date de naissance</label>
                     <input class="inputForm focus:outline-none focus:shadow-outline w-full my-1" type="date" name="date_of_birth" id="date_of_birth" :value="old('date_of_birth')" autocomplete="date_of_birth">
-                    @error('birthDate')
+                    @error('date_of_birth')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="flex flex-col">
+                    <label for="prefer_team">Mon équipe actuelle</label>
+                    <input class="inputForm focus:outline-none focus:shadow-outline w-full my-1" type="text" name="prefer_team" id="prefer_team" :value="old('prefer_team')" autocomplete="prefer_team">
+                    @error('prefer_team')
                     <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                 </div>
