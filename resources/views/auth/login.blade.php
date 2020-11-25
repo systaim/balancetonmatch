@@ -23,11 +23,15 @@
                 <span class="ml-2 text-sm">{{ __('Remember me') }}</span>
             </div>
             <div class="flex justify-between items-center">
-                @if (Route::has('password.request'))
-                <a class="underline text-sm" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
-                @endif
+                <div class="flex flex-col">
+                    @if (Route::has('password.request'))
+                    <a class="underline text-sm" href="{{ route('password.request') }}">
+                        {{ __('Forgot your password?') }}
+                    </a>
+                    @endif
+                    <a class="underline text-sm" href="/register">Pas de compte ?</a>
+                </div>
+
                 <button class="btn btnPrimary">
                     {{ __('Login') }}
                 </button>

@@ -6,29 +6,30 @@
         <h2 class="text-primary text-center text-xl py-4">S'enregistrer</h2>
         <form method="POST" action="{{ route('register') }}">
             <div class="relative my-2 p-3">
+                <p class="text-sm mb-4">* champs obligatoire</p>
                 <div class="flex flex-col">
-                    <label for="last_name">Nom de famille</label>
+                    <label for="last_name">Nom de famille *</label>
                     <input class="inputForm focus:outline-none focus:shadow-outline w-full my-1" type="text" name="last_name" id="last_name" :value="old('last_name')" required autocomplete="last_name">
                     @error('last_name')
                     <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="flex flex-col">
-                    <label for="first_name">Prénom</label>
+                    <label for="first_name">Prénom *</label>
                     <input class="inputForm focus:outline-none focus:shadow-outline w-full my-1" type="text" name="first_name" id="first_name" :value="old('first_name')" required autocomplete="first_name">
                     @error('first_name')
                     <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="flex flex-col">
-                    <label for="Peudo">Pseudo</label>
+                    <label for="Peudo">Pseudo *</label>
                     <input class="inputForm focus:outline-none focus:shadow-outline w-full my-1" type="text" name="pseudo" id="pseudo" :value="old('pseudo')" required autocomplete="pseudo">
                     @error('pseudo')
                     <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="flex flex-col">
-                    <label for="email">Email</label>
+                    <label for="email">Email *</label>
                     <input class="inputForm focus:outline-none focus:shadow-outline w-full my-1" type="email" name="email" id="email" :value="old('email')" required autocomplete="email">
                     @error('email')
                     <div class="alert alert-danger">{{ $message }}</div>
@@ -48,7 +49,7 @@
                     @enderror
                 </div>
                 <div class="flex flex-col">
-                    <label for="password">Mot de passe</label>
+                    <label for="password">Mot de passe *</label>
                     <input class="inputForm focus:outline-none focus:shadow-outline w-full my-1" type="password" name="password" required autocomplete="new-password">
                     @error('password')
                     <div class="alert alert-danger">{{ $message }}</div>
