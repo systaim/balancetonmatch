@@ -127,9 +127,6 @@
                             <input class="hidden" type="radio" id="penalty" wire:model="type_but" name="type_but" value="But sur pénalty">
                             <label class="inputAction {{ $team_action }}" for="penalty">But sur pénalty</label>
                         </div>
-                        @error('type_but')
-                        <span class="error">{{ $message }}</span>
-                        @enderror
                     </div>
                 </div>
                 @endif
@@ -152,17 +149,17 @@
                         <label class="inputAction {{ $team_action }}" for="cartonRouge">Carton rouge !</label>
                     </div>
                 </div>
-                @error('type_comments')
-                <span class="error">{{ $message }}</span>
-                @enderror
                 @endif
             </div>
             @if($team_action == 'home')
-            <select class="inputForm focus:outline-none focus:shadow-outline my-1" name="player" id="player" wire:model="player">
+            <select class="inputForm focus:outline-none focus:shadow-outline my-1" name="player" id="player" wire:model="player" required>
                 <option value="">Choisissez un joueur</option>
                 @foreach($match->homeClub->players as $player)
                 <option value="{{ $player->id}}">{{$player->first_name}} {{$player->last_name}}</option>
                 @endforeach
+                @for($i = 1 ; $i <= 16; $i++)
+                    <option value="{{ $i }}">Numéro {{$i}}</option>
+                @endfor
             </select>
             <div class="flex items-center text-white m-auto my-4">
                 <div class="hidden p-4" wire:loading wire:target="file">
@@ -197,11 +194,14 @@
             </div>
             @endif
             @if($team_action == 'away')
-            <select class="inputForm focus:outline-none focus:shadow-outline my-1" name="player" id="player" wire:model="player">
+            <select class="inputForm focus:outline-none focus:shadow-outline my-1" name="player" id="player" wire:model="player" required>
                 <option value="">Choisissez un joueur</option>
                 @foreach($match->awayClub->players as $player)
                 <option value="{{ $player->id}}">{{$player->first_name}} {{$player->last_name}}</option>
                 @endforeach
+                @for($i = 1 ; $i <= 16; $i++)
+                    <option value="{{ $i }}">Numéro {{$i}}</option>
+                @endfor
             </select>
             <div class="flex items-center text-white m-auto my-4">
                 <input type="file" wire:model="file" name="file" id="file" accept="jpeg,png,jpg,gif,svg,mov,mp4,m4v">
@@ -335,7 +335,7 @@
             <p>Les commentaires sont cloturés... A bientôt !</p>
         </div>
         @endif
-        <div class="my-4" wire:poll.5000ms="miseAJourCom">
+        <div class="my-4" wire:poll.5000ms.keep-alive="miseAJourCom">
             @foreach($commentsMatch as $comment)
             <div class="relative commentaires minHeight16 h-auto {{ $comment->team_action }}">
                 <div class="minuteCommentaires w-24 sm:w-32 {{ $comment->team_action }} p-4 flex flex-col items-center">
@@ -353,12 +353,13 @@
                     </div>
                     @endif
                 </div>
-                @if($comment->team_action == "home" || $comment->team_action == "away")
                 <div class="relative bg-white w-full p-4 pt-2">
                     <div class="mb-4">
                         <p class="text-lg font-bold">{{ $comment->type_comments}}</p>
                         <p>{{ $comment->comments }}</p>
+                        @if($comment->team_action == "away" || $comment->team_action == "home")
                         <p class="font-bold">{{ $comment->statistic->player->first_name}} {{ $comment->statistic->player->last_name}}</p>
+                        @endif
                     </div>
                     @if($comment->images != null)
                     <div class="flex justify-center">
@@ -368,14 +369,6 @@
                     </div>
                     @endif
                 </div>
-                @else
-                <div class="relative bg-white w-full p-4 pt-2">
-                    <div class="mb-4">
-                        <p class="text-lg font-bold">{{ $comment->type_comments}}</p>
-                        <p>{{ $comment->comments }}</p>
-                    </div>
-                </div>
-                @endif
                 @auth
                 @foreach($commentators as $commentator)
                 @if($commentator->user_id == Auth::user()->id)
