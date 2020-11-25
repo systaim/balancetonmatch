@@ -44,16 +44,16 @@ class DatabaseSeeder extends Seeder
         }
 
         // tables players numéros génériques
-        $clubs = Club::all();
-        foreach ($clubs as $club) {
+        // $clubs = Club::all();
+        // foreach ($clubs as $club) {
             for ($i = 1; $i <= 16; $i++) {
                 Player::create([
                     'name' => $i,
                     'first_name' => 'numéro',
-                    'club_id' => $club->id,
+                    // 'club_id' => $club->id,
                 ]);
             }
-        }
+        // }
 
 
         //tables noms de régions

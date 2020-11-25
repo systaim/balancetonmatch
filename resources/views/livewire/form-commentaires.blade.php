@@ -97,17 +97,8 @@
 
     <!-- Formulaire d'action équipe -->
     @if($team_action == 'home' || $team_action == 'away')
-    <div id="menuTeam" class="flex flex-col justify-center z-10 rounded-b-lg absolute top-0 espaceCom {{ $team_action}}">
+    <div id="menuTeam" class="flex flex-col justify-center z-10 rounded-b-lg absolute top-0 right-0 left-0 bottom-0 espaceCom {{ $team_action}}">
         <div class="flex flex-col items-center openComment">
-            <div class="m-4 flex flex-row justify-center">
-                <div class="flex flex-col jsutify-center">
-                    <label class="inputAction {{$team_action}}" for="minute">Temps de jeu</label>
-                    <input wire:poll.60s.keep-alive="chrono" class="p-3 bg-white rounded shadow outline-none focus:outline-none focus:shadow-outline text-center" type="number" name="minute" wire:model="minute" min="1" max="90">
-                    @error('minute')
-                    <div class="alert alert-danger">{{ $message }}</div>
-                    @enderror
-                </div>
-            </div>
             <div class="actionsMatch">
                 <input class="hidden" type="radio" id="but" wire:model="type_comments" name="type_comments" value="but">
                 <label class="inputAction {{ $team_action }}" for="but">
@@ -173,11 +164,26 @@
                 <option value="{{ $player->id}}">{{$player->first_name}} {{$player->last_name}}</option>
                 @endforeach
             </select>
-            <div class="text-white m-auto my-4">
+            <div class="flex items-center text-white m-auto my-4">
+                <div class="hidden p-4" wire:loading wire:target="file">
+                    <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                </div>
                 <input type="file" wire:model="file" name="file" id="file" accept="jpeg,png,jpg,gif,svg,mov,mp4,m4v">
                 @error('file')
                 <span class="error">{{ $message }}</span>
                 @enderror
+            </div>
+            <div class="m-4 flex flex-row justify-center">
+                <div class="flex flex-col jsutify-center">
+                    <label class="inputAction {{$team_action}}" for="minute">Temps de jeu</label>
+                    <input wire:poll.60s.keep-alive="chrono" class="p-3 bg-white rounded shadow outline-none focus:outline-none focus:shadow-outline text-center" type="number" name="minute" wire:model="minute" min="1" max="90">
+                    @error('minute')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+                </div>
             </div>
             <div class="mt-6 flex flex-col justify-center">
                 @if (session()->has('messageDebutDeMatch'))
@@ -185,7 +191,7 @@
                     {{ session('messageDebutDeMatch') }}
                 </div>
                 @endif
-                <button class="btn btnPrimary" type="submit" value="">Je commente</button>
+                <button wire:loading.attr="disabled" wire:loading.class.remove="btnPrimary" wire:target="file" class="btn btnPrimary" type="submit">Je commente</button>
                 <input class="hidden" type="radio" id="exit" wire:model="team_action" name="team_action" value="">
                 <label for="exit" class="btn btnPrimary text-center">Retour</label>
             </div>
@@ -197,8 +203,14 @@
                 <option value="{{ $player->id}}">{{$player->first_name}} {{$player->last_name}}</option>
                 @endforeach
             </select>
-            <div class="text-white m-auto my-4">
+            <div class="flex items-center text-white m-auto my-4">
                 <input type="file" wire:model="file" name="file" id="file" accept="jpeg,png,jpg,gif,svg,mov,mp4,m4v">
+                <div class="hidden p-4" wire:loading wire:target="file">
+                    <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                </div>
                 @error('file')
                 <span class="error">{{ $message }}</span>
                 @enderror
@@ -209,7 +221,7 @@
                     {{ session('messageDebutDeMatch') }}
                 </div>
                 @endif
-                <button class="btn btnSecondary" type="submit" value="">Je commente</button>
+                <button wire:loading.attr="disabled" wire:loading.class.remove="btnSecondary" wire:target="file" class="btn btnSecondary" type="submit" value="">Je commente</button>
                 <input class="hidden" type="radio" id="exit" wire:model="team_action" name="team_action" value="">
                 <label for="exit" class="btn btnSecondary text-center">Retour</label>
             </div>
@@ -341,10 +353,12 @@
                     </div>
                     @endif
                 </div>
+                @if($comment->team_action == "home" || $comment->team_action == "away")
                 <div class="relative bg-white w-full p-4 pt-2">
                     <div class="mb-4">
                         <p class="text-lg font-bold">{{ $comment->type_comments}}</p>
                         <p>{{ $comment->comments }}</p>
+                        <p class="font-bold">{{ $comment->statistic->player->first_name}} {{ $comment->statistic->player->last_name}}</p>
                     </div>
                     @if($comment->images != null)
                     <div class="flex justify-center">
@@ -354,6 +368,14 @@
                     </div>
                     @endif
                 </div>
+                @else
+                <div class="relative bg-white w-full p-4 pt-2">
+                    <div class="mb-4">
+                        <p class="text-lg font-bold">{{ $comment->type_comments}}</p>
+                        <p>{{ $comment->comments }}</p>
+                    </div>
+                </div>
+                @endif
                 @auth
                 @foreach($commentators as $commentator)
                 @if($commentator->user_id == Auth::user()->id)

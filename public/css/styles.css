@@ -372,8 +372,8 @@ input:checked + .inputAction.home {
 .openComment {
   -webkit-animation-name: down;
           animation-name: down;
-  -webkit-animation-duration: 5s;
-          animation-duration: 5s;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
 }
 
 @-webkit-keyframes down {
