@@ -42,7 +42,7 @@
                     @enderror
                 </div>
                 <div class="flex flex-col">
-                    <!-- <x-clubselect /> -->
+                    <x-clubselect />
                     @error('prefer_team')
                     <div class="alert alert-danger">{{ $message }}</div>
                     @enderror

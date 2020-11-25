@@ -33,7 +33,7 @@ class User extends Authenticatable
         'date_of_birth',
         'tel',
         'password',
-        'prefer_team',
+        'prefer_team_id',
         'rank',
         'profile_photo_path',
     ];

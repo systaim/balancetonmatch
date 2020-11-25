@@ -19,15 +19,15 @@ class CreateNewUser implements CreatesNewUsers
      * @param  array  $input
      * @return \App\Models\User
      */
+
     public function create(array $input)
     {
-
         Validator::make($input, [
             'last_name' => ['required', 'string', 'max:255'],
             'first_name' => ['required', 'string', 'max:255'],
             'pseudo' => ['required', 'string', 'max:50'],
             'date_of_birth' => ['nullable', 'date'],
-            'club' => ['nullable'],
+            'prefer_team_id' => ['nullable'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => $this->passwordRules(),
         ])->validate();
@@ -37,7 +37,7 @@ class CreateNewUser implements CreatesNewUsers
             'first_name' => $input['first_name'],
             'pseudo' => $input['pseudo'],
             'date_of_birth' => $input['date_of_birth'],
-            'prefer_team' => $input['club'],
+            'prefer_team_id' => $input['prefer_team'],
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
         ]);
