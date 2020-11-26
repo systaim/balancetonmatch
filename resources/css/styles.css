@@ -24,33 +24,33 @@ h6 {
     @apply uppercase font-bold;
 }
 
-.minHeight16{
+.minHeight16 {
     min-height: 4rem;
 }
 
-.right--2{
-    right:-2rem;
+.right--2 {
+    right: -2rem;
 }
 
-.inputForm{
-    @apply px-3 py-3 text-primary bg-white rounded shadow outline-none
+.inputForm {
+    @apply px-3 py-3 text-primary bg-white rounded shadow outline-none;
 }
 
-.titlePage{
-    @apply text-center bg-primary text-secondary text-2xl py-1 my-4 rounded
+.titlePage {
+    @apply text-center bg-primary text-secondary text-2xl py-1 my-4 rounded;
 }
 
-.height-mini-10{
+.height-mini-10 {
     min-height: 10rem;
 }
 
-.bg-menu{
-    background-image: url('/images/menu.jpg');
+.bg-menu {
+    background-image: url("/images/menu.jpg");
     background-size: cover;
 }
 
-.top--3{
-    top:-3rem;
+.top--3 {
+    top: -3rem;
 }
 
 /*************************
@@ -149,7 +149,7 @@ h6 {
     @apply bg-gray-400;
 }
 
-.minuteCommentaires.commandeMatch{
+.minuteCommentaires.commandeMatch {
     @apply bg-darkGray;
 }
 
@@ -169,8 +169,8 @@ input:checked + .inputCom {
     text-decoration: underline;
 }
 
-.actionsMatch{
-    @apply  py-4 px-2;
+.actionsMatch {
+    @apply py-4 px-2;
 }
 
 .inputAction {
@@ -193,27 +193,41 @@ input:checked + .inputAction.home {
     @apply text-primary bg-secondary;
 }
 
-.error{
-    @apply text-danger bg-black
+.error {
+    @apply text-danger bg-black;
 }
 
 .openComment {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: auto;
+    transform-origin: 0% 0%;
+    transform: translate(-100%, 0);
 
-    animation-name: down;
-    animation-duration: 0.5s;
+    transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
 }
 
-@keyframes down {
-    0% {
+.openComment.home {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: auto;
 
-        height: 0vh;
-    }
+    transform: translate(0%, 0);
 
-    100% {
-        height: 100vh;
-    }
+    transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
 }
+.openComment.away {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: auto;
 
+    transform: translate(0, 0);
+
+    transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
+}
 
 /*************************
           COLORS TEAMS
@@ -227,23 +241,23 @@ input:checked + .inputAction.home {
     @apply bg-fixed rounded-full bg-white overflow-hidden flex justify-center justify-items-center shadow-xl;
 }
 
-.border-home{
-    @apply border-secondary
+.border-home {
+    @apply border-secondary;
 }
 
-.border-away{
-    @apply border-primary
+.border-away {
+    @apply border-primary;
 }
 
-.alertFavori{
-    opacity:0;
+.alertFavori {
+    opacity: 0;
     background-color: black;
     animation-name: disparition;
     animation-duration: 5s;
 }
 
 .alertComment {
-    opacity:0;
+    opacity: 0;
     background-color: var(--primary-color);
     animation-name: disparition;
     animation-duration: 5s;
@@ -275,13 +289,13 @@ input:checked + .inputAction.home {
           MENU
   *************************/
 
-  /* Main menu positionning */
+/* Main menu positionning */
 .main-nav {
     position: absolute;
     top: 0;
     right: 0;
     left: 0;
-    bottom:0;
+    bottom: 0;
     /* padding-top: 5rem; */
     /* text-align: center; */
     /* background: var(--primary-color); */
@@ -317,11 +331,9 @@ input:checked + .inputAction.home {
 
 /* Skewing effect on menu links */
 .main-nav ul {
-
     flex-direction: column;
     align-items: flex-end;
     justify-content: center;
-
 }
 
 /* .main-nav li {
@@ -342,91 +354,88 @@ input:checked + .inputAction.home {
     transform: translateY(0);
 }
 
-
 /* Decoration */
 .main-nav ul,
 .main-nav li {
-	list-style: none;
-	padding: 0;
+    list-style: none;
+    padding: 0;
 }
 .main-nav a {
-	display: block;
-	color: #fff;
-	text-decoration: none;
-	font-weight: bold;
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
 }
 
 /* Burger Style: @see: https://codepen.io/CreativeJuiz/full/oMZNXy */
 .open-main-nav {
-	position: absolute;
-	top: 15px;
-	padding-top: 20px;
-	right: 15px;
-	z-index: 1000;
-	background: none;
-	border: 0;
-	cursor: pointer;
+    position: absolute;
+    top: 15px;
+    padding-top: 20px;
+    right: 15px;
+    z-index: 1000;
+    background: none;
+    border: 0;
+    cursor: pointer;
 }
 .open-main-nav:focus {
-	outline: none;
+    outline: none;
 }
 .burger {
-	position: relative;
-	display: block;
-	width: 28px;
-	height: 4px;
-	margin: 0 auto;
-	background: #fff;
-	transform: skew(5deg);
-	transition: all .275s;
+    position: relative;
+    display: block;
+    width: 28px;
+    height: 4px;
+    margin: 0 auto;
+    background: #fff;
+    transform: skew(5deg);
+    transition: all 0.275s;
 }
 
 .burger:after,
 .burger:before {
-	content: '';
-	display: block;
-	height: 100%;
-	background: #fff;
-	transition: all .275s;
+    content: "";
+    display: block;
+    height: 100%;
+    background: #fff;
+    transition: all 0.275s;
 }
 
 .burger:after {
-	transform: translateY(-12px) translateX(-2px) skew(-20deg);
+    transform: translateY(-12px) translateX(-2px) skew(-20deg);
 }
 
 .burger:before {
-	transform: translateY(-16px) skew(-10deg);
+    transform: translateY(-16px) skew(-10deg);
 }
 
 /* Toggle State part */
 .is-open .burger {
-	transform: skew(5deg) translateY(-8px) rotate(-45deg);
+    transform: skew(5deg) translateY(-8px) rotate(-45deg);
 }
 
 .is-open .burger:before {
-	transform: translateY(0px) skew(-10deg) rotate(75deg);
+    transform: translateY(0px) skew(-10deg) rotate(75deg);
 }
 
 .is-open .burger:after {
-	transform: translateY(-12px) translateX(10px) skew(-20deg);
+    transform: translateY(-12px) translateX(10px) skew(-20deg);
     opacity: 0;
 }
 
-.height-100{
+.height-100 {
     height: 100vh;
 }
 
 /* MENU Text part */
 
 .burger-text {
-	display: block;
-	font-size: .675rem;
-	letter-spacing: .05em;
-	margin-top: .5em;
-	text-transform: uppercase;
-	font-weight: 500;
-	text-align: center;
-	color: #fff;
+    display: block;
+    font-size: 0.675rem;
+    letter-spacing: 0.05em;
+    margin-top: 0.5em;
+    text-transform: uppercase;
+    font-weight: 500;
+    text-align: center;
+    color: #fff;
 }
-
-

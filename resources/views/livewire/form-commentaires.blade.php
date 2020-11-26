@@ -96,9 +96,10 @@
     <!-- fin affichage bannière du match -->
 
     <!-- Formulaire d'action équipe -->
-    @if($team_action == 'home' || $team_action == 'away')
-    <div id="menuTeam" class="flex flex-col justify-center z-10 rounded-b-lg absolute top-0 right-0 left-0 bottom-0 espaceCom {{ $team_action}}">
-        <div class="flex flex-col items-center openComment">
+
+    <div class="openComment flex flex-col justify-center z-10 rounded-b-lg espaceCom {{ $team_action}}">
+        <div class="flex flex-col items-center pt-10">
+            <h3 class="text-xl text-center px-2 text-primary bg-white rounded-lg">Menu action de match</h3>
             <div class="actionsMatch">
                 <input class="hidden" type="radio" id="but" wire:model="type_comments" name="type_comments" value="but">
                 <label class="inputAction {{ $team_action }}" for="but">
@@ -157,9 +158,8 @@
                 @foreach($match->homeClub->players as $player)
                 <option value="{{ $player->id}}">{{$player->first_name}} {{$player->last_name}}</option>
                 @endforeach
-                @for($i = 1 ; $i <= 16; $i++)
-                    <option value="{{ $i }}">Numéro {{$i}}</option>
-                @endfor
+                @for($i = 1 ; $i <= 16; $i++) <option value="{{ $i }}">Numéro {{$i}}</option>
+                    @endfor
             </select>
             <div class="flex items-center text-white m-auto my-4">
                 <div class="hidden p-4" wire:loading wire:target="file">
@@ -199,9 +199,8 @@
                 @foreach($match->awayClub->players as $player)
                 <option value="{{ $player->id}}">{{$player->first_name}} {{$player->last_name}}</option>
                 @endforeach
-                @for($i = 1 ; $i <= 16; $i++)
-                    <option value="{{ $i }}">Numéro {{$i}}</option>
-                @endfor
+                @for($i = 1 ; $i <= 16; $i++) <option value="{{ $i }}">Numéro {{$i}}</option>
+                    @endfor
             </select>
             <div class="flex items-center text-white m-auto my-4">
                 <input type="file" wire:model="file" name="file" id="file" accept="jpeg,png,jpg,gif,svg,mov,mp4,m4v">
@@ -215,6 +214,15 @@
                 <span class="error">{{ $message }}</span>
                 @enderror
             </div>
+            <div class="m-4 flex flex-row justify-center">
+                <div class="flex flex-col jsutify-center">
+                    <label class="inputAction {{$team_action}}" for="minute">Temps de jeu</label>
+                    <input wire:poll.60s.keep-alive="chrono" class="p-3 bg-white rounded shadow outline-none focus:outline-none focus:shadow-outline text-center" type="number" name="minute" wire:model="minute" min="1" max="90">
+                    @error('minute')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
             <div class="mt-6 flex flex-col justify-center">
                 @if (session()->has('messageDebutDeMatch'))
                 <div wire:loading.class.remove="alertComment" class="m-auto w-11/12 my-1 flex justify-center items-center text-white p-2 rounded-lg alertComment">
@@ -227,7 +235,6 @@
             </div>
             @endif
         </div>
-        @endif
     </div>
 
     <!-- fin Formulaire d'action équipe -->
@@ -278,6 +285,17 @@
                 </div>
             </div>
         </button>
+        @else
+        <a href="/login">
+            <div class="relative commentaires h-20 bg-white commandeMatch items-stretch w-full focus:outline-none">
+                <div class="minuteCommentaires w-24 commandeMatch">
+                    <img src="{{asset('images/login.png')}}" alt="">
+                </div>
+                <div class="bg-white w-full h-full p-3 flex flex-col justify-center">
+                    <p class="text-center">Je me connecte</p>
+                </div>
+            </div>
+        </a>
         @endauth
         @endif
 
