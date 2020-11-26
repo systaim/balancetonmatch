@@ -2,6 +2,7 @@
     --primary-color: #091c3e;
     --secondary-color: #cdfb0a;
     --danger-color: #ff1500;
+    --darkGray-color : #0D0F12;
 }
 
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,400;0,700;0,900;1,400;1,700&display=swap");
@@ -97,17 +98,13 @@ h6 {
     @apply flex flex-col font-bold p-6;
 }
 
-.espaceCom.home {
+/* .espaceCom.home {
     @apply bg-primary;
 }
 
 .espaceCom.away {
     @apply bg-secondary;
-}
-
-.espaceCom.match {
-    @apply bg-white;
-}
+} */
 
 .commentaires {
     @apply flex flex-row m-auto mt-2 rounded-r-lg border-r-8 shadow-lg overflow-hidden;
@@ -174,22 +171,22 @@ input:checked + .inputCom {
 }
 
 .inputAction {
-    @apply block cursor-pointer text-lg py-4 px-2 rounded-t-lg;
-}
-
-.inputAction.home {
-    @apply text-secondary;
+    @apply block cursor-pointer text-lg py-4 px-2 rounded-t;
 }
 
 .inputAction.away {
+    @apply text-secondary;
+}
+
+.inputAction.home {
     @apply text-primary;
 }
 
-input:checked + .inputAction.away {
+input:checked + .inputAction.home {
     @apply text-secondary bg-primary;
 }
 
-input:checked + .inputAction.home {
+input:checked + .inputAction.aay {
     @apply text-primary bg-secondary;
 }
 
@@ -204,6 +201,8 @@ input:checked + .inputAction.home {
     height: auto;
     transform-origin: 0% 0%;
     transform: translate(-100%, 0);
+
+    background-color: var(--darkGray-color);
 
     transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
 }
