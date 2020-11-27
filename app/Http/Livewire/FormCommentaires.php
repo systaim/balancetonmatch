@@ -77,6 +77,13 @@ class FormCommentaires extends Component
         }
     }
 
+    public function needHelp(){
+        $user = Auth::user();
+        $this->firstCom = 1;
+        $user->first_com = 1;
+        $user->save();
+    }
+
     public function sousMenu()
     {
         $this->sousMenu = 1;

@@ -342,7 +342,7 @@ input:checked + .inputAction.home {
   background-color: rgba(9, 28, 62, var(--bg-opacity));
 }
 
-input:checked + .inputAction.aay {
+input:checked + .inputAction.away {
   --text-opacity: 1;
   color: #091c3e;
   color: rgba(9, 28, 62, var(--text-opacity));

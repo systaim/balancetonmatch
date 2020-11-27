@@ -186,7 +186,7 @@ input:checked + .inputAction.home {
     @apply text-secondary bg-primary;
 }
 
-input:checked + .inputAction.aay {
+input:checked + .inputAction.away {
     @apply text-primary bg-secondary;
 }
 

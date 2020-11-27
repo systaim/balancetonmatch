@@ -97,9 +97,19 @@
 
     <!-- Formulaire d'action équipe -->
 
-    <div class="openComment flex flex-col justify-center z-10 rounded-b-lg espaceCom {{ $team_action}}">
+    <div class="fixed openComment flex flex-col justify-center z-10 rounded-b-lg espaceCom {{ $team_action}}">
         <div class="flex flex-col items-center pt-10">
             <h3 class="text-xl text-center px-2 text-primary bg-white rounded-lg">Menu action de match</h3>
+            @if($team_action == "home")
+            <div class="logo h-24 w-24 cursor-pointer m-4">
+                <img class="object-contain" src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $match->homeClub->numAffiliation }}.jpg" alt="logo">
+            </div>
+            @endif
+            @if($team_action == "away")
+            <div class="logo h-24 w-24 cursor-pointer m-4">
+                <img class="object-contain" src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $match->awayClub->numAffiliation }}.jpg" alt="logo">
+            </div>
+            @endif
             <div class="actionsMatch">
                 <input class="hidden" type="radio" id="but" wire:model="type_comments" name="type_comments" value="but">
                 <label class="inputAction {{ $team_action }}" for="but">
@@ -298,8 +308,23 @@
         </a>
         @endauth
         @endif
-
         @auth
+
+        @if($firstCom == 1)
+        <div class="bg-primary w-full h-96 rounded-lg p-4 text-white text-xs text-center">
+            <h3 class="text-secondary text-center text-base mb-4">Comment bien commenter ?</h3>
+            <p>Envie de commenter ? Rien de plus simple !</p>
+            <p>Il te suffit de cliquer sur un des deux logo pour afficher le menu ACTIONS</p>
+            <p>Le temps est donné à titre indicatif, le chrono démarre à l'heure du match. Tu peux le modifier facilement
+                si besoin. Tu choisis une action, un joueur et tu valides.</p>
+            <p>C'est tout !</p>
+            <button class="btn btnSecondary" wire:click="clickFirstCom" wire:model="firstCom">J'ai compris</button>
+        </div>
+        @else
+        <div>
+            <p class="text-xs float-right my-4 cursor-pointer" wire:click="needHelp">Besoin d'aide ?</p>
+        </div>
+        @endif
         @foreach($commentators as $commentator)
         @if($commentator->user_id == Auth::user()->id)
         @if($match->live == 'debut' && now()->diffInMinutes($match->date_match) >= 40)
@@ -311,17 +336,6 @@
                 <p class="text-center">Valider la mi-temps</p>
             </div>
         </button>
-        @endif
-        @if($firstCom == 1)
-        <div class="bg-primary w-full h-96 rounded-lg p-4 text-white text-xs text-center">
-            <h3 class="text-secondary text-center text-base mb-4">Comment bien commenter ?</h3>
-            <p>Envie de commenter ? Rien de plus simple !</p>
-            <p>Il te suffit de cliquer sur un des deux logo pour afficher le menu ACTIONS</p>
-            <p>Le temps est donné à titre indicatif, le chrono démarre à l'heure du match. Tu peux le modifier facilement
-                si besoin. Tu choisis une action, un joueur et tu valides.</p>
-            <p>C'est tout !</p>
-            <button class="btn btnSecondary" wire:click="clickFirstCom" wire:model="firstCom">J'ai compris</button>
-        </div>
         @endif
         @if($match->live == 'mitemps')
         <button type="button" class="commentaires h-12 bg-white commandeMatch items-stretch w-full" wire:click="timeReprise" wire:model="type_comments">
