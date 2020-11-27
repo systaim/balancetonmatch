@@ -10,7 +10,7 @@
     </a>
 </section>
 <section>
-    <div class="w-11/12 m-auto">
+    <div class="w-11/12 m-auto sm:flex">
         <div class="bg-white rounded-lg border-white m-auto my-4 shadow-2xl">
             <div class="bg-primary text-secondary rounded-t-lg">
                 <h3 class="text-center py-2"><i class="fas fa-heart text-red-700"></i> Mes teams favorites <i class="fas fa-heart text-red-700"></i></h3>
@@ -46,7 +46,7 @@
                 @endauth
             </div>
         </div>
-        <div class="bg-white rounded-lg border-white m-auto my-8 shadow-2xl">
+        <div class="bg-white rounded-lg border-white m-auto my-4 shadow-2xl">
             <div class="bg-primary text-secondary rounded-t-lg">
                 <h3 class="text-center py-2"><i class="fas fa-star text-red-700"></i> Mes matchs en favoris <i class="fas fa-star text-red-700"></i></h3>
             </div>
