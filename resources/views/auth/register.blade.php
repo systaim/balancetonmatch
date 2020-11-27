@@ -48,6 +48,17 @@
                     <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                 </div>
+                <!-- <div class="flex flex-col">
+                <label for="isPlayer">Ètes vous un joueur ?</label>
+                    <select class="inputForm focus:outline-none focus:shadow-outline w-full my-1" name="isPlayer" id="isPlayer" :value="old('isPlayer')" required>
+                        <option value="">Chosissez une réponse</option>
+                        <option value="yes">Oui</option>
+                        <option value="no">Non</option>
+                    </select>
+                    @error('isPlayer')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+                </div> -->
                 <div class="flex flex-col">
                     <label for="password">Mot de passe *</label>
                     <input class="inputForm focus:outline-none focus:shadow-outline w-full my-1" type="password" name="password" required autocomplete="new-password">
