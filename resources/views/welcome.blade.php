@@ -10,7 +10,7 @@
     </a>
 </section>
 <section>
-    <div class="w-11/12 m-auto sm:flex">
+    <div class="w-11/12 m-auto md:flex">
         <div class="bg-white rounded-lg border-white m-auto my-4 shadow-2xl">
             <div class="bg-primary text-secondary rounded-t-lg">
                 <h3 class="text-center py-2"><i class="fas fa-heart text-red-700"></i> Mes teams favorites <i class="fas fa-heart text-red-700"></i></h3>

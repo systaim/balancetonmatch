@@ -1,4 +1,4 @@
-<div class="h-auto">
+<div class="h-auto w-full">
 
     <h2 class="titlePage">Liste des clubs</h2>
     <!-- <form wire:submit.prevent="searchByName">
@@ -47,7 +47,7 @@
     <div wire:loading.remove wire:target="searchByName" class="mb-5 text-center">
         <p>{{$messageNoClub}}</p>
     </div>
-    <div class="mx-12">
+    <div class="mx-1">
         {{ $clubs->links() }}
     </div>
 </div>
