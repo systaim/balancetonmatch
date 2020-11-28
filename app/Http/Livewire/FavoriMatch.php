@@ -46,7 +46,7 @@ class FavoriMatch extends Component
 
     public function clickLogin()
     {
-        $this->login = "Tu souhiates suivre ce match ?";
+        $this->login = "Tu souhaites suivre ce match ?";
     }
 
     public function render()

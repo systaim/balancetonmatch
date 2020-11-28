@@ -1,4 +1,4 @@
-<div class="absolute left-6">
+<div class="relative w-36">
     @auth
     <div>
         @if ($user->isfavoriMatch($match))
@@ -15,16 +15,18 @@
     <div>
         <i class="far fa-star cursor-pointer text-red-700 text-xl" wire:click="clickLogin"></i>
         @if($login)
-        <div wire:loading.class.remove="alertFavori" class="bg-black text-white text-xs p-2 rounded-lg alertFavori z-50">
-            <p>{{ $login }}</p>
-            <p>Connecte toi</p>
-        </div>
+        <a href="/login">
+            <div wire:loading.class.remove="alertFavori" class="absolute bg-black text-white text-xs p-2 rounded-lg alertFavori z-50">
+                <p>{{ $login }}</p>
+                <p>Connecte toi</p>
+            </div>
+        </a>
         @endif
     </div>
     @endauth
     <div>
         @if (session()->has('messageMyMatch'))
-        <div wire:loading.class.remove="alertFavori" class="bg-black text-white text-xs p-2 rounded-lg alertFavori z-50">
+        <div wire:loading.class.remove="alertFavori" class="absolute bg-black text-white text-xs p-2 rounded-lg alertFavori z-50">
             {{ session('messageMyMatch') }}
         </div>
         @endif

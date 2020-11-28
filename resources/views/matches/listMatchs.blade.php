@@ -7,10 +7,11 @@
         <button class="btn btnPrimary">Créer un match</button>
     </a>
 </div>
-<div class="my-4 relative">
-    @foreach($matches as $match)
-    @livewire('favori-match', ['user' => $user, 'match' => $match])
-    @include('match')
-    @endforeach
+<div class="my-4 mx-2 relative lg:flex lg:justify-center">
+    <div class="lg:w-9/12">
+        @foreach($matches as $match)
+            @include('match')
+        @endforeach
+    </div>
 </div>
 @endsection

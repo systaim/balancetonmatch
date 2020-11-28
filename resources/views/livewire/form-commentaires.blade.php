@@ -24,7 +24,7 @@
             </div>
             <div class="grid grid-cols-12 pb-10">
                 <div class="col-span-5 overflow-hidden">
-                    <div class="bg-primary p-2 text-secondary flex flex-col">
+                    <div class="bg-primary p-2 text-secondary flex flex-col lg:flex-row lg:items-center">
                         <div class="flex justify-center">
                             @auth
                             @foreach($commentators as $commentator)
@@ -34,14 +34,14 @@
                             @endforeach
                             @endauth
                             <label for="homeAction">
-                                <div class="logo h-20 w-20 cursor-pointer">
+                                <div class="logo h-20 w-20 cursor-pointer lg:mr-1">
                                     <img class="object-contain" src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $match->homeClub->numAffiliation }}.jpg" alt="logo">
                                 </div>
                             </label>
                         </div>
                         <div>
                             <a href="{{ route('clubs.show', $match->homeClub->id) }}">
-                                <p class="truncate text-center">{{ $match->homeClub->name }}</p>
+                                <p class="truncate text-center lg:font-bold lg:text-lg">{{ $match->homeClub->name }}</p>
                             </a>
                         </div>
                     </div>
@@ -62,7 +62,12 @@
                     </div>
                 </div>
                 <div class="col-span-5 overflow-hidden z-0">
-                    <div class="bg-secondary p-2 text-primary flex flex-col">
+                    <div class="bg-secondary p-2 text-primary flex flex-col-reverse lg:flex-row lg:items-center">
+                        <div>
+                            <a href="{{ route('clubs.show', $match->awayClub->id) }}">
+                                <p class="truncate text-center lg:text-left lg:font-bold lg:text-lg">{{ $match->awayClub->name }}</p>
+                            </a>
+                        </div>
                         <div class="flex justify-center">
                             @auth
                             @foreach($commentators as $commentator)
@@ -72,15 +77,10 @@
                             @endforeach
                             @endauth
                             <label for="awayAction">
-                                <div class="logo h-20 w-20 cursor-pointer">
+                                <div class="logo h-20 w-20 cursor-pointer lg:ml-1">
                                     <img class="object-contain" src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $match->awayClub->numAffiliation }}.jpg" alt="logo">
                                 </div>
                             </label>
-                        </div>
-                        <div>
-                            <a href="{{ route('clubs.show', $match->awayClub->id) }}">
-                                <p class="truncate text-center">{{ $match->awayClub->name }}</p>
-                            </a>
                         </div>
                     </div>
                 </div>
