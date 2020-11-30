@@ -83,6 +83,7 @@ h6 {
   background: url('https://cdn.pixabay.com/photo/2016/03/20/20/43/football-1269438_960_720.jpg');
   background-color: var(--primary-color);
   background-repeat: no-repeat;
+  background-position-y: -3rem;
   background-attachment: fixed;
   background-blend-mode: luminosity;
 }

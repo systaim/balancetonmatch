@@ -5,7 +5,7 @@
         <button class="btn btnPrimary">Créer un match</button>
     </a>
 </div> -->
-<div class="flex justify-between bg-primary overflow-hidden rounded-lg my-4">
+<div class="flex justify-between bg-primary overflow-hidden rounded-lg my-4 lg:w-10/12 m-auto">
     <div class="hidden lg:block lg:w-6/12 img-bg-blend">
     </div>
     <div class="text-white p-4 lg:w-6/12 xl:p-10 m-auto">

@@ -1,6 +1,6 @@
 <div class="mb-6">
     <div class="relative text-center flex justify-center font-bold">
-        <div class="absolute left-6">
+        <div class="absolute left-0 md:left-6">
             @livewire('favori-match', ['user' => $user, 'match' => $match])
         </div>
         <div class="flex justify-center">
