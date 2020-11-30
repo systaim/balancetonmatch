@@ -1,61 +1,62 @@
 @extends('layout')
 @section('content')
-<form method="POST" action="{{ route('register') }}">
-    @csrf
-    <div class="m-4">
-        <h2 class="text-primary text-center text-xl py-4">S'enregistrer</h2>
-        <form method="POST" action="{{ route('register') }}">
-            <div class="relative my-2 p-3 sm:w-9/12 sm:m-auto lg:w-6/12">
-                <p class="text-sm mb-4">* champs obligatoire</p>
-                <div class="xl:flex xl:justify-between mb-4">
-                    <div class="flex flex-col xl:w-5/12">
-                        <label for="last_name">Mon nom de famille *</label>
-                        <input class="inputForm focus:outline-none focus:shadow-outline w-full my-1" type="text" name="last_name" id="last_name" :value="old('last_name')" required autocomplete="last_name">
-                        @error('last_name')
-                        <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
+<div class="bg-register py-4">
+    <form method="POST" action="{{ route('register') }}">
+        @csrf
+        <div class="m-4 p-6 sm:w-8/12 md:w-6/12 lg:w-5/12 bg-white rounded-lg shadow-xl">
+            <h2 class="text-primary text-center text-xl py-4">S'enregistrer</h2>
+            <form method="POST" action="{{ route('register') }}">
+                <div class="relative my-2 p-3">
+                    <p class="text-sm mb-4">* champs obligatoire</p>
+                    <div class="xl:flex xl:justify-between mb-4">
+                        <div class="flex flex-col">
+                            <label for="last_name">Mon nom de famille *</label>
+                            <input class="inputForm border-2 focus:outline-none focus:shadow-outline w-full my-1" type="text" name="last_name" id="last_name" :value="old('last_name')" required autocomplete="last_name">
+                            @error('last_name')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="flex flex-col">
+                            <label for="first_name">Mon prénom *</label>
+                            <input class="inputForm border-2 focus:outline-none focus:shadow-outline w-full my-1" type="text" name="first_name" id="first_name" :value="old('first_name')" required autocomplete="first_name">
+                            @error('first_name')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
                     </div>
-                    <div class="flex flex-col xl:w-5/12">
-                        <label for="first_name">Mon prénom *</label>
-                        <input class="inputForm focus:outline-none focus:shadow-outline w-full my-1" type="text" name="first_name" id="first_name" :value="old('first_name')" required autocomplete="first_name">
-                        @error('first_name')
-                        <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
+                    <div class="xl:flex xl:justify-between mb-4">
+                        <div class="flex flex-col">
+                            <label for="Peudo">Mon pseudo *</label>
+                            <input class="inputForm border-2 focus:outline-none focus:shadow-outline w-full my-1" type="text" name="pseudo" id="pseudo" :value="old('pseudo')" required autocomplete="pseudo">
+                            @error('pseudo')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="flex flex-col">
+                            <label for="date_of_birth">Ma date de naissance</label>
+                            <input class="inputForm border-2 focus:outline-none focus:shadow-outline w-full my-1" type="date" name="date_of_birth" id="date_of_birth" :value="old('date_of_birth')" autocomplete="date_of_birth">
+                            @error('date_of_birth')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
                     </div>
-                </div>
-                <div class="xl:flex xl:justify-between mb-4">
-                    <div class="flex flex-col xl:w-5/12">
-                        <label for="Peudo">Mon pseudo *</label>
-                        <input class="inputForm focus:outline-none focus:shadow-outline w-full my-1" type="text" name="pseudo" id="pseudo" :value="old('pseudo')" required autocomplete="pseudo">
-                        @error('pseudo')
-                        <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
+                    <div class="xl:flex xl:justify-between mb-4">
+                        <div class="flex flex-col">
+                            <label for="email">Mon email *</label>
+                            <input class="inputForm border-2 focus:outline-none focus:shadow-outline w-full my-1" type="email" name="email" id="email" :value="old('email')" required autocomplete="email">
+                            @error('email')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="flex flex-col">
+                            <x-clubselect />
+                            @error('prefer_team')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
                     </div>
-                    <div class="flex flex-col xl:w-5/12">
-                        <label for="date_of_birth">Ma date de naissance</label>
-                        <input class="inputForm focus:outline-none focus:shadow-outline w-full my-1" type="date" name="date_of_birth" id="date_of_birth" :value="old('date_of_birth')" autocomplete="date_of_birth">
-                        @error('date_of_birth')
-                        <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
-                    </div>
-                </div>
-                <div class="xl:flex xl:justify-between mb-4">
-                    <div class="flex flex-col xl:w-5/12">
-                        <label for="email">Mon email *</label>
-                        <input class="inputForm focus:outline-none focus:shadow-outline w-full my-1" type="email" name="email" id="email" :value="old('email')" required autocomplete="email">
-                        @error('email')
-                        <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
-                    </div>
-                    <div class="flex flex-col xl:w-5/12">
-                        <x-clubselect />
-                        @error('prefer_team')
-                        <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
-                    </div>
-                </div>
 
-                <!-- <div class="flex flex-col">
+                    <!-- <div class="flex flex-col">
                 <label for="isPlayer">Ètes vous un joueur ?</label>
                     <select class="inputForm focus:outline-none focus:shadow-outline w-full my-1" name="isPlayer" id="isPlayer" :value="old('isPlayer')" required>
                         <option value="">Chosissez une réponse</option>
@@ -66,32 +67,33 @@
                     <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                 </div> -->
-                <div class="xl:flex xl:justify-between mb-4">
-                    <div class="flex flex-col xl:w-5/12">
-                    <label for="password">Mon mot de passe *</label>
-                    <input class="inputForm focus:outline-none focus:shadow-outline w-full my-1" type="password" name="password" required autocomplete="new-password">
-                    @error('password')
-                    <div class="alert alert-danger">{{ $message }}</div>
-                    @enderror
+                    <div class="xl:flex xl:justify-between mb-4">
+                        <div class="flex flex-col xl:w-5/12">
+                            <label for="password">Mon mot de passe *</label>
+                            <input class="inputForm border-2 focus:outline-none focus:shadow-outline w-full my-1" type="password" name="password" required autocomplete="new-password">
+                            @error('password')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="flex flex-col xl:w-5/12">
+                            <label for="passwordConfirm">Mot de passe à confirmer</label>
+                            <input class="inputForm border-2 focus:outline-none focus:shadow-outline w-full my-1" type="password" name="password_confirmation" required autocomplete="new-password">
+                        </div>
+                    </div>
+
+                    <div class="flex justify-between items-center">
+                        <a class="ml-2" href="{{ route('login') }}">
+                            {{ __('Already registered?') }}
+                        </a>
+                        <button class="btn btnSecondary">
+                            {{ __('Register') }}
+                        </button>
+                    </div>
                 </div>
-                <div class="flex flex-col xl:w-5/12">
-                    <label for="passwordConfirm">Mot de passe à confirmer</label>
-                    <input class="inputForm focus:outline-none focus:shadow-outline w-full my-1" type="password" name="password_confirmation" required autocomplete="new-password">
-                </div>
-                </div>
-                
-                <div class="flex justify-between items-center">
-                    <a class="ml-2" href="{{ route('login') }}">
-                        {{ __('Already registered?') }}
-                    </a>
-                    <button class="btn btnSecondary">
-                        {{ __('Register') }}
-                    </button>
-                </div>
-            </div>
-        </form>
-    </div>
-</form>
+            </form>
+        </div>
+    </form>
+</div>
 
 <!-- <form method="POST" action="{{ route('register') }}">
     @csrf

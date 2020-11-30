@@ -8,7 +8,7 @@
 <div class="bg-login py-4">
     <form action="{{ route('login') }}" method="post">
         @csrf
-        <div class="m-4 p-6 sm:w-8/12 md:w-6/12 lg:w-5/12 bg-white rounded-lg shadow-xl">
+        <div class="m-4 p-6 sm:w-8/12 md:w-7/12 xl:w-5/12 bg-secondary rounded-lg shadow-xl">
             <h2 class="text-primary text-xl text-center px-4 m-auto pb-4">Connecte toi</h2>
             <div class="flex flex-col">
                 <label class="hidden" for="email">{{ __('Email') }}</label>
@@ -33,7 +33,7 @@
                 <span class="ml-2 text-sm">{{ __('Remember me') }}</span>
             </div>
             <div class="flex justify-center my-6">
-                <button class="btn btnPrimary">
+                <button class="btn btnSecondary">
                     {{ __('Login') }}
                 </button>
             </div>
