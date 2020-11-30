@@ -40,13 +40,13 @@ class CreateNewUser implements CreatesNewUsers
             'pseudo' => $input['pseudo'],
             'date_of_birth' => $input['date_of_birth'],
             'prefer_team_id' => $input['prefer_team'],
-            'is_player' => $input['isPlayer'],
+            // 'is_player' => $input['isPlayer'],
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
         ]);
 
         // if ($input['isPlayer'] == 'yes') {
-        //     $userIsPlayer = Player::where('last_name', $input['last_name'])->where('first_name', $input['first_name'])->get();
+        //     $userIsPlayer = Player::where('last_name', $input['last_name'])->where('first_name', $input['first_name']);
         //     if (!$userIsPlayer) {
         //         dd('if');
         //         $player = new Player;

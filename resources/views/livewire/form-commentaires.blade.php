@@ -22,9 +22,9 @@
                     </div>
                 </div>
             </div>
-            <div class="grid grid-cols-12 pb-10">
+            <div class="grid grid-cols-12 pb-10 lg:mx-2 xl:mx-6">
                 <div class="col-span-5 overflow-hidden">
-                    <div class="bg-primary p-2 text-secondary flex flex-col lg:flex-row lg:items-center">
+                    <div class="bg-primary p-2 text-secondary flex flex-col lg:flex-row lg:items-center lg:rounded-l-full">
                         <div class="flex justify-center">
                             @auth
                             @foreach($commentators as $commentator)
@@ -34,14 +34,14 @@
                             @endforeach
                             @endauth
                             <label for="homeAction">
-                                <div class="logo h-20 w-20 cursor-pointer lg:mr-1">
+                                <div class="logo h-16 w-16 sm:h-20 sm:w-20 lg:h-24 lg:w-24 cursor-pointer lg:mr-1 xl:mr-4">
                                     <img class="object-contain" src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $match->homeClub->numAffiliation }}.jpg" alt="logo">
                                 </div>
                             </label>
                         </div>
                         <div>
                             <a href="{{ route('clubs.show', $match->homeClub->id) }}">
-                                <p class="truncate text-center lg:font-bold lg:text-lg">{{ $match->homeClub->name }}</p>
+                                <p class="truncate text-center sm:font-bold lg:text-lg xl:text-2xl">{{ $match->homeClub->name }}</p>
                             </a>
                         </div>
                     </div>
@@ -62,10 +62,10 @@
                     </div>
                 </div>
                 <div class="col-span-5 overflow-hidden z-0">
-                    <div class="bg-secondary p-2 text-primary flex flex-col-reverse lg:flex-row lg:items-center">
+                    <div class="bg-secondary p-2 text-primary flex flex-col-reverse lg:flex-row lg:items-center lg:justify-end lg:rounded-r-full">
                         <div>
                             <a href="{{ route('clubs.show', $match->awayClub->id) }}">
-                                <p class="truncate text-center lg:text-left lg:font-bold lg:text-lg">{{ $match->awayClub->name }}</p>
+                                <p class="truncate text-center lg:text-left sm:font-bold lg:text-lg  xl:text-2xl">{{ $match->awayClub->name }}</p>
                             </a>
                         </div>
                         <div class="flex justify-center">
@@ -77,7 +77,7 @@
                             @endforeach
                             @endauth
                             <label for="awayAction">
-                                <div class="logo h-20 w-20 cursor-pointer lg:ml-1">
+                                <div class="logo h-16 w-16 sm:h-20 sm:w-20 lg:h-24 lg:w-24 cursor-pointer lg:ml-1 xl:ml-4">
                                     <img class="object-contain" src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $match->awayClub->numAffiliation }}.jpg" alt="logo">
                                 </div>
                             </label>
@@ -249,12 +249,42 @@
 
     <!-- fin Formulaire d'action équipe -->
     <!-- formulaire de commentaires -->
-    @if (session()->has('successMessage'))
-    <div wire:loading.class.remove="alertComment" class="m-auto w-11/12 my-1 flex justify-center items-center text-white p-2 rounded-lg alertComment">
-        {{ session('successMessage') }}
+    <div>
+        @if($firstCom == 1)
+        <div class="bg-primary w-full h-96 rounded-lg p-4 text-white text-xs text-center">
+            <h3 class="text-secondary text-center text-base mb-4">Comment bien commenter ?</h3>
+            <p>Envie de commenter ? Rien de plus simple !</p>
+            <p>Il te suffit de cliquer sur un des deux logo pour afficher le menu ACTIONS</p>
+            <p>Le temps est donné à titre indicatif, le chrono démarre à l'heure du match. Tu peux le modifier facilement
+                si besoin. Tu choisis une action, un joueur et tu valides.</p>
+            <p>C'est tout !</p>
+            <button class="btn btnSecondary" wire:click="clickFirstCom" wire:model="firstCom">J'ai compris</button>
+        </div>        
+        @endif
+        <div class="mx-6 my-4 text-right">
+            <p class="text-xs cursor-pointer underline" wire:click="needHelp">Besoin d'aide ?</p>
+        </div>
     </div>
-    @endif
-    <div class="my-6 w-11/12 m-auto">
+    <div class="lg:w-6/12 lg:m-auto">
+        @if($nbrFavoris > 0 && $match->live == "attente")
+        <div class="bg-secondary text-primary rounded-lg relative my-2 flex justify-center m-auto p-1">
+            @if($nbrFavoris == 1)
+            <p>{{ $nbrFavoris }} personne souhaite un direct LIVE</p>
+            @else
+            <p>{{ $nbrFavoris }} personnes souhaitent un direct LIVE</p>
+            @endif
+        </div>
+        @endif
+        @if (session()->has('successMessage'))
+        <div wire:loading.class.remove="alertComment" class="m-auto w-11/12 my-1 flex justify-center items-center text-white p-2 rounded-lg alertComment">
+            {{ session('successMessage') }}
+        </div>
+        @endif
+        @if($match->live == "finDeMatch" && now()->diffInMinutes($match->date_match) >= 100)
+        <div class="m-auto w-11/12 my-1 flex justify-center items-center bg-primary text-white p-2 rounded-lg">
+            <p>Les commentaires sont cloturés... A bientôt !</p>
+        </div>
+        @endif
         @if($match->live == 'reporte')
         <div class="w-full h-full py-3 bg-red-600 font-bold rounded-lg shadow-lg">
             <p class="text-center">Le match est reporté à une date ultérieure</p>
@@ -265,7 +295,7 @@
             <p class="text-center">En attente d'un commentateur</p>
         </div>
         @auth
-        <button type="button" class="relative commentaires h-20 bg-white commandeMatch items-stretch w-full focus:outline-none" wire:click="timeZero" wire:model="type_comments">
+        <button type="button" class="relative commentaires h-20 bg-white commandeMatch items-stretch w-full focus:outline-none minHeight16" wire:click="timeZero" wire:model="type_comments">
             <div class="minuteCommentaires w-24 commandeMatch">
                 <img src="{{asset('images/whistle-white.png')}}" alt="">
             </div>
@@ -309,28 +339,15 @@
         @endauth
         @endif
         @auth
+    </div>
 
-        @if($firstCom == 1)
-        <div class="bg-primary w-full h-96 rounded-lg p-4 text-white text-xs text-center">
-            <h3 class="text-secondary text-center text-base mb-4">Comment bien commenter ?</h3>
-            <p>Envie de commenter ? Rien de plus simple !</p>
-            <p>Il te suffit de cliquer sur un des deux logo pour afficher le menu ACTIONS</p>
-            <p>Le temps est donné à titre indicatif, le chrono démarre à l'heure du match. Tu peux le modifier facilement
-                si besoin. Tu choisis une action, un joueur et tu valides.</p>
-            <p>C'est tout !</p>
-            <button class="btn btnSecondary" wire:click="clickFirstCom" wire:model="firstCom">J'ai compris</button>
-        </div>
-        @else
-        <div>
-            <p class="text-xs float-right my-4 cursor-pointer" wire:click="needHelp">Besoin d'aide ?</p>
-        </div>
-        @endif
+    <div class="my-6 w-11/12 m-auto lg:w-8/12">
         @foreach($commentators as $commentator)
         @if($commentator->user_id == Auth::user()->id)
         @if($match->live == 'debut' && now()->diffInMinutes($match->date_match) >= 40)
         <button type="button" class="commentaires h-12 bg-white commandeMatch items-stretch w-full" wire:click="timeMitemps" wire:model="type_comments">
-            <div class="minuteCommentaires w-24 sm:w-32 commandeMatch">
-                <img src="{{asset('images/whistle-white.png')}}" alt="">
+            <div class="minuteCommentaires w-24 sm:w-32 commandeMatch flex justify-center">
+                <img class="bg-contain h-12" src="{{asset('images/whistle-white.png')}}" alt="">
             </div>
             <div class="bg-white w-full pt-3">
                 <p class="text-center">Valider la mi-temps</p>
@@ -339,18 +356,18 @@
         @endif
         @if($match->live == 'mitemps')
         <button type="button" class="commentaires h-12 bg-white commandeMatch items-stretch w-full" wire:click="timeReprise" wire:model="type_comments">
-            <div class="minuteCommentaires w-24 sm:w-32 commandeMatch">
-                <img src="{{asset('images/whistle-white.png')}}" alt="">
+            <div class="minuteCommentaires w-24 sm:w-32 commandeMatch flex justify-center">
+                <img class="bg-contain h-12"  src="{{asset('images/whistle-white.png')}}" alt="">
             </div>
             <div class="bg-white w-full pt-3">
                 <p class="text-center">Valider la reprise</p>
             </div>
         </button>
         @endif
-        @if($match->live == 'repriseMT')
+        @if($match->live == 'repriseMT' && now()->diffInMinutes($match->date_match) >= 95)
         <button type="button" class="commentaires h-12 bg-white commandeMatch items-stretch w-full" wire:click="timeFinDuMatch" wire:model="type_comments">
-            <div class="minuteCommentaires w-24 sm:w-32 commandeMatch">
-                <img src="{{asset('images/whistle-white.png')}}" alt="">
+            <div class="minuteCommentaires w-24 sm:w-32 commandeMatch flex justify-center">
+                <img class="bg-contain h-12"  src="{{asset('images/whistle-white.png')}}" alt="">
             </div>
             <div class="bg-white w-full pt-3">
                 <p class="text-center">Coup de sifflet final ! ⏱</p>
@@ -360,14 +377,10 @@
         @endif
         @endforeach
         @endauth
-
-        <!-- fin de formulaire de commentaires -->
-        @if($match->live == "finDeMatch" && now()->diffInMinutes($match->date_match) >= 100)
-        <div class="m-auto w-11/12 my-1 flex justify-center items-center bg-primary text-white p-2 rounded-lg">
-            <p>Les commentaires sont cloturés... A bientôt !</p>
-        </div>
-        @endif
-        <div class="my-4" wire:poll.5000ms.keep-alive="miseAJourCom">
+    </div>
+    <!-- fin de formulaire de commentaires -->
+    <div class="my-6 w-11/12 m-auto lg:w-11/12 lg:flex lg:justify-around" wire:poll.5000ms.keep-alive="miseAJourCom">
+        <div class="lg:w-8/12">
             @foreach($commentsMatch as $comment)
             <div class="relative commentaires minHeight16 h-auto {{ $comment->team_action }}">
                 <div class="minuteCommentaires w-24 sm:w-32 {{ $comment->team_action }} p-4 flex flex-col items-center">
@@ -422,19 +435,12 @@
                 @endauth
             </div>
             @endforeach
-            @if($nbrFavoris > 0)
-            <div class="bg-secondary text-primary rounded-lg relative my-2 flex justify-center m-auto p-1 w-11/12">
-                @if($nbrFavoris == 1)
-                <p>{{ $nbrFavoris }} personne souhaite un direct LIVE</p>
-                @else
-                <p>{{ $nbrFavoris }} personnes souhaitent un direct LIVE</p>
-                @endif
-            </div>
-            @endif
+        </div>
+        <div>
             @foreach($commentators as $commentator)
-            <div class="bg-white rounded-lg border-white w-11/12 m-auto my-8 shadow-2xl">
+            <div class="bg-white rounded-lg border-white w-11/12 m-auto my-8 shadow-2xl lg:my-0 lg:w-auto">
                 <div class="bg-primary text-secondary rounded-t-lg">
-                    <h3 class="text-center py-2">Le "Thierry Roland" du jour</h3>
+                    <h3 class="text-center p-2">Le "Thierry Roland" du jour</h3>
                 </div>
                 <div class="flex justify-evenly items-center p-4">
                     <div>
@@ -449,5 +455,6 @@
             </div>
             @endforeach
         </div>
+
     </div>
 </form>

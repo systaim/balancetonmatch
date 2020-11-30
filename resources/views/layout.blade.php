@@ -32,9 +32,11 @@
                     <div class="h-64 flex flex-col justify-end">
                         <div class="relative p-4 bg-darkGray rounded-lg text-white w-11/12 m-auto">
                             <div class="flex flex-row justify-center items-center px-4">
+                                @if(Auth::user()->club)
                                 <div class="logo h-24 w-24 bg-white rounded-full overflow-hidden absolute top--3 shadow-xl">
                                     <img class="object-contain" src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ Auth::user()->club->numAffiliation }}.jpg" alt="">
                                 </div>
+                                @endif
                                 <div class="overflow-hidden">
                                     <p class="font-bold capitalize text-lg mt-8 mb-4">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</p>
                                     <ul class="ml-3">

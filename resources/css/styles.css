@@ -107,7 +107,7 @@ h6 {
 } */
 
 .commentaires {
-    @apply flex flex-row m-auto mt-2 rounded-r-lg border-r-8 shadow-lg overflow-hidden;
+    @apply flex flex-row m-auto mb-2 rounded-r-lg border-r-8 shadow-lg overflow-hidden;
 }
 
 .commentaires.home {
@@ -131,7 +131,7 @@ h6 {
 }
 
 .minuteCommentaires {
-    @apply text-center rounded-l-lg px-4 text-lg font-bold pt-4;
+    @apply text-center rounded-l-lg px-4 text-lg font-bold;
 }
 
 .minuteCommentaires.home {
