@@ -5,36 +5,45 @@
     {{ session('status') }}
 </div>
 @endif
-<div class="m-4">
-    <h2 class="text-primary text-center text-xl py-4">Se connecter</h2>
+<div class="bg-login py-4">
     <form action="{{ route('login') }}" method="post">
         @csrf
-        <div class=" relative  my-2 p-3">
+        <div class="m-4 p-6 sm:w-8/12 md:w-6/12 lg:w-5/12 bg-white rounded-lg shadow-xl">
+            <h2 class="text-primary text-xl text-center px-4 m-auto pb-4">Connecte toi</h2>
             <div class="flex flex-col">
-                <label for="email">{{ __('Email') }}</label>
-                <input class="inputForm focus:outline-none focus:shadow-outline w-full my-1" id="email" type="email" name="email" :value="old('email')" required autofocus autocomplete="email">
+                <label class="hidden" for="email">{{ __('Email') }}</label>
+                <div class="flex w-full my-1 focus:outline-none justify-center">
+                    <span class="inline-flex items-center px-3 rounded-l-md">
+                        <i class="fas fa-user text-lg"></i>
+                    </span>
+                    <input class="inputForm" id="email" type="email" name="email" :value="old('email')" required autofocus autocomplete="email" placeholder="email">
+                </div>
             </div>
             <div class="flex flex-col">
-                <label for="password">{{ __('Password') }}</label>
-                <input class="inputForm focus:outline-none focus:shadow-outline w-full my-1" type="password" name="password" required>
+                <label class="hidden" for="password">{{ __('Password') }}</label>
+                <div class="flex w-full my-1 focus:outline-none justify-center">
+                    <span class="inline-flex items-center px-3 rounded-l-md">
+                        <i class="fas fa-unlock-alt"></i>
+                    </span>
+                    <input class="inputForm" type="password" name="password" required placeholder="mot de passe">
+                </div>
             </div>
-            <div class="flex items-center">
+            <div class="flex items-center ml-16">
                 <input type="checkbox" class="form-checkbox" name="remember">
                 <span class="ml-2 text-sm">{{ __('Remember me') }}</span>
             </div>
-            <div class="flex justify-between items-center">
-                <div class="flex flex-col">
-                    @if (Route::has('password.request'))
-                    <a class="underline text-sm" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
-                    </a>
-                    @endif
-                    <a class="underline text-sm" href="/register">Pas de compte ?</a>
-                </div>
-
+            <div class="flex justify-center my-6">
                 <button class="btn btnPrimary">
                     {{ __('Login') }}
                 </button>
+            </div>
+            <div class="flex justify-between items-center font-bold">
+                @if (Route::has('password.request'))
+                <a class="underline text-sm" href="{{ route('password.request') }}">
+                    {{ __('Forgot your password?') }}
+                </a>
+                @endif
+                <a class="underline text-sm" href="/register">Créer un compte</a>
             </div>
         </div>
     </form>
