@@ -41,6 +41,7 @@ class FormCommentaires extends Component
     public $commentators;
     public $firstCom;
     public $file;
+    protected $listeners = ['id' => 'deleteCom'];
     public $listGoal = ['GOOOOAAL !', 'BUUUUT !!!', 'GOAL GOAL GOAL !!'];
     public $mitempsJoueurs = ['Les joueurs rentrent aux vestiaires', 'Tout le monde à la buv... euuuh aux vestiaires !'];
 
@@ -86,7 +87,14 @@ class FormCommentaires extends Component
 
     public function deleteMenu()
     {
-        $this->deleteMenu = 1;
+            $this->deleteMenu = 1;
+        
+    }
+
+    public function deleteCom($id)
+    {
+        $comment = Commentaire::find($id);
+        dd($comment);
     }
 
     public function chrono()

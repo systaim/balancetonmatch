@@ -418,19 +418,17 @@
                 @auth
                 @foreach($commentators as $commentator)
                 @if($commentator->user_id == Auth::user()->id)
-                <div class="absolute right-4 bottom-4">
-                    <ul class="flex flex-row justify-center">
-                        <li class="mr-2 px-2 rounded-lg border-2 border-primary">✎</li>
-                        
-                        <li class="mr-2 px-2 rounded-lg border-2 border-primary cursor-pointer" wire:click="deleteMenu">🗑</li>
-                    </ul>
+                <div class="absolute flex justify-center items-center right-1 top-0">
+                    <div>
+                    <a class="text-lg text-danger" href="{{route('supprimer', ['id' => $comment->id]) }}" onclick="return confirm('Etes vous sûr de vouloir supprimer ce commentaire ?')"><i class="far fa-times-circle"></i></a>
+                    </div>
                 </div>
                 @endif
                 @endforeach
                 @endauth
             </div>
             @endforeach
-            @if($deleteMenu == 1)
+            @if($deleteMenu == 1 )
             <div>
                 <div class="fixed z-50 bg-gray-200 inset-0 flex justify-center items-center">
                     <div class="p-10 bg-white w-1/2 rounded-lg shadow-xl">
@@ -438,7 +436,8 @@
                             <p>Voulez vous vraiment supprimer ce commentaire ?</p>
                         </div>
                         <div class="flex justify-end">
-                        <a href="{{route('supprimer', ['id' => $comment->id]) }}">Supprimer</a>
+                            <a class="btn" href="">Annuler</a>
+                            <!-- <a class="btn btnDanger" href="{{route('supprimer', ['id' => $comment->id]) }}">Supprimer</a> -->
                         </div>
                     </div>
                 </div>

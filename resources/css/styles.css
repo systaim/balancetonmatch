@@ -67,6 +67,7 @@ h6 {
     background: url('http://127.0.0.1:8000/images/home-preview.jpg');
     background-color: var(--primary-color);
     background-repeat: no-repeat;
+    background-size: 75%;
     background-position-y: -5rem;
     background-position-x: -2rem;
     background-attachment: fixed;
@@ -252,7 +253,7 @@ input:checked + .inputAction.away {
     width: 100%;
     height: auto;
 
-    transform: translate(0%, 0);
+    transform: translate(0, 0);
 
     transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
 }
@@ -265,6 +266,11 @@ input:checked + .inputAction.away {
     transform: translate(0, 0);
 
     transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
+}
+
+.menuComment{
+    position: absolute;
+
 }
 
 /*************************
@@ -329,7 +335,7 @@ input:checked + .inputAction.away {
 
 /* Main menu positionning */
 .main-nav {
-    position: fixed;
+    position: absolute;
     top: 0;
     right: 0;
     left: 0;
@@ -407,7 +413,7 @@ input:checked + .inputAction.away {
 
 /* Burger Style: @see: https://codepen.io/CreativeJuiz/full/oMZNXy */
 .open-main-nav {
-    position: fixed;
+    position: absolute;
     top: 15px;
     padding-top: 20px;
     right: 15px;
