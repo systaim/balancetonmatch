@@ -64,7 +64,7 @@ h6 {
 }
 
 .img-bg-blend-home{
-    background: url('https://cdn.pixabay.com/photo/2014/08/05/10/30/iphone-410324_960_720.jpg');
+    background: url('http://127.0.0.1:8000/images/home-preview.jpg');
     background-color: var(--primary-color);
     background-repeat: no-repeat;
     background-position-y: -5rem;
@@ -90,7 +90,7 @@ h6 {
   *************************/
 
 .btn {
-    @apply px-6 py-2 m-2 rounded-lg cursor-pointer border-2 font-bold shadow-xl outline-none;
+    @apply px-6 py-2 m-2 rounded-lg cursor-pointer font-bold shadow-xl outline-none;
 }
 
 .btn:focus {
@@ -106,11 +106,19 @@ h6 {
 }
 
 .btnSecondary {
-    @apply bg-white text-primary border-secondary;
+    @apply bg-white text-secondary border-secondary;
 }
 
 .btnSecondary:hover {
     @apply bg-secondary text-primary border-secondary;
+}
+
+.btnDanger{
+    @apply bg-danger text-white; 
+}
+
+.btnDanger:hover{
+    @apply bg-white text-danger;
 }
 
 /*************************
@@ -321,7 +329,7 @@ input:checked + .inputAction.away {
 
 /* Main menu positionning */
 .main-nav {
-    position: absolute;
+    position: fixed;
     top: 0;
     right: 0;
     left: 0;
@@ -399,7 +407,7 @@ input:checked + .inputAction.away {
 
 /* Burger Style: @see: https://codepen.io/CreativeJuiz/full/oMZNXy */
 .open-main-nav {
-    position: absolute;
+    position: fixed;
     top: 15px;
     padding-top: 20px;
     right: 15px;

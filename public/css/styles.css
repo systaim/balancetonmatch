@@ -89,7 +89,7 @@ h6 {
 }
 
 .img-bg-blend-home{
-  background: url('https://cdn.pixabay.com/photo/2014/08/05/10/30/iphone-410324_960_720.jpg');
+  background: url('http://127.0.0.1:8000/images/home-preview.jpg');
   background-color: var(--primary-color);
   background-repeat: no-repeat;
   background-position-y: -5rem;
@@ -122,7 +122,6 @@ h6 {
   margin: 0.5rem;
   border-radius: 0.5rem;
   cursor: pointer;
-  border-width: 2px;
   font-weight: 700;
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
   outline: 0;
@@ -161,8 +160,8 @@ h6 {
   background-color: #fff;
   background-color: rgba(255, 255, 255, var(--bg-opacity));
   --text-opacity: 1;
-  color: #091c3e;
-  color: rgba(9, 28, 62, var(--text-opacity));
+  color: #cdfb0a;
+  color: rgba(205, 251, 10, var(--text-opacity));
   --border-opacity: 1;
   border-color: #cdfb0a;
   border-color: rgba(205, 251, 10, var(--border-opacity));
@@ -178,6 +177,24 @@ h6 {
   --border-opacity: 1;
   border-color: #cdfb0a;
   border-color: rgba(205, 251, 10, var(--border-opacity));
+}
+
+.btnDanger{
+  --bg-opacity: 1;
+  background-color: #ff1500;
+  background-color: rgba(255, 21, 0, var(--bg-opacity));
+  --text-opacity: 1;
+  color: #fff;
+  color: rgba(255, 255, 255, var(--text-opacity));
+}
+
+.btnDanger:hover{
+  --bg-opacity: 1;
+  background-color: #fff;
+  background-color: rgba(255, 255, 255, var(--bg-opacity));
+  --text-opacity: 1;
+  color: #ff1500;
+  color: rgba(255, 21, 0, var(--text-opacity));
 }
 
 /*************************
@@ -521,7 +538,7 @@ input:checked + .inputAction.away {
 /* Main menu positionning */
 
 .main-nav {
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
   left: 0;
@@ -605,7 +622,7 @@ input:checked + .inputAction.away {
 /* Burger Style: @see: https://codepen.io/CreativeJuiz/full/oMZNXy */
 
 .open-main-nav {
-  position: absolute;
+  position: fixed;
   top: 15px;
   padding-top: 20px;
   right: 15px;

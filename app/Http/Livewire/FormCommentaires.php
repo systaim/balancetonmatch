@@ -37,7 +37,7 @@ class FormCommentaires extends Component
     public $heureMatch;
     public $matchNonDispo = "";
     public $nbrFavoris;
-    public $sousMenu;
+    public $deleteMenu;
     public $commentators;
     public $firstCom;
     public $file;
@@ -84,9 +84,9 @@ class FormCommentaires extends Component
         $user->save();
     }
 
-    public function sousMenu()
+    public function deleteMenu()
     {
-        $this->sousMenu = 1;
+        $this->deleteMenu = 1;
     }
 
     public function chrono()

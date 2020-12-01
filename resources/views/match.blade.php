@@ -8,7 +8,7 @@
             <p class="px-4 bg-primary text-secondary rounded-tr-md">{{ $match->date_match->formatLocalized('%H:%M')}}</p>
         </div>
     </div>
-    <a href="{{route('matches.show',$match)}}">
+    <a href="{{route('matches.show',$match) }}">
         <div class="grid grid-cols-12">
             <div class="col-span-5 overflow-hidden">
                 <div class="bg-primary p-2 text-secondary flex flex-col rounded-l-lg md:flex-row md:items-center md:rounded-l-full xl:text-xl xl:font-bold">
