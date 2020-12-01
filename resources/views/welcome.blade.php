@@ -1,15 +1,19 @@
 @extends('layout')
 @section('content')
-<section class="h-auto bg-primary rounded-b-lg p-4 text-white flex flex-col justify-center">
-    <h2 class="text-center mb-6">Envie de suivre les matchs amateurs en direct live ? </h2>
-    <hr>
-    <p class="text-center mt-6">N'importe qui peut devenir commentateur facilement ou simplement suivre un match.</p>
-    <p class="text-center mb-6">Voici la liste des matchs prévus</p>
-    <a class="m-auto" href="{{ route('matches.index') }}">
-        <button class="btn btnSecondary">Je vais voir</button>
-    </a>
-</section>
-<section>
+<section class="min-h-screen">
+    <div class="flex flex-col md:flex-row justify-between bg-primary overflow-hidden rounded-b-lg mb-4 m-auto">
+        <div class="w-full h-64 sm:h-72 lg:w-6/12 lg:h-auto img-bg-blend-home">
+        </div>
+        <div class="text-white p-4 lg:w-6/12 xl:p-10 m-auto">
+            <h2 class="text-center mb-6">Envie de suivre les matchs amateurs en direct live ? </h2>
+            <hr>
+            <p class="text-center mt-6">N'importe qui peut devenir commentateur facilement ou simplement suivre un match.</p>
+            <p class="text-center mb-6">Voici la liste des matchs prévus</p>
+            <a class="m-auto flex justify-center" href="{{ route('matches.index') }}">
+                <button class="btn btnSecondary">Je vais voir</button>
+            </a>
+        </div>
+    </div>
     <div class="w-11/12 m-auto md:flex">
         <div class="bg-white rounded-lg border-white m-auto my-4 shadow-2xl lg:w-5/12">
             <div class="bg-primary text-secondary rounded-t-lg">
@@ -103,5 +107,6 @@
             </div>
         </div>
     </div>
+
 </section>
 @endsection

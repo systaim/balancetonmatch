@@ -1,6 +1,6 @@
 @extends('layout')
 @section('content')
-<section class="w-11/12 m-auto">
+<section class="w-11/12 m-auto min-h-screen">
     <div class="flex flex-col items-center mt-4 relative">
         <div class="logo h-24 w-24">
             <img class="object-contain" src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{$club->numAffiliation}}.jpg" alt="logo">
@@ -37,8 +37,6 @@
             <a class="font-bold bg-secondary text-primary px-2 border-2 border-primary rounded-lg shadow-lg" href="{{ route('clubs.staffs.index', $club) }}">Voir le staff</a>
         </div>
     </div>
-</section>
-<section class="w-11/12 m-auto">
     <div>
         <h3 class="text-center my-4 border-b-2 border-darkGray">Prochain match</h3>
         @foreach($matchs as $match)

@@ -54,11 +54,21 @@ h6 {
     top: -3rem;
 }
 
-.img-bg-blend{
+.img-bg-blend-listMatchs{
     background: url('https://cdn.pixabay.com/photo/2016/03/20/20/43/football-1269438_960_720.jpg');
     background-color: var(--primary-color);
     background-repeat: no-repeat;
-    background-position-y: -3rem;
+    background-position-y: -6rem;
+    background-attachment: fixed;
+    background-blend-mode: luminosity;
+}
+
+.img-bg-blend-home{
+    background: url('https://cdn.pixabay.com/photo/2014/08/05/10/30/iphone-410324_960_720.jpg');
+    background-color: var(--primary-color);
+    background-repeat: no-repeat;
+    background-position-y: -5rem;
+    background-position-x: -2rem;
     background-attachment: fixed;
     background-blend-mode: luminosity;
 }

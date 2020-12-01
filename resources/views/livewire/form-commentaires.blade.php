@@ -1,7 +1,6 @@
-<form wire:submit.prevent="saveComment">
+<form class="min-h-screen" wire:submit.prevent="saveComment">
     <!-- affichage bannière du match -->
     <div>
-
         <div class="backMatch">
             <div class=" py-6 ">
                 <div class="bg-primary text-white m-auto text-center rounded-lg shadow-2xl w-3/4 p-2">

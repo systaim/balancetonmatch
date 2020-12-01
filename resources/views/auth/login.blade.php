@@ -5,7 +5,7 @@
     {{ session('status') }}
 </div>
 @endif
-<div class="bg-login py-4 lg:h-screen">
+<div class="bg-login py-4 h-full lg:h-screen">
     <form action="{{ route('login') }}" method="post">
         @csrf
         <div class="m-4 p-6 sm:w-8/12 md:w-7/12 lg:my-1/12 xl:w-6/12 bg-secondary rounded-lg shadow-xl">
