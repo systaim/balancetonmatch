@@ -18,7 +18,7 @@ class Commentator extends Model
 
     public function match()
     {
-        return $this->hasMany(Match::class, 'match_id');
+        return $this->belongsTo(Match::class, 'match_id');
     }
 
     public function commentaires()

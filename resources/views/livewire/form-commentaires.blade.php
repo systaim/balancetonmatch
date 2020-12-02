@@ -417,10 +417,10 @@
                 </div>
                 @auth
                 @foreach($commentators as $commentator)
-                @if($commentator->user_id == Auth::user()->id)
+                @if($commentator->user_id == Auth::user()->id && $match->live != "finDeMatch")
                 <div class="absolute flex justify-center items-center right-1 top-0">
                     <div>
-                    <a class="text-lg text-danger" href="{{route('supprimer', ['id' => $comment->id]) }}" onclick="return confirm('Etes vous sûr de vouloir supprimer ce commentaire ?')"><i class="far fa-times-circle"></i></a>
+                        <a class="text-lg text-danger" href="{{route('supprimer', ['id' => $comment->id]) }}" onclick="return confirm('Etes vous sûr de vouloir supprimer ce commentaire ?')"><i class="far fa-times-circle"></i></a>
                     </div>
                 </div>
                 @endif
@@ -428,41 +428,41 @@
                 @endauth
             </div>
             @endforeach
-            @if($deleteMenu == 1 )
-            <div>
+            <!-- <div>
                 <div class="fixed z-50 bg-gray-200 inset-0 flex justify-center items-center">
-                    <div class="p-10 bg-white w-1/2 rounded-lg shadow-xl">
-                        <div class=" text-darkGray mb-6">
-                            <p>Voulez vous vraiment supprimer ce commentaire ?</p>
-                        </div>
-                        <div class="flex justify-end">
-                            <a class="btn" href="">Annuler</a>
-                            <!-- <a class="btn btnDanger" href="{{route('supprimer', ['id' => $comment->id]) }}">Supprimer</a> -->
-                        </div>
+                @if($deleteMenu == 1 )
+                <div class="p-10 bg-white w-1/2 rounded-lg shadow-xl">
+                    <div class=" text-darkGray mb-6">
+                        <p>Voulez vous vraiment supprimer ce commentaire ?</p>
+                    </div>
+                    <div class="flex justify-end">
+                        <a class="btn" href="">Annuler</a>
+                        <!-- <a class="btn btnDanger" href="{{route('supprimer', ['id' => $comment->id]) }}">Supprimer</a> -->
                     </div>
                 </div>
-            </div>
-            @endif
+            </div> -->
         </div>
-        <div>
-            @foreach($commentators as $commentator)
-            <div class="bg-white rounded-lg border-white w-11/12 m-auto my-8 shadow-2xl lg:my-0 lg:w-auto max-w-sm">
-                <div class="bg-primary text-secondary rounded-t-lg">
-                    <h3 class="text-center p-2">Le "Thierry Roland" du jour</h3>
+        @endif
+    </div>
+    <div>
+        @foreach($commentators as $commentator)
+        <div class="bg-white rounded-lg border-white w-11/12 m-auto my-8 shadow-2xl lg:my-0 lg:w-auto max-w-sm">
+            <div class="bg-primary text-secondary rounded-t-lg">
+                <h3 class="text-center p-2">Le "Thierry Roland" du jour</h3>
+            </div>
+            <div class="flex justify-evenly items-center p-4">
+                <div>
+                    <p class="font-bold">{{$commentator->user->pseudo}}</p>
                 </div>
-                <div class="flex justify-evenly items-center p-4">
-                    <div>
-                        <p class="font-bold">{{$commentator->user->pseudo}}</p>
-                    </div>
-                    <!-- <div class="flex items-center justify-center bg-secondary h-12 w-12 rounded-full m-2">
+                <!-- <div class="flex items-center justify-center bg-secondary h-12 w-12 rounded-full m-2">
                     @foreach($commentators as $commentator)
                     <p>{{$commentator->user->note}}</p>
                     @endforeach
                 </div> -->
-                </div>
             </div>
-            @endforeach
         </div>
+        @endforeach
+    </div>
 
     </div>
 </form>

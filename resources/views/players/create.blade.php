@@ -42,13 +42,9 @@
                     </div>
                 </div>
             </div>
-            @auth
             <input class="btn btnPrimary" type="submit" value="J'enregistre le joueur">
         </form>
     </div>
 </div>
-@else
-<p>Tu dois être connecté pour pouvoir créer un joueur ou un membre du staff</p>
-</div>
-@endauth
+
 @endsection

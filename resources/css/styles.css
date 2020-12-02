@@ -268,9 +268,8 @@ input:checked + .inputAction.away {
     transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
 }
 
-.menuComment{
-    position: absolute;
-
+.updatePlayer{
+    display: none;
 }
 
 /*************************

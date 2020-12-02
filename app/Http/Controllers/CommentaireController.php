@@ -105,8 +105,23 @@ class CommentaireController extends Controller
      */
     public function destroy($id)
     {
-        // dd($id);
+        
         $commentaire = Commentaire::find($id);
+
+        if($commentaire->statistic->action == "goal" && $commentaire->team_action == "home"){
+            $commentaire->delete();
+            $commentaire->commentator->match->home_score -= 1;
+            $commentaire->commentator->match->save();
+        }
+        elseif($commentaire->statistic->action == "goal" && $commentaire->team_action == "away"){
+            $commentaire->delete();
+            $commentaire->commentator->match->away_score -= 1;
+            $commentaire->commentator->match->save();
+        }
+        else{
+            $commentaire->delete();
+        }
+
         $commentaire->delete();
         return back();
     }

@@ -13,12 +13,14 @@
         </div>
     </div>
 </a>
-<div class="my-8">
-    <h3 class="text-center mt-4">Les joueurs</h3>
+<div class="my-8 relative overflow-hidden">
+    <h3 class="text-center my-8">Les joueurs</h3>
     @foreach($club->players as $player)
-    @if($player->first_name != 'numéro')
-    <div class=" bg-primary text-white rounded-lg relative my-2 flex flex-row p-3">
-        @livewire('update-player', ['player' => $player])
+    <div class="bg-primary text-white rounded-lg relative mb-4 flex flex-col p-3 sm:w-10/12 sm:mx-auto md:w-8/12 lg:w-7/12 xl:w-6/12">
+        <!-- @livewire('update-player', ['player' => $player]) -->
+        <div class="w-20 h-20 items-center logo mr-3" wire:click="clickPhoto">
+            <img class="object-contain" src="{{ asset($player->avatar_path)}}" alt="avatar">
+        </div>
         <div class="flex flex-col">
             <div>
                 <h4 class="capitalize text-secondary">{{ $player->first_name}} <span class="uppercase">{{ $player -> last_name}}</span></h4>
@@ -27,9 +29,51 @@
                 <p>{{ $player->position}}</p>
                 <p>né le {{ date('d/m/Y',strtotime($player->date_of_birth)) }}</p>
             </div>
+            <div class="absolute flex justify-center items-center right-2 top-1">
+                <div>
+                    <button onclick="openMenu()"><i class="far fa-edit"></i></button>
+                </div>
+            </div>
+        </div>
+        <div id="menuPlayer" class="updatePlayer flex justify-center items-center">
+            <div class="p-10 bg-white w-1/2 rounded-lg shadow-xl">
+                <form action="{{ route('clubs.players.store', $club) }}" method="post">
+                    @foreach ($errors->all() as $message)
+                    {{ $message}}
+                    @endforeach
+                    @csrf
+                    <h5 class="text-primary text-center">Modifier le joueur</h5>
+                    <div>
+                        <div>
+                            <label class="flex flex-col" for="last_name">Nom de famille</label>
+                            <input class="inputForm focus:outline-none focus:shadow-outline w-full my-1" type="text" name="last_name" id="last_name" value="{{ $player -> last_name}}">
+                        </div>
+                        <div>
+                            <label class="flex flex-col" for="first_name">Prénom</label>
+                            <input class="inputForm focus:outline-none focus:shadow-outline w-full my-1" type="text" name="first_name" value="{{ $player -> first_name}}" id="first_name">
+                        </div>
+                        <div class="flex flex-col">
+                            <label for="date_of_birth">Date de naissance</label>
+                            <input class="inputForm focus:outline-none focus:shadow-outline w-full my-1" type="date" name="date_of_birth" id="date_of_birth" value="{{ $player -> date_of_birth}}">
+                        </div>
+                        <div>
+                            <p>Position</p>
+                            <div class="flex flex-col">
+                                <select class="inputForm focus:outline-none focus:shadow-outline w-full my-1" name="position" id="position">
+                                    <option>Choisissez une position</option>
+                                    <option value="Gardien de but">Gardien de but</option>
+                                    <option value="Défenseur">Défenseur</option>
+                                    <option value="Milieu">Milieu</option>
+                                    <option value="Attaquant">Attaquant</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <input class="btn btnPrimary" type="submit" value="J'enregistre le joueur">
+                </form>
+            </div>
         </div>
     </div>
-    @endif
     @endforeach
 </div>
 <div>
@@ -37,5 +81,10 @@
         <p class="btn btnPrimary">Ajouter un joueur <span>➤</span></p>
     </a>
 </div>
-
+<script>
+    function openMenu() {
+        let player = document.getElementById('menuPlayer');
+        player.style.display = "flex";
+    }
+</script>
 @endsection

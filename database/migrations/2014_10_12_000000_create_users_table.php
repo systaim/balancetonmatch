@@ -28,7 +28,7 @@ class CreateUsersTable extends Migration
             $table->string('prefer_team_id')->nullable();
             $table->boolean('is_superadmin')->nullable();
             $table->boolean('is_admin')->nullable();
-            $table->boolean('is_player')->nullable();
+            $table->unsignedBigInteger('is_player')->nullable();
             $table->text('profile_photo_path')->nullable();
             $table->integer('rank')->nullable();
             $table->boolean('first_com')->default(1);
