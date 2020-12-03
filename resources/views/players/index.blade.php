@@ -31,11 +31,11 @@
             </div>
             <div class="absolute flex justify-center items-center right-2 top-1">
                 <div>
-                    <button onclick="openMenu()"><i class="far fa-edit"></i></button>
+                    <button onclick="openMenu({{$player->id}})"><i class="far fa-edit"></i></button>
                 </div>
             </div>
         </div>
-        <div id="menuPlayer" class="updatePlayer flex justify-center items-center">
+        <div id="{{$player->id}}" class="updatePlayer flex justify-center items-center">
             <div class="p-10 bg-white w-1/2 rounded-lg shadow-xl">
                 <form action="{{ route('clubs.players.store', $club) }}" method="post">
                     @foreach ($errors->all() as $message)
@@ -82,9 +82,14 @@
     </a>
 </div>
 <script>
-    function openMenu() {
-        let player = document.getElementById('menuPlayer');
-        player.style.display = "flex";
+    function openMenu(id) {
+        let players = <?php echo json_encode($club->players); ?>;
+        players.forEach(player => {
+            if(player.id == id){
+                let form = document.getElementById(id)
+                form.style.display = "flex"
+            }
+        });
     }
 </script>
 @endsection
