@@ -1,17 +1,7 @@
 @extends('layout')
 @section('content')
 <a href="{{route('clubs.show', $club) }}">
-    <div class="flex flex-col justify-center items-center mb-4">
-        <div class="logo h-16 w-16 m-4">
-            <img class="object-contain" src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{$club->numAffiliation}}.jpg" alt="logo">
-        </div>
-        <div class="bg-primary text-secondary rounded-lg">
-            <h2 class="mx-2 text-xl">{{ $club->name }}</h2>
-        </div>
-        <div>
-            <p>← Retour page club</p>
-        </div>
-    </div>
+    @include('clubs.logo')
 </a>
 <div class="my-8 relative overflow-hidden">
     <h3 class="text-center my-8">Les joueurs</h3>
@@ -31,11 +21,14 @@
             </div>
             <div class="absolute flex justify-center items-center right-2 top-1">
                 <div>
-                    <button onclick="openMenu({{$player->id}})"><i class="far fa-edit"></i></button>
+                    <button onclick="openMenu({{$player->id}})">Modifier<i class="far fa-edit"></i></button>
                 </div>
             </div>
         </div>
-        <div id="{{$player->id}}" class="updatePlayer flex justify-center items-center">
+        <div id="{{$player->id}}" class="updatePlayer fixed z-50 bg-gray-200 inset-0 justify-center items-center">
+            <div class=" absolute top-10 right-10">
+                <p class="text-4xl text-primary">X</p>
+            </div>
             <div class="p-10 bg-white w-1/2 rounded-lg shadow-xl">
                 <form action="{{ route('clubs.players.store', $club) }}" method="post">
                     @foreach ($errors->all() as $message)
@@ -69,23 +62,30 @@
                             </div>
                         </div>
                     </div>
-                    <input class="btn btnPrimary" type="submit" value="J'enregistre le joueur">
+                    <div class="flex justify-center">
+                        <a href="">
+                            <button type="button" class="btn text-primary">J'annule</button>
+                        </a>
+
+                        <input class="btn btnPrimary" type="submit" value="Je modifie le joueur">
+                    </div>
+
                 </form>
             </div>
         </div>
     </div>
     @endforeach
 </div>
-<div>
+<div class="flex justify-end">
     <a href="{{ route('clubs.players.create', $club) }}">
-        <p class="btn btnPrimary">Ajouter un joueur <span>➤</span></p>
+        <button class="btn btnPrimary">J'ajoute un joueur <span>➤</span></button>
     </a>
 </div>
 <script>
     function openMenu(id) {
         let players = <?php echo json_encode($club->players); ?>;
         players.forEach(player => {
-            if(player.id == id){
+            if (player.id == id) {
                 let form = document.getElementById(id)
                 form.style.display = "flex"
             }

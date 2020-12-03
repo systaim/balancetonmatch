@@ -99,7 +99,7 @@ h6 {
 }
 
 .btnPrimary {
-    @apply bg-white text-primary border-primary;
+    @apply bg-primary text-white border-primary;
 }
 
 .btnPrimary:hover {
@@ -107,11 +107,11 @@ h6 {
 }
 
 .btnSecondary {
-    @apply bg-white text-secondary border-secondary;
+    @apply bg-secondary text-primary border-secondary;
 }
 
 .btnSecondary:hover {
-    @apply bg-secondary text-primary border-secondary;
+    @apply bg-secondary text-white border-secondary;
 }
 
 .btnDanger{

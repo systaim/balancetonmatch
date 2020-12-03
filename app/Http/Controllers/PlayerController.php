@@ -124,7 +124,18 @@ class PlayerController extends Controller
      */
     public function update(Request $request, Player $player)
     {
-        //
+        $dataPlayer = $request->validate([
+            'last_name' => ['required', 'max:50', 'min:2'],
+            'first_name' => ['required', 'max:50', 'min:2'],
+            'date_of_birth' => ['nullable', 'date'],
+            'position' => ['max:15'],
+        ]);
+        // $dataPlayer['club_id'] = $club->id;
+
+        $player = Player::update($dataPlayer);
+        $player->user()->associate($user);
+
+        $player->save();
     }
 
     /**

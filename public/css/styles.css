@@ -134,11 +134,11 @@ h6 {
 
 .btnPrimary {
   --bg-opacity: 1;
-  background-color: #fff;
-  background-color: rgba(255, 255, 255, var(--bg-opacity));
+  background-color: #091c3e;
+  background-color: rgba(9, 28, 62, var(--bg-opacity));
   --text-opacity: 1;
-  color: #091c3e;
-  color: rgba(9, 28, 62, var(--text-opacity));
+  color: #fff;
+  color: rgba(255, 255, 255, var(--text-opacity));
   --border-opacity: 1;
   border-color: #091c3e;
   border-color: rgba(9, 28, 62, var(--border-opacity));
@@ -158,11 +158,11 @@ h6 {
 
 .btnSecondary {
   --bg-opacity: 1;
-  background-color: #fff;
-  background-color: rgba(255, 255, 255, var(--bg-opacity));
+  background-color: #cdfb0a;
+  background-color: rgba(205, 251, 10, var(--bg-opacity));
   --text-opacity: 1;
-  color: #cdfb0a;
-  color: rgba(205, 251, 10, var(--text-opacity));
+  color: #091c3e;
+  color: rgba(9, 28, 62, var(--text-opacity));
   --border-opacity: 1;
   border-color: #cdfb0a;
   border-color: rgba(205, 251, 10, var(--border-opacity));
@@ -173,8 +173,8 @@ h6 {
   background-color: #cdfb0a;
   background-color: rgba(205, 251, 10, var(--bg-opacity));
   --text-opacity: 1;
-  color: #091c3e;
-  color: rgba(9, 28, 62, var(--text-opacity));
+  color: #fff;
+  color: rgba(255, 255, 255, var(--text-opacity));
   --border-opacity: 1;
   border-color: #cdfb0a;
   border-color: rgba(205, 251, 10, var(--border-opacity));
