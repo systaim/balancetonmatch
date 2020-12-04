@@ -5,11 +5,6 @@
     @include('clubs.logo')
     <div class="my-8">
         <h3 class="titlePage">Les joueurs</h3>
-        <div class="flex justify-center md:justify-start">
-            <a href="{{ route('clubs.players.create', $club) }}">
-                <button class="btn btnPrimary">J'ajoute un joueur <span>➤</span></button>
-            </a>
-        </div>
         <div class="flex flex-row flex-wrap justify-center">
             @foreach($players as $player)
             <div class="relative w-72 m-4 bg-primary p-2 text-white flex flex-col justify-between rounded-lg shadow-2xl">
@@ -35,7 +30,6 @@
                         <button onclick="openMenu({{$player->id}})"><i class="far fa-edit"></i></button>
                     </div>
                 </div>
-
                 <div id="{{$player->id}}" class="updatePlayer fixed z-50 bg-gray-200 inset-0 justify-center items-center">
                     <div class=" absolute top-10 right-10">
                         <p class="text-4xl text-primary">X</p>
@@ -92,6 +86,21 @@
                 </div>
             </div>
             @endforeach
+            <div class="relative w-72 m-4 bg-blue-800 p-2 text-white flex flex-col justify-between rounded-lg shadow-2xl">
+                <a href="{{ route('clubs.players.create', $club) }}">
+                    <div class="flex mb-4">
+                        <div class="flex justify-center items-center h-72 w-full bg-gray-400">
+                            <p class="text-6xl text-gray-700">+</p>
+                        </div>
+                        <div class="pl-2 pt-2 text-lg">
+                            <h4 class="capitalize vertical">Ajouter un joueur</h4>
+                        </div>
+                    </div>
+                    <div class="relative flex justify-between items-end">
+
+                    </div>
+                </a>
+            </div>
         </div>
     </div>
 </section>

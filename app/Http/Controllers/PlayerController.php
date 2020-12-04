@@ -130,12 +130,14 @@ class PlayerController extends Controller
             'last_name' => ['required', 'max:50', 'min:2'],
             'first_name' => ['required', 'max:50', 'min:2'],
             'date_of_birth' => ['nullable', 'date'],
+            'file-upload' => ['nullable'],
             'position' => ['max:15'],
         ]);
 
         $player->first_name = $request->first_name;
         $player->last_name = $request->last_name;
         $player->date_of_birth = $request->date_of_birth;
+        $player->avatar_path = $request->file;
         $player->position = $request->position;
         // dd($player);
         
