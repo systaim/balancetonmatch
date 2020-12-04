@@ -68,11 +68,17 @@
                             <a href="">
                                 <button type="button" class="btn text-primary">J'annule</button>
                             </a>
-
                             <input class="btn btnSuccess" type="submit" value="Je modifie le joueur">
                         </div>
-
                     </form>
+                    <div class="flex justify-end mt-12">
+                        <form action="{{ route('clubs.players.destroy', [$club, $player]) }}" method="POST">
+                            @method('DELETE')
+                            @csrf
+                            <input class="btn btnDanger" type="submit" value="Supprimer ce joueur">
+                        </form>
+                    </div>
+
                 </div>
             </div>
         </div>

@@ -151,8 +151,9 @@ class PlayerController extends Controller
      * @param  \App\Models\Player  $player
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Player $player)
+    public function destroy(Club $club, Player $player)
     {
-        //
+        $player->delete();
+        return back();
     }
 }
