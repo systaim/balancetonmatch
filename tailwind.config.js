@@ -27,6 +27,8 @@ module.exports = {
             primary: "#091c3e", //#091c3e ou #143556
             secondary: "#cdfb0a", //#cdfb0a ou #00ffae
             darkGray: "#0D0F12",
+            success: "#00ff48",
+            darkSuccess: "#009628",
             black: colors.black,
             white: colors.white,
             gray: colors.gray,

@@ -5,11 +5,11 @@
     @include('clubs.logo')
     <div class="my-8 relative overflow-hidden">
 
-        <h3 class="text-center my-8">Les joueurs</h3>
-        @foreach($club->players as $player)
-        <div class="bg-primary text-white rounded-lg relative mb-4 flex flex-col p-3 sm:w-10/12 sm:mx-auto md:w-8/12 lg:w-7/12 xl:w-6/12">
+        <h3 class="titlePage">Les joueurs</h3>
+        @foreach($players as $player)
+        <div class="pt-20 mx-auto bg-primary text-white rounded-lg relative mt-20 flex flex-col items-center text-center p-3 w-11/12 sm:w-10/12 sm:mx-auto md:w-8/12 lg:w-7/12 xl:w-6/12">
             <!-- @livewire('update-player', ['player' => $player]) -->
-            <div class="w-20 h-20 items-center logo mr-3" wire:click="clickPhoto">
+            <div class="absolute top--4 w-32 h-32 items-center logo" wire:click="clickPhoto">
                 <img class="object-contain" src="{{ asset($player->avatar_path)}}" alt="avatar">
             </div>
             <div class="flex flex-col">
@@ -30,11 +30,12 @@
                 <div class=" absolute top-10 right-10">
                     <p class="text-4xl text-primary">X</p>
                 </div>
-                <div class="p-10 bg-white w-1/2 rounded-lg shadow-xl">
-                    <form action="{{ route('clubs.players.store', $club) }}" method="post">
+                <div class="p-10 bg-white w-full sm:w-11/12 md:w-9/12 lg:w-6/12 rounded-lg shadow-xl">
+                    <form action="{{ route('clubs.players.update', [$club, $player]) }}" method="post">
                         @foreach ($errors->all() as $message)
                         {{ $message}}
                         @endforeach
+                        @method('PUT')
                         @csrf
                         <h5 class="text-primary text-center">Modifier le joueur</h5>
                         <div>
@@ -63,12 +64,12 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="flex justify-center">
+                        <div class="mt-6 flex flex-col items-center justify-center sm:flex-row">
                             <a href="">
                                 <button type="button" class="btn text-primary">J'annule</button>
                             </a>
 
-                            <input class="btn btnPrimary" type="submit" value="Je modifie le joueur">
+                            <input class="btn btnSuccess" type="submit" value="Je modifie le joueur">
                         </div>
 
                     </form>

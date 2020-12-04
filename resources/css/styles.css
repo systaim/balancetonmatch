@@ -54,6 +54,10 @@ h6 {
     top: -3rem;
 }
 
+.top--4{
+    top: -4rem;
+}
+
 .img-bg-blend-listMatchs{
     background: url('https://cdn.pixabay.com/photo/2016/03/20/20/43/football-1269438_960_720.jpg');
     background-color: var(--primary-color);
@@ -99,19 +103,19 @@ h6 {
 }
 
 .btnPrimary {
-    @apply bg-primary text-white border-primary;
+    @apply bg-primary text-white border-secondary;
 }
 
 .btnPrimary:hover {
-    @apply bg-primary text-secondary border-primary;
+    @apply bg-primary text-secondary border-secondary;
 }
 
 .btnSecondary {
-    @apply bg-secondary text-primary border-secondary;
+    @apply bg-secondary text-primary border-primary;
 }
 
 .btnSecondary:hover {
-    @apply bg-secondary text-white border-secondary;
+    @apply bg-secondary text-white border-primary;
 }
 
 .btnDanger{
@@ -120,6 +124,14 @@ h6 {
 
 .btnDanger:hover{
     @apply bg-white text-danger;
+}
+
+.btnSuccess{
+    @apply bg-success text-darkGray;
+}
+
+.btnSuccess:hover {
+    @apply bg-darkSuccess text-white;
 }
 
 /*************************

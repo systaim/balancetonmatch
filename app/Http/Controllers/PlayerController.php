@@ -122,20 +122,27 @@ class PlayerController extends Controller
      * @param  \App\Models\Player  $player
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Player $player)
+    public function update(Request $request, Club $club, Player $player)
     {
+        $user = Auth::user();
+
         $dataPlayer = $request->validate([
             'last_name' => ['required', 'max:50', 'min:2'],
             'first_name' => ['required', 'max:50', 'min:2'],
             'date_of_birth' => ['nullable', 'date'],
             'position' => ['max:15'],
         ]);
-        // $dataPlayer['club_id'] = $club->id;
 
-        $player = Player::update($dataPlayer);
+        $player->first_name = $request->first_name;
+        $player->last_name = $request->last_name;
+        $player->date_of_birth = $request->date_of_birth;
+        $player->position = $request->position;
+        // dd($player);
+        
         $player->user()->associate($user);
 
         $player->save();
+        return back()->with('messageUpdate', 'Le joueur a bien été mis à jour');
     }
 
     /**

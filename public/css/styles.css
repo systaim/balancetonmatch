@@ -79,6 +79,10 @@ h6 {
   top: -3rem;
 }
 
+.top--4{
+  top: -4rem;
+}
+
 .img-bg-blend-listMatchs{
   background: url('https://cdn.pixabay.com/photo/2016/03/20/20/43/football-1269438_960_720.jpg');
   background-color: var(--primary-color);
@@ -140,8 +144,8 @@ h6 {
   color: #fff;
   color: rgba(255, 255, 255, var(--text-opacity));
   --border-opacity: 1;
-  border-color: #091c3e;
-  border-color: rgba(9, 28, 62, var(--border-opacity));
+  border-color: #cdfb0a;
+  border-color: rgba(205, 251, 10, var(--border-opacity));
 }
 
 .btnPrimary:hover {
@@ -152,8 +156,8 @@ h6 {
   color: #cdfb0a;
   color: rgba(205, 251, 10, var(--text-opacity));
   --border-opacity: 1;
-  border-color: #091c3e;
-  border-color: rgba(9, 28, 62, var(--border-opacity));
+  border-color: #cdfb0a;
+  border-color: rgba(205, 251, 10, var(--border-opacity));
 }
 
 .btnSecondary {
@@ -164,8 +168,8 @@ h6 {
   color: #091c3e;
   color: rgba(9, 28, 62, var(--text-opacity));
   --border-opacity: 1;
-  border-color: #cdfb0a;
-  border-color: rgba(205, 251, 10, var(--border-opacity));
+  border-color: #091c3e;
+  border-color: rgba(9, 28, 62, var(--border-opacity));
 }
 
 .btnSecondary:hover {
@@ -176,8 +180,8 @@ h6 {
   color: #fff;
   color: rgba(255, 255, 255, var(--text-opacity));
   --border-opacity: 1;
-  border-color: #cdfb0a;
-  border-color: rgba(205, 251, 10, var(--border-opacity));
+  border-color: #091c3e;
+  border-color: rgba(9, 28, 62, var(--border-opacity));
 }
 
 .btnDanger{
@@ -196,6 +200,24 @@ h6 {
   --text-opacity: 1;
   color: #ff1500;
   color: rgba(255, 21, 0, var(--text-opacity));
+}
+
+.btnSuccess{
+  --bg-opacity: 1;
+  background-color: #00ff48;
+  background-color: rgba(0, 255, 72, var(--bg-opacity));
+  --text-opacity: 1;
+  color: #0D0F12;
+  color: rgba(13, 15, 18, var(--text-opacity));
+}
+
+.btnSuccess:hover {
+  --bg-opacity: 1;
+  background-color: #009628;
+  background-color: rgba(0, 150, 40, var(--bg-opacity));
+  --text-opacity: 1;
+  color: #fff;
+  color: rgba(255, 255, 255, var(--text-opacity));
 }
 
 /*************************
