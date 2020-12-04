@@ -24,8 +24,8 @@ class CreateClubsTable extends Migration
             $table->text('address')->nullable();
             $table->integer('zip_code')->nullable();
             $table->string('city')->nullable();
-            $table->string('primary_color')->nullable();
-            $table->string('secondary_color')->nullable();
+            $table->string('primary_color')->default('#fff');
+            $table->string('secondary_color')->default('#fff');
             $table->timestamps();
             $table->timestamp('deleted_at')->nullable();
 
