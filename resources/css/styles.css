@@ -38,7 +38,7 @@ h6 {
 }
 
 .titlePage {
-    @apply text-center bg-primary text-secondary text-2xl py-1 my-4 rounded;
+    @apply text-center bg-primary text-secondary text-xl py-1 my-4 mx-12 rounded-lg;
 }
 
 .height-mini-10 {
@@ -90,6 +90,10 @@ h6 {
     background-size: cover;
 }
 
+.vertical{
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+}
 /*************************
           BUTTONS
   *************************/
@@ -283,6 +287,7 @@ input:checked + .inputAction.away {
 .updatePlayer{
     display: none;
 }
+
 
 /*************************
           COLORS TEAMS

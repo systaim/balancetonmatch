@@ -4,29 +4,29 @@
     @include('clubs.linkPageClub')
     @include('clubs.logo')
     <div>
-        <div class="bg-primary rounded-lg relative text-white my-2 p-3">
+        <div class="bg-primary rounded-lg relative text-white my-2 p-3 m-auto w-full sm:w-11/12 md:w-9/12 lg:w-6/12">
             <form action="{{ route('clubs.players.store', $club) }}" method="post">
                 @foreach ($errors->all() as $message)
                 {{ $message}}
                 @endforeach
                 @csrf
-                <h5 class="text-secondary text-center">Ajouter un joueur</h5>
-                <div>
-                    <div>
-                        <label class="flex flex-col" for="last_name">Nom de famille</label>
+                <h5 class="text-secondary text-center mb-6">Ajouter un joueur</h5>
+                <div class="mb-8">
+                    <div class="w-10/12 m-auto">
+                        <label for="last_name">Nom de famille</label>
                         <input class="inputForm focus:outline-none focus:shadow-outline w-full my-1" type="text" name="last_name" id="last_name" placeholder="DUPONT">
                     </div>
-                    <div>
-                        <label class="flex flex-col" for="first_name">Prénom</label>
+                    <div class="w-10/12 m-auto">
+                        <label for="first_name">Prénom</label>
                         <input class="inputForm focus:outline-none focus:shadow-outline w-full my-1" type="text" name="first_name" placeholder="Jean" id="first_name">
                     </div>
-                    <div class="flex flex-col">
+                    <div class="w-10/12 m-auto">
                         <label for="date_of_birth">Date de naissance</label>
                         <input class="inputForm focus:outline-none focus:shadow-outline w-full my-1" type="date" name="date_of_birth" id="date_of_birth">
                     </div>
-                    <div>
+                    <div class="w-10/12 m-auto">
                         <p>Position</p>
-                        <div class="flex flex-col">
+                        <div>
                             <select class="inputForm focus:outline-none focus:shadow-outline w-full my-1" name="position" id="position">
                                 <option>Choisissez une position</option>
                                 <option value="Gardien de but">Gardien de but</option>
@@ -37,7 +37,10 @@
                         </div>
                     </div>
                 </div>
-                <input class="btn btnPrimary" type="submit" value="J'enregistre le joueur">
+                <div class="flex justify-end w-10/12 m-auto">
+                    <input class="btn btnSuccess" type="submit" value="J'enregistre le joueur">
+                </div>
+                
             </form>
         </div>
     </div>

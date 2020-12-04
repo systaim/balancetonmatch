@@ -58,12 +58,14 @@ h6 {
   --text-opacity: 1;
   color: #cdfb0a;
   color: rgba(205, 251, 10, var(--text-opacity));
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
   margin-top: 1rem;
   margin-bottom: 1rem;
-  border-radius: 0.25rem;
+  margin-left: 3rem;
+  margin-right: 3rem;
+  border-radius: 0.5rem;
 }
 
 .height-mini-10 {
@@ -113,6 +115,12 @@ h6 {
   background: url('https://cdn.pixabay.com/photo/2013/03/10/15/00/soccer-92194_960_720.jpg');
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+.vertical{
+  -ms-writing-mode: tb-rl;
+      writing-mode: vertical-rl;
+  transform: rotate(180deg);
 }
 
 /*************************
