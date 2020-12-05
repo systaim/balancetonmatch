@@ -56,6 +56,10 @@ class PlayerController extends Controller
     public function store(Request $request, Club $club)
     {
         $user = Auth::user();
+        $players = Player::where('club_id', $club->id)
+            ->orderBy('last_name', 'asc')
+            ->orderBy('first_name', 'asc')
+            ->get();
         $matchs = Match::where('home_team_id', $club->id)->orwhere('away_team_id', $club->id)->orderBy('date_match','desc')->get();
 
 
@@ -125,6 +129,10 @@ class PlayerController extends Controller
     public function update(Request $request, Club $club, Player $player)
     {
         $user = Auth::user();
+        $players = Player::where('club_id', $club->id)
+            ->orderBy('last_name', 'asc')
+            ->orderBy('first_name', 'asc')
+            ->get();
 
         $dataPlayer = $request->validate([
             'last_name' => ['required', 'max:50', 'min:2'],

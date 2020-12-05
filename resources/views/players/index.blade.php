@@ -7,24 +7,35 @@
         <h3 class="titlePage">Les joueurs</h3>
         <div class="flex flex-row flex-wrap justify-center">
             @foreach($players as $player)
-            <div class="relative w-72 m-4 bg-primary p-2 text-white flex flex-col justify-between rounded-lg shadow-2xl">
-                <div class="absolute top-2 logo h-12 w-12">
+            <div class="relative w-72 m-4 bg-primary text-white flex flex-col justify-between rounded-lg shadow-2xl overflow-x-hidden">
+                <div class="absolute top-2 left-2 logo h-12 w-12 z-10">
                     <img class="object-contain" src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{$club->numAffiliation}}.jpg" alt="logo">
                 </div>
-                <div class="flex mb-4">
-                    <div>
-                        <img class="object-cover h-72 w-full" src="{{ asset($player->avatar_path)}}" alt="avatar">
+                <div class="flex justify-between">
+                    <div class="relative">
+                        <img class="object-cover h-80 w-full rounded-br-lg" src="{{ asset($player->avatar_path)}}" alt="avatar">
+                        @switch($player -> position)
+                        @case('Gardien de but')
+                        <p class="absolute bottom-1 right-1 bg-primary text-secondary font-bold py-1 px-2 rounded-lg">GB</p>
+                        @break
+                        @case('Défenseur')
+                        <p class="absolute bottom-1 right-1 bg-primary text-secondary font-bold py-1 px-2 rounded-lg">DEF</p>
+                        @break
+                        @case('Milieu')
+                        <p class="absolute bottom-1 right-1 bg-primary text-secondary font-bold py-1 px-2 rounded-lg">MIL</p>
+                        @break
+                        @case('Attaquant')
+                        <p class="absolute bottom-1 right-1 bg-primary text-secondary font-bold py-1 px-2 rounded-lg">ATT</p>
+                        @break
+                        @endswitch
                     </div>
-                    <div class="pl-2 pt-2 text-lg">
-                        <h4 class="capitalize vertical">{{ $player->first_name}} <span class="uppercase">{{ $player -> last_name}}</span></h4>
+                    <div class="text-lg flex justify-center items-start p-2">
+                        <p class="capitalize vertical mx-2 font-semibold">{{ $player->first_name}} <span class="uppercase">{{ $player -> last_name}}</span></p>
                     </div>
                 </div>
-                <div class="relative flex justify-between items-end">
+                <div class="relative flex justify-between items-end p-2 h-12">
                     <div class="flex flex-col">
-                        <div>
-                            <p>{{ $player->position}}</p>
-                            <p>né le {{ date('d/m/Y',strtotime($player->date_of_birth)) }}</p>
-                        </div>
+                        <p class="font-bold">né le {{ date('d/m/Y',strtotime($player->date_of_birth)) }}</p>
                     </div>
                     <div>
                         <button onclick="openMenu({{$player->id}})"><i class="far fa-edit"></i></button>
@@ -86,18 +97,18 @@
                 </div>
             </div>
             @endforeach
-            <div class="relative w-72 m-4 bg-blue-800 p-2 text-white flex flex-col justify-between rounded-lg shadow-2xl">
+            <div class="relative w-72 m-4 bg-primary text-white flex flex-col justify-between rounded-lg overflow-hidden shadow-2xl">
                 <a href="{{ route('clubs.players.create', $club) }}">
-                    <div class="flex mb-4">
-                        <div class="flex justify-center items-center h-72 w-full bg-gray-400">
-                            <p class="text-6xl text-gray-700">+</p>
+                    <div class="flex justify-between">
+                        <div class="flex justify-center items-center h-80 w-full bg-gray-400 rounded-br-lg">
+                            <p class="giant-text text-gray-500">+</p>
                         </div>
-                        <div class="pl-2 pt-2 text-lg">
-                            <h4 class="capitalize vertical">Ajouter un joueur</h4>
+                        <div class="text-lg flex justify-center items-start p-2">
+                            <p class="vertical mx-2 font-semibold">Ajouter un joueur</p>
                         </div>
                     </div>
-                    <div class="relative flex justify-between items-end">
-
+                    <div class="relative flex p-2">
+                        <p class="font-semibold">Ajouter un joueur</p>
                     </div>
                 </a>
             </div>

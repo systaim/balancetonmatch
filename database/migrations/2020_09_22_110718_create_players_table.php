@@ -19,7 +19,7 @@ class CreatePlayersTable extends Migration
             $table->string('first_name');
             $table->date('date_of_birth')->nullable();
             $table->string('position')->nullable();
-            $table->string('avatar_path')->nullable()->default("/images/avatar.png");
+            $table->string('avatar_path')->nullable()->default("/images/PlayerAvatar.jpg");
             $table->unsignedBigInteger('club_id')->nullable();
             $table->unsignedBigInteger('user_id')->nullable();
             $table->timestamps();

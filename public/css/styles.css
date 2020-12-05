@@ -471,6 +471,10 @@ input:checked + .inputAction.away {
   display: none;
 }
 
+.giant-text{
+  font-size: 12rem;
+}
+
 /*************************
           COLORS TEAMS
   *************************/
