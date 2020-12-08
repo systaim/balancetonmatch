@@ -76,7 +76,7 @@ class PlayerController extends Controller
         if ($request->has('file')) {
             $path = $request->file->store('avatars');
             $dataPlayer['avatar_path'] = $path;
-        } else{
+        } else {
             $dataPlayer['avatar_path'] = "/images/PlayerAvatar.jpg";
         }
 
@@ -155,16 +155,17 @@ class PlayerController extends Controller
             'position' => 'max:15',
         ]);
 
+
         $player->first_name = $request->first_name;
         $player->last_name = $request->last_name;
         $player->date_of_birth = $request->date_of_birth;
         $player->position = $request->position;
         if ($request->has('file')) {
             $path = $request->file->store('avatars');
-            // dd($path);
             $player->avatar_path = $path;
         }
 
+        // dd($player);
         $player->user()->associate($user);
 
         $player->save();

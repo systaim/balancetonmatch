@@ -3,6 +3,14 @@
 <section>
     @include('clubs.linkPageClub')
     @include('clubs.logo')
+    <div class="flex justify-center">
+            @error('last_name')
+            <span class="error">{{ $message }}</span>
+            @enderror
+            @error('first_name')
+            <span class="error">{{ $message }}</span>
+            @enderror
+        </div>
     <div class="my-8">
         <h3 class="titlePage">Les joueurs</h3>
         <div class="flex flex-row flex-wrap justify-center">
@@ -57,10 +65,16 @@
                                 <div>
                                     <label class="flex flex-col" for="last_name">Nom de famille</label>
                                     <input class="inputForm focus:outline-none focus:shadow-outline w-full my-1" type="text" name="last_name" id="last_name" value="{{ $player -> last_name}}">
+                                    @error('last_name')
+                                    <span class="error">{{ $message }}</span>
+                                    @enderror
                                 </div>
                                 <div>
                                     <label class="flex flex-col" for="first_name">Prénom</label>
                                     <input class="inputForm focus:outline-none focus:shadow-outline w-full my-1" type="text" name="first_name" value="{{ $player -> first_name}}" id="first_name">
+                                    @error('first_name')
+                                    <span class="error">{{ $message }}</span>
+                                    @enderror
                                 </div>
                                 <div class="flex flex-col">
                                     <label for="date_of_birth">Date de naissance</label>
@@ -69,8 +83,8 @@
                                 <div>
                                     <p>Position</p>
                                     <div class="flex flex-col">
-                                        <select class="inputForm focus:outline-none focus:shadow-outline w-full my-1" name="position" id="position">
-                                            <option>Choisissez une position</option>
+                                        <select class="inputForm focus:outline-none focus:shadow-outline w-full my-1" name="position" id="position" value="{{ $player->position }}">
+                                            <option value="{{ $player->position }}">{{ $player->position }}</option>
                                             <option value="Gardien de but">Gardien de but</option>
                                             <option value="Défenseur">Défenseur</option>
                                             <option value="Milieu">Milieu</option>
