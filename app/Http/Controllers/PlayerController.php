@@ -163,10 +163,7 @@ class PlayerController extends Controller
             $path = $request->file->store('avatars');
             // dd($path);
             $player->avatar_path = $path;
-        } else{
-            $player->avatar_path = "/images/PlayerAvatar.jpg";
         }
-        // dd($player->avatar_path);
 
         $player->user()->associate($user);
 

@@ -104,7 +104,7 @@
                 </div>
             </div>
             @endforeach
-            <div class="relative w-72 m-4 bg-primary text-white flex flex-col justify-between rounded-lg overflow-hidden shadow-2xl">
+            <div class="relative w-72 m-4 bg-success text-darkGray flex flex-col justify-between rounded-lg overflow-hidden shadow-2xl">
                 <a href="{{ route('clubs.players.create', $club) }}">
                     <div class="flex justify-between">
                         <div class="flex justify-center items-center h-80 w-full bg-gray-400 rounded-br-lg">
