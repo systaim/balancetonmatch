@@ -79,7 +79,7 @@ class User extends Authenticatable
 
     public function commentator()
     {
-        return $this->hasManyThrough(Commentaire::class, Commentator::class);
+        return $this->hasMany(Commentator::class);
     }
 
     public function favoristeams()

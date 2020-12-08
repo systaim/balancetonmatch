@@ -428,41 +428,26 @@
                 @endauth
             </div>
             @endforeach
-            <!-- <div>
-                <div class="fixed z-50 bg-gray-200 inset-0 flex justify-center items-center">
-                @if($deleteMenu == 1 )
-                <div class="p-10 bg-white w-1/2 rounded-lg shadow-xl">
-                    <div class=" text-darkGray mb-6">
-                        <p>Voulez vous vraiment supprimer ce commentaire ?</p>
-                    </div>
-                    <div class="flex justify-end">
-                        <a class="btn" href="">Annuler</a>
-                        <!-- <a class="btn btnDanger" href="{{route('supprimer', ['id' => $comment->id]) }}">Supprimer</a> -->
-                    </div>
-                </div>
-            </div> -->
         </div>
-        @endif
-    </div>
-    <div>
-        @foreach($commentators as $commentator)
-        <div class="bg-white rounded-lg border-white w-11/12 m-auto my-8 shadow-2xl lg:my-0 lg:w-auto max-w-sm">
-            <div class="bg-primary text-secondary rounded-t-lg">
-                <h3 class="text-center p-2">Le "Thierry Roland" du jour</h3>
-            </div>
-            <div class="flex justify-evenly items-center p-4">
-                <div>
-                    <p class="font-bold">{{$commentator->user->pseudo}}</p>
+        <div>
+            @foreach($commentators as $commentator)
+            <div class="bg-white rounded-lg border-white w-11/12 m-auto my-8 shadow-2xl lg:my-0 lg:w-auto max-w-sm">
+                <div class="bg-primary text-secondary rounded-t-lg">
+                    <h3 class="text-center p-2">Le "Thierry Roland" du jour</h3>
                 </div>
-                <!-- <div class="flex items-center justify-center bg-secondary h-12 w-12 rounded-full m-2">
+                <div class="flex justify-evenly items-center p-4">
+                    <div>
+                        <p class="font-bold">{{$commentator->user->pseudo}}</p>
+                    </div>
+                    <!-- <div class="flex items-center justify-center bg-secondary h-12 w-12 rounded-full m-2">
                     @foreach($commentators as $commentator)
                     <p>{{$commentator->user->note}}</p>
                     @endforeach
                 </div> -->
+                </div>
             </div>
+            @endforeach
         </div>
-        @endforeach
-    </div>
 
     </div>
 </form>

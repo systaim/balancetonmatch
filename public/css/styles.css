@@ -95,12 +95,12 @@ h6 {
 }
 
 .img-bg-blend-home{
-  background: url('http://127.0.0.1:8000/images/home-preview.jpg');
+  background-image: url(/images/home-preview.jpg);
   background-color: var(--primary-color);
   background-repeat: no-repeat;
-  background-size: 75%;
-  background-position-y: -5rem;
-  background-position-x: -2rem;
+  background-size: 100%;
+  /* background-position-y: -5rem;
+    background-position-x: -2rem; */
   background-attachment: fixed;
   background-blend-mode: luminosity;
 }
@@ -226,6 +226,32 @@ h6 {
   --text-opacity: 1;
   color: #fff;
   color: rgba(255, 255, 255, var(--text-opacity));
+}
+
+.btnDark{
+  --bg-opacity: 1;
+  background-color: #0D0F12;
+  background-color: rgba(13, 15, 18, var(--bg-opacity));
+  --text-opacity: 1;
+  color: #fff;
+  color: rgba(255, 255, 255, var(--text-opacity));
+  border-width: 2px;
+  --border-opacity: 1;
+  border-color: #fff;
+  border-color: rgba(255, 255, 255, var(--border-opacity))
+}
+
+.btnDark:hover{
+  --bg-opacity: 1;
+  background-color: #1a202c;
+  background-color: rgba(26, 32, 44, var(--bg-opacity));
+  --text-opacity: 1;
+  color: #fff;
+  color: rgba(255, 255, 255, var(--text-opacity));
+  border-width: 2px;
+  --border-opacity: 1;
+  border-color: #fff;
+  border-color: rgba(255, 255, 255, var(--border-opacity))
 }
 
 /*************************

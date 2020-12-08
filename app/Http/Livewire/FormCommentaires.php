@@ -37,7 +37,6 @@ class FormCommentaires extends Component
     public $heureMatch;
     public $matchNonDispo = "";
     public $nbrFavoris;
-    public $deleteMenu;
     public $commentators;
     public $firstCom;
     public $file;
@@ -78,7 +77,8 @@ class FormCommentaires extends Component
         }
     }
 
-    public function needHelp(){
+    public function needHelp()
+    {
         $user = Auth::user();
         $this->firstCom = 1;
         $user->first_com = 1;
@@ -87,8 +87,7 @@ class FormCommentaires extends Component
 
     public function deleteMenu()
     {
-            $this->deleteMenu = 1;
-        
+        $this->deleteMenu = 1;
     }
 
     public function deleteCom($id)
@@ -181,7 +180,7 @@ class FormCommentaires extends Component
 
                 $this->commentsMatch =  $this->match->commentaires()->orderBy('minute', 'desc')->orderBy('updated_at', 'desc')->get();
                 session()->flash('successMessage', 'Bon Match ! 😉');
-            } else{
+            } else {
                 session()->flash('successMessage', 'Un problème s\'est produit');
             }
         } else {
@@ -318,11 +317,11 @@ class FormCommentaires extends Component
                 foreach ($this->commentators as $comm) {
                     $comment->commentator()->associate($comm->id);
                 }
-                if($this->file){
+                if ($this->file) {
                     $path = $this->file->store('uploads');
-                $comment->images = $path;
+                    $comment->images = $path;
                 }
-                
+
                 $comment->save();
 
                 $statData['commentaire_id'] = $comment->id;

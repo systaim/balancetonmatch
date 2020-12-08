@@ -6,7 +6,7 @@
     <div class="my-8">
         <h3 class="titlePage">Les joueurs</h3>
         <div class="flex flex-row flex-wrap justify-center">
-            @foreach($players as $player)
+            @foreach($club->players->sortBy('last_name') as $player)
             <div class="relative w-72 m-4 bg-primary text-white flex flex-col justify-between rounded-lg shadow-2xl overflow-x-hidden">
                 <div class="absolute top-2 left-2 logo h-12 w-12 z-10">
                     <img class="object-contain" src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{$club->numAffiliation}}.jpg" alt="logo">
@@ -46,14 +46,14 @@
                         <p class="text-4xl text-primary">X</p>
                     </div>
                     <div class="p-10 bg-white w-full sm:w-11/12 md:w-9/12 lg:w-6/12 rounded-lg shadow-xl">
-                        <form action="{{ route('clubs.players.update', [$club, $player]) }}" method="post">
+                        <form action="{{ route('clubs.players.update', [$club, $player]) }}" method="post" enctype="multipart/form-data">
                             @foreach ($errors->all() as $message)
                             {{ $message}}
                             @endforeach
                             @method('PUT')
                             @csrf
                             <h5 class="text-primary text-center">Modifier le joueur</h5>
-                            <div>
+                            <div class="text-primary">
                                 <div>
                                     <label class="flex flex-col" for="last_name">Nom de famille</label>
                                     <input class="inputForm focus:outline-none focus:shadow-outline w-full my-1" type="text" name="last_name" id="last_name" value="{{ $player -> last_name}}">
@@ -77,6 +77,13 @@
                                             <option value="Attaquant">Attaquant</option>
                                         </select>
                                     </div>
+                                </div>
+                                <div>
+                                    <label for="file">Ajoute une photo</label>
+                                    <input type="file" name="file" id="file" accept="jpeg,png,jpg,gif,svg">
+                                    @error('file')
+                                    <span class="error">{{ $message }}</span>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="mt-6 flex flex-col items-center justify-center sm:flex-row">

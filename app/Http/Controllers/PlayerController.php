@@ -10,7 +10,6 @@ use App\Mail\PlayerMail;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\Request;
-use App\Http\Requests\PlayerRequest;
 use Illuminate\Support\Facades\Auth;
 
 class PlayerController extends Controller
@@ -34,7 +33,7 @@ class PlayerController extends Controller
             ->orderBy('last_name', 'asc')
             ->orderBy('first_name', 'asc')
             ->get();
-        return view('players.index', compact('club', 'players','user'));
+        return view('players.index', compact('club', 'players', 'user'));
     }
 
     /**
@@ -56,25 +55,41 @@ class PlayerController extends Controller
     public function store(Request $request, Club $club)
     {
         $user = Auth::user();
-        $players = Player::where('club_id', $club->id)
-            ->orderBy('last_name', 'asc')
-            ->orderBy('first_name', 'asc')
-            ->get();
-        $matchs = Match::where('home_team_id', $club->id)->orwhere('away_team_id', $club->id)->orderBy('date_match','desc')->get();
+        // $players = Player::where('club_id', $club->id)
+        //     ->orderBy('last_name', 'asc')
+        //     ->orderBy('first_name', 'asc')
+        //     ->get();
 
+        $matchs = Match::where('home_team_id', $club->id)->orwhere('away_team_id', $club->id)->orderBy('date_match', 'desc')->get();
 
         $dataPlayer = $request->validate([
-            'last_name' => ['required', 'max:50', 'min:2'],
-            'first_name' => ['required', 'max:50', 'min:2'],
-            'date_of_birth' => ['nullable', 'date'],
-            'position' => ['max:15'],
+            'last_name' => 'required|max:50|min:2',
+            'first_name' => 'required|max:50|min:2',
+            'date_of_birth' => 'nullable|date',
+            'file' => 'nullable|max:10240',
+            'position' => 'required',
         ]);
         $dataPlayer['club_id'] = $club->id;
 
+        // @dd($players);
+
+        if ($request->has('file')) {
+            $path = $request->file->store('avatars');
+            $dataPlayer['avatar_path'] = $path;
+        } else{
+            $dataPlayer['avatar_path'] = "/images/PlayerAvatar.jpg";
+        }
+
         $player = Player::create($dataPlayer);
         $player->user()->associate($user);
-
         $player->save();
+
+        // $playersClub = collect($players);
+        // $players->push($player);
+
+
+
+        // dd($player);
 
         //envoi d'un mail avec les informations du joueur
 
@@ -91,6 +106,8 @@ class PlayerController extends Controller
 
         Mail::to('systaim@gmail.com')
             ->send(new PlayerMail($playerCreate));
+
+        // $players->push($player);
 
         return view('players.index', compact('user', 'club', 'matchs'));
     }
@@ -129,26 +146,28 @@ class PlayerController extends Controller
     public function update(Request $request, Club $club, Player $player)
     {
         $user = Auth::user();
-        $players = Player::where('club_id', $club->id)
-            ->orderBy('last_name', 'asc')
-            ->orderBy('first_name', 'asc')
-            ->get();
 
         $dataPlayer = $request->validate([
-            'last_name' => ['required', 'max:50', 'min:2'],
-            'first_name' => ['required', 'max:50', 'min:2'],
-            'date_of_birth' => ['nullable', 'date'],
-            'file-upload' => ['nullable'],
-            'position' => ['max:15'],
+            'last_name' => 'required|max:50|min:2',
+            'first_name' => 'required|max:50|min:2',
+            'date_of_birth' => 'nullable|date',
+            'file' => 'nullable|max:10240',
+            'position' => 'max:15',
         ]);
 
         $player->first_name = $request->first_name;
         $player->last_name = $request->last_name;
         $player->date_of_birth = $request->date_of_birth;
-        $player->avatar_path = $request->file;
         $player->position = $request->position;
-        // dd($player);
-        
+        if ($request->has('file')) {
+            $path = $request->file->store('avatars');
+            // dd($path);
+            $player->avatar_path = $path;
+        } else{
+            $player->avatar_path = "/images/PlayerAvatar.jpg";
+        }
+        // dd($player->avatar_path);
+
         $player->user()->associate($user);
 
         $player->save();

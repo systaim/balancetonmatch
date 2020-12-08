@@ -15,7 +15,7 @@
             Le match pourra être commenté en <span class="uppercase text-primary font-bold bg-secondary px-2 rounded-full">live</span> le jour J.
         </p>
         <a class="flex justify-end" href="{{ route('matches.create') }}">
-            <button class="btn btnPrimary">Je crée un match</button>
+            <button class="btn btnSecondary">Je crée un match</button>
         </a>
     </div>
 </div>

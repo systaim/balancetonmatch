@@ -8,7 +8,7 @@
 <div class="bg-login py-4 h-full lg:h-screen">
     <form action="{{ route('login') }}" method="post">
         @csrf
-        <div class="m-4 p-6 sm:w-8/12 md:w-7/12 lg:my-1/12 xl:w-6/12 bg-secondary rounded-lg shadow-xl">
+        <div class="m-4 p-6 sm:w-8/12 md:w-7/12 lg:my-1/12 xl:w-6/12 bg-white rounded-lg shadow-xl">
             <h2 class="text-primary text-2xl text-center px-4 m-auto pb-4">Connecte toi</h2>
             <div class="flex flex-col">
                 <label class="hidden" for="email">{{ __('Email') }}</label>
@@ -16,7 +16,7 @@
                     <span class="inline-flex items-center px-3 rounded-l-md">
                         <i class="fas fa-user text-lg"></i>
                     </span>
-                    <input class="inputForm" id="email" type="email" name="email" :value="old('email')" required autofocus autocomplete="email" placeholder="email">
+                    <input class="inputForm border-2 border-darkGray" id="email" type="email" name="email" :value="old('email')" required autofocus autocomplete="email" placeholder="email">
                 </div>
             </div>
             <div class="flex flex-col">
@@ -25,7 +25,7 @@
                     <span class="inline-flex items-center px-3 rounded-l-md">
                         <i class="fas fa-unlock-alt"></i>
                     </span>
-                    <input class="inputForm" type="password" name="password" required placeholder="mot de passe">
+                    <input class="inputForm border-2 border-darkGray" type="password" name="password" required placeholder="mot de passe">
                 </div>
                 <div class="flex justify-center">
                     <input type="checkbox" class="form-checkbox" name="remember">

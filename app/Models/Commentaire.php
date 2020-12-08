@@ -30,8 +30,4 @@ class Commentaire extends Model
     public function player(){
         return $this->hasOneThrough(Player::class, Statistic::class);
     }
-
-    public function scopePopular($query, $id){
-        return $query->where('match_id', $id)->latest('minute');
-    }
 }

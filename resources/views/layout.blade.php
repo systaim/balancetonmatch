@@ -62,7 +62,7 @@
                     <div class="w-full h-64 uppercase text-center flex flex-row justify-evenly items-center">
                         <div class="rounded-lg bg-darkGray flex flex-row justify-evenly items-center py-8 w-11/12">
                             <a class="" href="/login">{{ __('Login') }}</a>
-                            <a class="btn" href="/register">{{ __('Register') }}</a>
+                            <a class="btn btnDark" href="/register">{{ __('Register') }}</a>
                         </div>
                     </div>
                     @endauth
