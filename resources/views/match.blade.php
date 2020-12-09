@@ -3,13 +3,16 @@
         <div class="absolute left-0 md:left-6">
             @livewire('favori-match', ['user' => $user, 'match' => $match])
         </div>
-        <div class="flex justify-center">
+        <div class="relative flex justify-center">
             <p class="px-4 bg-primary text-secondary rounded-tl-md">{{ $match->date_match->formatLocalized('%d/%m/%y')}}</p>
             <p class="px-4 bg-primary text-secondary rounded-tr-md">{{ $match->date_match->formatLocalized('%H:%M')}}</p>
+            @if($match->live != 'finDeMatch' && $match->live != 'reporte' && $match->live != 'attente')
+            <div class="absolute top-0 right-0 z-20 animate-ping rounded-full h-3 w-3 bg-danger"></div>
+            @endif
         </div>
     </div>
     <a href="{{route('matches.show',$match) }}">
-        <div class="grid grid-cols-12">
+        <div class="relative grid grid-cols-12">
             <div class="col-span-5 overflow-hidden">
                 <div class="bg-primary p-2 text-secondary flex flex-col rounded-l-lg md:flex-row md:items-center md:rounded-l-full xl:text-xl xl:font-bold">
                     <div class="flex justify-center">
@@ -25,11 +28,9 @@
             <div class="col-span-2 bg-gradient-to-r from-primary to-secondary flex flex-row justify-center items-center">
                 @if($match->live == 'attente')
                 <p class="bg-indigo-700 text-xs text-center text-white rounded-md px-2 shadow-md border-b-2 border-r-2 border-white">A VENIR</p>
-                @elseif($match->live != 'finDeMatch' && $match->live != 'reporte' && $match->live != 'attente')
-                <p class="bg-red-700 text-xs text-white rounded-md px-2 shadow-md border-b-2 border-r-2 border-white">LIVE</p>
                 @elseif($match->live == 'reporte')
                 <p class="bg-green-600 text-xs text-white rounded-md px-2 shadow-md border-b-2 border-r-2 border-white">REPORTÉ</p>
-                @elseif($match->live == 'finDeMatch')
+                @elseif($match->live != 'reporte' || $match->live != 'attente')
                 <div class="flex justify-center">
                     <div class="bg-white rounded-sm mr-1">
                         <p class="flex justify-center w-4 text-3xl px-4 font-bold">{{$match->home_score}}</p>

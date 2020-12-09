@@ -1,9 +1,27 @@
 <div>
-    <h2 class="titlePage">Créer un match</h2>
+    <div class="flex justify-center">
+        <h2 class="titlePage">Créer un match</h2>
+    </div>
     <form wire:submit.prevent="saveMatch">
         @csrf
-        <div class="bg-primary rounded-lg relative text-white my-2 px-3 py-3">
-            <div>
+        <div class="bg-primary rounded-lg relative text-white my-2 px-3 py-3 m-auto sm:w-11/12 md:w-7/12 lg:w-6/12 xl:w-4/12">
+            <div class="flex justify-evenly mb-4">
+                <div class="flex flex-col w-2/5">
+                    <label for="date_match">Date</label>
+                    <input class="inputForm focus:outline-none focus:shadow-outline w-full my-1" type="date" name="date_match" id="date_match" wire:model="dateMatch" :value="old('date_match')" autocomplete="date_match" required>
+                    @error('date_match')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="flex flex-col w-2/5">
+                    <label for="time">Heure</label>
+                    <input class="inputForm focus:outline-none focus:shadow-outline w-full my-1" type="time" name="time" id="time" wire:model="timeMatch" :value="old('time')" autocomplete="time" required>
+                    @error('time')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+            <div class=" mb-4">
                 <label for="competition">Compétition</label>
                 <select class="inputForm focus:outline-none focus:shadow-outline w-full my-1" name="competition" id="competition" wire:model="competition" :value="old('last_name')" required autocomplete="last_name">
                     <option>Choisissez une compet'</option>
@@ -23,7 +41,7 @@
                 </div>
             </div>
             @if($competition)
-            <div>
+            <div class=" mb-4">
                 @if($competition != 3)
                 <label for="region">Région</label>
                 <select class="inputForm focus:outline-none focus:shadow-outline w-full my-1" name="region" id="region" wire:model="region" :value="old('region')" autocomplete="region" required>
@@ -37,7 +55,7 @@
             <div class="alert alert-danger">{{ $message }}</div>
             @enderror
             @if($competition == "1")
-            <div>
+            <div class=" mb-4">
                 <label for="divisionsRegions">Divisions régionales</label>
                 <select class="inputForm focus:outline-none focus:shadow-outline w-full my-1" name="divisionsRegions" id="divisionsRegions" wire:model="divisionsRegions" :value="old('divisionsRegions')" autocomplete="divisionsRegions" required>
                     <option>Choisissez une division</option>
@@ -49,7 +67,7 @@
             @error('divisionsRegions')
             <div class="alert alert-danger">{{ $message }}</div>
             @enderror
-            <div>
+            <div class=" mb-4">
                 <label for="group">Groupe</label>
                 <select class="inputForm focus:outline-none focus:shadow-outline w-full my-1" name="group" id="group" wire:model="group" :value="old('group')" autocomplete="group" required>
                     <option>Choisissez un groupe</option>
@@ -63,7 +81,7 @@
             @enderror
             @endif
             @if($competition == "2")
-            <div>
+            <div class=" mb-4">
                 <label for="divisionsDepartments">Divisions départementales</label>
                 <select class="inputForm focus:outline-none focus:shadow-outline w-full my-1" name="divisionsDepartments" id="divisionsDepartments" wire:model="divisionsDepartments" :value="old('divisionsDepartments')" autocomplete="divisionsDepartments" required>
                     <option>Choisissez une division</option>
@@ -77,7 +95,7 @@
             @error('divisionsDepartments')
             <div class="alert alert-danger">{{ $message }}</div>
             @enderror
-            <div>
+            <div class=" mb-4">
                 <label for="group">Groupe</label>
                 <select class="inputForm focus:outline-none focus:shadow-outline w-full my-1" name="group" id="group" wire:model="group" :value="old('group')" autocomplete="group" required>
                     <option>Choisissez un groupe</option>
@@ -91,7 +109,7 @@
             @enderror
             @endif
             @endif
-            <div>
+            <div class=" mb-4">
                 <label for="home_team">Equipe à domicile</label>
                 <input class="inputForm focus:outline-none focus:shadow-outline w-full my-1" list="teams" wire:model="searchHome" type="search" name="home_team" id="home_team" :value="old('home_team')" autocomplete="home_team" required>
                 <datalist id="teams" wire:model="clubs">
@@ -99,11 +117,11 @@
                     <option value="{{ $club->name }}">{{ $club->name }}</option>
                     @endforeach
                 </datalist>
+                @error('home_team')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
             </div>
-            @error('home_team')
-            <div class="alert alert-danger">{{ $message }}</div>
-            @enderror
-            <div>
+            <div class=" mb-4">
                 <label for="away_team">Equipe à l'extérieur</label>
                 <input class="inputForm focus:outline-none focus:shadow-outline w-full my-1" list="teams" wire:model="searchAway" type="search" name="away_team" id="away_team" :value="old('away_team')" autocomplete="away_team" required>
                 <datalist id="teams" wire:model="clubs">
@@ -111,25 +129,11 @@
                     <option value="{{ $club->name }}">{{ $club->name }}</option>
                     @endforeach
                 </datalist>
+                @error('away_team')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
             </div>
-            @error('away_team')
-            <div class="alert alert-danger">{{ $message }}</div>
-            @enderror
-            <div>
-                <label for="date_match">Date</label>
-                <input class="inputForm focus:outline-none focus:shadow-outline w-full my-1" type="date" name="date_match" id="date_match" wire:model="dateMatch" :value="old('date_match')" autocomplete="date_match" required>
-            </div>
-            @error('date_match')
-            <div class="alert alert-danger">{{ $message }}</div>
-            @enderror
-            <div>
-                <label for="time">Heure</label>
-                <input class="inputForm focus:outline-none focus:shadow-outline w-full my-1" type="time" name="time" id="time" wire:model="timeMatch" :value="old('time')" autocomplete="time" required>
-            </div>
-            @error('time')
-            <div class="alert alert-danger">{{ $message }}</div>
-            @enderror
-            <div>
+            <div class=" mb-4">
                 <div class="flex justify-center items-center">
                     <button class="relative btn flex" type="submit" wire:model="saveMatch">
                         <div class="mr-3">
@@ -147,7 +151,6 @@
                     <p>{{$messageErreur}}</p>
                 </div>
             </div>
-
         </div>
         @endif
     </form>
