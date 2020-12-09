@@ -100,14 +100,14 @@ class MatchController extends Controller
     public function show(Match $match)
     {
         $users = User::all();
-        $commentators = Commentator::where('match_id', $match->id)->get();
+        $commentator = Commentator::where('match_id', $match->id)->get();
         $commentsMatch = $match->commentaires()->with(['statistic'])->orderBy('minute', 'desc')->orderBy('updated_at', 'desc')->get();
         $clubHome = $match->homeClub()->get();
         $clubAway = $match->awayClub()->get();
         $stats = Statistic::all();
         $nbrFavoris = Favorismatch::where('match_id', $match->id)->count();
         $competitions = $match->competition()->get();
-        return view('matches.show', compact('users', 'match', 'commentsMatch', 'clubHome', 'clubAway', 'competitions', 'stats', 'nbrFavoris', 'commentators'));
+        return view('matches.show', compact('users', 'match', 'commentsMatch', 'clubHome', 'clubAway', 'competitions', 'stats', 'nbrFavoris', 'commentator'));
     }
 
     /**

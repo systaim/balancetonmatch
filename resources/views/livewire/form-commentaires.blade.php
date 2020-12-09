@@ -24,13 +24,15 @@
             <div class="grid grid-cols-12 pb-10 lg:mx-2 xl:mx-6">
                 <div class="col-span-5 overflow-hidden">
                     <div class="bg-primary p-2 text-secondary flex flex-col lg:flex-row lg:items-center lg:rounded-l-full">
-                        <div class="flex justify-center">
+                        <div class="relativeflex justify-center">
                             @auth
-                            @foreach($commentators as $commentator)
-                            @if(($match->live == 'debut' || $match->live == 'repriseMT') && $commentator->user->id == Auth::user()->id)
+                            @if( $match->commentateur->user->id == Auth::user()->id)
                             <input class="hidden" type="radio" wire:model="team_action" id="homeAction" name="team_action" value="home">
+                            @else
+                            <div>
+                                <p class="p-4 bg-darkGray text-success">TEST</p>
+                            </div>
                             @endif
-                            @endforeach
                             @endauth
                             <label for="homeAction">
                                 <div class="logo h-16 w-16 sm:h-20 sm:w-20 lg:h-24 lg:w-24 cursor-pointer lg:mr-1 xl:mr-4">
@@ -69,11 +71,9 @@
                         </div>
                         <div class="flex justify-center">
                             @auth
-                            @foreach($commentators as $commentator)
-                            @if(($match->live == 'debut' || $match->live == 'repriseMT') && $commentator->user_id == Auth::user()->id)
+                            @if($match->commentateur->user_id == Auth::user()->id)
                             <input class="hidden" type="radio" wire:model="team_action" id="awayAction" name="team_action" value="away">
                             @endif
-                            @endforeach
                             @endauth
                             <label for="awayAction">
                                 <div class="logo h-16 w-16 sm:h-20 sm:w-20 lg:h-24 lg:w-24 cursor-pointer lg:ml-1 xl:ml-4">
@@ -248,6 +248,7 @@
 
     <!-- fin Formulaire d'action équipe -->
     <!-- formulaire de commentaires -->
+    
     @auth
     <div>
         @if($firstCom == 1)
@@ -266,7 +267,7 @@
         </div>
     </div>
     @endauth
-    <div class="lg:w-6/12 lg:m-auto">
+    <div class="sm:w-9/12 sm:m-auto md:w-10/12 lg:w-6/12">
         @if($nbrFavoris > 0 && $match->live == "attente")
         <div class="bg-secondary text-primary rounded-lg relative my-2 flex justify-center m-auto p-1">
             @if($nbrFavoris == 1)
@@ -291,14 +292,14 @@
             <p class="text-center">Le match est reporté à une date ultérieure</p>
         </div>
         @endif
-        @if($match->live == 'attente')
+        @if(empty($match->commentateur))
         <div class="w-full h-full py-3 bg-primary text-secondary font-bold rounded-lg shadow-lg my-6">
             <p class="text-center">En attente d'un commentateur</p>
         </div>
         @auth
-        <button type="button" class="relative commentaires h-20 bg-white commandeMatch items-stretch w-full focus:outline-none minHeight16" wire:click="timeZero" wire:model="type_comments">
+        <button type="button" class="relative commentaires h-20 bg-white commandeMatch items-stretch w-full focus:outline-none minHeight16" wire:click="becomeCommentator" wire:model="commentator">
             <div class="minuteCommentaires w-24 commandeMatch">
-                <img src="{{asset('images/whistle-white.png')}}" alt="">
+                <img src="{{asset('images/whistle-white.png')}}">
             </div>
             <div class="bg-white w-full h-full p-3 flex flex-col justify-center">
                 <p class="text-center">Je souhaite commenter ⏱</p>
@@ -311,9 +312,9 @@
                 </div>
             </div>
         </button>
-        <button type="button" class="relative commentaires h-20 bg-white commandeMatch items-stretch w-full focus:outline-none" wire:click="matchReporte">
+        <!-- <button type="button" class="relative commentaires h-20 bg-white commandeMatch items-stretch w-full focus:outline-none" wire:click="matchReporte">
             <div class="minuteCommentaires w-24 commandeMatch">
-                <img src="{{asset('images/danger.png')}}" alt="">
+                <img src="{{asset('images/danger.png')}}">
             </div>
             <div class="bg-white w-full h-full p-3 flex flex-col justify-center">
                 <p class="text-center">Le match est reporté ou annulé</p>
@@ -325,7 +326,7 @@
                     @endif
                 </div>
             </div>
-        </button>
+        </button> -->
         @else
         <a href="/login">
             <div class="relative commentaires h-20 bg-white commandeMatch items-stretch w-full focus:outline-none">
@@ -341,9 +342,19 @@
         @endif
         @auth
     </div>
+    @if($match->commentateur)
     <div class="my-6 w-11/12 m-auto lg:w-8/12">
-        @foreach($commentators as $commentator)
-        @if($commentator->user_id == Auth::user()->id)
+        @if($match->commentateur->user->id == Auth::user()->id)
+        @if($match->live == 'attente')
+        <button type="button" class="commentaires h-12 bg-white commandeMatch items-stretch w-full" wire:click="timeZero" wire:model="commentator">
+            <div class="minuteCommentaires w-24 sm:w-32 commandeMatch flex justify-center">
+                <img class="bg-contain h-12" src="{{asset('images/whistle-white.png')}}" alt="">
+            </div>
+            <div class="bg-white w-full pt-3">
+                <p class="text-center">Démarrer le match</p>
+            </div>
+        </button>
+        @endif
         @if($match->live == 'debut' && now()->diffInMinutes($match->date_match) >= 40)
         <button type="button" class="commentaires h-12 bg-white commandeMatch items-stretch w-full" wire:click="timeMitemps" wire:model="type_comments">
             <div class="minuteCommentaires w-24 sm:w-32 commandeMatch flex justify-center">
@@ -375,18 +386,17 @@
         </button>
         @endif
         @endif
-        @endforeach
         @endauth
     </div>
+    @endif
     <!-- fin de formulaire de commentaires -->
     <div class="my-6 w-11/12 m-auto lg:w-11/12 lg:flex lg:justify-around" wire:poll.5000ms.keep-alive="miseAJourCom">
-        <div class="lg:w-8/12">
+        <div class="m-auto sm:w-10/12 lg:w-8/12">
             @foreach($commentsMatch as $comment)
             <div class="relative commentaires minHeight16 h-auto {{ $comment->team_action }}">
                 <div class="minuteCommentaires w-24 sm:w-32 {{ $comment->team_action }} p-4 flex flex-col items-center">
                     <div>
                         <p class="text-lg mb-4">{{ $comment->minute}}'</p>
-                        @dump($comment->id)
                     </div>
                     @if($comment->team_action == "home")
                     <div class="logo h-8 w-8 cursor-pointer">
@@ -414,40 +424,38 @@
                         </a>
                     </div>
                     @endif
+                    <div class="flex justify-end items-end">
+                        <p class="text-xs">{{ $match->commentateur->user->pseudo }}</p>
+                    </div>
                 </div>
                 @auth
-                @foreach($commentators as $commentator)
-                @if($commentator->user_id == Auth::user()->id && $match->live != "finDeMatch")
+                @if($match->commentateur->user_id == Auth::user()->id && $match->live != "finDeMatch")
                 <div class="absolute flex justify-center items-center right-1 top-0">
                     <div>
                         <a class="text-lg text-danger" href="{{route('supprimer', ['id' => $comment->id]) }}" onclick="return confirm('Etes vous sûr de vouloir supprimer ce commentaire ?')"><i class="far fa-times-circle"></i></a>
                     </div>
                 </div>
                 @endif
-                @endforeach
                 @endauth
             </div>
             @endforeach
         </div>
+        @if($match->commentateur)
         <div>
-            @foreach($commentators as $commentator)
             <div class="bg-white rounded-lg border-white w-11/12 m-auto my-8 shadow-2xl lg:my-0 lg:w-auto max-w-sm">
                 <div class="bg-primary text-secondary rounded-t-lg">
                     <h3 class="text-center p-2">Le "Thierry Roland" du jour</h3>
                 </div>
                 <div class="flex justify-evenly items-center p-4">
                     <div>
-                        <p class="font-bold">{{$commentator->user->pseudo}}</p>
+                        <p class="font-bold">{{$match->commentateur->user->pseudo}}</p>
                     </div>
-                    <!-- <div class="flex items-center justify-center bg-secondary h-12 w-12 rounded-full m-2">
-                    @foreach($commentators as $commentator)
-                    <p>{{$commentator->user->note}}</p>
-                    @endforeach
-                </div> -->
+                    <div class="flex items-center justify-center bg-secondary h-12 w-12 rounded-full m-2">
+                        <p>{{$match->commentateur->user->note}}</p>
+                    </div>
                 </div>
             </div>
-            @endforeach
         </div>
-
+        @endif
     </div>
 </form>

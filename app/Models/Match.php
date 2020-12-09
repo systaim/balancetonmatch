@@ -71,4 +71,9 @@ class Match extends Model
     {
         return $this->belongsTo(Group::class, 'group_id');
     }
+
+    public function commentateur()
+    {
+        return $this->hasOne(Commentator::class);
+    }
 }

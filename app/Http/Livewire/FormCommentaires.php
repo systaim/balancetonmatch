@@ -37,7 +37,7 @@ class FormCommentaires extends Component
     public $heureMatch;
     public $matchNonDispo = "";
     public $nbrFavoris;
-    public $commentators;
+    public $commentator;
     public $firstCom;
     public $file;
     protected $listeners = ['id' => 'deleteCom'];
@@ -72,7 +72,7 @@ class FormCommentaires extends Component
             // session()->flash('messageCloture', 'Les commentaires sont cloturés... A bientôt !');
         }
 
-        foreach ($this->commentators as $comm) {
+        foreach ($this->commentator as $comm) {
             $this->firstCom = $comm->user->first_com;
         }
     }
@@ -88,12 +88,6 @@ class FormCommentaires extends Component
     public function deleteMenu()
     {
         $this->deleteMenu = 1;
-    }
-
-    public function deleteCom($id)
-    {
-        $comment = Commentaire::find($id);
-        dd($comment);
     }
 
     public function chrono()
@@ -131,6 +125,17 @@ class FormCommentaires extends Component
         $user->save();
     }
 
+    public function becomeCommentator()
+    {
+        $user = Auth::user();
+
+        $commentateur = new Commentator;
+        $commentateur['user_id'] = $user->id;
+        $commentateur['match_id'] = $this->match->id;
+        $commentateur->save();
+        $this->commentator->push($commentateur);
+    }
+
     public function matchReporte()
     {
         $user = Auth::user();
@@ -149,12 +154,7 @@ class FormCommentaires extends Component
 
     public function timeZero()
     {
-        $user = Auth::user();
-
         if ($this->dateMatch->diffInMinutes(now(), false) > -30) {
-            $commentateur = new Commentator;
-            $commentateur['user_id'] = $user->id;
-            $commentateur['match_id'] = $this->match->id;
 
             $commentData['type_comments'] = "Début du match ! 🤩";
             $commentData['minute'] = 0;
@@ -163,7 +163,7 @@ class FormCommentaires extends Component
             $comment = Commentaire::create($commentData);
 
             if ($comment) {
-                $commentateur->save();
+
                 $this->match->live = "debut";
 
                 $this->home_score = 0;
@@ -174,9 +174,10 @@ class FormCommentaires extends Component
 
                 $this->match->save();
 
-                $comment->commentator()->associate($commentateur);
+                foreach ($this->commentator as $comm) {
+                    $comment->commentator()->associate($comm->id);
+                }
                 $comment->save();
-                $this->commentators->push($commentateur);
 
                 $this->commentsMatch =  $this->match->commentaires()->orderBy('minute', 'desc')->orderBy('updated_at', 'desc')->get();
                 session()->flash('successMessage', 'Bon Match ! 😉');
@@ -204,7 +205,7 @@ class FormCommentaires extends Component
 
         if ($comment) {
 
-            foreach ($this->commentators as $comm) {
+            foreach ($this->commentator as $comm) {
                 $comment->commentator()->associate($comm->id);
             }
             $comment->save();
@@ -227,7 +228,7 @@ class FormCommentaires extends Component
 
         if ($comment) {
 
-            foreach ($this->commentators as $comm) {
+            foreach ($this->commentator as $comm) {
                 $comment->commentator()->associate($comm->id);
             }
             $comment->save();
@@ -251,7 +252,7 @@ class FormCommentaires extends Component
 
         if ($comment) {
 
-            foreach ($this->commentators as $comm) {
+            foreach ($this->commentator as $comm) {
                 $comment->commentator()->associate($comm->id);
             }
             $comment->save();
@@ -263,7 +264,7 @@ class FormCommentaires extends Component
     public function saveComment()
     {
 
-        if ($this->dateMatch->diffInMinutes(now(), false) >= 0) {
+        if ($this->dateMatch->diffInMinutes(now(), false) >= 0 && $this->match->live == "debut" || $this->match->live == "repriseMT") {
 
             $statData2['action'] = '';
             $this->validate([
@@ -314,7 +315,7 @@ class FormCommentaires extends Component
             $comment = Commentaire::create($commentData);
 
             if ($comment) {
-                foreach ($this->commentators as $comm) {
+                foreach ($this->commentator as $comm) {
                     $comment->commentator()->associate($comm->id);
                 }
                 if ($this->file) {
@@ -339,7 +340,7 @@ class FormCommentaires extends Component
                 $this->team_action = false;
             }
         } else {
-            session()->flash('messageDebutDeMatch', "Le match n'est pas encore commencé...");
+            session()->flash('messageDebutDeMatch', "Le match n'est pas commencé ou c'est la mi-temps...");
         }
     }
 
