@@ -2,7 +2,7 @@
 @section('content')
 
 <section class="relative w-11/12 m-auto min-h-screen">
-    <div class="absolute top-12 left-12 sm:left-24 z-10">
+    <div class="absolute top-12 left-8 md:left-2 lg:left-8 z-10">
         @livewire('favori-team', ['user' => $user, 'club' => $club,'nbrFavoris' => $nbrFavoris])
     </div>
     @include('clubs.logo')
