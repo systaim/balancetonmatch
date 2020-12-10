@@ -1,18 +1,8 @@
 <div class="h-auto w-full">
-
-    <h2 class="titlePage">Liste des clubs</h2>
-    <!-- <form wire:submit.prevent="searchByName">
-        <div class="relative flex flex-wrap w-10/12 items-stretch mb-3 m-auto">
-            <input autofocus type="text" wire:model.defer="name" placeholder="Recherche" class="focus px-3 py-3 placeholder-gray-800 text-gray-700 relative bg-white rounded text-sm shadow outline-none focus:outline-none focus:shadow-outline w-full pr-10" />
-            <span class="z-10 h-full leading-snug font-normal text-center text-gray-900 absolute bg-transparent rounded text-base items-center justify-center w-8 right-0 pr-3 py-3">
-                <input type="submit" value="🔍">
-            </span>
-        </div>
-    </form> -->
-    <!-- <div wire:loading wire:target="searchByName" class="text-center m-auto bg-primary text-secondary mx-5 px-2 hidden">
-        Loading...
-    </div> -->
-    <div class="flex justify-center">
+    <div class="flex justify-center my-8">
+        <h2 class="titlePage">Liste des clubs</h2>
+    </div>
+    <div class="flex justify-center my-8 m-auto w-11/12 sm:w-9/12 md:w-7/12 lg:w-6/12">
         <label for="query" class="sr-only">Search</label>
         <input autofocus type="search" class="inputForm focus:outline-none focus:shadow-outline w-full my-1 mx-2" id="query" placeholder="Ex: Nantes" wire:model="query">
     </div>
@@ -24,7 +14,7 @@
         </div>
         @endif
     </div>
-    <div class="m-auto my-8 w-11/12">
+    <div class="m-auto my-8 w-11/12 sm:w-9/12 md:w-7/12 lg:w-6/12">
         @foreach ($clubs as $club)
         @if($clubs)
         <a href="{{ route('clubs.show', $club) }}">
@@ -35,7 +25,7 @@
                             <img class="object-contain" src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $club->numAffiliation }}.jpg">
                         </div>
                     </div>
-                    <div class=" py-2 w-full text-secondary overflow-scroll ml-2">
+                    <div class=" py-2 w-full text-secondary overflow-hidden ml-2">
                         <p class="truncate">{{ $club->name}}</p>
                     </div>
                 </div>
