@@ -26,12 +26,8 @@
                     <div class="bg-primary p-2 text-secondary flex flex-col lg:flex-row lg:items-center lg:rounded-l-full">
                         <div class="relativeflex justify-center">
                             @auth
-                            @if( $match->commentateur->user->id == Auth::user()->id)
+                            @if($match->commentateur != null && $match->commentateur->user->id == Auth::user()->id)
                             <input class="hidden" type="radio" wire:model="team_action" id="homeAction" name="team_action" value="home">
-                            @else
-                            <div>
-                                <p class="p-4 bg-darkGray text-success">TEST</p>
-                            </div>
                             @endif
                             @endauth
                             <label for="homeAction">
@@ -71,7 +67,7 @@
                         </div>
                         <div class="flex justify-center">
                             @auth
-                            @if($match->commentateur->user_id == Auth::user()->id)
+                            @if($match->commentateur != null && $match->commentateur->user_id == Auth::user()->id)
                             <input class="hidden" type="radio" wire:model="team_action" id="awayAction" name="team_action" value="away">
                             @endif
                             @endauth
@@ -248,7 +244,7 @@
 
     <!-- fin Formulaire d'action équipe -->
     <!-- formulaire de commentaires -->
-    
+
     @auth
     <div>
         @if($firstCom == 1)
@@ -344,7 +340,7 @@
     </div>
     @if($match->commentateur)
     <div class="my-6 w-11/12 m-auto lg:w-8/12">
-        @if($match->commentateur->user->id == Auth::user()->id)
+        @if($match->commentateur != null && $match->commentateur->user->id == Auth::user()->id)
         @if($match->live == 'attente')
         <button type="button" class="commentaires h-12 bg-white commandeMatch items-stretch w-full" wire:click="timeZero" wire:model="commentator">
             <div class="minuteCommentaires w-24 sm:w-32 commandeMatch flex justify-center">

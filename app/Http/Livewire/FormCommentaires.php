@@ -129,11 +129,15 @@ class FormCommentaires extends Component
     {
         $user = Auth::user();
 
+        if ($this->dateMatch->diffInMinutes(now(), false) > -30) {
         $commentateur = new Commentator;
         $commentateur['user_id'] = $user->id;
         $commentateur['match_id'] = $this->match->id;
         $commentateur->save();
         $this->commentator->push($commentateur);
+        } else{
+            session()->flash('messageComment', "Revenez 30 minutes avant le coup d'envoi");
+        }
     }
 
     public function matchReporte()
