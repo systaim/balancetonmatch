@@ -18,6 +18,7 @@ class CreateStaffsTable extends Migration
             $table->string('first_name');
             $table->string('name');
             $table->string('quality');
+            $table->string('avatar_path')->nullable()->default("/images/PlayerAvatar.jpg");
             $table->unsignedBigInteger('club_id');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();

@@ -4,15 +4,17 @@
     @include('clubs.linkPageClub')
     @include('clubs.logo')
     <div class="flex justify-center">
-            @error('last_name')
-            <span class="error">{{ $message }}</span>
-            @enderror
-            @error('first_name')
-            <span class="error">{{ $message }}</span>
-            @enderror
-        </div>
+        @error('last_name')
+        <span class="error">{{ $message }}</span>
+        @enderror
+        @error('first_name')
+        <span class="error">{{ $message }}</span>
+        @enderror
+    </div>
     <div class="my-8">
-        <h3 class="titlePage">Les joueurs</h3>
+        <div class="flex justify-center">
+            <h3 class="titlePage">Les joueurs</h3>
+        </div>
         <div class="flex flex-row flex-wrap justify-center">
             @foreach($club->players->sortBy('last_name') as $player)
             <div class="relative w-72 m-4 bg-primary text-white flex flex-col justify-between rounded-lg shadow-2xl overflow-x-hidden">
@@ -22,7 +24,7 @@
                 <div class="flex justify-between">
                     <div class="relative">
                         <img class="object-cover h-80 w-full rounded-br-lg" src="{{ asset($player->avatar_path)}}" alt="avatar">
-                        @switch($player -> position)
+                        @switch($player->position)
                         @case('Gardien de but')
                         <p class="absolute bottom-1 right-1 bg-primary text-secondary font-bold py-1 px-2 rounded-lg">GB</p>
                         @break

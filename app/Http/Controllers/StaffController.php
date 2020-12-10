@@ -50,12 +50,20 @@ class StaffController extends Controller
         $matchs = Match::where('home_team_id', $club->id)->orwhere('away_team_id', $club->id)->orderBy('date_match','desc')->get();
 
         $dataStaff = $request->validate([
-            'last_name' => ['required', 'max:50', 'min:2'],
-            'first_name' => ['required', 'max:50', 'min:2'],
-            'quality' => ['required', 'min:3'],
+            'last_name' => 'required|max:50|min:2',
+            'first_name' => 'required|max:50|min:2',
+            'file' => 'nullable|max:10240',
+            'quality' => 'required|min:3',
         ]);
             
         $dataStaff['club_id'] = $club->id;
+
+        if ($request->has('file')) {
+            $path = $request->file->store('avatars');
+            $dataPlayer['avatar_path'] = $path;
+        } else {
+            $dataPlayer['avatar_path'] = "/images/PlayerAvatar.jpg";
+        }
 
         $staff = Staff::create($dataStaff);
         $staff->user()->associate($user);
@@ -109,7 +117,31 @@ class StaffController extends Controller
      */
     public function update(Request $request, Staff $staff)
     {
-        //
+        $user = Auth::user();
+
+        $datastaff = $request->validate([
+            'last_name' => 'required|max:50|min:2',
+            'first_name' => 'required|max:50|min:2',
+            'date_of_birth' => 'nullable|date',
+            'file' => 'nullable|max:10240',
+            'position' => 'max:15',
+        ]);
+
+
+        $staff->first_name = $request->first_name;
+        $staff->last_name = $request->last_name;
+        $staff->date_of_birth = $request->date_of_birth;
+        $staff->position = $request->position;
+        if ($request->has('file')) {
+            $path = $request->file->store('avatars');
+            $staff->avatar_path = $path;
+        }
+
+        // dd($staff);
+        $staff->user()->associate($user);
+
+        $staff->save();
+        return back()->with('messageUpdate', 'Le joueur a bien été mis à jour');
     }
 
     /**
@@ -120,6 +152,7 @@ class StaffController extends Controller
      */
     public function destroy(Staff $staff)
     {
-        //
+        $staff->delete();
+        return back();
     }
 }
