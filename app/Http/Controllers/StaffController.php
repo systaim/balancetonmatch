@@ -60,9 +60,9 @@ class StaffController extends Controller
 
         if ($request->has('file')) {
             $path = $request->file->store('avatars');
-            $dataPlayer['avatar_path'] = $path;
+            $dataStaff['avatar_path'] = $path;
         } else {
-            $dataPlayer['avatar_path'] = "/images/PlayerAvatar.jpg";
+            $dataStaff['avatar_path'] = "/images/PlayerAvatar.jpg";
         }
 
         $staff = Staff::create($dataStaff);
@@ -115,7 +115,7 @@ class StaffController extends Controller
      * @param  \App\Models\Staff  $staff
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Staff $staff)
+    public function update(Request $request, Club $club, Staff $staff)
     {
         $user = Auth::user();
 
@@ -124,14 +124,14 @@ class StaffController extends Controller
             'first_name' => 'required|max:50|min:2',
             'date_of_birth' => 'nullable|date',
             'file' => 'nullable|max:10240',
-            'position' => 'max:15',
+            'quality' => 'max:15',
         ]);
 
 
         $staff->first_name = $request->first_name;
         $staff->last_name = $request->last_name;
         $staff->date_of_birth = $request->date_of_birth;
-        $staff->position = $request->position;
+        $staff->quality = $request->quality;
         if ($request->has('file')) {
             $path = $request->file->store('avatars');
             $staff->avatar_path = $path;
@@ -150,7 +150,7 @@ class StaffController extends Controller
      * @param  \App\Models\Staff  $staff
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Staff $staff)
+    public function destroy(Club $club, Staff $staff)
     {
         $staff->delete();
         return back();

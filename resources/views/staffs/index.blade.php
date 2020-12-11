@@ -41,7 +41,7 @@
                         @endforeach
                         @method('PUT')
                         @csrf
-                        <h5 class="text-primary text-center">Modifier le joueur</h5>
+                        <h5 class="text-primary text-center">Modifier la personne</h5>
                         <div class="text-primary">
                             <div>
                                 <label class="flex flex-col" for="last_name">Nom de famille</label>
@@ -89,14 +89,14 @@
                             <a href="">
                                 <button type="button" class="btn text-primary">J'annule</button>
                             </a>
-                            <input class="btn btnSuccess" type="submit" value="Je modifie le joueur">
+                            <input class="btn btnSuccess" type="submit" value="Je modifie la personne">
                         </div>
                     </form>
                     <div class="flex justify-end mt-12">
                         <form action="{{ route('clubs.staffs.destroy', [$club, $staff]) }}" method="POST">
                             @method('DELETE')
                             @csrf
-                            <input class="btn btnDanger" type="submit" value="Supprimer ce joueur">
+                            <input class="btn btnDanger" type="submit" value="Supprimer cette personne">
                         </form>
                     </div>
                 </div>
@@ -110,36 +110,15 @@
                         <p class="giant-text text-gray-500">+</p>
                     </div>
                     <div class="text-lg flex justify-center items-start p-2">
-                        <p class="vertical mx-2 font-semibold">Ajouter un joueur</p>
+                        <p class="vertical mx-2 font-semibold">Ajouter une personne</p>
                     </div>
                 </div>
                 <div class="relative flex p-2">
-                    <p class="font-semibold">Ajouter un joueur</p>
+                    <p class="font-semibold">Ajouter une personne</p>
                 </div>
             </a>
         </div>
     </div>
-    <!-- <div class="border-2 border-darkSuccess">
-            @foreach($club->staffs as $staff)
-            <div class="relative my-2 p-3 w-11/12 sm:w-10/12 md:w-8/12 lg:w-6/12 m-auto">
-                <div class="flex flex-col">
-                    <div>
-                        <p class="text-center font-bold mb-2 text-xl">{{ $staff->quality}}</p>
-                    </div>
-                    <div>
-                        <h4 class="capitalize text-darkGray text-center">{{ $staff->first_name}} <span class="uppercase">{{ $staff->last_name}}</span></h4>
-                    </div>
-                </div>
-            </div>
-            @endforeach
-        </div>
-
-    <div>
-        <a href="{{ route('clubs.staffs.create', $club) }}">
-            <button class="btn btnPrimary">Ajouter un membre du staff <span>➤</span></button>
-        </a> -->
-    </div>
-
 </section>
 <script>
     function openMenu(id) {

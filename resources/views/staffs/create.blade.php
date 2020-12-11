@@ -4,7 +4,7 @@
     @include('clubs.linkPageClub')
     @include('clubs.logo')
     <div class="bg-primary rounded-lg relative text-white my-2 p-3 m-auto w-full sm:w-11/12 md:w-9/12 lg:w-6/12">
-        <form action="{{ route('clubs.staffs.store', $club) }}" method="post">
+        <form action="{{ route('clubs.staffs.store', $club) }}" method="post" enctype="multipart/form-data">
             @foreach ($errors->all() as $message)
             {{ $message}}
             @endforeach
@@ -22,7 +22,7 @@
                 <div class="w-10/12 m-auto my-2">
                     <label for="quality">Qualité</label>
                     <select class="inputForm focus:outline-none focus:shadow-outline w-full my-1" name="quality" id="quality">
-                        <option>Choisissez une focntion</option>
+                        <option>Quelle fonction ?</option>
                         <option value="president">Président</option>
                         <option value="vice-president">Vice-président</option>
                         <option value="tresorier">Trésorier</option>

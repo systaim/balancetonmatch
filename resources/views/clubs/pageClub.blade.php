@@ -27,6 +27,7 @@
     </div>
     <div>
         <h3 class="text-center my-4 border-b-2 border-darkGray">Prochain match</h3>
+        @if(count($matchs) != 0)
         @foreach($matchs as $match)
         @if($match->date_match > now())
         <a href="{{route('matches.show',$match)}}">
@@ -34,15 +35,23 @@
         </a>
         @endif
         @endforeach
+        @else
+        <p>Pas de match à venir</p>
+        @endif
     </div>
     <div>
         <h3 class="text-center my-4 border-b-2 border-darkGray">Historique des matchs</h3>
+        @if(count($matchs) != 0)
         @foreach($matchs as $match)
-        @if($match->date_match < now()) <a href="{{route('matches.show',$match)}}">
+        @if($match->date_match < now()) 
+        <a href="{{route('matches.show',$match)}}">
             @include('match')
-            </a>
-            @endif
-            @endforeach
+        </a>
+        @endif
+        @endforeach
+        @else
+        <p>Pas d'historique de matchs pour le moment</p>
+        @endif
     </div>
 
 </section>

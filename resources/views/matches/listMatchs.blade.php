@@ -19,7 +19,9 @@
         </a>
     </div>
 </div>
-<h2 class="titlePage">Liste des matchs</h2>
+<div class="flex justify-center">
+    <h2 class="titlePage">Liste des matchs</h2>
+</div>
 <div class="my-4 mx-2 relative lg:flex lg:justify-center">
     <div class="lg:w-9/12">
         @foreach($matches as $match)
