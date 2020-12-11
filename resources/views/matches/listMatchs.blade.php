@@ -24,7 +24,13 @@
 </div>
 <div class="my-4 mx-2 relative lg:flex lg:justify-center">
     <div class="lg:w-9/12">
+    
         @foreach($matches as $match)
+        @if($match->region)
+        {{ $match->region->name }}
+        @else
+        {{ $match->competition->name }}
+        @endif
         @include('match')
         @endforeach
     </div>

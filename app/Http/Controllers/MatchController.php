@@ -38,7 +38,10 @@ class MatchController extends Controller
         $user = Auth::user();
         $players = Player::all();
         $competitions = Competition::all();
-        $matches = Match::where('date_match', '>=', Carbon::now()->subHours(6))->orderBy('date_match', 'asc')->get();
+        $matchR = Match::all();
+        $matches = Match::where('date_match', '>=', Carbon::now()->subHours(6))
+        ->orderBy('date_match', 'asc')
+        ->get();
         return view('matches.listMatchs', compact('clubs', 'players', 'competitions', 'matches', 'user'));
     }
 

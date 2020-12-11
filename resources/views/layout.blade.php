@@ -12,18 +12,25 @@
 </head>
 
 <body>
-    <header id="header" class="header bg-primary relative">
-        <div>
-            <button id="burger" class="open-main-nav">
-                <span class="burger"></span>
-                <span class="burger-text">Menu</span>
-            </button>
-        </div>
-        <div class="m-auto w-2/3 text-secondary text-center pb-4 diagonale pt-3">
+    <header id="header" class="bg-primary relative flex justify-around items-center">
+        <div class="text-secondary text-center pb-4 diagonale pt-3">
             <a href="/">
                 <h1 class="text-lg"><span class="text-lg">balance ton match</h1>
                 <p class="text-xs">Quand la touche part en live...</p>
             </a>
+        </div>
+        <nav class="text-white hidden lg:block mx-2">
+            <ul class="flex">
+                <li class="mx-2"><a href="/"><i class="fas fa-home"></i> Accueil</a></li>
+                <li class="mx-2"><a href="{{ route('clubs.index') }}"><i class="fas fa-search"></i> Rechercher un club</a></li>
+                <li class="mx-2"><a href="{{ route('matches.index') }}"><i class="far fa-list-alt"></i> Liste des matchs</a></li>
+            </ul>
+        </nav>
+        <div>
+            <button id="burger" class="open-main-nav lg:hidden">
+                <span class="burger"></span>
+                <span class="burger-text">Menu</span>
+            </button>
         </div>
         <div id="main-nav" class="main-nav bg-primary">
             <div class="w-full rounded-b-lg shadow-xl bg-darkGray pt-16 pb-4 bg-menu">
