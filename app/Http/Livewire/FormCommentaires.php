@@ -281,6 +281,7 @@ class FormCommentaires extends Component
             $commentData = ['minute' => $this->minute, 'team_action' => $this->team_action];
 
             if ($this->type_comments == "but") {
+                $commentData['type_action'] = "goal";
                 $commentData['type_comments'] = $this->listGoal[array_rand($this->listGoal)];
                 $commentData['comments'] = $this->type_but;
 
@@ -342,9 +343,14 @@ class FormCommentaires extends Component
                 $this->commentsMatch = $this->match->commentaires()->orderBy('minute', 'desc')->orderBy('updated_at', 'desc')->get();
                 session()->flash('successMessage', 'Merci pour ce commentaire 😉');
                 $this->team_action = false;
+                $this->file = "";
+                $this->type_comments = "";
+                $this->player = "";
+                $this->type_but = "";
+                $this->type_carton = "";
             }
         } else {
-            session()->flash('messageDebutDeMatch', "Le match n'est pas commencé ou c'est la mi-temps...");
+            session()->flash('messageDebutDeMatch', "Il n'est pas possible de commenter maintenant");
         }
     }
 

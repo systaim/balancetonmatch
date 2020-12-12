@@ -24,7 +24,7 @@
             <div class="grid grid-cols-12 pb-10 lg:mx-2 xl:mx-6">
                 <div class="col-span-5 overflow-hidden">
                     <div class="bg-primary p-2 text-secondary flex flex-col lg:flex-row lg:items-center lg:rounded-l-full">
-                        <div class="relativeflex justify-center">
+                        <div class="relative flex justify-center">
                             @auth
                             @if($match->commentateur != null && $match->commentateur->user->id == Auth::user()->id)
                             <input class="hidden" type="radio" wire:model="team_action" id="homeAction" name="team_action" value="home">
@@ -42,13 +42,6 @@
                             </a>
                         </div>
                     </div>
-                    @foreach($commentsMatch as $comment)
-                        <div>
-                            @if($comment->team_action == "home")
-                            <p class="font-bold">{{ $comment->statistic->player->first_name}} {{ $comment->statistic->player->last_name}}</p>
-                            @endif
-                        </div>
-                        @endforeach
                 </div>
                 <div class="relative col-span-2 bg-gradient-to-r from-primary to-secondary flex flex-col justify-center items-center">
                     <div class="absolute top-1 text-white font-bold text-xl">
@@ -250,24 +243,33 @@
     </div>
 
     <!-- fin Formulaire d'action équipe -->
-    <!-- formulaire de commentaires -->
-
+    <!-- affichage de commentaires match-->
     @auth
     <div>
         @if($firstCom == 1)
-        <div class="bg-primary w-full h-96 rounded-lg p-4 text-white text-xs text-center">
+        <div class="bg-primary w-11/12 rounded-lg p-4 text-white m-auto my-2">
             <h3 class="text-secondary text-center text-base mb-4">Comment bien commenter ?</h3>
-            <p>Envie de commenter ? Rien de plus simple !</p>
-            <p>Il te suffit de cliquer sur un des deux logo pour afficher le menu ACTIONS</p>
-            <p>Le temps est donné à titre indicatif, le chrono démarre à l'heure du match. Tu peux le modifier facilement
-                si besoin. Tu choisis une action, un joueur et tu valides.</p>
-            <p>C'est tout !</p>
-            <button class="btn btnSecondary" wire:click="clickFirstCom" wire:model="firstCom">J'ai compris</button>
+            <div class="flex justify-evenly">
+                <div class="logo h-16 w-16 sm:h-20 sm:w-20 lg:h-24 lg:w-24 cursor-pointer lg:mr-1 xl:mr-4">
+                    <img class="object-contain" src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $match->homeClub->numAffiliation }}.jpg" alt="logo">
+                </div>
+                <div class="logo h-16 w-16 sm:h-20 sm:w-20 lg:h-24 lg:w-24 cursor-pointer lg:mr-1 xl:mr-4">
+                    <img class="object-contain" src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $match->awayClub->numAffiliation }}.jpg" alt="logo">
+                </div>
+            </div>
+            <div class="my-4 mx-6 flex justify-center">
+                <ol class="list-decimal p-2">
+                    <li>Clique sur le logo d'équipe de ton choix</li>
+                    <li>Renseigne l'action (but, carton, etc...)</li>
+                    <li>Tu peux ajouter une photo de l'exploit si tu veux</li>
+                    <li>Valide ! et c'est tout... 😉</li>
+                </ol>
+            </div>
+            <div class="text-center">
+                <button class="btn btnSecondary" wire:click="clickFirstCom" wire:model="firstCom">J'ai compris</button>
+            </div>
         </div>
         @endif
-        <div class="mx-6 my-4 text-right">
-            <p class="text-xs cursor-pointer underline" wire:click="needHelp">Besoin d'aide ?</p>
-        </div>
     </div>
     @endauth
     <div class="sm:w-9/12 sm:m-auto md:w-10/12 lg:w-6/12">
@@ -392,8 +394,35 @@
         @endauth
     </div>
     @endif
-    <!-- fin de formulaire de commentaires -->
-    <div class="my-6 w-11/12 m-auto lg:w-11/12 lg:flex lg:justify-around" wire:poll.5000ms.keep-alive="miseAJourCom">
+    <!-- fin de formulaire de commentaires match-->
+
+    <!-- Affichage des commentaires -->
+    <div class="flex justify-around">
+        <div class="col-span-5 m-1">
+            @foreach($commentsMatch->sortBy('minute') as $comment)
+            @if($comment->team_action == "home" && $comment->type_action == "goal")
+            <div class="flex flex-row justify-end items-center m-auto">
+                <p class="text-xs px-2">{{ $comment->statistic->player->first_name}} {{ $comment->statistic->player->last_name}}</p>
+                <p class="text-xs">⚽</p>
+            </div>
+            @endif
+            @endforeach
+        </div>
+        <div class="m-1">
+            @foreach($commentsMatch as $comment)
+            @if($comment->team_action == "away" && $comment->type_action == "goal")
+            <div class="flex flex-row-reverse justify-end items-center m-auto">
+                <p class="text-xs px-2">{{ $comment->statistic->player->first_name}} {{ $comment->statistic->player->last_name}}</p>
+                <p class="text-xs">⚽</p>
+            </div>
+            @endif
+            @endforeach
+        </div>
+    </div>
+    <div class="mx-6 my-2 text-right">
+        <p class="text-xs cursor-pointer underline" wire:click="needHelp">Besoin d'aide ?</p>
+    </div>
+    <div class="my-2 w-11/12 m-auto lg:w-11/12 lg:flex lg:justify-around" wire:poll.5000ms.keep-alive="miseAJourCom">
         <div class="m-auto sm:w-10/12 lg:w-8/12">
             @foreach($commentsMatch as $comment)
             <div class="relative commentaires minHeight16 h-auto {{ $comment->team_action }}">
@@ -416,9 +445,15 @@
                     <div class="mb-4">
                         <p class="text-lg font-bold">{{ $comment->type_comments}}</p>
                         <p>{{ $comment->comments }}</p>
-                        @if($comment->team_action == "away" || $comment->team_action == "home")
-                        <p class="font-bold">{{ $comment->statistic->player->first_name}} {{ $comment->statistic->player->last_name}}</p>
-                        @endif
+                        <div class="flex items-center">
+                            @if($comment->team_action == "away" || $comment->team_action == "home")
+                            <p class="font-bold mr-4">{{ $comment->statistic->player->first_name}} {{ $comment->statistic->player->last_name}}</p>
+                            @if($comment->statistic->player->id >= 1 && $comment->statistic->player->id <= 16) 
+                            <a class="text-xs px-2 bg-primary text-white rounded-md" href="">Qui est ce ?</a>
+                                @endif
+                                @endif
+                        </div>
+
                     </div>
                     @if($comment->images != null)
                     <div class="m-auto sm:mr-6">
@@ -461,4 +496,5 @@
         </div>
         @endif
     </div>
+    <!-- Fin affchage des commentaires -->
 </form>

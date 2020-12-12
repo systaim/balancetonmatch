@@ -30,6 +30,6 @@ class Player extends Model
     }
 
     public function statistics(){
-        return $this->hasMany(Statistic::class);
+        return $this->hasManyThrough(Statistic::class, Commentaire::class);
     }
 }
