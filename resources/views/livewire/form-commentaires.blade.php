@@ -42,6 +42,13 @@
                             </a>
                         </div>
                     </div>
+                    @foreach($commentsMatch as $comment)
+                        <div>
+                            @if($comment->team_action == "home")
+                            <p class="font-bold">{{ $comment->statistic->player->first_name}} {{ $comment->statistic->player->last_name}}</p>
+                            @endif
+                        </div>
+                        @endforeach
                 </div>
                 <div class="relative col-span-2 bg-gradient-to-r from-primary to-secondary flex flex-col justify-center items-center">
                     <div class="absolute top-1 text-white font-bold text-xl">

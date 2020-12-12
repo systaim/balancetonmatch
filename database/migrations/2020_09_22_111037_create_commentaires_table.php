@@ -16,6 +16,7 @@ class CreateCommentairesTable extends Migration
         Schema::create('comment_user_match', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('commentator_id');
+            $table->string('type_action')->nullable();
             $table->string('type_comments');
             $table->text('comments')->nullable();
             $table->integer('minute');

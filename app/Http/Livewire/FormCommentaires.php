@@ -104,18 +104,18 @@ class FormCommentaires extends Component
         $this->commentsMatch = $this->match->commentaires()->orderBy('minute', 'desc')->orderBy('updated_at', 'desc')->get();
     }
 
-    public function updateHomeScore()
-    {
-        $this->home_score += 1;
-        $this->match->home_score += 1;
-        $this->match->save();
-    }
-    public function updateAwayScore()
-    {
-        $this->away_score += 1;
-        $this->match->away_score += 1;
-        $this->match->save();
-    }
+    // public function updateHomeScore()
+    // {
+    //     $this->home_score += 1;
+    //     $this->match->home_score += 1;
+    //     $this->match->save();
+    // }
+    // public function updateAwayScore()
+    // {
+    //     $this->away_score += 1;
+    //     $this->match->away_score += 1;
+    //     $this->match->save();
+    // }
 
     public function clickFirstCom()
     {
