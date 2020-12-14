@@ -272,7 +272,7 @@
         @endif
     </div>
     @endauth
-    <div class="sm:w-9/12 sm:m-auto md:w-10/12 lg:w-6/12">
+    <div>
         @if($nbrFavoris > 0 && $match->live == "attente")
         <div class="bg-secondary text-primary rounded-lg relative my-2 flex justify-center m-auto p-1">
             @if($nbrFavoris == 1)
@@ -317,7 +317,7 @@
                 </div>
             </div>
         </button>
-        <!-- <button type="button" class="relative commentaires h-20 bg-white commandeMatch items-stretch w-full focus:outline-none" wire:click="matchReporte">
+        <button type="button" class="relative commentaires h-20 bg-white commandeMatch items-stretch w-full focus:outline-none" wire:click="matchReporte">
             <div class="minuteCommentaires w-24 commandeMatch">
                 <img src="{{asset('images/danger.png')}}">
             </div>
@@ -331,7 +331,7 @@
                     @endif
                 </div>
             </div>
-        </button> -->
+        </button>
         @else
         <a href="/login">
             <div class="relative commentaires h-20 bg-white commandeMatch items-stretch w-full focus:outline-none">
@@ -398,21 +398,23 @@
 
     <!-- Affichage des commentaires -->
     <div class="flex justify-around">
-        <div class="col-span-5 m-1">
+        <div>
             @foreach($commentsMatch->sortBy('minute') as $comment)
             @if($comment->team_action == "home" && $comment->type_action == "goal")
-            <div class="flex flex-row justify-end items-center m-auto">
-                <p class="text-xs px-2">{{ $comment->statistic->player->first_name}} {{ $comment->statistic->player->last_name}}</p>
+            <div class="flex flex-row justify-end items-center m-auto overflow-hidden mx-1">
+                <p class="text-xs px-2 truncate">{{ substr($comment->statistic->player->first_name, 0, 1)}}. {{ $comment->statistic->player->last_name}}</p>
+                <p class="text-xs w-8 text-right px-2">{{ $comment->minute }}'</p>
                 <p class="text-xs">⚽</p>
             </div>
             @endif
             @endforeach
         </div>
-        <div class="m-1">
+        <div>
             @foreach($commentsMatch as $comment)
             @if($comment->team_action == "away" && $comment->type_action == "goal")
-            <div class="flex flex-row-reverse justify-end items-center m-auto">
-                <p class="text-xs px-2">{{ $comment->statistic->player->first_name}} {{ $comment->statistic->player->last_name}}</p>
+            <div class="flex flex-row-reverse justify-end items-center m-auto overflow-hidden mx-1">
+                <p class="text-xs px-2 truncate">{{ substr($comment->statistic->player->first_name, 0, 1) }}. {{ $comment->statistic->player->last_name}}</p>
+                <p class="text-xs w-8 text-right px-2">{{ $comment->minute }}'</p>
                 <p class="text-xs">⚽</p>
             </div>
             @endif
@@ -441,33 +443,33 @@
                     </div>
                     @endif
                 </div>
-                <div class="relative bg-white w-full p-4 flex flex-col sm:flex-row justify-between">
-                    <div class="mb-4">
-                        <p class="text-lg font-bold">{{ $comment->type_comments}}</p>
-                        <p>{{ $comment->comments }}</p>
-                        <div class="flex items-center">
-                            @if($comment->team_action == "away" || $comment->team_action == "home")
-                            <p class="font-bold mr-4">{{ $comment->statistic->player->first_name}} {{ $comment->statistic->player->last_name}}</p>
-                            @if($comment->statistic->player->id >= 1 && $comment->statistic->player->id <= 16) 
-                            <a class="text-xs px-2 bg-primary text-white rounded-md" href="">Qui est ce ?</a>
-                                @endif
-                                @endif
+                <div class="relative bg-white w-full p-4 flex flex-col">
+                    <div class="flex flex-col sm:flex-row justify-between">
+                        <div class="mb-4">
+                            <p class="text-lg font-bold">{{ $comment->type_comments}}</p>
+                            <p>{{ $comment->comments }}</p>
+                            <div class="flex items-center">
+                                @if($comment->team_action == "away" || $comment->team_action == "home")
+                                <p class="font-bold mr-4">{{ $comment->statistic->player->first_name}} {{ $comment->statistic->player->last_name}}</p>
+                                @if($comment->statistic->player->id >= 1 && $comment->statistic->player->id <= 16) <a class="text-xs px-2 bg-primary text-white rounded-md" href="">Qui est ce ?</a>
+                                    @endif
+                                    @endif
+                            </div>
                         </div>
-
+                        @if($comment->images != null)
+                        <div>
+                            <a href="{{ asset($comment->images)}}">
+                                <img class="max-h-32 rounded-md shadow-xl" src="{{ asset($comment->images)}}" alt="">
+                            </a>
+                        </div>
+                        @endif
                     </div>
-                    @if($comment->images != null)
-                    <div class="m-auto sm:mr-6">
-                        <a href="{{ asset($comment->images)}}">
-                            <img class="max-h-28 rounded-md shadow-xl" src="{{ asset($comment->images)}}" alt="">
-                        </a>
-                    </div>
-                    @endif
                     <div class="flex justify-end items-end">
                         <p class="text-xs">{{ $match->commentateur->user->pseudo }}</p>
                     </div>
                 </div>
                 @auth
-                @if($match->commentateur->user_id == Auth::user()->id && $match->live != "finDeMatch")
+                @if($match->commentateur->user_id == Auth::user()->id && $match->live != "finDeMatch" && ($comment->team_action == "home" || $comment->team_action == "away"))
                 <div class="absolute flex justify-center items-center right-1 top-0">
                     <div>
                         <a class="text-lg text-danger" href="{{route('supprimer', ['id' => $comment->id]) }}" onclick="return confirm('Etes vous sûr de vouloir supprimer ce commentaire ?')"><i class="far fa-times-circle"></i></a>
