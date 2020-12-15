@@ -1,6 +1,6 @@
 @extends('layout')
 @section('content')
-<section>
+<section x-data="{ open: false }">
     @include('clubs.linkPageClub')
     @include('clubs.logo')
     <div class="flex justify-center">
@@ -16,7 +16,7 @@
             <h3 class="titlePage">Les joueurs</h3>
         </div>
         <div class="flex flex-row flex-wrap justify-center">
-            @foreach($club->players->sortBy('last_name') as $player)
+            @foreach($club->players->sortBy('last_name') as $key => $player)
             <div class="relative w-72 m-4 bg-primary text-white flex flex-col justify-between rounded-lg shadow-2xl overflow-x-hidden">
                 <div class="absolute top-2 left-2 logo h-12 w-12 z-10">
                     <img class="object-contain" src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{$club->numAffiliation}}.jpg" alt="logo">
@@ -49,11 +49,33 @@
                     </div>
                     <div>
                         <button onclick="openMenu({{$player->id}})"><i class="far fa-edit"></i></button>
+                        <button id="{{ $key }}" class="rounded-full bg-danger px-2" @click="open = true">x</button>
                     </div>
                 </div>
+                @if($key == $index)
+                <div id="{{ $index++ }}" class="absolute bg-white top-0 left-0 right-0 bottom-0 text-primary z-20" x-show="open" @click.away="open = false">
+                    <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                        <h3 class="text-lg text-center my-2">Supprimer</h3>
+                        <div class="mt-2">
+                            <p class="text-sm leading-5 text-gray-500">
+                                {{ $player->first_name}} <span class="uppercase">{{ $player -> last_name}}</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex justify-center items-center">
+                        
+                        <form action="{{ route('clubs.players.destroy', [$club, $player]) }}" method="POST">
+                            @method('DELETE')
+                            @csrf
+                            <button type="button" @click="open = false" class="btn">Annuler</button>
+                            <input class="btn btnDanger" type="submit" value="Confirmer">
+                        </form>
+                    </div>
+                </div>
+                @endif
                 <div id="{{$player->id}}" class="updatePlayer fixed z-50 bg-gray-200 inset-0 justify-center items-center">
-                    <div class=" absolute top-10 right-10">
-                        <p class="text-4xl text-primary">X</p>
+                    <div class="absolute top-10 right-10">
+                        <a href=""><button class="text-4xl text-primary">X</button></a>
                     </div>
                     <div class="p-10 bg-white w-full sm:w-11/12 md:w-9/12 lg:w-6/12 rounded-lg shadow-xl">
                         <form action="{{ route('clubs.players.update', [$club, $player]) }}" method="post" enctype="multipart/form-data">
@@ -109,13 +131,6 @@
                                 <input class="btn btnSuccess" type="submit" value="Je modifie le joueur">
                             </div>
                         </form>
-                        <div class="flex justify-end mt-12">
-                            <form action="{{ route('clubs.players.destroy', [$club, $player]) }}" method="POST">
-                                @method('DELETE')
-                                @csrf
-                                <input class="btn btnDanger" type="submit" value="Supprimer ce joueur">
-                            </form>
-                        </div>
                     </div>
                 </div>
             </div>

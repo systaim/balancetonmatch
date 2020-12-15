@@ -16,8 +16,19 @@
         </div>
     </div>
 
-    <div class="p-12 back-hero-home hidden lg:flex justify-end">
-        @include('login')
+    <div class="p-12 h-96 bg-primary hidden lg:flex">
+        <div>
+            <h3 class="bg-white px-2 rounded-md text-3xl text-primary my-4">Pourquoi s'inscrire ?</h3>
+            <div class="bg-white px-2 rounded-md text-primary">
+                <p>Il est possible</p>
+                <ul class="list-disc">
+                    <li>de créer ou modifier des matchs</li>
+                    <li>de commenter</li>
+                    <li>ajouter ou modifier des joueurs ou des membres de staff</li>
+                </ul>
+            </div>
+
+        </div>
     </div>
     <div class="w-11/12 m-auto md:flex">
         <div class="bg-white rounded-lg border-white m-auto my-4 shadow-2xl lg:w-5/12">

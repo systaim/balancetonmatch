@@ -29,11 +29,12 @@ class PlayerController extends Controller
     public function index(Club $club)
     {
         $user = Auth::user();
+        $index = 0;
         $players = Player::where('club_id', $club->id)
             ->orderBy('last_name', 'asc')
             ->orderBy('first_name', 'asc')
             ->get();
-        return view('players.index', compact('club', 'players', 'user'));
+        return view('players.index', compact('club', 'players', 'user', 'index'));
     }
 
     /**
