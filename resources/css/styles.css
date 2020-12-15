@@ -74,8 +74,16 @@ h6 {
     background-size: 100%;
     /* background-position-y: -5rem;
     background-position-x: -2rem; */
-    background-attachment: fixed;
+    /* background-attachment: fixed; */
     background-blend-mode: luminosity;
+}
+
+.back-hero-home {
+    background-image: url("https://cdn.pixabay.com/photo/2016/04/15/20/28/football-1331838_960_720.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
 }
 
 .bg-login{
@@ -355,6 +363,7 @@ input:checked + .inputAction.away {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    background-attachment: fixed;
 }
 
 /*************************

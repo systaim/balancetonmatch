@@ -138,6 +138,7 @@
         </div>
     </div>
 </section>
+@endsection
 
 <script>
     function openMenu(id) {
@@ -150,4 +151,3 @@
         });
     }
 </script>
-@endsection

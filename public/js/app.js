@@ -19352,15 +19352,16 @@ module.exports = function(module) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); // Menu hamburger
 
-var burger = document.getElementById('burger');
-var nav = document.getElementById('main-nav');
-var header = document.getElementById('header');
-burger.addEventListener('click', function () {
-  this.classList.toggle('is-open');
-  nav.classList.toggle('is-open');
-  header.classList.toggle('height-100');
+
+var burger = document.getElementById("burger");
+var nav = document.getElementById("main-nav");
+var header = document.getElementById("header");
+burger.addEventListener("click", function () {
+  this.classList.toggle("is-open");
+  nav.classList.toggle("is-open");
+  header.classList.toggle("height-100");
 });
 
 /***/ }),
