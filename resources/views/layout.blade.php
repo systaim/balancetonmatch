@@ -13,27 +13,54 @@
 </head>
 
 <body>
-    <header id="header" class="bg-primary relative flex justify-around items-center">
-        <div class="text-secondary text-center pb-4 diagonale pt-3">
+    <header id="header" class="bg-primary relative flex justify-between items-center lg:grid lg:grid-cols-12">
+        <div class="text-secondary text-center pb-4 diagonale pt-3 lg:col-span-3">
             <a href="/">
                 <h1 class="text-lg"><span class="text-lg">balance ton match</h1>
                 <p class="text-xs">Quand la touche part en live...</p>
             </a>
         </div>
-        <nav class="text-white hidden lg:block mx-2">
+        <nav class="text-white hidden lg:block lg:col-span-6 mx-auto">
             <ul class="flex">
                 <li class="mx-2"><a href="/"><i class="fas fa-home"></i> Accueil</a></li>
                 <li class="mx-2"><a href="{{ route('clubs.index') }}"><i class="fas fa-search"></i> Rechercher un club</a></li>
                 <li class="mx-2"><a href="{{ route('matches.index') }}"><i class="far fa-list-alt"></i> Liste des matchs</a></li>
             </ul>
         </nav>
+        @auth
+        <div class="relative text-white lg:col-span-3 mx-auto">
+            <p class="" onclick="openMenuUser()">Bonjour {{ Auth::user()->first_name }} <i class="fas fa-caret-down"></i></p>
+            <div id="menuUser" class=" hidden absolute bg-gray-600">
+                <ul class="p-4">
+                    <li class="mb-2"><a href="/user/profile">Mon profil</a></li>
+                    @if(Auth::user()->club)
+                    <li class="mb-2 truncate"><a href="/clubs/{{Auth::user()->club->id }}">{{Auth::user()->club->name }}</a></li>
+                    @endif
+                    <li class="mb-2">
+                        <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();">
+                            {{ __('Logout') }}
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        @else
+        <div class="flex">
+            <a href="/login"><button class="btn">Se connecter</button></a>
+            <a href="/register"><button class="btn btnSecondary">S'enregistrer</button></a>
+        </div>
+        @endauth
         <div>
             <button id="burger" class="open-main-nav lg:hidden">
                 <span class="burger"></span>
                 <span class="burger-text">Menu</span>
             </button>
         </div>
-        <div id="main-nav" class="main-nav bg-primary">
+        <div id="main-nav" class="main-nav bg-primary lg:hidden">
             <div class="w-full rounded-b-lg shadow-xl bg-darkGray pt-16 pb-4 bg-menu">
                 <div>
                     @auth
@@ -91,5 +118,12 @@
     @livewireScripts
     <script src="{{ asset('js/app.js') }}"></script>
 </body>
+<script>
+
+    function openMenuUser() {
+        const menuUser = document.getElementById('menuUser')
+        menuUser.style.display = "block"
+    }
+</script>
 
 </html>

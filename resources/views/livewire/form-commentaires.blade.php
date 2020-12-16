@@ -1,4 +1,4 @@
-<div>
+<div x-data="{ open: false }">
     <form class="min-h-screen" wire:submit.prevent="saveComment">
         <!-- affichage bannière du match -->
         <div>
@@ -452,11 +452,15 @@
                                 <div class="flex items-center">
                                     @if($comment->team_action == "away" || $comment->team_action == "home")
                                     <p class="font-bold mr-4">{{ $comment->statistic->player->first_name}} {{ $comment->statistic->player->last_name}}</p>
-                                    @if($comment->statistic->player->id >= 1 && $comment->statistic->player->id <= 16) 
-                                    <button type="button" class="text-xs px-2 bg-primary text-white rounded-md">Qui est ce ?</button>
+                                    @if($comment->statistic->player->id >= 1 && $comment->statistic->player->id <= 16) <button type="button" class="text-xs px-2 bg-primary text-white rounded-md" @click="open = true">
+                                        Qui est ce ?
+                                        </button>
                                         @endif
                                         @endif
                                 </div>
+                            </div>
+                            <div class="absolute top-0 left-0 right-0 bottom-0 bg-darkGray text-white w-full h-full" x-show="open" @click.away="open = false">
+                                <h3>Qui est ce joueur ?</h3>
                             </div>
                             @if($comment->images != null)
                             <div>

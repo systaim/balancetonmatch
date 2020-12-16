@@ -41,8 +41,9 @@ class MatchController extends Controller
         $matchR = Match::all();
         $matches = Match::where('date_match', '>=', Carbon::now()->subHours(6))
         ->orderBy('date_match', 'asc')
-        ->get();
-        return view('matches.listMatchs', compact('clubs', 'players', 'competitions', 'matches', 'user'));
+        ->get()->groupBy('region_id');
+        $regions = Region::find($matches->keys());
+        return view('matches.listMatchs', compact('clubs', 'players', 'competitions', 'matches', 'user', 'regions'));
     }
 
     /**
@@ -144,6 +145,8 @@ class MatchController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $match = Match::find($id);
+        $match->delete();
+        return back();
     }
 }

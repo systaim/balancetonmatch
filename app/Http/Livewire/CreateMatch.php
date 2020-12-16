@@ -96,7 +96,7 @@ class CreateMatch extends Component
             Mail::to('systaim@gmail.com')
             ->send(new MatchMail($matchCreate));
 
-            return redirect()->to('matches');
+            return redirect()->to('matches/'.$match->id);
         } else {
             $this->messageErreur = 'Les 2 équipes doivent être différentes';
         }

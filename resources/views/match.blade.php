@@ -1,4 +1,4 @@
-<div class="mb-6">
+<div x-data="{ open: false }" class="p-4">
     <div class="relative text-center flex justify-center font-bold">
         <div class="absolute left-0 md:left-6">
             @livewire('favori-match', ['user' => $user, 'match' => $match])
@@ -6,9 +6,6 @@
         <div class="relative flex justify-center">
             <p class="px-4 bg-primary text-secondary rounded-tl-md">{{ $match->date_match->formatLocalized('%d/%m/%y')}}</p>
             <p class="px-4 bg-primary text-secondary rounded-tr-md">{{ $match->date_match->formatLocalized('%H:%M')}}</p>
-            @if($match->live != 'finDeMatch' && $match->live != 'reporte' && $match->live != 'attente')
-            <div class="absolute top-0 right-0 z-20 animate-ping rounded-full h-3 w-3 bg-danger"></div>
-            @endif
         </div>
     </div>
     <a href="{{route('matches.show',$match) }}">
@@ -55,4 +52,14 @@
             </div>
         </div>
     </a>
+    @if(Auth::user() && $match->user_id == Auth::user()->id)
+    <button class="btn btnSuccess" @click="open= true">Menu</button>
+    <div class="absolute top-0 bottom-0 right-0 left-0" x-show="open" @click.away="open = false">
+        <form action="{{ route('matches.destroy', $match) }}" method="POST">
+            @method('DELETE')
+            @csrf
+            <input class="btn btnDanger" type="submit" value="Confirmer">
+        </form>
+    </div>
+    @endif
 </div>

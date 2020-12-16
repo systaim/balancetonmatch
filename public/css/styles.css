@@ -9,7 +9,7 @@
     SELECTORS & OTHERS
   *************************/
 
-html {
+html, body {
   font-family: "Montserrat", sans-serif;
   --bg-opacity: 1;
   background-color: #e2e8f0;

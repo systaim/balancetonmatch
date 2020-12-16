@@ -11,7 +11,7 @@
     SELECTORS & OTHERS
   *************************/
 
-html {
+html, body {
     font-family: "Montserrat", sans-serif;
     @apply bg-gray-300;
 }
