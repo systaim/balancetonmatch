@@ -12,5 +12,4 @@
 'stats' => $stats,
 'users' => $users
 ])
-
 @endsection

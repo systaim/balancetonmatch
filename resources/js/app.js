@@ -1,14 +1,17 @@
+const { forEach } = require("lodash");
+
 require("./bootstrap");
 
 // Menu hamburger
 
 let burger = document.getElementById("burger");
 let nav = document.getElementById("main-nav");
-let header = document.getElementById("header");
+let container = document.getElementById("container");
+console.log(container)
 
 burger.addEventListener("click", function() {
     this.classList.toggle("is-open");
     nav.classList.toggle("is-open");
-    header.classList.toggle("height-100");
+    container.classList.toggle("is-open");
 });
 

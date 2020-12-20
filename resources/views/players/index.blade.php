@@ -17,7 +17,7 @@
         </div>
         <div class="flex flex-row flex-wrap justify-center">
             @foreach($club->players->sortBy('last_name') as $key => $player)
-            <div  x-data="{ open: false }" class="relative w-72 m-4 bg-primary text-white flex flex-col justify-between rounded-lg shadow-2xl overflow-x-hidden">
+            <div x-data="{ open: false }" class="relative w-72 m-4 bg-primary text-white flex flex-col justify-between rounded-lg shadow-2xl overflow-x-hidden">
                 <div class="absolute top-2 left-2 logo h-12 w-12 z-10">
                     <img class="object-contain" src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{$club->numAffiliation}}.jpg" alt="logo">
                 </div>
@@ -52,18 +52,19 @@
                         <button id="{{ $key }}" class="rounded-full bg-danger px-2" @click="open = true">x</button>
                     </div>
                 </div>
-
-                <div id="{{ $index++ }}" class="absolute bg-white top-0 left-0 right-0 bottom-0 text-primary z-20" x-show="open" @click.away="open = false">
-                    <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                        <h3 class="text-lg text-center my-2">Supprimer</h3>
-                        <div class="mt-2">
-                            <p class="text-sm leading-5 text-gray-500">
-                                {{ $player->first_name}} <span class="uppercase">{{ $player -> last_name}}</span>
+                <!-- ***********************
+                    Formulaire suppression d'un joueur
+                    ************************** -->
+                <div id="{{ $index++ }}" class="absolute bg-white top-0 left-0 right-0 bottom-0 text-primary z-20 flex flex-col justify-between items-center " x-show="open" @click.away="open = false">
+                    <div class="mt-3">
+                        <h3 class="text-xl text-center my-2 text-darkGray">{{ $player->first_name}} <span class="uppercase">{{ $player -> last_name}}</span></h3>
+                        <div class="mt-12">
+                            <p class="text-lg text-center leading-5 text-gray-800">
+                                Etes vous sûr de vouloir supprimer ce joueur ?
                             </p>
                         </div>
                     </div>
                     <div class="flex justify-center items-center">
-
                         <form action="{{ route('clubs.players.destroy', [$club, $player]) }}" method="POST">
                             @method('DELETE')
                             @csrf
@@ -72,11 +73,16 @@
                         </form>
                     </div>
                 </div>
-                <div id="{{$player->id}}" class="updatePlayer fixed z-50 inset-0 justify-center items-center" style="background-color: rgba(0,0,0,.5);" x-show="open">
+
+                <!-- ***********************
+                    Formulaire suppression d'un joueur
+                    ************************** -->
+                    
+                <div id="{{$player->id}}" class="updatePlayer fixed z-50 inset-0 justify-center items-center" style="background-color: rgba(0,0,0,.5);">
                     <div class="absolute top-10 right-10">
                         <a href=""><button class="text-4xl text-primary">X</button></a>
                     </div>
-                    <div class="p-10 bg-white w-full sm:w-11/12 md:w-9/12 lg:w-6/12 rounded-lg shadow-xl" @click.away="open = false">
+                    <div class="p-10 bg-white w-full sm:w-11/12 md:w-9/12 lg:w-6/12 rounded-lg shadow-xl">
                         <form action="{{ route('clubs.players.update', [$club, $player]) }}" method="post" enctype="multipart/form-data">
                             @foreach ($errors->all() as $message)
                             {{ $message}}

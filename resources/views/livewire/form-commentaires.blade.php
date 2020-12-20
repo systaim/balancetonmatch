@@ -1,4 +1,4 @@
-<div x-data="{ open: false }">
+<div>
     <form class="min-h-screen" wire:submit.prevent="saveComment">
         <!-- affichage bannière du match -->
         <div>
@@ -47,7 +47,13 @@
                     <div class="relative col-span-2 bg-gradient-to-r from-primary to-secondary flex flex-col justify-center items-center">
                         <div class="absolute top-1 text-white font-bold text-xl">
                             @if($match->live != 'attente' && $match->live != 'finDeMatch' && $match->live != 'reporte')
-                            <p wire:poll.60s.keep-alive="chrono">{{ $minute }}'</p>
+                            <div class="flex">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                <p>{{ $minute }}</p>
+                            </div>
+
                             @endif
                         </div>
                         <div class="flex justify-center mt-2">
@@ -182,7 +188,7 @@
                 <div class="m-4 flex flex-row justify-center">
                     <div class="flex flex-col jsutify-center">
                         <label class="inputAction {{$team_action}}" for="minute">Temps de jeu</label>
-                        <input wire:poll.60s.keep-alive="chrono" class="p-3 bg-white rounded shadow outline-none focus:outline-none focus:shadow-outline text-center" type="number" name="minute" wire:model="minute" min="1" max="90">
+                        <input class="p-3 bg-white rounded shadow outline-none focus:outline-none focus:shadow-outline text-center" type="number" name="minute" wire:model="minute" min="1" max="90">
                         @error('minute')
                         <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -223,7 +229,7 @@
                 <div class="m-4 flex flex-row justify-center">
                     <div class="flex flex-col jsutify-center">
                         <label class="inputAction {{$team_action}}" for="minute">Temps de jeu</label>
-                        <input wire:poll.60s.keep-alive="chrono" class="p-3 bg-white rounded shadow outline-none focus:outline-none focus:shadow-outline text-center" type="number" name="minute" wire:model="minute" min="1" max="90">
+                        <input class="p-3 bg-white rounded shadow outline-none focus:outline-none focus:shadow-outline text-center" type="number" name="minute" wire:model="minute" min="1" max="90">
                         @error('minute')
                         <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -428,7 +434,7 @@
         <div class="my-2 w-11/12 m-auto lg:w-11/12 lg:flex lg:justify-around" wire:poll.5000ms.keep-alive="miseAJourCom">
             <div class="m-auto sm:w-10/12 lg:w-8/12">
                 @foreach($commentsMatch as $comment)
-                <div class="relative commentaires minHeight16 h-auto {{ $comment->team_action }}">
+                <div class="relative commentaires minHeight16 h-auto {{ $comment->team_action }}" x-data="{ open: false }">
                     <div class="minuteCommentaires w-24 sm:w-32 {{ $comment->team_action }} p-4 flex flex-col items-center">
                         <div>
                             <p class="text-lg mb-4">{{ $comment->minute}}'</p>
@@ -460,7 +466,25 @@
                                 </div>
                             </div>
                             <div class="absolute top-0 left-0 right-0 bottom-0 bg-darkGray text-white w-full h-full" x-show="open" @click.away="open = false">
-                                <h3>Qui est ce joueur ?</h3>
+                                <h3>Tu connais ce joueur ?</h3>
+                                @if($comment->team_action == 'home')
+                                <select class="inputForm focus:outline-none focus:shadow-outline my-1" name="player" id="player" wire:model="player" required>
+                                    <option value="">Choisissez un joueur</option>
+                                    @foreach($match->homeClub->players as $player)
+                                    <option value="{{ $player->id}}">{{$player->first_name}} {{$player->last_name}}</option>
+                                    @endforeach
+                                </select>
+                                @endif
+                                @if($comment->team_action == 'away')
+                                <select class="inputForm focus:outline-none focus:shadow-outline my-1" name="player" id="player" wire:model="player" required>
+                                    <option value="">Choisissez un joueur</option>
+                                    @foreach($match->awayClub->players as $player)
+                                    <option value="{{ $player->id}}">{{$player->first_name}} {{$player->last_name}}</option>
+                                    @endforeach
+                                </select>
+                                @endif
+                                <input class="text-primary" type="text" name="first_name" placeholder="prénom">
+                                <input class="text-primary" type="text" name="last_name" placeholder="nom">
                             </div>
                             @if($comment->images != null)
                             <div>

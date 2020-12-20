@@ -56,6 +56,7 @@ class FormCommentaires extends Component
         $this->away_score = $match->away_score;
         $this->user = $match->user_id;
         $this->dateMatch = $match->date_match;
+
         if ($this->dateMatch->diffInMinutes(now(), false) >= 0 && $this->dateMatch->diffInMinutes(now(), false) <= 45) {
             $this->minute = now()->diffInMinutes($this->dateMatch);
         } elseif ($this->dateMatch->diffInMinutes(now(), false) >= 45 && $this->dateMatch->diffInMinutes(now(), false) <= 60) {
@@ -68,12 +69,27 @@ class FormCommentaires extends Component
         if (now()->diffInMinutes($this->dateMatch, false) < -150) {
             $this->match->live = "finDeMatch";
             $this->match->save();
-
-            // session()->flash('messageCloture', 'Les commentaires sont cloturés... A bientôt !');
         }
 
-        foreach ($this->commentator as $comm) {
-            $this->firstCom = $comm->user->first_com;
+        // foreach ($this->commentator as $comm) {
+        //     $this->firstCom = $comm->user->first_com;
+        // }
+    }
+
+    public function hydrate()
+    {
+        if ($this->dateMatch->diffInMinutes(now(), false) >= 0 && $this->dateMatch->diffInMinutes(now(), false) <= 45) {
+            $this->minute = now()->diffInMinutes($this->dateMatch);
+        } elseif ($this->dateMatch->diffInMinutes(now(), false) >= 45 && $this->dateMatch->diffInMinutes(now(), false) <= 60) {
+            $this->minute = 45;
+        } elseif ($this->dateMatch->diffInMinutes(now(), false) >= 60 && $this->dateMatch->diffInMinutes(now(), false) <= 90) {
+            $this->minute = now()->diffInMinutes($this->dateMatch) - 15;
+        } else {
+            $this->minute = "";
+        }
+        if (now()->diffInMinutes($this->dateMatch, false) < -150) {
+            $this->match->live = "finDeMatch";
+            $this->match->save();
         }
     }
 
@@ -88,13 +104,6 @@ class FormCommentaires extends Component
     public function deleteMenu()
     {
         $this->deleteMenu = 1;
-    }
-
-    public function chrono()
-    {
-        if ($this->minute < 90) {
-            $this->minute += 1;
-        }
     }
 
     public function miseAJourCom()
@@ -130,12 +139,13 @@ class FormCommentaires extends Component
         $user = Auth::user();
 
         if ($this->dateMatch->diffInMinutes(now(), false) > -30) {
-        $commentateur = new Commentator;
-        $commentateur['user_id'] = $user->id;
-        $commentateur['match_id'] = $this->match->id;
-        $commentateur->save();
-        $this->commentator->push($commentateur);
-        } else{
+            $commentateur = new Commentator;
+            $commentateur['user_id'] = $user->id;
+            $commentateur['match_id'] = $this->match->id;
+            $commentateur->save();
+            return redirect()->to('matches/' . $this->match->id);
+            // $this->commentators->push($commentateur);
+        } else {
             session()->flash('messageComment', "Revenez 30 minutes avant le coup d'envoi");
         }
     }

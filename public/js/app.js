@@ -19352,16 +19352,20 @@ module.exports = function(module) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
+var _require = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js"),
+    forEach = _require.forEach;
+
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); // Menu hamburger
 
 
 var burger = document.getElementById("burger");
 var nav = document.getElementById("main-nav");
-var header = document.getElementById("header");
+var container = document.getElementById("container");
+console.log(container);
 burger.addEventListener("click", function () {
   this.classList.toggle("is-open");
   nav.classList.toggle("is-open");
-  header.classList.toggle("height-100");
+  container.classList.toggle("is-open");
 });
 
 /***/ }),

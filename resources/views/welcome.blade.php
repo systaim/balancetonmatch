@@ -1,8 +1,20 @@
 @extends('layout')
 @section('content')
 <section class="min-h-screen">
-    <div class="bg-secondary py-4">
-        <div class="flex flex-col md:flex-row justify-between bg-primary overflow-hidden rounded-b-lg w-11/12 m-auto rounded-lg">
+    <div class="p-12 h-96 back-hero-home hidden lg:flex lg:justify-end">
+        <div class="w-1/2">
+            <h3 class="bg-white py-2 px-4 rounded-md text-3xl text-primary my-4">Bienvenue</h3>
+            <div class="bg-white p-4 rounded-md text-primary">
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
+                    when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
+                    It has survived not only five centuries,</p>
+
+            </div>
+        </div>
+    </div>
+    <div class="py-4">
+        <div class="flex flex-col lg:flex-row justify-between bg-primary overflow-hidden rounded-b-lg w-11/12 m-auto rounded-lg">
             <div class="w-full sm:h-72 lg:w-6/12 lg:h-auto img-bg-blend-home"></div>
             <div class="text-white p-4 lg:w-6/12 xl:p-10 m-auto">
                 <h2 class="text-center mb-6">Envie de suivre les matchs amateurs en direct live ? </h2>
@@ -13,21 +25,6 @@
                     <button class="btn btnSecondary">Je vais voir</button>
                 </a>
             </div>
-        </div>
-    </div>
-
-    <div class="p-12 h-96 bg-primary hidden lg:flex">
-        <div>
-            <h3 class="bg-white px-2 rounded-md text-3xl text-primary my-4">Pourquoi s'inscrire ?</h3>
-            <div class="bg-white px-2 rounded-md text-primary">
-                <p>Il est possible</p>
-                <ul class="list-disc">
-                    <li>de créer ou modifier des matchs</li>
-                    <li>de commenter</li>
-                    <li>ajouter ou modifier des joueurs ou des membres de staff</li>
-                </ul>
-            </div>
-
         </div>
     </div>
     <div class="w-11/12 m-auto md:flex">
@@ -123,6 +120,5 @@
             </div>
         </div>
     </div>
-
 </section>
 @endsection
