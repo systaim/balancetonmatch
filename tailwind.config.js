@@ -41,8 +41,11 @@ module.exports = {
                 // purple: colors.purple
             },
             inset: {
-                "50": "12.5rem"
-            }
+                "50": "12.5rem",
+            },
+            fontSize: {
+                "xxs": "0.50rem",
+            },
         }
     }
 };

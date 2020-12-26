@@ -79,6 +79,9 @@ class CreateMatch extends Component
         if ($this->competition == "2") {
             $match->division_department_id = $this->divisionsDepartments;
         }
+        if ($this->competition == "3") {
+            $match->region_id = "20";
+        }
         $match->user_id = $user->id;
 
         if ($homeTeam != $awayTeam) {

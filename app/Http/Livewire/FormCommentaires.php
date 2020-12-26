@@ -24,7 +24,7 @@ class FormCommentaires extends Component
     public $type_comments;
     public $type_but = "";
     public $type_carton = "";
-    // public $type_actionMatch = "";
+    public $type_actionMatch = "";
     public $minute = 0;
     public $team_action = '';
     public $live;
@@ -40,6 +40,7 @@ class FormCommentaires extends Component
     public $commentator;
     public $firstCom;
     public $file;
+    public $menuCom;
     protected $listeners = ['id' => 'deleteCom'];
     public $listGoal = ['GOOOOAAL !', 'BUUUUT !!!', 'GOAL GOAL GOAL !!'];
     public $mitempsJoueurs = ['Les joueurs rentrent aux vestiaires', 'Tout le monde à la buv... euuuh aux vestiaires !'];
@@ -313,14 +314,17 @@ class FormCommentaires extends Component
                 $commentData['type_comments'] = $this->type_carton;
 
                 if ($this->type_carton == 'Carton jaune') {
+                    $commentData['type_action'] = "1st yellow_card";
                     $statData['action'] = "yellow_card";
                 }
                 if ($this->type_carton == '2e carton jaune') {
+                    $commentData['type_action'] = "2nd yellow_card";
                     $statData['action'] = "yellow_card";
                     $statData2['action'] = "red_card";
                     $statData2['player_id'] = $this->player;
                 }
                 if ($this->type_carton == 'Carton rouge') {
+                    $commentData['type_action'] = "red_card";
                     $statData['action'] = "red_card";
                 }
             } else {

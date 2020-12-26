@@ -1,3 +1,4 @@
+
 @extends('layout')
 @section('content')
 <section>
@@ -75,10 +76,10 @@
                 </div>
 
                 <!-- ***********************
-                    Formulaire suppression d'un joueur
+                    Formulaire modification d'un joueur
                     ************************** -->
                     
-                <div id="{{$player->id}}" class="updatePlayer fixed z-50 inset-0 justify-center items-center" style="background-color: rgba(0,0,0,.5);">
+                <div id="{{$player->id}}" class="hidden fixed z-50 inset-0 justify-center items-center" style="background-color: rgba(0,0,0,.5);">
                     <div class="absolute top-10 right-10">
                         <a href=""><button class="text-4xl text-primary">X</button></a>
                     </div>

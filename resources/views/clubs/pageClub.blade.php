@@ -5,7 +5,6 @@
     <div class="absolute top-12 left-8 md:left-2 lg:left-8 z-10">
         @livewire('favori-team', ['user' => $user, 'club' => $club,'nbrFavoris' => $nbrFavoris])
     </div>
-    @include('clubs.logo')
     <div class="md:w-8/12 lg:w-6/12 m-auto">
         @if($nbrFavoris > 0)
         <div class=" bg-primary text-white rounded-lg relative my-2 flex flex-col p-3 w-full">

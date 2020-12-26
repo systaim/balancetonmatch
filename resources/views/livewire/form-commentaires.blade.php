@@ -1,9 +1,9 @@
-<div>
+<div wire:poll>
     <form class="min-h-screen" wire:submit.prevent="saveComment">
         <!-- affichage bannière du match -->
         <div>
             <div class="backMatch">
-                <div class=" py-6 ">
+                <div class="py-6">
                     <div class="bg-primary text-white m-auto text-center rounded-lg shadow-2xl p-2 max-w-md">
                         @if($match->region)
                         <h2>{{ $match->region->name }}</h2>
@@ -39,7 +39,8 @@
                             </div>
                             <div>
                                 <a href="{{ route('clubs.show', $match->homeClub->id) }}">
-                                    <p class="truncate text-center sm:font-bold lg:text-lg xl:text-2xl">{{ $match->homeClub->name }}</p>
+                                    <p class="truncate text-center sm:font-bold lg:text-lg xl:text-2xl">
+                                        {{ $match->homeClub->name }}</p>
                                 </a>
                             </div>
                         </div>
@@ -69,7 +70,8 @@
                         <div class="bg-secondary p-2 text-primary flex flex-col-reverse lg:flex-row lg:items-center lg:justify-end lg:rounded-r-full">
                             <div>
                                 <a href="{{ route('clubs.show', $match->awayClub->id) }}">
-                                    <p class="truncate text-center lg:text-left sm:font-bold lg:text-lg  xl:text-2xl">{{ $match->awayClub->name }}</p>
+                                    <p class="truncate text-center lg:text-left sm:font-bold lg:text-lg  xl:text-2xl">
+                                        {{ $match->awayClub->name }}</p>
                                 </a>
                             </div>
                             <div class="flex justify-center">
@@ -89,15 +91,19 @@
                 </div>
                 <div>
                     <div class="text-center flex justify-center font-bold">
-                        <p class="px-4 bg-primary text-secondary rounded-tl-md">{{ $match->date_match->formatLocalized('%d/%m/%y')}}</p>
-                        <p class="px-4 bg-primary text-secondary rounded-tr-md">{{ $match->date_match->formatLocalized('%H:%M') }}</p>
+                        <p class="px-4 bg-primary text-secondary rounded-tl-md">
+                            {{ $match->date_match->formatLocalized('%d/%m/%y')}}</p>
+                        <p class="px-4 bg-primary text-secondary rounded-tr-md">
+                            {{ $match->date_match->formatLocalized('%H:%M') }}</p>
                     </div>
                 </div>
             </div>
         </div>
         <!-- fin affichage bannière du match -->
 
-        <!-- Formulaire d'action équipe -->
+        <!-------------------------
+            Formulaire d'action équipe 
+            ---------------------------->
 
         <div class="fixed openComment flex flex-col justify-center z-10 rounded-b-lg espaceCom {{ $team_action}}">
             <div class="flex flex-col items-center pt-10">
@@ -249,8 +255,10 @@
             </div>
         </div>
 
-        <!-- fin Formulaire d'action équipe -->
-        <!-- affichage de commentaires match-->
+                <!----------------------
+            AFFICHAGE DES COMMENTAIRES DU MATCH
+                ------------------------->
+
         @auth
         <div>
             @if($firstCom == 1)
@@ -273,7 +281,8 @@
                     </ol>
                 </div>
                 <div class="text-center">
-                    <button class="btn btnSecondary" wire:click="clickFirstCom" wire:model="firstCom">J'ai compris</button>
+                    <button class="btn btnSecondary" wire:click="clickFirstCom" wire:model="firstCom">J'ai
+                        compris</button>
                 </div>
             </div>
             @endif
@@ -409,7 +418,8 @@
                 @foreach($commentsMatch->sortBy('minute') as $comment)
                 @if($comment->team_action == "home" && $comment->type_action == "goal")
                 <div class="flex flex-row justify-end items-center m-auto overflow-hidden mx-1">
-                    <p class="text-xs px-2 truncate">{{ substr($comment->statistic->player->first_name, 0, 1)}}. {{ $comment->statistic->player->last_name}}</p>
+                    <p class="text-xs px-2 truncate">{{ substr($comment->statistic->player->first_name, 0, 1)}}.
+                        {{ $comment->statistic->player->last_name}}</p>
                     <p class="text-xs w-8 text-right px-2">{{ $comment->minute }}'</p>
                     <p class="text-xs">⚽</p>
                 </div>
@@ -420,7 +430,9 @@
                 @foreach($commentsMatch as $comment)
                 @if($comment->team_action == "away" && $comment->type_action == "goal")
                 <div class="flex flex-row-reverse justify-end items-center m-auto overflow-hidden mx-1">
-                    <p class="text-xs px-2 truncate">{{ substr($comment->statistic->player->first_name, 0, 1) }}. {{ $comment->statistic->player->last_name}}</p>
+                    <p class="text-xs px-2 truncate">
+                        {{ substr($comment->statistic->player->first_name, 0, 1) }}.
+                        {{ $comment->statistic->player->last_name}}</p>
                     <p class="text-xs w-8 text-right px-2">{{ $comment->minute }}'</p>
                     <p class="text-xs">⚽</p>
                 </div>
@@ -457,8 +469,10 @@
                                 <p>{{ $comment->comments }}</p>
                                 <div class="flex items-center">
                                     @if($comment->team_action == "away" || $comment->team_action == "home")
-                                    <p class="font-bold mr-4">{{ $comment->statistic->player->first_name}} {{ $comment->statistic->player->last_name}}</p>
-                                    @if($comment->statistic->player->id >= 1 && $comment->statistic->player->id <= 16) <button type="button" class="text-xs px-2 bg-primary text-white rounded-md" @click="open = true">
+                                    <p class="font-bold mr-4">{{ $comment->statistic->player->first_name}}
+                                        {{ $comment->statistic->player->last_name}}</p>
+                                    @if($comment->statistic->player->id >= 1 && $comment->statistic->player->id
+                                    <= 16) <button type="button" class="text-xs px-2 bg-primary text-white rounded-md" @click="open = true">
                                         Qui est ce ?
                                         </button>
                                         @endif
@@ -471,7 +485,8 @@
                                 <select class="inputForm focus:outline-none focus:shadow-outline my-1" name="player" id="player" wire:model="player" required>
                                     <option value="">Choisissez un joueur</option>
                                     @foreach($match->homeClub->players as $player)
-                                    <option value="{{ $player->id}}">{{$player->first_name}} {{$player->last_name}}</option>
+                                    <option value="{{ $player->id}}">{{$player->first_name}}
+                                        {{$player->last_name}}</option>
                                     @endforeach
                                 </select>
                                 @endif
@@ -479,7 +494,8 @@
                                 <select class="inputForm focus:outline-none focus:shadow-outline my-1" name="player" id="player" wire:model="player" required>
                                     <option value="">Choisissez un joueur</option>
                                     @foreach($match->awayClub->players as $player)
-                                    <option value="{{ $player->id}}">{{$player->first_name}} {{$player->last_name}}</option>
+                                    <option value="{{ $player->id}}">{{$player->first_name}}
+                                        {{$player->last_name}}</option>
                                     @endforeach
                                 </select>
                                 @endif
@@ -499,7 +515,8 @@
                         </div>
                     </div>
                     @auth
-                    @if($match->commentateur->user_id == Auth::user()->id && $match->live != "finDeMatch" && ($comment->team_action == "home" || $comment->team_action == "away"))
+                    @if($match->commentateur->user_id == Auth::user()->id && $match->live != "finDeMatch" &&
+                    ($comment->team_action == "home" || $comment->team_action == "away"))
                     <div class="absolute flex justify-center items-center right-1 top-0">
                         <div>
                             <a class="text-lg text-danger" href="{{route('supprimer', ['id' => $comment->id]) }}" onclick="return confirm('Etes vous sûr de vouloir supprimer ce commentaire ?')"><i class="far fa-times-circle"></i></a>

@@ -5,7 +5,7 @@
     {{ session('status') }}
 </div>
 @endif
-<div class="bg-login p-4 h-full lg:h-screen">
+<div class="bg-login lg:pt-20 lg:px-10 p-4 h-full lg:h-screen">
 @include('login')
 </div>
 @endsection

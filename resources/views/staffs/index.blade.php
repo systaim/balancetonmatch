@@ -30,7 +30,7 @@
                     <button onclick="openMenu({{$staff->id}})"><i class="far fa-edit"></i></button>
                 </div>
             </div>
-            <div id="{{$staff->id}}" class="updatePlayer fixed z-50 bg-gray-200 inset-0 justify-center items-center">
+            <div id="{{$staff->id}}" class="hidden fixed z-50 bg-gray-200 inset-0 justify-center items-center">
                 <div class=" absolute top-10 right-10">
                     <p class="text-4xl text-primary">X</p>
                 </div>
