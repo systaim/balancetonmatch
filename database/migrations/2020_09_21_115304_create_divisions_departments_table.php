@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDivisionsRegionsTable extends Migration
+class CreateDivisionsDepartmentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreateDivisionsRegionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('divisions_regions', function (Blueprint $table) {
+        Schema::create('divisions_departments', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->unsignedBigInteger('region_id');
+            $table->unsignedBigInteger('department_id');
             $table->timestamps();
-
-            $table->foreign('region_id')->references('id')->on('regions');
         });
     }
 
@@ -31,6 +29,6 @@ class CreateDivisionsRegionsTable extends Migration
     public function down()
     {
         Schema::disableForeignKeyConstraints();
-        Schema::dropIfExists('divisions_regions');
+        Schema::dropIfExists('divisions_departments');
     }
 }
