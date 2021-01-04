@@ -5,8 +5,11 @@ use App\Http\Controllers\PlayerController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClubController;
 use App\Models\Club;
+use App\Models\Commentator;
 use App\Models\Match;
 use App\Models\Player;
+use App\Models\Staff;
+use App\Models\Statistic;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
@@ -23,16 +26,35 @@ $club = ClubController::class;
 */
 
 Route::get('/', function () {
-    $matchesToday = Match::whereBetween('date_match', [Carbon::now()->startOfDay(), Carbon::now()->endOfDay()])->get();
+    $matchesToday = Match::whereBetween('date_match', [Carbon::now()
+        ->startOfDay(), Carbon::now()->endOfDay()])->get();
     $matchesTomorrow = Match::where('date_match', [Carbon::tomorrow()])->get();
-    $matches = Match::where('date_match', '>=', Carbon::now()->subHours(6))->orderBy('date_match', 'asc')->get();
+    $futurMatches = Match::where('date_match', '>=', Carbon::now()->subHours(6))
+        ->orderBy('date_match', 'asc')->get();
+    $matches = Match::all();
     $clubs = Club::all();
+    $staffs = Staff::all();
     $players = Player::all();
     $dateJour = Carbon::now();
     $user = Auth::user();
     $today = now();
+    $goals= Statistic::where('action', 'goal')->get();
+    $commentators = Commentator::all();
 
-    return view('welcome', compact('matchesToday','matchesTomorrow','clubs','players','dateJour','user', 'today'));
+    return view('welcome', compact(
+        'matchesToday', 
+        'matchesTomorrow', 
+        'futurMatches', 
+        'staffs', 
+        'matches', 
+        'clubs', 
+        'players', 
+        'dateJour', 
+        'user', 
+        'today',
+        'goals',
+        'commentators',
+    ));
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {

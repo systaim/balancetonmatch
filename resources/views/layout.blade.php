@@ -63,11 +63,9 @@
                         <div class="h-64 flex flex-col justify-end">
                             <div class="relative p-4 bg-darkGray rounded-lg text-white w-11/12 m-auto">
                                 <div class="flex flex-row justify-center items-center px-4">
-                                    @if(Auth::user()->club)
                                     <div class="logo h-24 w-24 bg-white rounded-full overflow-hidden absolute top--3 shadow-xl">
-                                        <img class="object-contain" src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ Auth::user()->club->numAffiliation }}.jpg" alt="">
+                                        <img class="object-contain" src="{{ asset('images/logos/btmLogoJB.png') }}" alt="">
                                     </div>
-                                    @endif
                                     <nav class="overflow-hidden">
                                         <p class="font-bold capitalize text-lg mt-8 mb-4">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</p>
                                         <ul class="ml-3">
@@ -92,14 +90,14 @@
                         @else
                         <div class="w-full h-64 uppercase text-center flex flex-row justify-evenly items-center">
                             <div class="rounded-lg bg-darkGray flex flex-row justify-evenly items-center py-8 w-11/12">
-                                <a class="" href="/login">{{ __('Login') }}</a>
+                                <a class="btn text-white" href="/login">{{ __('Login') }}</a>
                                 <a class="btn btnDark" href="/register">{{ __('Register') }}</a>
                             </div>
                         </div>
                         @endauth
                     </div>
                 </div>
-                <nav class="m-6 text-white">
+                <nav class="m-6">
                     <ul class="text-lg uppercase">
                         <li class="m-4 border-b-2 border-secondary"><a href="/"><i class="fas fa-home"></i> Accueil</a></li>
                         <li class="m-4 border-b-2 border-secondary"><a href="{{ route('clubs.index') }}"><i class="fas fa-search"></i> Rechercher un club</a></li>

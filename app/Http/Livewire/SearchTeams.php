@@ -12,7 +12,6 @@ class SearchTeams extends Component
 
     public $name;
     public $messageNoClub;
-
     public $query;
 
     public function updatingQuery()

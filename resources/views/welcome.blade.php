@@ -1,29 +1,29 @@
 @extends('layout')
 @section('content')
 <section class="min-h-screen">
+    <div class="p-4 lg:p-12 lg:h-96 back-hero-home flex sm:justify-center lg:justify-end">
+        <div class="lg:w-1/2 flex items-center">
+            <div class="bg-white p-4 rounded-md text-primary">
+                <h2 class="text-3xl text-primary my-2">Bienvenue</h2>
+                <p>Ce site a pour but de rassambler les passionnés du ballon rond AMATEUR</p>
+                <p>Tout est possible ici ! Et surtout la possibilité de commenter ou de suivre les matchs en live de ton équipe favorite</p>
+            </div>
+        </div>
+    </div>
     <div class="py-4">
         <div class="flex flex-col lg:flex-row justify-between bg-primary overflow-hidden rounded-b-lg w-11/12 m-auto rounded-lg">
             <div class="w-full sm:h-72 lg:w-6/12 lg:h-auto img-bg-blend-home"></div>
             <div class="text-white p-4 lg:w-6/12 xl:p-10 m-auto">
-                <h2 class="text-center mb-6">Envie de suivre les matchs amateurs en direct live ? </h2>
+                <h3 class="text-center mb-6">Quelques statistiques... </h3>
                 <hr>
-                <p class="text-center mt-6">Les matchs amateurs n'ont jamais été autant accessible ! Devenez commentateur ou suivez simplement un match ou plusieurs matchs en direct.</p>
-                <p class="text-center mb-6">Voici la liste des matchs prévus</p>
-                <a class="m-auto flex justify-center" href="{{ route('matches.index') }}">
+                <p class="text-center mt-6">{{ count($futurMatches) }} matchs sont à venir</p>
+                <p class="text-center">{{ count($matches) }} matchs ont été créés</p>
+                <p class="text-center">{{ count($clubs) }} clubs créés</p>
+                <p class="text-center">{{ count($players) }} joueurs et {{ count($staffs) }} membres de staff</p>
+                <p class="text-center">{{ count($goals) }} buts marqués</p>
+                <a class="m-auto flex justify-center" href="{{ route('clubs.index') }}">
                     <button class="btn btnSecondary">Je vais voir</button>
                 </a>
-            </div>
-        </div>
-    </div>
-    <div class="p-12 h-96 back-hero-home hidden lg:flex lg:justify-end">
-        <div class="w-1/2">
-            <h3 class="bg-white py-2 px-4 rounded-md text-3xl text-primary my-4">Bienvenue</h3>
-            <div class="bg-white p-4 rounded-md text-primary">
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                    when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-                    It has survived not only five centuries,</p>
-
             </div>
         </div>
     </div>

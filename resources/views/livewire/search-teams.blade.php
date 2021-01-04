@@ -6,18 +6,9 @@
         <label for="query" class="sr-only">Search</label>
         <input autofocus type="search" class="inputForm focus:outline-none focus:shadow-outline w-full my-1 mx-2" id="query" placeholder="Ex: Nantes" wire:model="query">
     </div>
-    <div>
-        @if (session()->has('message'))
-        <div class="text-center p-2 bg-indigo-800 items-center text-indigo-100 leading-none rounded-lg lg:rounded-full flex flex-col lg:inline-flex" role="alert">
-            <p class="font-bold">{{ session('message') }}</p>
-            <p class="text-sm my-2">Vous pouvez renouveler votre recherche avec moins de lettres pour élargir le résultat</p>
-        </div>
-        @endif
-    </div>
     <div class="m-auto my-8 w-11/12 sm:w-9/12 md:w-7/12 lg:w-6/12">
         @foreach ($clubs as $club)
-        @if($clubs)
-        <a href="{{ route('clubs.show', $club) }}">
+        @if($clubs) <a href="{{ route('clubs.show', $club) }}">
             <div class="flex flex-col mb-3 w-full">
                 <div class="flex flex-row items-center bg-primary rounded-full">
                     <div class="w-16 m-2">
@@ -30,9 +21,16 @@
                     </div>
                 </div>
             </div>
-        </a>
-        @endif
-        @endforeach
+            </a>
+            @else
+            <div>
+                <div class="text-center p-2 bg-indigo-800 items-center text-indigo-100 leading-none rounded-lg lg:rounded-full flex flex-col lg:inline-flex" role="alert">
+                    <p class="font-bold">{{ session('message') }}</p>
+                    <p class="text-sm my-2">Vous pouvez renouveler votre recherche avec moins de lettres pour élargir le résultat</p>
+                </div>
+            </div>
+            @endif
+            @endforeach
     </div>
     <div wire:loading.remove wire:target="searchByName" class="mb-5 text-center">
         <p>{{$messageNoClub}}</p>
