@@ -82,7 +82,6 @@ return [
         public_path('storage') => storage_path('app/public'),
         public_path('uploads') => storage_path('app/uploads'),
         public_path('avatars') => storage_path('app/avatars'),
-        public_path('profile-photos') => storage_path('app/storage/profile-photos')
     ],
 
 ];
