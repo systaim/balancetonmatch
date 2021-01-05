@@ -113,7 +113,7 @@ class DatabaseSeeder extends Seeder
         SELECT save_table_comments.clubs_save.name, save_table_comments.clubs_save.num_affil, save_table_comments.clubs_save.couleur1, save_table_comments.clubs_save.couleur2
         FROM save_table_comments.clubs_save');
 
-        DB::unprepared(file_get_contents('save_table_comments_departments.sql'));
+        DB::unprepared(file_get_contents('database/seeders/save_table_comments_departments.sql'));
         DB::unprepared(file_get_contents('database/seeders/table_clubs.csv'));
 
         $users = \App\Models\User::factory()->count(10)->create();

@@ -41,18 +41,28 @@
                     </div>
                 </div>
                 <!-- icone login -->
-                <div class="relative text-white hidden lg:block ml-auto col-span-3 mt-8 mr-8" x-data="{ open : false }">
+                <div class="relative text-white hidden lg:block ml-auto col-span-3 mt-14 mr-14 w-64" x-data="{ open : false }">
                     @auth
-                    <button id="btnMenu" class="focus:outline-none text-primary" @click="open = true">Bonjour {{ Auth::user()->first_name }} <i class="fas fa-caret-down"></i></button>
+                    <div class="flex justify-center items-center px-2 py-1 rounded-t-md text-white bg-primary">
+                        <img class="rounded-full h-8 w-8 object-cover mr-4 mb-2" src="{{ Auth::user()->profile_photo_url }}">
+                        <button id="btnMenu" class="focus:outline-none text-white" @click="open = true">Bonjour {{ Auth::user()->first_name }} <i class="fas fa-caret-down"></i></button>
+                    </div>
                     @else
-                    <button id="btnMenu" class="focus:outline-none text-primary ml-2" @click="open = true"><i class="far fa-user"></i> <i class="fas fa-caret-down"></i></button>
+                    <div class="flex justify-end pr-6">
+                        <div id="btnMenu" class="focus:outline-none text-primary ml-2 cursor-pointer" @click="open = true">
+                            <i class="far fa-user text-xl"></i> <i class="fas fa-caret-down"></i>
+                        </div>
+                    </div>
                     @endauth
-                    <div id="menuUser" class="absolute z-50 bg-primary rounded-b-lg w-48 shadow-lg overflow-hidden right-0" x-show="open" @click.away="open = false">
+                    <div id="menuUser" class="absolute z-50 bg-primary rounded-b-lg shadow-lg overflow-hidden left-0 w-full" x-show="open" @click.away="open = false">
                         <div class="mt-4">
                             @auth
                             <div class="px-6 py-4 hover:bg-blue-900"><a href="/user/profile">Mon profil</a></div>
                             @if(Auth::user()->club)
-                            <div class="px-6 py-4 hover:bg-blue-900"><a href="/clubs/{{Auth::user()->club->id }}">{{Auth::user()->club->name }}</a></div>
+                            <div class="px-6 py-2 hover:bg-blue-900">
+                                <p class="text-sm">Mon club</p>
+                                <a href="/clubs/{{Auth::user()->club->id }}">{{Auth::user()->club->name }}</a>
+                            </div>
                             @endif
                             <div class="px-6 py-4 hover:bg-blue-900">
                                 <a href="{{ route('logout') }}" onclick="event.preventDefault();
@@ -61,8 +71,10 @@
                                 </a>
                             </div>
                             @else
-                            <li class="px-6 py-4 hover:bg-blue-900"><a href="/login">Se connecter</a></li>
-                            <li class="px-6 py-4 hover:bg-blue-900"><a href="/register">S'enregistrer</a></li>
+                            <ul class="list-none">
+                                <li class="px-6 py-4 hover:bg-blue-900"><a href="/login">Se connecter</a></li>
+                                <li class="px-6 py-4 hover:bg-blue-900"><a href="/register">S'enregistrer</a></li>
+                            </ul>
                             @endauth
                         </div>
                     </div>
@@ -70,7 +82,7 @@
             </div>
             <div class="hidden lg:flex justify-center">
                 <a class="p-2 text-primary underline rounded-lg m-1 " href="/clubs">Rechercher un club</a>
-                <a class="p-2 text-primary underline rounded-md m-1" href="/matches">Liste des matchs</a>
+                <a class="p-2 text-primary underline rounded-md m-1" href="/matches">Matchs à venir</a>
             </div>
             <div id="main-nav" class="main-nav bg-primary">
                 <div class="w-full rounded-b-lg shadow-xl bg-darkGray pt-16 pb-4 bg-menu">

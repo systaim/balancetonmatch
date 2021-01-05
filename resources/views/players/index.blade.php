@@ -56,7 +56,7 @@
                 <!-- ***********************
                     Formulaire suppression d'un joueur
                     ************************** -->
-                <div id="{{ $index++ }}" class="absolute bg-white top-0 left-0 right-0 bottom-0 text-primary z-20 flex flex-col justify-between items-center " x-show="open" @click.away="open = false">
+                <div id="" class="absolute bg-white top-0 left-0 right-0 bottom-0 text-primary z-20 flex flex-col justify-between items-center " x-show="open" @click.away="open = false">
                     <div class="mt-3">
                         <h3 class="text-xl text-center my-2 text-darkGray">{{ $player->first_name}} <span class="uppercase">{{ $player -> last_name}}</span></h3>
                         <div class="mt-12">
