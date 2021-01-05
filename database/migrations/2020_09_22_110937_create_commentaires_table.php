@@ -13,7 +13,7 @@ class CreateCommentairesTable extends Migration
      */
     public function up()
     {
-        Schema::create('comment_user_match', function (Blueprint $table) {
+        Schema::create('commentaires', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('commentator_id');
             $table->string('type_action')->nullable();

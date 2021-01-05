@@ -28,12 +28,12 @@ class DatabaseSeeder extends Seeder
         $regions = Region::all();
 
         // foreach ($regions as $region) {
-            foreach ($divisions as $division) {
-                DivisionsRegion::create([
-                    'name' => $division,
-                    // 'region_id' => $region->id,
-                ]);
-            }
+        foreach ($divisions as $division) {
+            DivisionsRegion::create([
+                'name' => $division,
+                // 'region_id' => $region->id,
+            ]);
+        }
         // }
 
         //tables nom de groupes
@@ -46,22 +46,32 @@ class DatabaseSeeder extends Seeder
         // tables players numéros génériques
         // $clubs = Club::all();
         // foreach ($clubs as $club) {
-            for ($i = 1; $i <= 16; $i++) {
-                Player::create([
-                    'name' => $i,
-                    'first_name' => 'numéro',
-                    // 'club_id' => $club->id,
-                ]);
-            }
+        for ($i = 1; $i <= 16; $i++) {
+            Player::create([
+                'last_name' => $i,
+                'first_name' => 'numéro',
+                // 'club_id' => $club->id,
+            ]);
+        }
         // }
 
 
         //tables noms de régions
-        $regions = ['Auvergne - Rhones-Alpes', 'Bourgogne - Franche Comté', 'Bretagne', 'Centre Val de Loire', 'Corse', 'Grand Est', 'Guadeloupe', 'Guyane', 'Hauts de France', 'Martinique', 'Mayotte', 'Mediterrannée', 'Normandie', 'Nouvelle Aquitaine', 'Occitanie', 'Paris IDF', 'Pays de la Loire', 'Réunion', 'St Pierre & Miquelon','Coupe de France'];
+        $regions = ['Auvergne - Rhones-Alpes', 'Bourgogne - Franche Comté', 'Bretagne', 'Centre Val de Loire', 'Corse', 'Grand Est', 'Guadeloupe', 'Guyane', 'Hauts de France', 'Martinique', 'Mayotte', 'Mediterrannée', 'Normandie', 'Nouvelle Aquitaine', 'Occitanie', 'Paris IDF', 'Pays de la Loire', 'Réunion', 'St Pierre & Miquelon', 'Coupe de France'];
 
         foreach ($regions as $region) {
             Region::create([
                 'name' => $region,
+            ]);
+        }
+
+        //nom de compétitions
+        $competitions = ['Championnat régional', 'Championnat départemental', 'coupe de France', 'Coupe régionale', 'Coupe départementale', 'Match amical'];
+
+        foreach($competitions as $competition){
+            Region::create([
+                'name' => $competition,
+                'season' => '2020/2021'
             ]);
         }
 
@@ -70,12 +80,12 @@ class DatabaseSeeder extends Seeder
         $departements = Department::all();
 
         // foreach ($departements as $departement) {
-            foreach ($districts as $district) {
-                DivisionsDepartment::create([
-                    'name' => $district,
-                    // 'department_id' => $departement->id
-                ]);
-            }
+        foreach ($districts as $district) {
+            DivisionsDepartment::create([
+                'name' => $district,
+                // 'department_id' => $departement->id
+            ]);
+        }
         // }
 
         //table nom de competitions
@@ -93,15 +103,18 @@ class DatabaseSeeder extends Seeder
         SELECT save_table_comments.departements_save.nom_district, save_table_comments.departements_save.region
         FROM save_table_comments.departements_save');
 
-        //table nom de compétitions
-        DB::insert('INSERT INTO competitions (competitions.name, competitions.season)
-        SELECT save_table_comments.competitions_save.name, save_table_comments.competitions_save.season
-        FROM save_table_comments.competitions_save');
+        // //table nom de compétitions
+        // DB::insert('INSERT INTO competitions (competitions.name, competitions.season)
+        // SELECT save_table_comments.competitions_save.name, save_table_comments.competitions_save.season
+        // FROM save_table_comments.competitions_save');
 
         //table clubs sauvegardée
         DB::insert('INSERT INTO clubs (clubs.name, clubs.city, clubs.primary_color, clubs.secondary_color)
         SELECT save_table_comments.clubs_save.name, save_table_comments.clubs_save.num_affil, save_table_comments.clubs_save.couleur1, save_table_comments.clubs_save.couleur2
         FROM save_table_comments.clubs_save');
+
+        DB::unprepared(file_get_contents('save_table_comments_departments.sql'));
+        DB::unprepared(file_get_contents('database/seeders/table_clubs.csv'));
 
         $users = \App\Models\User::factory()->count(10)->create();
         $players = \App\Models\Player::factory()->count(100)->create();

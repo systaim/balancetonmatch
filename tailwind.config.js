@@ -30,15 +30,6 @@ module.exports = {
                 darkGray: "#0D0F12",
                 success: "#00ff48",
                 darkSuccess: "#009628",
-                // black: colors.black,
-                // white: colors.white,
-                // gray: colors.gray,
-                // red: colors.red,
-                // yellow: colors.yellow,
-                // green: colors.green,
-                // blue: colors.blue,
-                // indigo: colors.indigo,
-                // purple: colors.purple
             },
             inset: {
                 "50": "12.5rem",

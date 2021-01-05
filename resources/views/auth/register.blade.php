@@ -50,7 +50,7 @@
                             @enderror
                         </div>
                         <div class="flex flex-col lg:w-5/12 mb-6">
-                            <x-clubselect />
+                            <x-clubSelect />
                             @error('prefer_team')
                             <div class="alert alert-danger">{{ $message }}</div>
                             @enderror

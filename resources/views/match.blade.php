@@ -8,8 +8,8 @@
         @if(Auth::user() && $match->user_id == Auth::user()->id)
         <div class="bg-secondary w-6 h-6 absolute top-2 right-1 flex justify-center items-center rounded-full text-primary" @click="open= true">
             <div class="dotMenu"></div>
-            <div class="absolute top-0 left-0 w-32 h-24 py-4 pl-6 bg-secondary shadow-xl rounded-lg" x-show="open" @click.away="open = false">
-                <a href="{{ route('matches.destroy', $match) }}" onclick="event.preventDefault();
+            <div class="absolute top-0 right-0 w-32 h-24 py-4 pl-6 bg-secondary shadow-xl rounded-lg" x-show="open" @click.away="open = false">
+                <a class="w-full py-2" href="{{ route('matches.destroy', $match) }}" onclick="event.preventDefault();
                         document.getElementById('delete-match').submit();">Effacer</a>
             </div>
             <form id="delete-match" action="{{ route('matches.destroy', $match) }}" method="POST">

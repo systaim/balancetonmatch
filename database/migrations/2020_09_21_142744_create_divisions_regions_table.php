@@ -16,7 +16,6 @@ class CreateDivisionsRegionsTable extends Migration
         Schema::create('divisions_regions', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->unsignedBigInteger('region_id');
             $table->timestamps();
         });
     }

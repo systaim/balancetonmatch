@@ -21,40 +21,56 @@
     </div>
     <div id="container">
         <header id="header" class="relative bg-gray-100 h-20 lg:h-auto">
-            <div class="flex justify-center lg:justify-between items-center h-auto text-primary p-4">
+            <div class="text-primary grid grid-cols-12">
                 <!-- logo grande page -->
-                <div class="relative hidden lg:block">
+                <div class="relative hidden lg:block lg:col-span-3">
                     <a href="/">
                         <img src="{{ asset('images/logos/btmLogoJB.png') }}" width="150px" alt="">
                     </a>
                 </div>
                 <!-- logo(texte) -->
-                <div class="flex justify-center">
-                    <div class="relative flex flex-col justify-center items-center h-full diagonale sm:text-lg md:text-xl lg:text-4xl">
+                <div class="flex justify-center col-start-3 col-end-12 lg:col-span-6 mt-2">
+                    <div class="relative flex flex-col items-center h-full diagonale text-lg md:text-xl lg:text-4xl">
                         <a href="/">
                             <h1 class="capitalize">balance ton match</h1>
                         </a>
-                        <p class="text-xxs px-2 bg-primary rounded-lg text-white sm:text-xs md:text-base">Quand la touche part en live...</p>
+                        <p class=" text-xs px-2 bg-primary rounded-lg text-white md:text-base">Quand la touche part en live...</p>
                         <!-- <div>
                                 <p class=" absolute top-0 right-2 text-xs px-2 bg-orange-600 text-black shadow-2xl rounded-md">Bêta</p>
                             </div> -->
                     </div>
                 </div>
                 <!-- icone login -->
-                <div class="hidden lg:block">
+                <div class="relative text-white hidden lg:block ml-auto col-span-3 mt-8 mr-8" x-data="{ open : false }">
                     @auth
-                    <a href="/user/profile">Mon compte</a>
+                    <button id="btnMenu" class="focus:outline-none text-primary" @click="open = true">Bonjour {{ Auth::user()->first_name }} <i class="fas fa-caret-down"></i></button>
                     @else
-                    <a class="btn btnDanger" href="/login">Connexion</a>
+                    <button id="btnMenu" class="focus:outline-none text-primary ml-2" @click="open = true"><i class="far fa-user"></i> <i class="fas fa-caret-down"></i></button>
                     @endauth
+                    <div id="menuUser" class="absolute z-50 bg-primary rounded-b-lg w-48 shadow-lg overflow-hidden right-0" x-show="open" @click.away="open = false">
+                        <div class="mt-4">
+                            @auth
+                            <div class="px-6 py-4 hover:bg-blue-900"><a href="/user/profile">Mon profil</a></div>
+                            @if(Auth::user()->club)
+                            <div class="px-6 py-4 hover:bg-blue-900"><a href="/clubs/{{Auth::user()->club->id }}">{{Auth::user()->club->name }}</a></div>
+                            @endif
+                            <div class="px-6 py-4 hover:bg-blue-900">
+                                <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
+                                </a>
+                            </div>
+                            @else
+                            <li class="px-6 py-4 hover:bg-blue-900"><a href="/login">Se connecter</a></li>
+                            <li class="px-6 py-4 hover:bg-blue-900"><a href="/register">S'enregistrer</a></li>
+                            @endauth
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="flex justify-center">
-                <div class="mt-8 hidden lg:block">
-                    <a href="/">Accueil</a>
-                    <a href="/clubs">Rechercher un club</a>
-                    <a href="/matches">Liste des matchs</a>
-                </div>
+            <div class="hidden lg:flex justify-center">
+                <a class="p-2 text-primary underline rounded-lg m-1 " href="/clubs">Rechercher un club</a>
+                <a class="p-2 text-primary underline rounded-md m-1" href="/matches">Liste des matchs</a>
             </div>
             <div id="main-nav" class="main-nav bg-primary">
                 <div class="w-full rounded-b-lg shadow-xl bg-darkGray pt-16 pb-4 bg-menu">
