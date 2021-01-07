@@ -5,7 +5,7 @@
         <div class="lg:w-1/2 flex items-center">
             <div class="bg-white p-4 rounded-md text-primary">
                 <h2 class="text-3xl text-primary my-2">Bienvenue</h2>
-                <p>Ce site a pour but de rassambler les passionnés du ballon rond AMATEUR</p>
+                <p>Ce site a pour but de rassembler les passionnés du ballon rond AMATEUR</p>
                 <p>Tout est possible ici ! Et surtout la possibilité de commenter ou de suivre les matchs en live de ton équipe favorite</p>
             </div>
         </div>

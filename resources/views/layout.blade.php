@@ -43,18 +43,18 @@
                 <!-- icone login -->
                 <div class="relative text-white hidden lg:block ml-auto col-span-3 mt-14 mr-14 w-64" x-data="{ open : false }">
                     @auth
-                    <div class="flex justify-center items-center px-2 py-1 rounded-t-md text-white bg-primary">
+                    <div class="flex justify-center items-center px-2 py-1 cursor-pointer text-primary" @click="open = true">
                         <img class="rounded-full h-8 w-8 object-cover mr-4 mb-2" src="{{ Auth::user()->profile_photo_url }}">
-                        <button id="btnMenu" class="focus:outline-none text-white" @click="open = true">Bonjour {{ Auth::user()->first_name }} <i class="fas fa-caret-down"></i></button>
+                        <div id="btnMenu" class="focus:outline-none">Bonjour {{ Auth::user()->first_name }} <i class="fas fa-caret-down"></i></div>
                     </div>
                     @else
-                    <div class="flex justify-end pr-6">
-                        <div id="btnMenu" class="focus:outline-none text-primary ml-2 cursor-pointer" @click="open = true">
+                    <div class="flex justify-end pr-6 cursor-pointer" @click="open = true">
+                        <div id="btnMenu" class="focus:outline-none text-primary ml-2">
                             <i class="far fa-user text-xl"></i> <i class="fas fa-caret-down"></i>
                         </div>
                     </div>
                     @endauth
-                    <div id="menuUser" class="absolute z-50 bg-primary rounded-b-lg shadow-lg overflow-hidden left-0 w-full" x-show="open" @click.away="open = false">
+                    <div id="menuUser" class="absolute z-50 bg-primary rounded-lg shadow-lg overflow-hidden left-0 w-full" x-show="open" @click.away="open = false">
                         <div class="mt-4">
                             @auth
                             <div class="px-6 py-4 hover:bg-blue-900"><a href="/user/profile">Mon profil</a></div>
