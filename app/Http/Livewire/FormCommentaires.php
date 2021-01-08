@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\Commentaire;
 use App\Models\Commentator;
+use App\Models\Player;
 use App\Models\Statistic;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
@@ -41,7 +42,10 @@ class FormCommentaires extends Component
     public $firstCom;
     public $file;
     public $menuCom;
-    
+    public $playerPrenom;
+    public $playerNom;
+    public $playerMatch;
+
     public $listGoal = ['GOOOOAAL !', 'BUUUUT !!!', 'GOAL GOAL GOAL !!'];
     public $mitempsJoueurs = ['Les joueurs rentrent aux vestiaires', 'Tout le monde à la buv... euuuh aux vestiaires !'];
 
@@ -105,6 +109,46 @@ class FormCommentaires extends Component
     public function deleteMenu()
     {
         $this->deleteMenu = 1;
+    }
+
+    public function miseAJourJoueur($teamAction, Statistic $stat)
+    {
+        // dd($this->playerMatch);
+        // dd($teamAction);
+
+        $user = Auth::user();
+
+        if (empty($this->playerMatch) || $this->playerMatch == null) {
+            // dd('creation');
+            $dataPlayer = $this->validate([
+                'playerPrenom' => 'required|min:2',
+                'playerNom' => 'required|min:2',
+            ]);
+
+            $player = new Player();
+            $player['first_name'] = $this->playerPrenom;
+            $player['last_name'] = $this->playerNom;
+            if ($teamAction == "home") {
+                $player['club_id'] = $this->match->home_team_id;
+            }
+            if ($teamAction == "away") {
+                $player['club_id'] = $this->match->away_team_id;
+            }
+            $player['user_id'] = $user->id;
+
+
+            if ($player->save()) {
+                $stat->player()->associate($player);
+                $stat->save();
+            }
+        } else {
+            // dd('utilisation');
+            $stat->player()->associate($this->playerMatch);
+            $stat->save();
+        }
+
+        $this->miseAJourCom();
+        return redirect()->to('matches/' . $this->match->id);
     }
 
     public function miseAJourCom()

@@ -1,5 +1,5 @@
 <div wire:poll>
-    <form class="min-h-screen" wire:submit.prevent="saveComment">
+    <form wire:submit.prevent="saveComment">
         <!-- affichage bannière du match -->
         <div>
             <div class="backMatch">
@@ -108,7 +108,6 @@
         <!-------------------------
             Formulaire d'action équipe 
             ---------------------------->
-
         <div class="fixed openComment flex flex-col justify-center z-10 rounded-b-lg espaceCom {{ $team_action}}">
             <div class="flex flex-col items-center pt-10">
                 <h3 class="text-xl text-center px-2 text-primary bg-white rounded-lg">Menu action de match</h3>
@@ -414,148 +413,148 @@
             @endauth
         </div>
         @endif
-        <!-- fin de formulaire de commentaires match-->
+    </form>
+    <!-- fin de formulaire de commentaires match-->
 
-        <!-- Affichage des commentaires -->
-        <div class="flex justify-around">
-            <div>
-                @foreach($commentsMatch->sortBy('minute') as $comment)
-                @if($comment->team_action == "home" && $comment->type_action == "goal")
-                <div class="flex flex-row justify-end items-center m-auto overflow-hidden mx-1">
-                    <p class="text-xs px-2 truncate">{{ substr($comment->statistic->player->first_name, 0, 1)}}.
-                        {{ $comment->statistic->player->last_name}}
-                    </p>
-                    <p class="text-xs w-8 text-right px-2">{{ $comment->minute }}'</p>
-                    <p class="text-xs">⚽</p>
-                </div>
-                @endif
-                @endforeach
-            </div>
-            <div>
-                @foreach($commentsMatch as $comment)
-                @if($comment->team_action == "away" && $comment->type_action == "goal")
-                <div class="flex flex-row-reverse justify-end items-center m-auto overflow-hidden mx-1">
-                    <p class="text-xs px-2 truncate">
-                        {{ substr($comment->statistic->player->first_name, 0, 1) }}.
-                        {{ $comment->statistic->player->last_name}}
-                    </p>
-                    <p class="text-xs w-8 text-right px-2">{{ $comment->minute }}'</p>
-                    <p class="text-xs">⚽</p>
-                </div>
-                @endif
-                @endforeach
-            </div>
-        </div>
-        @auth
-        <div class="mx-12 my-2 text-right">
-            <p class="text-xs cursor-pointer underline" wire:click="needHelp">Besoin d'aide ?</p>
-        </div>
-        @endauth
-        <div class="my-2 w-11/12 m-auto lg:w-11/12 lg:flex lg:justify-around" wire:poll.5000ms.keep-alive="miseAJourCom">
-            <div class="m-auto sm:w-10/12 lg:w-8/12">
-                @foreach($commentsMatch as $comment)
-                <div class="relative commentaires minHeight16 h-auto {{ $comment->team_action }}" x-data="{ open: false }">
-                    <div class="minuteCommentaires w-24 sm:w-32 {{ $comment->team_action }} p-4 flex flex-col items-center">
-                        <div>
-                            <p class="text-lg mb-4">{{ $comment->minute}}'</p>
-                        </div>
-                        @if($comment->team_action == "home")
-                        <div class="logo h-8 w-8 cursor-pointer">
-                            <img class="object-contain" src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $match->homeClub->numAffiliation }}.jpg" alt="logo">
-                        </div>
-                        @endif
-                        @if($comment->team_action == "away")
-                        <div class="logo h-8 w-8 cursor-pointer">
-                            <img class="object-contain" src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $match->awayClub->numAffiliation }}.jpg" alt="logo">
-                        </div>
-                        @endif
-                    </div>
-                    <div class="relative bg-white w-full p-4 flex flex-col">
-                        <div class="flex flex-col sm:flex-row justify-between">
-                            <div class="mb-4">
-                                <p class="text-lg font-bold">{{ $comment->type_comments}}</p>
-                                <p>{{ $comment->comments }}</p>
-                                <div class="flex items-center">
-                                    @if($comment->team_action == "away" || $comment->team_action == "home")
-                                    <p class="font-bold mr-4">{{ $comment->statistic->player->first_name}}
-                                        {{ $comment->statistic->player->last_name}}
-                                    </p>
-                                    @if($comment->statistic->player->id >= 1 && $comment->statistic->player->id
-                                    <= 16) <button type="button" class="text-xs px-2 bg-primary text-white rounded-md" @click="open = true">
-                                        Qui est ce ?
-                                        </button>
-                                        @endif
-                                        @endif
-                                </div>
-                            </div>
-                            @auth
-                            @if($match->commentateur->user_id == Auth::user()->id && $match->live != "finDeMatch" &&
-                            ($comment->team_action == "home" || $comment->team_action == "away"))
-                            <div class="absolute flex justify-center items-center right-1 top-0">
-                                <div>
-                                    <a class="text-lg text-danger" href="{{route('supprimer', ['id' => $comment->id]) }}" onclick="return confirm('Etes vous sûr de vouloir supprimer ce commentaire ?')"><i class="far fa-times-circle"></i></a>
-                                </div>
-                            </div>
-                            @endif
-                            @endauth
-                            <div class="absolute top-0 left-0 right-0 bottom-0 bg-darkGray text-white w-full h-full" x-show="open" @click.away="open = false">
-                                <h3>Tu connais ce joueur ?</h3>
-                                @if($comment->team_action == 'home')
-                                <select class="inputForm focus:outline-none focus:shadow-outline my-1" name="player" id="player" wire:model="player" required>
-                                    <option value="">Choisissez un joueur</option>
-                                    @foreach($match->homeClub->players as $player)
-                                    <option value="{{ $player->id}}">{{$player->first_name}}
-                                        {{$player->last_name}}
-                                    </option>
-                                    @endforeach
-                                </select>
-                                @endif
-                                @if($comment->team_action == 'away')
-                                <select class="inputForm focus:outline-none focus:shadow-outline my-1" name="player" id="player" wire:model="player" required>
-                                    <option value="">Choisissez un joueur</option>
-                                    @foreach($match->awayClub->players as $player)
-                                    <option value="{{ $player->id}}">{{$player->first_name}}
-                                        {{$player->last_name}}
-                                    </option>
-                                    @endforeach
-                                </select>
-                                @endif
-                                <input class="text-primary" type="text" name="first_name" placeholder="prénom">
-                                <input class="text-primary" type="text" name="last_name" placeholder="nom">
-                            </div>
-                            @if($comment->images != null)
-                            <div>
-                                <a href="{{ asset($comment->images)}}">
-                                    <img class="max-h-32 rounded-md shadow-xl" src="{{ asset($comment->images)}}" alt="">
-                                </a>
-                            </div>
-                            @endif
-                        </div>
-                        <div class="flex justify-end items-end">
-                            <p class="text-xs">{{ $match->commentateur->user->pseudo }}</p>
-                        </div>
-                    </div>
-                </div>
-                @endforeach
-            </div>
-            @if($match->commentateur)
-            <div>
-                <div class="bg-white rounded-lg border-white w-11/12 m-auto my-8 shadow-2xl lg:my-0 lg:w-auto max-w-sm">
-                    <div class="bg-primary text-secondary rounded-t-lg">
-                        <h3 class="text-center p-2">Le "Thierry Roland" du jour</h3>
-                    </div>
-                    <div class="flex justify-evenly items-center p-4">
-                        <div>
-                            <p class="font-bold">{{$match->commentateur->user->pseudo}}</p>
-                        </div>
-                        <div class="flex items-center justify-center bg-secondary h-12 w-12 rounded-full m-2">
-                            <p>{{$match->commentateur->user->note}}</p>
-                        </div>
-                    </div>
-                </div>
+    <!-- Affichage des commentaires -->
+    <div class="flex justify-around">
+        <div>
+            @foreach($commentsMatch->sortBy('minute') as $comment)
+            @if($comment->team_action == "home" && $comment->type_action == "goal")
+            <div class="flex flex-row justify-end items-center m-auto overflow-hidden mx-1 my-4">
+                <p class="text-xs px-2 truncate font-bold">{{ substr($comment->statistic->player->first_name, 0, 1)}}.
+                    {{ $comment->statistic->player->last_name}}
+                </p>
+                <p class="text-xs w-8 text-right px-2">{{ $comment->minute }}'</p>
+                <p class="text-xs">⚽</p>
             </div>
             @endif
+            @endforeach
         </div>
-        <!-- Fin affichage des commentaires -->
-    </form>
+        <div>
+            @foreach($commentsMatch as $comment)
+            @if($comment->team_action == "away" && $comment->type_action == "goal")
+            <div class="flex flex-row-reverse justify-end items-center m-auto overflow-hidden mx-1 my-4">
+                <p class="text-xs px-2 truncate font-bold">
+                    {{ substr($comment->statistic->player->first_name, 0, 1) }}.
+                    {{ $comment->statistic->player->last_name}}
+                </p>
+                <p class="text-xs w-8 text-right px-2">{{ $comment->minute }}'</p>
+                <p class="text-xs">⚽</p>
+            </div>
+            @endif
+            @endforeach
+        </div>
+    </div>
+    @auth
+    @if($match->commentateur->user_id == Auth::user()->id)
+    <div class="mx-6 my-2 text-right">
+        <p class="text-xs cursor-pointer underline" wire:click="needHelp">Besoin d'aide ?</p>
+    </div>
+    @endif
+    @endauth
+    <div class="my-2 w-11/12 m-auto lg:w-11/12 lg:flex lg:justify-around" wire:poll.5000ms.keep-alive="miseAJourCom">
+        <div class="m-auto sm:w-10/12 lg:w-8/12">
+            @foreach($commentsMatch as $comment)
+            <div class="relative commentaires minHeight16 h-auto {{ $comment->team_action }}" x-data="{ open: false }">
+                <div class="minuteCommentaires w-24 sm:w-32 {{ $comment->team_action }} p-4 flex flex-col items-center">
+                    <div>
+                        <p class="text-lg mb-4">{{ $comment->minute}}'</p>
+                    </div>
+                    @if($comment->team_action == "home")
+                    <div class="logo h-8 w-8 cursor-pointer">
+                        <img class="object-contain" src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $match->homeClub->numAffiliation }}.jpg" alt="logo">
+                    </div>
+                    @endif
+                    @if($comment->team_action == "away")
+                    <div class="logo h-8 w-8 cursor-pointer">
+                        <img class="object-contain" src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $match->awayClub->numAffiliation }}.jpg" alt="logo">
+                    </div>
+                    @endif
+                </div>
+                <div class="relative bg-white w-full p-4 flex flex-col">
+                    <div class="flex flex-col justify-between">
+                        <div class="mb-4">
+                            <p class="text-lg font-bold">{{ $comment->type_comments}}</p>
+                            <p>{{ $comment->comments }}</p>
+                            <div class="flex items-center">
+                                @if($comment->team_action == "away" || $comment->team_action == "home")
+                                <p class="font-bold mr-4">{{ $comment->statistic->player->first_name}}
+                                    {{ $comment->statistic->player->last_name}}
+                                </p>
+                                @if($comment->statistic->player->id >= 1 && $comment->statistic->player->id
+                                <= 16) <button type="button" class="text-xs px-2 bg-primary text-white rounded-md" @click="open = true">
+                                    Qui est ce ?
+                                    </button>
+                                    @endif
+                                    @endif
+                            </div>
+                        </div>
+                        <!-- Menu ajout d'un joueur par utilisateur -->
+                        <div class="border-t-2 pt-4 flex flex-col justify-center items-center" x-show="open" @click.away="open = false">
+                            <h3 class="text-sm">Tu connais ce joueur ?</h3>
+                            <div class="flex flex-col">
+                                <div class="flex justify-center">
+                                    <select class="focus:outline-none focus:shadow-outline my-1 border-2 rounded-md m-1 p-1" name="playerMatch" id="playerMatch" wire:model="playerMatch">
+                                        <option value="">Choisis un joueur</option>
+                                        @foreach(($comment->team_action == 'home' ? $match->homeClub->players : $match->awayClub->players) as $player)
+                                        <option value="{{ $player->id}}">{{$player->first_name}}
+                                            {{$player->last_name}}
+                                        </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="flex flex-col justify-center items-center ">
+                                    <p class="text-sm">Ou crée le en mode <span class="font-bold">#rapide</span></p>
+                                    <input {{ $playerMatch != "" && $playerMatch != null ? 'disabled' : '' }} wire:model="playerPrenom" name="playerPrenom" class="{{ $playerMatch != "" && $playerMatch == null ? 'cursor-not-allowed' : '' }} text-primary border-b border-primary focus:outline-none w-2/3 sm:m-1 p-1" type="text" placeholder="prénom">
+                                    <input {{ $playerMatch != "" && $playerMatch != null ? 'disabled' : '' }} wire:model="playerNom" name="playerNom" class="{{ $playerMatch != "" && $playerMatch != null ? 'cursor-not-allowed' : '' }} text-primary border-b border-primary focus:outline-none w-2/3 m-1 p-1" type="text" placeholder="nom">
+                                </div>
+                                <button type="button" wire:click="miseAJourJoueur('{{ $comment->team_action }}' ,  {{ $comment->statistic }})">Envoyer</button>
+                            </div>
+                        </div>
+                        <!-- FIN menu ajout d'un joueur par utilisateur -->
+                        @if($comment->images != null)
+                        <div class="flex justify-center">
+                            <a href="{{ asset($comment->images)}}">
+                                <img class="max-h-32 rounded-md shadow-xl" src="{{ asset($comment->images)}}" alt="">
+                            </a>
+                        </div>
+                        @endif
+                    </div>
+                    <div class="flex justify-end items-end mt-4 mx-1">
+                        <p class="text-xs">Commenté par {{ $match->commentateur->user->pseudo }}</p>
+                    </div>
+                </div>
+                @auth
+                @if($match->commentateur->user_id == Auth::user()->id && $match->live != "finDeMatch" &&
+                ($comment->team_action == "home" || $comment->team_action == "away"))
+                <div class="absolute flex justify-center items-center right-1 top-0">
+                    <div>
+                        <a class="text-lg text-danger" href="{{route('supprimer', ['id' => $comment->id]) }}" onclick="return confirm('Etes vous sûr de vouloir supprimer ce commentaire ?')"><i class="far fa-times-circle"></i></a>
+                    </div>
+                </div>
+                @endif
+                @endauth
+            </div>
+            @endforeach
+        </div>
+        @if($match->commentateur)
+        <div>
+            <div class="bg-white rounded-lg border-white w-11/12 m-auto my-8 shadow-2xl lg:my-0 lg:w-auto max-w-sm">
+                <div class="bg-primary text-secondary rounded-t-lg">
+                    <h3 class="text-center p-2">Le "Thierry Roland" du jour</h3>
+                </div>
+                <div class="flex justify-evenly items-center p-4">
+                    <div>
+                        <p class="font-bold">{{$match->commentateur->user->pseudo}}</p>
+                    </div>
+                    <div class="flex items-center justify-center bg-secondary h-12 w-12 rounded-full m-2">
+                        <p>{{$match->commentateur->user->note}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endif
+    </div>
+    <!-- Fin affichage des commentaires -->
 </div>
