@@ -1,8 +1,6 @@
-<div x-data="{ open: false }">
-    <div class="relative text-center flex justify-center font-bold">
-        <div class="absolute top-4 left-0 md:left-6 z-50">
-            @livewire('favori-match', ['user' => $user, 'match' => $match])
-        </div>
+<div class="relative" x-data="{ open: false }">
+    <div class="absolute top-2 -left-2 md:left-6 z-50 text-center flex justify-center font-bold">
+        @livewire('favori-match', ['user' => $user, 'match' => $match])
     </div>
     <div class="relative my-2 p-2 bg-primary text-white rounded-lg cursor-pointer">
         @if(Auth::user() && $match->user_id == Auth::user()->id)
@@ -40,13 +38,18 @@
                         </div>
                         @elseif($match->live == 'reporte')
                         <p class="bg-green-600 text-xs text-white rounded-md px-2 shadow-md border-b-2 border-r-2 border-white">REPORTÉ</p>
-                        @elseif($match->live != 'reporte' || $match->live != 'attente')
+                        @elseif($match->live != 'reporte' && $match->live != 'attente' && $match->live != 'finDeMatch')
+                        <div class="relative uppercase inline-block text-primary font-bold bg-secondary px-2 rounded-sm text-xl">
+                        <div class="animate-ping absolute -top-0.5 -right-0.5 bg-red-500 h-3 w-3 rounded-full z-50"></div>
+                            LIVE
+                        </div>
+                        @elseif($match->live == 'finDeMatch')
                         <div class="flex justify-center text-black">
-                            <div class="bg-white rounded-sm mr-1">
-                                <p class="flex justify-center w-4 text-3xl px-4 font-bold">{{$match->home_score}}</p>
+                            <div class="bg-white rounded-sm mr-1 overflow-hidden">
+                                <p class="flex justify-center w-4 text-3xl px-4 font-bold {{ $match->home_score > $match->away_score ? 'bg-teal-400' : '' }}">{{$match->home_score}}</p>
                             </div>
-                            <div class="bg-white rounded-sm ml-1 z-10">
-                                <p class="flex justify-center w-4 text-3xl px-4 font-bold">{{$match->away_score}}</p>
+                            <div class="bg-white rounded-sm ml-1 z-10 overflow-hidden">
+                                <p class="flex justify-center w-4 text-3xl px-4 font-bold {{ $match->away_score > $match->home_score ? 'bg-teal-400' : '' }}">{{$match->away_score}}</p>
                             </div>
                         </div>
                         @endif

@@ -32,6 +32,9 @@ module.exports = {
                 darkSuccess: "#009628",
             },
             inset: {
+                "-0.5": "-0.35rem",
+                "-1": "-1rem",
+                "-2": "-2rem",
                 "50": "12.5rem",
             },
             fontSize: {

@@ -4,8 +4,8 @@
         <div>
             <div class="backMatch">
                 <div class="py-6">
-                    <div class="bg-primary text-white m-auto text-center rounded-lg shadow-2xl p-2 max-w-md">
-                        @if($match->region)
+                    <div class="relative bg-primary text-white m-auto text-center rounded-lg shadow-2xl p-2 max-w-md">
+                        @if($match->region && $match->region->id != 20)
                         <h2>{{ $match->region->name }}</h2>
                         @endif
                         <h3 class="text-sm">{{ $match->competition->name }}</h3>
@@ -261,7 +261,6 @@
         <!----------------------
             AFFICHAGE DES COMMENTAIRES DU MATCH
                 ------------------------->
-
         @auth
         <div>
             @if($firstCom == 1)
@@ -417,11 +416,20 @@
     <!-- fin de formulaire de commentaires match-->
 
     <!-- Affichage des commentaires -->
+    <div class="ml-10">
+        @if($match->live != 'reporte' && $match->live != 'attente' && $match->live != 'finDeMatch')
+        <div class="relative uppercase inline-block text-primary font-bold bg-secondary px-2 rounded-sm text-xl">
+            <div class="animate-ping absolute -top-0.5 -right-0.5 bg-red-500 h-3 w-3 rounded-full z-50"></div>
+            LIVE
+        </div>
+        @endif
+    </div>
+
     <div class="flex justify-around">
         <div>
             @foreach($commentsMatch->sortBy('minute') as $comment)
             @if($comment->team_action == "home" && $comment->type_action == "goal")
-            <div class="flex flex-row justify-end items-center m-auto overflow-hidden mx-1 my-4">
+            <div class="flex flex-row justify-end items-center m-auto overflow-hidden mx-1 my-1">
                 <p class="text-xs px-2 truncate font-bold">{{ substr($comment->statistic->player->first_name, 0, 1)}}.
                     {{ $comment->statistic->player->last_name}}
                 </p>
@@ -434,7 +442,7 @@
         <div>
             @foreach($commentsMatch as $comment)
             @if($comment->team_action == "away" && $comment->type_action == "goal")
-            <div class="flex flex-row-reverse justify-end items-center m-auto overflow-hidden mx-1 my-4">
+            <div class="flex flex-row-reverse justify-end items-center m-auto overflow-hidden mx-1 my-1">
                 <p class="text-xs px-2 truncate font-bold">
                     {{ substr($comment->statistic->player->first_name, 0, 1) }}.
                     {{ $comment->statistic->player->last_name}}
@@ -447,10 +455,12 @@
         </div>
     </div>
     @auth
+    @if($match->commentateur)
     @if($match->commentateur->user_id == Auth::user()->id)
     <div class="mx-6 my-2 text-right">
         <p class="text-xs cursor-pointer underline" wire:click="needHelp">Besoin d'aide ?</p>
     </div>
+    @endif
     @endif
     @endauth
     <div class="my-2 w-11/12 m-auto lg:w-11/12 lg:flex lg:justify-around" wire:poll.5000ms.keep-alive="miseAJourCom">
