@@ -13,35 +13,35 @@
 </head>
 
 <body>
-    <div id="burger" class="cursor-pointer top-2 left-2 flex justify-center items-center h-12 w-12 bg-primary z-50 lg:top-40 lg:left-50 lg:hidden">
+    <div id="burger" class="absolute cursor-pointer top-5 left-3 flex justify-center items-center h-12 w-12 bg-primary z-50">
         <div class="open-main-nav flex justify-center">
             <span class="burger"></span>
-            <!-- <span class="burger-text">Menu</span> -->
         </div>
     </div>
     <div id="container">
-        <header id="header" class="relative bg-gray-100 h-20 lg:h-auto">
-            <div class="text-primary grid grid-cols-12">
+        <header id="header" class="relative bg-gray-100 h-24">
+            <div class="relative text-primary flex justify-end sm:justify-center items-center mr-2 h-24">
                 <!-- logo grande page -->
-                <div class="relative hidden lg:block lg:col-span-3">
+                <div class="relative w-8/12 md:w-6/12 lg:w-4/12 xl:w-3/12">
                     <a href="/">
-                        <img src="{{ asset('images/logos/btmLogoJB.png') }}" width="150px" alt="">
+                        <img src="{{ asset('images/logos/bandeauLogo-bleu.png') }}" alt="">
+                        <p class="float-right inline-block text-xs px-2 bg-primary rounded-lg text-white md:text-base">Quand la touche part en live...</p>
                     </a>
                 </div>
                 <!-- logo(texte) -->
-                <div class="flex justify-center col-start-3 col-end-12 lg:col-span-6 mt-2">
+                <!-- <div class="flex justify-center col-start-6 col-end-12 lg:col-span-6 mt-2">
                     <div class="relative flex flex-col items-center h-full diagonale text-lg md:text-xl lg:text-4xl">
                         <a href="/">
                             <h1 class="capitalize">balance ton match</h1>
                         </a>
                         <p class=" text-xs px-2 bg-primary rounded-lg text-white md:text-base">Quand la touche part en live...</p>
-                        <!-- <div>
-                                <p class=" absolute top-0 right-2 text-xs px-2 bg-orange-600 text-black shadow-2xl rounded-md">Bêta</p>
-                            </div> -->
+                        <div>
+                            <p class=" absolute top-0 right-2 text-xs px-2 bg-orange-600 text-black shadow-2xl rounded-md">Bêta</p>
+                        </div>
                     </div>
-                </div>
+                </div> -->
                 <!-- icone login -->
-                <div class="relative text-white hidden lg:block ml-auto col-span-3 mt-14 mr-14 w-64" x-data="{ open : false }">
+                <div class="absolute right-2 top-5 text-white hidden lg:block w-64 lg:mr-4" x-data="{ open : false }">
                     @auth
                     <div class="flex justify-center items-center px-2 py-1 cursor-pointer text-primary" @click="open = true">
                         <img class="rounded-full h-8 w-8 object-cover mr-4 mb-2" src="{{ Auth::user()->profile_photo_url }}">
@@ -80,10 +80,10 @@
                     </div>
                 </div>
             </div>
-            <div class="hidden lg:flex justify-center">
+            <!-- <div class="hidden lg:flex justify-center">
                 <a class="p-2 text-primary underline rounded-lg m-1 " href="/clubs">Rechercher un club</a>
                 <a class="p-2 text-primary underline rounded-md m-1" href="/matches">Matchs à venir</a>
-            </div>
+            </div> -->
             <div id="main-nav" class="main-nav bg-primary">
                 <div class="w-full rounded-b-lg shadow-xl bg-darkGray pt-16 pb-4 bg-menu">
                     <div>
@@ -127,9 +127,9 @@
                 </div>
                 <nav class="m-6">
                     <ul class="text-lg uppercase">
-                        <li class="m-4 border-b-2 border-secondary"><a href="/"><i class="fas fa-home"></i> Accueil</a></li>
-                        <li class="m-4 border-b-2 border-secondary"><a href="{{ route('clubs.index') }}"><i class="fas fa-search"></i> Rechercher un club</a></li>
-                        <li class="m-4 border-b-2 border-secondary"><a href="{{ route('matches.index') }}"><i class="far fa-list-alt"></i> Liste des matchs</a></li>
+                        <li class="m-4"><a href="/"><i class="fas fa-home"></i> Accueil</a></li>
+                        <li class="m-4"><a href="{{ route('clubs.index') }}"><i class="fas fa-search"></i> Rechercher un club</a></li>
+                        <li class="m-4"><a href="{{ route('matches.index') }}"><i class="far fa-list-alt"></i> Liste des matchs</a></li>
                     </ul>
                 </nav>
             </div>

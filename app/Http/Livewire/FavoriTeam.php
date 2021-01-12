@@ -15,7 +15,7 @@ class FavoriTeam extends Component
     public $user;
     public $nbrFavoris;
     public $login;
-
+    
     public function mount(Club $club)
     {
         if ($this->user) {

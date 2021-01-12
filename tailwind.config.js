@@ -29,16 +29,16 @@ module.exports = {
                 secondary: "#cdfb0a", //#cdfb0a ou #00ffae
                 darkGray: "#0D0F12",
                 success: "#00ff48",
-                darkSuccess: "#009628",
+                darkSuccess: "#009628"
             },
             inset: {
                 "-0.5": "-0.35rem",
                 "-1": "-1rem",
                 "-2": "-2rem",
-                "50": "12.5rem",
+                "50": "12.5rem"
             },
             fontSize: {
-                "xxs": "0.50rem",
+                xxs: "0.50rem"
             },
         }
     }

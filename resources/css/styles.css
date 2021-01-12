@@ -1,3 +1,4 @@
+@import url(https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,400;0,700;0,900;1,400;1,700&display=swap);
 :root {
     --primary-color: #091c3e;
     --secondary-color: #cdfb0a;
@@ -5,7 +6,6 @@
     --darkGray-color: #0d0f12;
 }
 
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,400;0,700;0,900;1,400;1,700&display=swap");
 
 /*************************
     SELECTORS & OTHERS
@@ -13,7 +13,9 @@
 
 html {
     font-family: "Montserrat", sans-serif;
-    @apply bg-gray-200;
+    --bg-opacity: 1;
+    background-color: #e5e7eb;
+    background-color: rgba(229, 231, 235, var(--bg-opacity));
 }
 
 body {
@@ -27,7 +29,8 @@ h3,
 h4,
 h5,
 h6 {
-    @apply uppercase font-bold;
+    text-transform: uppercase;
+    font-weight: 700;
 }
 
 .minHeight16 {
@@ -39,11 +42,40 @@ h6 {
 }
 
 .inputForm {
-    @apply px-3 py-3 text-primary bg-white rounded-lg shadow outline-none;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    --text-opacity: 1;
+    color: #091c3e;
+    color: rgba(9, 28, 62, var(--text-opacity));
+    --bg-opacity: 1;
+    background-color: #ffffff;
+    background-color: rgba(255, 255, 255, var(--bg-opacity));
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    outline: 0;
 }
 
 .titlePage {
-    @apply inline-block text-center bg-primary text-secondary text-xl py-1 px-4 my-2 mx-auto rounded-lg;
+    display: inline-block;
+    text-align: center;
+    --bg-opacity: 1;
+    background-color: #091c3e;
+    background-color: rgba(9, 28, 62, var(--bg-opacity));
+    --text-opacity: 1;
+    color: #cdfb0a;
+    color: rgba(205, 251, 10, var(--text-opacity));
+    font-size: 1.25rem;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 0.5rem;
 }
 
 .height-mini-10 {
@@ -105,6 +137,7 @@ h6 {
 }
 
 .vertical {
+    -ms-writing-mode: tb-rl;
     writing-mode: vertical-rl;
     transform: rotate(180deg);
 }
@@ -138,13 +171,30 @@ h6 {
     transform: translateY(2px);
 }
 
+#backTeam {
+    position: relative;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: calc(100vh - 6rem);
+}
+
 
 /*************************
           BUTTONS
   *************************/
 
 .btn {
-    @apply px-6 py-2 m-2 rounded-lg cursor-pointer font-bold shadow-xl outline-none;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    margin: 0.5rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-weight: 700;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    outline: 0;
 }
 
 .btn:focus {
@@ -152,43 +202,113 @@ h6 {
 }
 
 .btnPrimary {
-    @apply bg-primary text-white border-secondary;
+    --bg-opacity: 1;
+    background-color: #091c3e;
+    background-color: rgba(9, 28, 62, var(--bg-opacity));
+    --text-opacity: 1;
+    color: #ffffff;
+    color: rgba(255, 255, 255, var(--text-opacity));
+    --border-opacity: 1;
+    border-color: #cdfb0a;
+    border-color: rgba(205, 251, 10, var(--border-opacity));
 }
 
 .btnPrimary:hover {
-    @apply bg-primary text-secondary border-secondary;
+    --bg-opacity: 1;
+    background-color: #091c3e;
+    background-color: rgba(9, 28, 62, var(--bg-opacity));
+    --text-opacity: 1;
+    color: #cdfb0a;
+    color: rgba(205, 251, 10, var(--text-opacity));
+    --border-opacity: 1;
+    border-color: #cdfb0a;
+    border-color: rgba(205, 251, 10, var(--border-opacity));
 }
 
 .btnSecondary {
-    @apply bg-secondary text-primary border-primary;
+    --bg-opacity: 1;
+    background-color: #cdfb0a;
+    background-color: rgba(205, 251, 10, var(--bg-opacity));
+    --text-opacity: 1;
+    color: #091c3e;
+    color: rgba(9, 28, 62, var(--text-opacity));
+    --border-opacity: 1;
+    border-color: #091c3e;
+    border-color: rgba(9, 28, 62, var(--border-opacity));
 }
 
 .btnSecondary:hover {
-    @apply bg-secondary text-white border-primary;
+    --bg-opacity: 1;
+    background-color: #cdfb0a;
+    background-color: rgba(205, 251, 10, var(--bg-opacity));
+    --text-opacity: 1;
+    color: #ffffff;
+    color: rgba(255, 255, 255, var(--text-opacity));
+    --border-opacity: 1;
+    border-color: #091c3e;
+    border-color: rgba(9, 28, 62, var(--border-opacity));
 }
 
 .btnDanger {
-    @apply bg-danger text-white;
+    --bg-opacity: 1;
+    background-color: #ff1500;
+    background-color: rgba(255, 21, 0, var(--bg-opacity));
+    --text-opacity: 1;
+    color: #ffffff;
+    color: rgba(255, 255, 255, var(--text-opacity));
 }
 
 .btnDanger:hover {
-    @apply bg-white text-danger;
+    --bg-opacity: 1;
+    background-color: #ffffff;
+    background-color: rgba(255, 255, 255, var(--bg-opacity));
+    --text-opacity: 1;
+    color: #ff1500;
+    color: rgba(255, 21, 0, var(--text-opacity));
 }
 
 .btnSuccess {
-    @apply bg-success text-darkGray;
+    --bg-opacity: 1;
+    background-color: #00ff48;
+    background-color: rgba(0, 255, 72, var(--bg-opacity));
+    --text-opacity: 1;
+    color: #0D0F12;
+    color: rgba(13, 15, 18, var(--text-opacity));
 }
 
 .btnSuccess:hover {
-    @apply bg-darkSuccess text-white;
+    --bg-opacity: 1;
+    background-color: #009628;
+    background-color: rgba(0, 150, 40, var(--bg-opacity));
+    --text-opacity: 1;
+    color: #ffffff;
+    color: rgba(255, 255, 255, var(--text-opacity));
 }
 
 .btnDark {
-    @apply bg-darkGray text-white border-2 border-white;
+    --bg-opacity: 1;
+    background-color: #0D0F12;
+    background-color: rgba(13, 15, 18, var(--bg-opacity));
+    --text-opacity: 1;
+    color: #ffffff;
+    color: rgba(255, 255, 255, var(--text-opacity));
+    border-width: 2px;
+    --border-opacity: 1;
+    border-color: #ffffff;
+    border-color: rgba(255, 255, 255, var(--border-opacity));
 }
 
 .btnDark:hover {
-    @apply bg-gray-900 text-white border-2 border-white;
+    --bg-opacity: 1;
+    background-color: #161e2e;
+    background-color: rgba(22, 30, 46, var(--bg-opacity));
+    --text-opacity: 1;
+    color: #ffffff;
+    color: rgba(255, 255, 255, var(--text-opacity));
+    border-width: 2px;
+    --border-opacity: 1;
+    border-color: #ffffff;
+    border-color: rgba(255, 255, 255, var(--border-opacity));
 }
 
 
@@ -197,7 +317,12 @@ h6 {
   *************************/
 
 .section {
-    @apply flow-root box-border py-10 px-10;
+    display: flow-root;
+    box-sizing: border-box;
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
 }
 
 
@@ -206,7 +331,10 @@ h6 {
   *************************/
 
 .espaceCom {
-    @apply flex flex-col font-bold p-6;
+    display: flex;
+    flex-direction: column;
+    font-weight: 700;
+    padding: 1.5rem;
 }
 
 
@@ -221,7 +349,15 @@ h6 {
 .commentaires {
     transform: translateX(0);
     transition: all 2s;
-    @apply flex flex-row m-auto mb-2 rounded-r-lg border-r-8 shadow-lg overflow-hidden;
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+    margin-bottom: 0.5rem;
+    border-top-right-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+    border-right-width: 8px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
 }
 
 .commentaires.open {
@@ -230,55 +366,109 @@ h6 {
 }
 
 .commentaires.home {
-    @apply border-primary;
+    --border-opacity: 1;
+    border-color: #091c3e;
+    border-color: rgba(9, 28, 62, var(--border-opacity));
 }
 
 .commentaires.home {
-    @apply border-primary;
+    --border-opacity: 1;
+    border-color: #091c3e;
+    border-color: rgba(9, 28, 62, var(--border-opacity));
 }
 
 .commentaires.home.but {
-    @apply border-primary;
+    --border-opacity: 1;
+    border-color: #091c3e;
+    border-color: rgba(9, 28, 62, var(--border-opacity));
 }
 
 .commentaires.away {
-    @apply border-secondary;
+    --border-opacity: 1;
+    border-color: #cdfb0a;
+    border-color: rgba(205, 251, 10, var(--border-opacity));
 }
 
 .commentaires.match {
-    @apply border-gray-400;
+    --border-opacity: 1;
+    border-color: #9fa6b2;
+    border-color: rgba(159, 166, 178, var(--border-opacity));
 }
 
 .commentaires.commandeMatch {
-    @apply border-darkGray;
+    --border-opacity: 1;
+    border-color: #0D0F12;
+    border-color: rgba(13, 15, 18, var(--border-opacity));
 }
 
 .minuteCommentaires {
-    @apply text-center rounded-l-lg px-4 text-lg font-bold;
+    text-align: center;
+    border-top-left-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    font-size: 1.125rem;
+    font-weight: 700;
 }
 
 .minuteCommentaires.home {
-    @apply text-secondary bg-primary;
+    --text-opacity: 1;
+    color: #cdfb0a;
+    color: rgba(205, 251, 10, var(--text-opacity));
+    --bg-opacity: 1;
+    background-color: #091c3e;
+    background-color: rgba(9, 28, 62, var(--bg-opacity));
 }
 
 .minuteCommentaires.away {
-    @apply text-primary bg-secondary;
+    --text-opacity: 1;
+    color: #091c3e;
+    color: rgba(9, 28, 62, var(--text-opacity));
+    --bg-opacity: 1;
+    background-color: #cdfb0a;
+    background-color: rgba(205, 251, 10, var(--bg-opacity));
 }
 
 .minuteCommentaires.match {
-    @apply bg-gray-400;
+    --bg-opacity: 1;
+    background-color: #9fa6b2;
+    background-color: rgba(159, 166, 178, var(--bg-opacity));
 }
 
 .minuteCommentaires.commandeMatch {
-    @apply bg-darkGray;
+    --bg-opacity: 1;
+    background-color: #0D0F12;
+    background-color: rgba(13, 15, 18, var(--bg-opacity));
 }
 
 .equipeDom {
-    @apply flex flex-row justify-between bg-primary p-2 text-secondary rounded-l-full;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    --bg-opacity: 1;
+    background-color: #091c3e;
+    background-color: rgba(9, 28, 62, var(--bg-opacity));
+    padding: 0.5rem;
+    --text-opacity: 1;
+    color: #cdfb0a;
+    color: rgba(205, 251, 10, var(--text-opacity));
+    border-top-left-radius: 9999px;
+    border-bottom-left-radius: 9999px;
 }
 
 .equipeExt {
-    @apply flex flex-row-reverse justify-between bg-secondary p-2 text-primary rounded-r-full;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    --bg-opacity: 1;
+    background-color: #cdfb0a;
+    background-color: rgba(205, 251, 10, var(--bg-opacity));
+    padding: 0.5rem;
+    --text-opacity: 1;
+    color: #091c3e;
+    color: rgba(9, 28, 62, var(--text-opacity));
+    border-top-right-radius: 9999px;
+    border-bottom-right-radius: 9999px;
 }
 
 .diagonale {
@@ -290,31 +480,61 @@ input:checked+.inputCom {
 }
 
 .actionsMatch {
-    @apply py-4 px-2;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
 }
 
 .inputAction {
-    @apply block cursor-pointer text-lg py-4 px-2 rounded-t;
+    display: block;
+    cursor: pointer;
+    font-size: 1.125rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
 }
 
 .inputAction.away {
-    @apply text-secondary;
+    --text-opacity: 1;
+    color: #cdfb0a;
+    color: rgba(205, 251, 10, var(--text-opacity));
 }
 
 .inputAction.home {
-    @apply text-primary;
+    --text-opacity: 1;
+    color: #091c3e;
+    color: rgba(9, 28, 62, var(--text-opacity));
 }
 
 input:checked+.inputAction.home {
-    @apply text-secondary bg-primary;
+    --text-opacity: 1;
+    color: #cdfb0a;
+    color: rgba(205, 251, 10, var(--text-opacity));
+    --bg-opacity: 1;
+    background-color: #091c3e;
+    background-color: rgba(9, 28, 62, var(--bg-opacity));
 }
 
 input:checked+.inputAction.away {
-    @apply text-primary bg-secondary;
+    --text-opacity: 1;
+    color: #091c3e;
+    color: rgba(9, 28, 62, var(--text-opacity));
+    --bg-opacity: 1;
+    background-color: #cdfb0a;
+    background-color: rgba(205, 251, 10, var(--bg-opacity));
 }
 
 .error {
-    @apply text-danger bg-black;
+    --text-opacity: 1;
+    color: #ff1500;
+    color: rgba(255, 21, 0, var(--text-opacity));
+    --bg-opacity: 1;
+    background-color: #000000;
+    background-color: rgba(0, 0, 0, var(--bg-opacity));
 }
 
 .openComment {
@@ -425,33 +645,69 @@ input:checked+.inputAction.away {
   *************************/
 
 .colorsTeam {
-    @apply mx-5 w-13 h-13 rounded-full border-2;
+    margin-left: 1.25rem;
+    margin-right: 1.25rem;
+    width: 3.25rem;
+    height: 3.25rem;
+    border-radius: 9999px;
+    border-width: 2px;
 }
 
 .logo {
-    @apply bg-fixed rounded-full bg-white overflow-hidden flex justify-center justify-items-center shadow-xl;
+    background-attachment: fixed;
+    border-radius: 9999px;
+    --bg-opacity: 1;
+    background-color: #ffffff;
+    background-color: rgba(255, 255, 255, var(--bg-opacity));
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
 .border-home {
-    @apply border-secondary;
+    --border-opacity: 1;
+    border-color: #cdfb0a;
+    border-color: rgba(205, 251, 10, var(--border-opacity));
 }
 
 .border-away {
-    @apply border-primary;
+    --border-opacity: 1;
+    border-color: #091c3e;
+    border-color: rgba(9, 28, 62, var(--border-opacity));
 }
 
 .alertFavori {
     opacity: 0;
     background-color: black;
+    -webkit-animation-name: disparition;
     animation-name: disparition;
+    -webkit-animation-duration: 5s;
     animation-duration: 5s;
 }
 
 .alertComment {
     opacity: 0;
     background-color: var(--primary-color);
+    -webkit-animation-name: disparition;
     animation-name: disparition;
+    -webkit-animation-duration: 5s;
     animation-duration: 5s;
+}
+
+@-webkit-keyframes disparition {
+    0% {
+        opacity: 1;
+        height: auto;
+    }
+    80% {
+        opacity: 1;
+        height: auto;
+    }
+    100% {
+        opacity: 0;
+    }
 }
 
 @keyframes disparition {
@@ -567,8 +823,19 @@ input:checked+.inputAction.away {
 
 .is-open .burger {
     transform: rotate(-45deg);
+    -webkit-animation-name: rotate;
     animation-name: rotate;
+    -webkit-animation-duration: 1s;
     animation-duration: 1s;
+}
+
+@-webkit-keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(315deg);
+    }
 }
 
 @keyframes rotate {
@@ -588,6 +855,7 @@ input:checked+.inputAction.away {
     transform: translateY(-12px) translateX(10px) skew(-20deg);
     opacity: 0;
     height: 0;
+    -webkit-animation-duration: 0.2s;
     animation-duration: 0.2s;
 }
 

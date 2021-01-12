@@ -136,7 +136,7 @@ h6 {
 
 .vertical {
   -ms-writing-mode: tb-rl;
-      writing-mode: vertical-rl;
+  writing-mode: vertical-rl;
   transform: rotate(180deg);
 }
 
@@ -167,6 +167,14 @@ h6 {
   z-index: 9999;
   background: var(--primary-color);
   transform: translateY(2px);
+}
+
+#backTeam {
+  position: relative;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: calc(100vh - 6rem);
 }
 
 /*************************
@@ -667,18 +675,18 @@ input:checked+.inputAction.away {
   opacity: 0;
   background-color: black;
   -webkit-animation-name: disparition;
-          animation-name: disparition;
+  animation-name: disparition;
   -webkit-animation-duration: 5s;
-          animation-duration: 5s;
+  animation-duration: 5s;
 }
 
 .alertComment {
   opacity: 0;
   background-color: var(--primary-color);
   -webkit-animation-name: disparition;
-          animation-name: disparition;
+  animation-name: disparition;
   -webkit-animation-duration: 5s;
-          animation-duration: 5s;
+  animation-duration: 5s;
 }
 
 @-webkit-keyframes disparition {
@@ -810,9 +818,9 @@ input:checked+.inputAction.away {
 .is-open .burger {
   transform: rotate(-45deg);
   -webkit-animation-name: rotate;
-          animation-name: rotate;
+  animation-name: rotate;
   -webkit-animation-duration: 1s;
-          animation-duration: 1s;
+  animation-duration: 1s;
 }
 
 @-webkit-keyframes rotate {
@@ -844,7 +852,7 @@ input:checked+.inputAction.away {
   opacity: 0;
   height: 0;
   -webkit-animation-duration: 0.2s;
-          animation-duration: 0.2s;
+  animation-duration: 0.2s;
 }
 
 /* MENU Text part */
