@@ -49,8 +49,8 @@
                         <p class="font-bold">né le {{ date('d/m/Y',strtotime($player->date_of_birth)) }}</p>
                     </div>
                     <div>
-                        <button onclick="openMenu({{$player->id}})"><i class="far fa-edit"></i></button>
-                        <button id="{{ $key }}" class="rounded-full bg-danger px-2" @click="open = true">x</button>
+                        <button onclick="openMenu({{$player->id}})" class="mr-1"><i class="far fa-edit"></i></button>
+                        <button id="{{ $key }}" @click="open = true"><i class="far fa-times-circle"></i></button>
                     </div>
                 </div>
                 <!-- ***********************

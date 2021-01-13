@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Club;
+use Illuminate\Http\Request;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -15,12 +16,11 @@ class SearchTeams extends Component
     public $query;
     public $search;
 
-    public function mount()
+    public function mount(Request $request)
     {
-        if(isset($_GET['search'])){
-            $this->query = $_GET['search'];
+        if ($request->has('search')) {
+            $this->query = $request->search;
         }
-
     }
 
     public function updatingQuery()

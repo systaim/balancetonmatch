@@ -31,6 +31,14 @@ class TeamCover extends Component
         }
     }
 
+    public function deleteCover()
+    {
+        $this->club->bg_path = null;
+        $this->club->save();
+
+        return redirect()->to('clubs/' . $this->club->id);
+    }
+
     public function coverTeam()
     {
         $this->validate([
@@ -41,7 +49,9 @@ class TeamCover extends Component
         $path = $this->cover->store('covers');
         $this->club->bg_path = $path;
         $this->club->save();
-        $this->bouton = "0";
+
+        return redirect()->to('clubs/' . $this->club->id);
+
     }
 
     public function render()

@@ -1,36 +1,44 @@
-
 <div>
     <div class="mb-2">
         @if($club->city == null || $club->zip_code == null)
-        <p>Adresse : <button class="btn" wire:click="citySave()">à renseigner 🖊</button></p>
-        @if($buttonCity == 'cliqué')
-        <form wire:submit.prevent="citySave()">
+        <div class="flex justify-center">
+            <button class="btn" wire:click="clickButtonCity">Renseigner l'adresse <i class="ml-2 fas fa-pencil-alt"></i></button></p>
+        </div>
+        @if($buttonCity == '1')
+        <form class="w-8/12 m-auto" wire:submit.prevent="citySave()">
             @csrf
-            <textarea class="text-primary rounded text-sm shadow outline-none focus:outline-none focus:shadow-outline w-full py-2" placeholder="adresse" type="text" name="inputAddress" id="inputAddress" wire:model="inputAddress"></textarea>
-            @error('inputAddress')
-            <div class="alert alert-danger">{{ $message }}</div>
-            @enderror
-            <input class="text-primary rounded text-sm shadow outline-none focus:outline-none focus:shadow-outline py-2" placeholder="Code postal" type="text" name="inputZip" id="inputZip" wire:model="inputZip">
-            @error('inputZip')
-            <div class="alert alert-danger">{{ $message }}</div>
-            @enderror
-            <input class="text-primary rounded text-sm shadow outline-none focus:outline-none focus:shadow-outline py-2" placeholder="Ville" type="text" name="inputCity" id="inputCity" wire:model="inputCity">
-            @error('inputCity')
-            <div class="alert alert-danger">{{ $message }}</div>
-            @enderror
-            <input class="btn btnPrimary" type="submit" value="Valider">
+            <div>
+                <input class="inputForm mb-2 w-full" placeholder="adresse" type="text" name="inputAddress" id="inputAddress" wire:model="inputAddress">
+                @error('inputAddress')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="flex flex-col justify-between w-full mb-2">
+                <input class="inputForm mb-2" placeholder="Code postal" type="text" name="inputZip" id="inputZip" wire:model="inputZip">
+                @error('inputZip')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+                <input class="inputForm" placeholder="Ville" type="text" name="inputCity" id="inputCity" wire:model="inputCity">
+                @error('inputCity')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="flex justify-center">
+                <input class="btn btnPrimary" type="submit" value="Valider">
+            </div>
             @endif
             @else
-            <div class="flex flex-row justify-between">
-                <div class="flex flex-row">
-                    <p>Adresse : </p>
-                    <div class="flex flex-col ml-2">
-                        <p>{{ $club->address }}</p>
-                        <p class="capitalize">{{ $club->zip_code }} {{ $club->city }}</p>
-                    </div>
+            <div class="flex justify-center items-start">
+                <div class="mr-2">
+                    <p>Adresse du siège : </p>
                 </div>
                 <div>
-                    <p wire:click="citySave()">🖊</p>
+                    <p>{{ $club->address }}</p>
+                    <p class="capitalize">{{ $club->zip_code }} {{ $club->city }}</p>
+                </div>
+
+                <div>
+                    <p class="absolute top-2 right-2" wire:click="citySave()"><i class="fas fa-pencil-alt"></i></p>
                 </div>
             </div>
         </form>

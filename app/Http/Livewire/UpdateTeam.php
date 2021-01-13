@@ -18,10 +18,17 @@ class UpdateTeam extends Component
     public $inputNbrTeams;
     public $buttonNbrTeams;
 
+    public function clickButtonCity()
+    {
+        if($this->buttonCity == 0){
+            $this->buttonCity = 1;
+        } elseif($this->buttonCity == 1) {
+            $this->buttonCity = 0;
+        }
+    }
+
     public function citySave()
     {
-        $this->buttonCity = 'cliqué';
-
         $this->city = $this->inputCity;
         $this->zip_code = $this->inputZip;
         $this->address = $this->inputAddress;
@@ -39,8 +46,6 @@ class UpdateTeam extends Component
 
     public function nbrTeamsSave()
     {
-
-        $this->buttonNbrTeams = 'cliqué';
         $this->nbrTeams = $this->inputNbrTeams;
         $this->club->number_teams = $this->inputNbrTeams;
         $this->club->save();
