@@ -13,6 +13,15 @@ class SearchTeams extends Component
     public $name;
     public $messageNoClub;
     public $query;
+    public $search;
+
+    public function mount()
+    {
+        if(isset($_GET['search'])){
+            $this->query = $_GET['search'];
+        }
+
+    }
 
     public function updatingQuery()
     {

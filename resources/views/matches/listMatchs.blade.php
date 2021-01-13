@@ -15,10 +15,6 @@
             <p class="py-4">Recherche ton équipe et si tu ne la trouves pas ton match, n'hésite pas à le créer.<br>
                 Le match pourra être commenté en <span class="uppercase text-primary font-bold bg-secondary px-2 rounded-sm">live</span> le jour J soit par toi soit par un autre spectateur.
             </p>
-            @livewire('search-match',[
-                'clubs' => $clubs,
-                'matchs' => $matchs,
-                ])
             <a class="flex justify-center" href="{{ route('matches.create') }}">
             <button class="btn btnSecondary">Je crée un match</button>
             </a>

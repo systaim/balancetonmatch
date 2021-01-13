@@ -11,7 +11,6 @@ class TeamCover extends Component
 
     public $cover;
     public $club;
-    public $messageBouton;
     public $bouton;
 
     public function mount()
@@ -40,13 +39,9 @@ class TeamCover extends Component
 
 
         $path = $this->cover->store('covers');
-        // dd($path);
         $this->club->bg_path = $path;
         $this->club->save();
-        // dd($this->club);
         $this->bouton = "0";
-
-
     }
 
     public function render()

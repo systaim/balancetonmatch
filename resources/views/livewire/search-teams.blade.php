@@ -1,6 +1,6 @@
 <div class="h-auto w-full">
     <div class="flex justify-center my-8">
-        <h2 class="titlePage">Liste des clubs</h2>
+        <h2 class="titlePage">Rechercher un club</h2>        
     </div>
     <div class="flex justify-center my-8 m-auto w-11/12 sm:w-9/12 md:w-7/12 lg:w-6/12">
         <label for="query" class="sr-only">Search</label>
@@ -21,16 +21,16 @@
                     </div>
                 </div>
             </div>
-            </a>
-            @else
-            <div>
-                <div class="text-center p-2 bg-indigo-800 items-center text-indigo-100 leading-none rounded-lg lg:rounded-full flex flex-col lg:inline-flex" role="alert">
-                    <p class="font-bold">{{ session('message') }}</p>
-                    <p class="text-sm my-2">Vous pouvez renouveler votre recherche avec moins de lettres pour élargir le résultat</p>
-                </div>
+        </a>
+        @else
+        <div>
+            <div class="text-center p-2 bg-indigo-800 items-center text-indigo-100 leading-none rounded-lg lg:rounded-full flex flex-col lg:inline-flex" role="alert">
+                <p class="font-bold">{{ session('message') }}</p>
+                <p class="text-sm my-2">Vous pouvez renouveler votre recherche avec moins de lettres pour élargir le résultat</p>
             </div>
-            @endif
-            @endforeach
+        </div>
+        @endif
+        @endforeach
     </div>
     <div wire:loading.remove wire:target="searchByName" class="mb-5 text-center">
         <p>{{$messageNoClub}}</p>

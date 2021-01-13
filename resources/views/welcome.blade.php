@@ -1,31 +1,41 @@
 @extends('layout')
 @section('content')
 <section class="min-h-screen">
-    <div class="p-4 lg:p-12 lg:h-96 back-hero-home flex sm:justify-center lg:justify-end">
-        <div class="lg:w-1/2 flex items-center">
-            <div class="bg-white p-4 rounded-md text-primary">
-                <h2 class="text-3xl text-primary my-2">Bienvenue</h2>
-                <p>Ce site a pour but de rassembler les passionnés du ballon rond AMATEUR</p>
-                <p>Tout est possible ici ! Et surtout la possibilité de commenter ou de suivre les matchs en live de ton équipe favorite</p>
+    <div>
+        <div class="flex flex-col md:flex-row justify-between bg-primary overflow-hidden h-96 mb-2">
+            <div class="h-6/12 sm:h-8/12 md:h-auto md:w-6/12 img-bg-blend-home">
+            </div>
+            <div class="h-auto text-white py-4 md:w-6/12 px-12 lg:px-24 xl:px-32 m-auto text-center">
+                <div class="flex items-center justify-center">
+                    <hr class="w-10 border border-secondary">
+                    <h2 class="text-xl md:text-3xl my-2 mx-6">Bienvenue</h2>
+                    <hr class="w-10 border border-secondary">
+                </div>
+                <p class="text-sm md:text-base">BalanceTonMatch.com a pour but de rassembler les passionnés du ballon rond AMATEUR.</p>
+                <p class="text-sm md:text-base">Il est possible de gérer ton club mais surtout de commenter et de suivre les matchs.</p>
             </div>
         </div>
     </div>
-    <div class="py-4">
-        <div class="flex flex-col lg:flex-row justify-between bg-primary overflow-hidden rounded-b-lg w-11/12 m-auto rounded-lg">
-            <div class="w-full sm:h-72 lg:w-6/12 lg:h-auto img-bg-blend-home"></div>
-            <div class="text-white p-4 lg:w-6/12 xl:p-10 m-auto">
-                <h3 class="text-center mb-6">Quelques statistiques... </h3>
-                <hr>
-                <p class="text-center mt-6">{{ count($futurMatches) }} matchs sont à venir</p>
-                <p class="text-center">{{ count($matches) }} matchs ont été créés</p>
-                <p class="text-center">{{ count($clubs) }} clubs créés</p>
-                <p class="text-center">{{ count($players) }} joueurs et {{ count($staffs) }} membres de staff</p>
-                <p class="text-center">{{ count($goals) }} buts marqués</p>
-                <a class="m-auto flex justify-center" href="{{ route('clubs.index') }}">
-                    <button class="btn btnSecondary">Je vais voir</button>
-                </a>
-            </div>
-        </div>
+    <div class="mb-2 rounded-md mx-2">
+        <!-- <H3 class="py-2">Rechercher un club</H3> -->
+        <form class="py-4" action="{{ asset('clubs') }}" method="get">
+            @csrf
+            <h3>Recherche d'un club</h3>
+            <label class="relative" for="search">
+                <input class="inputForm w-full" type="search" placeholder="F.C. Recherche" name="search" id="search">
+                <span class=" z-10"><i class="far fa-search"></i></span>
+            </label>
+            <input class="sr-only" type="submit">
+        </form>
+    </div>
+    <div class="bg-white p-4 rounded-md text-primary w-11/12 m-auto mb-2">
+        <h3 class="text-center mb-6">Quelques statistiques... </h3>
+        <hr>
+        <p class="text-center mt-6">{{ count($futurMatches) }} matchs sont à venir</p>
+        <p class="text-center">{{ count($matches) }} matchs ont été créés</p>
+        <p class="text-center">{{ count($clubs) }} clubs créés</p>
+        <p class="text-center">{{ count($players) }} joueurs et {{ count($staffs) }} membres de staff</p>
+        <p class="text-center">{{ count($goals) }} buts marqués</p>
     </div>
     @auth
     <div class="w-11/12 m-auto md:flex">
