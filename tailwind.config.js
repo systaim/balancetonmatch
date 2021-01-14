@@ -38,7 +38,8 @@ module.exports = {
                 "50": "12.5rem"
             },
             fontSize: {
-                xxs: "0.50rem"
+                xxs: "0.50rem",
+                xs60: "0.60rem",
             },
         }
     }

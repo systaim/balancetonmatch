@@ -7,11 +7,9 @@ require("./bootstrap");
 let burger = document.getElementById("burger");
 let nav = document.getElementById("main-nav");
 let container = document.getElementById("container");
-console.log(container)
 
 burger.addEventListener("click", function() {
     this.classList.toggle("is-open");
     nav.classList.toggle("is-open");
     container.classList.toggle("is-open");
 });
-

@@ -55,26 +55,32 @@
         @if(count($matchs) != 0)
         @foreach($matchs as $match)
         @if($match->date_match > now())
+        <h3>{{ $match->competition->name }}</h3>
         <a href="{{route('matches.show',$match)}}">
             @include('match')
         </a>
         @endif
         @endforeach
         @else
-        <p>Pas de match à venir</p>
+        <p class="pl-2">Pas de match à venir</p>
+        <a class="flex justify-center" href="{{ route('matches.create') }}">
+            <button class="btn btnSecondary">Je crée un match</button>
+            </a>
         @endif
     </div>
     <div class="sm:w-11/12 md:w-9/12 xl:w-7/12 mx-auto">
         <h3 class="text-center my-4 border-b-2 border-darkGray">Historique des matchs</h3>
         @if(count($matchs) != 0)
         @foreach($matchs as $match)
-        @if($match->date_match < now()) <a href="{{route('matches.show',$match)}}">
-            @include('match')
+        @if($match->date_match < now()) 
+        <h3>{{ $match->competition->name }}</h3>
+            <a href="{{route('matches.show',$match)}}">
+                @include('match')
             </a>
             @endif
             @endforeach
             @else
-            <p>Pas d'historique de matchs pour le moment</p>
+            <p class="pl-2">Pas d'historique de matchs pour le moment</p>
             @endif
     </div>
 

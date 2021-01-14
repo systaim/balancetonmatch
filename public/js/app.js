@@ -19361,7 +19361,6 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); // Menu h
 var burger = document.getElementById("burger");
 var nav = document.getElementById("main-nav");
 var container = document.getElementById("container");
-console.log(container);
 burger.addEventListener("click", function () {
   this.classList.toggle("is-open");
   nav.classList.toggle("is-open");

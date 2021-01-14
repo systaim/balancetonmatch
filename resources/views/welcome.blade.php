@@ -17,6 +17,9 @@
         </div>
     </div>
     <div class="mb-2 rounded-md mx-2">
+        @if(isset($_SERVER['REMOTE_ADDR']))
+            {{ $_SERVER['REMOTE_ADDR'] }}
+        @endif
         <!-- <H3 class="py-2">Rechercher un club</H3> -->
         <form class="py-4" action="{{ asset('clubs') }}" method="get">
             @csrf
