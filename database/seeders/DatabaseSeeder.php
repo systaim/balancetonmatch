@@ -99,9 +99,9 @@ class DatabaseSeeder extends Seeder
         }
 
         //table noms de départements
-        DB::insert('INSERT INTO departments (departments.name, departments.region_id)
-        SELECT save_table_comments.departements_save.nom_district, save_table_comments.departements_save.region
-        FROM save_table_comments.departements_save');
+        // DB::insert('INSERT INTO departments (departments.name, departments.region_id)
+        // SELECT save_table_comments.departements_save.nom_district, save_table_comments.departements_save.region
+        // FROM save_table_comments.departements_save');
 
         // //table nom de compétitions
         // DB::insert('INSERT INTO competitions (competitions.name, competitions.season)
@@ -109,12 +109,12 @@ class DatabaseSeeder extends Seeder
         // FROM save_table_comments.competitions_save');
 
         //table clubs sauvegardée
-        DB::insert('INSERT INTO clubs (clubs.name, clubs.city, clubs.primary_color, clubs.secondary_color)
-        SELECT save_table_comments.clubs_save.name, save_table_comments.clubs_save.num_affil, save_table_comments.clubs_save.couleur1, save_table_comments.clubs_save.couleur2
-        FROM save_table_comments.clubs_save');
+        // DB::insert('INSERT INTO clubs (clubs.name, clubs.city, clubs.primary_color, clubs.secondary_color)
+        // SELECT save_table_comments.clubs_save.name, save_table_comments.clubs_save.num_affil, save_table_comments.clubs_save.couleur1, save_table_comments.clubs_save.couleur2
+        // FROM save_table_comments.clubs_save');
 
-        DB::unprepared(file_get_contents('database/seeders/save_table_comments_departments.sql'));
-        DB::unprepared(file_get_contents('database/seeders/table_clubs.csv'));
+        DB::unprepared(file_get_contents('database/seeders/departments.sql'));
+        DB::unprepared(file_get_contents('database/seeders/clubs.sql'));
 
         $users = \App\Models\User::factory()->count(10)->create();
         $players = \App\Models\Player::factory()->count(100)->create();

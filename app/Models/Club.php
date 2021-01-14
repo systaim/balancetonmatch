@@ -43,15 +43,4 @@ class Club extends Model
     {
         $this->hasMany(Favoristeam::class);
     }
-
-    public static function searchByName(string $name){
-        return self::searchBy('name', $name);
-    }
-
-    public static function searchBy(string $key, string $value)
-    {
-        return collect(Club::all())
-        ->filter(fn($club) => Str::contains(strtolower($club[$key]), strtolower($value)))
-        ->all();
-    }
 }
