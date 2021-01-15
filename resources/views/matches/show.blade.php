@@ -1,5 +1,6 @@
 @extends('layout')
 @section('content')
+
 <section>
     @livewire('form-commentaires', [
     'commentator'=> $commentator,
@@ -10,7 +11,7 @@
     'commentsMatch' => $commentsMatch,
     'competitions' => $competitions,
     'stats' => $stats,
-    'users' => $users
+    'pages' => $pages,
     ])
 </section>
 

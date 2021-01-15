@@ -4,8 +4,10 @@ namespace App\Http\Livewire;
 
 use App\Models\Commentaire;
 use App\Models\Commentator;
+use App\Models\Counter;
 use App\Models\Player;
 use App\Models\Statistic;
+use Illuminate\Http\Request;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
 use Livewire\WithFileUploads;
@@ -17,18 +19,15 @@ class FormCommentaires extends Component
 
     use WithFileUploads;
 
-    public $users;
     public $match;
-    public $clubHome;
-    public $clubAway;
     public $commentsMatch;
     public $type_comments;
     public $type_but = "";
     public $type_carton = "";
     public $type_actionMatch = "";
     public $minute = 0;
+    public $minuteCom;
     public $team_action = '';
-    public $live;
     public $player;
     public $home_score;
     public $away_score;
@@ -45,22 +44,15 @@ class FormCommentaires extends Component
     public $playerPrenom;
     public $playerNom;
     public $playerMatch;
+    public $counter = 0;
+    public $pages;
 
     public $listGoal = ['GOOOOAAL !', 'BUUUUT !!!', 'GOAL GOAL GOAL !!'];
     public $mitempsJoueurs = ['Les joueurs rentrent aux vestiaires', 'Tout le monde à la buv... euuuh aux vestiaires !'];
 
-    public function mount($match, $clubHome, $clubAway, $commentsMatch)
+    public function mount()
     {
-
-        $this->clubHome = $clubHome;
-        $this->clubAway = $clubAway;
-        $this->commentsMatch = $commentsMatch;
-        $this->match = $match;
-        $this->live = $match->live;
-        $this->home_score = $match->home_score;
-        $this->away_score = $match->away_score;
-        $this->user = $match->user_id;
-        $this->dateMatch = $match->date_match;
+        $this->dateMatch = $this->match->date_match;
 
         if ($this->dateMatch->diffInMinutes(now(), false) >= 0 && $this->dateMatch->diffInMinutes(now(), false) <= 45) {
             $this->minute = now()->diffInMinutes($this->dateMatch);
@@ -75,10 +67,8 @@ class FormCommentaires extends Component
             $this->match->live = "finDeMatch";
             $this->match->save();
         }
-
-        // foreach ($this->commentator as $comm) {
-        //     $this->firstCom = $comm->user->first_com;
-        // }
+        $this->minuteCom = $this->minute;
+        $this->countVisitor();
     }
 
     public function hydrate()
@@ -149,6 +139,32 @@ class FormCommentaires extends Component
 
         $this->miseAJourCom();
         return redirect()->to('matches/' . $this->match->id);
+    }
+
+    public function countVisitor()
+    {
+
+        if (isset($_SERVER['REMOTE_ADDR'])) {
+
+            // dd($this->pages);
+
+            // dd(request()->ip());
+            $user = Auth::user();
+            $visitor = Counter::where('ip-address', request()->ip())->first();
+
+            if (!$visitor) {
+                $visitor = new Counter();
+                $visitor['ip-address'] = request()->ip();
+            }
+
+            $visitor['page-address'] = $this->match->id;
+
+            if ($user) {
+                $visitor['user_id'] = $user->id;
+            }
+
+            $visitor->save();
+        }
     }
 
     public function miseAJourCom()

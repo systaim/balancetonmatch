@@ -1,4 +1,9 @@
 /node_modules
+
+/public/avatars
+/public/covers
+/public/uploads
+
 /public/hot
 /public/storage
 /storage/*.key
