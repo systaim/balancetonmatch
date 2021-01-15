@@ -361,7 +361,7 @@
                 <p class="text-center">Le match est reporté à une date ultérieure</p>
             </div>
             @endif
-            @if(empty($match->commentateur))
+            @if(empty($match->commentateur) && $match->live != "finDeMatch")
             <div class="w-full h-full py-3 bg-primary text-secondary font-bold rounded-lg shadow-lg my-6">
                 <p class="text-center">En attente d'un commentateur</p>
             </div>

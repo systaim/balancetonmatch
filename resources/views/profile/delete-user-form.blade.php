@@ -13,9 +13,9 @@
         </div>
 
         <div class="mt-5">
-            <x-jet-danger-button wire:click="confirmUserDeletion" wire:loading.attr="disabled">
+            <button class="btn btnDanger" wire:click="confirmUserDeletion" wire:loading.attr="disabled">
                 {{ __('Delete Account') }}
-            </x-jet-danger-button>
+            </button>
         </div>
 
         <!-- Delete User Confirmation Modal -->
@@ -38,13 +38,13 @@
             </x-slot>
 
             <x-slot name="footer">
-                <x-jet-secondary-button wire:click="$toggle('confirmingUserDeletion')" wire:loading.attr="disabled">
+                <button class="btn btnPrimary" wire:click="$toggle('confirmingUserDeletion')" wire:loading.attr="disabled">
                     {{ __('Nevermind') }}
-                </x-jet-secondary-button>
+                </button>
 
-                <x-jet-danger-button class="ml-2" wire:click="deleteUser" wire:loading.attr="disabled">
+                <button class="btn btnDanger" wire:click="deleteUser" wire:loading.attr="disabled">
                     {{ __('Delete Account') }}
-                </x-jet-danger-button>
+                </button>
             </x-slot>
         </x-jet-dialog-modal>
     </x-slot>

@@ -38,14 +38,14 @@
                     </span>
                 </div>
 
-                <x-jet-secondary-button class="mt-2 mr-2" type="button" x-on:click.prevent="$refs.photo.click()">
+                <button class="mt-2 mr-2 btn btnPrimary" type="button" x-on:click.prevent="$refs.photo.click()">
                     {{ __('Select A New Photo') }}
-                </x-jet-secondary-button>
+                </button>
 
                 @if ($this->user->profile_photo_path)
-                    <x-jet-secondary-button type="button" class="mt-2" wire:click="deleteProfilePhoto">
+                    <button type="button" class="mt-2 btn btnPrimary" wire:click="deleteProfilePhoto">
                         {{ __('Remove Photo') }}
-                    </x-jet-secondary-button>
+                    </button>
                 @endif
 
                 <x-jet-input-error for="photo" class="mt-2" />
@@ -55,14 +55,14 @@
         <!-- nom -->
         <div class="col-span-6 sm:col-span-4">
             <x-jet-label for="last_name" value="Nom de Famille" />
-            <x-jet-input id="last_name" type="text" class="mt-1 block w-full" wire:model.defer="state.last_name" autocomplete="last_name" />
+            <x-jet-input id="last_name" type="text" class="mt-1 block w-full cursor-not-allowed" wire:model.defer="state.last_name" autocomplete="last_name" disabled/>
             <x-jet-input-error for="last_name" class="mt-2" />
         </div> 
 
         <!-- prenom -->
         <div class="col-span-6 sm:col-span-4">
             <x-jet-label for="prenom" value="Prénom" />
-            <x-jet-input id="first_name" type="text" class="mt-1 block w-full" wire:model.defer="state.first_name" autocomplete="first_name" />
+            <x-jet-input id="first_name" type="text" class="mt-1 block w-full cursor-not-allowed" wire:model.defer="state.first_name" autocomplete="first_name" disabled/>
             <x-jet-input-error for="first_name" class="mt-2" />
         </div> 
 
@@ -86,8 +86,8 @@
             {{ __('Saved.') }}
         </x-jet-action-message>
 
-        <x-jet-button>
+        <button class="btn btnPrimary">
             {{ __('Save') }}
-        </x-jet-button>
+        </button>
     </x-slot>
 </x-jet-form-section>
