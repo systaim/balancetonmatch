@@ -11,7 +11,6 @@
     'commentsMatch' => $commentsMatch,
     'competitions' => $competitions,
     'stats' => $stats,
-    'pages' => $pages,
     ])
 </section>
 

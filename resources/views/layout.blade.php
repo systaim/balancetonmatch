@@ -93,7 +93,7 @@
                 <a class="p-2 text-primary underline rounded-md m-1" href="/matches">Matchs à venir</a>
             </div> -->
             <div id="main-nav" class="main-nav">
-                <div class="w-full rounded-b-lg shadow-2xl py-4 bg-primary text-white">
+                <div class="w-full rounded-b-lg shadow-2xl py-12 bg-primary text-white">
                     <div>
                         <div class="flex justify-center items-start">
                             <img class="w-3/12 lg:w-2/12" src="images/logos/btmLogoJB.png" alt="logo">

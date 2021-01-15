@@ -44,8 +44,7 @@ class FormCommentaires extends Component
     public $playerPrenom;
     public $playerNom;
     public $playerMatch;
-    public $counter = 0;
-    public $pages;
+    public $visitors;
 
     public $listGoal = ['GOOOOAAL !', 'BUUUUT !!!', 'GOAL GOAL GOAL !!'];
     public $mitempsJoueurs = ['Les joueurs rentrent aux vestiaires', 'Tout le monde à la buv... euuuh aux vestiaires !'];
@@ -68,6 +67,7 @@ class FormCommentaires extends Component
             $this->match->save();
         }
         $this->minuteCom = $this->minute;
+
         $this->countVisitor();
     }
 
@@ -86,6 +86,7 @@ class FormCommentaires extends Component
             $this->match->live = "finDeMatch";
             $this->match->save();
         }
+        $this->countVisitor();
     }
 
     public function needHelp()
@@ -144,27 +145,26 @@ class FormCommentaires extends Component
     public function countVisitor()
     {
 
-        if (isset($_SERVER['REMOTE_ADDR'])) {
 
-            // dd($this->pages);
+        // dd(request()->ip());
+        $user = Auth::user();
+        $visitor = Counter::where('ip-address', request()->ip())->first();
 
-            // dd(request()->ip());
-            $user = Auth::user();
-            $visitor = Counter::where('ip-address', request()->ip())->first();
-
-            if (!$visitor) {
-                $visitor = new Counter();
-                $visitor['ip-address'] = request()->ip();
-            }
-
-            $visitor['page-address'] = $this->match->id;
-
-            if ($user) {
-                $visitor['user_id'] = $user->id;
-            }
-
-            $visitor->save();
+        if (!$visitor) {
+            $visitor = new Counter();
+            $visitor['ip-address'] = request()->ip();
         }
+
+        $visitor['page-address'] = $this->match->id;
+
+        if ($user) {
+            $visitor['user_id'] = $user->id;
+        }
+
+        $visitor->touch();
+        $visitor->save();
+
+        $this->visitors = Counter::where('page-address', $this->match->id)->where('updated_at', '>', now()->subMinutes(15))->get();
     }
 
     public function miseAJourCom()

@@ -76,4 +76,9 @@ class Match extends Model
     {
         return $this->hasOne(Commentator::class);
     }
+
+    public function connected()
+    {
+        return $this->hasMany(Counter::class, 'page-address');
+    }
 }

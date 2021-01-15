@@ -111,9 +111,9 @@ class MatchController extends Controller
         $stats = Statistic::all();
         $nbrFavoris = Favorismatch::where('match_id', $match->id)->count();
         $competitions = $match->competition()->get();
-        $pages= Counter::where('page-address', '/index.php/matches/' .$match->id)->count();
 
-        return view('matches.show', compact('pages', 'match', 'commentsMatch', 'clubHome', 'clubAway', 'competitions', 'stats', 'nbrFavoris', 'commentator'));
+
+        return view('matches.show', compact('match', 'commentsMatch', 'clubHome', 'clubAway', 'competitions', 'stats', 'nbrFavoris', 'commentator'));
     }
 
     /**
