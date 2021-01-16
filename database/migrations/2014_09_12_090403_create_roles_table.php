@@ -20,9 +20,6 @@ class CreateRolesTable extends Migration
             $table->unsignedBigInteger('club_id');
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('club_id')->references('id')->on('clubs');
-
         });
     }
 

@@ -26,14 +26,15 @@ class CreateUsersTable extends Migration
             $table->integer('tel')->nullable();
             $table->integer('note')->nullable();
             $table->string('prefer_team_id')->nullable();
-            $table->boolean('is_superadmin')->nullable();
-            $table->boolean('is_admin')->nullable();
+            $table->boolean('role_id')->nullable();
             $table->unsignedBigInteger('is_player')->nullable();
             $table->text('profile_photo_path')->nullable();
-            $table->integer('rank')->nullable();
             $table->boolean('first_com')->default(1);
             $table->timestamps();
             $table->timestamp('deleted_at')->nullable();
+
+            $table->foreign('role_id')->references('id')->on('roles');
+
         });
     }
 

@@ -34,12 +34,14 @@ class CreateNewUser implements CreatesNewUsers
             'password' => $this->passwordRules(),
         ])->validate();
 
+        $club = Club::where('name', $input['prefer_team'])->first();
+
         return User::create([
             'last_name' => $input['last_name'],
             'first_name' => $input['first_name'],
             'pseudo' => $input['pseudo'],
             'date_of_birth' => $input['date_of_birth'],
-            'prefer_team_id' => $input['prefer_team'],
+            'prefer_team_id' => $club->id,
             // 'is_player' => $input['isPlayer'],
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
