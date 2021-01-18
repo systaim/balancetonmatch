@@ -15,7 +15,7 @@
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
                 <label class="sr-only" for="inputCity">Ville</label>
-                <input class="inputForm" placeholder="Ville" type="text" maxlength="5" name="inputCity" id="inputCity" wire:model="inputCity" required>
+                <input class="inputForm" placeholder="Ville" type="text" maxlength="5" name="inputCity" id="inputCity" wire:model="inputCity">
                 @error('inputCity')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
