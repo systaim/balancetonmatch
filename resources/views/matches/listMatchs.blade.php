@@ -6,7 +6,7 @@
     </a>
 </div> -->
 <section>
-    <div class="flex flex-col lg:flex-row justify-between bg-primary rounded-lg my-4 sm:w-11/12 m-auto">
+    <div class="flex flex-col lg:flex-row justify-between bg-primary rounded-lg my-4 sm:w-11/12 m-auto overflow-hidden">
         <div class="h-48 lg:h-auto lg:w-6/12 img-bg-blend-listMatchs">
         </div>
         <div class="text-white p-4 lg:w-6/12 xl:p-10 m-auto text-center">
