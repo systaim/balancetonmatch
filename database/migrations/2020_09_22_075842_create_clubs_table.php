@@ -26,10 +26,12 @@ class CreateClubsTable extends Migration
             $table->integer('zip_code')->nullable();
             $table->string('city')->nullable();
             $table->unsignedBigInteger('region_id')->nullable();
+            $table->unsignedBigInteger('department_id')->nullable();
             $table->timestamps();
             $table->timestamp('deleted_at')->nullable();
 
             $table->foreign('region_id')->references('id')->on('regions');
+            $table->foreign('department_id')->references('id')->on('departments');
 
         });
     }

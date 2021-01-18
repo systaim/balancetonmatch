@@ -16,6 +16,7 @@ class CreateDivisionsRegionsTable extends Migration
         Schema::create('divisions_regions', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('season')->default('2020/2021');
             $table->timestamps();
         });
     }

@@ -30,6 +30,7 @@ class DatabaseSeeder extends Seeder
         //Table groupes régions
         $divisions = ['Régional 1', 'Régional 2', 'Régional 3'];
         $regions = Region::all();
+        
 
         // foreach ($regions as $region) {
         foreach ($divisions as $division) {
@@ -39,6 +40,7 @@ class DatabaseSeeder extends Seeder
             ]);
         }
         // }
+        
 
         //tables nom de groupes
         for ($i = 65; $i <= 90; $i++) {
@@ -68,6 +70,9 @@ class DatabaseSeeder extends Seeder
                 'name' => $region,
             ]);
         }
+
+        DB::unprepared(file_get_contents('database/seeders/departments.sql'));
+        DB::unprepared(file_get_contents('database/seeders/clubs.sql'));
 
         //nom de compétitions
         $competitions = ['Championnat régional', 'Championnat départemental', 'coupe de France', 'Coupe régionale', 'Coupe départementale', 'Match amical'];
@@ -101,6 +106,8 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
+        Schema::enableForeignKeyConstraints();
+
         //table noms de départements
         // DB::insert('INSERT INTO departments (departments.name, departments.region_id)
         // SELECT save_table_comments.departements_save.nom_district, save_table_comments.departements_save.region
@@ -116,10 +123,7 @@ class DatabaseSeeder extends Seeder
         // SELECT save_table_comments.clubs_save.name, save_table_comments.clubs_save.num_affil, save_table_comments.clubs_save.couleur1, save_table_comments.clubs_save.couleur2
         // FROM save_table_comments.clubs_save');
 
-        DB::unprepared(file_get_contents('database/seeders/departments.sql'));
-        DB::unprepared(file_get_contents('database/seeders/clubs.sql'));
 
-        Schema::enableForeignKeyConstraints();
 
         // $users = \App\Models\User::factory()->count(10)->create();
         // $players = \App\Models\Player::factory()->count(100)->create();
