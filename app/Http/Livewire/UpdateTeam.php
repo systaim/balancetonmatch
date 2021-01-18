@@ -58,10 +58,10 @@ class UpdateTeam extends Component
         $this->validate([
             'inputAbbreviation' => 'nullable|string|max:4',
             'inputAddress' => 'nullable|string|max:255',
-            'inputCity' => 'required|string|min:2|max:255',
+            'inputCity' => 'string|min:2|max:255',
             'inputPrimaryColor' => 'regex:/#[a-fA-F0-9]{6}/',
             'inputSecondaryColor' => 'regex:/#[a-fA-F0-9]{6}/',
-            'inputZip' => 'required|digits:5',
+            'inputZip' => 'digits:5',
         ]);
         $this->club->save();
 

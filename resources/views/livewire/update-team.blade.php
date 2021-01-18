@@ -15,14 +15,14 @@
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
                 <label class="sr-only" for="inputCity">Ville</label>
-                <input class="inputForm" placeholder="Ville" type="text" name="inputCity" id="inputCity" wire:model="inputCity" required>
+                <input class="inputForm" placeholder="Ville" type="text" maxlength="5" name="inputCity" id="inputCity" wire:model="inputCity" required>
                 @error('inputCity')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
             </div>
             <div class="flex flex-col">
                 <div class="flex justify-between items-center w-full sm:w-7/12 m-2">
-                    <label for="inputPrimaryColor">Couleur Secondaire</label>
+                    <label for="inputPrimaryColor">Couleur primaire</label>
                     <div class="relative h-12 w-12 rounded-full overflow-hidden border-white border-2 cursor-pointer">
                         <input class="absolute -top-2 -left-2 h-24 w-24" type="color" name="inputPrimaryColor" id="inputPrimaryColor" wire:model="inputPrimaryColor">
                     </div>
