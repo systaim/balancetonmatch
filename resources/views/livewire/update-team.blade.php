@@ -1,12 +1,6 @@
 <div>
     <div class="mb-2">
-        @if($club->city == null || $club->zip_code == null)
-        <div class="flex justify-center">
-            <button class="btn" wire:click="clickButtonCity">Renseigner l'adresse <i class="ml-2 fas fa-pencil-alt"></i></button></p>
-        </div>
-        @endif
-        @if($buttonCity == '1')
-        <div>
+        <div class="hidden" style="display:{{ $buttonCity == 1 ? 'block' : '' }}">
             <div>
                 <label class="sr-only" for="inputAddress">Adresse</label>
                 <input class="inputForm mb-2 w-full" placeholder="Adresse" type="text" name="inputAddress" id="inputAddress" wire:model="inputAddress">
@@ -21,31 +15,50 @@
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
                 <label class="sr-only" for="inputCity">Ville</label>
-                <input class="inputForm" placeholder="Ville" type="text" name="inputCity" id="inputCity" wire:model="inputCity">
+                <input class="inputForm" placeholder="Ville" type="text" name="inputCity" id="inputCity" wire:model="inputCity" required>
                 @error('inputCity')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
             </div>
             <div class="flex flex-col">
-                <div class="flex justify-between w-full sm:w-7/12 m-2">
-                    <label for="inputPrimaryColor">Couleur primaire</label>
-                    <input type="color" name="inputPrimaryColor" id="inputPrimaryColor" wire:model="inputPrimaryColor">
+                <div class="flex justify-between items-center w-full sm:w-7/12 m-2">
+                    <label for="inputPrimaryColor">Couleur Secondaire</label>
+                    <div class="relative h-12 w-12 rounded-full overflow-hidden border-white border-2 cursor-pointer">
+                        <input class="absolute -top-2 -left-2 h-24 w-24" type="color" name="inputPrimaryColor" id="inputPrimaryColor" wire:model="inputPrimaryColor">
+                    </div>
+                    @error('inputPrimaryColor')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                 </div>
-                <div class="flex justify-between w-full sm:w-7/12 m-2">
+                <div class="flex justify-between items-center w-full sm:w-7/12 m-2">
                     <label for="inputSecondaryColor">Couleur Secondaire</label>
-                    <input type="color" name="inputSecondaryColor" id="inputSecondaryColor" wire:model="inputSecondaryColor">
+                    <div class="relative h-12 w-12 rounded-full overflow-hidden border-white border-2 cursor-pointer">
+                        <input class="absolute -top-2 -left-2 h-24 w-24" type="color" name="inputSecondaryColor" id="inputSecondaryColor" wire:model="inputSecondaryColor">
+                    </div>
+                    @error('inputSecondaryColor')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                 </div>
-                <div class="flex justify-between w-full sm:w-7/12 m-2">
+                <div class="flex justify-between items-center w-full sm:w-7/12 m-2">
+                    <label for="inputAbbreviation">Initiales équipe</label>
+                    <input class="text-primary inputForm" type="text" name="inputAbbreviation" id="inputAbbreviation" maxlength="4" wire:model="inputAbbreviation">
+                    @error('inputAbbreviation')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="flex justify-between items-center w-full sm:w-7/12 m-2">
                     <label for="inputNbrTeams">Nombre d'équipes</label>
-                    <input class="text-primary" type="number" name="inputNbrTeams" id="inputNbrTeams" wire:model="inputNbrTeams">
+                    <input class="text-primary inputForm" type="number" name="inputNbrTeams" id="inputNbrTeams" min="0" max="99" wire:model="inputNbrTeams">
+                    @error('inputNbrTeams')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                 </div>
             </div>
             <div class="flex justify-center">
                 <input class="btn btnSuccess" type="submit" value="Valider" wire:click="citySave">
             </div>
         </div>
-        @else
-        <div>
+        <div class="block" style="display:{{ $buttonCity == 1 ? 'none' : '' }}">
             <div class="flex justify-center items-start">
                 <div class="mr-2">
                     <p>Adresse du siège : </p>
@@ -58,11 +71,15 @@
             <div class="flex justify-center items-start">
                 <p>Nombre d'équipes sénior : {{ $club->number_teams }}</p>
             </div>
-            <div>
-                <p class="absolute top-2 right-2 cursor-pointer" wire:click="clickButtonCity"><i class="fas fa-pencil-alt"></i></p>
-            </div>
         </div>
-        @endif
+        <div>
+            @if($buttonCity == 1)
+            <p class="absolute top-2 right-2 bg-danger font-bold text-xs px-2 py-1 rounded-md cursor-pointer" wire:click="clickButtonCity"><i class="fas fa-times-circle"></i></p>
+            @else
+            <p class="absolute top-2 right-2 bg-darkSuccess font-bold text-xs px-2 py-1 rounded-md cursor-pointer" wire:click="clickButtonCity"><i class="fas fa-pencil-alt"></i></p>
+            @endif
+        </div>
+
     </div>
     <!-- <div class="mb-2">
         @if($club->number_teams == null)

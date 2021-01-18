@@ -18,6 +18,7 @@ class UpdateTeam extends Component
     public $nbrTeams;
     public $inputNbrTeams;
     public $buttonNbrTeams;
+    public $inputAbbreviation;
 
     public function mount()
     {
@@ -29,6 +30,7 @@ class UpdateTeam extends Component
         $this->inputPrimaryColor = $this->club->primary_color;
         $this->inputSecondaryColor = $this->club->secondary_color;
         $this->inputNbrTeams = $this->club->number_teams;
+        $this->inputAbbreviation = $this->club->abbreviation;
     }
 
     public function clickButtonCity()
@@ -51,9 +53,14 @@ class UpdateTeam extends Component
         $this->club->secondary_color = $this->inputSecondaryColor;
 
         $this->club->number_teams = $this->inputNbrTeams;
+        $this->club->abbreviation = $this->inputAbbreviation;
 
         $this->validate([
-            'inputCity' => 'required|string|min:2',
+            'inputAbbreviation' => 'nullable|string|max:4',
+            'inputAddress' => 'nullable|string|max:255',
+            'inputCity' => 'required|string|min:2|max:255',
+            'inputPrimaryColor' => 'regex:/#[a-fA-F0-9]{6}/',
+            'inputSecondaryColor' => 'regex:/#[a-fA-F0-9]{6}/',
             'inputZip' => 'required|digits:5',
         ]);
         $this->club->save();

@@ -20,6 +20,9 @@
                     <div class=" py-2 w-full text-secondary overflow-hidden ml-2">
                         <p class="truncate font-bold">{{ $club->name}}</p>
                         <p>{{ $club->city }}</p>
+                        @if($club->region)
+                        <p>{{ $club->region->name }}</p>
+                        @endif
                     </div>
                 </div>
             </div>

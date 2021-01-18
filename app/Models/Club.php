@@ -42,12 +42,12 @@ class Club extends Model
 
     public function favoristeams()
     {
-        $this->hasMany(Favoristeam::class);
+        return $this->hasMany(Favoristeam::class);
     }
 
     public function region()
     {
-        $this->hasOne(Region::class, 'region_id');
+        return $this->belongsTo(Region::class, 'region_id');
     }
 
 }
