@@ -13,6 +13,7 @@ use App\Models\DivisionsDepartment;
 use App\Models\Group;
 use App\Models\DivisionsRegion;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 
 class DatabaseSeeder extends Seeder
 {
@@ -23,6 +24,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+
+        Schema::disableForeignKeyConstraints();
+
         //Table groupes régions
         $divisions = ['Régional 1', 'Régional 2', 'Régional 3'];
         $regions = Region::all();
@@ -71,7 +75,6 @@ class DatabaseSeeder extends Seeder
         foreach($competitions as $competition){
             Region::create([
                 'name' => $competition,
-                'season' => '2020/2021'
             ]);
         }
 
@@ -116,7 +119,9 @@ class DatabaseSeeder extends Seeder
         DB::unprepared(file_get_contents('database/seeders/departments.sql'));
         DB::unprepared(file_get_contents('database/seeders/clubs.sql'));
 
-        $users = \App\Models\User::factory()->count(10)->create();
-        $players = \App\Models\Player::factory()->count(100)->create();
+        Schema::enableForeignKeyConstraints();
+
+        // $users = \App\Models\User::factory()->count(10)->create();
+        // $players = \App\Models\Player::factory()->count(100)->create();
     }
 }

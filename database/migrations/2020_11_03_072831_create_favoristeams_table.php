@@ -32,6 +32,7 @@ class CreateFavoristeamsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('favoris');
+        Schema::disableForeignKeyConstraints();
+        Schema::dropIfExists('clubs');
     }
 }

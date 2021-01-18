@@ -16,16 +16,16 @@ class CreateClubsTable extends Migration
         Schema::create('clubs', function (Blueprint $table) {
             $table->id();
             $table->string('abbreviation')->nullable();
-            $table->unsignedBigInteger('region_id')->nullable();
             $table->string('name');
             $table->integer('numAffiliation');
             $table->string('logo_path')->nullable();
+            $table->string('primary_color')->default('#ffffff');
+            $table->string('secondary_color')->default('#ffffff');
             $table->integer('number_teams')->nullable();
             $table->text('address')->nullable();
             $table->integer('zip_code')->nullable();
             $table->string('city')->nullable();
-            $table->string('primary_color')->default('#ffffff');
-            $table->string('secondary_color')->default('#ffffff');
+            $table->unsignedBigInteger('region_id')->nullable();
             $table->timestamps();
             $table->timestamp('deleted_at')->nullable();
 

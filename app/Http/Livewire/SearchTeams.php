@@ -31,7 +31,11 @@ class SearchTeams extends Component
     public function render()
     {
         return view('livewire.search-teams', [
-            'clubs' => Club::where('name', 'like', '%' . $this->query . '%')->inRandomOrder()->paginate(15),
+            'clubs' => Club::where('name', 'like', '%' . $this->query . '%')
+            ->orwhere('city', 'like', '%' . $this->query . '%')
+            ->orwhere('zip_code', $this->query)
+            ->inRandomOrder()
+            ->paginate(20),
         ]);
     }
 }

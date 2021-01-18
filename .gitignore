@@ -3,6 +3,7 @@
 /public/avatars
 /public/covers
 /public/uploads
+/PREPARATION DOSSIER
 
 /public/hot
 /public/storage
@@ -15,3 +16,11 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
+
+.composer/
+.bash_history
+.subversion/
+.vscode-server/
+.wget-hsts
+composer.phar
+logs/

@@ -3,7 +3,7 @@
         @livewire('favori-match', ['user' => $user, 'match' => $match])
     </div>
     <div class="relative my-2 p-2 bg-primary text-white rounded-lg cursor-pointer">
-        @if(Auth::user() && $match->user_id == Auth::user()->id)
+        @if(Auth::user() && $match->user_id == Auth::user()->id && $match->live == 'attente')
         <div class="bg-secondary w-6 h-6 absolute top-2 right-1 flex justify-center items-center rounded-full text-primary" @click="open= true">
             <div class="dotMenu"></div>
             <div class="absolute top-0 right-0 w-32 h-24 py-4 pl-6 bg-secondary shadow-xl rounded-lg" x-show="open" @click.away="open = false">
@@ -19,7 +19,7 @@
         <a href="{{route('matches.show',$match) }}">
             <div class="">
                 <div class="text-center flex justify-center font-bold">
-                    <p class="px-4 bg-primary text-secondary rounded-tl-md">{{ $match->date_match->formatLocalized('%d/%m/%y')}}</p>
+                    <p class="px-4 bg-primary text-secondary rounded-tl-md">{{ $match->date_match->formatLocalized('%d/%m/%y / %V')}}</p>
                     <p class="px-4 bg-primary text-secondary rounded-tr-md">{{ $match->date_match->formatLocalized('%H:%M')}}</p>
                 </div>
                 <div class="grid grid-cols-12">

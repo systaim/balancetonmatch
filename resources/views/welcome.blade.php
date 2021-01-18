@@ -1,29 +1,23 @@
 @extends('layout')
 @section('content')
 <section class="min-h-screen">
-    <div>
-        <div class="flex flex-col md:flex-row justify-between bg-primary overflow-hidden h-96 mb-2">
-            <div class="h-6/12 sm:h-8/12 md:h-auto md:w-6/12 img-bg-blend-home">
+    <div class="flex flex-col md:flex-row justify-between bg-primary overflow-hidden h-96 mb-2">
+        <div class="h-6/12 sm:h-8/12 md:h-auto md:w-6/12 img-bg-blend-home">
+        </div>
+        <div class="h-auto text-white py-4 md:w-6/12 px-12 lg:px-24 2xl:px-64 m-auto text-center">
+            <div class="flex items-center justify-center">
+                <hr class="w-10 border border-secondary">
+                <h2 class="text-xl md:text-3xl my-2 mx-6">Bienvenue</h2>
+                <hr class="w-10 border border-secondary">
             </div>
-            <div class="h-auto text-white py-4 md:w-6/12 px-12 lg:px-24 xl:px-32 m-auto text-center">
-                <div class="flex items-center justify-center">
-                    <hr class="w-10 border border-secondary">
-                    <h2 class="text-xl md:text-3xl my-2 mx-6">Bienvenue</h2>
-                    <hr class="w-10 border border-secondary">
-                </div>
-                <p class="text-sm md:text-base">BalanceTonMatch.com a pour but de rassembler les passionnés du ballon rond AMATEUR.</p>
-                <p class="text-sm md:text-base">Il est possible de gérer ton club mais surtout de commenter et de suivre les matchs.</p>
-            </div>
+            <p class="text-sm md:text-base">BalanceTonMatch.com a pour but de rassembler les passionnés du ballon rond AMATEUR.</p>
+            <p class="text-sm md:text-base">Il est possible de gérer ton club mais surtout de commenter et de suivre les matchs en <span class="uppercase text-primary font-bold bg-secondary px-2 rounded-sm">live</span></p>
         </div>
     </div>
     <div class="mb-2 rounded-md mx-2">
-        @if(isset($_SERVER['REMOTE_ADDR']))
-            {{ $_SERVER['REMOTE_ADDR'] }}
-        @endif
-        <!-- <H3 class="py-2">Rechercher un club</H3> -->
-        <form class="py-4" action="{{ asset('clubs') }}" method="get">
+        <form class="w-11/12 m-auto sm:w-8/12 md:w-6/12 lg:w-4/12" action="{{ asset('clubs') }}" method="get">
+            <H3 class="pl-2">Rechercher un club</H3>
             @csrf
-            <h3>Recherche d'un club</h3>
             <label class="relative" for="search">
                 <input class="inputForm w-full" type="search" placeholder="F.C. Recherche" name="search" id="search">
                 <span class=" z-10"><i class="far fa-search"></i></span>
@@ -39,6 +33,16 @@
         <p class="text-center">{{ count($clubs) }} clubs créés</p>
         <p class="text-center">{{ count($players) }} joueurs et {{ count($staffs) }} membres de staff</p>
         <p class="text-center">{{ count($goals) }} buts marqués</p>
+    </div>
+    <div class="w-11/12 m-auto">
+        <h3 class="pl-2">Les matchs du week-end</h3>
+        @foreach($matches->sortBy('date_match') as $match)
+        @if($match->date_match->formatLocalized('%V') == now()->week() && $match->date_match->formatLocalized('%Y') == '2021')
+        @if($match->date_match->formatLocalized('%A') == "vendredi" || $match->date_match->formatLocalized('%A') == "samedi" || $match->date_match->formatLocalized('%A') == "dimanche")
+        @include('match')
+        @endif
+        @endif
+        @endforeach
     </div>
     @auth
     <div class="w-11/12 m-auto md:flex">

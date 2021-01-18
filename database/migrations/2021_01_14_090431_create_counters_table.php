@@ -32,6 +32,7 @@ class CreateCountersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('counters');
+        Schema::disableForeignKeyConstraints();
+        Schema::dropIfExists('clubs');
     }
 }

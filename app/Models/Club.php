@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
 
@@ -24,10 +25,10 @@ class Club extends Model
         return $this->hasMany(Player::class);
     }
 
-    public function teams()
-    {
-        return $this->hasMany(Team::class);
-    }
+    // public function teams()
+    // {
+    //     return $this->hasMany(Team::class);
+    // }
 
     public function matchs()
     {
@@ -43,4 +44,10 @@ class Club extends Model
     {
         $this->hasMany(Favoristeam::class);
     }
+
+    public function region()
+    {
+        $this->hasOne(Region::class, 'region_id');
+    }
+
 }

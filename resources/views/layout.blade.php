@@ -28,10 +28,10 @@
                             <div>
                                 <img class="w-20 md:w-24" src="{{ asset('images/logos/btmLogoJB.png') }}" alt="">
                             </div>
-                            <div class="h-auto">
+                            <div class="h-auto relative">
                                 <h1 class="sm:text-2xl md:text-3xl">Balance Ton Match</h1>
                                 <p class="float-right inline-block text-xs60 sm:text-xs md:text-base px-2 bg-primary rounded-lg text-white ">Quand la touche part en live...</p>
-
+                                <p class="absolute top-0 -right-2 font-semibold z-10 px-2 py-1 bg-secondary rounded-md text-xxs">Bêta</p>
                             </div>
                         </div>
                     </a>
