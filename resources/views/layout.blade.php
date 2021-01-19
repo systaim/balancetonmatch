@@ -26,7 +26,7 @@
                     <a href="/">
                         <div class="flex justify-center items-center">
                             <div>
-                                <img class="w-20 md:w-24" src="{{ asset('images/logos/btmLogoJB.png') }}" alt="">
+                                <img class="w-20 md:w-24" src="{{ asset('/images/logos/btmLogoJB.png') }}" alt="">
                             </div>
                             <div class="h-auto relative">
                                 <h1 class="sm:text-2xl md:text-3xl">Balance Ton Match</h1>
@@ -96,7 +96,7 @@
                 <div class="w-full rounded-b-lg shadow-2xl py-12 bg-primary text-white">
                     <div>
                         <div class="flex justify-center items-start">
-                            <img class="w-3/12 lg:w-2/12" src="images/logos/btmLogoJB.png" alt="logo">
+                            <img class="w-3/12 lg:w-2/12" src="{{ asset('images/logos/btmLogoJB.png') }}" alt="logo">
                         </div>
                         @auth
                         <div class="flex flex-col justify-end mt-6">
@@ -140,7 +140,7 @@
                     <ul class="text-2xl md:text-3xl lg:text-4xl lguppercase flex flex-col items-center justify-center">
                         <li class="pb-4 mb-4 border-b border-black w-8/12"><a href="/">Accueil</a></li>
                         <li class="pb-4 mb-4 border-b border-black w-8/12"><a href="{{ route('clubs.index') }}">Rechercher un club</a></li>
-                        <li class="pb-4 mb-4 border-b border-black w-8/12"><a href="{{ route('matches.index') }}">Matchs à venir</a></li>
+                        <li class="pb-4 mb-4 border-b border-black w-8/12"><a href="{{ route('matches.index') }}">Liste des matchs</a></li>
                     </ul>
                 </nav>
             </div>

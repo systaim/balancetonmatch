@@ -25,6 +25,11 @@ $club = ClubController::class;
 |
 */
 
+Route::post('/traitement', function ()
+{
+    return view('traitement');
+});
+
 Route::get('/', function () {
     $matchesToday = Match::whereBetween('date_match', [Carbon::now()
         ->startOfDay(), Carbon::now()->endOfDay()])->get();
@@ -64,9 +69,11 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::resource('clubs', 'App\Http\Controllers\ClubController');
 Route::resource('players', 'App\Http\Controllers\PlayerController');
 Route::resource('matches', 'App\Http\Controllers\MatchController');
-
+Route::resource('contacts', 'App\Http\Controllers\ContactController');
 Route::resource('commentaires', 'App\Http\Controllers\CommentaireController');
 Route::resource('clubs.players', 'App\Http\Controllers\PlayerController');
 Route::resource('clubs.staffs', 'App\Http\Controllers\StaffController');
+
+Route::post('contacts', 'App\Http\Controllers\ContactController')->name('contacts.store');
 
 Route::get('commentaire/delete/{id}', 'App\Http\Controllers\CommentaireController@destroy')->name('supprimer');

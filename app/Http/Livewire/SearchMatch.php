@@ -17,22 +17,20 @@ class SearchMatch extends Component
     public $user;
     public $futurMatches = [];
     public $clubs;
-
-    public function mount()
-    {
-        // $this->clubs = [];
-        // $this->futurMatchs = collect([]);
-    }
+    public $matchs = [];
 
     public function updatedSearch()
     {
-        // $this->futurMatchs = collect([]);
-        if (strlen($this->search) > 2) {
-            $clubs = Club::where('name', 'like', '%' . $this->search . '%')->get()->pluck('id');
-            $this->futurMatchs = $this->futurMatchs->concat(Match::wherein('home_team_id', $clubs)->orWhereIn('away_team_id', $clubs)->get());
-            $this->futurMatchs = $this->futurMatchs->groupBy('region_id');
-            // dd(Match::wherein('home_team_id', $clubs)->orWhereIn('away_team_id', $clubs)->get());
+        if (strlen($this->search) >= 3) {
 
+            $clubs = Club::where('name', 'like', '%' . $this->search . '%')->get()->pluck('id');
+            $this->matchs = Match::where('date_match','>=', Carbon::now())
+                            ->where(function($query) use ($clubs)
+                            {
+                                $query->where('home_team_id', $clubs)
+                                ->orwhere('away_team_id', $clubs);
+                            })
+                            ->get();
         }
     }
 

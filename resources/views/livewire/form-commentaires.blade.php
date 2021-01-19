@@ -169,52 +169,52 @@
                 @endif
                 <div class="actionsMatch">
                     <input class="hidden" type="radio" id="but" wire:model="type_comments" name="type_comments" value="but">
-                    <label class="inputAction {{ $team_action }}" for="but">
+                    <label class="inputAction" for="but">
                         But !
                     </label>
                     @if($type_comments == "but")
-                    <div class="p-6 border-2 border-{{ $team_action }} rounded-b-lg shadow-2xl">
+                    <div class="p-6 border rounded-b-lg shadow-2xl">
                         <div class="flex flex-col">
                             <div>
                                 <input class="hidden" type="radio" id="butCF" wire:model="type_but" name="type_but" value="But sur coup-franc">
-                                <label class="inputAction {{ $team_action }}" for="butCF">But sur coup-franc</label>
+                                <label class="inputAction" for="butCF">But sur coup-franc</label>
                             </div>
                             <div>
                                 <input class="hidden" type="radio" id="butCorner" wire:model="type_but" name="type_but" value="But sur corner">
-                                <label class="inputAction {{ $team_action }}" for="butCorner">But sur corner</label>
+                                <label class="inputAction" for="butCorner">But sur corner</label>
                             </div>
                             <div>
                                 <input class="hidden" type="radio" id="ext-surface" wire:model="type_but" name="type_but" value="Frappe de l'extérieur de la suface">
-                                <label class="inputAction {{ $team_action }}" for="ext-surface">Frappe de l'extérieur de la suface</label>
+                                <label class="inputAction" for="ext-surface">Frappe de l'extérieur de la suface</label>
                             </div>
                             <div>
                                 <input class="hidden" type="radio" id="int-surface" wire:model="type_but" name="type_but" value="Frappe de l'intérieur de la surface">
-                                <label class="inputAction {{ $team_action }}" for="int-surface">Frappe de l'intérieur de la surface</label>
+                                <label class="inputAction" for="int-surface">Frappe de l'intérieur de la surface</label>
                             </div>
                             <div>
                                 <input class="hidden" type="radio" id="penalty" wire:model="type_but" name="type_but" value="But sur pénalty">
-                                <label class="inputAction {{ $team_action }}" for="penalty">But sur pénalty</label>
+                                <label class="inputAction" for="penalty">But sur pénalty</label>
                             </div>
                         </div>
                     </div>
                     @endif
                     <input class="hidden" type="radio" id="carton" wire:model="type_comments" name="type_comments" value="carton">
-                    <label class="inputAction {{ $team_action }}" for="carton">
+                    <label class="inputAction" for="carton">
                         Carton !
                     </label>
                     @if($type_comments == 'carton')
-                    <div class="p-6 border-2 border-{{ $team_action }} rounded-b-lg">
+                    <div class="p-6 border rounded-b-lg">
                         <div class="actionsMatch">
                             <input class="hidden" type="radio" id="cartonJaune1" wire:model="type_carton" name="type_comments" value="Carton jaune">
-                            <label class="inputAction {{ $team_action }}" for="cartonJaune1">1er carton jaune</label>
+                            <label class="inputAction" for="cartonJaune1">1er carton jaune</label>
                         </div>
                         <div class="actionsMatch">
                             <input class="hidden" type="radio" id="cartonJaune2" wire:model="type_carton" name="type_comments" value="2e carton jaune">
-                            <label class="inputAction {{ $team_action }}" for="cartonJaune2">2e carton jaune</label>
+                            <label class="inputAction" for="cartonJaune2">2e carton jaune</label>
                         </div>
                         <div class="actionsMatch">
                             <input class="hidden" type="radio" id="cartonRouge" wire:model="type_carton" name="type_comments" value="Carton rouge">
-                            <label class="inputAction {{ $team_action }}" for="cartonRouge">Carton rouge !</label>
+                            <label class="inputAction" for="cartonRouge">Carton rouge !</label>
                         </div>
                     </div>
                     @endif
@@ -472,7 +472,7 @@
     @endif
     @endif
     @endauth
-    <div class="my-2 w-11/12 m-auto lg:w-11/12 lg:flex lg:justify-around" wire:poll.5000ms.keep-alive="miseAJourCom">
+    <div class="my-2 w-11/12 m-auto lg:w-11/12 lg:flex lg:justify-around min-h-screen" wire:poll.5000ms.keep-alive="miseAJourCom">
         <div class="m-auto sm:w-10/12 lg:w-8/12">
             @foreach($commentsMatch as $comment)
             <div class="relative commentaires minHeight16 h-auto {{ $comment->team_action }}" x-data="{ open: false }">

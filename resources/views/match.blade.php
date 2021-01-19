@@ -19,7 +19,7 @@
         <a href="{{route('matches.show',$match) }}">
             <div class="">
                 <div class="text-center flex justify-center font-bold">
-                    <p class="px-4 bg-primary text-secondary rounded-tl-md">{{ $match->date_match->formatLocalized('%d/%m/%y / %V')}}</p>
+                    <p class="px-4 bg-primary text-secondary rounded-tl-md">{{ $match->date_match->formatLocalized('%d/%m/%y')}}</p>
                     <p class="px-4 bg-primary text-secondary rounded-tr-md">{{ $match->date_match->formatLocalized('%H:%M')}}</p>
                 </div>
                 <div class="grid grid-cols-12">
