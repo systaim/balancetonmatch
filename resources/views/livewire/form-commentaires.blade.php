@@ -472,7 +472,7 @@
     @endif
     @endif
     @endauth
-    <div class="my-2 w-11/12 m-auto lg:w-11/12 lg:flex lg:justify-around min-h-screen" wire:poll.5000ms.keep-alive="miseAJourCom">
+    <div class="my-2 w-11/12 m-auto lg:w-11/12 lg:flex lg:justify-around" wire:poll.5000ms.keep-alive="miseAJourCom">
         <div class="m-auto sm:w-10/12 lg:w-8/12">
             @foreach($commentsMatch as $comment)
             <div class="relative commentaires minHeight16 h-auto {{ $comment->team_action }}" x-data="{ open: false }">

@@ -231,9 +231,11 @@ class FormCommentaires extends Component
     {
         if ($this->dateMatch->diffInMinutes(now(), false) > -30) {
 
+
             $commentData['type_comments'] = "Début du match ! 🤩";
             $commentData['minute'] = 0;
             $commentData['team_action'] = 'match';
+            $commentData['commentator_id'] = $this->commentator[0]->id;
 
             $comment = Commentaire::create($commentData);
 
@@ -249,9 +251,9 @@ class FormCommentaires extends Component
 
                 $this->match->save();
 
-                foreach ($this->commentator as $comm) {
-                    $comment->commentator()->associate($comm->id);
-                }
+                // foreach ($this->commentator as $comm) {
+                //     $comment->commentator()->associate($comm->id);
+                // }
                 $comment->save();
 
                 $this->commentsMatch =  $this->match->commentaires()->orderBy('minute', 'desc')->orderBy('updated_at', 'desc')->get();
@@ -275,14 +277,16 @@ class FormCommentaires extends Component
         $commentData['minute'] = 45;
         $commentData['team_action'] = 'match';
         $commentData['comments'] = $this->mitempsJoueurs[array_rand($this->mitempsJoueurs)];
+        $commentData['commentator_id'] = $this->commentator[0]->id;
+
 
         $comment = Commentaire::create($commentData);
 
         if ($comment) {
 
-            foreach ($this->commentator as $comm) {
-                $comment->commentator()->associate($comm->id);
-            }
+            // foreach ($this->commentator as $comm) {
+            //     $comment->commentator()->associate($comm->id);
+            // }
             $comment->save();
             $this->commentsMatch =  $this->match->commentaires()->orderBy('minute', 'desc')->orderBy('updated_at', 'desc')->get();
             session()->flash('successMessage', 'Évènement bien pris en compte');
@@ -293,19 +297,21 @@ class FormCommentaires extends Component
     {
         $user = Auth::user();
         $this->match->live = "repriseMT";
-        $this->match->save();
 
         $commentData['type_comments'] = "C'est la reprise ! 😎";
         $commentData['minute'] = 45;
         $commentData['team_action'] = 'match';
+        $commentData['commentator_id'] = $this->commentator[0]->id;
+
 
         $comment = Commentaire::create($commentData);
 
         if ($comment) {
 
-            foreach ($this->commentator as $comm) {
-                $comment->commentator()->associate($comm->id);
-            }
+            // foreach ($this->commentator as $comm) {
+            //     $comment->commentator()->associate($comm->id);
+            // }
+            $this->match->save();
             $comment->save();
             $this->commentsMatch =  $this->match->commentaires()->orderBy('minute', 'desc')->orderBy('updated_at', 'desc')->get();
             session()->flash('successMessage', 'Évènement bien pris en compte');
@@ -316,20 +322,22 @@ class FormCommentaires extends Component
     {
         $user = Auth::user();
         $this->match->live = "finDeMatch";
-        $this->match->save();
+
         $this->nbrFavoris = 0;
 
         $commentData['type_comments'] = "FIN DU MATCH !!!";
         $commentData['minute'] = 90;
         $commentData['team_action'] = 'match';
+        $commentData['commentator_id'] = $this->commentator[0]->id;
 
         $comment = Commentaire::create($commentData);
 
         if ($comment) {
 
-            foreach ($this->commentator as $comm) {
-                $comment->commentator()->associate($comm->id);
-            }
+            // foreach ($this->commentator as $comm) {
+            //     $comment->commentator()->associate($comm->id);
+            // }
+            $this->match->save();
             $comment->save();
             $this->commentsMatch =  $this->match->commentaires()->orderBy('minute', 'desc')->orderBy('updated_at', 'desc')->get();
             session()->flash('successMessage', '😍 MERCI MERCI MERCI 😍');
@@ -350,6 +358,7 @@ class FormCommentaires extends Component
             ]);
 
             $commentData = ['minute' => $this->minute, 'team_action' => $this->team_action];
+            $commentData['commentator_id'] = $this->commentator[0]->id;
 
             if ($this->type_comments == "but") {
                 $commentData['type_action'] = "goal";
@@ -394,9 +403,9 @@ class FormCommentaires extends Component
             $comment = Commentaire::create($commentData);
 
             if ($comment) {
-                foreach ($this->commentator as $comm) {
-                    $comment->commentator()->associate($comm->id);
-                }
+                // foreach ($this->commentator as $comm) {
+                //     $comment->commentator()->associate($comm->id);
+                // }
                 if ($this->file) {
                     $path = $this->file->store('uploads');
                     $comment->images = $path;
