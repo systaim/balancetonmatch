@@ -25,8 +25,8 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->date('date_of_birth')->nullable();
             $table->integer('tel')->nullable();
-            $table->integer('note_commentaires')->nullable();
-            $table->string('prefer_team_id')->nullable();
+            $table->float('note_commentaires')->nullable();
+            $table->integer('prefer_team_id')->nullable();
             $table->unsignedBigInteger('role_id')->nullable();
             $table->unsignedBigInteger('is_player')->nullable();
             $table->boolean('first_com')->default(1);
@@ -34,7 +34,7 @@ class CreateUsersTable extends Migration
             $table->timestamp('deleted_at')->nullable();
 
             $table->foreign('role_id')->references('id')->on('roles');
-            $table->foreign('prefer_team_id')->references('id')->on('clubs');
+            // $table->foreign('prefer_team_id')->references('id')->on('clubs');
             $table->foreign('is_player')->references('id')->on('players');
 
         });
