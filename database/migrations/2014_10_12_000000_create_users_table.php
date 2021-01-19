@@ -19,21 +19,23 @@ class CreateUsersTable extends Migration
             $table->string('first_name');
             $table->string('pseudo')->unique();
             $table->string('email')->unique();
+            $table->text('profile_photo_path')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->date('date_of_birth')->nullable();
             $table->integer('tel')->nullable();
-            $table->integer('note')->nullable();
+            $table->integer('note_commentaires')->nullable();
             $table->string('prefer_team_id')->nullable();
             $table->unsignedBigInteger('role_id')->nullable();
             $table->unsignedBigInteger('is_player')->nullable();
-            $table->text('profile_photo_path')->nullable();
             $table->boolean('first_com')->default(1);
             $table->timestamps();
             $table->timestamp('deleted_at')->nullable();
 
             $table->foreign('role_id')->references('id')->on('roles');
+            $table->foreign('prefer_team_id')->references('id')->on('clubs');
+            $table->foreign('is_player')->references('id')->on('players');
 
         });
     }

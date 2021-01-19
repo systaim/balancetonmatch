@@ -1,4 +1,4 @@
-<footer class="bg-gray-900 mb-0 w-full relative  bottom-0">
+<footer class="bg-gray-900 mb-0 w-full relative  bottom-0 mt-12">
     <div class="flex flex-col justify-around text-white py-12">
         <div class="flex justify-center p-2">
             <a class="px-4" href="https://www.facebook.com/balancetonmatch" target="_blank"><img src="{{ asset('images/logoFacebook.png') }}" alt="logo Facebook" class="w-10"></a>

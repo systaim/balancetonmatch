@@ -29,17 +29,13 @@ class DatabaseSeeder extends Seeder
 
         //Table groupes régions
         $divisions = ['Régional 1', 'Régional 2', 'Régional 3'];
-        $regions = Region::all();
-        
 
-        // foreach ($regions as $region) {
         foreach ($divisions as $division) {
             DivisionsRegion::create([
                 'name' => $division,
-                // 'region_id' => $region->id,
             ]);
         }
-        // }
+
         
 
         //tables nom de groupes
@@ -50,16 +46,14 @@ class DatabaseSeeder extends Seeder
         }
 
         // tables players numéros génériques
-        // $clubs = Club::all();
-        // foreach ($clubs as $club) {
+
         for ($i = 1; $i <= 16; $i++) {
             Player::create([
                 'last_name' => $i,
                 'first_name' => 'numéro',
-                // 'club_id' => $club->id,
+
             ]);
         }
-        // }
 
 
         //tables noms de régions
@@ -85,13 +79,11 @@ class DatabaseSeeder extends Seeder
 
         //table nom division par départements
         $districts = ['Division 1', 'Division 2', 'Division 3', 'Division 4', 'Division 5'];
-        $departements = Department::all();
 
-        // foreach ($departements as $departement) {
         foreach ($districts as $district) {
             DivisionsDepartment::create([
                 'name' => $district,
-                // 'department_id' => $departement->id
+
             ]);
         }
         // }
@@ -107,21 +99,6 @@ class DatabaseSeeder extends Seeder
         }
 
         Schema::enableForeignKeyConstraints();
-
-        //table noms de départements
-        // DB::insert('INSERT INTO departments (departments.name, departments.region_id)
-        // SELECT save_table_comments.departements_save.nom_district, save_table_comments.departements_save.region
-        // FROM save_table_comments.departements_save');
-
-        // //table nom de compétitions
-        // DB::insert('INSERT INTO competitions (competitions.name, competitions.season)
-        // SELECT save_table_comments.competitions_save.name, save_table_comments.competitions_save.season
-        // FROM save_table_comments.competitions_save');
-
-        //table clubs sauvegardée
-        // DB::insert('INSERT INTO clubs (clubs.name, clubs.city, clubs.primary_color, clubs.secondary_color)
-        // SELECT save_table_comments.clubs_save.name, save_table_comments.clubs_save.num_affil, save_table_comments.clubs_save.couleur1, save_table_comments.clubs_save.couleur2
-        // FROM save_table_comments.clubs_save');
 
 
 

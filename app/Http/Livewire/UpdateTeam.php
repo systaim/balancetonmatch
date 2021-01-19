@@ -56,7 +56,7 @@ class UpdateTeam extends Component
         $this->club->abbreviation = $this->inputAbbreviation;
 
         $this->validate([
-            'inputAbbreviation' => 'nullable|string|max:4',
+            'inputAbbreviation' => 'nullable|string|max:6',
             'inputAddress' => 'nullable|string|max:255',
             'inputCity' => 'nullable|string|min:2|max:255',
             'inputPrimaryColor' => 'regex:/#[a-fA-F0-9]{6}/',

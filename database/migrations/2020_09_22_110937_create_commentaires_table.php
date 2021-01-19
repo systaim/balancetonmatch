@@ -19,8 +19,8 @@ class CreateCommentairesTable extends Migration
             $table->string('type_action')->nullable();
             $table->string('type_comments');
             $table->text('comments')->nullable();
-            $table->integer('minute');
             $table->enum('team_action', ['home','away','match']);
+            $table->integer('minute');
             $table->string('images')->nullable();
             $table->timestamps();
             $table->timestamp('deleted_at')->nullable();

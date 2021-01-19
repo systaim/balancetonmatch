@@ -15,7 +15,7 @@ class CreateStatisticsTable extends Migration
     {
         Schema::create('statistics', function (Blueprint $table) {
             $table->id();
-            $table->enum('action',['goal','passeD','nbr_match','yellow_card','red_card'])->nullable();
+            $table->enum('action',['goal','passeD','yellow_card','red_card'])->nullable();
             $table->unsignedBigInteger('commentaire_id');
             $table->unsignedBigInteger('player_id');
             $table->timestamps();

@@ -10,12 +10,12 @@
             </div>
             <div class="flex flex-col justify-between w-full mb-2">
                 <label class="sr-only" for="inputZip">Code postal</label>
-                <input class="inputForm mb-2" placeholder="Code postal" type="text" name="inputZip" id="inputZip" wire:model="inputZip">
+                <input class="inputForm mb-2" placeholder="Code postal" maxlength="5" type="text" name="inputZip" id="inputZip" wire:model="inputZip">
                 @error('inputZip')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
                 <label class="sr-only" for="inputCity">Ville</label>
-                <input class="inputForm" placeholder="Ville" type="text" maxlength="5" name="inputCity" id="inputCity" wire:model="inputCity">
+                <input class="inputForm" placeholder="Ville" type="text" name="inputCity" id="inputCity" wire:model="inputCity">
                 @error('inputCity')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
