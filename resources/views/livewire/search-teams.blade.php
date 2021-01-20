@@ -11,18 +11,22 @@
         @if($clubs)
         <a href="{{ route('clubs.show', $club) }}">
             <div class="flex flex-col mb-3 w-full">
-                <div class="flex flex-row items-center bg-primary rounded-lg">
-                    <div class="w-16 m-2">
+                <div class="relative flex flex-row items-center bg-primary rounded-lg overflow-hidden">
+                    <div class="w-16 m-2 z-10">
                         <div class="logo h-12 w-12">
                             <img class="object-contain" src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $club->numAffiliation }}.jpg">
                         </div>
                     </div>
-                    <div class=" py-2 w-full text-secondary overflow-hidden ml-2">
+                    <div class=" py-2 w-full text-secondary overflow-hidden ml-2 z-10">
                         <p class="truncate font-bold">{{ $club->name}}</p>
                         <p>{{ $club->city }}</p>
                         @if($club->region)
                         <p>{{ $club->region->name }}</p>
                         @endif
+                    </div>
+                    <div class="absolute -bottom-7 -right-7 transform -rotate-45 z-0">
+                        <div class="h-2 w-36 mb-1" style="background-color: {{ $club->primary_color }};"></div>
+                        <div class="h-2 w-36" style="background-color: {{ $club->secondary_color }};"></div>
                     </div>
                 </div>
             </div>

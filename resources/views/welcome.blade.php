@@ -25,16 +25,20 @@
             <input class="sr-only" type="submit">
         </form>
     </div>
-    <div class="bg-white p-4 rounded-md text-primary w-11/12 m-auto mb-2">
+    <div class="bg-white p-4 rounded-md text-primary w-11/12 m-auto mb-2 sm:w-9/12 md:w-8/12 lg:w-6/12 xl:w-4/12">
         <h3 class="text-center mb-6">Quelques statistiques... </h3>
         <hr>
-        <p class="text-center mt-6">{{ count($futurMatches) }} matchs sont à venir</p>
-        <p class="text-center">{{ count($matches) }} matchs ont été créés</p>
+        @if(count($futurMatches) == 1)
+        <p class="text-center mt-6">{{ count($futurMatches) }} match à venir</p>
+        @else
+        <p class="text-center mt-6">{{ count($futurMatches) }} matchs à venir</p>
+        @endif
+        <p class="text-center">{{ count($matches) }} matchs créés</p>
         <p class="text-center">{{ count($clubs) }} clubs créés</p>
         <p class="text-center">{{ count($players) }} joueurs et {{ count($staffs) }} membres de staff</p>
         <p class="text-center">{{ count($goals) }} buts marqués</p>
     </div>
-    <div class="w-11/12 m-auto">
+    <div class="w-11/12 m-auto sm:w-9/12">
         <h3 class="pl-2">Les matchs du week-end</h3>
         @foreach($matches->sortBy('date_match') as $match)
         @if($match->date_match->formatLocalized('%V') == now()->week() && $match->date_match->formatLocalized('%Y') == '2021')
@@ -45,47 +49,45 @@
         @endforeach
     </div>
     @auth
-    <div class="w-11/12 m-auto md:flex">
-        <div class="bg-white rounded-lg border-white m-auto my-4 shadow-2xl lg:w-5/12">
-            <div class="bg-primary text-secondary rounded-t-lg">
-                <h3 class="text-center py-2"><i class="fas fa-heart text-red-700"></i> Mes teams favorites <i class="fas fa-heart text-red-700"></i></h3>
+    <div class="flex flex-col w-11/12 lg:w-10/12 lg:flex-row justify-between m-auto">
+        <div class="w-full m-2">
+            <div>
+                <h3>Mes teams préférées</h3>
             </div>
-            <div class="p-2 height-mini-10">
+            <div class="py-4">
                 @auth
                 @if(count($user->favoristeams) > 0 )
-                @foreach($user->favoristeams as $favoriteam)
+                @foreach($user->favoristeams->shuffle() as $favoriteam)
                 <a href="{{ route('clubs.show', $favoriteam->club->id) }}">
-                    <div class="flex items-center my-2 px-4">
-                        <div class="logo h-10 w-10 cursor-pointer">
-                            <img class="object-contain" src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $favoriteam->club->numAffiliation }}.jpg" alt="logo">
-                        </div>
-                        <div class="ml-2">
-                            <p class="font-bold">{{ $favoriteam->club->name }}</p>
+                    <div class="flex flex-col mb-3 w-full">
+                        <div class="relative flex flex-row items-center bg-primary rounded-lg overflow-hidden">
+                            <div class="w-16 m-2 z-10">
+                                <div class="logo h-12 w-12">
+                                    <img class="object-contain" src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $favoriteam->club->numAffiliation }}.jpg">
+                                </div>
+                            </div>
+                            <div class=" py-2 w-full text-secondary overflow-hidden ml-2 z-10">
+                                <p class="truncate font-bold">{{ $favoriteam->club->name}}</p>
+                            </div>
+                            <div class="absolute -bottom-7 -right-7 transform -rotate-45 z-0">
+                                <div class="h-2 w-36 mb-1" style="background-color: {{ $favoriteam->club->primary_color }};"></div>
+                                <div class="h-2 w-36" style="background-color: {{ $favoriteam->club->secondary_color }};"></div>
+                            </div>
                         </div>
                     </div>
                 </a>
                 @endforeach
-                @else
-                <div>
-                    <div class="my-2">
-                        <p class="text-center font-bold">Tu n'as pas encore de clubs en favoris</p>
-                    </div>
-                    <div class="flex justify-between items-center px-3 rounded-lg bg-secondary">
-                        <p>Fais ta recherche ici</p>
-                        <a class="btn btnPrimary m-2" href="{{ route('clubs.index') }}">Go !</a>
-                    </div>
-                </div>
                 @endif
                 @else
                 <p>Connecte toi pour ajouter des équipes</p>
                 @endauth
             </div>
         </div>
-        <div class="bg-white rounded-lg border-white m-auto my-4 shadow-2xl lg:w-5/12">
-            <div class="bg-primary text-secondary rounded-t-lg">
-                <h3 class="text-center py-2"><i class="fas fa-star text-red-700"></i> Mes matchs en favoris <i class="fas fa-star text-red-700"></i></h3>
+        <div class="w-full ml-2">
+            <div class="">
+                <h3 class=""><i class="fas fa-star text-red-700"></i> Mes matchs favoris <i class="fas fa-star text-red-700"></i></h3>
             </div>
-            <div class="p-2 height-mini-10">
+            <div class="py-4">
                 @auth
                 @if(count($user->favorismatches) > 0 )
                 @foreach($user->favorismatches as $favorimatch)
