@@ -1,4 +1,3 @@
-
 @extends('layout')
 @section('content')
 <section>
@@ -12,7 +11,7 @@
         <span class="error">{{ $message }}</span>
         @enderror
     </div>
-    <div class="my-8">
+    <div class="my-8 m-auto w-11/12 xl:w-8/12">
         <div class="flex justify-center">
             <h3 class="titlePage">Les joueurs</h3>
         </div>
@@ -48,10 +47,14 @@
                     <div class="flex flex-col">
                         <p class="font-bold">né le {{ date('d/m/Y',strtotime($player->date_of_birth)) }}</p>
                     </div>
+                    @auth
+                    @if(Auth::user()->role->role == 'super-admin' || (Auth::user()->role->role == 'referent-club' && Auth::user()->prefer_team_id == $club->id))
                     <div>
                         <button onclick="openMenu({{$player->id}})" class="mr-1"><i class="far fa-edit"></i></button>
                         <button id="{{ $key }}" @click="open = true"><i class="far fa-times-circle"></i></button>
                     </div>
+                    @endif
+                    @endauth
                 </div>
                 <!-- ***********************
                     Formulaire suppression d'un joueur
@@ -78,7 +81,7 @@
                 <!-- ***********************
                     Formulaire modification d'un joueur
                     ************************** -->
-                    
+
                 <div id="{{$player->id}}" class="hidden fixed z-50 inset-0 justify-center items-center" style="background-color: rgba(0,0,0,.5);">
                     <div class="absolute top-10 right-10">
                         <a href=""><button class="text-4xl text-primary">X</button></a>

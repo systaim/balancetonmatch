@@ -40,7 +40,7 @@ class MatchController extends Controller
         $players = Player::all();
         $competitions = Competition::all();
         $matchs = Match::all();
-        $futurMatches = Match::where('date_match','>=', Carbon::now());
+        $futurMatches = Match::where('date_match','>=', Carbon::now())->get();
         $matches = Match::where('date_match', '>=', Carbon::now()->subHours(12))
         ->orderBy('date_match', 'asc')->get()->groupBy('region_id');
         $regions = Region::find($matches->keys());

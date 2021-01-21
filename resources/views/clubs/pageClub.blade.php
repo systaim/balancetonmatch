@@ -42,9 +42,9 @@
             <a href="{{ route('clubs.staffs.index', $club) }}">
                 <button class="btn btnSecondary">
                     @if($nbrStaffs == 1)
-                    Voir le membre du staff
+                    Voir le manager
                     @else
-                    Voir les {{ $nbrStaffs }} membres du staff
+                    Voir les {{ $nbrStaffs }} managers
                     @endif
                 </button>
             </a>

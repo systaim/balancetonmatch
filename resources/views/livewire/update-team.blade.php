@@ -55,7 +55,7 @@
                 </div>
             </div>
             <div class="flex justify-center">
-                <input class="btn btnSuccess" type="submit" value="Valider" wire:click="citySave">
+                <button class="btn btnSuccess" type="button" value="Valider" wire:click="citySave">Modifier</button>
             </div>
         </div>
         <div class="block" style="display:{{ $buttonCity == 1 ? 'none' : '' }}">
@@ -72,6 +72,8 @@
                 <p>Nombre d'équipes sénior : {{ $club->number_teams }}</p>
             </div>
         </div>
+        @auth
+        @if(Auth::user()->role->role == 'super-admin' || (Auth::user()->role->role == 'referent-club' && Auth::user()->prefer_team_id == $club->id))
         <div>
             @if($buttonCity == 1)
             <p class="absolute top-2 right-2 bg-danger font-bold text-xs px-2 py-1 rounded-md cursor-pointer" wire:click="clickButtonCity"><i class="fas fa-times-circle"></i></p>
@@ -79,7 +81,8 @@
             <p class="absolute top-2 right-2 bg-darkSuccess font-bold text-xs px-2 py-1 rounded-md cursor-pointer" wire:click="clickButtonCity"><i class="fas fa-pencil-alt"></i></p>
             @endif
         </div>
-
+        @endif
+        @endauth
     </div>
     <!-- <div class="mb-2">
         @if($club->number_teams == null)

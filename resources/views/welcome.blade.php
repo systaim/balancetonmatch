@@ -25,28 +25,30 @@
             <input class="sr-only" type="submit">
         </form>
     </div>
-    <div class="bg-white p-4 rounded-md text-primary w-11/12 m-auto mb-2 sm:w-9/12 md:w-8/12 lg:w-6/12 xl:w-4/12">
-        <h3 class="text-center mb-6">Quelques statistiques... </h3>
-        <hr>
-        @if(count($futurMatches) == 1)
-        <p class="text-center mt-6">{{ count($futurMatches) }} match à venir</p>
-        @else
-        <p class="text-center mt-6">{{ count($futurMatches) }} matchs à venir</p>
-        @endif
-        <p class="text-center">{{ count($matches) }} matchs créés</p>
-        <p class="text-center">{{ count($clubs) }} clubs créés</p>
-        <p class="text-center">{{ count($players) }} joueurs et {{ count($staffs) }} membres de staff</p>
-        <p class="text-center">{{ count($goals) }} buts marqués</p>
-    </div>
-    <div class="w-11/12 m-auto sm:w-9/12">
-        <h3 class="pl-2">Les matchs du week-end</h3>
-        @foreach($matches->sortBy('date_match') as $match)
-        @if($match->date_match->formatLocalized('%V') == now()->week() && $match->date_match->formatLocalized('%Y') == '2021')
-        @if($match->date_match->formatLocalized('%A') == "vendredi" || $match->date_match->formatLocalized('%A') == "samedi" || $match->date_match->formatLocalized('%A') == "dimanche")
-        @include('match')
-        @endif
-        @endif
-        @endforeach
+    <div class="flex">
+        <div class="bg-white p-4 rounded-md text-primary w-11/12 m-auto mb-2 sm:w-9/12 md:w-8/12 lg:w-6/12 xl:w-4/12">
+            <h3 class="text-center mb-6">Quelques statistiques... </h3>
+            <hr>
+            @if(count($futurMatches) == 1)
+            <p class="text-center mt-6">{{ count($futurMatches) }} match à venir</p>
+            @else
+            <p class="text-center mt-6">{{ count($futurMatches) }} matchs à venir</p>
+            @endif
+            <p class="text-center">{{ count($matches) }} matchs créés</p>
+            <p class="text-center">{{ count($clubs) }} clubs créés</p>
+            <p class="text-center">{{ count($players) }} joueurs et {{ count($staffs) }} membres de staff</p>
+            <p class="text-center">{{ count($goals) }} buts marqués</p>
+        </div>
+        <div class="w-11/12 m-auto sm:w-9/12">
+            <h3 class="pl-2">Les matchs du week-end</h3>
+            @foreach($matches->sortBy('date_match') as $match)
+            @if($match->date_match->formatLocalized('%V') == now()->week() && $match->date_match->formatLocalized('%Y') == '2021')
+            @if($match->date_match->formatLocalized('%A') == "vendredi" || $match->date_match->formatLocalized('%A') == "samedi" || $match->date_match->formatLocalized('%A') == "dimanche")
+            @include('match')
+            @endif
+            @endif
+            @endforeach
+        </div>
     </div>
     @auth
     <div class="flex flex-col w-11/12 lg:w-10/12 lg:flex-row justify-between m-auto">

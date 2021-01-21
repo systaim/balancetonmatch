@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    <div id="burger" class="absolute cursor-pointer top-5 left-3 flex justify-center items-center h-12 w-12 bg-primary z-50">
+    <div id="burger" class="absolute cursor-pointer top-5 left-3 flex justify-center items-center h-12 w-12 bg-primary z-50 lg:hidden">
         <div class="open-main-nav flex justify-center">
             <span class="burger"></span>
         </div>
@@ -32,7 +32,6 @@
                             <div class="h-auto relative">
                                 <h1 class="sm:text-2xl md:text-3xl">Balance Ton Match</h1>
                                 <p class="float-right inline-block text-xs60 sm:text-xs md:text-base px-2 bg-primary rounded-lg text-white ">Quand la touche part en live...</p>
-                                <p class="absolute top-0 -right-2 font-semibold z-10 px-2 py-1 bg-secondary rounded-md text-xxs">Bêta</p>
                             </div>
                         </div>
                     </a>

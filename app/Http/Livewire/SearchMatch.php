@@ -14,23 +14,34 @@ class SearchMatch extends Component
 {
 
     public $search = "";
-    public $user;
-    public $futurMatches = [];
     public $clubs;
-    public $matchs = [];
+    public $matches;
+    public $regions;
+    public $user;
+
+    public function mount()
+    {
+        $this->matches = Match::where('date_match', '>=', Carbon::now()->subHours(12))
+        ->orderBy('date_match', 'asc')->get();
+        $this->regions = Region::find($this->matches->keys());
+
+    }
 
     public function updatedSearch()
     {
+        $this->matches = [];
         if (strlen($this->search) >= 3) {
 
-            $clubs = Club::where('name', 'like', '%' . $this->search . '%')->get()->pluck('id');
-            $this->matchs = Match::where('date_match','>=', Carbon::now())
+            $clubs = Club::where('name', 'like', '%' . $this->search . '%')->get()->pluck('id');            
+
+            $this->matches = Match::where('date_match','>=', Carbon::now())
                             ->where(function($query) use ($clubs)
                             {
                                 $query->where('home_team_id', $clubs)
                                 ->orwhere('away_team_id', $clubs);
                             })
                             ->get();
+                            dd($this->matches);
         }
     }
 
