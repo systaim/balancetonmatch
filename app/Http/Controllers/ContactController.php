@@ -12,7 +12,7 @@ class ContactController extends Controller
 {
 
     public function __invoke(Request $request)
-    {  
+    {
 
         $this->validate($request, [
             'prenom' => ['required', 'string', 'max:255'],
@@ -31,11 +31,11 @@ class ContactController extends Controller
         $admins = User::where('role_id', '1')->get();
 
         foreach ($admins as $admin) {
-            $mailAdmin= $admin->email;
+            Mail::to($admin->email)
+                ->send(new ContactMail($contactCreate));
         }
 
-        Mail::to([$mailAdmin])
-            ->send(new ContactMail($contactCreate));
+
 
         return back()->with('success', 'Votre message a bien été envoyée');
     }
