@@ -28,10 +28,13 @@ class ContactController extends Controller
             'message' => $request->get('message'),
         ];
 
-        $admin = User::where('role_id', '1')->get();
+        $admins = User::where('role_id', '1')->get();
 
+        foreach ($admins as $admin) {
+            $mailAdmin= $admin->email;
+        }
 
-        Mail::to([$admin])
+        Mail::to([$mailAdmin])
             ->send(new ContactMail($contactCreate));
 
         return back()->with('success', 'Votre message a bien été envoyée');
