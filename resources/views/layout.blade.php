@@ -14,12 +14,12 @@
 </head>
 
 <body>
-    <div id="burger" class="absolute cursor-pointer top-5 left-3 flex justify-center items-center h-12 w-12 bg-primary z-50 lg:hidden">
-        <div class="open-main-nav flex justify-center">
-            <span class="burger"></span>
-        </div>
-    </div>
     <div id="container">
+        <div id="burger" class="absolute cursor-pointer top-5 left-3 flex justify-center items-center h-12 w-12 bg-primary z-50">
+            <div class="open-main-nav flex justify-center">
+                <span class="burger"></span>
+            </div>
+        </div>
         <header id="header" class="relative bg-gray-100 h-24">
             <div class="relative text-primary flex justify-end sm:justify-center items-center mr-6 h-24">
                 <!-- logo grande page -->
@@ -36,20 +36,7 @@
                         </div>
                     </a>
                 </div>
-                <!-- logo(texte) -->
-                <!-- <div class="flex justify-center col-start-6 col-end-12 lg:col-span-6 mt-2">
-                    <div class="relative flex flex-col items-center h-full diagonale text-lg md:text-xl lg:text-4xl">
-                        <a href="/">
-                            <h1 class="capitalize">balance ton match</h1>
-                        </a>
-                        <p class=" text-xs px-2 bg-primary rounded-lg text-white md:text-base">Quand la touche part en live...</p>
-                        <div>
-                            <p class=" absolute top-0 right-2 text-xs px-2 bg-orange-600 text-black shadow-2xl rounded-md">Bêta</p>
-                        </div>
-                    </div>
-                </div> -->
-                <!-- icone login -->
-                <div class="absolute right-2 top-5 text-white hidden lg:block w-64 lg:mr-4" x-data="{ open : false }">
+                <div class="absolute right-2 top-2/5 text-white hidden lg:block w-64 lg:mr-4" x-data="{ open : false }">
                     @auth
                     <div class="flex justify-center items-center px-2 py-1 cursor-pointer text-primary" @click="open = true">
                         <img class="rounded-full h-8 w-8 object-cover mr-4 mb-2" src="{{ Auth::user()->profile_photo_url }}">
@@ -93,10 +80,10 @@
                 <a class="p-2 text-primary underline rounded-md m-1" href="/matches">Matchs à venir</a>
             </div> -->
             <div id="main-nav" class="main-nav">
-                <div class="w-full rounded-b-lg shadow-2xl py-12 bg-primary text-white">
-                    <div>
+                <div class="w-4/5 rounded-b-lg shadow-2xl py-12 bg-primary text-white lg:hidden">
+                    <div class="">
                         <div class="flex justify-center items-start">
-                            <img class="w-3/12 lg:w-2/12" src="{{ asset('images/logos/btmLogoJB.png') }}" alt="logo">
+                            <img class="w-2/12" src="{{ asset('images/logos/btmLogoJB.png') }}" alt="logo">
                         </div>
                         @auth
                         <div class="flex flex-col justify-end mt-6">
@@ -136,15 +123,34 @@
                         @endauth
                     </div>
                 </div>
-                <nav class="mt-10">
-                    <ul class="text-2xl md:text-3xl lg:text-4xl lguppercase flex flex-col items-center justify-center">
-                        <li class="pb-4 mb-4 border-b border-black w-8/12"><a href="/">Accueil</a></li>
-                        <li class="pb-4 mb-4 border-b border-black w-8/12"><a href="{{ route('clubs.index') }}">Rechercher un club</a></li>
-                        <li class="pb-4 mb-4 border-b border-black w-8/12"><a href="{{ route('matches.index') }}">Liste des matchs</a></li>
+                <nav class="mt-12 text-2xl md:text-3xl lg:text-4xl uppercase flex flex-col items-center justify-center w-4/5 lg:h-screen">
+                    <ul class="">
+                        <li class=" mb-14 border-b border-black"><a href="/">Accueil</a></li>
+                        <li class=" mb-14 border-b border-black"><a href="{{ route('clubs.index') }}">Rechercher un club</a></li>
+                        <li class=" mb-14 border-b border-black"><a href="{{ route('matches.index') }}">Liste des matchs</a></li>
+                        <li class=" mb-14 border-b border-black"><a href="/contact">Contact</a></li>
                     </ul>
                 </nav>
             </div>
         </header>
+        @if (\Session::has('success'))
+        <div class="alert success" x-show.transition="open">
+            <i class="fas fa-check-circle text-5xl text-white rounded-full"></i>
+            <p> {!! \Session::get('success') !!}</p>
+        </div>
+        @endif
+        @if (\Session::has('warning'))
+        <div class="alert warning">
+            <i class="fas fa-exclamation-circle text-5xl text-white rounded-full"></i>
+            <p> {!! \Session::get('warning') !!}</p>
+        </div>
+        @endif
+        @if (\Session::has('danger'))
+        <div class="alert danger">
+            <i class="fas fa-times-circle text-5xl text-white rounded-full"></i>
+            <p> {!! \Session::get('danger') !!}</p>
+        </div>
+        @endif
         @yield('content')
         @include('footer')
     </div>

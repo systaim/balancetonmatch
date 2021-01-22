@@ -25,11 +25,6 @@ $club = ClubController::class;
 |
 */
 
-Route::post('/traitement', function ()
-{
-    return view('traitement');
-});
-
 Route::get('/', function () {
     $matchesToday = Match::whereBetween('date_match', [Carbon::now()
         ->startOfDay(), Carbon::now()->endOfDay()])->get();
@@ -60,20 +55,25 @@ Route::get('/', function () {
         'goals',
         'commentators',
     ));
-});
+})->middleware('auth');
+
+Route::get('/contact', function(){
+
+    return view('contact');
+})->middleware('auth');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
-})->name('dashboard');
+})->name('dashboard')->middleware('auth');
 
-Route::resource('clubs', 'App\Http\Controllers\ClubController');
-Route::resource('players', 'App\Http\Controllers\PlayerController');
-Route::resource('matches', 'App\Http\Controllers\MatchController');
-Route::resource('contacts', 'App\Http\Controllers\ContactController');
-Route::resource('commentaires', 'App\Http\Controllers\CommentaireController');
-Route::resource('clubs.players', 'App\Http\Controllers\PlayerController');
-Route::resource('clubs.staffs', 'App\Http\Controllers\StaffController');
+Route::resource('clubs', 'App\Http\Controllers\ClubController')->middleware('auth');
+Route::resource('players', 'App\Http\Controllers\PlayerController')->middleware('auth');
+Route::resource('matches', 'App\Http\Controllers\MatchController')->middleware('auth');
+// Route::resource('contacts', 'App\Http\Controllers\ContactController');
+Route::resource('commentaires', 'App\Http\Controllers\CommentaireController')->middleware('auth');
+Route::resource('clubs.players', 'App\Http\Controllers\PlayerController')->middleware('auth');
+Route::resource('clubs.staffs', 'App\Http\Controllers\StaffController')->middleware('auth');
 
-Route::post('contacts', 'App\Http\Controllers\ContactController')->name('contacts.store');
+Route::post('contacts', 'App\Http\Controllers\ContactController')->name('contacts.store')->middleware('auth');
 
-Route::get('commentaire/delete/{id}', 'App\Http\Controllers\CommentaireController@destroy')->name('supprimer');
+Route::get('commentaire/delete/{id}', 'App\Http\Controllers\CommentaireController@destroy')->name('supprimer')->middleware('auth');

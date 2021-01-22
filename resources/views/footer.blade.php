@@ -14,24 +14,6 @@
                 <li></li>
             </ul>
         </div> -->
-        <div>
-            <form class="text-white flex flex-col lg:w-6/12 m-auto" action="{{ route('contacts.store') }}" method="POST">
-                @csrf
-                <label for="prenom">prenom</label>
-                <input class="inputForm text-primary" type="text" name="prenom" id="prenom">
-
-                <label for="nom">nom</label>
-                <input class="inputForm text-primary" type="text" name="nom" id="nom">
-
-                <label for="email">mail</label>
-                <input class="inputForm text-primary" type="email" name="email" id="email">
-
-                <label for="message">Ton message</label>
-                <textarea class="inputForm" name="message" id="message" rows="10"></textarea>
-
-                <input class="btn btnPrimary" type="submit" value="Envoyer">
-            </form>
-        </div>
     </div>
 
 </footer>

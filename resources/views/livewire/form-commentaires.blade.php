@@ -535,7 +535,7 @@
                         @if($comment->images != null)
                         <div class="flex justify-center">
                             <a href="{{ asset($comment->images)}}">
-                                <img class="max-h-32 rounded-md shadow-xl" src="{{ asset($comment->images)}}" alt="">
+                                <img class="max-h-32 rounded-md shadow-xl" src="{{ asset($comment->images)}}" alt="action">
                             </a>
                         </div>
                         @endif

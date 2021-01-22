@@ -37,7 +37,7 @@
                 </div>
                 <div class="flex flex-col w-10/12 m-auto my-2">
                     <label for="file">Ajoute une photo</label>
-                    <input type="file" name="file" id="file" accept="jpeg,png,jpg,gif,svg">
+                    <input type="file" name="file" id="file" accept="jpeg,png,jpg,gif">
                     @error('file')
                     <span class="error">{{ $message }}</span>
                     @enderror

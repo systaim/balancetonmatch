@@ -15,9 +15,7 @@ class CreateRolesTable extends Migration
     {
         Schema::create('roles', function (Blueprint $table) {
             $table->id();
-            $table->enum('role',['super-admin','moderator', 'referent-club', 'guest'])->default('guest');
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('club_id');
+            $table->enum('name',['super-admin','moderator', 'referent-club', 'guest']);
             $table->timestamps();
 
         });

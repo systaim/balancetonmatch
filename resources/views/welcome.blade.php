@@ -25,7 +25,7 @@
             <input class="sr-only" type="submit">
         </form>
     </div>
-    <div class="flex">
+    <div class="flex flex-col">
         <div class="bg-white p-4 rounded-md text-primary w-11/12 m-auto mb-2 sm:w-9/12 md:w-8/12 lg:w-6/12 xl:w-4/12">
             <h3 class="text-center mb-6">Quelques statistiques... </h3>
             <hr>

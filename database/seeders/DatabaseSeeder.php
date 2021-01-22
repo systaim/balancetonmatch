@@ -12,6 +12,7 @@ use App\Models\Division;
 use App\Models\DivisionsDepartment;
 use App\Models\Group;
 use App\Models\DivisionsRegion;
+use App\Models\Role;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
@@ -33,6 +34,15 @@ class DatabaseSeeder extends Seeder
         foreach ($divisions as $division) {
             DivisionsRegion::create([
                 'name' => $division,
+            ]);
+        }
+
+        //Table roles 
+        $roles = ['super-admin', 'moderator', 'referent-club', 'guest'];
+
+        foreach ($roles as $role) {
+            Role::create([
+                'name' => $role,
             ]);
         }
 

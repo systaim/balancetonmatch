@@ -35,7 +35,7 @@
             @if($nbrStaffs == 0)
             <a href="{{ route('clubs.staffs.create', $club) }}">
                 <button class="btn btnSecondary">
-                    Créer un membre du staff
+                    Créer un manager
                 </button>
             </a>
             @else

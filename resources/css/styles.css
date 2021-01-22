@@ -174,6 +174,22 @@ h6 {
     height: calc(100vh - 6rem);
 }
 
+.alert {
+    @apply absolute bottom-10 right-4 p-4 h-36 border-2 rounded-lg z-50 flex flex-col items-center justify-around font-bold text-white
+}
+
+.success {
+    @apply bg-success border-green-400
+}
+
+.warning {
+    @apply bg-orange-500 border-orange-400
+}
+
+.danger {
+    @apply bg-danger border-red-500
+}
+
 
 /*************************
           BUTTONS
@@ -731,15 +747,12 @@ input:checked+.inputAction.away {
           MENU
   *************************/
 
-
-/* Main menu positionning */
-
 #container {
     transition: all 0.5s;
 }
 
 #container.is-open {
-    transform: translateX(100%);
+    transform: translateX(80%);
     transition: all 0.5s;
 }
 
@@ -750,14 +763,14 @@ input:checked+.inputAction.away {
     right: 0;
     left: 0;
     bottom: 0;
-    z-index: 9999;
+    /* z-index: 9999; */
     visibility: hidden;
-    transform: translateX(-100%);
+    transform: translateX(-80%);
 }
 
 #main-nav.is-open {
     display: block;
-    z-index: 100;
+    /* z-index: 100; */
     visibility: visible;
     transition: all 0.5s;
 }
@@ -828,7 +841,7 @@ input:checked+.inputAction.away {
         transform: rotate(0deg);
     }
     100% {
-        transform: rotate(315deg);
+        transform: rotate(133deg);
     }
 }
 
@@ -837,7 +850,7 @@ input:checked+.inputAction.away {
         transform: rotate(0deg);
     }
     100% {
-        transform: rotate(315deg);
+        transform: rotate(133deg);
     }
 }
 
@@ -851,18 +864,4 @@ input:checked+.inputAction.away {
     height: 0;
     -webkit-animation-duration: 0.2s;
     animation-duration: 0.2s;
-}
-
-
-/* MENU Text part */
-
-.burger-text {
-    display: block;
-    font-size: 0.675rem;
-    letter-spacing: 0.05em;
-    margin-top: 0.5em;
-    text-transform: uppercase;
-    font-weight: 500;
-    text-align: center;
-    color: #fff;
 }
