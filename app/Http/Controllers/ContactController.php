@@ -33,9 +33,10 @@ class ContactController extends Controller
         $admins = User::where('role_id', '1')->get();
 
         foreach ($admins as $admin) {
-            Mail::to($admin->email)
-                ->send(new ContactMail($contactCreate));
         }
+
+        Mail::to('systaim@gmail.com')
+            ->send(new ContactMail($contactCreate));
 
         return redirect('/')->with('success', 'Votre message a bien été envoyée');
     }
