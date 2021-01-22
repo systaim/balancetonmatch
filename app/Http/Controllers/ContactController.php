@@ -37,6 +37,6 @@ class ContactController extends Controller
 
 
 
-        return back()->with('success', 'Votre message a bien été envoyée');
+        return redirect('/')->with('success', 'Votre message a bien été envoyée');
     }
 }

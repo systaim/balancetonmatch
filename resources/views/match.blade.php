@@ -1,5 +1,5 @@
 <div class="relative" x-data="{ open: false }">
-    <div class="absolute top-2 -left-8 md:left-6 z-50 text-center flex justify-center font-bold">
+    <div class="absolute top-2 -left-8 md:left-6 z-10 text-center flex justify-center font-bold">
         @livewire('favori-match', ['user' => $user, 'match' => $match])
     </div>
     <div class="relative my-2 p-2 bg-primary text-white rounded-lg cursor-pointer">
