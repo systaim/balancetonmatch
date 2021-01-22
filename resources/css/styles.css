@@ -141,7 +141,7 @@ h6 {
     display: block;
     background-color: var(--primary-color);
     border-radius: 100%;
-    z-index: 9999;
+    z-index: 9;
     width: 4px;
     height: 4px;
 }
@@ -174,8 +174,13 @@ h6 {
     height: calc(100vh - 6rem);
 }
 
+.is-invalid {
+    font-weight: bold;
+    color: #ff1500;
+}
+
 .alert {
-    @apply absolute bottom-10 right-4 p-4 h-36 border-2 rounded-lg z-50 flex flex-col items-center justify-around font-bold text-white
+    @apply fixed bottom-10 right-4 p-4 h-36 border-2 rounded-lg z-50 flex flex-col items-center justify-around font-bold text-white
 }
 
 .success {

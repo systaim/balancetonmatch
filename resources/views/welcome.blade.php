@@ -1,7 +1,7 @@
 @extends('layout')
 @section('content')
 <section class="min-h-screen">
-    <div class="flex flex-col md:flex-row justify-between bg-primary overflow-hidden h-96 mb-2">
+    <div class="flex flex-col md:flex-row justify-between bg-primary overflow-hidden h-96">
         <div class="h-6/12 sm:h-8/12 md:h-auto md:w-6/12 img-bg-blend-home">
         </div>
         <div class="h-auto text-white py-4 md:w-6/12 px-12 lg:px-24 2xl:px-64 m-auto text-center">
@@ -14,32 +14,34 @@
             <p class="text-sm md:text-base">Il est possible de gérer ton club mais surtout de commenter et de suivre les matchs en <span class="uppercase text-primary font-bold bg-secondary px-2 rounded-sm">live</span></p>
         </div>
     </div>
-    <div class="mb-2 rounded-md mx-2">
-        <form class="w-11/12 m-auto sm:w-8/12 md:w-6/12 lg:w-4/12" action="{{ asset('clubs') }}" method="get">
-            <H3 class="pl-2">Rechercher un club</H3>
-            @csrf
-            <label class="relative" for="search">
-                <input class="inputForm w-full" type="search" placeholder="F.C. Recherche" name="search" id="search">
-                <span class=" z-10"><i class="far fa-search"></i></span>
-            </label>
-            <input class="sr-only" type="submit">
-        </form>
-    </div>
-    <div class="flex flex-col">
-        <div class="bg-white p-4 rounded-md text-primary w-11/12 m-auto mb-2 sm:w-9/12 md:w-8/12 lg:w-6/12 xl:w-4/12">
-            <h3 class="text-center mb-6">Quelques statistiques... </h3>
-            <hr>
-            @if(count($futurMatches) == 1)
-            <p class="text-center mt-6">{{ count($futurMatches) }} match à venir</p>
-            @else
-            <p class="text-center mt-6">{{ count($futurMatches) }} matchs à venir</p>
-            @endif
-            <p class="text-center">{{ count($matches) }} matchs créés</p>
-            <p class="text-center">{{ count($clubs) }} clubs créés</p>
-            <p class="text-center">{{ count($players) }} joueurs et {{ count($staffs) }} membres de staff</p>
-            <p class="text-center">{{ count($goals) }} buts marqués</p>
+    <div class="flex flex-col lg:flex-row justify-center py-10 bg-secondary">
+        <div class="w-11/12 m-auto sm:w-8/12 md:w-6/12 lg:w-4/12">
+            <div class="mb-2 rounded-md mx-2">
+                <form class="w-full" action="{{ asset('clubs') }}" method="get">
+                    <H3 class="pl-2">Rechercher un club</H3>
+                    @csrf
+                    <label class="relative" for="search">
+                        <input class="inputForm w-full" type="search" placeholder="F.C. Recherche" name="search" id="search">
+                        <span class=" z-10"><i class="far fa-search"></i></span>
+                    </label>
+                    <input class="sr-only" type="submit">
+                </form>
+            </div>
+            <div class="bg-white p-4 rounded-md text-primary w-full">
+                <h3 class="text-center mb-6">Quelques statistiques... </h3>
+                <hr>
+                @if(count($futurMatches) == 1)
+                <p class="text-center mt-6">{{ count($futurMatches) }} match à venir</p>
+                @else
+                <p class="text-center mt-6">{{ count($futurMatches) }} matchs à venir</p>
+                @endif
+                <p class="text-center">{{ count($matches) }} matchs créés</p>
+                <p class="text-center">{{ count($clubs) }} clubs créés</p>
+                <p class="text-center">{{ count($players) }} joueurs et {{ count($staffs) }} membres de staff</p>
+                <p class="text-center">{{ count($goals) }} buts marqués</p>
+            </div>
         </div>
-        <div class="w-11/12 m-auto sm:w-9/12">
+        <div class="w-11/12 sm:w-9/12 lg:w-5/12 mx-auto">
             <h3 class="pl-2">Les matchs du week-end</h3>
             @foreach($matches->sortBy('date_match') as $match)
             @if($match->date_match->formatLocalized('%V') == now()->week() && $match->date_match->formatLocalized('%Y') == '2021')

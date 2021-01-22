@@ -7,6 +7,7 @@ use App\Models\Staff;
 use App\Models\Club;
 use App\Models\Player;
 use App\Models\Match;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -79,10 +80,14 @@ class StaffController extends Controller
             'user_id' => $staff->user_id,
         ];
 
-        Mail::to('systaim@gmail.com')
-            ->send(new StaffMail($staffCreate));
+        $admins = User::where('role_id', '1')->get();
 
-        return view('staffs.index', compact('user','club', 'matchs'));
+        foreach ($admins as $admin) {
+            Mail::to($admin->email)
+                ->send(new StaffMail($staffCreate));
+        }
+
+        return redirect('clubs/' .$club->id. '/staffs')->with('success', $staff->first_name. ' a été créé avec succes !');
     }
 
     /**

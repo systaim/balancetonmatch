@@ -7,6 +7,7 @@ use App\Models\Player;
 use App\Models\Statistic;
 use App\Models\Match;
 use App\Mail\PlayerMail;
+use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\Request;
@@ -77,8 +78,6 @@ class PlayerController extends Controller
         if ($request->has('file')) {
             $path = $request->file->store('avatars');
             $dataPlayer['avatar_path'] = $path;
-        } else {
-            $dataPlayer['avatar_path'] = "/images/PlayerAvatar.jpg";
         }
 
         $player = Player::create($dataPlayer);
@@ -105,12 +104,14 @@ class PlayerController extends Controller
             'user_id' => $player->user_id,
         ];
 
-        Mail::to('systaim@gmail.com')
-            ->send(new PlayerMail($playerCreate));
+        $admins = User::where('role_id', '1')->get();
 
-        // $players->push($player);
+        foreach ($admins as $admin) {
+            Mail::to($admin->email)
+                ->send(new PlayerMail($playerCreate));
+        }
 
-        return view('players.index', compact('user', 'club', 'matchs'));
+        return redirect('clubs/' .$club->id. '/players')->with('success', $player->first_name. ' a été créé avec succes !');
     }
 
     /**

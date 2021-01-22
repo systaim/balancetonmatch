@@ -23,7 +23,7 @@
                 </div>
                 <div class="flex justify-between">
                     <div class="relative">
-                        <img class="object-cover h-80 w-full rounded-br-lg" src="{{ asset($staff->avatar_path)}}" alt="avatar">
+                        <img class="object-cover h-80 w-full rounded-br-lg" src="{{ asset($staff->avatar_path)}}" alt="photo de {{ $staff->first_name }} {{ $staff->last_name }}">
                         <p class="absolute bottom-1 right-1 bg-primary text-secondary font-bold py-1 px-2 rounded-lg">{{ $staff->quality }}</p>
                     </div>
                     <div class="text-lg flex justify-center items-start p-2">

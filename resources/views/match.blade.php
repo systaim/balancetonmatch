@@ -40,7 +40,7 @@
                         <p class="bg-green-600 text-xs text-white rounded-md px-2 shadow-md border-b-2 border-r-2 border-white">REPORTÉ</p>
                         @elseif($match->live != 'reporte' && $match->live != 'attente' && $match->live != 'finDeMatch')
                         <div class="relative uppercase inline-block text-primary font-bold bg-secondary px-2 rounded-sm text-xl">
-                        <div class="animate-ping absolute -top-0.5 -right-0.5 bg-red-500 h-3 w-3 rounded-full z-50"></div>
+                        <div class="animate-ping absolute -top-0.5 -right-0.5 bg-red-500 h-3 w-3 rounded-full z-10"></div>
                             LIVE
                         </div>
                         @elseif($match->live == 'finDeMatch')

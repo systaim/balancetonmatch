@@ -62,6 +62,11 @@ Route::get('/contact', function(){
     return view('contact');
 })->middleware('auth');
 
+Route::get('/admin', function(){
+
+    return view('');
+})->middleware('auth');
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard')->middleware('auth');
@@ -74,6 +79,6 @@ Route::resource('commentaires', 'App\Http\Controllers\CommentaireController')->m
 Route::resource('clubs.players', 'App\Http\Controllers\PlayerController')->middleware('auth');
 Route::resource('clubs.staffs', 'App\Http\Controllers\StaffController')->middleware('auth');
 
-Route::post('contacts', 'App\Http\Controllers\ContactController')->name('contacts.store')->middleware('auth');
+Route::post('traitement-contact', 'App\Http\Controllers\ContactController')->name('contacts.store')->middleware('auth');
 
 Route::get('commentaire/delete/{id}', 'App\Http\Controllers\CommentaireController@destroy')->name('supprimer')->middleware('auth');

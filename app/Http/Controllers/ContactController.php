@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Mail\ContactMail;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Log\Logger;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
@@ -34,8 +36,6 @@ class ContactController extends Controller
             Mail::to($admin->email)
                 ->send(new ContactMail($contactCreate));
         }
-
-
 
         return redirect('/')->with('success', 'Votre message a bien été envoyée');
     }

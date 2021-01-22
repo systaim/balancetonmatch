@@ -23,7 +23,7 @@
                 </div>
                 <div class="flex justify-between">
                     <div class="relative">
-                        <img class="object-cover h-80 w-full rounded-br-lg" src="{{ asset($player->avatar_path)}}" alt="avatar">
+                        <img class="object-cover h-80 w-full rounded-br-lg" src="{{ asset($player->avatar_path)}}" alt="{{ $player->first_name }} {{ $player->last_name }}">
                         @switch($player->position)
                         @case('Gardien de but')
                         <p class="absolute bottom-1 right-1 bg-primary text-secondary font-bold py-1 px-2 rounded-lg">GB</p>
@@ -40,7 +40,7 @@
                         @endswitch
                     </div>
                     <div class="text-lg flex justify-center items-start p-2">
-                        <p class="capitalize vertical mx-2 font-semibold">{{ $player->first_name}} <span class="uppercase">{{ $player -> last_name}}</span></p>
+                        <p class="capitalize vertical mx-2 font-semibold truncate">{{ $player->first_name}} <span class="uppercase">{{ $player -> last_name}}</span></p>
                     </div>
                 </div>
                 <div class="relative flex justify-between items-end p-2 h-12">

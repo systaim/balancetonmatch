@@ -30,6 +30,7 @@ class ContactMail extends Mailable
      */
     public function build()
     {
-        return $this->view('mails.contact');
+        return $this->from('noreply@balancetonmatch.com')
+                    ->view('mails.contact');
     }
 }
