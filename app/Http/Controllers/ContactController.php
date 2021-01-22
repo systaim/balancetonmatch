@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\ContactMail;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
@@ -27,10 +28,12 @@ class ContactController extends Controller
             'message' => $request->get('message'),
         ];
 
+        $admin = User::where('1', 'role_id')->get();
 
-        Mail::to('systaim@gmail.com')
+
+        Mail::to([$admin])
             ->send(new ContactMail($contactCreate));
 
-        return back()->with('success', 'Votre demande a bien été envoyée');
+        return back()->with('success', 'Votre message a bien été envoyée');
     }
 }
