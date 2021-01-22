@@ -28,7 +28,7 @@ class ContactController extends Controller
             'message' => $request->get('message'),
         ];
 
-        $admin = User::where('1', 'role_id')->get();
+        $admin = User::where('role_id', '1')->get();
 
 
         Mail::to([$admin])
