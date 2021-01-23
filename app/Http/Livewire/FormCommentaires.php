@@ -10,6 +10,7 @@ use App\Models\Statistic;
 use Illuminate\Http\Request;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rules\RequiredIf;
 use Livewire\WithFileUploads;
 
 
@@ -25,6 +26,7 @@ class FormCommentaires extends Component
     public $type_but = "";
     public $type_carton = "";
     public $type_actionMatch = "";
+    public $commentPerso = "";
     public $minute = 0;
     public $minuteCom;
     public $team_action = '';
@@ -368,6 +370,7 @@ class FormCommentaires extends Component
             $this->validate([
                 'type_comments' => 'required',
                 'minute' => 'required',
+                'type_action' => 'required|string',
                 'team_action' => 'required',
                 'file' => 'nullable|max:4096'
             ]);
@@ -378,7 +381,13 @@ class FormCommentaires extends Component
             if ($this->type_comments == "but") {
                 $commentData['type_action'] = "goal";
                 $commentData['type_comments'] = $this->listGoal[array_rand($this->listGoal)];
-                $commentData['comments'] = $this->type_but;
+                
+                if($this->type_but == "perso"){
+                    $commentData['comments'] = $this->commentPerso;
+                } else {
+                    $commentData['comments'] = $this->type_but;
+                }
+                
 
                 $statData['action'] = "goal";
 

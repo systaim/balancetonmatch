@@ -205,15 +205,15 @@
                                 <input class="hidden" type="radio" id="penalty" wire:model="type_but" name="type_but" value="But sur pénalty">
                                 <label class="inputAction" for="penalty">But sur pénalty</label>
                             </div>
-                            <!-- <div>
+                            <div>
                                 <input class="hidden" type="radio" id="perso" wire:model="type_but" name="type_but" value="perso">
                                 <label class="inputAction" for="perso">Commentaire personnalisé</label>
                             </div>
                             @if($type_but == "perso")
                                 <label for="comPerso">
-                                    <textarea placeholder="Fais parler ton âme de commentateur ! Lache-toi tout en respectant les acteurs du match. Pas d'insultes, de mots racistes ou de gestes pouvant blesser quiconque. Sois respectueux..." class="p-2 border-2 w-full my-4" name="comPerso" id="comPerso" rows="10"></textarea>
+                                    <textarea placeholder="Fais parler ton âme de commentateur ! Lache-toi tout en respectant les acteurs du match. Pas d'insultes, de mots racistes ou de gestes pouvant blesser quiconque. Sois respectueux..." class="p-2 border-2 w-full my-4" name="comPerso" id="comPerso" rows="10" wire:model="commentPerso"></textarea>
                                 </label>
-                            @endif -->
+                            @endif
                         </div>
                     </div>
                     @endif
@@ -340,7 +340,7 @@
                 ------------------------->
         @auth
         <div>
-            @if($firstCom == 1)
+            @if($match->firstCom == 1)
             <div class="bg-primary w-11/12 rounded-lg p-4 text-white m-auto my-2">
                 <h3 class="text-secondary text-center text-base mb-4">Comment bien commenter ?</h3>
                 <div class="flex justify-evenly">
