@@ -174,24 +174,38 @@ h6 {
     height: calc(100vh - 6rem);
 }
 
-.is-invalid {
-    font-weight: bold;
-    color: #ff1500;
-}
-
 .alert {
-    @apply fixed bottom-10 right-4 p-4 h-36 border-2 rounded-lg z-50 flex flex-col items-center justify-around font-bold text-white
+    position: fixed;
+    opacity: 0;
+    bottom: 2.5rem;
+    right: 1rem;
+    padding: 1rem;
+    height: 9rem;
+    border-width: 2px;
+    border-radius: 0.5rem;
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    font-weight: 700;
+    color: #fff;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    animation-name: disparition;
+    -webkit-animation-duration: 5s;
+    animation-duration: 5s;
+    transition-delay: 1s;
 }
 
-.success {
+.alert.success {
     @apply bg-success border-green-400
 }
 
-.warning {
+.alert.warning {
     @apply bg-orange-500 border-orange-400
 }
 
-.danger {
+.alert.danger {
     @apply bg-danger border-red-500
 }
 
@@ -510,38 +524,12 @@ input:checked+.inputCom {
     padding-bottom: 1rem;
     padding-left: 0.5rem;
     padding-right: 0.5rem;
-    border-top-left-radius: 0.25rem;
-    border-top-right-radius: 0.25rem;
+    border-radius: 0.25rem;
 }
 
-.inputAction.away {
-    --text-opacity: 1;
-    color: #cdfb0a;
-    color: rgba(205, 251, 10, var(--text-opacity));
-}
-
-.inputAction.home {
-    --text-opacity: 1;
-    color: #091c3e;
-    color: rgba(9, 28, 62, var(--text-opacity));
-}
-
-input:checked+.inputAction.home {
-    --text-opacity: 1;
-    color: #cdfb0a;
-    color: rgba(205, 251, 10, var(--text-opacity));
-    --bg-opacity: 1;
+input:checked+.inputAction {
+    color: #fff;
     background-color: #091c3e;
-    background-color: rgba(9, 28, 62, var(--bg-opacity));
-}
-
-input:checked+.inputAction.away {
-    --text-opacity: 1;
-    color: #091c3e;
-    color: rgba(9, 28, 62, var(--text-opacity));
-    --bg-opacity: 1;
-    background-color: #cdfb0a;
-    background-color: rgba(205, 251, 10, var(--bg-opacity));
 }
 
 .error {
@@ -712,34 +700,6 @@ input:checked+.inputAction.away {
     animation-duration: 5s;
 }
 
-@-webkit-keyframes disparition {
-    0% {
-        opacity: 1;
-        height: auto;
-    }
-    80% {
-        opacity: 1;
-        height: auto;
-    }
-    100% {
-        opacity: 0;
-    }
-}
-
-@keyframes disparition {
-    0% {
-        opacity: 1;
-        height: auto;
-    }
-    80% {
-        opacity: 1;
-        height: auto;
-    }
-    100% {
-        opacity: 0;
-    }
-}
-
 .backMatch {
     background-image: url("https://cdn.pixabay.com/photo/2015/09/09/17/18/stadium-931975_960_720.jpg");
     background-repeat: no-repeat;
@@ -841,6 +801,42 @@ input:checked+.inputAction.away {
     animation-duration: 1s;
 }
 
+.is-open .burger:before {
+    transform: translateY(0px) rotate(90deg);
+}
+
+.is-open .burger:after {
+    transform: translateY(-12px) translateX(10px) skew(-20deg);
+    opacity: 0;
+    height: 0;
+    -webkit-animation-duration: 0.2s;
+    animation-duration: 0.2s;
+}
+
+@-webkit-keyframes disparition {
+    0% {
+        opacity: 1;
+    }
+    80% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes disparition {
+    0% {
+        opacity: 1;
+    }
+    80% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
 @-webkit-keyframes rotate {
     0% {
         transform: rotate(0deg);
@@ -857,16 +853,4 @@ input:checked+.inputAction.away {
     100% {
         transform: rotate(133deg);
     }
-}
-
-.is-open .burger:before {
-    transform: translateY(0px) rotate(90deg);
-}
-
-.is-open .burger:after {
-    transform: translateY(-12px) translateX(10px) skew(-20deg);
-    opacity: 0;
-    height: 0;
-    -webkit-animation-duration: 0.2s;
-    animation-duration: 0.2s;
 }

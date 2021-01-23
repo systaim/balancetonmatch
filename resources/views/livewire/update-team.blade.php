@@ -73,7 +73,7 @@
             </div>
         </div>
         @auth
-        @if(Auth::user()->role->role == 'super-admin' || (Auth::user()->role->role == 'referent-club' && Auth::user()->prefer_team_id == $club->id))
+        @if(Auth::user()->role_id == '1' || (Auth::user()->role_id == '3' && Auth::user()->prefer_team_id == $club->id))
         <div>
             @if($buttonCity == 1)
             <p class="absolute top-2 right-2 bg-danger font-bold text-xs px-2 py-1 rounded-md cursor-pointer" wire:click="clickButtonCity"><i class="fas fa-times-circle"></i></p>

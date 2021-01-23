@@ -1,4 +1,4 @@
-<div wire:poll>
+<div {{ $match->live != 'attente' && $match->live != 'finDeMatch' && $match->live != 'reporte' ? "wire:poll.5000ms" : "" }}>
     <form wire:submit.prevent="saveComment">
         <!-- affichage bannière du match -->
         <div class="backMatch">
@@ -21,29 +21,35 @@
                     </div>
                 </div>
             </div>
-            <div class="grid grid-cols-12 lg:mx-2 xl:mx-6 mb-2">
+            <div class="grid grid-cols-12 lg:mx-16 xl:mx-24 mb-2">
                 <div class="col-span-5 overflow-hidden">
                     <div class="bg-primary p-2 text-secondary flex flex-col lg:flex-row lg:items-center lg:rounded-l-full">
                         <div class="relative flex justify-center">
                             @auth
-                            @if($match->commentateur != null && $match->commentateur->user->id == Auth::user()->id)
+                            @if($match->commentateur != null && $match->commentateur->user->id == Auth::user()->id && $match->live != 'attente' && $match->live != 'finDeMatch')
                             <input class="hidden" type="radio" wire:model="team_action" id="homeAction" name="team_action" value="home">
                             @endif
                             @endauth
                             <label for="homeAction">
-                                <div class="logo h-16 w-16 sm:h-20 sm:w-20 lg:h-24 lg:w-24 cursor-pointer lg:mr-1 xl:mr-4">
+                                <div class="logo h-16 w-16 sm:h-20 sm:w-20 lg:h-32 lg:w-32 cursor-pointer lg:mr-1 xl:mr-4">
                                     <img class="object-contain" src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $match->homeClub->numAffiliation }}.jpg" alt="logo">
                                 </div>
                             </label>
                         </div>
                         <div>
+                            <p class="truncate text-center sm:font-bold lg:text-2xl">
+                                {{ $match->homeClub->name }}
+                            </p>
+                        </div>
+                        <!-- <div>
                             <a href="{{ route('clubs.show', $match->homeClub->id) }}">
-                                <p class="truncate text-center sm:font-bold lg:text-2xl">
-                                    {{ $match->homeClub->name }}
+                                <p class="truncate text-right text-sm">
+                                    Vers le club
                                 </p>
                             </a>
-                        </div>
+                        </div> -->
                     </div>
+
                 </div>
                 <div class="relative col-span-2 bg-gradient-to-r from-primary to-secondary flex flex-col justify-center items-center">
                     <div class="flex justify-center mt-2">
@@ -58,20 +64,18 @@
                 <div class="col-span-5 overflow-hidden z-0">
                     <div class="bg-secondary p-2 text-primary flex flex-col-reverse lg:flex-row lg:items-center lg:justify-end lg:rounded-r-full">
                         <div>
-                            <a href="{{ route('clubs.show', $match->awayClub->id) }}">
-                                <p class="truncate text-center lg:text-left sm:font-bold lg:text-2xl">
-                                    {{ $match->awayClub->name }}
-                                </p>
-                            </a>
+                            <p class="truncate text-center lg:text-left sm:font-bold lg:text-2xl">
+                                {{ $match->awayClub->name }}
+                            </p>
                         </div>
                         <div class="flex justify-center">
                             @auth
-                            @if($match->commentateur != null && $match->commentateur->user_id == Auth::user()->id)
+                            @if($match->commentateur != null && $match->commentateur->user_id == Auth::user()->id && $match->live != 'attente' && $match->live != 'finDeMatch')
                             <input class="hidden" type="radio" wire:model="team_action" id="awayAction" name="team_action" value="away">
                             @endif
                             @endauth
                             <label for="awayAction">
-                                <div class="logo h-16 w-16 sm:h-20 sm:w-20 lg:h-24 lg:w-24 cursor-pointer lg:ml-1 xl:ml-4">
+                                <div class="logo h-16 w-16 sm:h-20 sm:w-20 lg:h-32 lg:w-32 cursor-pointer lg:ml-1 xl:ml-4">
                                     <img class="object-contain" src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $match->awayClub->numAffiliation }}.jpg" alt="logo">
                                 </div>
                             </label>
@@ -156,7 +160,7 @@
             ---------------------------->
         <div class="fixed openComment flex flex-col justify-center z-10 rounded-b-lg espaceCom {{ $team_action}}">
             <div class="flex flex-col items-center pt-10">
-                <h3 class="text-xl text-center px-2 text-primary bg-white rounded-lg">Menu action de match</h3>
+                <h3 class="text-xl text-center px-2 text-primary bg-gray-200 rounded-lg">Menu action de match</h3>
                 @if($team_action == "home")
                 <div class="logo h-24 w-24 cursor-pointer m-4">
                     <img class="object-contain" src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $match->homeClub->numAffiliation }}.jpg" alt="logo">
@@ -168,12 +172,18 @@
                 </div>
                 @endif
                 <div class="actionsMatch">
-                    <input class="hidden" type="radio" id="but" wire:model="type_comments" name="type_comments" value="but">
-                    <label class="inputAction" for="but">
-                        But !
-                    </label>
+                    <div class="flex justify-center items-center">
+                        <label class="inputAction" for="but">
+                            <input class="hidden" type="radio" id="but" wire:model="type_comments" name="type_comments" value="but">
+                            <img class="border-2 border-primary rounded-full p-2 shadow-xl w-32" src="{{ asset('images/ball.png') }}" alt="But !">
+                        </label>
+                        <label class="inputAction" for="carton">
+                            <input class="hidden" type="radio" id="carton" wire:model="type_comments" name="type_comments" value="carton">
+                            <img class="border-2 border-primary rounded-full p-2 shadow-xl w-32" src="{{ asset('images/cards.png') }}" alt="But !">
+                        </label>
+                    </div>
                     @if($type_comments == "but")
-                    <div class="p-6 border rounded-b-lg shadow-2xl">
+                    <div class="p-6 border rounded-lg shadow-2xl">
                         <div class="flex flex-col">
                             <div>
                                 <input class="hidden" type="radio" id="butCF" wire:model="type_but" name="type_but" value="But sur coup-franc">
@@ -195,15 +205,20 @@
                                 <input class="hidden" type="radio" id="penalty" wire:model="type_but" name="type_but" value="But sur pénalty">
                                 <label class="inputAction" for="penalty">But sur pénalty</label>
                             </div>
+                            <!-- <div>
+                                <input class="hidden" type="radio" id="perso" wire:model="type_but" name="type_but" value="perso">
+                                <label class="inputAction" for="perso">Commentaire personnalisé</label>
+                            </div>
+                            @if($type_but == "perso")
+                                <label for="comPerso">
+                                    <textarea placeholder="Fais parler ton âme de commentateur ! Lache-toi tout en respectant les acteurs du match. Pas d'insultes, de mots racistes ou de gestes pouvant blesser quiconque. Sois respectueux..." class="p-2 border-2 w-full my-4" name="comPerso" id="comPerso" rows="10"></textarea>
+                                </label>
+                            @endif -->
                         </div>
                     </div>
                     @endif
-                    <input class="hidden" type="radio" id="carton" wire:model="type_comments" name="type_comments" value="carton">
-                    <label class="inputAction" for="carton">
-                        Carton !
-                    </label>
                     @if($type_comments == 'carton')
-                    <div class="p-6 border rounded-b-lg">
+                    <div class="p-6 border rounded-lg shadow-2xl">
                         <div class="actionsMatch">
                             <input class="hidden" type="radio" id="cartonJaune1" wire:model="type_carton" name="type_comments" value="Carton jaune">
                             <label class="inputAction" for="cartonJaune1">1er carton jaune</label>
@@ -229,17 +244,30 @@
                         @endfor
                 </select>
                 <div class="flex items-center text-white m-auto my-4">
-                    <div class="hidden p-4" wire:loading wire:target="file">
-                        <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                        </svg>
-                    </div>
-                    <input type="file" wire:model="file" name="file" id="file" accept="jpeg,png,jpg,gif,svg">
-                    @error('file')
-                    <span class="error">{{ $message }}</span>
-                    @enderror
+                    <label class="cursor-pointer my-4 btn border border-black text-black" for="file">
+                        <div class="flex justify-between">
+                            <div class="hidden" wire:loading wire:target="file">
+                                <svg class="animate-spin mr-2 h-5 w-5 text-primary" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <p>Choisir une photo 📷</p>
+                            </div>
+                        </div>
+                        <input class="hidden" type="file" wire:model="file" name="file" id="file" accept="jpeg,png,jpg,gif,svg">
+                    </label>
                 </div>
+                @if ($file)
+                <div class="flex flex-col items-center">
+                    Aperçu de l'image :
+                    <img class="w-36" src="{{ $file->temporaryUrl() }}">
+                </div>
+                @endif
+                @error('file')
+                <span class="error">{{ $message }}</span>
+                @enderror
                 <div class="m-4 flex flex-row justify-center">
                     <div class="flex flex-col jsutify-center">
                         <label class="inputAction {{$team_action}}" for="minuteCom">Temps de jeu</label>
@@ -250,14 +278,9 @@
                     </div>
                 </div>
                 <div class="mt-6 flex flex-col justify-center">
-                    @if (session()->has('messageDebutDeMatch'))
-                    <div wire:loading.class.remove="alertComment" class="m-auto w-11/12 my-1 flex justify-center items-center text-white p-2 rounded-lg alertComment">
-                        {{ session('messageDebutDeMatch') }}
-                    </div>
-                    @endif
                     <button wire:loading.attr="disabled" wire:loading.class.remove="btnPrimary" wire:target="file" class="btn btnPrimary" type="submit">Je commente</button>
                     <input class="hidden" type="radio" id="exit" wire:model="team_action" name="team_action" value="">
-                    <label for="exit" class="btn btnPrimary text-center">Retour</label>
+                    <label for="exit" class="btn btnPrimary text-center" wire:click="retour">Retour</label>
                 </div>
                 @endif
                 @if($team_action == 'away')
@@ -270,42 +293,50 @@
                         @endfor
                 </select>
                 <div class="flex items-center text-white m-auto my-4">
-                    <input type="file" wire:model="file" name="file" id="file" accept="jpeg,png,jpg,gif,svg,mov,mp4,m4v">
-                    <div class="hidden p-4" wire:loading wire:target="file">
-                        <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                        </svg>
-                    </div>
-                    @error('file')
-                    <span class="error">{{ $message }}</span>
-                    @enderror
+                    <label class="cursor-pointer my-4 btn border border-black text-black" for="file">
+                        <div class="flex justify-between">
+                            <div class="hidden" wire:loading wire:target="file">
+                                <svg class="animate-spin mr-2 h-5 w-5 text-primary" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <p>Choisir une photo 📷</p>
+                            </div>
+                        </div>
+                        <input class="hidden" type="file" wire:model="file" name="file" id="file" accept="jpeg,png,jpg,gif,svg">
+                    </label>
                 </div>
+                @if ($file)
+                <div class="flex flex-col items-center">
+                    Aperçu de l'image :
+                    <img class="w-36" src="{{ $file->temporaryUrl() }}">
+                </div>
+                @endif
+                @error('file')
+                <span class="error">{{ $message }}</span>
+                @enderror
                 <div class="m-4 flex flex-row justify-center">
                     <div class="flex flex-col jsutify-center">
-                        <label class="inputAction {{$team_action}}" for="minute">Temps de jeu</label>
-                        <input class="p-3 bg-white rounded shadow outline-none focus:outline-none focus:shadow-outline text-center" type="number" name="minute" wire:model="minute" min="1" max="90">
-                        @error('minute')
+                        <label class="inputAction" for="minuteCom">Temps de jeu</label>
+                        <input class="p-3 bg-white rounded shadow outline-none focus:outline-none focus:shadow-outline text-center" type="number" name="minuteCom" wire:model="minuteCom" min="1" max="90">
+                        @error('minuteCom')
                         <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
                 </div>
                 <div class="mt-6 flex flex-col justify-center">
-                    @if (session()->has('messageDebutDeMatch'))
-                    <div wire:loading.class.remove="alertComment" class="m-auto w-11/12 my-1 flex justify-center items-center text-white p-2 rounded-lg alertComment">
-                        {{ session('messageDebutDeMatch') }}
-                    </div>
-                    @endif
                     <button wire:loading.attr="disabled" wire:loading.class.remove="btnSecondary" wire:target="file" class="btn btnSecondary" type="submit" value="">Je commente</button>
                     <input class="hidden" type="radio" id="exit" wire:model="team_action" name="team_action" value="">
-                    <label for="exit" class="btn btnSecondary text-center">Retour</label>
+                    <label for="exit" class="btn btnSecondary text-center" wire:click="retour">Retour</label>
                 </div>
                 @endif
             </div>
         </div>
 
         <!----------------------
-            AFFICHAGE DES COMMENTAIRES DU MATCH
+            Options commentaires "match"
                 ------------------------->
         @auth
         <div>
@@ -336,7 +367,7 @@
             @endif
         </div>
         @endauth
-        <div>
+        <div class="mx-auto sm:w-11/12 md:w-9/12">
             @if($nbrFavoris > 0 && $match->live == "attente")
             <div class="bg-secondary text-primary rounded-lg relative my-2 flex justify-center m-auto p-1">
                 @if($nbrFavoris == 1)
@@ -346,47 +377,30 @@
                 @endif
             </div>
             @endif
-            @if (session()->has('successMessage'))
-            <div wire:loading.class.remove="alertComment" class="m-auto w-11/12 my-1 flex justify-center items-center text-white p-2 rounded-lg alertComment">
-                {{ session('successMessage') }}
-            </div>
-            @endif
-            @if($match->live == "finDeMatch" && now()->diffInMinutes($match->date_match) >= 100)
-            <div class="m-auto w-11/12 flex justify-center items-center bg-primary text-white p-2 rounded-lg my-6">
-                <p>Les commentaires sont cloturés... A bientôt !</p>
-            </div>
-            @endif
             @if($match->live == 'reporte')
-            <div class="w-full h-full py-3 bg-red-600 font-bold rounded-lg shadow-lg my-6">
-                <p class="text-center">Le match est reporté à une date ultérieure</p>
+            <div class="flex justify-center items-center my-6">
+                <p class="bg-danger font-bold rounded-md py-2 px-3">Le match est reporté à une date ultérieure</p>
             </div>
             @endif
             @if(empty($match->commentateur) && $match->live != "finDeMatch")
-            <div class="w-full h-full py-3 bg-primary text-secondary font-bold rounded-lg shadow-lg my-6">
-                <p class="text-center">En attente d'un commentateur</p>
+            <div class="flex justify-center items-center my-6">
+                <p class="bg-primary text-white rounded-md py-2 px-3">En attente d'un commentateur</p>
             </div>
             @auth
-            <button type="button" class="relative commentaires h-20 bg-white commandeMatch items-stretch w-full focus:outline-none minHeight16" wire:click="becomeCommentator" wire:model="commentator">
-                <div class="minuteCommentaires w-24 commandeMatch">
+            <button type="button" class="relative commentaires h-24 bg-white commandeMatch items-stretch w-full focus:outline-none minHeight16" wire:click="becomeCommentator" wire:model="commentator">
+                <div class="minuteCommentaires w-24 commandeMatch flex flex-col justify-center items-center">
                     <img src="{{asset('images/whistle-white.png')}}">
                 </div>
-                <div class="bg-white w-full h-full p-3 flex flex-col justify-center">
-                    <p class="text-center">Je souhaite commenter ⏱</p>
-                    <div>
-                        @if (session()->has('messageComment'))
-                        <div wire:loading.class.remove="alertFavori" class="flex items-center absolute top-0 right-0 bottom-0 left-0 bg-black text-white text-xs p-2 rounded-l-lg alertFavori">
-                            {{ session('messageComment') }}
-                        </div>
-                        @endif
-                    </div>
+                <div class="bg-white w-full h-full p-3 flex flex-col justify-center items-center">
+                    <p class="">Je souhaite commenter ⏱</p>
                 </div>
             </button>
-            <button type="button" class="relative commentaires h-20 bg-white commandeMatch items-stretch w-full focus:outline-none" wire:click="matchReporte">
-                <div class="minuteCommentaires w-24 commandeMatch">
+            <button type="button" class="relative commentaires h-24 bg-white commandeMatch items-stretch w-full focus:outline-none" wire:click="matchReporte">
+                <div class="minuteCommentaires w-24 commandeMatch flex flex-col justify-center items-center">
                     <img src="{{asset('images/danger.png')}}">
                 </div>
                 <div class="bg-white w-full h-full p-3 flex flex-col justify-center">
-                    <p class="text-center">Le match est reporté ou annulé</p>
+                    <p class="text-center">Le match est reporté ou annulé <i class="fas fa-cloud-showers-heavy"></i></p>
                     <div>
                         @if (session()->has('messageAnnulation'))
                         <div wire:loading.class.remove="alertFavori" class="flex items-center absolute top-0 right-0 bottom-0 left-0 bg-black text-white text-xs p-2 rounded-l-lg alertFavori">
@@ -398,12 +412,12 @@
             </button>
             @else
             <a href="/login">
-                <div class="relative commentaires h-20 bg-white commandeMatch items-stretch w-full focus:outline-none">
-                    <div class="minuteCommentaires w-24 commandeMatch">
+                <div class="relative commentaires h-24 bg-white commandeMatch items-stretch w-full focus:outline-none">
+                    <div class="minuteCommentaires w-24 commandeMatch flex flex-col justify-center items-center">
                         <img src="{{asset('images/login.png')}}" alt="">
                     </div>
                     <div class="bg-white w-full h-full p-3 flex flex-col justify-center">
-                        <p class="text-center">Je me connecte</p>
+                        <p class="font-bold">Je me connecte</p>
                     </div>
                 </div>
             </a>
@@ -415,42 +429,42 @@
         <div class="my-6 w-11/12 m-auto lg:w-8/12">
             @if($match->commentateur != null && $match->commentateur->user->id == Auth::user()->id)
             @if($match->live == 'attente')
-            <button type="button" class="commentaires h-12 bg-white commandeMatch items-stretch w-full" wire:click="timeZero" wire:model="commentator">
-                <div class="minuteCommentaires w-24 sm:w-32 commandeMatch flex justify-center">
-                    <img class="bg-contain h-12" src="{{asset('images/whistle-white.png')}}" alt="">
+            <button type="button" class="relative commentaires h-24 bg-white commandeMatch items-stretch w-full focus:outline-none" wire:click="timeZero" wire:model="commentator">
+                <div class="minuteCommentaires w-24 commandeMatch flex flex-col justify-center items-center">
+                    <img src="{{asset('images/whistle-white.png')}}">
                 </div>
-                <div class="bg-white w-full pt-3">
-                    <p class="text-center">Démarrer le match</p>
+                <div class="bg-white w-full h-full p-3 flex flex-col justify-center items-center">
+                    <p class="font-bold">Démarrer le match</p>
                 </div>
             </button>
             @endif
             @if($match->live == 'debut' && now()->diffInMinutes($match->date_match) >= 40)
-            <button type="button" class="commentaires h-12 bg-white commandeMatch items-stretch w-full" wire:click="timeMitemps" wire:model="type_comments">
-                <div class="minuteCommentaires w-24 sm:w-32 commandeMatch flex justify-center">
-                    <img class="bg-contain h-12" src="{{asset('images/whistle-white.png')}}" alt="">
+            <button type="button" class="relative commentaires h-24 bg-white commandeMatch items-stretch w-full focus:outline-none" wire:click="timeMitemps" wire:model="type_comments">
+                <div class="minuteCommentaires w-24 commandeMatch flex flex-col justify-center items-center">
+                    <img src="{{asset('images/whistle-white.png')}}">
                 </div>
-                <div class="bg-white w-full pt-3">
-                    <p class="text-center">Valider la mi-temps</p>
+                <div class="bg-white w-full h-full p-3 flex flex-col justify-center items-center">
+                    <p class="font-bold">Valider la mi-temps</p>
                 </div>
             </button>
             @endif
             @if($match->live == 'mitemps')
-            <button type="button" class="commentaires h-12 bg-white commandeMatch items-stretch w-full" wire:click="timeReprise" wire:model="type_comments">
-                <div class="minuteCommentaires w-24 sm:w-32 commandeMatch flex justify-center">
-                    <img class="bg-contain h-12" src="{{asset('images/whistle-white.png')}}" alt="">
+            <button type="button" class="relative commentaires h-24 bg-white commandeMatch items-stretch w-full focus:outline-none" wire:click="timeReprise" wire:model="type_comments">
+                <div class="minuteCommentaires w-24 commandeMatch flex flex-col justify-center items-center">
+                    <img src="{{asset('images/whistle-white.png')}}">
                 </div>
-                <div class="bg-white w-full pt-3">
-                    <p class="text-center">Valider la reprise</p>
+                <div class="bg-white w-full h-full p-3 flex flex-col justify-center">
+                    <p class="font-bold">Valider la reprise</p>
                 </div>
             </button>
             @endif
             @if($match->live == 'repriseMT' && now()->diffInMinutes($match->date_match) >= 95)
-            <button type="button" class="commentaires h-12 bg-white commandeMatch items-stretch w-full" wire:click="timeFinDuMatch" wire:model="type_comments">
-                <div class="minuteCommentaires w-24 sm:w-32 commandeMatch flex justify-center">
-                    <img class="bg-contain h-12" src="{{asset('images/whistle-white.png')}}" alt="">
+            <button type="button" class="relative commentaires h-24 bg-white commandeMatch items-stretch w-full focus:outline-none" wire:click="timeFinDuMatch" wire:model="type_comments">
+                <div class="minuteCommentaires w-24 commandeMatch flex flex-col justify-center items-center">
+                    <img src="{{asset('images/whistle-white.png')}}">
                 </div>
-                <div class="bg-white w-full pt-3">
-                    <p class="text-center">Coup de sifflet final ! ⏱</p>
+                <div class="bg-white w-full h-full p-3 flex flex-col justify-center">
+                    <p class="font-bold">Coup de sifflet final ! ⏱</p>
                 </div>
             </button>
             @endif
@@ -459,7 +473,7 @@
         </div>
         @endif
     </form>
-    <!-- fin de formulaire de commentaires match-->
+    <!-- fin option commentaires "match" -->
 
     <!-- Affichage des commentaires -->
 
@@ -472,7 +486,7 @@
     @endif
     @endif
     @endauth
-    <div class="my-2 w-11/12 m-auto lg:w-11/12 lg:flex lg:justify-around" wire:poll.5000ms.keep-alive="miseAJourCom">
+    <div class="my-2 w-11/12 m-auto lg:flex lg:justify-around">
         <div class="m-auto sm:w-10/12 lg:w-8/12">
             @foreach($commentsMatch as $comment)
             <div class="relative commentaires minHeight16 h-auto {{ $comment->team_action }}" x-data="{ open: false }">
@@ -501,8 +515,7 @@
                                 <p class="font-bold mr-4">{{ $comment->statistic->player->first_name}}
                                     {{ $comment->statistic->player->last_name}}
                                 </p>
-                                @if($comment->statistic->player->id >= 1 && $comment->statistic->player->id
-                                <= 16) <button type="button" class="text-xs px-2 bg-primary text-white rounded-md" @click="open = true">
+                                @if($comment->statistic->player->id >= 1 && $comment->statistic->player->id <= 16) <button type="button" class="text-xs px-2 bg-primary text-white rounded-md" @click="open = true">
                                     Qui est ce ?
                                     </button>
                                     @endif
@@ -513,6 +526,7 @@
                         <div class="border-t-2 pt-4 flex flex-col justify-center items-center" x-show="open" @click.away="open = false">
                             <h3 class="text-sm">Tu connais ce joueur ?</h3>
                             <div class="flex flex-col">
+                                @auth
                                 <div class="flex justify-center">
                                     <select class="focus:outline-none focus:shadow-outline my-1 border-2 rounded-md m-1 p-1" name="playerMatch" id="playerMatch" wire:model="playerMatch">
                                         <option value="">Choisis un joueur</option>
@@ -529,6 +543,14 @@
                                     <input {{ $playerMatch != "" && $playerMatch != null ? 'disabled' : '' }} wire:model="playerNom" name="playerNom" class="{{ $playerMatch != "" && $playerMatch != null ? 'cursor-not-allowed' : '' }} text-primary border-b border-primary focus:outline-none w-2/3 m-1 p-1" type="text" placeholder="nom">
                                 </div>
                                 <button type="button" wire:click="miseAJourJoueur('{{ $comment->team_action }}' ,  {{ $comment->statistic }})">Envoyer</button>
+                                @else
+                                <div class="my-2 text-center">
+                                    <p class="text-xs">pour pouvoir renseigner ce joueur</p>
+                                    <a href="/login" class="text-xs px-2 py-1 bg-primary rounded-md text-secondary">
+                                        Connecte toi
+                                    </a>
+                                </div>
+                                @endauth
                             </div>
                         </div>
                         <!-- FIN menu ajout d'un joueur par utilisateur -->

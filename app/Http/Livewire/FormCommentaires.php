@@ -66,6 +66,9 @@ class FormCommentaires extends Component
             $this->match->live = "finDeMatch";
             $this->match->save();
         }
+
+        $this->miseAJourCom();
+
         $this->minuteCom = $this->minute;
 
         $this->countVisitor();
@@ -86,6 +89,9 @@ class FormCommentaires extends Component
             $this->match->live = "finDeMatch";
             $this->match->save();
         }
+
+        $this->miseAJourCom();
+
         $this->countVisitor();
     }
 
@@ -204,10 +210,12 @@ class FormCommentaires extends Component
             $commentateur['user_id'] = $user->id;
             $commentateur['match_id'] = $this->match->id;
             $commentateur->save();
+
+            session()->flash('success', 'Tu es le commentateur de ce match ! 😎');
             return redirect()->to('matches/' . $this->match->id);
-            // $this->commentators->push($commentateur);
         } else {
-            session()->flash('messageComment', "Revenez 30 minutes avant le coup d'envoi");
+            session()->flash('warning', "Reviens 30 minutes avant le coup d'envoi pour pouvoir commenter");
+            return redirect()->to('matches/' . $this->match->id);
         }
     }
 
@@ -223,7 +231,8 @@ class FormCommentaires extends Component
             $this->match->live = "reporte";
             $this->match->save();
         } else {
-            session()->flash('messageAnnulation', "Revenez 30 minutes avant le coup d'envoi");
+            session()->flash('warning', "Reviens 30 minutes avant le coup d'envoi pour pouvoir annoncer le report ou l'annulation ");
+            return redirect()->to('matches/' . $this->match->id);
         }
     }
 
@@ -256,13 +265,16 @@ class FormCommentaires extends Component
                 // }
                 $comment->save();
 
-                $this->commentsMatch =  $this->match->commentaires()->orderBy('minute', 'desc')->orderBy('updated_at', 'desc')->get();
-                session()->flash('successMessage', 'Bon Match ! 😉');
+                // $this->commentsMatch =  $this->match->commentaires()->orderBy('minute', 'desc')->orderBy('updated_at', 'desc')->get();
+                session()->flash('success', 'Bon Match ! ⚽⚽⚽');
+                return redirect()->to('matches/' . $this->match->id);
             } else {
-                session()->flash('successMessage', 'Un problème s\'est produit');
+                session()->flash('danger', 'Un problème s\'est produit');
+                return redirect()->to('matches/' . $this->match->id);
             }
         } else {
-            session()->flash('messageComment', "Revenez 30 minutes avant le coup d'envoi");
+            session()->flash('warning', "Reviens 30 minutes avant le coup d'envoi");
+            return redirect()->to('matches/' . $this->match->id);
         }
     }
 
@@ -288,8 +300,9 @@ class FormCommentaires extends Component
             //     $comment->commentator()->associate($comm->id);
             // }
             $comment->save();
-            $this->commentsMatch =  $this->match->commentaires()->orderBy('minute', 'desc')->orderBy('updated_at', 'desc')->get();
-            session()->flash('successMessage', 'Évènement bien pris en compte');
+
+            session()->flash('success', 'Mi-temps ! Repos bien mérité... Rendez-vous dans 15 minutes 🍻');
+            return redirect()->to('matches/' . $this->match->id);
         }
     }
 
@@ -314,7 +327,8 @@ class FormCommentaires extends Component
             $this->match->save();
             $comment->save();
             $this->commentsMatch =  $this->match->commentaires()->orderBy('minute', 'desc')->orderBy('updated_at', 'desc')->get();
-            session()->flash('successMessage', 'Évènement bien pris en compte');
+            session()->flash('success', 'C\'est reparti !! 😉');
+            return redirect()->to('matches/' . $this->match->id);
         }
     }
 
@@ -340,7 +354,8 @@ class FormCommentaires extends Component
             $this->match->save();
             $comment->save();
             $this->commentsMatch =  $this->match->commentaires()->orderBy('minute', 'desc')->orderBy('updated_at', 'desc')->get();
-            session()->flash('successMessage', '😍 MERCI MERCI MERCI 😍');
+            session()->flash('success', '😍 MERCI MERCI MERCI 😍');
+            return redirect()->to('matches/' . $this->match->id);
         }
     }
 
@@ -357,7 +372,7 @@ class FormCommentaires extends Component
                 'file' => 'nullable|max:4096'
             ]);
 
-            $commentData = ['minute' => $this->minute, 'team_action' => $this->team_action];
+            $commentData = ['minute' => $this->minuteCom, 'team_action' => $this->team_action];
             $commentData['commentator_id'] = $this->commentator[0]->id;
 
             if ($this->type_comments == "but") {
@@ -424,17 +439,22 @@ class FormCommentaires extends Component
                     $statComment2->save();
                 }
                 $this->commentsMatch = $this->match->commentaires()->orderBy('minute', 'desc')->orderBy('updated_at', 'desc')->get();
-                session()->flash('successMessage', 'Merci pour ce commentaire 😉');
-                $this->team_action = false;
-                $this->file = "";
-                $this->type_comments = "";
-                $this->player = "";
-                $this->type_but = "";
-                $this->type_carton = "";
+                session()->flash('success', 'Commentaire bien pris en compte ! 💪');
+                return redirect()->to('matches/' . $this->match->id);
             }
         } else {
-            session()->flash('messageDebutDeMatch', "Il n'est pas possible de commenter maintenant");
+            session()->flash('warning', "Il n'est pas possible de commenter maintenant");
         }
+    }
+
+    public function retour()
+    {
+        $this->team_action = false;
+        $this->file = "";
+        $this->type_comments = "";
+        $this->player = "";
+        $this->type_but = "";
+        $this->type_carton = "";
     }
 
     public function render()

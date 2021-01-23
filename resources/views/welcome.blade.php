@@ -14,7 +14,7 @@
             <p class="text-sm md:text-base">Il est possible de gérer ton club mais surtout de commenter et de suivre les matchs en <span class="uppercase text-primary font-bold bg-secondary px-2 rounded-sm">live</span></p>
         </div>
     </div>
-    <div class="flex flex-col lg:flex-row justify-center py-10 bg-secondary">
+    <div class="flex flex-col lg:flex-row justify-center py-10 shadow-2xl">
         <div class="w-11/12 m-auto sm:w-8/12 md:w-6/12 lg:w-4/12">
             <div class="mb-2 rounded-md mx-2">
                 <form class="w-full" action="{{ asset('clubs') }}" method="get">
@@ -53,8 +53,8 @@
         </div>
     </div>
     @auth
-    <div class="flex flex-col w-11/12 lg:w-10/12 lg:flex-row justify-between m-auto">
-        <div class="w-full m-2">
+    <div class="flex flex-col w-full bg-secondary lg:flex-row justify-around py-8">
+        <div class="lg:w-5/12">
             <div>
                 <h3>Mes teams préférées</h3>
             </div>
@@ -63,7 +63,7 @@
                 @if(count($user->favoristeams) > 0 )
                 @foreach($user->favoristeams->shuffle() as $favoriteam)
                 <a href="{{ route('clubs.show', $favoriteam->club->id) }}">
-                    <div class="flex flex-col mb-3 w-full">
+                    <div class="flex flex-col mb-3">
                         <div class="relative flex flex-row items-center bg-primary rounded-lg overflow-hidden">
                             <div class="w-16 m-2 z-10">
                                 <div class="logo h-12 w-12">
@@ -87,7 +87,7 @@
                 @endauth
             </div>
         </div>
-        <div class="w-full ml-2">
+        <div class="lg:w-5/12">
             <div class="">
                 <h3 class=""><i class="fas fa-star text-red-700"></i> Mes matchs favoris <i class="fas fa-star text-red-700"></i></h3>
             </div>

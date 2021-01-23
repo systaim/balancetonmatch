@@ -135,19 +135,19 @@
         </header>
         @if (\Session::has('success'))
         <div class="alert success" x-show.transition="open">
-            <i class="fas fa-check-circle text-5xl text-white rounded-full"></i>
+            <i class="fas fa-check-circle text-5xl text-white rounded-full shadow-xl"></i>
             <p> {!! \Session::get('success') !!}</p>
         </div>
         @endif
         @if (\Session::has('warning'))
         <div class="alert warning">
-            <i class="fas fa-exclamation-circle text-5xl text-white rounded-full"></i>
+            <i class="fas fa-exclamation-circle text-5xl text-white rounded-full shadow-xl"></i>
             <p> {!! \Session::get('warning') !!}</p>
         </div>
         @endif
         @if (\Session::has('danger'))
         <div class="alert danger">
-            <i class="fas fa-times-circle text-5xl text-white rounded-full"></i>
+            <i class="fas fa-times-circle text-5xl text-white rounded-full shadow-xl"></i>
             <p> {!! \Session::get('danger') !!}</p>
         </div>
         @endif

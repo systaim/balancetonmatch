@@ -4,7 +4,7 @@
     <p class="absolute top-1/2 text-xl px-3 py-2 bg-primary text-secondary rounded-lg font-bold">Pas encore de photo pour ce club</p>
     @endif
     @auth
-    @if(Auth::user()->role->role == 'super-admin' || (Auth::user()->role->role == 'referent-club' && Auth::user()->prefer_team_id == $club->id))
+    @if(Auth::user()->role_id == '1' || (Auth::user()->role_id == '3' && Auth::user()->prefer_team_id == $club->id))
     @if($bouton == 1)
     <form wire:submit.prevent="coverTeam" class="relative z-50 bg-gray-200 py-2 px-4 rounded-lg border border-gray-500 border-dashed my-8 w-11/12 md:w-7/12 lg:w-5/12">
         <p class="text-center py-2 font-bold">Photo de couverture</p>
