@@ -32,9 +32,7 @@ class CreateUsersTable extends Migration
             $table->boolean('first_com')->default(1);
             $table->timestamps();
             $table->timestamp('deleted_at')->nullable();
-
-            $table->foreign('prefer_team_id')->references('id')->on('clubs');
-            $table->foreign('is_player')->references('id')->on('players');
+            
 
         });
     }
