@@ -6,21 +6,21 @@
         @csrf
         <div class="flex flex-col mt-4">
             <label class="text-primary font-bold" for="prenom">prenom</label>
-            <input class="relative inputForm text-primary" type="text" name="prenom" id="prenom" value="{{ Auth() ? Auth()->user()->first_name : '' }}">
+            <input class="relative inputForm text-primary" type="text" name="prenom" id="prenom" value="{{ Auth::check() ? Auth()->user()->first_name : '' }}">
             @error('prenom')
             <div class="text-danger font-bold">{{ $message }}</div>
             @enderror
         </div>
         <div class="flex flex-col mt-4">
             <label class="text-primary font-bold" for="nom">nom</label>
-            <input class="relative inputForm text-primary" type="text" name="nom" id="nom" value="{{ Auth() ? Auth()->user()->last_name : '' }}">
+            <input class="relative inputForm text-primary" type="text" name="nom" id="nom" value="{{ Auth::check() ? Auth()->user()->last_name : '' }}">
             @error('nom')
             <div class="text-danger font-bold">{{ $message }}</div>
             @enderror
         </div>
         <div class="flex flex-col mt-4">
             <label class="text-primary font-bold" for="email">mail</label>
-            <input class="relative inputForm text-primary" type="email" name="email" id="email" value="{{ Auth() ? Auth()->user()->email : '' }}">
+            <input class="relative inputForm text-primary" type="email" name="email" id="email" value="{{ Auth::check() ? Auth()->user()->email : '' }}">
             @error('email')
             <div class="text-danger font-bold">{{ $message }}</div>
             @enderror
