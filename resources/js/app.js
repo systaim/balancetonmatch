@@ -13,6 +13,8 @@ burger.addEventListener("click", function() {
     nav.classList.toggle("is-open");
     container.classList.toggle("is-open");
 });
+
+// Compteurs animés homepage
 let compteurs = document.querySelectorAll(".compteur");
 
 compteurs.forEach(compteur => {
@@ -31,5 +33,5 @@ compteurs.forEach(compteur => {
     }
     console.log(compteur.innerHTML);
     let valeurCompteur = compteur.innerHTML;
-    animateValue(compteur, 0, valeurCompteur, 3500);
+    animateValue(compteur, 0, valeurCompteur, 5000);
 });

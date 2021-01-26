@@ -19365,7 +19365,8 @@ burger.addEventListener("click", function () {
   this.classList.toggle("is-open");
   nav.classList.toggle("is-open");
   container.classList.toggle("is-open");
-});
+}); // Compteurs animés homepage
+
 var compteurs = document.querySelectorAll(".compteur");
 compteurs.forEach(function (compteur) {
   function animateValue(obj, start, end, duration) {
@@ -19386,7 +19387,7 @@ compteurs.forEach(function (compteur) {
 
   console.log(compteur.innerHTML);
   var valeurCompteur = compteur.innerHTML;
-  animateValue(compteur, 0, valeurCompteur, 3500);
+  animateValue(compteur, 0, valeurCompteur, 5000);
 });
 
 /***/ }),
