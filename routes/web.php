@@ -39,7 +39,7 @@ Route::get('/', function () {
     $user = Auth::user();
     $today = now();
     $goals= Statistic::where('action', 'goal')->get();
-    $commentators = Commentator::all();
+    $commentators = Commentator::all();    
 
     return view('welcome', compact(
         'matchesToday', 

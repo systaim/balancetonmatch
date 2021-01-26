@@ -82,11 +82,6 @@ class User extends Authenticatable
         return $this->hasMany(Commentator::class);
     }
 
-    public function role()
-    {
-        return $this->hasOne(Role::class);
-    }
-
     public function favoristeams()
     {
         return $this->hasMany(Favoristeam::class);

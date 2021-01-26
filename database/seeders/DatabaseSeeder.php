@@ -37,17 +37,6 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        //Table roles 
-        $roles = ['super-admin', 'moderator', 'referent-club', 'guest'];
-
-        foreach ($roles as $role) {
-            Role::create([
-                'name' => $role,
-            ]);
-        }
-
-        
-
         //tables nom de groupes
         for ($i = 65; $i <= 90; $i++) {
             Group::create([
@@ -81,7 +70,7 @@ class DatabaseSeeder extends Seeder
         //nom de compétitions
         $competitions = ['Championnat régional', 'Championnat départemental', 'coupe de France', 'Coupe régionale', 'Coupe départementale', 'Match amical'];
 
-        foreach($competitions as $competition){
+        foreach ($competitions as $competition) {
             Region::create([
                 'name' => $competition,
             ]);

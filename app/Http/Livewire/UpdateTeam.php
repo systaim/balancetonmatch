@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
 
 class UpdateTeam extends Component
@@ -19,6 +20,7 @@ class UpdateTeam extends Component
     public $inputNbrTeams;
     public $buttonNbrTeams;
     public $inputAbbreviation;
+    public $inputLogo;
 
     public function mount()
     {
@@ -31,6 +33,7 @@ class UpdateTeam extends Component
         $this->inputSecondaryColor = $this->club->secondary_color;
         $this->inputNbrTeams = $this->club->number_teams;
         $this->inputAbbreviation = $this->club->abbreviation;
+        $this->inputLogo = $this->club->logo_path;
     }
 
     public function clickButtonCity()
@@ -45,6 +48,9 @@ class UpdateTeam extends Component
     public function citySave()
     {
 
+        $path = $this->inputLogo->store('logos');
+        $this->club->logo_path = $path;
+
         $this->club->city = $this->inputCity;
         $this->club->zip_code = $this->inputZip;
         $this->club->address = $this->inputAddress;
@@ -55,13 +61,14 @@ class UpdateTeam extends Component
         $this->club->number_teams = $this->inputNbrTeams;
         $this->club->abbreviation = $this->inputAbbreviation;
 
-        $this->validate([
+        Validator::make([
             'inputAbbreviation' => 'nullable|string|max:6',
             'inputAddress' => 'nullable|string|max:255',
             'inputCity' => 'nullable|string|min:2|max:255',
             'inputPrimaryColor' => 'regex:/#[a-fA-F0-9]{6}/',
             'inputSecondaryColor' => 'regex:/#[a-fA-F0-9]{6}/',
             'inputZip' => 'nullable|digits:5',
+            'inputLogo' => 'nullable|image'
         ]);
         $this->club->save();
 

@@ -32,7 +32,7 @@
                             @endauth
                             <label for="homeAction">
                                 <div class="logo h-16 w-16 sm:h-20 sm:w-20 lg:h-32 lg:w-32 cursor-pointer lg:mr-1 xl:mr-4">
-                                    <img class="object-contain" src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $match->homeClub->numAffiliation }}.jpg" alt="logo">
+                                    <img class="object-contain w-full" src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $match->homeClub->numAffiliation }}.jpg" alt="logo">
                                 </div>
                             </label>
                         </div>
@@ -76,7 +76,7 @@
                             @endauth
                             <label for="awayAction">
                                 <div class="logo h-16 w-16 sm:h-20 sm:w-20 lg:h-32 lg:w-32 cursor-pointer lg:ml-1 xl:ml-4">
-                                    <img class="object-contain" src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $match->awayClub->numAffiliation }}.jpg" alt="logo">
+                                    <img class="object-contain w-full" src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $match->awayClub->numAffiliation }}.jpg" alt="logo">
                                 </div>
                             </label>
                         </div>
@@ -162,87 +162,122 @@
             <div class="flex flex-col items-center pt-10">
                 <h3 class="text-xl text-center px-2 text-primary bg-gray-200 rounded-lg">Menu action de match</h3>
                 @if($team_action == "home")
-                <div class="logo h-24 w-24 cursor-pointer m-4">
+                <div class="logo h-36 w-36 cursor-pointer m-4 border-2 border-primary">
                     <img class="object-contain" src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $match->homeClub->numAffiliation }}.jpg" alt="logo">
                 </div>
                 @endif
                 @if($team_action == "away")
-                <div class="logo h-24 w-24 cursor-pointer m-4">
+                <div class="logo h-36 w-36 cursor-pointer m-4 border-2 border-primary">
                     <img class="object-contain" src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $match->awayClub->numAffiliation }}.jpg" alt="logo">
                 </div>
                 @endif
-                <div class="actionsMatch">
-                    <div class="flex justify-center items-center">
-                        <label class="inputAction" for="but">
-                            <input class="hidden" type="radio" id="but" wire:model="type_comments" name="type_comments" value="but">
-                            <img class="border-2 border-primary rounded-full p-2 shadow-xl w-32" src="{{ asset('images/ball.png') }}" alt="But !">
-                        </label>
-                        <label class="inputAction" for="carton">
-                            <input class="hidden" type="radio" id="carton" wire:model="type_comments" name="type_comments" value="carton">
-                            <img class="border-2 border-primary rounded-full p-2 shadow-xl w-32" src="{{ asset('images/cards.png') }}" alt="But !">
-                        </label>
+                <div class="bg-primary p-3 rounded-lg my-2 w-full sm:w-10/12 lg:w-9/12">
+                    <div>
+                        <div class="flex justify-center text-white">
+                            <p>Choisis l'action à commenter</p>
+                        </div>
+                        <div class="flex justify-center items-center m-3">
+                            <label for="but">
+                                <input class="hidden" type="radio" id="but" wire:model="type_comments" name="type_comments" value="but">
+                                <img class="border-2 border-secondary rounded-full shadow-xl bg-white m-2 p-2" src="{{ asset('images/ball.png') }}" width="100px" height="100px" alt="But !">
+                                <p class="text-center text-white">But !</p>
+                            </label>
+                            <label for="carton">
+                                <input class="hidden" type="radio" id="carton" wire:model="type_comments" name="type_comments" value="carton">
+                                <img class="border-2 border-secondary rounded-full shadow-xl bg-white m-2 p-2" src="{{ asset('images/cards.png') }}" width="100px" height="100px" alt="Carton">
+                                <p class="text-center text-white">Carton</p>
+                            </label>
+                            <!-- <label for="action">
+                                <input class="hidden" type="radio" id="action" wire:model="type_comments" name="type_comments" value="action">
+                                <img class="border-2 border-secondary rounded-full shadow-xl bg-white m-2 p-2" src="{{ asset('images/fire.png') }}" width="100px" height="100px" alt="Action">
+                                <p class="text-center text-white">Action</p>
+                            </label> -->
+                        </div>
+                        @if($type_comments == "but")
+                        <div class="p-6 border rounded-lg shadow-2xl bg-white">
+                            <div class="flex flex-col">
+                                <div>
+                                    <input class="hidden" type="radio" id="butCF" wire:model="type_but" name="type_but" value="But sur coup-franc">
+                                    <label class="inputAction" for="butCF">But sur coup-franc</label>
+                                </div>
+                                <div>
+                                    <input class="hidden" type="radio" id="butCorner" wire:model="type_but" name="type_but" value="But sur corner">
+                                    <label class="inputAction" for="butCorner">But sur corner</label>
+                                </div>
+                                <div>
+                                    <input class="hidden" type="radio" id="ext-surface" wire:model="type_but" name="type_but" value="Frappe de l'extérieur de la suface">
+                                    <label class="inputAction" for="ext-surface">Frappe de l'extérieur de la suface</label>
+                                </div>
+                                <div>
+                                    <input class="hidden" type="radio" id="int-surface" wire:model="type_but" name="type_but" value="Frappe de l'intérieur de la surface">
+                                    <label class="inputAction" for="int-surface">Frappe de l'intérieur de la surface</label>
+                                </div>
+                                <div>
+                                    <input class="hidden" type="radio" id="penalty" wire:model="type_but" name="type_but" value="But sur pénalty">
+                                    <label class="inputAction" for="penalty">But sur pénalty</label>
+                                </div>
+                            </div>
+                            @error('file')
+                            <span class="error">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        @endif
+                        @if($type_comments == 'carton')
+                        <div class="p-6 border rounded-lg shadow-2xl bg-white flex flex-col items-center justify-center md:flex-row">
+                            <div class="actionsMatch relative">
+                                <input class="sr-only" type="radio" id="cartonJaune" wire:model="type_carton" name="type_comments" value="Carton jaune">
+                                <label class="inputAction" for="cartonJaune"><img src="{{ asset('images/yellow-card.png') }}" alt="1er carton jaune"></label>
+                                <p class="absolute top-9 left-10 font-sans">1er</p>
+                            </div>
+                            <div class="actionsMatch relative">
+                                <input class="sr-only" type="radio" id="cartonJaune2" wire:model="type_carton" name="type_comments" value="2e carton jaune">
+                                <label class="inputAction" for="cartonJaune2"><img src="{{ asset('images/yellow-card.png') }}" alt="2e carton jaune"></label>
+                                <p class="absolute top-9 left-11 font-sans">2e</p>
+                            </div>
+                            <div class="actionsMatch">
+                                <input class="sr-only" type="radio" id="cartonRouge" wire:model="type_carton" name="type_comments" value="Carton rouge">
+                                <label class="inputAction" for="cartonRouge"><img src="{{ asset('images/red-card.png') }}" alt="carton rouge"></label>
+                            </div>
+                            <div class="actionsMatch">
+                                <input class="sr-only" type="radio" id="cartonBlanc" wire:model="type_carton" name="type_comments" value="Carton blanc">
+                                <label class="inputAction" for="cartonBlanc"><img src="{{ asset('images/white-card.png') }}" alt="carton blanc"></label>
+                            </div>
+                            @error('file')
+                            <span class="error">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        @endif
+                        <!-- @if($type_comments == 'action')
+                        <div class="p-6 border rounded-lg shadow-2xl bg-white">
+                            <div class="actionsMatch">
+                                <input class="hidden" type="radio" id="arret" wire:model="type_actionMatch" name="type_comments" value="">
+                                <label class="inputAction" for="arret">Arret du gardien</label>
+                            </div>
+                            <div class="actionsMatch">
+                                <input class="hidden" type="radio" id="frappe_manque" wire:model="type_actionMatch" name="type_comments" value="">
+                                <label class="inputAction" for="frappe_manque">2e carton jaune</label>
+                            </div>
+                            <div class="actionsMatch">
+                                <input class="hidden" type="radio" id="corner" wire:model="type_actionMatch" name="type_comments" value="">
+                                <label class="inputAction" for="corner">Carton rouge !</label>
+                            </div>
+                        </div>
+                        @endif -->
                     </div>
-                    @if($type_comments == "but")
-                    <div class="p-6 border rounded-lg shadow-2xl">
-                        <div class="flex flex-col">
-                            <div>
-                                <input class="hidden" type="radio" id="butCF" wire:model="type_but" name="type_but" value="But sur coup-franc">
-                                <label class="inputAction" for="butCF">But sur coup-franc</label>
-                            </div>
-                            <div>
-                                <input class="hidden" type="radio" id="butCorner" wire:model="type_but" name="type_but" value="But sur corner">
-                                <label class="inputAction" for="butCorner">But sur corner</label>
-                            </div>
-                            <div>
-                                <input class="hidden" type="radio" id="ext-surface" wire:model="type_but" name="type_but" value="Frappe de l'extérieur de la suface">
-                                <label class="inputAction" for="ext-surface">Frappe de l'extérieur de la suface</label>
-                            </div>
-                            <div>
-                                <input class="hidden" type="radio" id="int-surface" wire:model="type_but" name="type_but" value="Frappe de l'intérieur de la surface">
-                                <label class="inputAction" for="int-surface">Frappe de l'intérieur de la surface</label>
-                            </div>
-                            <div>
-                                <input class="hidden" type="radio" id="penalty" wire:model="type_but" name="type_but" value="But sur pénalty">
-                                <label class="inputAction" for="penalty">But sur pénalty</label>
-                            </div>
-                            <div>
-                                <input class="hidden" type="radio" id="perso" wire:model="type_but" name="type_but" value="perso">
-                                <label class="inputAction" for="perso">Commentaire personnalisé</label>
-                            </div>
-                            @if($type_but == "perso")
-                                <label for="comPerso">
-                                    <textarea placeholder="Fais parler ton âme de commentateur ! Lache-toi tout en respectant les acteurs du match. Pas d'insultes, de mots racistes ou de gestes pouvant blesser quiconque. Sois respectueux..." class="p-2 border-2 w-full my-4" name="comPerso" id="comPerso" rows="10" wire:model="commentPerso"></textarea>
-                                </label>
-                            @endif
-                        </div>
-                    </div>
-                    @endif
-                    @if($type_comments == 'carton')
-                    <div class="p-6 border rounded-lg shadow-2xl">
-                        <div class="actionsMatch">
-                            <input class="hidden" type="radio" id="cartonJaune1" wire:model="type_carton" name="type_comments" value="Carton jaune">
-                            <label class="inputAction" for="cartonJaune1">1er carton jaune</label>
-                        </div>
-                        <div class="actionsMatch">
-                            <input class="hidden" type="radio" id="cartonJaune2" wire:model="type_carton" name="type_comments" value="2e carton jaune">
-                            <label class="inputAction" for="cartonJaune2">2e carton jaune</label>
-                        </div>
-                        <div class="actionsMatch">
-                            <input class="hidden" type="radio" id="cartonRouge" wire:model="type_carton" name="type_comments" value="Carton rouge">
-                            <label class="inputAction" for="cartonRouge">Carton rouge !</label>
-                        </div>
-                    </div>
-                    @endif
                 </div>
                 @if($team_action == 'home')
-                <select class="inputForm focus:outline-none focus:shadow-outline my-1" name="player" id="player" wire:model="player" required>
-                    <option value="">Choisissez un joueur</option>
-                    @foreach($match->homeClub->players as $player)
-                    <option value="{{ $player->id}}">{{$player->first_name}} {{$player->last_name}}</option>
-                    @endforeach
-                    @for($i = 1 ; $i <= 16; $i++) <option value="{{ $i }}">Numéro {{$i}}</option>
-                        @endfor
-                </select>
+                <div class="bg-primary rounded-lg my-2 flex flex-col justify-center items-center p-4 w-full sm:w-10/12 lg:w-9/12">
+                    <p class="text-white text-center">Choisis un joueur ou un numéro</p>
+                    <select class="inputForm border border-black text-black m-4" name="player" id="player" wire:model="player" required>
+                        <option value="">Choisis un joueur</option>
+                        @foreach($match->homeClub->players as $player)
+                        <option value="{{ $player->id}}">{{$player->first_name}} {{$player->last_name}}</option>
+                        @endforeach
+                        @for($i = 1 ; $i <= 16; $i++) <option value="{{ $i }}">Numéro {{$i}}</option>
+                            @endfor
+                    </select>
+                    <p class="font-normal text-sm text-center text-white">Si le joueur n'est pas dans la liste, il sera possible de l'ajouter après le commentaire</p>
+                </div>
                 <div class="flex items-center text-white m-auto my-4">
                     <label class="cursor-pointer my-4 btn border border-black text-black" for="file">
                         <div class="flex justify-between">
@@ -253,7 +288,7 @@
                                 </svg>
                             </div>
                             <div>
-                                <p>Choisir une photo 📷</p>
+                                <p>Une photo ou une vidéo ? 📷</p>
                             </div>
                         </div>
                         <input class="hidden" type="file" wire:model="file" name="file" id="file" accept="jpeg,png,jpg,gif,svg">
@@ -268,10 +303,10 @@
                 @error('file')
                 <span class="error">{{ $message }}</span>
                 @enderror
-                <div class="m-4 flex flex-row justify-center">
+                <div class="flex flex-row justify-center">
                     <div class="flex flex-col jsutify-center">
-                        <label class="inputAction {{$team_action}}" for="minuteCom">Temps de jeu</label>
-                        <input class="p-3 bg-white rounded shadow outline-none focus:outline-none focus:shadow-outline text-center" type="number" name="minuteCom" wire:model="minuteCom" min="1" max="90">
+                        <label class="inputAction" for="minuteCom">Temps de jeu</label>
+                        <input class="p-3 bg-white rounded shadow outline-none focus:outline-none focus:shadow-outline text-center text-darkGray border border-darkGray" type="number" name="minuteCom" wire:model="minuteCom" min="1" max="90">
                         @error('minuteCom')
                         <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -285,7 +320,7 @@
                 @endif
                 @if($team_action == 'away')
                 <select class="inputForm focus:outline-none focus:shadow-outline my-1" name="player" id="player" wire:model="player" required>
-                    <option value="">Choisissez un joueur</option>
+                    <option value="">Choisis un joueur</option>
                     @foreach($match->awayClub->players as $player)
                     <option value="{{ $player->id}}">{{$player->first_name}} {{$player->last_name}}</option>
                     @endforeach

@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules\RequiredIf;
 use Livewire\WithFileUploads;
 
-
+use function App\Models\commentateur;
 
 class FormCommentaires extends Component
 {
@@ -120,8 +120,8 @@ class FormCommentaires extends Component
         if (empty($this->playerMatch) || $this->playerMatch == null) {
             // dd('creation');
             $dataPlayer = $this->validate([
-                'playerPrenom' => 'required|min:2',
-                'playerNom' => 'required|min:2',
+                'playerPrenom' => 'required|string|min:2',
+                'playerNom' => 'required|string|min:2',
             ]);
 
             $player = new Player();
@@ -134,7 +134,6 @@ class FormCommentaires extends Component
                 $player['club_id'] = $this->match->away_team_id;
             }
             $player['user_id'] = $user->id;
-
 
             if ($player->save()) {
                 $stat->player()->associate($player);
@@ -246,7 +245,7 @@ class FormCommentaires extends Component
             $commentData['type_comments'] = "Début du match ! 🤩";
             $commentData['minute'] = 0;
             $commentData['team_action'] = 'match';
-            $commentData['commentator_id'] = $this->commentator[0]->id;
+            $commentData['commentator_id'] = $this->match->commentateur->id;
 
             $comment = Commentaire::create($commentData);
 
@@ -291,7 +290,7 @@ class FormCommentaires extends Component
         $commentData['minute'] = 45;
         $commentData['team_action'] = 'match';
         $commentData['comments'] = $this->mitempsJoueurs[array_rand($this->mitempsJoueurs)];
-        $commentData['commentator_id'] = $this->commentator[0]->id;
+        $commentData['commentator_id'] = $this->match->commentateur->id;
 
 
         $comment = Commentaire::create($commentData);
@@ -316,7 +315,7 @@ class FormCommentaires extends Component
         $commentData['type_comments'] = "C'est la reprise ! 😎";
         $commentData['minute'] = 45;
         $commentData['team_action'] = 'match';
-        $commentData['commentator_id'] = $this->commentator[0]->id;
+        $commentData['commentator_id'] = $this->match->commentateur->id;
 
 
         $comment = Commentaire::create($commentData);
@@ -344,7 +343,7 @@ class FormCommentaires extends Component
         $commentData['type_comments'] = "FIN DU MATCH !!!";
         $commentData['minute'] = 90;
         $commentData['team_action'] = 'match';
-        $commentData['commentator_id'] = $this->commentator[0]->id;
+        $commentData['commentator_id'] = $this->match->commentateur->id;
 
         $comment = Commentaire::create($commentData);
 
@@ -367,13 +366,14 @@ class FormCommentaires extends Component
         if ($this->dateMatch->diffInMinutes(now(), false) >= 0 && $this->match->live == "debut" || $this->match->live == "repriseMT") {
 
             $statData2['action'] = '';
+
             $this->validate([
                 'type_comments' => 'required',
                 'minute' => 'required',
-                'type_action' => 'required|string',
                 'team_action' => 'required',
                 'file' => 'nullable|max:4096'
             ]);
+
 
             $commentData = ['minute' => $this->minuteCom, 'team_action' => $this->team_action];
             $commentData['commentator_id'] = $this->commentator[0]->id;
@@ -381,13 +381,12 @@ class FormCommentaires extends Component
             if ($this->type_comments == "but") {
                 $commentData['type_action'] = "goal";
                 $commentData['type_comments'] = $this->listGoal[array_rand($this->listGoal)];
-                
-                if($this->type_but == "perso"){
-                    $commentData['comments'] = $this->commentPerso;
-                } else {
-                    $commentData['comments'] = $this->type_but;
-                }
-                
+                $commentData['comments'] = $this->type_but;
+                // if($this->type_but == "perso"){
+                //     $commentData['comments'] = $this->commentPerso;
+                // } else {
+                //     $commentData['comments'] = $this->type_but;
+                // }
 
                 $statData['action'] = "goal";
 
@@ -407,18 +406,27 @@ class FormCommentaires extends Component
                 $commentData['type_comments'] = $this->type_carton;
 
                 if ($this->type_carton == 'Carton jaune') {
+
                     $commentData['type_action'] = "1st yellow_card";
                     $statData['action'] = "yellow_card";
+                    $commentData['comments'] = "1er carton jaune";
                 }
                 if ($this->type_carton == '2e carton jaune') {
                     $commentData['type_action'] = "2nd yellow_card";
                     $statData['action'] = "yellow_card";
+                    $commentData['comments'] = "2e carton jaune";
+
                     $statData2['action'] = "red_card";
                     $statData2['player_id'] = $this->player;
                 }
                 if ($this->type_carton == 'Carton rouge') {
                     $commentData['type_action'] = "red_card";
+                    $commentData['comments'] = "Le joueur est exclu du match";
                     $statData['action'] = "red_card";
+                }
+                if ($this->type_carton == 'Carton blanc') {
+                    $commentData['type_action'] = "white_card";
+                    $commentData['comments'] = "Le joueur est exclu pendant 10 minutes";
                 }
             } else {
                 $commentData['type_comments'] = $this->type_comments;

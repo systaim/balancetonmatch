@@ -34,14 +34,12 @@
                     <div class="flex flex-col">
                         <p class="font-bold">né le {{ date('d/m/Y',strtotime($staff->date_of_birth)) }}</p>
                     </div>
-                    @auth
-                    @if(Auth::user()->role_id == '1' || (Auth::user()->role_id == '3' && Auth::user()->prefer_team_id == $club->id))
+                    @canany(['isManager', 'isSuperAdmin', 'isAdmin'])
                     <div>
                         <button onclick="openMenu({{$staff->id}})" class="mr-1"><i class="far fa-edit"></i></button>
                         <button id="{{ $key }}" @click="open = true"><i class="far fa-times-circle"></i></button>
                     </div>
-                    @endif
-                    @endauth
+                    @endcanany
                 </div>
                 <!-- ***********************
                     Formulaire suppression d'un joueur

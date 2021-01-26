@@ -1,10 +1,11 @@
 <div id="backTeam" class="relative flex flex-col items-center justify-start lg:bg-fixed" style="background-image: url({{ asset($club->bg_path) }});">
     @include('clubs.logo')
-    @if($club->bg_path == null)
+    @if($club->bg_path == null || $club->bg_path == "")
     <p class="absolute top-1/2 text-xl px-3 py-2 bg-primary text-secondary rounded-lg font-bold">Pas encore de photo pour ce club</p>
     @endif
-    @auth
-    @if(Auth::user()->role_id == '1' || (Auth::user()->role_id == '3' && Auth::user()->prefer_team_id == $club->id))
+
+    @canany(['isManager', 'isSuperAdmin', 'isAdmin'])
+
     @if($bouton == 1)
     <form wire:submit.prevent="coverTeam" class="relative z-50 bg-gray-200 py-2 px-4 rounded-lg border border-gray-500 border-dashed my-8 w-11/12 md:w-7/12 lg:w-5/12">
         <p class="text-center py-2 font-bold">Photo de couverture</p>
@@ -29,8 +30,9 @@
     @else
     <button class="absolute top-2 right-3 lg:right-10 bg-success font-bold text-xs px-2 py-1 rounded-md" wire:click="clickButton">Modifier 📷</button>
     @endif
-    @endif
-    @endauth
+
+    @endcanany
+
 
 
 

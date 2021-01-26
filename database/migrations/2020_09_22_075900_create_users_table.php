@@ -33,7 +33,6 @@ class CreateUsersTable extends Migration
             $table->timestamps();
             $table->timestamp('deleted_at')->nullable();
 
-            $table->foreign('role_id')->references('id')->on('roles');
             $table->foreign('prefer_team_id')->references('id')->on('clubs');
             $table->foreign('is_player')->references('id')->on('players');
 

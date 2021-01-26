@@ -1,6 +1,20 @@
 <div>
     <div class="mb-2">
         <div class="hidden" style="display:{{ $buttonCity == 1 ? 'block' : '' }}">
+            <div class="m-8">
+                <label class="cursor-pointer my-4 btn border border-black" for="inputLogo" wire:model="inputLogo">Modifier le logo</label>
+                <input class="hidden" type="file" name="inputLogo" id="inputLogo">
+                @if ($inputLogo)
+                Photo Preview:
+                <img src="{{ $inputLogo->temporaryUrl() }}">
+                @endif
+                <div class="hidden font-bold py-4" wire:loading wire:target="inputLogo">Téléchargement...</div>
+                @error('inputLogo')
+                <span class="error">
+                    {{ $message }}
+                </span>
+                @enderror
+            </div>
             <div>
                 <label class="sr-only" for="inputAddress">Adresse</label>
                 <input class="inputForm mb-2 w-full" placeholder="Adresse" type="text" name="inputAddress" id="inputAddress" wire:model="inputAddress">
@@ -72,8 +86,7 @@
                 <p>Nombre d'équipes sénior : {{ $club->number_teams }}</p>
             </div>
         </div>
-        @auth
-        @if(Auth::user()->role_id == '1' || (Auth::user()->role_id == '3' && Auth::user()->prefer_team_id == $club->id))
+        @canany(['isManager', 'isSuperAdmin', 'isAdmin'])
         <div>
             @if($buttonCity == 1)
             <p class="absolute top-2 right-2 bg-danger font-bold text-xs px-2 py-1 rounded-md cursor-pointer" wire:click="clickButtonCity"><i class="fas fa-times-circle"></i></p>
@@ -81,8 +94,7 @@
             <p class="absolute top-2 right-2 bg-darkSuccess font-bold text-xs px-2 py-1 rounded-md cursor-pointer" wire:click="clickButtonCity"><i class="fas fa-pencil-alt"></i></p>
             @endif
         </div>
-        @endif
-        @endauth
+        @endcanany
     </div>
     <!-- <div class="mb-2">
         @if($club->number_teams == null)

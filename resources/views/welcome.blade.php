@@ -14,11 +14,11 @@
             <p class="text-sm md:text-base">Il est possible de gérer ton club mais surtout de commenter et de suivre les matchs en <span class="uppercase text-primary font-bold bg-secondary px-2 rounded-sm">live</span></p>
         </div>
     </div>
-    <div class="flex flex-col lg:flex-row justify-center py-10 shadow-2xl">
+    <div class="flex flex-col lg:flex-row justify-center py-10">
         <div class="w-11/12 m-auto sm:w-8/12 md:w-6/12 lg:w-4/12">
-            <div class="mb-2 rounded-md mx-2">
+            <div class="mb-2 rounded-md mx-2 bg-primary p-4 shadow-xl">
                 <form class="w-full" action="{{ asset('clubs') }}" method="get">
-                    <H3 class="pl-2">Rechercher un club</H3>
+                    <H3 class="p-2 text-white text-xl">Rechercher un club</H3>
                     @csrf
                     <label class="relative" for="search">
                         <input class="inputForm w-full" type="search" placeholder="F.C. Recherche" name="search" id="search">
@@ -27,9 +27,8 @@
                     <input class="sr-only" type="submit">
                 </form>
             </div>
-            <div class="bg-white p-4 rounded-md text-primary w-full">
-                <h3 class="text-center mb-6">Quelques statistiques... </h3>
-                <hr>
+            <div class="mb-2 rounded-md mx-2 bg-primary p-4 text-white shadow-xl">
+                <h3 class="p-2 text-xl">Quelques statistiques... </h3>
                 @if(count($futurMatches) == 1)
                 <p class="text-center mt-6">{{ count($futurMatches) }} match à venir</p>
                 @else
@@ -41,8 +40,8 @@
                 <p class="text-center">{{ count($goals) }} buts marqués</p>
             </div>
         </div>
-        <div class="w-11/12 sm:w-9/12 lg:w-5/12 mx-auto">
-            <h3 class="pl-2">Les matchs du week-end</h3>
+        <div class="w-11/12 sm:w-9/12 lg:w-5/12 h-auto mb-2 rounded-md mx-auto p-4 shadow-xl bg-secondary">
+            <h3 class="p-2 text-primary text-2xl">Les matchs du week-end</h3>
             @foreach($matches->sortBy('date_match') as $match)
             @if($match->date_match->formatLocalized('%V') == now()->week() && $match->date_match->formatLocalized('%Y') == '2021')
             @if($match->date_match->formatLocalized('%A') == "vendredi" || $match->date_match->formatLocalized('%A') == "samedi" || $match->date_match->formatLocalized('%A') == "dimanche")
@@ -53,7 +52,7 @@
         </div>
     </div>
     @auth
-    <div class="flex flex-col w-full bg-secondary lg:flex-row justify-around py-8">
+    <div class="flex flex-col w-full lg:flex-row justify-around py-8">
         <div class="lg:w-5/12">
             <div>
                 <h3>Mes teams préférées</h3>
