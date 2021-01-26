@@ -39,6 +39,8 @@ Route::get('/', function () {
     $user = Auth::user();
     $today = now();
     $goals= Statistic::where('action', 'goal')->get();
+    $yellowCards= Statistic::where('action', 'yellow_card')->get();
+    $redCards= Statistic::where('action','red_card')->get();
     $commentators = Commentator::all();    
 
     return view('welcome', compact(
@@ -53,6 +55,8 @@ Route::get('/', function () {
         'user', 
         'today',
         'goals',
+        'yellowCards',
+        'redCards',
         'commentators',
     ));
 });

@@ -19366,6 +19366,28 @@ burger.addEventListener("click", function () {
   nav.classList.toggle("is-open");
   container.classList.toggle("is-open");
 });
+var compteurs = document.querySelectorAll(".compteur");
+compteurs.forEach(function (compteur) {
+  function animateValue(obj, start, end, duration) {
+    var startTimestamp = null;
+
+    var step = function step(timestamp) {
+      if (!startTimestamp) startTimestamp = timestamp;
+      var progress = Math.min((timestamp - startTimestamp) / duration, 1);
+      obj.innerHTML = Math.floor(progress * (start + end) + start);
+
+      if (progress < valeurCompteur) {
+        window.requestAnimationFrame(step);
+      }
+    };
+
+    window.requestAnimationFrame(step);
+  }
+
+  console.log(compteur.innerHTML);
+  var valeurCompteur = compteur.innerHTML;
+  animateValue(compteur, 0, valeurCompteur, 3500);
+});
 
 /***/ }),
 

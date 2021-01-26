@@ -13,3 +13,23 @@ burger.addEventListener("click", function() {
     nav.classList.toggle("is-open");
     container.classList.toggle("is-open");
 });
+let compteurs = document.querySelectorAll(".compteur");
+
+compteurs.forEach(compteur => {
+    function animateValue(obj, start, end, duration) {
+        let startTimestamp = null;
+        const step = timestamp => {
+            if (!startTimestamp) startTimestamp = timestamp;
+            const progress = Math.min(
+                (timestamp - startTimestamp) / duration, 1);
+            obj.innerHTML = Math.floor(progress * (start + end) + start);
+            if (progress < valeurCompteur) {
+                window.requestAnimationFrame(step);
+            }
+        };
+        window.requestAnimationFrame(step);
+    }
+    console.log(compteur.innerHTML);
+    let valeurCompteur = compteur.innerHTML;
+    animateValue(compteur, 0, valeurCompteur, 3500);
+});
