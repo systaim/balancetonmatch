@@ -34,6 +34,12 @@ class JetstreamServiceProvider extends ServiceProvider
             session()->flash('before-login-url', url()->previous());
             return view('auth.login');
         });
+
+        // register new RegisterResponse
+        $this->app->singleton(
+            \Laravel\Fortify\Contracts\RegisterResponse::class,
+            \App\Http\Responses\RegisterResponse::class
+        );
     }
 
     /**

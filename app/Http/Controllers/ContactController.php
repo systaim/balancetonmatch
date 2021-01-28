@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Validator;
 class ContactController extends Controller
 {
 
-    public function __invoke(Request $request)
+    public function store(Request $request)
     {
 
         $this->validate($request, [
@@ -30,13 +30,14 @@ class ContactController extends Controller
             'message' => $request->get('message'),
         ];
 
-        $admins = User::where('role_id', '1')->get();
+        $admins = User::where('role', 'super-admin')->get()->pluck('email');
 
         foreach ($admins as $admin) {
+            Mail::to('systaim@gmail.com')
+            ->send(new ContactMail($contactCreate));
         }
 
-        Mail::to('systaim@gmail.com')
-            ->send(new ContactMail($contactCreate));
+        
 
         return redirect('/')->with('success', 'Votre message a bien été envoyée');
     }

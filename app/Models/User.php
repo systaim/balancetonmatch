@@ -33,9 +33,13 @@ class User extends Authenticatable
         'date_of_birth',
         'tel',
         'password',
-        'prefer_team_id',
+        'club_id',
         'rank',
         'profile_photo_path',
+        'region_id',
+        'note',
+        'first_com',
+        'is_player'
     ];
 
     /**
@@ -74,7 +78,7 @@ class User extends Authenticatable
     }
 
     public function club(){
-        return $this->belongsTo(Club::class, 'prefer_team_id');
+        return $this->belongsTo(Club::class, 'club_id');
     }
 
     public function commentator()

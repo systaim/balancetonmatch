@@ -4,6 +4,7 @@ namespace App\Actions\Fortify;
 
 use App\Models\Club;
 use App\Models\Player;
+use App\Models\Region;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -26,23 +27,26 @@ class CreateNewUser implements CreatesNewUsers
         Validator::make($input, [
             'last_name' => ['required', 'string', 'max:255'],
             'first_name' => ['required', 'string', 'max:255'],
-            'pseudo' => ['required', 'string', 'max:50'],
+            'pseudo' => ['required', 'unique:users', 'string', 'max:50'],
             'date_of_birth' => ['nullable', 'date'],
-            'prefer_team' => ['nullable'],
+            // 'club' => ['nullable'],
             // 'isPlayer' => ['required'],
+            // 'region' => ['nullable'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => $this->passwordRules(),
         ])->validate();
 
-        $club = Club::where('name', $input['prefer_team'])->first();
+        $club = Club::where('name', $input['club'])->first();
+        // $region = Region::where('name', $input['region'])->first();
 
         return User::create([
             'last_name' => $input['last_name'],
             'first_name' => $input['first_name'],
             'pseudo' => $input['pseudo'],
             'date_of_birth' => $input['date_of_birth'],
-            'prefer_team_id' => $club->id,
+            // 'club_id' => $club->id,
             // 'is_player' => $input['isPlayer'],
+            // 'region_id' => $region->id,
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
         ]);

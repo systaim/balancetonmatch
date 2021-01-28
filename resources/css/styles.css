@@ -174,7 +174,7 @@ h6 {
     height: calc(100vh - 6rem);
 }
 
-.alert {
+.message-alert {
     position: fixed;
     opacity: 0;
     bottom: 2.5rem;
@@ -197,15 +197,15 @@ h6 {
     transition-delay: 1s;
 }
 
-.alert.success {
+.message-alert.success {
     @apply bg-success border-green-400
 }
 
-.alert.warning {
+.message-alert.warning {
     @apply bg-orange-500 border-orange-400
 }
 
-.alert.danger {
+.message-alert.danger {
     @apply bg-danger border-red-500
 }
 

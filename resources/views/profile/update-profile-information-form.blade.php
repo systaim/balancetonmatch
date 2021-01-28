@@ -10,12 +10,9 @@
     <x-slot name="form">
         <!-- Profile Photo -->
         @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
-            <div x-data="{photoName: null, photoPreview: null}" class="col-span-6 sm:col-span-4">
-                <!-- Profile Photo File Input -->
-                <input type="file" class="hidden"
-                            wire:model="photo"
-                            x-ref="photo"
-                            x-on:change="
+        <div x-data="{photoName: null, photoPreview: null}" class="col-span-6 sm:col-span-4">
+            <!-- Profile Photo File Input -->
+            <input type="file" class="hidden" wire:model="photo" x-ref="photo" x-on:change="
                                     photoName = $refs.photo.files[0].name;
                                     const reader = new FileReader();
                                     reader.onload = (e) => {
@@ -24,52 +21,51 @@
                                     reader.readAsDataURL($refs.photo.files[0]);
                             " />
 
-                <x-jet-label for="photo" value="{{ __('Photo') }}" />
+            <x-jet-label for="photo" value="{{ __('Photo') }}" />
 
-                <!-- Current Profile Photo -->
-                <div class="mt-2" x-show="! photoPreview">
-                    <img src="{{ $this->user->profile_photo_url }}" alt="{{ $this->user->name }}" class="rounded-full h-20 w-20 object-cover">
-                </div>
-
-                <!-- New Profile Photo Preview -->
-                <div class="mt-2" x-show="photoPreview">
-                    <span class="block rounded-full w-20 h-20"
-                          x-bind:style="'background-size: cover; background-repeat: no-repeat; background-position: center center; background-image: url(\'' + photoPreview + '\');'">
-                    </span>
-                </div>
-
-                <button class="mt-2 mr-2 btn btnPrimary" type="button" x-on:click.prevent="$refs.photo.click()">
-                    {{ __('Select A New Photo') }}
-                </button>
-
-                @if ($this->user->profile_photo_path)
-                    <button type="button" class="mt-2 btn btnPrimary" wire:click="deleteProfilePhoto">
-                        {{ __('Remove Photo') }}
-                    </button>
-                @endif
-
-                <x-jet-input-error for="photo" class="mt-2" />
+            <!-- Current Profile Photo -->
+            <div class="mt-2" x-show="! photoPreview">
+                <img src="{{ $this->user->profile_photo_url }}" alt="{{ $this->user->name }}" class="rounded-full h-20 w-20 object-cover">
             </div>
+
+            <!-- New Profile Photo Preview -->
+            <div class="mt-2" x-show="photoPreview">
+                <span class="block rounded-full w-20 h-20" x-bind:style="'background-size: cover; background-repeat: no-repeat; background-position: center center; background-image: url(\'' + photoPreview + '\');'">
+                </span>
+            </div>
+
+            <button class="mt-2 mr-2 btn btnPrimary" type="button" x-on:click.prevent="$refs.photo.click()">
+                {{ __('Select A New Photo') }}
+            </button>
+
+            @if ($this->user->profile_photo_path)
+            <button type="button" class="mt-2 btn btnPrimary" wire:click="deleteProfilePhoto">
+                {{ __('Remove Photo') }}
+            </button>
+            @endif
+
+            <x-jet-input-error for="photo" class="mt-2" />
+        </div>
         @endif
 
         <!-- nom -->
         <div class="col-span-6 sm:col-span-4">
             <x-jet-label for="last_name" value="Nom de Famille" />
-            <x-jet-input id="last_name" type="text" class="mt-1 block w-full cursor-not-allowed" wire:model.defer="state.last_name" autocomplete="last_name" disabled/>
+            <x-jet-input id="last_name" type="text" class="mt-1 block w-full cursor-not-allowed" wire:model.defer="state.last_name" autocomplete="last_name" disabled />
             <x-jet-input-error for="last_name" class="mt-2" />
-        </div> 
+        </div>
 
         <!-- prenom -->
         <div class="col-span-6 sm:col-span-4">
             <x-jet-label for="prenom" value="Prénom" />
-            <x-jet-input id="first_name" type="text" class="mt-1 block w-full cursor-not-allowed" wire:model.defer="state.first_name" autocomplete="first_name" disabled/>
+            <x-jet-input id="first_name" type="text" class="mt-1 block w-full cursor-not-allowed" wire:model.defer="state.first_name" autocomplete="first_name" disabled />
             <x-jet-input-error for="first_name" class="mt-2" />
-        </div> 
+        </div>
 
         <!-- pseudo -->
         <div class="col-span-6 sm:col-span-4">
             <x-jet-label for="pseudo" value="Pseudo" />
-            <x-jet-input id="pseudo" type="text" class="mt-1 block w-full cursor-not-allowed" wire:model.defer="state.pseudo" autocomplete="pseudo" disabled/>
+            <x-jet-input id="pseudo" type="text" class="mt-1 block w-full cursor-not-allowed" wire:model.defer="state.pseudo" autocomplete="pseudo" disabled />
             <x-jet-input-error for="pseudo" class="mt-2" />
         </div>
 

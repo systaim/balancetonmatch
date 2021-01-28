@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\Club;
+use App\Models\User;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
@@ -33,9 +35,9 @@ class AuthServiceProvider extends ServiceProvider
             return $user->role == 'admin';
         });
 
-        Gate::define('isManager', function($user){
-            return $user->role == 'manager';
-        });
+        // Gate::define('isManager', function(User $user, Club $club){
+        //     return $club->id == $user->club_id && $user->role == "manager";
+        // });
 
         Gate::define('isGuest', function($user){
             return $user->role == 'guest';

@@ -12,6 +12,10 @@
         <div class="flex flex-col items-center">
             <label class="cursor-pointer my-4 btn border border-black" for="cover">Choisir une photo 📷</label>
             <input class="hidden" type="file" name="cover" id="cover" wire:model="cover">
+            @if ($cover)
+            Photo Preview:
+            <img src="{{ $cover->temporaryUrl() }}">
+            @endif
             @error('photo')
             <span class="error">
                 {{ $message }}

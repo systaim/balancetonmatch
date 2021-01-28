@@ -32,7 +32,7 @@ class SearchMatch extends Component
         $this->matches = [];
         if (strlen($this->search) >= 3) {
 
-            $clubs = Club::where('name', 'like', '%' . $this->search . '%')->get()->pluck('id');            
+            $clubs = Club::where('name', 'like', '%' . $this->search . '%')->get()->pluck('id');  
 
             $this->matches = Match::where('date_match','>=', Carbon::now())
                             ->where(function($query) use ($clubs)
@@ -41,7 +41,7 @@ class SearchMatch extends Component
                                 ->orwhere('away_team_id', $clubs);
                             })
                             ->get();
-                            dd($this->matches);
+                            // dd($this->matches);
         }
     }
 

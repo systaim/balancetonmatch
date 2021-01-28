@@ -3,15 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Club;
+use App\Models\Department;
 use App\Models\Favorismatch;
 use App\Models\Favoristeam;
 use App\Models\Match;
 use App\Models\Player;
+use App\Models\Region;
 use App\Models\Staff;
 use App\Models\Statistic;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
+use function App\Models\region;
 
 class ClubController extends Controller
 {
@@ -23,7 +27,7 @@ class ClubController extends Controller
     public function index()
     {
         $clubs = Club::all();
-        return view('clubs.index', ['clubs' => $clubs]);
+        return view('clubs.index', compact('clubs'));
     }
 
     /**

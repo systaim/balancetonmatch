@@ -27,13 +27,14 @@ class CreateUsersTable extends Migration
             $table->integer('tel')->nullable();
             $table->float('note_commentaires')->nullable();
             $table->integer('prefer_team_id')->nullable();
+            $table->integer('region_id')->nullable();
             $table->enum('role', ['super-admin', 'admin', 'manager', 'guest']);
             $table->unsignedBigInteger('is_player')->nullable();
             $table->boolean('first_com')->default(1);
             $table->timestamps();
             $table->timestamp('deleted_at')->nullable();
             
-
+            $table->foreign('region_id')->references('id')->on('regions');
         });
     }
 

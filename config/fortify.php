@@ -63,6 +63,7 @@ return [
 
     'home' => RouteServiceProvider::HOME,
     'match' => RouteServiceProvider::MATCH, 
+    'user/profile' =>RouteServiceProvider::PROFILE,
 
     /*
     |--------------------------------------------------------------------------

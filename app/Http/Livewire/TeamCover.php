@@ -42,7 +42,7 @@ class TeamCover extends Component
     public function coverTeam()
     {
         $this->validate([
-            'cover' => 'image | max:5120',
+            'cover' => 'image | max:10000',
         ]);
 
 

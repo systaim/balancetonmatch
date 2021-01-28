@@ -21,6 +21,8 @@ class RouteServiceProvider extends ServiceProvider
 
     public const MATCH = 'matches/create';
 
+    public const PROFILE = 'user/profile';
+
     /**
      * If specified, this namespace is automatically applied to your controller routes.
      *

@@ -172,7 +172,7 @@ h6 {
   height: calc(100vh - 6rem);
 }
 
-.alert {
+.message-alert {
   position: fixed;
   opacity: 0;
   bottom: 2.5rem;
@@ -196,7 +196,7 @@ h6 {
   transition-delay: 1s;
 }
 
-.alert.success {
+.message-alert.success {
   --bg-opacity: 1;
   background-color: #00ff48;
   background-color: rgba(0, 255, 72, var(--bg-opacity));
@@ -205,7 +205,7 @@ h6 {
   border-color: rgba(49, 196, 141, var(--border-opacity))
 }
 
-.alert.warning {
+.message-alert.warning {
   --bg-opacity: 1;
   background-color: #ff5a1f;
   background-color: rgba(255, 90, 31, var(--bg-opacity));
@@ -214,7 +214,7 @@ h6 {
   border-color: rgba(255, 138, 76, var(--border-opacity))
 }
 
-.alert.danger {
+.message-alert.danger {
   --bg-opacity: 1;
   background-color: #ff1500;
   background-color: rgba(255, 21, 0, var(--bg-opacity));

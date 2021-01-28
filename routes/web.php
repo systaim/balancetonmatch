@@ -83,6 +83,6 @@ Route::resource('commentaires', 'App\Http\Controllers\CommentaireController');
 Route::resource('clubs.players', 'App\Http\Controllers\PlayerController');
 Route::resource('clubs.staffs', 'App\Http\Controllers\StaffController');
 
-Route::post('traitement-contact', 'App\Http\Controllers\ContactController')->name('contacts.store');
+Route::post('traitement-contact', 'App\Http\Controllers\ContactController@store')->name('contacts.store');
 
 Route::get('commentaire/delete/{id}', 'App\Http\Controllers\CommentaireController@destroy')->name('supprimer');

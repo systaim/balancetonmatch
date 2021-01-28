@@ -123,30 +123,30 @@
                         @endauth
                     </div>
                 </div>
-                <nav class="mt-12 text-2xl md:text-3xl lg:text-4xl uppercase flex flex-col items-center justify-center w-4/5 lg:h-screen">
+                <nav class="mt-12 text-xl md:text-3xl lg:text-4xl uppercase flex flex-col items-center justify-center w-4/5 lg:h-screen">
                     <ul class="">
-                        <li class=" mb-14 border-b border-black"><a href="/">Accueil</a></li>
-                        <li class=" mb-14 border-b border-black"><a href="{{ route('clubs.index') }}">Rechercher un club</a></li>
-                        <li class=" mb-14 border-b border-black"><a href="{{ route('matches.index') }}">Liste des matchs</a></li>
-                        <li class=" mb-14 border-b border-black"><a href="/contact">Contact</a></li>
+                        <li class=" mb-4 border-b border-black"><a href="/">Accueil</a></li>
+                        <li class=" mb-4 border-b border-black"><a href="{{ route('clubs.index') }}">Rechercher un club</a></li>
+                        <li class=" mb-4 border-b border-black"><a href="{{ route('matches.index') }}">Liste des matchs</a></li>
+                        <li class=" mb-4 border-b border-black"><a href="/contact">Contact</a></li>
                     </ul>
                 </nav>
             </div>
         </header>
         @if (\Session::has('success'))
-        <div class="alert success" x-show.transition="open">
+        <div class="message-alert success" x-show.transition="open">
             <i class="fas fa-check-circle text-5xl text-white rounded-full shadow-xl"></i>
             <p> {!! \Session::get('success') !!}</p>
         </div>
         @endif
         @if (\Session::has('warning'))
-        <div class="alert warning">
+        <div class="message-alert warning">
             <i class="fas fa-exclamation-circle text-5xl text-white rounded-full shadow-xl"></i>
             <p> {!! \Session::get('warning') !!}</p>
         </div>
         @endif
         @if (\Session::has('danger'))
-        <div class="alert danger">
+        <div class="message-alert danger">
             <i class="fas fa-times-circle text-5xl text-white rounded-full shadow-xl"></i>
             <p> {!! \Session::get('danger') !!}</p>
         </div>

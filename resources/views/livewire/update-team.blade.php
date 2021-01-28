@@ -1,20 +1,6 @@
 <div>
     <div class="mb-2">
         <div class="hidden" style="display:{{ $buttonCity == 1 ? 'block' : '' }}">
-            <div class="m-8">
-                <label class="cursor-pointer my-4 btn border border-black" for="inputLogo" wire:model="inputLogo">Modifier le logo</label>
-                <input class="hidden" type="file" name="inputLogo" id="inputLogo">
-                @if ($inputLogo)
-                Photo Preview:
-                <img src="{{ $inputLogo->temporaryUrl() }}">
-                @endif
-                <div class="hidden font-bold py-4" wire:loading wire:target="inputLogo">Téléchargement...</div>
-                @error('inputLogo')
-                <span class="error">
-                    {{ $message }}
-                </span>
-                @enderror
-            </div>
             <div>
                 <label class="sr-only" for="inputAddress">Adresse</label>
                 <input class="inputForm mb-2 w-full" placeholder="Adresse" type="text" name="inputAddress" id="inputAddress" wire:model="inputAddress">
