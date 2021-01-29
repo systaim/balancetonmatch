@@ -36,7 +36,7 @@ class CreateNewUser implements CreatesNewUsers
             'password' => $this->passwordRules(),
         ])->validate();
 
-        $club = Club::where('name', $input['club'])->first();
+        // $club = Club::where('name', $input['club'])->first();
         // $region = Region::where('name', $input['region'])->first();
 
         return User::create([
