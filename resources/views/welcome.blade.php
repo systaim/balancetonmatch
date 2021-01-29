@@ -4,14 +4,14 @@
     <div class="flex flex-col md:flex-row justify-between bg-primary overflow-hidden h-96">
         <div class="h-6/12 sm:h-8/12 md:h-auto md:w-6/12 img-bg-blend-home">
         </div>
-        <div class="h-auto text-white py-4 md:w-6/12 px-12 lg:px-24 2xl:px-64 m-auto text-center">
+        <div class="h-auto text-white py-4 md:w-6/12 px-12 xl:w-4/12 m-auto text-center">
             <div class="flex items-center justify-center">
                 <hr class="w-10 border border-secondary">
                 <h2 class="text-xl md:text-3xl my-2 mx-6">Bienvenue</h2>
                 <hr class="w-10 border border-secondary">
             </div>
             <p class="text-sm md:text-base">BalanceTonMatch.com a pour but de rassembler les passionnés du ballon rond AMATEUR.</p>
-            <p class="text-sm md:text-base">Il est possible de gérer ton club mais surtout de commenter et de suivre les matchs en <span class="uppercase text-primary font-bold bg-secondary px-2 rounded-sm">live</span></p>
+            <p class="text-sm md:text-base">N'importe qui peut devenir commentateur ou peut simplement suivre les matchs en <span class="uppercase text-primary font-bold bg-secondary px-2 rounded-sm">live</span></p>
         </div>
     </div>
     <div class="py-6">
@@ -29,7 +29,7 @@
             </div>
         </div>
     </div>
-    <div class="bg-secondary py-6">
+    <div class="py-6">
         <div class="flex justify-center">
             <h3 class="p-2 text-primary text-2xl">La saison 2020/2021 c'est : </h3>
         </div>

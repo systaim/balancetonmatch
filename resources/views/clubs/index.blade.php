@@ -3,6 +3,8 @@
 
 @livewire('search-teams', [
 'clubs' => $clubs,
+'regions' => $regions,
+'departements' => $departements,
 ])
 
 @endsection

@@ -27,7 +27,9 @@ class ClubController extends Controller
     public function index()
     {
         $clubs = Club::all();
-        return view('clubs.index', compact('clubs'));
+        $regions = Region::all();
+        $departements = Department::all();
+        return view('clubs.index', compact('clubs', 'regions', 'departements'));
     }
 
     /**

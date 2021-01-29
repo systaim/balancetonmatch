@@ -19,17 +19,23 @@ class SearchTeams extends Component
     public $search;
     public $regions;
     public $departements;
+    public $nomClub = "";
+    public $region;
+    public $departement;
 
     public function mount(Request $request)
     {
         if ($request->has('search')) {
             $this->query = $request->search;
         }
-        $this->regions = Region::all();
+
+        // $this->regions = Region::all();
         $this->departements = Department::all();
+
+        $this->regions = Region::find($this->departements->keys());
     }
 
-    public function updatingQuery()
+    public function updatedQuery()
     {
         $this->resetPage();
     }

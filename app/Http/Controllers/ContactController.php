@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\AskNewTeamMail;
 use App\Mail\ContactMail;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -33,12 +34,34 @@ class ContactController extends Controller
         $admins = User::where('role', 'super-admin')->get()->pluck('email');
 
         foreach ($admins as $admin) {
-            Mail::to('systaim@gmail.com')
+            Mail::to($admin)
             ->send(new ContactMail($contactCreate));
         }
 
-        
+        return redirect('/')->with('success', 'Ton message a bien été envoyée');
+    }
 
-        return redirect('/')->with('success', 'Votre message a bien été envoyée');
+    public function askNewTeam(Request $request)
+    {
+        $this->validate($request, [
+            'region' => 'string',
+            'departement' => 'string',
+            'nomClub' => 'string',
+        ]);
+
+        $contactCreate = [
+            'region' => $request->get('region'),
+            'departement' => $request->get('departement'),
+            'nomClub' => $request->get('nomClub'),
+        ];
+
+        $admins = User::where('role', 'super-admin')->get()->pluck('email');
+
+        foreach ($admins as $admin) {
+            Mail::to($admin)
+            ->send(new AskNewTeamMail($contactCreate));
+        }
+
+        return redirect('/')->with('success', 'Ta demande a bien été envoyée');
     }
 }

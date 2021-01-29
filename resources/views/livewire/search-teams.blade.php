@@ -34,17 +34,18 @@
         @endif
         @endforeach
         @if($clubs->isEmpty())
-        <div class="bg-primary text-white font-bold rounded-lg p-4">
-            <div class="flex flex-col items-center justify-center">
-                <p>Tu ne trouves pas ce que tu veux ? </p>
-                <p>Renouvelle ta recherche ou signale le !</p>
+        <div class="bg-primary text-white rounded-lg p-4">
+            <div class="flex flex-col items-center justify-center mb-3">
+                <p class="text-2xl">OUPS ! </p>
+                <p>Renouvelle ta recherche ou demande l'ajout du club !</p>
             </div>
 
             <div class="flex flex-col-reverse items-center justify-around lg:flex-row" role="alert">
                 <img src="{{ asset('images/gifs/fail.gif') }}" alt="">
                 @auth
                 <div class="text-sm my-2 flex-grow mx-3">
-                    <form class="my-4 m-auto" action="">
+                    <form class="my-4 m-auto" action="{{ route('contacts.askNewTeam') }}" method="POST">
+                        @csrf
                         <div>
                             <label for="region">Quelle région ?</label>
                             <select class="inputForm focus:outline-none focus:shadow-outline w-full my-1" name="region" id="region" wire:model="region" :value="old('region')" autocomplete="region" required>
@@ -55,17 +56,17 @@
                             </select>
                         </div>
                         <div>
-                            <label for="region">Quelle département ?</label>
-                            <select class="inputForm focus:outline-none focus:shadow-outline w-full my-1" name="region" id="region" wire:model="region" :value="old('region')" autocomplete="region" required>
-                                <option>Choisis le département</option>
-                                @foreach($departements->sortBy('name') as $departement)
+                            <label for="departement">Quel district ?</label>
+                            <select class="inputForm focus:outline-none focus:shadow-outline w-full my-1" name="departement" id="departement" wire:model="departement" :value="old('departement')" autocomplete="departement" required>
+                                <option>Choisis le district</option>
+                                @foreach($departements as $departement)
                                 <option value="{{ $departement->name }}">{{ $departement->name }}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div>
                             <label for="nomClub">Quel est le nom du club ?</label>
-                            <input class="inputForm focus:outline-none focus:shadow-outline w-full my-1" type="text" name="nomClub" id="nomClub" placeholder="Sois le plus précis possible ;)">
+                            <input class="inputForm focus:outline-none focus:shadow-outline w-full my-1" type="text" name="nomClub" id="nomClub" wire:model="nomClub" placeholder="Essaie d'être précis ;)">
                         </div>
                         <div class="float-right">
                             <input class="btn btnSecondary" type="submit" value="Envoyer">

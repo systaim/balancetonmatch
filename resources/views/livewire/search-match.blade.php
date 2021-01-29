@@ -9,7 +9,6 @@
                     <p class="text-primary bg-white px-2 py-2 rounded-md my-2">{{ $match->homeClub->name }} <span class="font-bold px-3 py-5 bg-secondary text-primary mx-2 rounded-md"> VS </span> {{ $match->awayClub->name }}</p>
                 </a>
             </div>
-            @dump($match)
             @endforeach
         </div>
     </div>
