@@ -27,7 +27,7 @@ class CreateUsersTable extends Migration
             $table->integer('tel')->nullable();
             $table->float('note_commentaires')->nullable();
             $table->integer('club_id')->nullable();
-            $table->integer('region_id')->nullable();
+            $table->unsignedBigInteger('region_id')->nullable();
             $table->enum('role', ['super-admin', 'admin', 'manager', 'guest']);
             $table->unsignedBigInteger('is_player')->nullable();
             $table->boolean('first_com')->default(1);
