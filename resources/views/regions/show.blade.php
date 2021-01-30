@@ -6,7 +6,7 @@
 </div>
 
 <div class="relative lg:flex lg:justify-center">
-    <div class="w-11/12 m-auto lg:w-9/12">
+    <div class="w-11/12 sm:w-9/12 lg:w-5/12 h-auto mb-2 rounded-md mx-auto p-4">
         @foreach($matchesByRegion->sortByDesc('date_match') as $match)
         <div class="rounded-b-md rounded-tr-md">
             @include('match')

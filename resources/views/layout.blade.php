@@ -123,13 +123,38 @@
                         @endauth
                     </div>
                 </div>
-                <nav class="mt-12 text-xl md:text-3xl lg:text-4xl uppercase flex flex-col items-center justify-center w-4/5 lg:h-screen">
+                <nav class="mt-12  flex flex-col items-center justify-center w-4/5 lg:h-screen">
                     <ul class="">
-                        <li class=" mb-4 border-b border-black"><a href="/">Accueil</a></li>
-                        <li class=" mb-4 border-b border-black"><a href="{{ route('clubs.index') }}">Rechercher un club</a></li>
-                        <li class=" mb-4 border-b border-black"><a href="{{ route('matches.index') }}">Liste des matchs</a></li>
-                        <li class=" mb-4 border-b border-black"><a href="/contact">Contact</a></li>
-                        <li class=" mb-4 border-b border-black"><a href="{{ route('regions.show', ['region' => '3' ]) }}">Bretagne</a></li>
+                        <li class=" mb-4 border-b border-black text-xl md:text-3xl lg:text-4xl uppercase"><a href="/">Accueil</a></li>
+                        <li class=" mb-4 border-b border-black text-xl md:text-3xl lg:text-4xl uppercase"><a href="{{ route('clubs.index') }}">Rechercher un club</a></li>
+                        <li class=" mb-4 border-b border-black text-xl md:text-3xl lg:text-4xl uppercase"><a href="{{ route('matches.index') }}">Liste des matchs</a></li>
+                        <ul class="pl-12">
+                            <li>Par région</li>
+                            <ul class="pl-12">
+                                <li class=""><a href="1">Auvergne - Rhones-Alpes</a></li>
+                                <li class=""><a href="2">Bourgogne - Franche Comté</a></li>
+                                <li class=""><a href="3">Bretagne</a></li>
+                                <li class=""><a href="4">Centre Val de Loire</a></li>
+                                <li class=""><a href="5">Corse</a></li>
+                                <li class=""><a href="6">Grand Est</a></li>
+                                <li class=""><a href="7">Guadeloupe</a></li>
+                                <li class=""><a href="8">Guyane</a></li>
+                                <li class=""><a href="9">Hauts de France</a></li>
+                                <li class=""><a href="10">Martinique</a></li>
+                                <li class=""><a href="11">Mayotte</a></li>
+                                <li class=""><a href="12">Méditerranée</a></li>
+                                <li class=""><a href="13">Normandie</a></li>
+                                <li class=""><a href="14">Nouvelle Aquitaine</a></li>
+                                <li class=""><a href="15">Occitanie</a></li>
+                                <li class=""><a href="16">Paris IDF</a></li>
+                                <li class=""><a href="17">Pays de la Loire</a></li>
+                                <li class=""><a href="18">Réunion</a></li>
+                                <li class=""><a href="19">St Pierre & Miquelon</a></li>
+                                
+                            </ul>
+                        </ul>
+                        <li class=" mb-4 border-b border-black text-xl md:text-3xl lg:text-4xl uppercase"><a href="/contact">Contact</a></li>
+                        <li class=" mb-4 border-b border-black text-xl md:text-3xl lg:text-4xl uppercase"><a href="{{ route('regions.show', ['region' => '3' ]) }}">Bretagne</a></li>
                     </ul>
                 </nav>
             </div>

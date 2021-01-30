@@ -105,6 +105,14 @@ Route::get('live', function(){
     return view('matches.live', compact('liveMatches', 'user', 'competitions'));
 });
 
+Route::get('matchesduweekend', function(){
+
+    $user = Auth::user();
+    $matches = Match::all();
+
+    return view('matches.weekend', compact('matches','user'));
+});
+
 
 
 Route::get('commentaire/delete/{id}', 'App\Http\Controllers\CommentaireController@destroy')->name('supprimer');

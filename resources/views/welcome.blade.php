@@ -15,8 +15,8 @@
         </div>
     </div>
     <div class="py-6">
-        <div class="w-11/12 m-auto sm:w-8/12 md:w-6/12 lg:w-4/12">
-            <div class="rounded-md mx-2 bg-primary p-4 shadow-xl">
+        <div class="w-11/12 m-auto sm:w-8/12 md:w-6/12">
+            <div class="rounded-md mx-2 bg-primary py-4 px-12 shadow-xl">
                 <form class="w-full" action="{{ asset('clubs') }}" method="get">
                     <H3 class="p-2 text-white text-xl">Rechercher un club</H3>
                     @csrf
@@ -29,12 +29,24 @@
             </div>
         </div>
     </div>
-    <div class="flex flex-wrap justify-center items-center">
-        <div class="relative w-11/12 bg-primary rounded-lg h-48 p-4 text-white flex flex-col justify-center items-center">
-            <i class="text-6xl fas fa-microphone-alt"></i>
-            <p class="absolute top-2 right-2 py-1 px-2 rounded-md text-xl text-primary font-bold bg-secondary">LIVE</p>
-            <p>Tous les matchs en live</p>
-            <a href="/live" class="btn btnSecondary">J'y vais</a>
+    <div class="flex flex-wrap justify-center items-center m-6">
+        <div class="relative w-80 bg-primary rounded-lg h-64 p-2 text-white flex flex-col justify-around items-center m-6 shadow-xl">
+            <p class="font-bold">Les matchs en live</p>
+            <i class="relative text-6xl fas fa-microphone-alt my-4">
+                <div class="animate-ping absolute -top-0.5 right-1 bg-red-500 h-3 w-3 rounded-full z-10"></div>
+            </i>
+            <p class="absolute top-2 left-2 py-1 px-2 rounded-md text-xl text-primary font-bold bg-secondary">LIVE</p>
+            <div class="flex justify-end w-full">
+                <a href="/live" class="btn btnSecondary">Par ici !</a>
+            </div>
+            <!-- <p>Tous les matchs en live</p> -->
+        </div>
+        <div class="relative w-80 bg-primary rounded-lg h-64 p-2 text-white flex flex-col justify-around items-center m-6 shadow-xl">
+            <p class="font-bold">Les matchs du week-end</p>
+            <i class="relative text-6xl fas fa-futbol my-4"></i>
+            <div class="flex justify-end w-full">
+                <a href="/matchesduweekend" class="btn btnSecondary">Je jette un oeil</a>
+            </div>
         </div>
     </div>
     <div class="py-6">
@@ -72,18 +84,7 @@
             </div>
         </div>
     </div>
-    <div class="flex flex-col lg:flex-row justify-center py-10">
-        <div class="w-11/12 sm:w-9/12 lg:w-5/12 h-auto mb-2 rounded-md mx-auto p-4 shadow-xl ">
-            <h3 class="p-2 text-primary text-2xl">Les matchs du week-end</h3>
-            @foreach($matches->sortBy('date_match') as $match)
-            @if($match->date_match->formatLocalized('%V') == now()->week() && $match->date_match->formatLocalized('%Y') == '2021')
-            @if($match->date_match->formatLocalized('%A') == "vendredi" || $match->date_match->formatLocalized('%A') == "samedi" || $match->date_match->formatLocalized('%A') == "dimanche")
-            @include('match')
-            @endif
-            @endif
-            @endforeach
-        </div>
-    </div>
+    
     @auth
     <div class="flex flex-col w-full lg:flex-row justify-around py-8">
         <div class="lg:w-5/12">
