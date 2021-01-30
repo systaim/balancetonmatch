@@ -82,8 +82,11 @@ Route::resource('matches', 'App\Http\Controllers\MatchController');
 Route::resource('commentaires', 'App\Http\Controllers\CommentaireController');
 Route::resource('clubs.players', 'App\Http\Controllers\PlayerController');
 Route::resource('clubs.staffs', 'App\Http\Controllers\StaffController');
+Route::resource('regions', 'App\Http\Controllers\RegionController');
 
 Route::post('contacts', 'App\Http\Controllers\ContactController@store')->name('contacts.store');
 Route::post('contactsNewTeam', 'App\Http\Controllers\ContactController@askNewTeam')->name('contacts.askNewTeam');
+
+
 
 Route::get('commentaire/delete/{id}', 'App\Http\Controllers\CommentaireController@destroy')->name('supprimer');

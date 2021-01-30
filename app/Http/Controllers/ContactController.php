@@ -31,12 +31,16 @@ class ContactController extends Controller
             'message' => $request->get('message'),
         ];
 
-        $admins = User::where('role', 'super-admin')->get()->pluck('email');
+        $superAdmin = User::where('role', 'super-admin')->get()->pluck('email');
+        // $admins = User::where('role', 'admin')->get()->pluck('email');
 
-        foreach ($admins as $admin) {
-            Mail::to($admin)
+        Mail::to($superAdmin)
             ->send(new ContactMail($contactCreate));
-        }
+
+        // foreach ($admins as $admin) {
+        //     Mail::to($admin)
+        //     ->send(new ContactMail($contactCreate));
+        // }
 
         return redirect('/')->with('success', 'Ton message a bien été envoyée');
     }
@@ -55,12 +59,16 @@ class ContactController extends Controller
             'nomClub' => $request->get('nomClub'),
         ];
 
-        $admins = User::where('role', 'super-admin')->get()->pluck('email');
+        $superAdmin = User::where('role', 'super-admin')->get()->pluck('email');
+        // $admins = User::where('role', 'admin')->get()->pluck('email');
 
-        foreach ($admins as $admin) {
-            Mail::to($admin)
-            ->send(new AskNewTeamMail($contactCreate));
-        }
+        Mail::to($superAdmin)
+            ->send(new ContactMail($contactCreate));
+
+        // foreach ($admins as $admin) {
+        //     Mail::to($admin)
+        //     ->send(new ContactMail($contactCreate));
+        // }
 
         return redirect('/')->with('success', 'Ta demande a bien été envoyée');
     }

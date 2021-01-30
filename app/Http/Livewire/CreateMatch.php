@@ -8,6 +8,7 @@ use App\Models\Competition;
 use App\Models\Group;
 use App\Models\Match;
 use App\Models\Region;
+use App\Models\User;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -79,9 +80,9 @@ class CreateMatch extends Component
         if ($this->competition == "2") {
             $match->division_department_id = $this->divisionsDepartments;
         }
-        if ($this->competition == "3") {
-            $match->region_id = "20";
-        }
+        // if ($this->competition == "3") {
+        //     $match->region_id = "20";
+        // }
         $match->user_id = $user->id;
 
         if ($homeTeam != $awayTeam) {
@@ -96,12 +97,20 @@ class CreateMatch extends Component
                 'user_id' => $match->user_id,
             ];
 
-            Mail::to('systaim@gmail.com')
-            ->send(new MatchMail($matchCreate));
+            $superAdmin = User::where('role', 'super-admin')->get()->pluck('email');
+        // $admins = User::where('role', 'admin')->get()->pluck('email');
+
+            Mail::to($superAdmin)
+                    ->send(new MatchMail($matchCreate));
+
+        // foreach ($admins as $admin) {
+        //     Mail::to($admin)
+        //     ->send(new ContactMail($contactCreate));
+        // }
 
             return redirect()->to('matches/'.$match->id);
         } else {
-            $this->messageErreur = 'Les 2 équipes doivent être différentes';
+            session()->flash('danger', 'Les 2 équipes doivent être différentes');
         }
     }
 

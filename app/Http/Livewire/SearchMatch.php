@@ -24,13 +24,14 @@ class SearchMatch extends Component
         $this->matches = Match::where('date_match', '>=', Carbon::now()->subHours(12))
         ->orderBy('date_match', 'asc')->get();
         $this->regions = Region::find($this->matches->keys());
+        $this->matches = [];
 
     }
 
-    public function updatedSearch()
+    public function searchMatch()
     {
-        $this->matches = [];
-        if (strlen($this->search) >= 3) {
+        // $this->matches = [];
+
 
             $clubs = Club::where('name', 'like', '%' . $this->search . '%')->get()->pluck('id');  
 
@@ -42,7 +43,6 @@ class SearchMatch extends Component
                             })
                             ->get();
                             // dd($this->matches);
-        }
     }
 
     public function render()

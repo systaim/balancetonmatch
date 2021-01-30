@@ -20,6 +20,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use PhpParser\Node\Expr\Match_;
 
 class MatchController extends Controller
 {
@@ -33,18 +34,20 @@ class MatchController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Match $match)
+    public function index()
     {
         $clubs = Club::all();
         $user = Auth::user();
         $players = Player::all();
-        $competitions = Competition::all();
-        $matchs = Match::all();
-        $futurMatches = Match::where('date_match','>=', Carbon::now())->get();
-        $matches = Match::where('date_match', '>=', Carbon::now()->subHours(12))
+        $matches = Match::where('date_match', '>=', Carbon::now())
         ->orderBy('date_match', 'asc')->get()->groupBy('region_id');
-        $regions = Region::find($matches->keys());
-        return view('matches.listMatchs', compact('clubs', 'players', 'matchs', 'futurMatches', 'competitions', 'matches', 'user', 'regions'));
+        $matchesByCompet = Match::where('date_match','>=', Carbon::now()->subHours(12))
+        ->orderBy('date_match', 'asc')->get()->groupBy('competition_id');
+
+        $competitions = Competition::find($matchesByCompet->keys());
+        // $competitions = $competitions->only([2,3,4]);
+
+        return view('matches.listMatchs', compact('clubs', 'players', 'matches', 'matchesByCompet', 'competitions', 'user'));
     }
 
     /**

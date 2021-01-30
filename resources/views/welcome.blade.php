@@ -29,6 +29,13 @@
             </div>
         </div>
     </div>
+    <div class="flex flex-wrap justify-center">
+        <div class="w-11/12 bg-primary rounded-lg h-48 p-4 text-white flex flex-col justify-center items-center">
+        <p class="py-1 px-2 rounded-md text-3xl text-primary font-bold bg-secondary">LIVE</p>
+            <p>Va voir les matchs qui sont direct et qui se joue là tout de suite maintenant !</p>
+            <button class="btn btnSecondary">J'y vais</button>
+        </div>
+    </div>
     <div class="py-6">
         <div class="flex justify-center">
             <h3 class="p-2 text-primary text-2xl">La saison 2020/2021 c'est : </h3>

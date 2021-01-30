@@ -129,6 +129,7 @@
                         <li class=" mb-4 border-b border-black"><a href="{{ route('clubs.index') }}">Rechercher un club</a></li>
                         <li class=" mb-4 border-b border-black"><a href="{{ route('matches.index') }}">Liste des matchs</a></li>
                         <li class=" mb-4 border-b border-black"><a href="/contact">Contact</a></li>
+                        <li class=" mb-4 border-b border-black"><a href="{{ route('regions.show', ['region' => '3' ]) }}">Bretagne</a></li>
                     </ul>
                 </nav>
             </div>

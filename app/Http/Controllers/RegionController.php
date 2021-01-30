@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Club;
+use App\Models\Competition;
 use App\Models\Region;
+use App\Models\Match;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RegionController extends Controller
 {
@@ -14,7 +19,7 @@ class RegionController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
@@ -46,7 +51,12 @@ class RegionController extends Controller
      */
     public function show(Region $region)
     {
-        //
+        $clubs = Club::all();
+        $user = Auth::user();
+        $matchesByRegion = Match::where('region_id', $region->id)->paginate(10);
+        $competitions = Competition::find($matchesByRegion->keys());
+
+        return view('regions.show', compact('region','matchesByRegion','user', 'competitions', 'clubs'));
     }
 
     /**

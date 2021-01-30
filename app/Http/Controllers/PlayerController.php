@@ -104,12 +104,16 @@ class PlayerController extends Controller
             'user_id' => $player->user_id,
         ];
 
-        $admins = User::where('role_id', '1')->get();
+        $superAdmin = User::where('role', 'super-admin')->get()->pluck('email');
+        // $admins = User::where('role', 'admin')->get()->pluck('email');
 
-        foreach ($admins as $admin) {
-            Mail::to($admin->email)
+        Mail::to($superAdmin)
                 ->send(new PlayerMail($playerCreate));
-        }
+
+        // foreach ($admins as $admin) {
+        //     Mail::to($admin)
+        //     ->send(new ContactMail($contactCreate));
+        // }
 
         return redirect('clubs/' .$club->id. '/players')->with('success', $player->first_name. ' a été créé avec succes !');
     }

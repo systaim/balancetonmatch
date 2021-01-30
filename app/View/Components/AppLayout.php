@@ -2,6 +2,7 @@
 
 namespace App\View\Components;
 
+use App\Models\Region;
 use Illuminate\View\Component;
 
 class AppLayout extends Component
@@ -13,6 +14,7 @@ class AppLayout extends Component
      */
     public function render()
     {
+        $region = Region::all();
         return view('layout');
     }
 }

@@ -15,7 +15,7 @@
             <p class="py-4">Recherche ton équipe et si tu ne trouves pas son match, n'hésite pas à le créer.<br>
                 Il pourra être commenté en <span class="uppercase text-primary font-bold bg-secondary px-2 rounded-sm">live</span> le jour J soit par toi soit par un autre spectateur.
             </p>
-            @livewire('search-match', ['clubs' => $clubs])
+            <!-- @livewire('search-match', ['clubs' => $clubs]) -->
 
             <a class="flex justify-center" href="{{ route('matches.create') }}">
                 <button class="btn btnSecondary">Je crée un match</button>
@@ -27,9 +27,11 @@
     </div>
     <div class="relative lg:flex lg:justify-center">
         <div class="lg:w-9/12">
-            @foreach($regions as $region)
-            <h2 class="text-primary border-b-2 border-primary px-4 py-2 rounded-t-md lg:text-2xl">{{ $region->name }}</h2>
-            @foreach($matches[$region->id] as $match)
+            
+
+            @foreach($competitions as $competition)
+            <h2 class="text-primary border-b-2 border-primary px-4 py-2 rounded-t-md lg:text-2xl">{{ $competition->name }}</h2>
+            @foreach($matchesByCompet[$competition->id] as $match)
             <div class="rounded-b-md rounded-tr-md">
                 @include('match')
             </div>

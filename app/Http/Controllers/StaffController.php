@@ -79,13 +79,17 @@ class StaffController extends Controller
             'user_last_name' => $staff->user->last_name,
             'user_id' => $staff->user_id,
         ];
+        
+        $superAdmin = User::where('role', 'super-admin')->get()->pluck('email');
+        // $admins = User::where('role', 'admin')->get()->pluck('email');
 
-        $admins = User::where('role_id', '1')->get();
-
-        foreach ($admins as $admin) {
-            Mail::to($admin->email)
+        Mail::to($superAdmin)
                 ->send(new StaffMail($staffCreate));
-        }
+
+        // foreach ($admins as $admin) {
+        //     Mail::to($admin)
+        //     ->send(new ContactMail($contactCreate));
+        // }
 
         return redirect('clubs/' .$club->id. '/staffs')->with('success', $staff->first_name. ' a été créé avec succes !');
     }
