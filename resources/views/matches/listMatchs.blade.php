@@ -27,8 +27,6 @@
     </div>
     <div class="relative lg:flex lg:justify-center">
         <div class="lg:w-9/12">
-            
-
             @foreach($competitions as $competition)
             <h2 class="text-primary border-b-2 border-primary px-4 py-2 rounded-t-md lg:text-2xl">{{ $competition->name }}</h2>
             @foreach($matchesByCompet[$competition->id] as $match)

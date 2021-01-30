@@ -29,11 +29,12 @@
             </div>
         </div>
     </div>
-    <div class="flex flex-wrap justify-center">
-        <div class="w-11/12 bg-primary rounded-lg h-48 p-4 text-white flex flex-col justify-center items-center">
-        <p class="py-1 px-2 rounded-md text-3xl text-primary font-bold bg-secondary">LIVE</p>
-            <p>Va voir les matchs qui sont direct et qui se joue là tout de suite maintenant !</p>
-            <button class="btn btnSecondary">J'y vais</button>
+    <div class="flex flex-wrap justify-center items-center">
+        <div class="relative w-11/12 bg-primary rounded-lg h-48 p-4 text-white flex flex-col justify-center items-center">
+            <i class="text-6xl fas fa-microphone-alt"></i>
+            <p class="absolute top-2 right-2 py-1 px-2 rounded-md text-xl text-primary font-bold bg-secondary">LIVE</p>
+            <p>Tous les matchs en live</p>
+            <a href="/live" class="btn btnSecondary">J'y vais</a>
         </div>
     </div>
     <div class="py-6">

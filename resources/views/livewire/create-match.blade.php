@@ -24,12 +24,13 @@
             <div class=" mb-4">
                 <label for="competition">Compétition</label>
                 <select class="inputForm focus:outline-none focus:shadow-outline w-full my-1" name="competition" id="competition" wire:model="competition" :value="old('last_name')" required autocomplete="last_name">
-                    <option>Choisissez une compet'</option>
+                    <option>Choisis une compet'</option>
                     <option value="1">Championnat régional</option>
                     <option value="2">Championnat départemental</option>
                     <option value="3">Coupe de France</option>
                     <option value="4">Coupe régionale</option>
                     <option value="5">Coupe départementale</option>
+                    <option value="6">Match amical</option>
                 </select>
             </div>
             <div class="flex flex-row justify-center">
@@ -45,7 +46,7 @@
                 @if($competition != 3)
                 <label for="region">Région</label>
                 <select class="inputForm focus:outline-none focus:shadow-outline w-full my-1" name="region" id="region" wire:model="region" :value="old('region')" autocomplete="region" required>
-                    <option>Choisissez la région</option>
+                    <option>Choisis la région</option>
                     @foreach($regions as $region)
                     <option value="{{ $region->name }}">{{ $region->name }}</option>
                     @endforeach
@@ -56,7 +57,7 @@
             @enderror
             @if($competition == "1")
             <div class=" mb-4">
-                <label for="divisionsRegions">Divisions régionales</label>
+                <label for="divisionsRegions">Divisions régionale</label>
                 <select class="inputForm focus:outline-none focus:shadow-outline w-full my-1" name="divisionsRegions" id="divisionsRegions" wire:model="divisionsRegions" :value="old('divisionsRegions')" autocomplete="divisionsRegions" required>
                     <option>Choisissez une division</option>
                     <option value="1">R1</option>
@@ -70,7 +71,7 @@
             <div class=" mb-4">
                 <label for="group">Groupe</label>
                 <select class="inputForm focus:outline-none focus:shadow-outline w-full my-1" name="group" id="group" wire:model="group" :value="old('group')" autocomplete="group" required>
-                    <option>Choisissez un groupe</option>
+                    <option>Choisis un groupe</option>
                     @foreach($groups as $group)
                     <option value="{{ $group->name}}">{{ $group->name }}</option>
                     @endforeach
@@ -82,9 +83,21 @@
             @endif
             @if($competition == "2")
             <div class=" mb-4">
-                <label for="divisionsDepartments">Divisions départementales</label>
+                <label for="district">District</label>
+                <select class="inputForm focus:outline-none focus:shadow-outline w-full my-1" name="district" id="district" wire:model="district" :value="old('district')" autocomplete="district" required>
+                    <option>Choisis une division</option>
+                    @foreach($departments->sortBy('name') as $department)
+                    <option value="{{ $department->id }}">{{ $department->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+            @error('district')
+            <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
+            <div class=" mb-4">
+                <label for="divisionsDepartments">Division</label>
                 <select class="inputForm focus:outline-none focus:shadow-outline w-full my-1" name="divisionsDepartments" id="divisionsDepartments" wire:model="divisionsDepartments" :value="old('divisionsDepartments')" autocomplete="divisionsDepartments" required>
-                    <option>Choisissez une division</option>
+                    <option>Choisis une division</option>
                     <option value="1">D1</option>
                     <option value="2">D2</option>
                     <option value="3">D3</option>
@@ -98,7 +111,7 @@
             <div class=" mb-4">
                 <label for="group">Groupe</label>
                 <select class="inputForm focus:outline-none focus:shadow-outline w-full my-1" name="group" id="group" wire:model="group" :value="old('group')" autocomplete="group" required>
-                    <option>Choisissez un groupe</option>
+                    <option>Choisis un groupe</option>
                     @foreach($groups as $group)
                     <option value="{{ $group->name}}">{{ $group->name }}</option>
                     @endforeach

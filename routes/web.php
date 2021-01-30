@@ -4,10 +4,13 @@ use App\Http\Controllers\MatchController;
 use App\Http\Controllers\PlayerController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClubController;
+use App\Models\Competition;
+use App\Models\Department;
 use App\Models\Club;
 use App\Models\Commentator;
 use App\Models\Match;
 use App\Models\Player;
+use App\Models\Region;
 use App\Models\Staff;
 use App\Models\Statistic;
 use Carbon\Carbon;
@@ -86,6 +89,21 @@ Route::resource('regions', 'App\Http\Controllers\RegionController');
 
 Route::post('contacts', 'App\Http\Controllers\ContactController@store')->name('contacts.store');
 Route::post('contactsNewTeam', 'App\Http\Controllers\ContactController@askNewTeam')->name('contacts.askNewTeam');
+
+Route::get('live', function(){
+
+    $user = Auth::user();
+    $liveMatches = Match::where('date_match','>=', Carbon::now()->subHours(3))
+                            ->where(function($query) {
+                                $query->where('live', 'debut')
+                                ->orwhere('live', 'mitemps')
+                                ->orwhere('live', 'repriseMT');
+                            })
+                            ->get();
+    $competitions = Competition::find($liveMatches->keys());
+
+    return view('matches.live', compact('liveMatches', 'user', 'competitions'));
+});
 
 
 
