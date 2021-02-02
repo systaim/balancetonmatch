@@ -12,9 +12,9 @@ class AppLayout extends Component
      *
      * @return \Illuminate\View\View
      */
+
     public function render()
     {
-        $region = Region::all();
         return view('layout');
     }
 }

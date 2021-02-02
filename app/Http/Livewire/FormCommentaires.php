@@ -47,6 +47,7 @@ class FormCommentaires extends Component
     public $playerNom;
     public $playerMatch;
     public $visitors;
+    public $user;
 
     public $listGoal = ['GOOOOAAL !', 'BUUUUT !!!', 'GOAL GOAL GOAL !!'];
     public $mitempsJoueurs = ['Les joueurs rentrent aux vestiaires', 'Tout le monde à la buv... euuuh aux vestiaires !'];
@@ -371,7 +372,7 @@ class FormCommentaires extends Component
                 'type_comments' => 'required',
                 'minute' => 'required',
                 'team_action' => 'required',
-                'file' => 'nullable|max:4096'
+                'file' => 'nullable | mimes:jpeg,jpg,png,gif | max:4096'
             ]);
 
 

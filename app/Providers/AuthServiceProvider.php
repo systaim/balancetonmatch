@@ -3,9 +3,12 @@
 namespace App\Providers;
 
 use App\Models\Club;
+use App\Models\Commentaire;
+use App\Models\Commentator;
 use App\Models\User;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
+use PhpParser\Node\Expr\Match_;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -35,12 +38,19 @@ class AuthServiceProvider extends ServiceProvider
             return $user->role == 'admin';
         });
 
-        // Gate::define('isManager', function(User $user, Club $club){
-        //     return $club->id == $user->club_id && $user->role == "manager";
-        // });
-
         Gate::define('isGuest', function($user){
             return $user->role == 'guest';
         });
+
+        Gate::define('update-club', function (User $user, Club $club) {
+            return ($user->club_id === $club->id && $user->role == "manager") || ($user->role == "super-admin" || $user->role == "admin");
+        });
+
+        Gate::define('update-com', function (User $user, Commentaire $commentaire, Commentator $commentator, Match_$match) {
+            return $commentator->user_id == $user->id &&  $commentaire->commentator_id == $commentator->id
+            || ($user->role == "super-admin" || $user->role == "admin");
+        });
     }
+
+    
 }

@@ -19389,6 +19389,11 @@ compteurs.forEach(function (compteur) {
   var valeurCompteur = compteur.innerHTML;
   animateValue(compteur, 0, valeurCompteur, 5000);
 });
+var menuRegions = document.getElementById('menuRegions');
+var sousMenuRegion = document.getElementById('sousMenuRegions');
+menuRegions.addEventListener('click', function () {
+  sousMenuRegion.classList.toggle('select');
+});
 
 /***/ }),
 

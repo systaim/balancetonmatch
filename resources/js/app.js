@@ -35,3 +35,10 @@ compteurs.forEach(compteur => {
     let valeurCompteur = compteur.innerHTML;
     animateValue(compteur, 0, valeurCompteur, 5000);
 });
+
+let menuRegions = document.getElementById('menuRegions')
+let sousMenuRegion = document.getElementById('sousMenuRegions')
+
+menuRegions.addEventListener('click', function() {
+    sousMenuRegion.classList.toggle('select')
+})

@@ -69,10 +69,8 @@ Route::get('/contact', function(){
     return view('contact');
 });
 
-Route::get('/admin', function(){
+Route::resource('admin', 'App\Http\Controllers\AdminController')->middleware('auth');
 
-    return view('');
-})->middleware('auth');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');

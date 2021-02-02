@@ -16,7 +16,7 @@
     </div>
     <div class="py-6">
         <div class="w-11/12 m-auto sm:w-8/12 md:w-6/12">
-            <div class="rounded-md mx-2 bg-primary py-4 px-12 shadow-xl">
+            <div class="rounded-md mx-2 bg-primary py-4 px-6 shadow-xl">
                 <form class="w-full" action="{{ asset('clubs') }}" method="get">
                     <H3 class="p-2 text-white text-xl">Rechercher un club</H3>
                     @csrf
@@ -29,25 +29,28 @@
             </div>
         </div>
     </div>
-    <div class="flex flex-wrap justify-center items-center m-6">
-        <div class="relative w-80 bg-primary rounded-lg h-64 p-2 text-white flex flex-col justify-around items-center m-6 shadow-xl">
-            <p class="font-bold">Les matchs en live</p>
-            <i class="relative text-6xl fas fa-microphone-alt my-4">
-                <div class="animate-ping absolute -top-0.5 right-1 bg-red-500 h-3 w-3 rounded-full z-10"></div>
-            </i>
-            <p class="absolute top-2 left-2 py-1 px-2 rounded-md text-xl text-primary font-bold bg-secondary">LIVE</p>
-            <div class="flex justify-end w-full">
-                <a href="/live" class="btn btnSecondary">Par ici !</a>
+    <div class="bg-secondary">
+        <div class="flex flex-wrap justify-around items-center m-auto lg:px xl:w-8/12">
+            <div id="live" class="relative w-80 bg-primary rounded-lg h-64 p-2 text-white flex flex-col justify-around items-center m-6 shadow-xl">
+                <p class="font-bold">Les matchs en live</p>
+                <i class="relative text-6xl fas fa-microphone-alt my-4">
+                    <div class="animate-ping absolute -top-0.5 right-1 bg-red-500 h-3 w-3 rounded-full z-10"></div>
+                </i>
+                <p class="absolute top-2 left-2 py-1 px-2 rounded-md text-xl text-primary font-bold bg-secondary">LIVE</p>
+                <div class="flex justify-end w-full">
+                    <a href="/live" class="btn btnSecondary">Par ici !</a>
+                </div>
+                <!-- <p>Tous les matchs en live</p> -->
             </div>
-            <!-- <p>Tous les matchs en live</p> -->
-        </div>
-        <div class="relative w-80 bg-primary rounded-lg h-64 p-2 text-white flex flex-col justify-around items-center m-6 shadow-xl">
-            <p class="font-bold">Les matchs du week-end</p>
-            <i class="relative text-6xl fas fa-futbol my-4"></i>
-            <div class="flex justify-end w-full">
-                <a href="/matchesduweekend" class="btn btnSecondary">Je jette un oeil</a>
+            <div id="weekend" class="relative w-80 bg-primary rounded-lg h-64 px-2 text-white flex flex-col justify-between items-center m-6 shadow-xl py-4">
+                <p class="font-bold">Les matchs du week-end</p>
+                <!-- <i class="relative text-6xl fas fa-futbol my-4"></i> -->
+                <div class="flex justify-end w-full">
+                    <a href="/matchesduweekend" class="btn btnSecondary">Je jette un oeil</a>
+                </div>
             </div>
         </div>
+
     </div>
     <div class="py-6">
         <div class="flex justify-center">
@@ -84,7 +87,7 @@
             </div>
         </div>
     </div>
-    
+
     @auth
     <div class="flex flex-col w-full lg:flex-row justify-around py-8">
         <div class="lg:w-5/12">

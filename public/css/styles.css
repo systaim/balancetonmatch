@@ -223,6 +223,16 @@ h6 {
   border-color: rgba(240, 82, 82, var(--border-opacity))
 }
 
+#live {
+  background-image: url(/images/on-air.jpg);
+  background-size: contain;
+}
+
+#weekend {
+  background-image: url(/images/ballon-feu.jpg);
+  background-size: contain;
+}
+
 /*************************
           BUTTONS
   *************************/
@@ -365,6 +375,87 @@ h6 {
   padding-bottom: 2.5rem;
   padding-left: 2.5rem;
   padding-right: 2.5rem;
+}
+
+/*************************
+    NAVBAR
+  *************************/
+
+.navbar {
+  background-color: var(--primary-color);
+}
+
+.navbar a {
+  float: left;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown .dropbtn {
+  font-size: 16px;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+.navbar a:hover,
+.dropdown:hover .dropbtn {
+  background-color: #233876;
+}
+
+.dropdown-content {
+  position: absolute;
+  background-color: var(--primary-color);
+  color: #fff;
+  width: 320px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  color: #fff;
+  padding: 10px 14px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #233876;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/*************************
+    PAGE COMMENTAIRES
+  *************************/
+
+#sousMenuRegions {
+  /* display: none; */
+  height: 0;
+  opacity: 0;
+  transition: all 0.350s ease;
+}
+
+#sousMenuRegions.select {
+  /* display: block; */
+  opacity: 1;
+  height: 100%;
 }
 
 /*************************

@@ -15,19 +15,19 @@
 
 <body>
     <div id="container">
-        <div id="burger" class="absolute cursor-pointer top-5 left-3 flex justify-center items-center h-12 w-12 bg-primary z-50">
-            <div class="open-main-nav flex justify-center">
-                <span class="burger"></span>
+        <header id="header" class="relative bg-gray-100 h-24 xl:h-auto">
+            <div id="burger" class="xl:hidden absolute cursor-pointer top-5 left-3 flex justify-center items-center h-12 w-12 bg-primary z-50">
+                <div class="open-main-nav flex justify-center">
+                    <span class="burger"></span>
+                </div>
             </div>
-        </div>
-        <header id="header" class="relative bg-gray-100 h-24">
-            <div class="relative text-primary flex justify-end sm:justify-center items-center mr-6 h-24">
+            <div class="relative text-primary flex xl:flex-col justify-end sm:justify-center xl:justify-between items-center xl:items-between h-24 xl:block xl:h-auto">
                 <!-- logo grande page -->
-                <div class="relative w-10/12 md:w-8/12 lg:w-6/12">
+                <div class="relative">
                     <a href="/">
-                        <div class="flex justify-center items-center">
+                        <div class="flex justify-center items-center mx-8">
                             <div>
-                                <img class="w-20 md:w-24" src="{{ asset('/images/logos/btmLogoJB.png') }}" alt="">
+                                <img class="w-20 md:w-24" src="{{ asset('/images/logos/btmLogoJB.png') }}" alt="logo de BTM">
                             </div>
                             <div class="h-auto relative">
                                 <h1 class="sm:text-2xl md:text-3xl">Balance Ton Match</h1>
@@ -36,7 +36,45 @@
                         </div>
                     </a>
                 </div>
-                <div class="absolute right-2 top-2/5 text-white hidden lg:block w-64 lg:mr-4" x-data="{ open : false }">
+                <nav class="navbar relative hidden xl:flex justify-center mt-4" x-data="{ open: false }">
+                    <div class="flex items-center">
+                        <a href="/">Accueil</a>
+                        <a href="{{ route('clubs.index') }}">Rechercher un club</a>
+                        <!-- <li id="menuRegions"class="mb-4 border-b border-black text-xl md:text-3xl lg:text-4xl uppercase"><a href="{{ route('matches.index') }}">Liste des matchs</a></li> -->
+                        <div class="dropdown">
+                            <button class="dropbtn" @click="open = true">Liste des matchs <i class="fa fa-caret-down"></i></button>
+                            <div class="dropdown-content" x-show="open" @click.away="open = false">
+                                <div>
+                                    <a href="/matches">Tous les matches</a>
+                                    <a href="/regions/1">Auvergne - Rhones-Alpes</a>
+                                    <a href="/regions/2">Bourgogne - Franche Comté</a>
+                                    <a href="/regions/3">Bretagne</a>
+                                    <a href="/regions/4">Centre Val de Loire</a>
+                                    <a href="/regions/5">Corse</a>
+                                    <a href="/regions/6">Grand Est</a>
+                                    <a href="/regions/7">Guadeloupe</a>
+                                    <a href="/regions/8">Guyane</a>
+                                    <a href="/regions/9">Hauts de France</a>
+                                </div>
+                                <div>
+                                    <a href="/regions/10">Martinique</a>
+                                    <a href="/regions/11">Mayotte</a>
+                                    <a href="/regions/12">Méditerranée</a>
+                                    <a href="/regions/13">Normandie</a>
+                                    <a href="/regions/14">Nouvelle Aquitaine</a>
+                                    <a href="/regions/15">Occitanie</a>
+                                    <a href="/regions/16">Paris IDF</a>
+                                    <a href="/regions/17">Pays de la Loire</a>
+                                    <a href="/regions/18">Réunion</a>
+                                    <a href="/regions/19">St Pierre & Miquelon</a>
+                                </div>
+
+                            </div>
+                        </div>
+                        <a href="/contact">Contact</a>
+                    </div>
+                </nav>
+                <div class="absolute right-2 top-6 text-white hidden lg:block w-64 lg:mr-4" x-data="{ open : false }">
                     @auth
                     <div class="flex justify-center items-center px-2 py-1 cursor-pointer text-primary" @click="open = true">
                         <img class="rounded-full h-8 w-8 object-cover mr-4 mb-2" src="{{ Auth::user()->profile_photo_url }}">
@@ -75,10 +113,6 @@
                     </div>
                 </div>
             </div>
-            <!-- <div class="hidden lg:flex justify-center">
-                <a class="p-2 text-primary underline rounded-lg m-1 " href="/clubs">Rechercher un club</a>
-                <a class="p-2 text-primary underline rounded-md m-1" href="/matches">Matchs à venir</a>
-            </div> -->
             <div id="main-nav" class="main-nav">
                 <div class="w-4/5 rounded-b-lg shadow-2xl py-12 bg-primary text-white lg:hidden">
                     <div class="">
@@ -123,38 +157,38 @@
                         @endauth
                     </div>
                 </div>
-                <nav class="mt-12  flex flex-col items-center justify-center w-4/5 lg:h-screen">
+                <nav class="xl:hidden mt-12 flex flex-col items-center justify-start w-4/5 lg:h-screen">
                     <ul class="">
                         <li class=" mb-4 border-b border-black text-xl md:text-3xl lg:text-4xl uppercase"><a href="/">Accueil</a></li>
                         <li class=" mb-4 border-b border-black text-xl md:text-3xl lg:text-4xl uppercase"><a href="{{ route('clubs.index') }}">Rechercher un club</a></li>
-                        <li class=" mb-4 border-b border-black text-xl md:text-3xl lg:text-4xl uppercase"><a href="{{ route('matches.index') }}">Liste des matchs</a></li>
-                        <ul class="pl-12">
+                        <!-- <li id="menuRegions"class="mb-4 border-b border-black text-xl md:text-3xl lg:text-4xl uppercase"><a href="{{ route('matches.index') }}">Liste des matchs</a></li> -->
+                        <li id="menuRegions" class="cursor-pointer mb-4 border-b border-black text-xl md:text-3xl lg:text-4xl uppercase">Liste des matchs</li>
+                        <ul id="sousMenuRegions" class="pl-12">
+                            <li><a href="matches">Tous les matchs</a></li>
                             <li>Par région</li>
                             <ul class="pl-12">
-                                <li class=""><a href="1">Auvergne - Rhones-Alpes</a></li>
-                                <li class=""><a href="2">Bourgogne - Franche Comté</a></li>
-                                <li class=""><a href="3">Bretagne</a></li>
-                                <li class=""><a href="4">Centre Val de Loire</a></li>
-                                <li class=""><a href="5">Corse</a></li>
-                                <li class=""><a href="6">Grand Est</a></li>
-                                <li class=""><a href="7">Guadeloupe</a></li>
-                                <li class=""><a href="8">Guyane</a></li>
-                                <li class=""><a href="9">Hauts de France</a></li>
-                                <li class=""><a href="10">Martinique</a></li>
-                                <li class=""><a href="11">Mayotte</a></li>
-                                <li class=""><a href="12">Méditerranée</a></li>
-                                <li class=""><a href="13">Normandie</a></li>
-                                <li class=""><a href="14">Nouvelle Aquitaine</a></li>
-                                <li class=""><a href="15">Occitanie</a></li>
-                                <li class=""><a href="16">Paris IDF</a></li>
-                                <li class=""><a href="17">Pays de la Loire</a></li>
-                                <li class=""><a href="18">Réunion</a></li>
-                                <li class=""><a href="19">St Pierre & Miquelon</a></li>
-                                
+                                <li class=""><a href="/regions/1">Auvergne - Rhones-Alpes</a></li>
+                                <li class=""><a href="/regions/2">Bourgogne - Franche Comté</a></li>
+                                <li class=""><a href="/regions/3">Bretagne</a></li>
+                                <li class=""><a href="/regions/4">Centre Val de Loire</a></li>
+                                <li class=""><a href="/regions/5">Corse</a></li>
+                                <li class=""><a href="/regions/6">Grand Est</a></li>
+                                <li class=""><a href="/regions/7">Guadeloupe</a></li>
+                                <li class=""><a href="/regions/8">Guyane</a></li>
+                                <li class=""><a href="/regions/9">Hauts de France</a></li>
+                                <li class=""><a href="/regions/10">Martinique</a></li>
+                                <li class=""><a href="/regions/11">Mayotte</a></li>
+                                <li class=""><a href="/regions/12">Méditerranée</a></li>
+                                <li class=""><a href="/regions/13">Normandie</a></li>
+                                <li class=""><a href="/regions/14">Nouvelle Aquitaine</a></li>
+                                <li class=""><a href="/regions/15">Occitanie</a></li>
+                                <li class=""><a href="/regions/16">Paris IDF</a></li>
+                                <li class=""><a href="/regions/17">Pays de la Loire</a></li>
+                                <li class=""><a href="/regions/18">Réunion</a></li>
+                                <li class=""><a href="/regions/19">St Pierre & Miquelon</a></li>
                             </ul>
                         </ul>
                         <li class=" mb-4 border-b border-black text-xl md:text-3xl lg:text-4xl uppercase"><a href="/contact">Contact</a></li>
-                        <li class=" mb-4 border-b border-black text-xl md:text-3xl lg:text-4xl uppercase"><a href="{{ route('regions.show', ['region' => '3' ]) }}">Bretagne</a></li>
                     </ul>
                 </nav>
             </div>

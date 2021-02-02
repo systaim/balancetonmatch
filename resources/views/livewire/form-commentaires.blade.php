@@ -375,7 +375,7 @@
                 ------------------------->
         @auth
         <div>
-            @if($match->firstCom == 1)
+            @if(Auth::user()->first_com == 1)
             <div class="bg-primary w-11/12 rounded-lg p-4 text-white m-auto my-2">
                 <h3 class="text-secondary text-center text-base mb-4">Comment bien commenter ?</h3>
                 <div class="flex justify-evenly">
@@ -602,8 +602,7 @@
                     </div>
                 </div>
                 @auth
-                @if($match->commentateur->user_id == Auth::user()->id && $match->live != "finDeMatch" &&
-                ($comment->team_action == "home" || $comment->team_action == "away"))
+                @if(($match->commentateur->user_id == Auth::user()->id && $match->live != "finDeMatch") || Auth::user()->role == "super-admin" || Auth::user()->role == "admin")
                 <div class="absolute flex justify-center items-center right-1 top-0">
                     <div>
                         <a class="text-lg text-danger" href="{{route('supprimer', ['id' => $comment->id]) }}" onclick="return confirm('Etes vous sûr de vouloir supprimer ce commentaire ?')"><i class="far fa-times-circle"></i></a>

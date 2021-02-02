@@ -1,9 +1,9 @@
 <div class="m-8 relative">
     <form submit:prevent="logoSave">
         <label for="inputLogo">
-            @canany(['isManager', 'isSuperAdmin', 'isAdmin'])
+            @can('update-club', $club)
             <input class="hidden" type="file" name="inputLogo" id="inputLogo" wire:model="inputLogo">
-            @endcanany
+            @endcan
         </label>
         <div class="hidden font-bold py-1 px-2 bg-primary text-white rounded-md" wire:loading wire:target="inputLogo">Téléchargement...</div>
         @if ($inputLogo)

@@ -7,13 +7,13 @@ use App\Models\Match;
 use App\Models\Region;
 use App\Models\Team;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
-use PhpParser\Node\Expr\Cast\Array_;
 
 class SearchMatch extends Component
 {
 
-    public $search = "";
+    public $search;
     public $clubs;
     public $matches;
     public $regions;
@@ -25,24 +25,24 @@ class SearchMatch extends Component
         ->orderBy('date_match', 'asc')->get();
         $this->regions = Region::find($this->matches->keys());
         $this->matches = [];
-
     }
 
-    public function searchMatch()
+    public function updatedSearch()
     {
         // $this->matches = [];
 
+                // $club = Club::where('name', 'like', '%' . $this->search . '%')->get()->pluck('id'); 
+                // $this->matches = Match::where('date_match','>=', Carbon::now())
+                //             ->where(function($query) use ($club)
+                //             {
+                //                 $query->where('home_team_id', $club)
+                //                 ->orwhere('away_team_id', $club);
+                //             })
+                //             ->get();
+        
+        dump($clubs);
 
-            $clubs = Club::where('name', 'like', '%' . $this->search . '%')->get()->pluck('id');  
 
-            $this->matches = Match::where('date_match','>=', Carbon::now())
-                            ->where(function($query) use ($clubs)
-                            {
-                                $query->where('home_team_id', $clubs)
-                                ->orwhere('away_team_id', $clubs);
-                            })
-                            ->get();
-                            // dd($this->matches);
     }
 
     public function render()

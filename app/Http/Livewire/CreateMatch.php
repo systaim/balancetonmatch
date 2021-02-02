@@ -31,6 +31,7 @@ class CreateMatch extends Component
     public $timeMatch;
     public $validate;
     public $messageErreur = "";
+    public $district;
 
     public function updateSearchHome()
     {
@@ -44,7 +45,6 @@ class CreateMatch extends Component
 
     public function saveMatch(Match $match)
     {
-
         $user = Auth::user();
 
         $validateData = $this->validate([
@@ -54,6 +54,7 @@ class CreateMatch extends Component
             'divisionsRegions' => 'nullable',
             'divisionsDepartments' => 'nullable',
             'regions' => 'nullable',
+            'district' => 'nullable',
             'group' => 'nullable',
         ]);
 
@@ -69,8 +70,6 @@ class CreateMatch extends Component
         if ($this->region != null) {
             $match->region_id = $regionMatch->id;
         }
-        $match->date_match = $dateAndTime;
-        $match->competition_id = $this->competition;
         if ($this->group != null) {
             $match->group_id = $groupMatch->id;
         }
@@ -79,10 +78,11 @@ class CreateMatch extends Component
         }
         if ($this->competition == "2") {
             $match->division_department_id = $this->divisionsDepartments;
+            $match->department_id = $this->district;
         }
-        // if ($this->competition == "3") {
-        //     $match->region_id = "20";
-        // }
+
+        $match->date_match = $dateAndTime;
+        $match->competition_id = $this->competition;
         $match->user_id = $user->id;
 
         if ($homeTeam != $awayTeam) {

@@ -40,6 +40,11 @@ class SearchTeams extends Component
         $this->resetPage();
     }
 
+    public function paginationView()
+    {
+        return 'vendor.pagination.tailwind';
+    }
+
     public function render()
     {
         return view('livewire.search-teams', [
