@@ -29,28 +29,25 @@
             </div>
         </div>
     </div>
-    <div class="">
-        <div class="flex flex-wrap justify-around items-center m-auto lg:px xl:w-8/12">
-            <div id="live" class="relative w-80 bg-primary rounded-lg h-64 p-2 text-white flex flex-col justify-around items-center m-6 shadow-xl">
-                <p class="font-bold">Les matchs en live</p>
-                <i class="relative text-6xl fas fa-microphone-alt my-4">
-                    <div class="animate-ping absolute -top-0.5 right-1 bg-red-500 h-3 w-3 rounded-full z-10"></div>
-                </i>
-                <p class="absolute top-2 left-2 py-1 px-2 rounded-md text-xl text-primary font-bold bg-secondary">LIVE</p>
-                <div class="flex justify-end w-full">
-                    <a href="/live" class="btn btnSecondary">Par ici !</a>
-                </div>
-                <!-- <p>Tous les matchs en live</p> -->
+    <div class="flex flex-wrap justify-around items-center m-auto lg:px xl:w-8/12">
+        <div id="live" class="relative w-80 bg-primary rounded-lg h-64 p-2 text-white flex flex-col justify-around items-center m-6 shadow-xl">
+            <p class="font-bold">Les matchs en live</p>
+            <i class="relative text-6xl fas fa-microphone-alt my-4">
+                <div class="animate-ping absolute -top-0.5 right-1 bg-red-500 h-3 w-3 rounded-full z-10"></div>
+            </i>
+            <p class="absolute top-2 left-2 py-1 px-2 rounded-md text-xl text-primary font-bold bg-secondary">LIVE</p>
+            <div class="flex justify-end w-full">
+                <a href="/live" class="btn btnSecondary">Par ici !</a>
             </div>
-            <div id="weekend" class="relative w-80 bg-primary rounded-lg h-64 px-2 text-white flex flex-col justify-between items-center m-6 shadow-xl py-4">
-                <p class="font-bold">Les matchs du week-end</p>
-                <!-- <i class="relative text-6xl fas fa-futbol my-4"></i> -->
-                <div class="flex justify-end w-full">
-                    <a href="/matchesduweekend" class="btn btnSecondary">Je jette un oeil</a>
-                </div>
+            <!-- <p>Tous les matchs en live</p> -->
+        </div>
+        <div id="weekend" class="relative w-80 bg-primary rounded-lg h-64 px-2 text-white flex flex-col justify-between items-center m-6 shadow-xl py-4">
+            <p class="font-bold">Les matchs du week-end</p>
+            <!-- <i class="relative text-6xl fas fa-futbol my-4"></i> -->
+            <div class="flex justify-end w-full">
+                <a href="/matchesduweekend" class="btn btnSecondary">Je jette un oeil</a>
             </div>
         </div>
-
     </div>
     <div class="py-6">
         <div class="flex justify-center">
@@ -58,29 +55,29 @@
         </div>
         <div class="flex flex-wrap justify-center">
             <div class="flex justify-between">
-                <div class="flex flex-col items-center justify-center text-primary w-16 h-16 md:w-28 md:h-28 lg:w-40 lg:h-40 md:bg-primary md:text-white my-2 mx-1 rounded-lg shadow-lg">
+                <div class="flex flex-col items-center justify-center text-primary w-20 h-20 md:w-28 md:h-28 lg:w-40 lg:h-40 md:bg-primary md:text-white my-2 mx-1 rounded-lg shadow-lg">
                     <p class="compteur text-xl lg:text-5xl font-bold">{{ count($matches) }}</p>
                     <p class="text-xs lg:text-base">matchs</p>
                 </div>
-                <div class="flex flex-col items-center justify-center text-primary w-16 h-16 md:w-28 md:h-28 lg:w-40 lg:h-40 md:bg-primary md:text-white my-2 mx-1 rounded-lg shadow-lg">
+                <div class="flex flex-col items-center justify-center text-primary w-20 h-20 md:w-28 md:h-28 lg:w-40 lg:h-40 md:bg-primary md:text-white my-2 mx-1 rounded-lg shadow-lg">
                     <p class="compteur text-xl lg:text-5xl font-bold">{{ count($clubs) }}</p>
                     <p class="text-xs lg:text-base">clubs</p>
                 </div>
-                <div class="flex flex-col items-center justify-center text-primary w-16 h-16 md:w-28 md:h-28 lg:w-40 lg:h-40 md:bg-primary md:text-white my-2 mx-1 rounded-lg shadow-lg">
+                <div class="flex flex-col items-center justify-center text-primary w-20 h-20 md:w-28 md:h-28 lg:w-40 lg:h-40 md:bg-primary md:text-white my-2 mx-1 rounded-lg shadow-lg">
                     <p class="compteur text-xl lg:text-5xl font-bold">{{ count($players) + count($staffs) }}</p>
                     <p class="text-xs lg:text-base">licenciés</p>
                 </div>
             </div>
             <div class="flex justify-between">
-                <div class="flex flex-col items-center justify-center text-primary w-16 h-16 md:w-28 md:h-28 lg:w-40 lg:h-40 md:bg-primary md:text-white my-2 mx-1 rounded-lg shadow-lg">
+                <div class="flex flex-col items-center justify-center text-primary w-20 h-20 md:w-28 md:h-28 lg:w-40 lg:h-40 md:bg-primary md:text-white my-2 mx-1 rounded-lg shadow-lg">
                     <p class="compteur text-xl lg:text-5xl font-bold">{{ count($goals) }}</p>
                     <p class="text-xs lg:text-base">buts</p>
                 </div>
-                <div class="flex flex-col items-center justify-center text-primary w-16 h-16 md:w-28 md:h-28 lg:w-40 lg:h-40 md:bg-primary md:text-white my-2 mx-1 rounded-lg shadow-lg">
+                <div class="flex flex-col items-center justify-center text-primary w-20 h-20 md:w-28 md:h-28 lg:w-40 lg:h-40 md:bg-primary md:text-white my-2 mx-1 rounded-lg shadow-lg">
                     <p class="compteur text-xl lg:text-5xl font-bold">{{ count($commentators) }}</p>
                     <p class="text-xxs lg:text-base">commentateurs</p>
                 </div>
-                <div class="flex flex-col items-center justify-center text-primary w-16 h-16 md:w-28 md:h-28 lg:w-40 lg:h-40 md:bg-primary md:text-white my-2 mx-1 rounded-lg shadow-lg">
+                <div class="flex flex-col items-center justify-center text-primary w-20 h-20 md:w-28 md:h-28 lg:w-40 lg:h-40 md:bg-primary md:text-white my-2 mx-1 rounded-lg shadow-lg">
                     <p class="compteur text-xl lg:text-5xl font-bold">{{ count($yellowCards)  +  count($redCards) }}</p>
                     <p class="text-xs lg:text-base">cartons</p>
                 </div>
@@ -91,12 +88,11 @@
     @auth
     <div class="flex flex-col w-full lg:flex-row justify-around py-8">
         <div class="lg:w-5/12">
+            @if(count($user->favoristeams) > 0 )
             <div>
                 <h3>Mes teams préférées</h3>
             </div>
             <div class="py-4">
-                @auth
-                @if(count($user->favoristeams) > 0 )
                 @foreach($user->favoristeams->shuffle() as $favoriteam)
                 <a href="{{ route('clubs.show', $favoriteam->club->id) }}">
                     <div class="flex flex-col mb-3">
@@ -117,19 +113,16 @@
                     </div>
                 </a>
                 @endforeach
-                @endif
-                @else
-                <p>Connecte toi pour ajouter des équipes</p>
-                @endauth
             </div>
         </div>
+        @endif
+
         <div class="lg:w-5/12">
+            @if(count($user->favorismatches) > 0 )
             <div class="">
                 <h3 class=""><i class="fas fa-star text-red-700"></i> Mes matchs favoris <i class="fas fa-star text-red-700"></i></h3>
             </div>
             <div class="py-4">
-                @auth
-                @if(count($user->favorismatches) > 0 )
                 @foreach($user->favorismatches as $favorimatch)
                 @if($favorimatch->match->date_match > $today)
                 <a href="{{route('matches.show',$favorimatch->match)}}">
@@ -163,21 +156,8 @@
                 </a>
                 @endif
                 @endforeach
-                @else
-                <div>
-                    <div class="my-2">
-                        <p class="text-center font-bold">Envie de suivre un match ?</p>
-                    </div>
-                    <div class="flex justify-between items-center px-3 rounded-lg bg-secondary">
-                        <p>La liste est ici </p>
-                        <a class="btn btnPrimary m-2" href="{{ route('matches.index') }}">Go !</a>
-                    </div>
-                </div>
-                @endif
-                @else
-                <p>Connecte toi pour ajouter des matchs</p>
-                @endauth
             </div>
+            @endif
         </div>
     </div>
     @endauth

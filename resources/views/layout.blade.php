@@ -55,8 +55,6 @@
                                     <a href="/regions/7">Guadeloupe</a>
                                     <a href="/regions/8">Guyane</a>
                                     <a href="/regions/9">Hauts de France</a>
-                                </div>
-                                <div>
                                     <a href="/regions/10">Martinique</a>
                                     <a href="/regions/11">Mayotte</a>
                                     <a href="/regions/12">Méditerranée</a>
@@ -164,7 +162,7 @@
                         <!-- <li id="menuRegions"class="mb-4 border-b border-black text-xl md:text-3xl lg:text-4xl uppercase"><a href="{{ route('matches.index') }}">Liste des matchs</a></li> -->
                         <li id="menuRegions" class="cursor-pointer mb-4 border-b border-black text-xl md:text-3xl lg:text-4xl uppercase">Liste des matchs</li>
                         <ul id="sousMenuRegions" class="pl-12">
-                            <li><a href="matches">Tous les matchs</a></li>
+                            <li><a href="/matches">Tous les matchs</a></li>
                             <li>Par région</li>
                             <ul class="pl-12">
                                 <li class=""><a href="/regions/1">Auvergne - Rhones-Alpes</a></li>

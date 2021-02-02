@@ -69,6 +69,11 @@ Route::get('/contact', function(){
     return view('contact');
 });
 
+Route::get('/mentions-legales', function(){
+
+    return view('mentionslegales');
+});
+
 Route::resource('admin', 'App\Http\Controllers\AdminController')->middleware('auth');
 
 
