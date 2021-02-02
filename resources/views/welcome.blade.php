@@ -29,7 +29,7 @@
             </div>
         </div>
     </div>
-    <div class="bg-secondary">
+    <div class="">
         <div class="flex flex-wrap justify-around items-center m-auto lg:px xl:w-8/12">
             <div id="live" class="relative w-80 bg-primary rounded-lg h-64 p-2 text-white flex flex-col justify-around items-center m-6 shadow-xl">
                 <p class="font-bold">Les matchs en live</p>
