@@ -36,6 +36,7 @@ class CreateMatchesTable extends Migration
             $table->foreign('division_department_id')->references('id')->on('divisions_departments');
             $table->foreign('division_region_id')->references('id')->on('divisions_regions');
             $table->foreign('department_id')->references('id')->on('departments');
+            $table->foreign('region_id')->references('id')->on('regions');
             $table->foreign('group_id')->references('id')->on('groups');
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('home_team_id')->references('id')->on('clubs');

@@ -49,6 +49,9 @@ module.exports = {
                 xxs: "0.50rem",
                 xs60: "0.60rem",
             },
+            skew: {
+                180: "180deg",
+            },
         }
     }
 };

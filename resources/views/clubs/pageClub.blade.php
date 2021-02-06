@@ -35,7 +35,7 @@
             @if($nbrStaffs == 0)
             <a href="{{ route('clubs.staffs.create', $club) }}">
                 <button class="btn btnSecondary">
-                    Créer un manager
+                    Créer un dirigeant
                 </button>
             </a>
             @else
@@ -49,6 +49,14 @@
                 </button>
             </a>
             @endif
+            <!-- <form action="{{ route('contacts.askPlayer') }}" method="post">
+                @csrf
+                <p>Pas encore de joueurs pour créer</p>
+                <p>Demande la création aux dirigeants</p>
+                <input type="text" class="hidden" value="{{ $club->id}}">
+                <input class="btn" type="submit" value="Je demande">
+            </form> -->
+
         </div>
     </div>
     <div class="sm:w-11/12 md:w-9/12 xl:w-7/12 mx-auto">

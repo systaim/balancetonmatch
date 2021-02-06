@@ -34,22 +34,22 @@
                     <div class="flex flex-col">
                         <p class="font-bold">né le {{ date('d/m/Y',strtotime($staff->date_of_birth)) }}</p>
                     </div>
-                    @canany(['isManager', 'isSuperAdmin', 'isAdmin'])
+                    @can('update-club', $club)
                     <div>
                         <button onclick="openMenu({{$staff->id}})" class="mr-1"><i class="far fa-edit"></i></button>
                         <button id="{{ $key }}" @click="open = true"><i class="far fa-times-circle"></i></button>
                     </div>
-                    @endcanany
+                    @endcan
                 </div>
                 <!-- ***********************
-                    Formulaire suppression d'un joueur
+                    Formulaire suppression d'un dirigeant
                     ************************** -->
                 <div id="" class="absolute bg-white top-0 left-0 right-0 bottom-0 text-primary z-20 flex flex-col justify-between items-center " x-show="open" @click.away="open = false">
                     <div class="mt-3">
                         <h3 class="text-xl text-center my-2 text-darkGray">{{ $staff->first_name}} <span class="uppercase">{{ $staff -> last_name}}</span></h3>
                         <div class="mt-12">
                             <p class="text-lg text-center leading-5 text-gray-800">
-                                Etes vous sûr de vouloir supprimer ce joueur ?
+                                Etes vous sûr de vouloir supprimer ce dirigeant ?
                             </p>
                         </div>
                     </div>
@@ -64,7 +64,7 @@
                 </div>
 
                 <!-- ***********************
-                    Formulaire modification d'un joueur
+                    Formulaire modification d'un dirigeant
                     ************************** -->
 
                 <div id="{{$staff->id}}" class="hidden fixed z-50 inset-0 justify-center items-center" style="background-color: rgba(0,0,0,.5);">
@@ -78,7 +78,7 @@
                             @endforeach
                             @method('PUT')
                             @csrf
-                            <h5 class="text-primary text-center">Modifier le joueur</h5>
+                            <h5 class="text-primary text-center">Modifier le dirigeant</h5>
                             <div class="text-primary">
                                 <div>
                                     <label class="flex flex-col" for="last_name">Nom de famille</label>
@@ -126,7 +126,7 @@
                                 <a href="">
                                     <button type="button" class="btn text-primary">J'annule</button>
                                 </a>
-                                <input class="btn btnSuccess" type="submit" value="Je modifie le joueur">
+                                <input class="btn btnSuccess" type="submit" value="Je modifie le dirigeant">
                             </div>
                         </form>
                     </div>
@@ -140,11 +140,11 @@
                             <p class="giant-text text-gray-500">+</p>
                         </div>
                         <div class="text-lg flex justify-center items-start p-2">
-                            <p class="vertical mx-2 font-semibold">Ajouter un joueur</p>
+                            <p class="vertical mx-2 font-semibold">Ajouter un dirigeant</p>
                         </div>
                     </div>
                     <div class="relative flex p-2">
-                        <p class="font-semibold">Ajouter un joueur</p>
+                        <p class="font-semibold">Ajouter un dirigeant</p>
                     </div>
                 </a>
             </div>

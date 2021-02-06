@@ -36,6 +36,7 @@
                         </div>
                     </a>
                 </div>
+                <!-- NAV DESKTOP -->
                 <nav class="navbar relative hidden xl:flex justify-center mt-4" x-data="{ open: false }">
                     <div class="flex items-center">
                         <a href="/">Accueil</a>
@@ -43,7 +44,7 @@
                         <!-- <li id="menuRegions"class="mb-4 border-b border-black text-xl md:text-3xl lg:text-4xl uppercase"><a href="{{ route('matches.index') }}">Liste des matchs</a></li> -->
                         <div class="dropdown">
                             <button class="dropbtn" @click="open = true">Liste des matchs <i class="fa fa-caret-down"></i></button>
-                            <div class="dropdown-content" x-show="open" @click.away="open = false">
+                            <div class="dropdown-content" x-show="open" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0 h-0" @click.away="open = false">
                                 <div>
                                     <a href="/matches">Tous les matches</a>
                                     <a href="/regions/1">Auvergne - Rhones-Alpes</a>
@@ -66,7 +67,6 @@
                                     <a href="/regions/18">Réunion</a>
                                     <a href="/regions/19">St Pierre & Miquelon</a>
                                 </div>
-
                             </div>
                         </div>
                         <a href="/contact">Contact</a>
@@ -95,6 +95,11 @@
                                 <a href="/clubs/{{Auth::user()->club->id }}">{{Auth::user()->club->name }}</a>
                             </div>
                             @endif
+                            <div class="px-6 py-4 hover:bg-blue-900">
+                                <a href="{{ route('matches.create') }}">
+                                    Je crée un match
+                                </a>
+                            </div>
                             <div class="px-6 py-4 hover:bg-blue-900">
                                 <a href="{{ route('logout') }}" onclick="event.preventDefault();
                                             document.getElementById('logout-form').submit();">
@@ -155,6 +160,7 @@
                         @endauth
                     </div>
                 </div>
+                <!-- NAV MOBILE -->
                 <nav class="xl:hidden mt-12 flex flex-col items-center justify-start w-4/5 lg:h-screen">
                     <ul class="">
                         <li class=" mb-4 border-b border-black text-xl md:text-3xl lg:text-4xl uppercase"><a href="/">Accueil</a></li>

@@ -6,7 +6,6 @@
         <label for="query" class="sr-only">Search</label>
         <input autofocus type="search" class="inputForm focus:outline-none focus:shadow-outline w-full my-1 mx-2" id="query" placeholder="Ex: Nantes" wire:model="query">
     </div>
-    @dump($query)
 
     <div class="m-auto my-8 w-11/12 sm:w-9/12 md:w-7/12 lg:w-7/12">
         @foreach ($clubs as $club)

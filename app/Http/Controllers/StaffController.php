@@ -58,6 +58,8 @@ class StaffController extends Controller
         ]);
             
         $dataStaff['club_id'] = $club->id;
+        $dataStaff['user_id'] = $user->id;
+
 
         if ($request->has('file')) {
             $path = $request->file->store('avatars');
@@ -67,7 +69,8 @@ class StaffController extends Controller
         }
 
         $staff = Staff::create($dataStaff);
-        $staff->user()->associate($user);
+        // $staff->user()->associate($user);
+        // dd($staff);
         $staff->save();
 
         $staffCreate = [

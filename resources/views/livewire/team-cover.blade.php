@@ -7,7 +7,7 @@
     @can('update-club', $club)
 
     @if($bouton == 1)
-    <form wire:submit.prevent="coverTeam" class="relative z-50 bg-gray-200 py-2 px-4 rounded-lg border border-gray-500 border-dashed my-8 w-11/12 md:w-7/12 lg:w-5/12">
+    <form wire:submit.prevent="coverTeam" class="relative z-10 bg-gray-200 py-2 px-4 rounded-lg border border-gray-500 border-dashed my-8 w-11/12 md:w-7/12 lg:w-5/12">
         <p class="text-center py-2 font-bold">Photo de couverture</p>
         <div class="flex flex-col items-center">
             <label class="cursor-pointer my-4 btn border border-black" for="cover">Choisir une photo 📷</label>
@@ -40,7 +40,7 @@
 
 
 
-    <div class="absolute  bottom-0 mb-20 lg:mb-10 h-10 w-10 bg-secondary pt-3 rounded-full flex justify-center border border-black">
+    <div class="absolute  bottom-0 mb-20 h-10 w-10 bg-secondary pt-3 rounded-full flex justify-center border border-black">
         <a href="#infos">
             <i class="animate-bounce fas fa-arrow-down text-xl"></i>
         </a>

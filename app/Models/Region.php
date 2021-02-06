@@ -18,4 +18,9 @@ class Region extends Model
     public function competitions(){
         return $this->belongsTo(Competition::class);
     }
+
+    public function districts()
+    {
+        return $this->hasMany(Department::class);
+    }
 }

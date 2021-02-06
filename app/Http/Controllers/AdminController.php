@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -12,12 +13,20 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
         $users = User::all();
         $users = User::paginate(15);
+        $role = Auth::user()->role;
 
-        return view('admin.index', compact('users'));
+        if($role == "super-admin"){
+            return view('admin.index', compact('users'));
+        } else{
+            return redirect('/')->with('danger', "Vous n'êtes pas autorisé à entrer ici");
+
+        }
+
     }
 
     /**

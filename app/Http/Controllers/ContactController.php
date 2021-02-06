@@ -72,4 +72,9 @@ class ContactController extends Controller
 
         return redirect('/')->with('success', 'Ta demande a bien été envoyée');
     }
+
+    public function askPlayer(Request $request)
+    {
+        dd('ok');
+    }
 }

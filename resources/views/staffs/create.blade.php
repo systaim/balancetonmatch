@@ -9,7 +9,7 @@
             {{ $message}}
             @endforeach
             @csrf
-            <h5 class="text-secondary text-center mb-6">Ajouter un membre du staff</h5>
+            <h5 class="text-secondary text-center mb-6">Ajouter un dirigeant</h5>
             <div class="m-8">
                 <div class="w-10/12 m-auto my-2">
                     <label for="last_name">Nom de famille</label>
