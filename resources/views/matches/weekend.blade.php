@@ -12,7 +12,8 @@
     @else
     @foreach($matches->sortBy('date_match') as $match)
     @if($match->date_match->formatLocalized('%V') == now()->week() && $match->date_match->formatLocalized('%Y') == '2021')
-    @if($match->date_match->formatLocalized('%A') == "vendredi" || $match->date_match->formatLocalized('%A') == "samedi" || $match->date_match->formatLocalized('%A') == "dimanche")
+    @if($match->date_match->formatLocalized('%A') == "vendredi" || $match->date_match->formatLocalized('%A') == "samedi" || $match->date_match->formatLocalized('%A') == "dimanche" ||
+    $match->date_match->formatLocalized('%A') == "Friday" || $match->date_match->formatLocalized('%A') == "Saturday" || $match->date_match->formatLocalized('%A') == "Sunday")
     <h3>{{ $match->competition->name }}</h3>
     @include('match')
     @endif
