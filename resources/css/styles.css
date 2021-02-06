@@ -211,12 +211,16 @@ h6 {
 
 #live {
     background-image: url(/images/on-air.jpg);
-    background-size: contain;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position-x: center;
 }
 
 #weekend {
     background-image: url(/images/ballon-feu.jpg);
-    background-size: contain;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position-x: center;
 }
 
 
