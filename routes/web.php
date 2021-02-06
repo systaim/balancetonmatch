@@ -109,7 +109,7 @@ Route::get('live', function(){
     return view('matches.live', compact('liveMatches', 'user', 'competitions'));
 });
 
-Route::get('matchesduweekend', function(){
+Route::get('matchsduweekend', function(){
 
     $user = Auth::user();
     $matches = Match::all();

@@ -23,8 +23,8 @@ class CreateMatchesTable extends Migration
             $table->datetime('date_match');
             $table->string('location')->nullable();
             $table->unsignedBigInteger('competition_id');
-            $table->unsignedBigInteger('region_id');
-            $table->unsignedBigInteger('department_id');
+            $table->unsignedBigInteger('region_id')->nullable();
+            $table->unsignedBigInteger('department_id')->nullable();
             $table->unsignedBigInteger('division_region_id')->nullable();
             $table->unsignedBigInteger('division_department_id')->nullable();
             $table->unsignedBigInteger('group_id')->nullable();
