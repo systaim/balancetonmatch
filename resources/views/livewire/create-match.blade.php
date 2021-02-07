@@ -8,7 +8,7 @@
             <div class="flex justify-evenly mb-4">
                 <div class="flex flex-col w-2/5">
                     <label for="date_match">Date</label>
-                    <input class="inputForm focus:outline-none focus:shadow-outline w-full my-1" type="date" name="date_match" id="date_match" wire:model="dateMatch" :value="old('date_match')" autocomplete="date_match" required>
+                    <input autofocus class="inputForm focus:outline-none focus:shadow-outline w-full my-1" type="date" name="date_match" id="date_match" wire:model="dateMatch" :value="old('date_match')" autocomplete="date_match" required>
                     @error('date_match')
                     <div class="alert alert-danger">{{ $message }}</div>
                     @enderror

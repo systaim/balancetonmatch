@@ -3,7 +3,7 @@
 <div class="bg-register py-4 min-h-screen">
     <form method="POST" action="{{ route('register') }}">
         @csrf
-        <div class="m-4 p-6 text-secondary rounded-lg shadow-xl bg-primary md:w-7/12 md:m-auto lg:w-8/12 xl:m-2">
+        <div class="m-4 p-6 text-secondary shadow-xl bg-primary md:w-7/12 md:m-auto lg:w-8/12 xl:m-2">
             <h2 class="text-center text-2xl py-4">S'enregistrer</h2>
             <form method="POST" action="{{ route('register') }}">
                 <div class="relative my-2 p-3">

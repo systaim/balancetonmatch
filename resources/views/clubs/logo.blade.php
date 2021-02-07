@@ -10,7 +10,7 @@
             <div class="w-1/2" style="background-color:{{ $club->secondary_color }}"></div>
         </div>
         <div class="flex justify-center items-center relative">
-            <div class="bg-primary text-secondary rounded-lg">
+            <div class="bg-primary text-secondary shadow-lg">
                 <h2 class="mx-2 text-3xl lg:text-5xl text-center ">{{ $club->name }}</h2>
             </div>
         </div>

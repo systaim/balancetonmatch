@@ -85,7 +85,7 @@
                         </div>
                     </div>
                     @endauth
-                    <div id="menuUser" class="absolute z-50 bg-primary rounded-lg shadow-lg overflow-hidden left-0 w-full" x-show="open" @click.away="open = false">
+                    <div id="menuUser" class="absolute z-50 bg-primary rounded-lg shadow-lg overflow-hidden left-0 w-full" x-show="open"  x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0 h-0" @click.away="open = false">
                         <div class="mt-4">
                             @auth
                             <div class="px-6 py-4 hover:bg-blue-900"><a href="/user/profile">Mon profil</a></div>
@@ -162,7 +162,7 @@
                 </div>
                 <!-- NAV MOBILE -->
                 <nav class="xl:hidden mt-12 flex flex-col items-center justify-start w-4/5 lg:h-screen">
-                    <ul class="">
+                    <ul class="w-10/12 m-auto">
                         <li class=" mb-4 border-b border-black text-xl md:text-3xl lg:text-4xl uppercase"><a href="/">Accueil</a></li>
                         <li class=" mb-4 border-b border-black text-xl md:text-3xl lg:text-4xl uppercase"><a href="{{ route('clubs.index') }}">Rechercher un club</a></li>
                         <!-- <li id="menuRegions"class="mb-4 border-b border-black text-xl md:text-3xl lg:text-4xl uppercase"><a href="{{ route('matches.index') }}">Liste des matchs</a></li> -->

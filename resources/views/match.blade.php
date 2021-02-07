@@ -2,7 +2,7 @@
     <div class="absolute top-2 -left-8 md:left-6 z-10 text-center flex justify-center font-bold">
         @livewire('favori-match', ['user' => $user, 'match' => $match])
     </div>
-    <div class="relative my-2 p-2 bg-primary text-white rounded-lg cursor-pointer">
+    <div class="relative my-2 p-2 bg-primary text-white shadow-lg cursor-pointer">
         @auth
         @if(Auth::user() && $match->user_id == Auth::user()->id && $match->live == 'attente' || Auth::user()->role == "super-admin" || Auth::user()->role == "admin")
         <div class="bg-secondary w-6 h-6 absolute top-2 right-1 flex justify-center items-center rounded-full text-primary" @click="open= true">

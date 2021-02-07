@@ -3,7 +3,7 @@
         <!-- affichage bannière du match -->
         <div class="backMatch">
             <div class="py-6">
-                <div class="relative bg-primary text-white m-auto text-center rounded-lg shadow-2xl p-2 max-w-md">
+                <div class="relative bg-primary text-white m-auto text-center shadow-2xl p-2 max-w-md">
                     @if($match->region && $match->region->id != 20)
                     <h2>{{ $match->region->name }}</h2>
                     @endif
@@ -414,12 +414,12 @@
             @endif
             @if($match->live == 'reporte')
             <div class="flex justify-center items-center my-6">
-                <p class="bg-danger font-bold rounded-md py-2 px-3">Le match est reporté à une date ultérieure</p>
+                <p class="bg-danger font-bold py-2 px-3">Le match est reporté à une date ultérieure</p>
             </div>
             @endif
             @if(empty($match->commentateur) && $match->live != "finDeMatch")
             <div class="flex justify-center items-center my-6">
-                <p class="bg-primary text-white rounded-md py-2 px-3">En attente d'un commentateur</p>
+                <p class="bg-primary text-white py-2 px-3">En attente d'un commentateur</p>
             </div>
             @auth
             <button type="button" class="relative commentaires h-24 bg-white commandeMatch items-stretch w-full focus:outline-none minHeight16" wire:click="becomeCommentator" wire:model="commentator">
@@ -563,7 +563,7 @@
                             <div class="flex flex-col">
                                 @auth
                                 <div class="flex justify-center">
-                                    <select class="focus:outline-none focus:shadow-outline my-1 border-2 rounded-md m-1 p-1" name="playerMatch" id="playerMatch" wire:model="playerMatch">
+                                    <select class="focus:outline-none focus:shadow-outline my-1 border-2 m-1 p-1" name="playerMatch" id="playerMatch" wire:model="playerMatch">
                                         <option value="">Choisis un joueur</option>
                                         @foreach(($comment->team_action == 'home' ? $match->homeClub->players : $match->awayClub->players) as $player)
                                         <option value="{{ $player->id}}">{{$player->first_name}}
@@ -581,7 +581,7 @@
                                 @else
                                 <div class="my-2 text-center">
                                     <p class="text-xs">pour pouvoir renseigner ce joueur</p>
-                                    <a href="/login" class="text-xs px-2 py-1 bg-primary rounded-md text-secondary">
+                                    <a href="/login" class="text-xs px-2 py-1 bg-primary text-secondary">
                                         Connecte toi
                                     </a>
                                 </div>

@@ -1,7 +1,7 @@
 <div id="backTeam" class="relative flex flex-col items-center justify-start lg:bg-fixed" style="background-image: url({{ asset($club->bg_path) }});">
     @include('clubs.logo')
     @if($club->bg_path == null || $club->bg_path == "")
-    <p class="absolute top-1/2 text-xl px-3 py-2 bg-primary text-secondary rounded-lg font-bold">Pas encore de photo pour ce club</p>
+    <p class="absolute top-1/2 text-xl px-3 py-2 bg-primary text-secondary font-bold shadow-lg">Pas encore de photo pour ce club</p>
     @endif
 
     @can('update-club', $club)

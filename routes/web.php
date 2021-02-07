@@ -112,9 +112,10 @@ Route::get('live', function(){
 Route::get('matchsduweekend', function(){
 
     $user = Auth::user();
-    $matches = Match::all();
+    $matches = Match::all()->groupBy('competition_id');
+    $competitions = Competition::find($matches->keys());
 
-    return view('matches.weekend', compact('matches','user'));
+    return view('matches.weekend', compact('matches','user', 'competitions'));
 });
 
 

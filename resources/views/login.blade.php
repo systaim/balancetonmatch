@@ -1,6 +1,6 @@
 <form action="{{ route('login') }}" method="post">
     @csrf
-    <div class="p-4 sm:w-8/12 md:w-7/12 lg:w-6/12 bg-white rounded-lg shadow-xl">
+    <div class="p-4 sm:w-8/12 md:w-7/12 lg:w-6/12 bg-white shadow-xl">
         <h2 class="text-primary text-2xl px-4 m-auto pb-4">Je me connecte</h2>
         <div class="flex flex-col">
             <label class="hidden" for="email">{{ __('Email') }}</label>
@@ -38,7 +38,7 @@
         </div>
         <h2 class="text-primary text-2xl px-4 m-auto pb-4">Ou je m'inscris</h2>
         <div class="w-full">
-            <a class="block bg-primary text-white py-3 px-4 rounded-lg text-center" href="/register">Créer un compte</a>
+            <a class="block bg-primary text-white py-3 px-4 text-center shadow-lg" href="/register">Créer un compte</a>
         </div>
     </div>
 </form>
