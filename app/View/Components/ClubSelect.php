@@ -9,6 +9,17 @@ use Illuminate\View\Component;
 class ClubSelect extends Component
 {
 
+    public $clubs;
+    /**
+     * Create a new component instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->clubs = Club::all();
+    }
+
     /**
      * Get the view / contents that represent the component.
      *
