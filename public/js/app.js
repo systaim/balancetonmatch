@@ -19394,6 +19394,11 @@ var sousMenuRegion = document.getElementById('sousMenuRegions');
 menuRegions.addEventListener('click', function () {
   sousMenuRegion.classList.toggle('select');
 });
+var submitButton = document.querySelector('[type=Submit]');
+submitButton.addEventListener('load', function () {
+  submitButton.setAttribute('disabled', 'disabled');
+});
+console.log("input : " + submitButton);
 
 /***/ }),
 

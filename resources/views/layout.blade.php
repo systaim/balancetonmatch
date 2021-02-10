@@ -85,27 +85,25 @@
                         </div>
                     </div>
                     @endauth
-                    <div id="menuUser" class="absolute z-50 bg-primary rounded-lg shadow-lg overflow-hidden left-0 w-full" x-show="open"  x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0 h-0" @click.away="open = false">
+                    <div id="menuUser" class="absolute z-50 bg-primary rounded-lg shadow-lg overflow-hidden left-0 w-full" x-show="open" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0 h-0" @click.away="open = false">
                         <div class="mt-4">
                             @auth
-                            <div class="px-6 py-4 hover:bg-blue-900"><a href="/user/profile">Mon profil</a></div>
+                            <a class="px-6 py-4 hover:bg-blue-900 block" href="/user/profile">Mon profil</a>
                             @if(Auth::user()->club)
-                            <div class="px-6 py-2 hover:bg-blue-900">
-                                <p class="text-sm">Mon club</p>
-                                <a href="/clubs/{{Auth::user()->club->id }}">{{Auth::user()->club->name }}</a>
-                            </div>
+                            <a class="px-6 py-4 hover:bg-blue-900 block" href="/clubs/{{Auth::user()->club->id }}"><span class="text-sm">Mon club</span></br>{{Auth::user()->club->name }}</a>
                             @endif
-                            <div class="px-6 py-4 hover:bg-blue-900">
-                                <a href="{{ route('matches.create') }}">
-                                    Je crée un match
-                                </a>
-                            </div>
-                            <div class="px-6 py-4 hover:bg-blue-900">
-                                <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                            <a class="px-6 py-4 hover:bg-blue-900 block" href="{{ route('matches.create') }}">
+                                Je crée un match
+                            </a>
+                            @canany(['isSuperAdmin', 'isAdmin'])
+                            <a class="px-6 py-4 hover:bg-blue-900 block" href="/admin">
+                                Page admin
+                            </a>
+                            @endcanany
+                            <a class="px-6 py-4 hover:bg-blue-900 block" href="{{ route('logout') }}" onclick="event.preventDefault();
                                             document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
-                                </a>
-                            </div>
+                                {{ __('Logout') }}
+                            </a>
                             @else
                             <ul class="list-none">
                                 <li class="px-6 py-4 hover:bg-blue-900"><a href="/login">Se connecter</a></li>

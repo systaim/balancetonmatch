@@ -29,14 +29,14 @@ class CreateNewUser implements CreatesNewUsers
             'first_name' => ['required', 'string', 'max:255'],
             'pseudo' => ['required', 'unique:users', 'string', 'max:50'],
             'date_of_birth' => ['nullable', 'date'],
-            // 'club' => ['nullable'],
+            'club' => ['nullable'],
             // 'isPlayer' => ['required'],
             // 'region' => ['nullable'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => $this->passwordRules(),
         ])->validate();
 
-        // $club = Club::where('name', $input['club'])->first();
+        $club = Club::where('name', $input['club'])->first();
         // $region = Region::where('name', $input['region'])->first();
 
         return User::create([
@@ -44,7 +44,7 @@ class CreateNewUser implements CreatesNewUsers
             'first_name' => $input['first_name'],
             'pseudo' => $input['pseudo'],
             'date_of_birth' => $input['date_of_birth'],
-            // 'club_id' => $club->id,
+            'club_id' => $club->id,
             // 'is_player' => $input['isPlayer'],
             // 'region_id' => $region->id,
             'email' => $input['email'],

@@ -42,3 +42,12 @@ let sousMenuRegion = document.getElementById('sousMenuRegions')
 menuRegions.addEventListener('click', function() {
     sousMenuRegion.classList.toggle('select')
 })
+
+let submitButton = document.querySelector('[type=Submit]')
+
+submitButton.addEventListener('load', function() {
+    submitButton.setAttribute('disabled', 'disabled')
+
+})
+
+console.log("input : " + submitButton)

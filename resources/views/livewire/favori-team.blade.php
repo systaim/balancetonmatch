@@ -33,7 +33,7 @@
     @endauth
     <div class="ml-4">
         @if($nbrFavoris == 0)
-        <p>Sois le premier à être fan</p>
+        <p>Sois le premier fan</p>
         @elseif($nbrFavoris > 0)
         @if($nbrFavoris == 1)
         <p>Suivi par {{ $nbrFavoris }} fan</p>

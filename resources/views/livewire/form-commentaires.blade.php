@@ -40,14 +40,12 @@
                             <p class="truncate text-center sm:font-bold lg:text-2xl">
                                 {{ $match->homeClub->name }}
                             </p>
-                        </div>
-                        <!-- <div>
                             <a href="{{ route('clubs.show', $match->homeClub->id) }}">
-                                <p class="truncate text-right text-sm">
-                                    Vers le club
+                                <p class="float-left truncate text-right text-xs underline leading-6">
+                                    page club →
                                 </p>
                             </a>
-                        </div> -->
+                        </div>
                     </div>
 
                 </div>
@@ -67,6 +65,11 @@
                             <p class="truncate text-center lg:text-left sm:font-bold lg:text-2xl">
                                 {{ $match->awayClub->name }}
                             </p>
+                            <a href="{{ route('clubs.show', $match->awayClub->id) }}">
+                                <p class="truncate text-right text-xs underline leading-6">
+                                    page club →
+                                </p>
+                            </a>
                         </div>
                         <div class="flex justify-center">
                             @auth

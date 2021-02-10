@@ -32,7 +32,7 @@ class Club extends Model
 
     public function matchs()
     {
-        return $this->belongsTo(Match::class);
+        return $this->hasMany(Match::class);
     }
 
     public function statistics()

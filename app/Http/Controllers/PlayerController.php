@@ -175,7 +175,8 @@ class PlayerController extends Controller
         $player->user()->associate($user);
 
         $player->save();
-        return back()->with('messageUpdate', 'Le joueur a bien été mis à jour');
+        return redirect('clubs/' .$club->id. '/players')->with('success', $player->first_name. ' a été mis à jour !');
+        // return back()->with('messageUpdate', 'Le joueur a bien été mis à jour');
     }
 
     /**

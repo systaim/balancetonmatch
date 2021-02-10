@@ -20,7 +20,7 @@ class AdminController extends Controller
         $users = User::paginate(15);
         $role = Auth::user()->role;
 
-        if($role == "super-admin"){
+        if($role == "super-admin" || $role == "super-admin"){
             return view('admin.index', compact('users'));
         } else{
             return redirect('/')->with('danger', "Vous n'êtes pas autorisé à entrer ici");
@@ -79,9 +79,18 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
+    public function update(Request $request, $user)
+    {        
+        $data = $request->validate([
+            'role' => 'string',
+        ]);
+
+        $user->role_id = $request->role;
+        dd($request);
+
+        $user->save();
+
+        return back()->with('success', 'Good !');
     }
 
     /**

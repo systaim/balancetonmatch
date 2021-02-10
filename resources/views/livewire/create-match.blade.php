@@ -1,10 +1,10 @@
 <div>
-    <div class="flex justify-center">
-        <h2 class="titlePage">Créer un match</h2>
-    </div>
+<div class="relative w-full py-10 px-4 bg-primary text-white flex justify-center items-center mb-6">
+    <h2 class="text-4xl lg:text-6xl">Créer un match</h2>
+</div>
     <form wire:submit.prevent="saveMatch">
         @csrf
-        <div class="bg-primary rounded-lg relative text-white my-2 px-3 py-3 m-auto sm:w-11/12 md:w-7/12 lg:w-6/12 xl:w-4/12">
+        <div class="bg-primary relative text-white my-2 px-3 py-3 m-auto shadow-lg sm:w-11/12 md:w-7/12 lg:w-6/12 xl:w-4/12">
             <div class="flex justify-evenly mb-4">
                 <div class="flex flex-col w-2/5">
                     <label for="date_match">Date</label>

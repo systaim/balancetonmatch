@@ -2,9 +2,8 @@
 @section('content')
 
 <div class="relative w-full py-10 px-4 bg-primary text-white flex justify-center items-center mb-6">
-    <h2 class=" ml-4 text-4xl lg:text-6xl bg-secondary text-primary py-1 px-3 rounded-md">Mentions Légales</h2>
+    <h2 class="text-4xl lg:text-6xl">Mentions légales</h2>
 </div>
-
 <div class="p-3 lg:w-10/12 xl:w-8/12 2xl:w-6/12 m-auto">
     <h2>Informations légales</h2>
     <h3>1. Présentation du site.</h3>

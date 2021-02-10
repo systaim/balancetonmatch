@@ -47,12 +47,12 @@
                             <div class="alert danger">{{ $message }}</div>
                             @enderror
                         </div>
-                        <!-- <div class="flex flex-col lg:w-5/12 mb-6">
+                        <div class="flex flex-col lg:w-5/12 mb-6">
                             <x-clubSelect />
                             @error('club')
                             <div class="alert danger">{{ $message }}</div>
                             @enderror
-                        </div> -->
+                        </div>
                     </div>
                     <div class="lg:flex lg:justify-between">
                         <!-- <div class="flex flex-col lg:w-5/12 mb-6">

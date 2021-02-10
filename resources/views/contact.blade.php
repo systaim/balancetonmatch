@@ -1,8 +1,10 @@
 @extends('layout')
 @section('content')
 <div class="">
+    <div class="relative w-full py-10 px-4 bg-primary text-white flex justify-center items-center mb-6">
+        <h2 class="text-4xl lg:text-6xl">Contact</h2>
+    </div>
     <form class="text-white flex flex-col w-11/12 lg:w-6/12 m-auto" action="{{ route('contacts.store') }}" method="POST">
-        <h2 class="my-4 lg:w-6/12 text-center text-2xl bg-primary rounded-lg text-secondary px-2 py-1 inline-block m-auto">Formulaire de contact</h2>
         @csrf
         <div class="flex flex-col mt-4">
             <label class="text-primary font-bold" for="prenom">Mon prénom</label>
@@ -35,7 +37,7 @@
         <div>
             <button class="btn btnPrimary float-right" type="submit">Envoyer</button>
         </div>
-        
+
     </form>
 </div>
 @endsection

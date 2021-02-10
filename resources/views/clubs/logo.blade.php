@@ -11,7 +11,7 @@
         </div>
         <div class="flex justify-center items-center relative">
             <div class="bg-primary text-secondary shadow-lg">
-                <h2 class="mx-2 text-3xl lg:text-5xl text-center ">{{ $club->name }}</h2>
+                <h2 class="mx-2 text-3xl lg:text-5xl text-center px-3">{{ $club->name }}</h2>
             </div>
         </div>
     </div>

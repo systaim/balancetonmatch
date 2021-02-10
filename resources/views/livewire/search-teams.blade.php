@@ -1,7 +1,7 @@
 <div class="h-auto w-full">
-    <div class="flex justify-center my-8">
-        <h2 class="titlePage">Rechercher un club</h2>
-    </div>
+<div class="relative w-full py-10 px-4 bg-primary text-white flex justify-center items-center mb-6">
+    <h2 class="text-4xl lg:text-6xl">Liste des clubs</h2>
+</div>
     <div class="flex justify-center my-8 m-auto w-11/12 sm:w-9/12 md:w-7/12 lg:w-6/12">
         <label for="query" class="sr-only">Search</label>
         <input autofocus type="search" class="inputForm focus:outline-none focus:shadow-outline w-full my-1 mx-2" id="query" placeholder="Ex: Nantes" wire:model="query">
@@ -35,7 +35,7 @@
         @endif
         @endforeach
         @if($clubs->isEmpty())
-        <div class="bg-primary text-white rounded-lg p-4">
+        <div class="bg-primary text-white p-4">
             <div class="flex flex-col items-center justify-center mb-3">
                 <p class="text-2xl">OUPS ! </p>
                 <p>Renouvelle ta recherche ou demande l'ajout du club !</p>

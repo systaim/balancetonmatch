@@ -3,8 +3,8 @@
 <section>
     @include('clubs.linkPageClub')
     @include('clubs.logo')
-    <div class="bg-primary rounded-lg relative text-white my-2 p-3 m-auto w-full sm:w-11/12 md:w-9/12 lg:w-6/12">
-        <form action="{{ route('clubs.staffs.store', $club) }}" method="post" enctype="multipart/form-data">
+    <div class="bg-primary relative text-white my-2 p-3 m-auto w-full sm:w-11/12 md:w-9/12 lg:w-6/12">
+        <form action="{{ route('clubs.staffs.store', $club) }}" method="post" enctype="multipart/form-data" onsubmit="document.querySelector('[type=Submit]').disabled=1">
             @foreach ($errors->all() as $message)
             {{ $message}}
             @endforeach

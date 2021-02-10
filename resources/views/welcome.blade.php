@@ -18,7 +18,7 @@
         <div class="w-11/12 m-auto sm:w-8/12 md:w-6/12 lg:w-10/12 xl:w-9/12">
             <div class="mx-2 bg-primary py-4 px-6 shadow-xl">
                 <form class="w-full" action="{{ asset('clubs') }}" method="get">
-                    <H3 class="p-2 text-white text-xl">Rechercher un club</H3>
+                    <H3 class="p-2 text-white text-lg text-center">Rechercher un club</H3>
                     @csrf
                     <label class="relative" for="search">
                         <input class="inputForm w-full" type="search" placeholder="F.C. Recherche" name="search" id="search">
