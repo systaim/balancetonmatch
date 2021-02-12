@@ -11,7 +11,7 @@ class Staff extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable = ['first_name', 'last_name', 'quality', 'club_id','user_id'];
+    protected $fillable = ['first_name', 'last_name', 'quality', 'club_id','user_id', 'created_by'];
 
     public function club()
     {
@@ -20,6 +20,11 @@ class Staff extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function creator()
+    {
+        return $this->belongsTo(User::class, 'created_by');
     }
 }

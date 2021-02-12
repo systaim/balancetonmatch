@@ -58,7 +58,7 @@ class StaffController extends Controller
         ]);
             
         $dataStaff['club_id'] = $club->id;
-        $dataStaff['user_id'] = $user->id;
+        $dataStaff['created_by'] = $user->id;
 
 
         if ($request->has('file')) {
@@ -78,9 +78,9 @@ class StaffController extends Controller
             'first_name' => $staff->first_name,
             'quality' => $staff->quality,
             'club_id' => $staff->club->name,
-            'user_first_name' => $staff->user->first_name,
-            'user_last_name' => $staff->user->last_name,
-            'user_id' => $staff->user_id,
+            'creator_first_name' => $staff->creator->first_name,
+            'creator_last_name' => $staff->creator->last_name,
+            'creator_id' => $staff->creator->id,
         ];
         
         $superAdmin = User::where('role', 'super-admin')->get()->pluck('email');
@@ -144,16 +144,18 @@ class StaffController extends Controller
         $staff->last_name = $request->last_name;
         $staff->date_of_birth = $request->date_of_birth;
         $staff->quality = $request->quality;
+        $staff->created_by = $user->id;
+
         if ($request->has('file')) {
             $path = $request->file->store('avatars');
             $staff->avatar_path = $path;
         }
 
         // dd($staff);
-        $staff->user()->associate($user);
+        // $staff->user()->associate($user);
 
         $staff->save();
-        return back()->with('messageUpdate', 'Le joueur a bien été mis à jour');
+        return back()->with('success', $staff->first_name. ' a bien été mis à jour');
     }
 
     /**

@@ -11,7 +11,7 @@ class Player extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable = ['last_name','first_name','date_of_birth','team','position', 'user_id', 'club_id','avatar_path'];
+    protected $fillable = ['last_name','first_name','date_of_birth','team','position', 'user_id', 'club_id','avatar_path','created_by'];
 
     protected $date = [
         'date_of_birth',
@@ -24,9 +24,14 @@ class Player extends Model
     public function match(){
         return $this->belongsTo(Match::class);
     }
+
+    public function creator()
+    {
+        return $this->belongsTo(User::class, 'created_by');
+    }
     
     public function user(){
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function statistics(){

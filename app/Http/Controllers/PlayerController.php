@@ -57,6 +57,7 @@ class PlayerController extends Controller
     public function store(Request $request, Club $club)
     {
         $user = Auth::user();
+        // dd($user->id);
         // $players = Player::where('club_id', $club->id)
         //     ->orderBy('last_name', 'asc')
         //     ->orderBy('first_name', 'asc')
@@ -72,6 +73,8 @@ class PlayerController extends Controller
             'position' => 'required',
         ]);
         $dataPlayer['club_id'] = $club->id;
+        $dataPlayer['created_by'] = $user->id;
+
 
         // @dd($players);
 
@@ -81,7 +84,7 @@ class PlayerController extends Controller
         }
 
         $player = Player::create($dataPlayer);
-        $player->user()->associate($user);
+        // $player->user()->associate($user);
         $player->save();
 
         // $playersClub = collect($players);
@@ -99,9 +102,9 @@ class PlayerController extends Controller
             'date_of_birth' => $player->date_of_birth,
             'position' => $player->position,
             'club_id' => $player->club->name,
-            'user_first_name' => $player->user->first_name,
-            'user_last_name' => $player->user->last_name,
-            'user_id' => $player->user_id,
+            'creator_first_name' => $player->creator->first_name,
+            'creator_last_name' => $player->creator->last_name,
+            'creator_id' => $player->created_by,
         ];
 
         $superAdmin = User::where('role', 'super-admin')->get()->pluck('email');
@@ -166,13 +169,13 @@ class PlayerController extends Controller
         $player->last_name = $request->last_name;
         $player->date_of_birth = $request->date_of_birth;
         $player->position = $request->position;
+        $player->created_by = $user->id;
         if ($request->has('file')) {
             $path = $request->file->store('avatars');
             $player->avatar_path = $path;
         }
 
-        // dd($player);
-        $player->user()->associate($user);
+        // $player->user()->associate($user);
 
         $player->save();
         return redirect('clubs/' .$club->id. '/players')->with('success', $player->first_name. ' a été mis à jour !');

@@ -626,9 +626,9 @@
                     <div>
                         <p class="font-bold">{{$match->commentateur->user->pseudo}}</p>
                     </div>
-                    <div class="flex items-center justify-center bg-secondary h-12 w-12 rounded-full m-2">
+                    <!-- <div class="flex items-center justify-center bg-secondary h-12 w-12 rounded-full m-2">
                         <p>{{$match->commentateur->user->note}}</p>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>

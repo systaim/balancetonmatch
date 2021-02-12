@@ -79,14 +79,15 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $user)
+    public function update(Request $request, User $user)
     {        
+        dd($request);
         $data = $request->validate([
             'role' => 'string',
         ]);
 
         $user->role_id = $request->role;
-        dd($request);
+        // dd($request);
 
         $user->save();
 

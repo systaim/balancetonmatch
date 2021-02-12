@@ -3,7 +3,7 @@
 </div>
 <div>
     <p>Voici les informations envoyées par 
-        <span class="capitalize">{{ $player['user_first_name'] }}</span> <span class="uppercase">{{ $player['user_last_name'] }}</span> ({{ $player['user_id'] }}) : </p>
+        <span class="capitalize">{{ $player['creator_first_name'] }}</span> <span class="uppercase">{{ $player['creator_last_name'] }}</span> ({{ $player['creator_id'] }}) : </p>
 </div>
 <div>
     <p>Nom de famille : {{ $player['last_name'] }}</p>
