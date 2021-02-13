@@ -14,12 +14,12 @@
         <h4 class="text-center text-6xl">{{ $club->abbreviation }}</h4>
         <h3 class="text-center text-secondary mb-4">Infos du club</h3>
         @livewire('update-team',['club' => $club])
-        <form class="my-4 m-auto" action="{{ route('contacts.askPlayer') }}" method="POST">
+        <!-- <form class="my-4 m-auto" action="{{ route('contacts.askPlayer') }}" method="POST">
             @csrf
             <input class="hidden" type="text" name="clubName" value="{{ $club->name }}">
             <input class="hidden" type="text" name="clubId" value="{{ $club->id }}">
             <button class="btn btnSecondary" wire:click="askPlayer">Demander</button>
-        </form>
+        </form> -->
         <div class="flex flex-col items-center xl:flex-row xl:justify-center mt-3">
             @if($nbrPlayers == 0)
             <a href="{{ route('clubs.players.create', $club) }}">
