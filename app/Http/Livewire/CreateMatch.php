@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Mail\MatchMail;
 use App\Models\Club;
 use App\Models\Competition;
+use App\Models\Department;
 use App\Models\Group;
 use App\Models\Match;
 use App\Models\Region;
@@ -19,7 +20,6 @@ class CreateMatch extends Component
     public $searchHome = "";
     public $searchAway = "";
     public $regions;
-    public $region;
     public $competitions;
     public $competition;
     public $groups;
@@ -33,15 +33,15 @@ class CreateMatch extends Component
     public $messageErreur = "";
     public $district;
 
-    public function updateSearchHome()
-    {
-        $this->clubs = Club::where('name', 'like', '%' . $this->searchHome . '%')->get();
-    }
+    // public function updatedSearchHome()
+    // {
+    //     $this->clubs = Club::where('name', 'like', '%' . $this->searchHome . '%')->get();
+    // }
 
-    public function updateSearchAway()
-    {
-        $this->clubs = Club::where('name', 'like', '%' . $this->searchAway . '%')->get();
-    }
+    // public function updatedSearchAway()
+    // {
+    //     $this->clubs = Club::where('name', 'like', '%' . $this->searchAway . '%')->get();
+    // }
 
     public function saveMatch(Match $match)
     {

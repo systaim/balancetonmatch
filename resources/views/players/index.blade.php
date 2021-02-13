@@ -43,7 +43,6 @@
                         <p class="capitalize vertical mx-2 font-semibold truncate">
                             {{ $player->first_name}} <span class="uppercase">{{ $player -> last_name}}</span>
                         </p>
-                        <p>{{ $player->creator->first_name }}</p>
                     </div>
                 </div>
                 <div class="relative flex justify-between items-end p-2 h-12">

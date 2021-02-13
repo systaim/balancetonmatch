@@ -56,14 +56,14 @@ class UpdateTeam extends Component
         $this->club->number_teams = $this->inputNbrTeams;
         $this->club->abbreviation = $this->inputAbbreviation;
 
-        Validator::make([
+        $this->validate([
             'inputAbbreviation' => 'nullable|string|max:6',
             'inputAddress' => 'nullable|string|max:255',
             'inputCity' => 'nullable|string|min:2|max:255',
             'inputPrimaryColor' => 'regex:/#[a-fA-F0-9]{6}/',
             'inputSecondaryColor' => 'regex:/#[a-fA-F0-9]{6}/',
             'inputZip' => 'nullable|digits:5',
-        ])->validate();
+        ]);
         $this->club->save();
 
         return redirect()->to('clubs/' . $this->club->id);

@@ -14,6 +14,11 @@
         <h4 class="text-center text-6xl">{{ $club->abbreviation }}</h4>
         <h3 class="text-center text-secondary mb-4">Infos du club</h3>
         @livewire('update-team',['club' => $club])
+        <form class="my-4 m-auto" action="{{ route('contacts.askPlayer') }}" method="POST">
+            @csrf
+            <input class="hidden" type="text" name="clubId" value="{{ $club->id }}">
+            <button class="btn btnSecondary" wire:click="askPlayer">Demander</button>
+        </form>
         <div class="flex flex-col items-center xl:flex-row xl:justify-center mt-3">
             @if($nbrPlayers == 0)
             <a href="{{ route('clubs.players.create', $club) }}">
@@ -81,8 +86,7 @@
         <h3 class="text-center my-4 border-b-2 border-darkGray">Historique des matchs</h3>
         @if(count($matchs) != 0)
         @foreach($matchs as $match)
-        @if($match->date_match < now()) 
-        <h3>{{ $match->competition->name }}</h3>
+        @if($match->date_match < now()) <h3>{{ $match->competition->name }}</h3>
             <a href="{{route('matches.show',$match)}}">
                 @include('match')
             </a>

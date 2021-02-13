@@ -41,7 +41,7 @@
                 </div>
                 <div class="flex justify-between items-center w-full sm:w-7/12 m-2">
                     <label for="inputAbbreviation">Initiales équipe</label>
-                    <input class="text-primary inputForm" type="text" name="inputAbbreviation" id="inputAbbreviation" maxlength="4" wire:model="inputAbbreviation">
+                    <input class="text-primary inputForm" type="text" name="inputAbbreviation" id="inputAbbreviation" maxlength="6" wire:model="inputAbbreviation">
                     @error('inputAbbreviation')
                     <div class="alert alert-danger">{{ $message }}</div>
                     @enderror

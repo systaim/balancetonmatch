@@ -60,8 +60,8 @@ class MatchController extends Controller
         $clubs = Club::all();
         $regions = Region::all();
         // $competitions = Competition::all();
-        $departments = Department::all();
         $competitions = Competition::all();
+        $departments = Department::all();
         $groups = Group::all();
         $divisionsDepartments = DivisionsDepartment::all();
         $divisionsRegions = DivisionsRegion::all();
