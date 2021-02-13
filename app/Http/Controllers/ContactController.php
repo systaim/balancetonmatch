@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\AskNewTeamMail;
+use App\Mail\askPlayerMail;
 use App\Mail\ContactMail;
 use App\Models\Club;
 use App\Models\User;
@@ -71,16 +72,18 @@ class ContactController extends Controller
 
     public function askPlayer(Request $request, Club $club)
     {
+        // dd($request);
         $contactCreate = [
+            'clubName' => $request->get('clubName'),
             'clubId' => $request->get('clubId'),
         ];
 
         $superAdmin = User::where('role', 'super-admin')->get()->pluck('email');
 
         Mail::to($superAdmin)
-            ->send(new ContactMail($contactCreate));
+            ->send(new askPlayerMail($contactCreate));
 
-        return redirect('clubs/' .$club->id )->with('success', 'bien demandé');
+        return redirect('clubs/' .$request->get('clubId') )->with('success', 'La demande a bien été envoyée');
     }
 
     public function becomeManager()

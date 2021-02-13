@@ -16,6 +16,7 @@
         @livewire('update-team',['club' => $club])
         <form class="my-4 m-auto" action="{{ route('contacts.askPlayer') }}" method="POST">
             @csrf
+            <input class="hidden" type="text" name="clubName" value="{{ $club->name }}">
             <input class="hidden" type="text" name="clubId" value="{{ $club->id }}">
             <button class="btn btnSecondary" wire:click="askPlayer">Demander</button>
         </form>
