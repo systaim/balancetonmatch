@@ -19385,7 +19385,6 @@ compteurs.forEach(function (compteur) {
     window.requestAnimationFrame(step);
   }
 
-  console.log(compteur.innerHTML);
   var valeurCompteur = compteur.innerHTML;
   animateValue(compteur, 0, valeurCompteur, 5000);
 });
@@ -19398,7 +19397,6 @@ var submitButton = document.querySelector('[type=Submit]');
 submitButton.addEventListener('load', function () {
   submitButton.setAttribute('disabled', 'disabled');
 });
-console.log("input : " + submitButton);
 
 /***/ }),
 

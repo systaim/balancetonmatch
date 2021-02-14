@@ -31,7 +31,6 @@ compteurs.forEach(compteur => {
         };
         window.requestAnimationFrame(step);
     }
-    console.log(compteur.innerHTML);
     let valeurCompteur = compteur.innerHTML;
     animateValue(compteur, 0, valeurCompteur, 5000);
 });
@@ -49,5 +48,3 @@ submitButton.addEventListener('load', function() {
     submitButton.setAttribute('disabled', 'disabled')
 
 })
-
-console.log("input : " + submitButton)

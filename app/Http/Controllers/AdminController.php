@@ -20,7 +20,7 @@ class AdminController extends Controller
         $users = User::paginate(15);
         $role = Auth::user()->role;
 
-        if($role == "super-admin" || $role == "super-admin"){
+        if($role == "super-admin" || $role == "admin"){
             return view('admin.index', compact('users'));
         } else{
             return redirect('/')->with('danger', "Vous n'êtes pas autorisé à entrer ici");

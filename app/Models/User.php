@@ -81,6 +81,16 @@ class User extends Authenticatable
         return $this->belongsTo(Club::class, 'club_id');
     }
 
+    public function player()
+    {
+        return $this->belongsTo(Player::class, 'is_player');
+    }
+
+    public function region()
+    {
+        return $this->belongsTo(Region::class, 'region_id');
+    }
+
     public function commentator()
     {
         return $this->hasMany(Commentator::class);

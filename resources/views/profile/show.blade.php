@@ -4,7 +4,7 @@
     <div class="relative w-full py-10 px-4 bg-primary text-white flex justify-center items-center mb-6">
         <h2 class="text-4xl lg:text-6xl">Mon profil</h2>
     </div>
-    <>
+    <div>
         <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
             @livewire('profile.update-profile-information-form')
 
@@ -36,6 +36,6 @@
                 @livewire('profile.delete-user-form')
             </div>
         </div>
-    </>
+    </div>
 </div>
 @endsection

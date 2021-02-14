@@ -8,9 +8,10 @@
     </x-slot>
 
     <x-slot name="form">
+
         <!-- Profile Photo -->
         @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
-        <div x-data="{photoName: null, photoPreview: null}" class="col-span-6 sm:col-span-4">
+        <div x-data="{photoName: null, photoPreview: null}" class="my-2 mx-4">
             <!-- Profile Photo File Input -->
             <input type="file" class="hidden" wire:model="photo" x-ref="photo" x-on:change="
                                     photoName = $refs.photo.files[0].name;
@@ -49,31 +50,55 @@
         @endif
 
         <!-- nom -->
-        <div class="col-span-6 sm:col-span-4">
+        <div class="my-2 mx-4">
             <x-jet-label for="last_name" value="Nom de Famille" />
             <x-jet-input id="last_name" type="text" class="mt-1 block w-full cursor-not-allowed" wire:model.defer="state.last_name" autocomplete="last_name" disabled />
             <x-jet-input-error for="last_name" class="mt-2" />
         </div>
 
         <!-- prenom -->
-        <div class="col-span-6 sm:col-span-4">
+        <div class="my-2 mx-4">
             <x-jet-label for="prenom" value="Prénom" />
             <x-jet-input id="first_name" type="text" class="mt-1 block w-full cursor-not-allowed" wire:model.defer="state.first_name" autocomplete="first_name" disabled />
             <x-jet-input-error for="first_name" class="mt-2" />
         </div>
 
         <!-- pseudo -->
-        <div class="col-span-6 sm:col-span-4">
+        <div class="my-2 mx-4">
             <x-jet-label for="pseudo" value="Pseudo" />
             <x-jet-input id="pseudo" type="text" class="mt-1 block w-full cursor-not-allowed" wire:model.defer="state.pseudo" autocomplete="pseudo" disabled />
             <x-jet-input-error for="pseudo" class="mt-2" />
         </div>
 
         <!-- Email -->
-        <div class="col-span-6 sm:col-span-4">
+        <div class="my-2 mx-4">
             <x-jet-label for="email" value="Email" />
             <x-jet-input id="email" type="email" class="mt-1 block w-full" wire:model.defer="state.email" />
             <x-jet-input-error for="email" class="mt-2" />
+        </div>
+
+        <!-- club -->
+        <div class="my-2 mx-4" wire:model.defer="state.club">
+            <x-clubSelect />
+            @error('club')
+            <div class="alert danger">{{ $message }}</div>
+            @enderror
+        </div>
+
+        <!-- regions -->
+        <div class="my-2 mx-4" wire:model.defer="state.region">
+            <x-regionSelect />
+            @error('region')
+            <div class="alert danger">{{ $message }}</div>
+            @enderror
+        </div>
+
+        <!-- joueurs -->
+        <div class="my-2 mx-4" wire:model.defer="state.player">
+            <x-playerSelect />
+            @error('player')
+            <div class="alert danger">{{ $message }}</div>
+            @enderror
         </div>
 
     </x-slot>

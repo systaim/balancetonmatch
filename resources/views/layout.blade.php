@@ -24,17 +24,19 @@
             <div class="relative text-primary flex xl:flex-col justify-end sm:justify-center xl:justify-between items-center xl:items-between h-24 xl:block xl:h-auto">
                 <!-- logo grande page -->
                 <div class="relative">
-                    <a href="/">
-                        <div class="flex justify-center items-center mx-8">
-                            <div>
+                    <div class="flex justify-center items-center mx-8">
+                        <div>
+                            <a href="/">
                                 <img class="w-20 md:w-24" src="{{ asset('/images/logos/btmLogoJB.png') }}" alt="logo de BTM">
-                            </div>
-                            <div class="h-auto relative">
+                        </div>
+                        </a>
+                        <div class="h-auto relative">
+                            <a href="/">
                                 <h1 class="sm:text-2xl md:text-3xl">Balance Ton Match</h1>
                                 <p class="float-right inline-block text-xs60 sm:text-xs md:text-base px-2 bg-primary rounded-lg text-white ">Quand la touche part en live...</p>
-                            </div>
+                            </a>
                         </div>
-                    </a>
+                    </div>
                 </div>
                 <!-- NAV DESKTOP -->
                 <nav class="navbar relative hidden xl:flex justify-center mt-4" x-data="{ open: false }">
@@ -85,8 +87,8 @@
                         </div>
                     </div>
                     @endauth
-                    <div id="menuUser" class="absolute z-50 bg-primary rounded-lg shadow-lg overflow-hidden left-0 w-full" x-show="open" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0 h-0" @click.away="open = false">
-                        <div class="mt-4">
+                    <div id="menuUser" class="absolute z-50 border bg-primary rounded-lg shadow-lg overflow-hidden left-0 w-full" x-show="open" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0 h-0" @click.away="open = false">
+                        <div>
                             @auth
                             <a class="px-6 py-4 hover:bg-blue-900 block" href="/user/profile">Mon profil</a>
                             @if(Auth::user()->club)
@@ -106,44 +108,53 @@
                             </a>
                             @else
                             <ul class="list-none">
-                                <li class="px-6 py-4 hover:bg-blue-900"><a href="/login">Se connecter</a></li>
-                                <li class="px-6 py-4 hover:bg-blue-900"><a href="/register">S'enregistrer</a></li>
+                                <a class="px-6 py-4 hover:bg-blue-900 block" href="/login">Se connecter</a>
+                                <a class="px-6 py-4 hover:bg-blue-900 block" href="/register">S'enregistrer</a>
                             </ul>
                             @endauth
                         </div>
                     </div>
                 </div>
             </div>
+            <!-- NAV MOBILE -->
             <div id="main-nav" class="main-nav">
-                <div class="w-4/5 rounded-b-lg shadow-2xl py-12 bg-primary text-white lg:hidden">
+                <div class="relative w-4/5 rounded-b-lg shadow-2xl py-12 bg-primary text-white lg:hidden">
                     <div class="">
                         <div class="flex justify-center items-start">
                             <img class="w-2/12" src="{{ asset('images/logos/btmLogoJB.png') }}" alt="logo">
                         </div>
                         @auth
-                        <div class="flex flex-col justify-end mt-6">
+                        <div class="flex flex-col justify-end mt-2">
                             <div class="flex flex-row justify-center items-center px-4">
-                                <nav class="overflow-hidden">
+                                <nav class="overflow-hidden w-full">
                                     <div class="flex justify-center">
-                                        <div class="flex flex-col justify-center items-center mr-6">
-                                            <img class="rounded-full h-8 w-8 object-cover mr-2 border border-white" src="{{ Auth::user()->profile_photo_url }}">
-                                            <p class="font-bold capitalize text-lg">{{ Auth::user()->first_name }} {{ Auth::user()->lastst_name }} </p>
-                                        </div>
-                                        <ul class="ml-3">
-                                            <li class="mb-2"><a href="/user/profile">Mon profil</a></li>
+                                        <div class="mr-6">
+                                            @auth
+                                            <a class="p-2 hover:bg-blue-900 block" href="/user/profile">Mon profil</a>
                                             @if(Auth::user()->club)
-                                            <li class="mb-2 truncate"><a href="/clubs/{{Auth::user()->club->id }}">{{Auth::user()->club->name }}</a></li>
+                                            <a class="p-2 hover:bg-blue-900 block" href="/clubs/{{Auth::user()->club->id }}"><span class="text-sm">Mon club</span></br>{{Auth::user()->club->name }}</a>
                                             @endif
-                                            <li class="mb-2">
-                                                <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                        </div>
+                                        <div>
+                                            @canany(['isSuperAdmin', 'isAdmin'])
+                                            <a class="p-2 hover:bg-blue-900 block" href="{{ route('matches.create') }}">
+                                                Je crée un match
+                                            </a>
+                                            <a class="p-2 hover:bg-blue-900 block" href="/admin">
+                                                Page admin
+                                            </a>
+                                            @endcanany
+                                        </div>
+                                        <a class="absolute bottom-2 right-6 p-2 hover:bg-blue-900 block" href="{{ route('logout') }}" onclick="event.preventDefault();
                                             document.getElementById('logout-form').submit();">
-                                                    {{ __('Logout') }}
-                                                </a>
-                                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                                    @csrf
-                                                </form>
-                                            </li>
+                                            {{ __('Logout') }}
+                                        </a>
+                                        @else
+                                        <ul class="list-none">
+                                            <a class="py-2 hover:bg-blue-900 block" href="/login">Se connecter</a>
+                                            <a class="py-2 hover:bg-blue-900 block" href="/register">S'enregistrer</a>
                                         </ul>
+                                        @endauth
                                     </div>
                                 </nav>
                             </div>
@@ -158,7 +169,6 @@
                         @endauth
                     </div>
                 </div>
-                <!-- NAV MOBILE -->
                 <nav class="xl:hidden mt-12 flex flex-col items-center justify-start w-4/5 lg:h-screen">
                     <ul class="w-10/12 m-auto">
                         <li class=" mb-4 border-b border-black text-xl md:text-3xl lg:text-4xl uppercase"><a href="/">Accueil</a></li>
@@ -194,6 +204,9 @@
                     </ul>
                 </nav>
             </div>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
         </header>
         @if (\Session::has('success'))
         <div class="message-alert success" x-show.transition="open">
