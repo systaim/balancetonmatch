@@ -50,7 +50,7 @@
                 @if($competition == 1 || $competition == 2 || $competition == 4 || $competition == 5)
                 <div class=" mb-4">
                     <label for="region">Région</label>
-                    <select class="inputForm focus:outline-none focus:shadow-outline w-full my-1" name="region" id="region" wire:model="regions" :value="old('region')" autocomplete="region" required>
+                    <select class="inputForm focus:outline-none focus:shadow-outline w-full my-1" name="region" id="region" wire:model="region" :value="old('region')" autocomplete="region" required>
                         <option>Choisis la région</option>
                         @foreach($regions as $region)
                         <option value="{{ $region->name }}">{{ $region->name }}</option>

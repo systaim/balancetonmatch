@@ -10,7 +10,7 @@
         <form wire:submit.prevent="{{ $submit }}">
             <div class="shadow overflow-hidden">
                 <div class="px-4 py-5 bg-white sm:p-6">
-                    <div class="flex flex-col lg:w-8/12">
+                    <div class="flex flex-col">
                         {{ $form }}
                     </div>
                 </div>

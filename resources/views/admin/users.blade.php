@@ -14,7 +14,7 @@
         </thead>
         <tbody>
             @foreach($users as $user)
-            <tr class="border-collapse hover:bg-blue-200" onclick="location.href='{{ route('users.show', $user) }}'">
+            <tr class="border-collapse hover:bg-blue-200 cursor-pointer" onclick="location.href='{{ route('users.show', $user) }}'">
                 <td class="p-3 border">{{ $user->last_name }} {{ $user->first_name }}</td>
                 <td class="p-3 border">{{ $user->role}}</td>
                 <td><a class="text-center btn" href="{{ route('users.show', $user) }}">voir</a></td>

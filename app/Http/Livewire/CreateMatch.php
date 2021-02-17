@@ -20,6 +20,7 @@ class CreateMatch extends Component
     public $searchHome = "";
     public $searchAway = "";
     public $regions;
+    public $region;
     public $competitions;
     public $competition;
     public $groups;
@@ -32,6 +33,11 @@ class CreateMatch extends Component
     public $validate;
     public $messageErreur = "";
     public $district;
+
+    // public function mount()
+    // {
+    //     dd($this->regions);
+    // }
 
     // public function updatedSearchHome()
     // {

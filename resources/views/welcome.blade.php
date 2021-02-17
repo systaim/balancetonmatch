@@ -11,7 +11,7 @@
                 <hr class="w-10 border border-secondary">
             </div>
             <p class="text-sm md:text-base">BalanceTonMatch.com a pour but de rassembler les passionnés du ballon rond AMATEUR.</p>
-            <p class="text-sm md:text-base">N'importe qui peut devenir commentateur ou peut simplement suivre les matchs en <span class="uppercase text-primary font-bold bg-secondary px-2 rounded-sm">live</span></p>
+            <p class="text-sm md:text-base">Vous pourrez suivre les matchs en <span class="uppercase text-primary font-bold bg-secondary px-2 rounded-sm">live</span> soit en tant que commentateur soit en tant que spectateur</p>
         </div>
     </div>
     <div class="py-6">

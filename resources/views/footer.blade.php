@@ -13,7 +13,7 @@
             </div>
         </div>
     </div>
-    <div class="flex flex-col sm:flex-row items-center sm:justify-end text-sm text-white">
+    <div class="flex flex-col sm:flex-row items-center sm:justify-end text-sm text-white mr-4">
         <p class="p-1">BalanceTonMatch.com @ 2021</p>
         <p class="hidden sm:inline-block p-1"> | </p>
         <p class="p-1">propulsé fièrement par Anthony</p>
