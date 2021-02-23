@@ -4,13 +4,13 @@
         <i class="absolute text-xl mt-3 mr-3 top-0 right-0 text-primary fas fa-search"></i>
     </div>
     <div>
-        {{ $search }}
         @foreach($matches as $match)
         <div>
             <a href="{{ route('matches.show',$match) }}">
-                {{ $match->competition->id }}
-                {{ $match->competition->name }}
-                <p class="text-primary bg-white px-2 py-2 rounded-md my-2">{{ $match->homeClub->name }} <span class="font-bold px-3 py-5 bg-secondary text-primary mx-2 rounded-md"> VS </span> {{ $match->awayClub->name }}</p>
+            <div class="text-primary bg-white px-2 py-2 hover:bg-blue-200">
+                <p>{{ $match->date_match->formatLocalized('%d/%m/%y') }} {{ $match->date_match->formatLocalized('%H:%M')}}</p>
+                <p class="truncate">{{ $match->homeClub->name }} <span class=""> VS </span> {{ $match->awayClub->name }}</p>
+            </div>
             </a>
         </div>
         @endforeach

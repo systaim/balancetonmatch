@@ -46,10 +46,10 @@ class AuthServiceProvider extends ServiceProvider
             return ($user->club_id === $club->id && $user->role == "manager") || ($user->role == "super-admin" || $user->role == "admin");
         });
 
-        Gate::define('update-com', function (User $user, Commentaire $commentaire, Commentator $commentator, Match_$match) {
-            return $commentator->user_id == $user->id &&  $commentaire->commentator_id == $commentator->id
-            || ($user->role == "super-admin" || $user->role == "admin");
-        });
+        // Gate::define('update-com', function (User $user, Commentaire $commentaire, Commentator $commentator, Match_$match) {
+        //     return $commentator->user_id == $user->id &&  $commentaire->commentator_id == $commentator->id
+        //     || ($user->role == "super-admin" || $user->role == "admin");
+        // });
     }
 
     

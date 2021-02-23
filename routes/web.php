@@ -105,9 +105,8 @@ Route::get('live', function(){
                                 ->orwhere('live', 'repriseMT');
                             })
                             ->get();
-    $competitions = Competition::find($liveMatches->keys());
 
-    return view('matches.live', compact('liveMatches', 'user', 'competitions'));
+    return view('matches.live', compact('liveMatches', 'user'));
 });
 
 Route::get('matchsduweekend', function(){
@@ -122,3 +121,9 @@ Route::get('matchsduweekend', function(){
 
 
 Route::get('commentaire/delete/{id}', 'App\Http\Controllers\CommentaireController@destroy')->name('supprimer');
+
+Route::get('/test', function(){
+
+    return Club::find(11)->matches()->get();
+                            
+});

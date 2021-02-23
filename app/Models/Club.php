@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -10,6 +11,8 @@ use Illuminate\Support\Str;
 
 class Club extends Model
 {
+    use \Awobaz\Compoships\Compoships;
+
     use HasFactory;
     use SoftDeletes;
 
@@ -30,10 +33,20 @@ class Club extends Model
     //     return $this->hasMany(Team::class);
     // }
 
-    public function matchs()
+    // public function matchs()
+    // {
+    //     return $this->hasMany(Match::class, ['home_team_id', 'away_team_id'],['id', 'id']);
+    // }
+    // public function scopeMatches($query)
+    // {
+    //     return $query->;
+    // }
+
+    public function matches($date = null)
     {
-        return $this->hasMany(Match::class);
+        return Match::club($this->id, $date);
     }
+
 
     public function statistics()
     {

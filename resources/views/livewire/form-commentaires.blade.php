@@ -1,10 +1,11 @@
 <div {{ $match->live != 'attente' && $match->live != 'finDeMatch' && $match->live != 'reporte' ? "wire:poll.5000ms" : "" }}>
     <form wire:submit.prevent="saveComment">
+    @csrf
         <!-- affichage bannière du match -->
         <div class="backMatch">
             <div class="py-6">
                 <div class="relative bg-primary text-white m-auto text-center shadow-2xl p-2 max-w-md">
-                    @if($match->region && $match->region->id != 20)
+                    @if($match->region_id)
                     <h2>{{ $match->region->name }}</h2>
                     @endif
                     <h3 class="text-sm">{{ $match->competition->name }}</h3>
@@ -368,6 +369,12 @@
                     <button wire:loading.attr="disabled" wire:loading.class.remove="btnSecondary" wire:target="file" class="btn btnSecondary" type="submit" value="">Je commente</button>
                     <input class="hidden" type="radio" id="exit" wire:model="team_action" name="team_action" value="">
                     <label for="exit" class="btn btnSecondary text-center" wire:click="retour">Retour</label>
+                    @if (\Session::has('warning'))
+                    <div class="message-alert warning">
+                        <i class="fas fa-exclamation-circle text-5xl text-white rounded-full shadow-xl"></i>
+                        <p> {!! \Session::get('warning') !!}</p>
+                    </div>
+                    @endif
                 </div>
                 @endif
             </div>
@@ -409,9 +416,9 @@
             @if($nbrFavoris > 0 && $match->live == "attente")
             <div class="bg-secondary text-primary rounded-lg relative my-2 flex justify-center m-auto p-1">
                 @if($nbrFavoris == 1)
-                <p>{{ $nbrFavoris }} personne souhaite un direct LIVE</p>
+                <p>{{ $nbrFavoris }} personne intéressée par un LIVE</p>
                 @else
-                <p>{{ $nbrFavoris }} personnes souhaitent un direct LIVE</p>
+                <p>{{ $nbrFavoris }} personnes intéressées par un LIVE</p>
                 @endif
             </div>
             @endif
@@ -595,7 +602,7 @@
                         @if($comment->images != null)
                         <div class="flex justify-center">
                             <a href="{{ asset($comment->images)}}">
-                                <img class="max-h-32 rounded-md shadow-xl" src="{{ asset($comment->images)}}" alt="action">
+                                <img class="max-h-32 rounded-md shadow-xl transform hover:scale-150" src="{{ asset($comment->images)}}" alt="action">
                             </a>
                         </div>
                         @endif

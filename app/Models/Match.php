@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -10,10 +11,12 @@ use Illuminate\Support\Str;
 
 class Match extends Model
 {
+    use \Awobaz\Compoships\Compoships;
+
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable = ['home_team', 'home_score', 'away_team', 'away_score', 'date_match', 'time', 'location', 'weather', 'competition_id', 'live', 'stat_id'];
+    protected $fillable = ['home_team_id', 'home_score', 'away_team_id', 'away_score', 'date_match', 'time', 'location', 'weather', 'competition_id', 'region_id','live'];
 
     protected $dates = ['date_match'];
 
@@ -22,15 +25,25 @@ class Match extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function scopeClub($query, $id, $date = null)
+    {
+        if($date == null){
+            $date = Carbon::now();
+        }
+        return $query->where('date_match','>=', $date)
+        ->where('home_team_id', $id)
+        ->orwhere('away_team_id', $id);
+    }
+
     public function favorismatches()
     {
         $this->hasMany(Favorismatch::class);
     }
 
-    public function club()
-    {
-        return $this->belongsTo(Club::class);
-    }
+    // public function club()
+    // {
+    //     return $this->belongsTo(Club::class);
+    // }
 
     public function commentaires()
     {

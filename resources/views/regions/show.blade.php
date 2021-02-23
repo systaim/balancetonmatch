@@ -10,7 +10,9 @@
     </div>
 </div>
 <div class="flex flex-col lg:flex-row justify-between bg-primary rounded-lg my-4 sm:w-11/12 m-auto overflow-hidden">
-    <div class="h-48 lg:h-auto lg:w-6/12"></div>
+    <div class="h-48 lg:h-auto lg:w-6/12 flex justify-center items-center">
+        @livewire('search-match')
+    </div>
     <div class="text-white p-4 lg:w-6/12 xl:p-10 m-auto text-center">
         <h3 class="text-xs">Envie de suivre un match ?</h3>
         <h2 class="text-2xl">C'est très facile !</h2>
@@ -24,12 +26,17 @@
 </div>
 <div class="relative lg:flex lg:justify-center">
     <div class="w-11/12 sm:w-9/12 lg:w-5/12 h-auto mb-2 rounded-md mx-auto p-4">
+        @if(count($matchesByRegion) != 0)
         @foreach($matchesByRegion->sortByDesc('date_match') as $match)
         <div class="rounded-b-md rounded-tr-md">
+        {{ $match->competition->name }}
             @include('match')
         </div>
         @endforeach
         {{ $matchesByRegion->links() }}
+        @else
+        <h2 class="text-center text-3xl">Pas de matchs prévus pour l'instant</h2>
+        @endif
 
     </div>
 </div>

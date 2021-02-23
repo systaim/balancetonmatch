@@ -1,7 +1,7 @@
 <div class="h-auto w-full">
-<div class="relative w-full py-10 px-4 bg-primary text-white flex justify-center items-center mb-6">
-    <h2 class="text-4xl lg:text-6xl">Liste des clubs</h2>
-</div>
+    <div class="relative w-full py-10 px-4 bg-primary text-white flex justify-center items-center mb-6">
+        <h2 class="text-4xl lg:text-6xl">Liste des clubs</h2>
+    </div>
     <div class="flex justify-center my-8 m-auto w-11/12 sm:w-9/12 md:w-7/12 lg:w-6/12">
         <label for="query" class="sr-only">Search</label>
         <input autofocus type="search" class="inputForm focus:outline-none focus:shadow-outline w-full my-1 mx-2" id="query" placeholder="Ex: Nantes" wire:model="query">
@@ -9,7 +9,6 @@
 
     <div class="m-auto my-8 w-11/12 sm:w-9/12 md:w-7/12 lg:w-7/12">
         @foreach ($clubs as $club)
-        @if($clubs)
         <a href="{{ route('clubs.show', $club) }}">
             <div class="flex flex-col mb-3 w-full">
                 <div class="relative flex flex-row items-center bg-primary overflow-hidden">
@@ -20,7 +19,7 @@
                     </div>
                     <div class=" py-2 w-full text-secondary overflow-hidden ml-2 z-10">
                         <p class="truncate font-bold">{{ $club->name}}</p>
-                        <p>{{ $club->city }}</p>
+                        <p>{{ $club->zip_code }} {{ $club->city }}</p>
                         @if($club->region)
                         <p>{{ $club->region->name }}</p>
                         @endif
@@ -32,7 +31,6 @@
                 </div>
             </div>
         </a>
-        @endif
         @endforeach
         @if($clubs->isEmpty())
         <div class="bg-primary text-white p-4">

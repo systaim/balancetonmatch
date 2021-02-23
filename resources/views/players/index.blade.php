@@ -1,6 +1,5 @@
 @extends('layout')
 @section('content')
-<section>
     @include('clubs.linkPageClub')
     @include('clubs.logo')
     <div class="flex justify-center">
@@ -161,7 +160,6 @@
             </div>
         </div>
     </div>
-</section>
 @endsection
 
 <script>

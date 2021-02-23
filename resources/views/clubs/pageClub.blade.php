@@ -1,8 +1,6 @@
 @extends('layout')
 @section('content')
 
-<section class="relative m-auto min-h-screen">
-
     @livewire('team-cover', ['club' => $club])
 
     <div id="infos" class="flex flex-col items-center justify-between">
@@ -97,6 +95,4 @@
             <p class="pl-2">Pas d'historique de matchs pour le moment</p>
             @endif
     </div>
-
-</section>
 @endsection

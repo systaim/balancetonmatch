@@ -34,35 +34,36 @@ class CreateMatch extends Component
     public $messageErreur = "";
     public $district;
 
-    // public function mount()
-    // {
-    //     dd($this->regions);
-    // }
+    protected $rules = [
+        'searchHome' => 'required',
+        'searchAway' => 'required',
+        'dateMatch' => 'required|date|after:yesterday',
+        'timeMatch' => 'required',
+        'competition' => 'required',
+        'divisionsRegions' => 'nullable',
+        'divisionsDepartments' => 'nullable',
+        'region' => 'nullable',
+        'district' => 'nullable',
+        'group' => 'nullable',
+    ];
 
-    // public function updatedSearchHome()
-    // {
-    //     $this->clubs = Club::where('name', 'like', '%' . $this->searchHome . '%')->get();
-    // }
+    public function updatedSearchHome()
+    {
+        $this->clubs = Club::where('name', 'like', '%' . $this->searchHome . '%')->get();
+    }
 
-    // public function updatedSearchAway()
-    // {
-    //     $this->clubs = Club::where('name', 'like', '%' . $this->searchAway . '%')->get();
-    // }
+    public function updatedSearchAway()
+    {
+        $this->clubs = Club::where('name', 'like', '%' . $this->searchAway . '%')->get();
+    }
 
     public function saveMatch(Match $match)
     {
         $user = Auth::user();
 
-        $validateData = $this->validate([
-            'dateMatch' => 'required|date|after:yesterday',
-            'timeMatch' => 'required',
-            'competition' => 'required',
-            'divisionsRegions' => 'nullable',
-            'divisionsDepartments' => 'nullable',
-            'regions' => 'nullable',
-            'district' => 'nullable',
-            'group' => 'nullable',
-        ]);
+        $validateData = $this->validate();
+
+        // dd($validateData);
 
         $homeTeam = Club::where('name', $validateData['searchHome'])->first();
         $awayTeam = Club::where('name', $validateData['searchAway'])->first();

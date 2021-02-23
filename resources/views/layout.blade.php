@@ -4,6 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- meta Facebook -->
+    <meta property="og:url" content="https://www.balancetonmatch.com">
+    <meta property="og:title" content="Balance ton match !">
+    <meta property="og:description" content="Quand la touche part en live...">
+    <meta property="og:image" content="https://balancetonmatch.com/images/logos/btmLogoJB.png">
+
     <title>Balance Ton Match</title>
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     <link rel="stylesheet" href="{{ mix('css/styles.css') }}" />
@@ -22,7 +29,7 @@
                 </div>
             </div>
             <div class="relative text-primary flex xl:flex-col justify-end sm:justify-center xl:justify-between items-center xl:items-between h-24 xl:block xl:h-auto">
-                <!-- logo grande page -->
+
                 <div class="relative">
                     <div class="flex justify-center items-center mx-8">
                         <div>
@@ -38,6 +45,7 @@
                         </div>
                     </div>
                 </div>
+
                 <!-- NAV DESKTOP -->
                 <nav class="navbar relative hidden xl:flex justify-center mt-4" x-data="{ open: false }">
                     <div class="flex items-center">
@@ -47,27 +55,35 @@
                         <div class="dropdown">
                             <button class="dropbtn" @click="open = true">Liste des matchs <i class="fa fa-caret-down"></i></button>
                             <div class="dropdown-content" x-show="open" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0 h-0" @click.away="open = false">
-                                <div>
-                                    <a href="/matches">Tous les matches</a>
-                                    <a href="/regions/1">Auvergne - Rhones-Alpes</a>
-                                    <a href="/regions/2">Bourgogne - Franche Comté</a>
-                                    <a href="/regions/3">Bretagne</a>
-                                    <a href="/regions/4">Centre Val de Loire</a>
-                                    <a href="/regions/5">Corse</a>
-                                    <a href="/regions/6">Grand Est</a>
-                                    <a href="/regions/7">Guadeloupe</a>
-                                    <a href="/regions/8">Guyane</a>
-                                    <a href="/regions/9">Hauts de France</a>
-                                    <a href="/regions/10">Martinique</a>
-                                    <a href="/regions/11">Mayotte</a>
-                                    <a href="/regions/12">Méditerranée</a>
-                                    <a href="/regions/13">Normandie</a>
-                                    <a href="/regions/14">Nouvelle Aquitaine</a>
-                                    <a href="/regions/15">Occitanie</a>
-                                    <a href="/regions/16">Paris IDF</a>
-                                    <a href="/regions/17">Pays de la Loire</a>
-                                    <a href="/regions/18">Réunion</a>
-                                    <a href="/regions/19">St Pierre & Miquelon</a>
+                                <div x-data="{ open: false }">
+                                    <a href="/matches">Tous les matchs</a>
+                                    <div class="pl-4">
+                                        <a class="cursor-pointer" @click="open = true" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0 h-0">
+                                            Par régions
+                                        </a>
+                                        <div x-show="open" @click.away="open = false">
+                                            <a href="/regions/1">Auvergne - Rhones-Alpes</a>
+                                            <a href="/regions/2">Bourgogne - Franche Comté</a>
+                                            <a href="/regions/3">Bretagne</a>
+                                            <a href="/regions/4">Centre Val de Loire</a>
+                                            <a href="/regions/5">Corse</a>
+                                            <a href="/regions/6">Grand Est</a>
+                                            <a href="/regions/7">Guadeloupe</a>
+                                            <a href="/regions/8">Guyane</a>
+                                            <a href="/regions/9">Hauts de France</a>
+                                            <a href="/regions/10">Martinique</a>
+                                            <a href="/regions/11">Mayotte</a>
+                                            <a href="/regions/12">Méditerranée</a>
+                                            <a href="/regions/13">Normandie</a>
+                                            <a href="/regions/14">Nouvelle Aquitaine</a>
+                                            <a href="/regions/15">Occitanie</a>
+                                            <a href="/regions/16">Paris IDF</a>
+                                            <a href="/regions/17">Pays de la Loire</a>
+                                            <a href="/regions/18">Réunion</a>
+                                            <a href="/regions/19">St Pierre & Miquelon</a>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>

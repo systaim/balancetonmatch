@@ -362,6 +362,18 @@ class FormCommentaires extends Component
         }
     }
 
+    protected $rules = [
+        'type_comments' => 'required|string',
+        'minute' => 'required|string',
+        'team_action' => 'required|string',
+        'file' => 'nullable | mimes:jpeg,jpg,png,gif,mp4,mov,ogg,qt,m3u8,ts,3gp|max:10240'
+    ];
+
+    protected $messages = [
+        'type_comments.required' => 'c\'est requis !',
+        'type_comments.string' => 'mauvais format',
+    ];
+
     public function saveComment()
     {
 
@@ -370,10 +382,10 @@ class FormCommentaires extends Component
             $statData2['action'] = '';
 
             $this->validate([
-                'type_comments' => 'required',
-                'minute' => 'required',
-                'team_action' => 'required',
-                'file' => 'nullable | mimes:jpeg,jpg,png,gif | max:10240'
+                'type_comments' => 'required|string',
+                'minute' => 'required|integer|between:1,120',
+                'team_action' => 'required|string',
+                'file' => 'nullable | mimes:jpeg,jpg,png,gif,mp4,mov,ogg,qt,m3u8,ts,3gp|max:10240'
             ]);
 
 

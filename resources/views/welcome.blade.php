@@ -14,15 +14,15 @@
             <p class="text-sm md:text-base">Vous pourrez suivre les matchs en <span class="uppercase text-primary font-bold bg-secondary px-2 rounded-sm">live</span> soit en tant que commentateur soit en tant que spectateur</p>
         </div>
     </div>
-    <div class="py-6">
+    <div class="py-3">
         <div class="w-11/12 m-auto sm:w-8/12 md:w-6/12 lg:w-10/12 xl:w-9/12">
-            <div class="mx-2 bg-primary py-4 px-6 shadow-xl">
+            <div class="mx-2 bg-primary px-6 shadow-xl">
                 <form class="w-full" action="{{ asset('clubs') }}" method="get">
                     <H3 class="p-2 text-white text-lg text-center">Rechercher un club</H3>
                     @csrf
                     <label class="relative" for="search">
-                        <input class="inputForm w-full" type="search" placeholder="F.C. Recherche" name="search" id="search">
-                        <span class=" z-10"><i class="far fa-search"></i></span>
+                        <input class="inputForm w-full" type="search" placeholder="Nom du club, de la ville ou code postal" name="search" id="search">
+                        <span class="z-10"><i class="far fa-search"></i></span>
                     </label>
                     <input class="sr-only" type="submit">
                 </form>
@@ -61,7 +61,7 @@
             <div class="flex justify-between">
                 <div class="flex flex-col items-center justify-center text-primary w-20 h-20 md:w-28 md:h-28 lg:w-40 lg:h-40 md:bg-primary md:text-white my-2 mx-1 rounded-lg shadow-lg">
                     <p class="compteur text-xl lg:text-5xl font-bold">{{ count($matches) }}</p>
-                    <p class="text-xs lg:text-base">matchs</p>
+                    <p class="text-xs lg:text-base">{{ count($matches) <= 1 ? "match" : "matchs"}}</p>
                 </div>
                 <div class="flex flex-col items-center justify-center text-primary w-20 h-20 md:w-28 md:h-28 lg:w-40 lg:h-40 md:bg-primary md:text-white my-2 mx-1 rounded-lg shadow-lg">
                     <p class="compteur text-xl lg:text-5xl font-bold">{{ count($clubs) }}</p>
@@ -75,26 +75,26 @@
             <div class="flex justify-between">
                 <div class="flex flex-col items-center justify-center text-primary w-20 h-20 md:w-28 md:h-28 lg:w-40 lg:h-40 md:bg-primary md:text-white my-2 mx-1 rounded-lg shadow-lg">
                     <p class="compteur text-xl lg:text-5xl font-bold">{{ count($goals) }}</p>
-                    <p class="text-xs lg:text-base">buts</p>
+                    <p class="text-xs lg:text-base">{{ count($goals) <= 1 ? "but" : "buts"}}</p>
                 </div>
                 <div class="flex flex-col items-center justify-center text-primary w-20 h-20 md:w-28 md:h-28 lg:w-40 lg:h-40 md:bg-primary md:text-white my-2 mx-1 rounded-lg shadow-lg">
                     <p class="compteur text-xl lg:text-5xl font-bold">{{ count($commentators) }}</p>
-                    <p class="text-xxs lg:text-base">commentateurs</p>
+                    <p class="text-xxs lg:text-base">{{ count($commentators) <= 1 ? "commentateur" : "commentateurs"}} </p>
                 </div>
                 <div class="flex flex-col items-center justify-center text-primary w-20 h-20 md:w-28 md:h-28 lg:w-40 lg:h-40 md:bg-primary md:text-white my-2 mx-1 rounded-lg shadow-lg">
                     <p class="compteur text-xl lg:text-5xl font-bold">{{ count($yellowCards)  +  count($redCards) }}</p>
-                    <p class="text-xs lg:text-base">cartons</p>
+                    <p class="text-xs lg:text-base">{{ count($yellowCards)  +  count($redCards) <= 1 ? "carton" : "cartons"}}</p>
                 </div>
             </div>
         </div>
     </div>
 
     @auth
-    <div class="flex flex-col w-full lg:flex-row justify-around py-8">
+    <div class="flex flex-col w-full lg:flex-row justify-around py-8 shadow-xl">
         <div class="lg:w-5/12">
             @if(count($user->favoristeams) > 0 )
             <div>
-                <h3>Mes teams préférées</h3>
+                <h3><i class="fas fa-heart text-red-700"></i> Mes teams préférées <i class="fas fa-heart text-red-700"></i></h3>
             </div>
             <div class="py-4">
                 @foreach($user->favoristeams->shuffle() as $favoriteam)
@@ -130,7 +130,7 @@
                 @foreach($user->favorismatches as $favorimatch)
                 @if($favorimatch->match->date_match > $today)
                 <a href="{{route('matches.show',$favorimatch->match)}}">
-                    <div class="my-2 p-2 bg-primary text-white rounded-lg">
+                    <div class="p-2 bg-primary text-white rounded-lg">
                         <div class="text-center flex justify-center font-bold">
                             <p class="px-4 bg-primary text-secondary rounded-tl-md">{{ $favorimatch->match->date_match->formatLocalized('%d/%m/%y')}}</p>
                             <p class="px-4 bg-primary text-secondary rounded-tr-md">{{ $favorimatch->match->date_match->formatLocalized('%H:%M')}}</p>
