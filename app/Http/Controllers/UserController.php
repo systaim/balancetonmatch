@@ -7,6 +7,7 @@ use Illuminate\Contracts\Mail\Mailable;
 use Illuminate\Notifications\Notifiable;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
@@ -16,10 +17,15 @@ class UserController extends Controller
 
     public function index()
     {
-        $users = User::all();
         $users = User::paginate(15);
+        $role = Auth::user()->role;
 
-        return view('admin.users', compact('users'));
+        if($role == "super-admin" || $role == "admin"){
+            return view('admin.users', compact('users'));
+        } else{
+            return redirect('/')->with('danger', "Vous n'êtes pas autorisé à entrer ici");
+
+        }
     }
 
     /**
@@ -30,7 +36,15 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return view('admin.user', compact('user'));
+        $users = User::paginate(15);
+        $role = Auth::user()->role;
+
+        if($role == "super-admin" || $role == "admin"){
+            return view('admin.user', compact('user'));
+        } else{
+            return redirect('/')->with('danger', "Vous n'êtes pas autorisé à entrer ici");
+
+        }
     }
 
     /**

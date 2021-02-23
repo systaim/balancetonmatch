@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Region;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,7 +17,6 @@ class AdminController extends Controller
 
     public function index()
     {
-        $users = User::all();
         $users = User::paginate(15);
         $role = Auth::user()->role;
 

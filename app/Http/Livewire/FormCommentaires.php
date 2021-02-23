@@ -48,6 +48,7 @@ class FormCommentaires extends Component
     public $playerMatch;
     public $visitors;
     public $user;
+    public $textInfo;
 
     public $listGoal = ['GOOOOAAL !', 'BUUUUT !!!', 'GOAL GOAL GOAL !!'];
     public $mitempsJoueurs = ['Les joueurs rentrent aux vestiaires', 'Tout le monde à la buv... euuuh aux vestiaires !'];
@@ -67,6 +68,7 @@ class FormCommentaires extends Component
         }
         if (now()->diffInMinutes($this->dateMatch, false) < -150) {
             $this->match->live = "finDeMatch";
+            $this->textInfo = "Commentaires fermés";
             $this->match->save();
         }
 

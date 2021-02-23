@@ -16,7 +16,7 @@ class Club extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable = ['abbreviation', 'name', 'city', 'logo_path', 'primary_color', 'secondary_color'];
+    protected $fillable = ['abbreviation','numAffiliation','zip_code', 'name', 'city', 'logo_path', 'primary_color', 'secondary_color', 'region_id'];
 
     public function staffs()
     {

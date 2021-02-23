@@ -13,6 +13,7 @@ use App\Models\DivisionsDepartment;
 use App\Models\Group;
 use App\Models\DivisionsRegion;
 use App\Models\Role;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
@@ -71,7 +72,7 @@ class DatabaseSeeder extends Seeder
         $competitions = ['Championnat régional', 'Championnat départemental', 'coupe de France', 'Coupe régionale', 'Coupe départementale', 'Match amical'];
 
         foreach ($competitions as $competition) {
-            Region::create([
+            Competition::create([
                 'name' => $competition,
             ]);
         }

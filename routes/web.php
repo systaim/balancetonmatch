@@ -13,6 +13,7 @@ use App\Models\Player;
 use App\Models\Region;
 use App\Models\Staff;
 use App\Models\Statistic;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
@@ -74,8 +75,19 @@ Route::get('/mentions-legales', function(){
     return view('mentionslegales');
 });
 
-Route::resource('admin', 'App\Http\Controllers\AdminController')->middleware('auth');
+Route::get('/admin/addClub', function(){
+    $regions = Region::all();
+    $users = User::all();
+    $role = Auth::user()->role;
 
+
+    if($role == "super-admin" || $role == "admin"){
+    return view('admin.addClub', compact('regions', 'users'));
+    } else{
+        return redirect('/')->with('danger', "Vous n'êtes pas autorisé à entrer ici");
+
+    }
+})->middleware('auth');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
@@ -89,7 +101,8 @@ Route::resource('commentaires', 'App\Http\Controllers\CommentaireController');
 Route::resource('clubs.players', 'App\Http\Controllers\PlayerController');
 Route::resource('clubs.staffs', 'App\Http\Controllers\StaffController');
 Route::resource('regions', 'App\Http\Controllers\RegionController');
-Route::resource('users', 'App\Http\Controllers\UserController')->middleware('auth');
+Route::resource('admin/users', 'App\Http\Controllers\UserController')->middleware('auth');
+Route::resource('admin', '\App\Http\Controllers\AdminController')->middleware('auth');
 
 Route::post('contacts', 'App\Http\Controllers\ContactController@store')->name('contacts.store');
 Route::post('contactsNewTeam', 'App\Http\Controllers\ContactController@askNewTeam')->name('contacts.askNewTeam');
@@ -118,12 +131,18 @@ Route::get('matchsduweekend', function(){
     return view('matches.weekend', compact('matches','user', 'competitions'));
 });
 
+Route::get('/admin/recupMatchs', function(){
+    $users = User::all();
+    $role = Auth::user()->role;
+
+    if($role == "super-admin" || $role == "admin"){
+    return view('admin.recupMatchs', compact('users'));
+    } else {
+        return redirect('/')->with('danger', "Vous n'êtes pas autorisé à entrer ici");
+    }
+})->middleware('auth');
 
 
 Route::get('commentaire/delete/{id}', 'App\Http\Controllers\CommentaireController@destroy')->name('supprimer');
 
-Route::get('/test', function(){
 
-    return Club::find(11)->matches()->get();
-                            
-});

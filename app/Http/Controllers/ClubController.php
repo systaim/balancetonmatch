@@ -50,7 +50,29 @@ class ClubController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request);
+        $data = $request->validate([
+            'name' => ['required', 'string'],
+            'numAffiliation' => ['required','integer'],
+            'primary_color' => ['nullable'],
+            'secondary_color' => ['nullable'],
+            'zip_code' => ['required','integer'],
+            'city' => ['required', 'string'],
+            'region_id' => ['required'],
+        ]);
+        $region = Region::where('name', $data['region_id'])->first();
+
+        $club = new Club;
+        $club->name = $request->name;
+        $club->numAffiliation = $request->numAffiliation;
+        $club->primary_color = $request->primary_color;
+        $club->secondary_color = $request->secondary_color;
+        $club->zip_code = $request->zip_code;
+        $club->city = $request->city;
+        $club->region_id = $region->id;
+        $club->save();
+
+        return back();
     }
 
     /**

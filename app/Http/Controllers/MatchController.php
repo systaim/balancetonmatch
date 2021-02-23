@@ -97,7 +97,7 @@ class MatchController extends Controller
         $match->time = $request->time;
         // $match->user()->associate($user);
         $match->save();
-        return back();
+        return back()->with('success', 'Le club est bien créé');
     }
 
     /**

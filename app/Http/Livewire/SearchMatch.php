@@ -31,15 +31,18 @@ class SearchMatch extends Component
     {
         // $this->matches = [];
 
-                $club = Club::where('name', 'like', '%' . $this->search . '%')
-                            ->orwhere('zip_code', 'like', '%' . $this->search . '%')
-                            ->orwhere('city', 'like', '%' . $this->search . '%')
-                            ->get()
-                            ->pluck('id'); 
+        $club = Club::where('name', 'like', '%' . $this->search . '%')
+                    ->orwhere('zip_code', 'like', '%' . $this->search . '%')
+                    ->orwhere('city', 'like', '%' . $this->search . '%')
+                    ->get()
+                    ->pluck('id'); 
                 $this->matches = Match::where('date_match','>=', Carbon::now())
-                                ->wherein('home_team_id', $club)
-                                ->orwherein('away_team_id', $club)
-                                ->get();
+                        ->where(function($query) use ($club) {
+
+                        $query->wherein('home_team_id', $club)
+                        ->orwherein('away_team_id', $club);
+
+                    })->get();
     }
 
     public function render()
@@ -47,3 +50,20 @@ class SearchMatch extends Component
         return view('livewire.search-match');
     }
 }
+
+// TEST SQL RECHERCHE MATCHS 
+// SELECT * FROM comments.clubs
+// where name like'%cheminots%'
+// or zip_code like '%cheminots%'
+// or city like '%cheminots%';
+// SELECT * FROM comments.matches
+// WHERE home_team_id in 
+// (SELECT id FROM comments.clubs
+// where name like'%cheminots%'
+// or zip_code like '%22110%'
+// or city like '%rennes%')
+// OR away_team_id in 
+// (SELECT id FROM comments.clubs
+// where name like'%cheminots%'
+// or zip_code like '%22110%'
+// or city like '%rennes%');
