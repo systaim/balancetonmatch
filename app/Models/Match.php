@@ -11,7 +11,7 @@ use Illuminate\Support\Str;
 
 class Match extends Model
 {
-    use \Awobaz\Compoships\Compoships;
+    // use \Awobaz\Compoships\Compoships;
 
     use HasFactory;
     use SoftDeletes;

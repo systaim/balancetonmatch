@@ -11,7 +11,7 @@ use Illuminate\Support\Str;
 
 class Club extends Model
 {
-    use \Awobaz\Compoships\Compoships;
+    // use \Awobaz\Compoships\Compoships;
 
     use HasFactory;
     use SoftDeletes;
@@ -37,6 +37,7 @@ class Club extends Model
     // {
     //     return $this->hasMany(Match::class, ['home_team_id', 'away_team_id'],['id', 'id']);
     // }
+
     // public function scopeMatches($query)
     // {
     //     return $query->;
