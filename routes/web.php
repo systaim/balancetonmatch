@@ -131,18 +131,6 @@ Route::get('matchsduweekend', function(){
     return view('matches.weekend', compact('matches','user', 'competitions'));
 });
 
-Route::get('/admin/recupMatchs', function(){
-    $users = User::all();
-    $role = Auth::user()->role;
-
-    if($role == "super-admin" || $role == "admin"){
-    return view('admin.recupMatchs', compact('users'));
-    } else {
-        return redirect('/')->with('danger', "Vous n'êtes pas autorisé à entrer ici");
-    }
-})->middleware('auth');
-
-
 Route::get('commentaire/delete/{id}', 'App\Http\Controllers\CommentaireController@destroy')->name('supprimer');
 
 

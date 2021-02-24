@@ -64,8 +64,10 @@ class DatabaseSeeder extends Seeder
                 'name' => $region,
             ]);
         }
-
+        // envoi des départements
         DB::unprepared(file_get_contents('database/seeders/departments.sql'));
+        
+        //liste des clubs
         DB::unprepared(file_get_contents('database/seeders/clubs.sql'));
 
         //nom de compétitions
@@ -84,17 +86,6 @@ class DatabaseSeeder extends Seeder
             DivisionsDepartment::create([
                 'name' => $district,
 
-            ]);
-        }
-        // }
-
-        //table nom de competitions
-        $competitions = ['Championnat régional', 'Championnat départemental', 'Coupe de France', 'Coupe régionale', 'Coupe départementale'];
-
-        foreach ($competitions as $competition) {
-            Competition::create([
-                'name' => $competition,
-                'season' => '2020/2021'
             ]);
         }
 
