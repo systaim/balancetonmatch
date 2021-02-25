@@ -14,19 +14,16 @@
             <p class="text-sm md:text-base">Vous pourrez suivre les matchs en <span class="uppercase text-primary font-bold bg-secondary px-2 rounded-sm">live</span> soit en tant que commentateur soit en tant que spectateur</p>
         </div>
     </div>
-    <div class="py-3">
-        <div class="w-11/12 m-auto sm:w-8/12 md:w-6/12 lg:w-10/12 xl:w-9/12">
-            <div class="mx-2 bg-primary px-6 shadow-xl">
-                <form class="w-full" action="{{ asset('clubs') }}" method="get">
-                    <H3 class="p-2 text-white text-lg text-center">Rechercher un club</H3>
-                    @csrf
-                    <label class="relative" for="search">
-                        <input class="inputForm w-full" type="search" placeholder="Nom du club, de la ville ou code postal" name="search" id="search">
-                        <span class="z-10"><i class="far fa-search"></i></span>
-                    </label>
-                    <input class="sr-only" type="submit">
-                </form>
-            </div>
+    <div class="py-3 mt-4">
+        <div class="w-11/12 m-auto sm:w-8/12 md:w-6/12 xl:w-4/12">
+            <form class="w-full" action="{{ asset('clubs') }}" method="get">
+                @csrf
+                <label class="relative" for="search">
+                    <input class="inputForm w-full" type="search" placeholder="Nom du club, de la ville ou code postal" name="search" id="search">
+                    <span class="z-10"><i class="far fa-search"></i></span>
+                </label>
+                <input class="sr-only" type="submit">
+            </form>
         </div>
     </div>
     <div class="flex flex-wrap justify-around items-center m-auto lg:px xl:w-8/12">
@@ -48,7 +45,7 @@
                 <p class="font-bold uppercase">Les prichains matchs</p>
                 <!-- <i class="relative text-6xl fas fa-futbol my-4"></i> -->
                 <div class="flex justify-end w-full">
-                <button class="btn btnSecondary">Je jette un oeil</button>
+                    <button class="btn btnSecondary">Je jette un oeil</button>
                 </div>
             </div>
         </a>
