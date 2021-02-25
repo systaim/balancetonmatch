@@ -15,9 +15,6 @@
             <p class="py-4">Recherche ton équipe et si tu ne trouves pas son match, n'hésite pas à le créer.<br>
                 Il pourra être commenté en <span class="uppercase text-primary font-bold bg-secondary px-2 rounded-sm">live</span> le jour J soit par toi soit par un autre spectateur.
             </p>
-            <a class="flex justify-center" href="{{ route('matches.create') }}">
-                <button class="btn btnSecondary">Je crée un match</button>
-            </a>
         </div>
     </div>
     <div class="flex justify-center">
