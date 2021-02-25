@@ -1,7 +1,7 @@
 <div class="relative w-36">
     @auth
     <div>
-        @if ($user->isfavoriMatch($match))
+        @if ($user && $user->isfavoriMatch($match))
         <div>
             <i wire:model="star" class="{{ $star }} fa-star cursor-pointer text-red-700 text-xl" wire:click="myMatch({{ $match->id }})"></i>
         </div>

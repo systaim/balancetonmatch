@@ -427,9 +427,11 @@
                 <p class="bg-danger font-bold py-2 px-3">Le match est reporté à une date ultérieure</p>
             </div>
             @endif
+            @if($match->live == "finDeMatch")
             <div class="flex justify-center items-center my-6">
                 <p class="bg-primary text-white py-2 px-3">{{ $textInfo }}</p>
             </div>
+            @endif
             @if(empty($match->commentateur) && $match->live != "finDeMatch")
             <div class="flex justify-center items-center my-6">
                 <p class="bg-primary text-white py-2 px-3">En attente d'un commentateur</p>

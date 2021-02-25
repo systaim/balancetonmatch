@@ -66,8 +66,8 @@ class PlayerController extends Controller
         $matchs = Match::where('home_team_id', $club->id)->orwhere('away_team_id', $club->id)->orderBy('date_match', 'desc')->get();
 
         $dataPlayer = $request->validate([
-            'last_name' => 'required|max:50|min:2',
-            'first_name' => 'required|max:50|min:2',
+            'last_name' => 'required|string|max:50|min:2',
+            'first_name' => 'required|string|max:50|min:2',
             'date_of_birth' => 'nullable|date',
             'file' => 'nullable|max:10240',
             'position' => 'required',

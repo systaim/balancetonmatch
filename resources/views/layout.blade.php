@@ -56,10 +56,10 @@
                             <button class="dropbtn" @click="open = true">Liste des matchs <i class="fa fa-caret-down"></i></button>
                             <div class="dropdown-content" x-show="open" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0 h-0" @click.away="open = false">
                                 <div x-data="{ open: false }">
-                                    <a href="/matches">Tous les matchs</a>
+                                    <a href="/matches">Les prochains matchs</a>
                                     <div class="pl-4">
                                         <a class="cursor-pointer" @click="open = true" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0 h-0">
-                                            Par régions
+                                            Les matchs par régions
                                         </a>
                                         <div x-show="open" @click.away="open = false">
                                             <a href="/regions/1">Auvergne - Rhones-Alpes</a>
@@ -192,8 +192,8 @@
                         <!-- <li id="menuRegions"class="mb-4 border-b border-black text-xl md:text-3xl lg:text-4xl uppercase"><a href="{{ route('matches.index') }}">Liste des matchs</a></li> -->
                         <li id="menuRegions" class="cursor-pointer mb-4 border-b border-black text-xl md:text-3xl lg:text-4xl uppercase">Liste des matchs</li>
                         <ul id="sousMenuRegions" class="pl-12">
-                            <li><a href="/matches">Tous les matchs</a></li>
-                            <li>Par région</li>
+                            <li><a href="/matches">Les prochains matchs</a></li>
+                            <li>Les matchs par régions</li>
                             <ul class="pl-12">
                                 <li class=""><a href="/regions/1">Auvergne - Rhones-Alpes</a></li>
                                 <li class=""><a href="/regions/2">Bourgogne - Franche Comté</a></li>

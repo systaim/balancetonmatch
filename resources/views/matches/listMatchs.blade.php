@@ -22,7 +22,7 @@
         </div>
     </div>
     <div class="flex justify-center">
-        <h2 class="titlePage">Liste des matchs</h2>
+        <h2 class="titlePage">Prochains matchs</h2>
     </div>
     <div class="relative lg:flex lg:justify-center">
         <div class="lg:w-9/12">

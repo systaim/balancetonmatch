@@ -29,20 +29,18 @@ class SearchMatch extends Component
 
     public function updatedSearch()
     {
-        // $this->matches = [];
 
         $club = Club::where('name', 'like', '%' . $this->search . '%')
                     ->orwhere('zip_code', 'like', '%' . $this->search . '%')
                     ->orwhere('city', 'like', '%' . $this->search . '%')
                     ->get()
                     ->pluck('id'); 
-                $this->matches = Match::where('date_match','>=', Carbon::now())
-                        ->where(function($query) use ($club) {
+        $this->matches = Match::where('date_match','>=', Carbon::now()->subHours(3))
+                                ->where(function($query) use ($club) {
+                                   $query->wherein('home_team_id', $club)
+                                         ->orwherein('away_team_id', $club);
 
-                        $query->wherein('home_team_id', $club)
-                        ->orwherein('away_team_id', $club);
-
-                    })->get();
+                                })->get();
     }
 
     public function render()

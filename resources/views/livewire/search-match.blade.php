@@ -3,9 +3,9 @@
         <input wire:model="search" class="inputForm w-full" type="text" name="search" placeholder="Nom d'une équipe">
         <i class="absolute text-xl mt-3 mr-3 top-0 right-0 text-primary fas fa-search"></i>
     </div>
-    <div>
+    <div class="relative">
         @foreach($matches as $match)
-        <div>
+        <div class="absolute w-full">
             <a href="{{ route('matches.show',$match) }}">
             <div class="text-primary bg-white px-2 py-2 hover:bg-blue-200">
                 <p>{{ $match->date_match->formatLocalized('%d/%m/%y') }} {{ $match->date_match->formatLocalized('%H:%M')}}</p>
@@ -14,5 +14,7 @@
             </a>
         </div>
         @endforeach
+
+        
     </div>
 </div>

@@ -43,9 +43,9 @@
                 <!-- <p>Tous les matchs en live</p> -->
             </div>
         </a>
-        <a href="/matchsduweekend" class="cursor-ponter">
+        <a href="/matches" class="cursor-ponter">
             <div id="weekend" class="relative w-80 lg:w-96 bg-primary h-64 lg:h-72 px-2 text-white flex flex-col justify-between items-center m-6 shadow-xl py-4">
-                <p class="font-bold uppercase">Les matchs du week-end</p>
+                <p class="font-bold uppercase">Les prichains matchs</p>
                 <!-- <i class="relative text-6xl fas fa-futbol my-4"></i> -->
                 <div class="flex justify-end w-full">
                 <button class="btn btnSecondary">Je jette un oeil</button>
