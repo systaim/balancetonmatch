@@ -20,7 +20,7 @@
                 @csrf
                 <label class="relative" for="search">
                     <input class="inputForm w-full" type="search" placeholder="Nom du club, de la ville ou code postal" name="search" id="search">
-                    <span class="z-10"><i class="far fa-search"></i></span>
+                    <i class="absolute text-xl mt-3 mr-3 top-0 right-0 text-primary fas fa-search"></i>
                 </label>
                 <input class="sr-only" type="submit">
             </form>
