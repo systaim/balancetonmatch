@@ -19386,7 +19386,7 @@ compteurs.forEach(function (compteur) {
   }
 
   var valeurCompteur = compteur.innerHTML;
-  animateValue(compteur, 0, valeurCompteur, 5000);
+  animateValue(compteur, 0, valeurCompteur, 3000);
 });
 var menuRegions = document.getElementById('menuRegions');
 var sousMenuRegion = document.getElementById('sousMenuRegions');

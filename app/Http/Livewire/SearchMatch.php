@@ -29,10 +29,11 @@ class SearchMatch extends Component
 
     public function updatedSearch()
     {
-        if (strlen($this->search) >= 3) {
+        if (strlen($this->search) >= 2) {
             $club = Club::where('name', 'like', '%' . $this->search . '%')
                 ->orwhere('zip_code', 'like', '%' . $this->search . '%')
                 ->orwhere('city', 'like', '%' . $this->search . '%')
+                ->orwhere('abbreviation', 'like', '%' . $this->search . '%')
                 ->get()
                 ->pluck('id');
             $this->matches = Match::where('date_match', '>=', Carbon::now())

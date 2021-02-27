@@ -32,7 +32,7 @@ compteurs.forEach(compteur => {
         window.requestAnimationFrame(step);
     }
     let valeurCompteur = compteur.innerHTML;
-    animateValue(compteur, 0, valeurCompteur, 5000);
+    animateValue(compteur, 0, valeurCompteur, 3000);
 });
 
 let menuRegions = document.getElementById('menuRegions')

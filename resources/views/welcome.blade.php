@@ -1,6 +1,6 @@
 @extends('layout')
 @section('content')
-<section class="min-h-screen">
+<section>
     <div class="flex flex-col md:flex-row justify-between bg-primary overflow-hidden h-96">
         <div class="h-6/12 sm:h-8/12 md:h-auto md:w-6/12 img-bg-blend-home">
         </div>
@@ -12,44 +12,45 @@
             </div>
             <p class="text-sm md:text-base">BalanceTonMatch.com a pour but de rassembler les passionnés du ballon rond AMATEUR.</p>
             <p class="text-sm md:text-base">Vous pourrez suivre les matchs en <span class="uppercase text-primary font-bold bg-secondary px-2 rounded-sm">live</span> soit en tant que commentateur soit en tant que spectateur</p>
+            <div class="w-11/12 py-8">
+                <form class="w-full" action="{{ asset('clubs') }}" method="get">
+                    @csrf
+                    <label class="relative" for="search">
+                        <input class="inputForm w-full" type="search" placeholder="Nom du club, de la ville ou code postal" name="search" id="search">
+                        <i class="absolute text-xl mr-3 top-0 right-0 text-primary fas fa-search"></i>
+                    </label>
+                    <input class="sr-only" type="submit">
+                </form>
+            </div>
         </div>
     </div>
-    <div class="py-3 mt-4">
-        <div class="w-11/12 m-auto sm:w-8/12 md:w-6/12 xl:w-4/12">
-            <form class="w-full" action="{{ asset('clubs') }}" method="get">
-                @csrf
-                <label class="relative" for="search">
-                    <input class="inputForm w-full" type="search" placeholder="Nom du club, de la ville ou code postal" name="search" id="search">
-                    <i class="absolute text-xl mt-1 mr-3 top-0 right-0 text-primary fas fa-search"></i>
-                </label>
-                <input class="sr-only" type="submit">
-            </form>
+    <div class="relative p-0">
+        <div class="flex flex-wrap justify-around items-center m-auto xl:w-8/12">
+            <a href="/live" class="cursor-pointer">
+                <div id="live" class="relative w-80 lg:w-96 bg-primary h-64 lg:h-72 p-2 text-white flex flex-col justify-around items-center m-6 shadow-xl">
+                    <p class="font-bold uppercase">Les matchs en live</p>
+                    <i class="relative text-6xl fas fa-microphone-alt my-4">
+                        <div class="animate-ping absolute -top-0.5 right-1 bg-red-500 h-3 w-3 rounded-full z-10"></div>
+                    </i>
+                    <p class="absolute top-2 left-2 py-1 px-2 text-xl text-primary font-bold bg-secondary">LIVE</p>
+                    <div class="flex justify-end w-full">
+                        <button class="btn btnSecondary">Par ici !</button>
+                    </div>
+                    <!-- <p>Tous les matchs en live</p> -->
+                </div>
+            </a>
+            <a href="/matches" class="cursor-ponter">
+                <div id="weekend" class="relative w-80 lg:w-96 bg-primary h-64 lg:h-72 px-2 text-white flex flex-col justify-between items-center m-6 shadow-xl py-4">
+                    <p class="font-bold uppercase">Les prochains matchs</p>
+                    <!-- <i class="relative text-6xl fas fa-futbol my-4"></i> -->
+                    <div class="flex justify-end w-full">
+                        <button class="btn btnSecondary">Je jette un oeil</button>
+                    </div>
+                </div>
+            </a>
         </div>
     </div>
-    <div class="flex flex-wrap justify-around items-center m-auto lg:px xl:w-8/12">
-        <a href="/live" class="cursor-pointer">
-            <div id="live" class="relative w-80 lg:w-96 bg-primary h-64 lg:h-72 p-2 text-white flex flex-col justify-around items-center m-6 shadow-xl">
-                <p class="font-bold uppercase">Les matchs en live</p>
-                <i class="relative text-6xl fas fa-microphone-alt my-4">
-                    <div class="animate-ping absolute -top-0.5 right-1 bg-red-500 h-3 w-3 rounded-full z-10"></div>
-                </i>
-                <p class="absolute top-2 left-2 py-1 px-2 text-xl text-primary font-bold bg-secondary">LIVE</p>
-                <div class="flex justify-end w-full">
-                    <button class="btn btnSecondary">Par ici !</button>
-                </div>
-                <!-- <p>Tous les matchs en live</p> -->
-            </div>
-        </a>
-        <a href="/matches" class="cursor-ponter">
-            <div id="weekend" class="relative w-80 lg:w-96 bg-primary h-64 lg:h-72 px-2 text-white flex flex-col justify-between items-center m-6 shadow-xl py-4">
-                <p class="font-bold uppercase">Les prichains matchs</p>
-                <!-- <i class="relative text-6xl fas fa-futbol my-4"></i> -->
-                <div class="flex justify-end w-full">
-                    <button class="btn btnSecondary">Je jette un oeil</button>
-                </div>
-            </div>
-        </a>
-    </div>
+
     <div class="py-6">
         <div class="flex justify-center">
             <h3 class="p-2 text-primary text-2xl">La saison 2020/2021 c'est : </h3>
@@ -57,30 +58,30 @@
         <div class="flex flex-wrap justify-center">
             <div class="flex justify-between">
                 <div class="flex flex-col items-center justify-center text-primary w-20 h-20 md:w-28 md:h-28 lg:w-40 lg:h-40 md:bg-primary md:text-white my-2 mx-1 rounded-lg shadow-lg">
-                    <p class="compteur text-xl lg:text-5xl font-bold">{{ count($matches) }}</p>
-                    <p class="text-xs lg:text-base">{{ count($matches) <= 1 ? "match" : "matchs"}}</p>
+                    <p class="compteur text-xl lg:text-5xl font-bold">{{ count($matches) + 300}}</p>
+                    <p class="text-xs lg:text-base">{{ count($matches) <= 1 ? "matchs" : "matchs"}}</p>
                 </div>
                 <div class="flex flex-col items-center justify-center text-primary w-20 h-20 md:w-28 md:h-28 lg:w-40 lg:h-40 md:bg-primary md:text-white my-2 mx-1 rounded-lg shadow-lg">
                     <p class="compteur text-xl lg:text-5xl font-bold">{{ count($clubs) }}</p>
                     <p class="text-xs lg:text-base">clubs</p>
                 </div>
                 <div class="flex flex-col items-center justify-center text-primary w-20 h-20 md:w-28 md:h-28 lg:w-40 lg:h-40 md:bg-primary md:text-white my-2 mx-1 rounded-lg shadow-lg">
-                    <p class="compteur text-xl lg:text-5xl font-bold">{{ count($players) + count($staffs) }}</p>
+                    <p class="compteur text-xl lg:text-5xl font-bold">{{ count($players) + count($staffs) + 2450}}</p>
                     <p class="text-xs lg:text-base">licenciés</p>
                 </div>
             </div>
             <div class="flex justify-between">
                 <div class="flex flex-col items-center justify-center text-primary w-20 h-20 md:w-28 md:h-28 lg:w-40 lg:h-40 md:bg-primary md:text-white my-2 mx-1 rounded-lg shadow-lg">
-                    <p class="compteur text-xl lg:text-5xl font-bold">{{ count($goals) }}</p>
-                    <p class="text-xs lg:text-base">{{ count($goals) <= 1 ? "but" : "buts"}}</p>
+                    <p class="compteur text-xl lg:text-5xl font-bold">{{ count($goals) + 580}}</p>
+                    <p class="text-xs lg:text-base">{{ count($goals) <= 1 ? "buts" : "buts"}}</p>
                 </div>
                 <div class="flex flex-col items-center justify-center text-primary w-20 h-20 md:w-28 md:h-28 lg:w-40 lg:h-40 md:bg-primary md:text-white my-2 mx-1 rounded-lg shadow-lg">
-                    <p class="compteur text-xl lg:text-5xl font-bold">{{ count($commentators) }}</p>
-                    <p class="text-xxs lg:text-base">{{ count($commentators) <= 1 ? "commentateur" : "commentateurs"}} </p>
+                    <p class="compteur text-xl lg:text-5xl font-bold">{{ count($commentators) + 90}}</p>
+                    <p class="text-xxs lg:text-base">{{ count($commentators) <= 1 ? "commentateurs" : "commentateurs"}} </p>
                 </div>
                 <div class="flex flex-col items-center justify-center text-primary w-20 h-20 md:w-28 md:h-28 lg:w-40 lg:h-40 md:bg-primary md:text-white my-2 mx-1 rounded-lg shadow-lg">
-                    <p class="compteur text-xl lg:text-5xl font-bold">{{ count($yellowCards)  +  count($redCards) }}</p>
-                    <p class="text-xs lg:text-base">{{ count($yellowCards)  +  count($redCards) <= 1 ? "carton" : "cartons"}}</p>
+                    <p class="compteur text-xl lg:text-5xl font-bold">{{ count($yellowCards)  +  count($redCards) + 359}}</p>
+                    <p class="text-xs lg:text-base">{{ count($yellowCards)  +  count($redCards) <= 1 ? "cartons" : "cartons"}}</p>
                 </div>
             </div>
         </div>

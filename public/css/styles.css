@@ -119,15 +119,16 @@ h1,
 }
 
 .bg-login {
-  background: url("https://cdn.pixabay.com/photo/2014/10/14/20/24/ball-488718_960_720.jpg");
+  background-image: url("https://cdn.pixabay.com/photo/2014/10/14/20/24/ball-488718_960_720.jpg");
   background-repeat: no-repeat;
   background-size: cover;
 }
 
 .bg-register {
-  background: url("https://cdn.pixabay.com/photo/2013/03/10/15/00/soccer-92194_960_720.jpg");
+  background-image: url("https://cdn.pixabay.com/photo/2013/03/10/15/00/soccer-92194_960_720.jpg");
   background-repeat: no-repeat;
-  background-size: cover;
+  background-attachment: fixed;
+  background-position-y: 10rem;
 }
 
 .vertical {
