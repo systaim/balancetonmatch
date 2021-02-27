@@ -12,19 +12,19 @@
             </div>
             <p class="text-sm md:text-base">BalanceTonMatch.com a pour but de rassembler les passionnés du ballon rond AMATEUR.</p>
             <p class="text-sm md:text-base">Vous pourrez suivre les matchs en <span class="uppercase text-primary font-bold bg-secondary px-2 rounded-sm">live</span> soit en tant que commentateur soit en tant que spectateur</p>
-            <div class="w-11/12 py-8">
-                <form class="w-full" action="{{ asset('clubs') }}" method="get">
-                    @csrf
-                    <label class="relative" for="search">
-                        <input class="inputForm w-full" type="search" placeholder="Nom du club, de la ville ou code postal" name="search" id="search">
-                        <i class="absolute text-xl mr-3 top-0 right-0 text-primary fas fa-search"></i>
-                    </label>
-                    <input class="sr-only" type="submit">
-                </form>
-            </div>
         </div>
     </div>
-    <div class="relative p-0">
+    <div class="relative py-8">
+        <div class="w-11/12 py-8 m-auto md:w-8/12 xl:w-6/12">
+            <form class="w-full" action="{{ asset('clubs') }}" method="get">
+                @csrf
+                <label class="relative" for="search">
+                    <input class="inputForm w-full" type="search" placeholder="Nom du club, de la ville ou code postal" name="search" id="search">
+                    <i class="absolute text-xl mr-3 top-0 right-0 text-primary fas fa-search"></i>
+                </label>
+                <input class="sr-only" type="submit">
+            </form>
+        </div>
         <div class="flex flex-wrap justify-around items-center m-auto xl:w-8/12">
             <a href="/live" class="cursor-pointer">
                 <div id="live" class="relative w-80 lg:w-96 bg-primary h-64 lg:h-72 p-2 text-white flex flex-col justify-around items-center m-6 shadow-xl">
