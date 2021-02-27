@@ -9,7 +9,7 @@
     <div class="flex flex-col lg:flex-row justify-between bg-primary rounded-lg my-4 sm:w-11/12 m-auto overflow-hidden">
         <div class="h-48 lg:h-auto lg:w-6/12 img-bg-blend-listMatchs">
         </div>
-        <div class="text-white px-4 m-20 lg:w-6/12 xl:p-10 text-center">
+        <div class="text-white px-4 m-8 lg:m-20 lg:w-6/12 xl:p-10 text-center">
             <h3 class="text-xs">Envie de suivre un match ?</h3>
             <h2 class="text-2xl">C'est très facile !</h2>
             <p class="py-4">Recherche ton équipe et si tu ne trouves pas son match, n'hésite pas à le créer.<br>
