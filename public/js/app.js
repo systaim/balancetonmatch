@@ -19387,12 +19387,14 @@ compteurs.forEach(function (compteur) {
 
   var valeurCompteur = compteur.innerHTML;
   animateValue(compteur, 0, valeurCompteur, 3000);
-});
+}); // main menu
+
 var menuRegions = document.getElementById('menuRegions');
 var sousMenuRegion = document.getElementById('sousMenuRegions');
 menuRegions.addEventListener('click', function () {
   sousMenuRegion.classList.toggle('select');
-});
+}); // desactiver bouton pendant chargement
+
 var submitButton = document.querySelector('[type=Submit]');
 submitButton.addEventListener('load', function () {
   submitButton.setAttribute('disabled', 'disabled');

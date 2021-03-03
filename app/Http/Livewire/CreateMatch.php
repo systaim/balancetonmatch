@@ -16,9 +16,12 @@ use Illuminate\Support\Facades\Mail;
 
 class CreateMatch extends Component
 {
-    public $clubs = [];
+    public $clubsHome;
+    public $clubsAway;
     public $searchHome = "";
     public $searchAway = "";
+    public $hTeam;
+    public $aTeam;
     public $regions;
     public $region;
     public $competitions;
@@ -35,10 +38,10 @@ class CreateMatch extends Component
     public $district;
 
     protected $rules = [
-        'searchHome' => 'required',
-        'searchAway' => 'required',
+        'hTeam' => 'required|exists:clubs,name',
+        'aTeam' => 'required|exists:clubs,name',
         'dateMatch' => 'required|date|after:yesterday',
-        'timeMatch' => 'required',
+        'timeMatch' => 'required|date_format:H:i',
         'competition' => 'required',
         'divisionsRegions' => 'nullable',
         'divisionsDepartments' => 'nullable',
@@ -47,26 +50,73 @@ class CreateMatch extends Component
         'group' => 'nullable',
     ];
 
+    public function mount()
+    {
+        $this->clubsHome = [];
+        $this->clubsAway = [];
+    }
+
     public function updatedSearchHome()
     {
-        $this->clubs = Club::where('name', 'like', '%' . $this->searchHome . '%')->get();
-    }
+        if (strlen($this->searchHome) >= 2) {
+            $this->clubsHome = Club::where('name', 'like', '%' . $this->searchHome . '%')
+                ->orwhere('zip_code', 'like', '%' . $this->searchHome . '%')
+                ->orwhere('city', 'like', '%' . $this->searchHome . '%')
+                ->orwhere('abbreviation', 'like', '%' . $this->searchHome . '%')
+                ->get();
+        } else {
+            $this->clubsHome = [];
+        }
+}
 
     public function updatedSearchAway()
     {
-        $this->clubs = Club::where('name', 'like', '%' . $this->searchAway . '%')->get();
+        if (strlen($this->searchAway) >= 2) {
+            $this->clubsAway = Club::where('name', 'like', '%' . $this->searchAway . '%')
+                ->orwhere('zip_code', 'like', '%' . $this->searchAway . '%')
+                ->orwhere('city', 'like', '%' . $this->searchAway . '%')
+                ->orwhere('abbreviation', 'like', '%' . $this->searchAway . '%')
+                ->get();
+        } else {
+            $this->clubsAway = [];
+        }
+    }
+
+    public function addHomeTeam(Club $club)
+    {
+        // dd($club);
+        $this->hTeam = $club->name;
+        $this->searchHome = "";
+        $this->clubsHome = [];
+    }
+
+    public function addAwayTeam(Club $club)
+    {
+        // dd($club);
+        $this->aTeam = $club->name;
+        $this->searchAway = "";
+        $this->clubsAway = [];
+    }
+
+    public function resetHomeTeam()
+    {
+        $this->hTeam = "";
+    }
+
+    public function resetAwayTeam()
+    {
+        $this->aTeam = "";
     }
 
     public function saveMatch(Match $match)
     {
+        
         $user = Auth::user();
 
         $validateData = $this->validate();
 
-        // dd($validateData);
-
-        $homeTeam = Club::where('name', $validateData['searchHome'])->first();
-        $awayTeam = Club::where('name', $validateData['searchAway'])->first();
+        $homeTeam = Club::where('name', $validateData['hTeam'])->first();
+        $awayTeam = Club::where('name', $validateData['aTeam'])->first();
         $regionMatch = Region::where('name', $validateData['region'])->first();
         $groupMatch = Group::where('name', $validateData['group'])->first();
         $dateAndTime = $this->dateMatch . "T" . $this->timeMatch;

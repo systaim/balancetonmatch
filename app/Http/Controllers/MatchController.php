@@ -57,7 +57,8 @@ class MatchController extends Controller
      */
     public function create()
     {
-        $clubs = Club::all();
+        $clubsHome = Club::all();
+        $clubsAway = Club::all();
         $regions = Region::all();
         // $competitions = Competition::all();
         $competitions = Competition::all();
@@ -65,7 +66,7 @@ class MatchController extends Controller
         $groups = Group::all();
         $divisionsDepartments = DivisionsDepartment::all();
         $divisionsRegions = DivisionsRegion::all();
-        return View('matches.create', compact('clubs', 'regions', 'groups', 'departments', 'divisionsRegions', 'divisionsDepartments', 'competitions'));
+        return View('matches.create', compact('clubsHome', 'clubsAway', 'regions', 'groups', 'departments', 'divisionsRegions', 'divisionsDepartments', 'competitions'));
     }
 
     /**

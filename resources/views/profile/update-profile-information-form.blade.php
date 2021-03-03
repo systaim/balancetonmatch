@@ -26,13 +26,15 @@
 
             <!-- Current Profile Photo -->
             <div class="mt-2" x-show="! photoPreview">
-                <img src="{{ $this->user->profile_photo_url }}" alt="{{ $this->user->name }}" class="rounded-full h-20 w-20 object-cover">
+                <img src="{{ $this->user->profile_photo_url }}" alt="{{ $this->user->name }}" class="border-2 border-primary rounded-full h-20 w-20 object-cover">
             </div>
 
             <!-- New Profile Photo Preview -->
             <div class="mt-2" x-show="photoPreview">
-                <span class="block rounded-full w-20 h-20" x-bind:style="'background-size: cover; background-repeat: no-repeat; background-position: center center; background-image: url(\'' + photoPreview + '\');'">
-                </span>
+                <div class="flex flex-col items-center">
+                    <span class="block rounded-full w-20 h-20" x-bind:style="'background-size: cover; background-repeat: no-repeat; background-position: center center; background-image: url(\'' + photoPreview + '\');'">
+                    </span>
+                </div>
             </div>
 
             <button class="mt-2 mr-2 btn btnPrimary" type="button" x-on:click.prevent="$refs.photo.click()">
@@ -48,6 +50,35 @@
             <x-jet-input-error for="photo" class="mt-2" />
         </div>
         @endif
+
+        <!-- devenir referent-club -->
+        @if(Auth::user()->role == "guest" )
+        <div class="flex items-center justify-around my-2 mx-4 bg-primary p-4 text-white shadow-xl">
+            <p>Je souhaite devenir un des référent de mon club</p>
+            <form action="{{ route('contacts.becomeManager') }}" method="post" style="display: none;">
+                @csrf
+            </form>
+            <a id="btnDemande" class="btn btnSecondary">Demander</a>
+        </div>
+        @endif
+        <div id="form" class="hidden fixed z-50 inset-0 justify-center items-center" style="background-color: rgba(0,0,0,.5);">
+            <div class="absolute top-10 right-10">
+                <a href="" class="text-4xl text-secondary font-bold">X</a>
+            </div>
+            <div class="p-10 bg-white w-full sm:w-11/12 md:w-9/12 lg:w-6/12 rounded-lg shadow-xl">
+                <form action="{{ route('contacts.becomeManager') }}" method="post">
+                    @csrf
+                    <h2 class="text-center mb-6">Es-tu sûr de vouloir faire la demande pour <span class="font-bold">{{ Auth::user()->club->name }}</span> ?</h2>
+                    <p>Avant de valider, vérifie bien ton adresse mail pour bien recevoir nos messages</p>
+                    <p>On reviendra très vite vers toi !</p>
+                    <div class="flex justify-end">
+                        <a href="" class="btn mx-8">J'annule</a>
+                        <input type="submit" class="btn btnSuccess" value="Je valide"></input>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
 
         <div class="flex flex-col lg:flex-row">
             <!-- club -->
@@ -115,3 +146,13 @@
         </button>
     </x-slot>
 </x-jet-form-section>
+
+<script>
+    let form = document.getElementById("form");
+    let btnDemande = document.getElementById("btnDemande");
+
+    btnDemande.addEventListener("click", function() {
+        form.classList.add("flex");
+        form.classList.remove("hidden");
+    });
+</script>

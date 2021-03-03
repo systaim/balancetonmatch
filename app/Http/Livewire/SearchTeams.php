@@ -52,6 +52,7 @@ class SearchTeams extends Component
             'clubs' => Club::where('name', 'like', '%' . $this->query . '%')
             ->orwhere('city', 'like', '%' . $this->query . '%')
             ->orwhere('zip_code', 'like', '%' . $this->query . '%')
+            ->orwhere('abbreviation', 'like', '%' . $this->query . '%')
             ->inRandomOrder()
             ->paginate(20),
         ]);

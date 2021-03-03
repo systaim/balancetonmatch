@@ -1,4 +1,4 @@
-<div {{ $match->live != 'attente' && $match->live != 'finDeMatch' && $match->live != 'reporte' ? "wire:poll.5000ms" : "" }}>
+<div {{ $match->live != 'finDeMatch' && $match->live != 'reporte' ? "wire:poll.5000ms" : "" }}>
     <form wire:submit.prevent="saveComment">
     @csrf
         <!-- affichage bannière du match -->

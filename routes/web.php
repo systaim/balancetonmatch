@@ -107,6 +107,7 @@ Route::resource('admin', '\App\Http\Controllers\AdminController')->middleware('a
 Route::post('contacts', 'App\Http\Controllers\ContactController@store')->name('contacts.store');
 Route::post('contactsNewTeam', 'App\Http\Controllers\ContactController@askNewTeam')->name('contacts.askNewTeam');
 Route::post('contactsForPlayers', 'App\Http\Controllers\ContactController@askPlayer')->name('contacts.askPlayer');
+Route::post('contactsForBecomeManager', 'App\Http\Controllers\ContactController@becomeManager')->name('contacts.becomeManager');
 
 Route::get('live', function(){
 

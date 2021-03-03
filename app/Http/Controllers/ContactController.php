@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Mail\AskNewTeamMail;
 use App\Mail\askPlayerMail;
+use App\Mail\BecomeManagerMail;
 use App\Mail\ContactMail;
 use App\Models\Club;
 use App\Models\User;
@@ -39,11 +40,6 @@ class ContactController extends Controller
         Mail::to($superAdmin)
             ->send(new ContactMail($contactCreate));
 
-        // foreach ($admins as $admin) {
-        //     Mail::to($admin)
-        //     ->send(new ContactMail($contactCreate));
-        // }
-
         return redirect('/')->with('success', 'Ton message a bien été envoyée');
     }
 
@@ -65,7 +61,7 @@ class ContactController extends Controller
         // $admins = User::where('role', 'admin')->get()->pluck('email');
 
         Mail::to($superAdmin)
-            ->send(new ContactMail($contactCreate));
+            ->send(new AskNewTeamMail($contactCreate));
 
         return redirect('/')->with('success', 'Ta demande a bien été envoyée');
     }
@@ -86,8 +82,17 @@ class ContactController extends Controller
         return redirect('clubs/' .$request->get('clubId') )->with('success', 'La demande a bien été envoyée');
     }
 
-    public function becomeManager()
+    public function becomeManager(Request $request)
     {
-        dd('ok manager');
+        // dd($request);
+
+        $contactCreate = [];
+
+        $superAdmin = User::where('role', 'super-admin')->get()->pluck('email');
+
+        Mail::to($superAdmin)
+            ->send(new BecomeManagerMail($contactCreate));
+
+        return redirect('/user/profile' )->with('success', 'La demande a bien été envoyée');
     }
 }

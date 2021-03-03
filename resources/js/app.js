@@ -35,12 +35,16 @@ compteurs.forEach(compteur => {
     animateValue(compteur, 0, valeurCompteur, 3000);
 });
 
+// main menu
+
 let menuRegions = document.getElementById('menuRegions')
 let sousMenuRegion = document.getElementById('sousMenuRegions')
 
 menuRegions.addEventListener('click', function() {
     sousMenuRegion.classList.toggle('select')
 })
+
+// desactiver bouton pendant chargement
 
 let submitButton = document.querySelector('[type=Submit]')
 
