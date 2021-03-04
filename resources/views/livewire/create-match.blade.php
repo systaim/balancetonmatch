@@ -24,7 +24,7 @@
                     @endif
                     @foreach ($clubsHome as $club)
                     <div class="flex flex-col mb-3 w-full">
-                        <div class="relative flex flex-row justify-around items-center bg-primary overflow-hidden" wire:click="addHomeTeam({{ $club->id }}, ' $club->name  }}')">
+                        <div class="relative flex flex-row justify-around items-center bg-primary overflow-hidden" wire:click="addHomeTeam({{ $club->id }})">
                             <div class="w-16 m-2 z-10">
                                 <div class="logo h-12 w-12">
                                     <img class="object-contain" src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $club->numAffiliation }}.jpg">
@@ -71,7 +71,7 @@
                     @endif
                     @foreach ($clubsAway as $club)
                     <div class="flex flex-col mb-3 w-full">
-                        <div class="relative flex flex-row items-center bg-primary overflow-hidden" wire:click="addAwayTeam({{ $club->id }}, ' $club->name  }}')">
+                        <div class="relative flex flex-row items-center bg-primary overflow-hidden" wire:click="addAwayTeam({{ $club->id }})">
                             <div class="w-16 m-2 z-10">
                                 <div class="logo h-12 w-12">
                                     <img class="object-contain" src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $club->numAffiliation }}.jpg">

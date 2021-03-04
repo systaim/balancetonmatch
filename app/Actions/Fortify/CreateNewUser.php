@@ -44,7 +44,7 @@ class CreateNewUser implements CreatesNewUsers
             'first_name' => $input['first_name'],
             'pseudo' => $input['pseudo'],
             'date_of_birth' => $input['date_of_birth'],
-            'club_id' => $club->id,
+            'club_id' => $club ? $club->id : null,
             // 'is_player' => $input['isPlayer'],
             // 'region_id' => $region->id,
             'email' => $input['email'],
