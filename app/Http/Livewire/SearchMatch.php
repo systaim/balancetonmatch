@@ -36,7 +36,7 @@ class SearchMatch extends Component
                 ->orwhere('abbreviation', 'like', '%' . $this->search . '%')
                 ->get()
                 ->pluck('id');
-            $this->matches = Match::where('date_match', '>=', Carbon::now())
+            $this->matches = Match::where('date_match', '>=', Carbon::now()->subHours(12))
                 ->where(function ($query) use ($club) {
                     $query->wherein('home_team_id', $club)
                         ->orwherein('away_team_id', $club);

@@ -7,7 +7,7 @@
         <!-- CHOIX DES EQUIPES -->
         <div class="lg:grid grid-cols-12 w-11/12 m-auto">
             <div class="lg:col-span-5 flex items-start justify-center">
-                @if($hTeam == "")
+                @if($homeTeam == "")
                 <div class="mx-2 ">
                     <label class="sr-only" for="searchHome">DOM</label>
                     @error('searchHome')
@@ -16,6 +16,11 @@
                     <input class="bg-transparent w-full my-1 border-b border-gray-600 focus:outline-none text-2xl xl:text-5xl" placeholder="DOMICILE" wire:model="searchHome" type="search" name="searchHome" id="searchHome" :value="old('searchHome')" autocomplete="searchHome" required>
                     @if($clubsHome != [] && count($clubsHome) != 0)
                     <p class="text-sm py-1">Clique sur une équipe<br>Fais le bon choix 😉</p>
+                    @elseif(count($clubsHome) == 0 && strlen($searchHome) > 2)
+                    <div class="text-sm py-1">
+                        <p>Pas de résultats ? 😓<br>Ca marche aussi avec le code postal ou le nom de la ville</p>
+                    </div>
+
                     @endif
                     @foreach ($clubsHome as $club)
                     <div class="flex flex-col mb-3 w-full">
@@ -26,7 +31,7 @@
                                 </div>
                             </div>
                             <div class="flex items-center py-2 w-full text-secondary overflow-hidden ml-2 z-10">
-                                <p class="font-bold cursor-pointer" wire:model="hTeam">{{ $club->name}}</p>
+                                <p class="font-bold cursor-pointer" wire:model="homeTeam">{{ $club->name}}</p>
                             </div>
                             <div class="absolute -bottom-7 -right-7 transform -rotate-45 z-0">
                                 <div class="h-2 w-36 mb-1" style="background-color: {{ $club->primary_color }};"></div>
@@ -37,19 +42,22 @@
                     @endforeach
                 </div>
                 @else
-                <div class="relative py-6 px-2 bg-primary text-white rounded-md mx-4 w-full">
-                    <h2 class="text-2xl xl:text-5xl truncate">{{ $hTeam }}</h2>
-                    <span class="absolute top-1 right-2 cursor-pointer" wire:click="resetHomeTeam"> X</span>
+                <div class="relative py-6 px-2 bg-secondary text-primary rounded-md mx-4 w-full shadow-xl">
+                    <div class="logo h-28 w-28 m-auto">
+                        <img class="object-contain" src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $homeTeamLogo }}.jpg">
+                    </div>
+                    <h2 class="text-center text-2xl xl:text-5xl truncate">{{ $homeTeam }}</h2>
+                    <span class="absolute top-1 right-2 cursor-pointer font-bold" wire:click="resetHomeTeam"> X</span>
                 </div>
                 @endif
             </div>
 
-            <div class="lg:col-span-2 flex items-start justify-center">
-                <p class="text-6xl lg:text-4xl xl:text-6xl text-center">VS</p>
+            <div class="lg:col-span-2 flex items-center justify-center">
+                <p class="text-6xl lg:text-4xl xl:text-6xl text-center font-bold">VS</p>
             </div>
 
             <div class="lg:col-span-5 flex items-start justify-center">
-                @if($aTeam == "")
+                @if($awayTeam == "")
                 <div class="mx-4">
                     <label class="sr-only" for="searchAway">EXT</label>
                     @error('searchAway')
@@ -70,7 +78,7 @@
                                 </div>
                             </div>
                             <div class="flex items-center py-2 w-full text-secondary overflow-hidden ml-2 z-10">
-                                <p class="font-bold cursor-pointer" wire:model="aTeam">{{ $club->name}}</p>
+                                <p class="font-bold cursor-pointer" wire:model="awayTeam">{{ $club->name}}</p>
                             </div>
                             <div class="absolute -bottom-7 -right-7 transform -rotate-45 z-0">
                                 <div class="h-2 w-36 mb-1" style="background-color: {{ $club->primary_color }};"></div>
@@ -81,15 +89,18 @@
                     @endforeach
                 </div>
                 @else
-                <div class="relative py-6 px-2 bg-primary text-white rounded-md mx-4 w-full">
-                    <h2 class="text-2xl xl:text-5xl truncate">{{ $aTeam }}</h2>
-                    <span class="absolute top-1 right-2 cursor-pointer" wire:click="resetAwayTeam"> X</span>
+                <div class="relative py-6 px-2 bg-secondary text-primary rounded-md mx-4 w-full shadow-xl">
+                    <div class="logo h-28 w-28 m-auto">
+                        <img class="object-contain" src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $awayTeamLogo }}.jpg">
+                    </div>
+                    <h2 class="text-center text-2xl xl:text-5xl truncate">{{ $awayTeam }}</h2>
+                    <span class="absolute top-1 right-2 cursor-pointer font-bold" wire:click="resetAwayTeam"> X</span>
                 </div>
                 @endif
             </div>
         </div>
-        @if($hTeam && $aTeam)
-        <div class="bg-primary relative text-white my-2 px-3 py-3 m-auto shadow-lg sm:w-11/12 md:w-7/12 lg:w-6/12 xl:w-4/12 rounded-md">
+
+        <div class="bg-primary relative text-white my-6 px-3 py-3 m-auto shadow-lg sm:w-11/12 md:w-7/12 lg:w-6/12 xl:w-4/12 rounded-md">
             <div class="flex justify-evenly mb-4">
                 <div class="flex flex-col w-2/5">
                     <label for="dateMatch">Date</label>
@@ -106,7 +117,7 @@
                     @enderror
                 </div>
             </div>
-
+            @if($homeTeam && $awayTeam)
             <!-- CHOIX COMPETITION -->
             <div class="mb-4">
                 <label for="competition">Compétition</label>
@@ -243,8 +254,9 @@
                 @endif
             </div>
             @endif
+            @endif
         </div>
-        @endif
+
     </form>
 
 </div>

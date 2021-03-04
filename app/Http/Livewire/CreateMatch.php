@@ -20,8 +20,10 @@ class CreateMatch extends Component
     public $clubsAway;
     public $searchHome = "";
     public $searchAway = "";
-    public $hTeam;
-    public $aTeam;
+    public $homeTeam;
+    public $homeTeamLogo;
+    public $awayTeam;
+    public $awayTeamLogo;
     public $regions;
     public $region;
     public $competitions;
@@ -38,8 +40,8 @@ class CreateMatch extends Component
     public $district;
 
     protected $rules = [
-        'hTeam' => 'required|exists:clubs,name',
-        'aTeam' => 'required|exists:clubs,name',
+        'homeTeam' => 'required|exists:clubs,name',
+        'awayTeam' => 'required|exists:clubs,name',
         'dateMatch' => 'required|date|after:yesterday',
         'timeMatch' => 'required|date_format:H:i',
         'competition' => 'required',
@@ -58,7 +60,7 @@ class CreateMatch extends Component
 
     public function updatedSearchHome()
     {
-        if (strlen($this->searchHome) >= 2) {
+        if (strlen($this->searchHome) >= 3) {
             $this->clubsHome = Club::where('name', 'like', '%' . $this->searchHome . '%')
                 ->orwhere('zip_code', 'like', '%' . $this->searchHome . '%')
                 ->orwhere('city', 'like', '%' . $this->searchHome . '%')
@@ -67,11 +69,11 @@ class CreateMatch extends Component
         } else {
             $this->clubsHome = [];
         }
-}
+    }
 
     public function updatedSearchAway()
     {
-        if (strlen($this->searchAway) >= 2) {
+        if (strlen($this->searchAway) >= 3) {
             $this->clubsAway = Club::where('name', 'like', '%' . $this->searchAway . '%')
                 ->orwhere('zip_code', 'like', '%' . $this->searchAway . '%')
                 ->orwhere('city', 'like', '%' . $this->searchAway . '%')
@@ -85,7 +87,8 @@ class CreateMatch extends Component
     public function addHomeTeam(Club $club)
     {
         // dd($club);
-        $this->hTeam = $club->name;
+        $this->homeTeam = $club->name;
+        $this->homeTeamLogo = $club->numAffiliation;
         $this->searchHome = "";
         $this->clubsHome = [];
     }
@@ -93,19 +96,20 @@ class CreateMatch extends Component
     public function addAwayTeam(Club $club)
     {
         // dd($club);
-        $this->aTeam = $club->name;
+        $this->awayTeam = $club->name;
+        $this->awayTeamLogo = $club->numAffiliation;
         $this->searchAway = "";
         $this->clubsAway = [];
     }
 
     public function resetHomeTeam()
     {
-        $this->hTeam = "";
+        $this->homeTeam = "";
     }
 
     public function resetAwayTeam()
     {
-        $this->aTeam = "";
+        $this->awayTeam = "";
     }
 
     public function saveMatch(Match $match)
@@ -115,8 +119,8 @@ class CreateMatch extends Component
 
         $validateData = $this->validate();
 
-        $homeTeam = Club::where('name', $validateData['hTeam'])->first();
-        $awayTeam = Club::where('name', $validateData['aTeam'])->first();
+        $homeTeam = Club::where('name', $validateData['homeTeam'])->first();
+        $awayTeam = Club::where('name', $validateData['awayTeam'])->first();
         $regionMatch = Region::where('name', $validateData['region'])->first();
         $groupMatch = Group::where('name', $validateData['group'])->first();
         $dateAndTime = $this->dateMatch . "T" . $this->timeMatch;
