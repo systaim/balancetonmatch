@@ -20,22 +20,24 @@ class CreateMatch extends Component
     public $clubsAway = [];
     public $searchHome = "";
     public $searchAway = "";
-    public $homeTeam;
-    public $homeTeamLogo;
-    public $awayTeam;
-    public $awayTeamLogo;
+
+    public $homeTeam = null;
+    public $homeTeamLogo = null;
+    public $awayTeam = null;
+    public $awayTeamLogo = null;
+
     public $regions;
-    public $region;
+    public $region = null;
     public $competitions;
-    public $competition;
+    public $competition = null;
     public $groups;
-    public $group;
+    public $group = null;
     public $departments;
     public $divisionsDepartments;
     public $divisionsRegions;
-    public $dateMatch;
-    public $timeMatch;
-    public $district;
+    public $dateMatch = null;
+    public $timeMatch =null;
+    public $district = null;
 
     protected $rules = [
         'homeTeam' => 'required|exists:clubs,name',
