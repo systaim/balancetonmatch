@@ -56,12 +56,12 @@ class CreateMatch extends Component
 
     public function mount()
     {
-        $this->regions = Region::all();
-        $this->competitions = Competition::all();
-        $this->departments = Department::all();
-        $this->groups = Group::all();
-        $this->divisionsDepartments = DivisionsDepartment::all();
-        $this->divisionsRegions = DivisionsRegion::all();
+        $this->regions = collect(Region::all());
+        $this->competitions = collect(Competition::all());
+        $this->departments = collect(Department::all());
+        $this->groups = collect(Group::all());
+        $this->divisionsDepartments = collect(DivisionsDepartment::all());
+        $this->divisionsRegions = collect(DivisionsRegion::all());
     }
 
     public function updatedSearchHome()
