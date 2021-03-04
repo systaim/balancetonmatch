@@ -48,6 +48,7 @@ class CreateMatch extends Component
         'timeMatch' => 'required|date_format:H:i',
         'competition' => 'required',
         'divisionsRegions' => 'nullable',
+        'divisionsDepartments' => 'nullable',
         'region' => 'nullable',
         'district' => 'nullable',
         'group' => 'nullable',
