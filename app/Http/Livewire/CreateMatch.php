@@ -60,15 +60,20 @@ class CreateMatch extends Component
 
     public function updatedSearchHome()
     {
-        if (strlen($this->searchHome) >= 3) {
-            $this->clubsHome = Club::where('name', 'like', '%' . $this->searchHome . '%')
-                ->orwhere('zip_code', 'like', '%' . $this->searchHome . '%')
-                ->orwhere('city', 'like', '%' . $this->searchHome . '%')
-                ->orwhere('abbreviation', 'like', '%' . $this->searchHome . '%')
-                ->get();
-        } else {
-            $this->clubsHome = [];
+        try {
+            if (strlen($this->searchHome) >= 3) {
+                $this->clubsHome = Club::where('name', 'like', '%' . $this->searchHome . '%')
+                    ->orwhere('zip_code', 'like', '%' . $this->searchHome . '%')
+                    ->orwhere('city', 'like', '%' . $this->searchHome . '%')
+                    ->orwhere('abbreviation', 'like', '%' . $this->searchHome . '%')
+                    ->get();
+            } else {
+                $this->clubsHome = [];
+            }
+        } catch (\Throwable $th) {
+            dd($th);
         }
+        
     }
 
     public function updatedSearchAway()
