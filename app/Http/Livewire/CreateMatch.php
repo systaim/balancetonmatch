@@ -62,6 +62,7 @@ class CreateMatch extends Component
         $this->groups = collect(Group::all());
         $this->divisionsDepartments = collect(DivisionsDepartment::all());
         $this->divisionsRegions = collect(DivisionsRegion::all());
+        dd($this->regions);
     }
 
     public function updatedSearchHome()
