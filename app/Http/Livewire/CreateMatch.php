@@ -16,8 +16,8 @@ use Illuminate\Support\Facades\Mail;
 
 class CreateMatch extends Component
 {
-    public $clubsHome;
-    public $clubsAway;
+    public $clubsHome = [];
+    public $clubsAway = [];
     public $searchHome = "";
     public $searchAway = "";
     public $homeTeam;
@@ -51,12 +51,6 @@ class CreateMatch extends Component
         'district' => 'nullable',
         'group' => 'nullable',
     ];
-
-    public function mount()
-    {
-        $this->clubsHome = [];
-        $this->clubsAway = [];
-    }
 
     public function updatedSearchHome()
     {
