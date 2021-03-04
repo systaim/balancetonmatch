@@ -140,31 +140,30 @@
                     <div class="loader"></div>
                 </div>
             </div>
+@endif
 
-            @if($competition)
 
             <!-- CHOIX REGION -->
 
-            @if($competition == 1 || $competition == 2 || $competition == 4 || $competition == 5)
             <div class=" mb-4">
-            @dump($regions)
                 <label for="region">Région</label>
                 @error('region')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
                 <select class="inputForm focus:outline-none focus:shadow-outline w-full my-1" name="region" id="region" wire:model="region" :value="old('region')" autocomplete="region" required>
                     <option>Choisis la région</option>
+                    
                     @foreach($regions as $region)
                     <option value="{{ $region->name }}">{{ $region->name }}</option>
                     @endforeach
                 </select>
 
             </div>
-            @endif
+
 
             <!-- CHOIX R1 R2 R3-->
 
-            @if($competition == "1")
+
             <div class=" mb-4">
                 <label for="divisionsRegions">Divisions régionale</label>
                 @error('divisionsRegions')
@@ -178,10 +177,11 @@
                 </select>
 
             </div>
-            @endif
+
 
             <!-- CHOIX DISTRICT (DEPARTMENT) -->
-            @if($competition == 2 || $competition == 5)
+
+
             <div class=" mb-4">
 
                 <label for="district">District</label>
@@ -196,11 +196,11 @@
 
                 </select>
             </div>
-            @endif
+
 
             <!-- CHOIX D1 D2 D3... -->
 
-            @if($competition == 2)
+
             <div class=" mb-4">
                 <label for="divisionsDepartments">Division</label>
                 @error('divisionsDepartments')
@@ -216,11 +216,11 @@
                 </select>
 
             </div>
-            @endif
+
 
             <!-- CHOIX GROUPE -->
 
-            @if($competition == 1 || $competition == 2)
+
             <div class=" mb-4">
                 <label for="group">Groupe</label>
                 @error('group')
@@ -233,7 +233,7 @@
                     @endforeach
                 </select>
             </div>
-            @endif
+
 
             <div class=" mb-4">
                 <div class="flex justify-center items-center">
@@ -254,8 +254,7 @@
                 </div>
                 @endif
             </div>
-            @endif
-            @endif
+
         </div>
 
     </form>

@@ -23,23 +23,24 @@ class CreateMatch extends Component
     public $searchHome = "";
     public $searchAway = "";
 
-    public $homeTeam = null;
-    public $homeTeamLogo = null;
-    public $awayTeam = null;
-    public $awayTeamLogo = null;
+    public $homeTeam;
+    public $homeTeamLogo;
+    public $awayTeam;
+    public $awayTeamLogo;
 
     public $regions;
-    public $region = null;
+    public $region;
     public $competitions;
-    public $competition = null;
+    public $competition;
     public $groups;
-    public $group = null;
+    public $group;
     public $departments;
     public $divisionsDepartments;
     public $divisionsRegions;
-    public $dateMatch = null;
+    public $dateMatch;
     public $timeMatch =null;
-    public $district = null;
+    public $district;
+
 
     protected $rules = [
         'homeTeam' => 'required|exists:clubs,name',
@@ -56,12 +57,13 @@ class CreateMatch extends Component
 
     public function mount()
     {
-        $this->regions = collect(Region::all());
-        $this->competitions = collect(Competition::all());
-        $this->departments = collect(Department::all());
-        $this->groups = collect(Group::all());
-        $this->divisionsDepartments = collect(DivisionsDepartment::all());
-        $this->divisionsRegions = collect(DivisionsRegion::all());
+        $this->regions = Region::all();
+        // dd($this->regions);
+        $this->competitions = Competition::all();
+        $this->departments = Department::all();
+        $this->groups = Group::all();
+        $this->divisionsDepartments = DivisionsDepartment::all();
+        $this->divisionsRegions = DivisionsRegion::all();
     }
 
     public function updatedSearchHome()
