@@ -6,6 +6,8 @@ use App\Mail\MatchMail;
 use App\Models\Club;
 use App\Models\Competition;
 use App\Models\Department;
+use App\Models\DivisionsDepartment;
+use App\Models\DivisionsRegion;
 use App\Models\Group;
 use App\Models\Match;
 use App\Models\Region;
