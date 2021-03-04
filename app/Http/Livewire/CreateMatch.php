@@ -35,8 +35,6 @@ class CreateMatch extends Component
     public $divisionsRegions;
     public $dateMatch;
     public $timeMatch;
-    public $validate;
-    public $messageErreur = "";
     public $district;
 
     protected $rules = [
