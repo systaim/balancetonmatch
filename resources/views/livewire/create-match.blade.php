@@ -117,7 +117,7 @@
                     @enderror
                 </div>
             </div>
-            @if($homeTeam && $awayTeam)
+
             <!-- CHOIX COMPETITION -->
             <div class="mb-4">
                 <label for="competition">Compétition</label>
@@ -140,12 +140,13 @@
                     <div class="loader"></div>
                 </div>
             </div>
-@endif
+
 
 
             <!-- CHOIX REGION -->
 
             <div class=" mb-4">
+            @dump($regions)
                 <label for="region">Région</label>
                 @error('region')
                 <div class="alert alert-danger">{{ $message }}</div>
