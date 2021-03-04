@@ -62,25 +62,19 @@ class CreateMatch extends Component
         $this->groups = collect(Group::all());
         $this->divisionsDepartments = collect(DivisionsDepartment::all());
         $this->divisionsRegions = collect(DivisionsRegion::all());
-        dd($this->regions);
     }
 
     public function updatedSearchHome()
     {
-        try {
-            if (strlen($this->searchHome) >= 3) {
-                $this->clubsHome = Club::where('name', 'like', '%' . $this->searchHome . '%')
-                    ->orwhere('zip_code', 'like', '%' . $this->searchHome . '%')
-                    ->orwhere('city', 'like', '%' . $this->searchHome . '%')
-                    ->orwhere('abbreviation', 'like', '%' . $this->searchHome . '%')
-                    ->get();
-            } else {
-                $this->clubsHome = [];
-            }
-        } catch (\Throwable $th) {
-            dd($th);
+        if (strlen($this->searchHome) >= 3) {
+            $this->clubsHome = Club::where('name', 'like', '%' . $this->searchHome . '%')
+                ->orwhere('zip_code', 'like', '%' . $this->searchHome . '%')
+                ->orwhere('city', 'like', '%' . $this->searchHome . '%')
+                ->orwhere('abbreviation', 'like', '%' . $this->searchHome . '%')
+                ->get();
+        } else {
+            $this->clubsHome = [];
         }
-        
     }
 
     public function updatedSearchAway()

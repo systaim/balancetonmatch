@@ -147,6 +147,7 @@
 
             @if($competition == 1 || $competition == 2 || $competition == 4 || $competition == 5)
             <div class=" mb-4">
+            @dump($regions)
                 <label for="region">Région</label>
                 @error('region')
                 <div class="alert alert-danger">{{ $message }}</div>
