@@ -155,7 +155,7 @@
                     <option>Choisis la région</option>
                     
                     @foreach($regions as $region)
-                    <option value="{ $region['name'] }}">{{ $region['name'] }}</option>
+                    <option value="{{ $region['name'] }}">{{ $region['name'] }}</option>
                     @endforeach
                 </select>
 

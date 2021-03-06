@@ -136,6 +136,7 @@ class CreateMatch extends Component
         $match = new Match;
         $match->home_team_id = $homeTeam->id;
         $match->away_team_id = $awayTeam->id;
+        
         if ($this->region != null) {
             $match->region_id = $regionMatch->id;
         }

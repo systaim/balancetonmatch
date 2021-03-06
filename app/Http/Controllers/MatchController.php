@@ -75,28 +75,28 @@ class MatchController extends Controller
      */
     public function store(Request $request)
     {
-        $user = Auth::user();
-        $competition = Competition::all();
+        // $user = Auth::user();
+        // $competition = Competition::all();
 
 
-        $data = $request->validate([
-            'home_team' => ['required', 'exists:clubs,name'],
-            'away_team' => ['required', 'exists:clubs,name'],
-            'date_match' => ['required', 'date', 'after:yesterday'],
-            'location' => ['min:3'],
-            'time' => ['required', 'date_format:H:i'],
-        ]);
-        $clubHome = Club::where('name', $data['home_team'])->first();
-        $clubAway = Club::where('name', $data['away_team'])->first();
-        $match = new Match;
-        $match->home_team_id = $clubHome->id;
-        $match->away_team_id = $clubAway->id;
-        $match->date_match = $request->date_match;
-        $match->location = $request->location;
-        $match->time = $request->time;
-        // $match->user()->associate($user);
-        $match->save();
-        return back()->with('success', 'Le club est bien créé');
+        // $data = $request->validate([
+        //     'home_team' => ['required', 'exists:clubs,name'],
+        //     'away_team' => ['required', 'exists:clubs,name'],
+        //     'date_match' => ['required', 'date', 'after:yesterday'],
+        //     'location' => ['min:3'],
+        //     'time' => ['required', 'date_format:H:i'],
+        // ]);
+        // $clubHome = Club::where('name', $data['home_team'])->first();
+        // $clubAway = Club::where('name', $data['away_team'])->first();
+        // $match = new Match;
+        // $match->home_team_id = $clubHome->id;
+        // $match->away_team_id = $clubAway->id;
+        // $match->date_match = $request->date_match;
+        // $match->location = $request->location;
+        // $match->time = $request->time;
+        // // $match->user()->associate($user);
+        // $match->save();
+        // return back();
     }
 
     /**
