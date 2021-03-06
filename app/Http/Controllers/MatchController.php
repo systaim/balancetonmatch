@@ -58,12 +58,12 @@ class MatchController extends Controller
     public function create()
     {
 
-        $regions = Region::all();
-        $competitions = Competition::all();
-        $departments = Department::all();
-        $groups = Group::all();
-        $divisionsDepartments = DivisionsDepartment::all();
-        $divisionsRegions = DivisionsRegion::all();
+        $regions = collect(Region::all());
+        $competitions = collect(Competition::all());
+        $departments = collect(Department::all());
+        $groups = collect(Group::all());
+        $divisionsDepartments = collect(DivisionsDepartment::all());
+        $divisionsRegions = collect(DivisionsRegion::all());
         return View('matches.create', compact('regions', 'groups', 'departments', 'divisionsRegions', 'divisionsDepartments', 'competitions'));
     }
 

@@ -55,16 +55,16 @@ class CreateMatch extends Component
         'group' => 'nullable',
     ];
 
-    public function mount()
-    {
-        $this->regions = collect(Region::all());
-        // dd($this->regions);
-        $this->competitions = collect(Competition::all());
-        $this->departments = collect(Department::all());
-        $this->groups = collect(Group::all());
-        $this->divisionsDepartments = collect(DivisionsDepartment::all());
-        $this->divisionsRegions = collect(DivisionsRegion::all());
-    }
+    // public function mount()
+    // {
+    //     $this->regions = collect(Region::all());
+    //     // dd($this->regions);
+    //     $this->competitions = collect(Competition::all());
+    //     $this->departments = collect(Department::all());
+    //     $this->groups = collect(Group::all());
+    //     $this->divisionsDepartments = collect(DivisionsDepartment::all());
+    //     $this->divisionsRegions = collect(DivisionsRegion::all());
+    // }
 
     public function updatedSearchHome()
     {
