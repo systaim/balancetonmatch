@@ -52,7 +52,7 @@
         @endif
 
         <!-- devenir referent-club -->
-        @if(Auth::user()->role == "guest" )
+        @if(Auth::user()->club && Auth::user()->role == "guest")
         <div class="flex items-center justify-around my-2 mx-4 bg-primary p-4 text-white shadow-xl">
             <p>Je souhaite devenir un des référent de mon club</p>
             <form action="{{ route('contacts.becomeManager') }}" method="post" style="display: none;">
@@ -60,7 +60,7 @@
             </form>
             <a id="btnDemande" class="btn btnSecondary">Demander</a>
         </div>
-        @endif
+        
         <div id="form" class="hidden fixed z-50 inset-0 justify-center items-center" style="background-color: rgba(0,0,0,.5);">
             <div class="absolute top-10 right-10">
                 <a href="" class="text-4xl text-secondary font-bold">X</a>
@@ -78,6 +78,7 @@
                 </form>
             </div>
         </div>
+        @endif
         
 
         <div class="flex flex-col lg:flex-row">

@@ -34,16 +34,20 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
         if (isset($input['photo'])) {
             $user->updateProfilePhoto($input['photo']);
         }
-        if (isset($input['club'])) {
+        if (isset($input['club']) && $input['club'] != "") {
             $club = Club::where('name', $input['club'])->first();
             $user->club_id = $club->id;
             if($user->role == 'manager'){
                 $user->role = 'guest';
             }
+        } else {
+            $user->club_id = null;
         }
-        if (isset($input['region'])) {
+        if (isset($input['region']) && $input['region'] != "") {
             $region = Region::where('name', $input['region'])->first();
             $user->region_id = $region->id;
+        } else {
+            $user->region_id = null;
         }
         if (isset($input['player'])) {
             $player = Player::where('last_name', $input['player'])->first();
