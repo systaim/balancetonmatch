@@ -155,7 +155,7 @@
                     <option>Choisis la région</option>
                     
                     @foreach($regions as $region)
-                    <option value="{{ $region->name }}">{{ $region->name }}</option>
+                    <option value="{ $region['name'] }}">{{ $region['name'] }}</option>
                     @endforeach
                 </select>
 
@@ -191,7 +191,7 @@
                 <select class="inputForm focus:outline-none focus:shadow-outline w-full my-1" name="district" id="district" wire:model="district" :value="old('district')" autocomplete="district" required>
                     <option>Choisis un district</option>
                     @foreach($departments->sortBy('name') as $department)
-                    <option value="{{ $department->id }}">{{ $department->name }}</option>
+                    <option value="{{ $department['id'] }}">{{ $department['name'] }}</option>
                     @endforeach
 
                 </select>
@@ -229,7 +229,7 @@
                 <select class="inputForm focus:outline-none focus:shadow-outline w-full my-1" name="group" id="group" wire:model="group" :value="old('group')" autocomplete="group" required>
                     <option>Choisis un groupe</option>
                     @foreach($groups as $group)
-                    <option value="{{ $group->name}}">{{ $group->name }}</option>
+                    <option value="{{ $group['name'] }}">{{ $group['name'] }}</option>
                     @endforeach
                 </select>
             </div>
