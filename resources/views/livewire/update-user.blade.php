@@ -3,7 +3,7 @@
         <img class="rounded-full h-32 w-32 object-cover border-2 border-white shadow-xl" src="{{ $user->profile_photo_url }}" alt="image de profil">
     </figure>
     <h3 class="text-center m-2">{{ $user->pseudo }}</h3>
-    <h3 class="text-center m-2">{{ $user->club->name }}</h3>
+    <h3 class="text-center m-2">{{ $user->club ? $user->club->name : "<< Pas de club >>"}}</h3>
     <p class="text-center m-2">role : {{ $user->role }}</p>
     <form class="flex flex-col" wire:submit.prevent="userUpdate">
         @if($user->role != "super-admin")

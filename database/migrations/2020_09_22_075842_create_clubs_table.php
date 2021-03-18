@@ -24,7 +24,7 @@ class CreateClubsTable extends Migration
             $table->string('secondary_color')->default('#ffffff');
             $table->integer('number_teams')->nullable();
             $table->text('address')->nullable();
-            $table->integer('zip_code')->nullable();
+            $table->string('zip_code', 5)->nullable();
             $table->string('city')->nullable();
             $table->unsignedBigInteger('region_id')->nullable();
             $table->unsignedBigInteger('department_id')->nullable();

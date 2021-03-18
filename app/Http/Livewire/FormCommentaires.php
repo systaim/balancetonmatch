@@ -387,7 +387,7 @@ class FormCommentaires extends Component
                 'type_comments' => 'required|string',
                 'minute' => 'required|integer|between:1,120',
                 'team_action' => 'required|string',
-                'file' => 'nullable | mimes:jpeg,jpg,png,gif,mp4,mov,ogg,qt,m3u8,ts,3gp|max:10240'
+                'file' => 'nullable | mimes:jpeg,jpg,png,gif|mimetypes:video/mp4,video/mov,video/ogg,video/quicktime,video/m3u8,video/ts,video/3gp|max:10240'
             ]);
 
 

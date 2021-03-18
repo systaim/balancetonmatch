@@ -1,6 +1,5 @@
 @extends('layout')
 @section('content')
-<section>
     @include('clubs.linkPageClub')
     @include('clubs.logo')
     <div class="bg-primary relative text-white my-2 p-3 m-auto w-full sm:w-11/12 md:w-9/12 lg:w-6/12">
@@ -37,7 +36,7 @@
                 </div>
                 <div class="flex flex-col w-10/12 m-auto my-2">
                     <label for="file">Ajoute une photo</label>
-                    <input type="file" name="file" id="file" accept="jpeg,png,jpg,gif">
+                    <input type="file" name="file" id="file" accept="jpeg,png,jpg,gif,svg">
                     @error('file')
                     <span class="error">{{ $message }}</span>
                     @enderror
@@ -48,7 +47,4 @@
             </div>
         </form>
     </div>
-</section>
-
-
 @endsection

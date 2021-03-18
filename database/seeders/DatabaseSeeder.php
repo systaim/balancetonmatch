@@ -8,6 +8,7 @@ use App\Models\Department;
 use Illuminate\Database\Seeder;
 use App\Models\Region;
 use App\Models\Player;
+use App\Models\Match;
 use App\Models\Division;
 use App\Models\DivisionsDepartment;
 use App\Models\Group;
@@ -71,7 +72,7 @@ class DatabaseSeeder extends Seeder
         DB::unprepared(file_get_contents('database/seeders/clubs.sql'));
 
         //nom de compétitions
-        $competitions = ['Championnat régional', 'Championnat départemental', 'coupe de France', 'Coupe régionale', 'Coupe départementale', 'Match amical'];
+        $competitions = ['Championnat régional', 'Championnat départemental', 'Coupe de France', 'Coupe régionale', 'Coupe départementale', 'Match amical'];
 
         foreach ($competitions as $competition) {
             Competition::create([
@@ -93,7 +94,8 @@ class DatabaseSeeder extends Seeder
 
 
 
-        // $users = \App\Models\User::factory()->count(10)->create();
-        // $players = \App\Models\Player::factory()->count(100)->create();
+        $users = \App\Models\User::factory()->count(10)->create();
+        $players = \App\Models\Player::factory()->count(100)->create();
+        $matchs = \App\Models\Match::factory()->count(100)->create();
     }
 }

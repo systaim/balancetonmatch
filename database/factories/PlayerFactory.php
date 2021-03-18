@@ -28,7 +28,7 @@ class PlayerFactory extends Factory
         $clubs = Club::all()->pluck('id');
         $position = ['gardien de but', 'défenseur', 'milieu', 'attaquant'];
         return [
-            'name' => $this->faker->lastName,
+            'last_name' => $this->faker->lastName,
             'first_name' => $this->faker->firstName,
             'date_of_birth' => $this->faker->date,
             'position' => $this->faker->randomElement($position),

@@ -82,9 +82,6 @@
         </div>
         @endif
     </div>
-    <div wire:loading.remove wire:target="searchByName" class="mb-5 text-center">
-        <p>{{$messageNoClub}}</p>
-    </div>
     <div class="mx-1">
         {{ $clubs->links() }}
     </div>

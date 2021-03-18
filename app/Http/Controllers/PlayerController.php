@@ -56,27 +56,19 @@ class PlayerController extends Controller
      */
     public function store(Request $request, Club $club)
     {
-        $user = Auth::user();
-        // dd($user->id);
-        // $players = Player::where('club_id', $club->id)
-        //     ->orderBy('last_name', 'asc')
-        //     ->orderBy('first_name', 'asc')
-        //     ->get();
 
-        $matchs = Match::where('home_team_id', $club->id)->orwhere('away_team_id', $club->id)->orderBy('date_match', 'desc')->get();
+        $user = Auth::user();
 
         $dataPlayer = $request->validate([
             'last_name' => 'required|string|max:50|min:2',
             'first_name' => 'required|string|max:50|min:2',
             'date_of_birth' => 'nullable|date',
-            'file' => 'nullable|max:10240',
+            'file' => 'nullable|mimes:jpeg,jpg,png,gif|max:10240',
             'position' => 'required',
         ]);
+
         $dataPlayer['club_id'] = $club->id;
         $dataPlayer['created_by'] = $user->id;
-
-
-        // @dd($players);
 
         if ($request->has('file')) {
             $path = $request->file->store('avatars');
@@ -84,15 +76,7 @@ class PlayerController extends Controller
         }
 
         $player = Player::create($dataPlayer);
-        // $player->user()->associate($user);
         $player->save();
-
-        // $playersClub = collect($players);
-        // $players->push($player);
-
-
-
-        // dd($player);
 
         //envoi d'un mail avec les informations du joueur
 
@@ -108,15 +92,9 @@ class PlayerController extends Controller
         ];
 
         $superAdmin = User::where('role', 'super-admin')->get()->pluck('email');
-        // $admins = User::where('role', 'admin')->get()->pluck('email');
 
         Mail::to($superAdmin)
                 ->send(new PlayerMail($playerCreate));
-
-        // foreach ($admins as $admin) {
-        //     Mail::to($admin)
-        //     ->send(new ContactMail($contactCreate));
-        // }
 
         return redirect('clubs/' .$club->id. '/players')->with('success', $player->first_name. ' a été créé avec succes !');
     }

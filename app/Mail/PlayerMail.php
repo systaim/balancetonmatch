@@ -30,7 +30,7 @@ class PlayerMail extends Mailable
      */
     public function build()
     {
-        return $this->from('test@le-neindre.com')
+        return $this->from('noreply@balancetonmatch.com')
             ->view('mails.player');
     }
 }

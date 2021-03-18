@@ -35,8 +35,8 @@
                         <div>
                             <a href="/">
                                 <img class="w-20 md:w-24" src="{{ asset('/images/logos/btmLogoJB.png') }}" alt="logo de BTM">
+                            </a>
                         </div>
-                        </a>
                         <div class="h-auto relative">
                             <a href="/">
                                 <h1 class="sm:text-2xl md:text-3xl">Balance Ton Match</h1>
@@ -57,11 +57,11 @@
                             <div class="dropdown-content" x-show="open" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0 h-0" @click.away="open = false">
                                 <div x-data="{ open: false }">
                                     <a href="/matches">Les prochains matchs</a>
-                                    <div class="pl-4">
+                                    <div>
                                         <a class="cursor-pointer" @click="open = true" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0 h-0">
                                             Les matchs par régions
                                         </a>
-                                        <div x-show="open" @click.away="open = false">
+                                        <div class="pl-4" x-show="open" @click.away="open = false">
                                             <a href="/regions/1">Auvergne - Rhones-Alpes</a>
                                             <a href="/regions/2">Bourgogne - Franche Comté</a>
                                             <a href="/regions/3">Bretagne</a>

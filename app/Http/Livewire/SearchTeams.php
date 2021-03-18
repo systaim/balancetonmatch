@@ -40,11 +40,11 @@ class SearchTeams extends Component
         $this->resetPage();
     }
 
-    // appel du composant pour la pagination
-    public function paginationView()
-    {
-        return 'vendor.pagination.tailwind';
-    }
+    // // appel du composant pour la pagination
+    // public function paginationView()
+    // {
+    //     return 'vendor.pagination.tailwind';
+    // }
 
     public function render()
     {

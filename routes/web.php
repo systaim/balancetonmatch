@@ -41,7 +41,7 @@ Route::get('/', function () {
     $players = Player::all();
     $dateJour = Carbon::now();
     $user = Auth::user();
-    $today = now();
+    $today = now()->subHours(3);
     $goals= Statistic::where('action', 'goal')->get();
     $yellowCards= Statistic::where('action', 'yellow_card')->get();
     $redCards= Statistic::where('action','red_card')->get();
@@ -96,7 +96,6 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::resource('clubs', 'App\Http\Controllers\ClubController');
 Route::resource('players', 'App\Http\Controllers\PlayerController');
 Route::resource('matches', 'App\Http\Controllers\MatchController');
-// Route::resource('contacts', 'App\Http\Controllers\ContactController');
 Route::resource('commentaires', 'App\Http\Controllers\CommentaireController');
 Route::resource('clubs.players', 'App\Http\Controllers\PlayerController');
 Route::resource('clubs.staffs', 'App\Http\Controllers\StaffController');
@@ -112,7 +111,7 @@ Route::post('contactsForBecomeManager', 'App\Http\Controllers\ContactController@
 Route::get('live', function(){
 
     $user = Auth::user();
-    $liveMatches = Match::where('date_match','>=', Carbon::now()->subHours(3))
+    $liveMatches = Match::where('date_match','>=', Carbon::now()->subMinutes(150))
                             ->where(function($query) {
                                 $query->where('live', 'debut')
                                 ->orwhere('live', 'mitemps')

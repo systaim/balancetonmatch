@@ -46,9 +46,9 @@ class ContactController extends Controller
     public function askNewTeam(Request $request)
     {
         $this->validate($request, [
-            'region' => 'string',
-            'departement' => 'string',
-            'nomClub' => 'string',
+            'region' => 'bail|string|exists:App\Models\Region',
+            'departement' => 'bail|string|exists:App\Models\Departments',
+            'nomClub' => 'bail|string|alpha',
         ]);
 
         $contactCreate = [

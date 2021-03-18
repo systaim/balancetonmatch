@@ -13,7 +13,6 @@
         font-family: "Montserrat", sans-serif;
         --bg-opacity: 1;
         background-color: #e5e7eb;
-        background-color: rgba(229, 231, 235, var(--bg-opacity));
         scroll-behavior: smooth;
     }
     
@@ -99,7 +98,7 @@
         background-repeat: no-repeat;
         background-position-y: -6rem;
         background-attachment: fixed;
-        background-blend-mode: luminosity;
+        /* background-blend-mode: difference; */
     }
     
     .img-bg-blend-home {
@@ -107,15 +106,12 @@
         background-color: var(--primary-color);
         background-repeat: no-repeat;
         background-size: cover;
-        background-blend-mode: luminosity;
+        background-blend-mode: exclusion;
+        animation: left-to-right 1000ms;
     }
-    
-    .back-hero-home {
-        background-image: url("https://cdn.pixabay.com/photo/2016/06/24/13/18/soccer-1477232_960_720.jpg");
-        background-position: bottom;
-        background-repeat: no-repeat;
-        background-size: cover;
-        /* background-attachment: fixed; */
+
+    #welcome{
+        animation: right-to-left 1000ms;
     }
     
     .bg-login {
@@ -127,8 +123,9 @@
     .bg-register {
         background-image: url("https://cdn.pixabay.com/photo/2013/03/10/15/00/soccer-92194_960_720.jpg");
         background-repeat: no-repeat;
-        background-attachment: fixed;
-        background-position-y: 10rem;
+        /* background-attachment: fixed;
+        background-position-y: 10rem; */
+        background-size: cover;
     }
     
     .vertical {
@@ -214,6 +211,8 @@
         background-size: cover;
         background-repeat: no-repeat;
         background-position-x: center;
+        animation: bottom-to-top 1000ms;
+
     }
     
     #weekend {
@@ -221,6 +220,7 @@
         background-size: cover;
         background-repeat: no-repeat;
         background-position-x: center;
+        animation: bottom-to-top 1000ms;
     }
     /*************************
           BUTTONS
@@ -494,21 +494,16 @@
         overflow: hidden;
     }
     
-    .commentaires.open {
+    /* .commentaires.open {
         transform: translateX(-80%);
         transition: all 2s;
-    }
+    } */
     
     .commentaires.home {
         --border-opacity: 1;
         border-color: #091c3e;
         border-color: rgba(9, 28, 62, var(--border-opacity));
-    }
-    
-    .commentaires.home {
-        --border-opacity: 1;
-        border-color: #091c3e;
-        border-color: rgba(9, 28, 62, var(--border-opacity));
+        animation: left-to-right 500ms;
     }
     
     .commentaires.home.but {
@@ -521,12 +516,14 @@
         --border-opacity: 1;
         border-color: #cdfb0a;
         border-color: rgba(205, 251, 10, var(--border-opacity));
+        animation: right-to-left 500ms;
     }
     
     .commentaires.match {
         --border-opacity: 1;
         border-color: #9fa6b2;
         border-color: rgba(159, 166, 178, var(--border-opacity));
+        animation: bottom-to-top 500ms;
     }
     
     .commentaires.commandeMatch {
@@ -1004,5 +1001,49 @@
     @keyframes spin {
         100% {
             transform: rotate(360deg);
+        }
+    }
+
+    @keyframes top-to-bottom {
+        0%{
+            opacity:0;
+            transform: translateY(-100%);
+        }
+        100%{
+            opacity:100%;
+            transform:translateY(0);
+        }
+    }
+
+    @keyframes bottom-to-top {
+        0%{
+            opacity:0;
+            transform: translateY(100%);
+        }
+        100%{
+            opacity:100%;
+            transform:translateY(0);
+        }
+    }
+
+    @keyframes left-to-right {
+        0%{
+            opacity:0;
+            transform: translateX(-100%);
+        }
+        100%{
+            opacity:100%;
+            transform:translateX(0);
+        }
+    }
+
+    @keyframes right-to-left {
+        0%{
+            opacity:0;
+            transform: translateX(100%);
+        }
+        100%{
+            opacity:100%;
+            transform:translateX(0);
         }
     }

@@ -40,7 +40,7 @@
 
 
 
-    <div class="absolute  bottom-0 mb-20 h-10 w-10 bg-secondary pt-3 rounded-full flex justify-center border border-black">
+    <div class="absolute bottom-20 h-10 w-10 bg-secondary pt-3 rounded-full flex justify-center border border-black">
         <a href="#infos">
             <i class="animate-bounce fas fa-arrow-down text-xl"></i>
         </a>
