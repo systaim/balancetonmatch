@@ -15,7 +15,7 @@ class TeamCover extends Component
 
     public function mount()
     {
-        if($this->club->bg_path != null || $this->club->bg_path != ""){
+        if($this->club->bg_path != null || $this->club->bg_path != "" ){
             $this->bouton = 0;
         } else {
             $this->bouton = 1;
@@ -33,7 +33,7 @@ class TeamCover extends Component
 
     public function deleteCover()
     {
-        $this->club->bg_path = null;
+        $this->club->bg_path = "images/default-team.jpg";
         $this->club->save();
 
         return redirect()->to('clubs/' . $this->club->id);

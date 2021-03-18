@@ -1,7 +1,7 @@
-<div id="backTeam" class="relative flex flex-col items-center justify-start lg:bg-fixed" style="background-image: url({{ asset($club->bg_path) }});">
+<div id="backTeam" class="relative flex flex-col items-center justify-start lg:bg-fixed mb-4" style="background-image: url({{ asset($club->bg_path) }});">
     @include('clubs.logo')
-    @if($club->bg_path == null || $club->bg_path == "")
-    <p class="absolute top-1/2 text-xl px-3 py-2 bg-primary text-secondary font-bold shadow-lg">Pas encore de photo pour ce club</p>
+    @if($club->bg_path == null || $club->bg_path == "" || $club->bg_path == "images/default-team.jpg")
+    <p class="absolute top-1/2 text-xl px-3 py-2 bg-primary text-secondary font-bold shadow-outline">Pas encore de photo officielle pour ce club</p>
     @endif
 
     @can('update-club', $club)
@@ -32,7 +32,7 @@
         </div>
     </form>
     @else
-    <button class="absolute top-2 right-3 lg:right-10 bg-success font-bold text-xs px-2 py-1 rounded-md" wire:click="clickButton">Modifier 📷</button>
+    <button class="absolute top-2 right-3 lg:right-10 bg-white border border-success font-bold text-xs px-2 py-1 rounded-md" wire:click="clickButton">Modifier 📷</button>
     @endif
 
     @endcan

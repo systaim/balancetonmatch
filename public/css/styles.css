@@ -116,6 +116,11 @@ h1,
           animation: right-to-left 1000ms;
 }
 
+#wrong{
+  -webkit-animation: right-to-left 1000ms;
+          animation: right-to-left 1000ms;
+}
+
 .bg-login {
   background-image: url("https://cdn.pixabay.com/photo/2014/10/14/20/24/ball-488718_960_720.jpg");
   background-repeat: no-repeat;

@@ -7,14 +7,29 @@
     <div id="welcome" class="h-auto text-white py-4 md:w-6/12 px-12 xl:w-4/12 m-auto text-center">
         <div class="flex items-center justify-center">
             <hr class="w-10 border border-secondary">
-            <h2 class="text-xl md:text-3xl my-2 mx-6">Bienvenue</h2>
+            <h2 class="text-xl md:text-3xl my-2 mx-6 font-medium">Bienvenue</h2>
             <hr class="w-10 border border-secondary">
         </div>
         <p class="text-sm md:text-base">BalanceTonMatch.com a pour but de rassembler les passionnés du ballon rond AMATEUR.</p>
         <p class="text-sm md:text-base">Vous pourrez suivre les matchs en <span class="uppercase text-primary font-bold bg-secondary px-2 rounded-sm">live</span> soit en tant que commentateur soit en tant que spectateur</p>
     </div>
 </div>
-<div class="relative py-8">
+<div id="wrong" class="bg-red-600 shadow-xl text-white">
+    <div class="container mx-auto flex justify-around px-5 py-6 md:flex-row flex-col items-center">
+        <div class="lg:flex-grow md:w-1/2 flex flex-col md:items-start md:text-left items-center text-center">
+            <h2 class="sm:text-4xl text-3xl mb-4 font-medium">Le sport amateur est arrêté</h2>
+            <p class="mb-8">La crise sanitaire étant, le foot amateur est bloqué jusque nouvel ordre...</p>
+            <p class="mb-8">
+            En espérant que tout reparte à la normal, pour la saison 2021-2022 vous pourrez créer de nouveau vos matchs.
+            En attendant, vous pouvez créer ou gérer les joueurs de votre club.
+            </p>
+        </div>
+        <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 mb-10 md:mb-0">
+            <img class="object-cover object-center rounded" alt="hero" src="{{ asset('images/wrong.jpg') }}">
+        </div>
+    </div>
+</div>
+<div class="relative py-4">
     <div class="w-11/12 py-8 m-auto md:w-8/12 xl:w-6/12">
         <form class="w-full shadow-2xl" action="{{ asset('clubs') }}" method="get">
             @csrf
