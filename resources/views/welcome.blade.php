@@ -21,7 +21,7 @@
             <p class="mb-8">La crise sanitaire étant, le foot amateur est bloqué jusque nouvel ordre...</p>
             <p class="mb-8">
             En espérant que tout reparte à la normal, pour la saison 2021-2022 vous pourrez créer de nouveau vos matchs.
-            En attendant, vous pouvez créer ou gérer les joueurs de votre club.
+            En attendant, vous pouvez continuer à créer ou gérer les joueurs de votre club.
             </p>
         </div>
         <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 mb-10 md:mb-0">
