@@ -17,7 +17,7 @@
 <div id="wrong" class="bg-red-600 shadow-xl text-white">
     <div class="container mx-auto flex justify-around px-5 py-6 md:flex-row flex-col items-center">
         <div class="lg:flex-grow md:w-1/2 flex flex-col md:items-start md:text-left items-center text-center">
-            <h2 class="sm:text-4xl text-3xl mb-4 font-medium">Le sport amateur est arrêté</h2>
+            <h2 class="sm:text-4xl text-3xl mb-4 font-medium">Le sport amateur à l'arrêt !</h2>
             <p class="mb-8">La crise sanitaire étant, le foot amateur est bloqué jusque nouvel ordre...</p>
             <p class="mb-8">
             En espérant que tout reparte à la normal, pour la saison 2021-2022 vous pourrez créer de nouveau vos matchs.

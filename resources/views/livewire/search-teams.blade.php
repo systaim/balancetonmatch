@@ -8,10 +8,10 @@
     </div>
 
     <div class="m-auto my-8 w-11/12 sm:w-9/12 md:w-7/12 lg:w-7/12">
-        @foreach ($clubs as $club)
+        @foreach ($clubs as $key => $club)
         <a href="{{ route('clubs.show', $club) }}">
             <div class="flex flex-col mb-3 w-full">
-                <div class="relative flex flex-row items-center bg-primary overflow-hidden">
+                <div id="listMatchs" class="relative flex flex-row items-center bg-primary overflow-hidden" style="animation-delay: {{ $key }}00ms;">
                     <div class="w-16 m-2 z-10">
                         <div class="logo h-12 w-12">
                             <img class="object-contain" src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $club->numAffiliation }}.jpg">

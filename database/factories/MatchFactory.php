@@ -33,44 +33,46 @@ class MatchFactory extends Factory
         $users = User::all()->pluck('id');
         $clubs = Club::all()->pluck('id');
         // $regions = Region::all()->pluck('id');
-        $competitions = Competition::all()->pluck('name');
+        // $competition_id = Competition::all();
+
+        
         // dd($competitions);
-        if($competitions == "Championnat régional"){
+        if($competition_id == 1){
             $districts = null;
             $dDepartment = null;
             $dRegions = DivisionsRegion::all()->pluck('id');
             $regions = Region::all()->pluck('id');
             $groups = Group::all()->pluck('id');
         }
-        if($competitions == "Championnat départemental"){
+        if($competition_id == 2){
             $districts = Department::all()->pluck('id');
             $dDepartment = DivisionsDepartment::all()->pluck('id');
             $dRegions = null;
             $regions = Region::all()->pluck('id');
             $groups = Group::all()->pluck('id');
         }
-        if($competitions == "Coupe de France"){
+        if($competition_id == 3){
+            $districts = null;
+            $dDepartment = null;
+            $dRegions = null;
+            $regions = null;
+            $groups = null;
+        }
+        if($competition_id == 4){
             $districts = null;
             $dDepartment = null;
             $dRegions = null;
             $regions = Region::all()->pluck('id');
             $groups = null;
         }
-        if($competitions == "Coupe régionale"){
-            $districts = null;
-            $dDepartment = null;
-            $dRegions = null;
-            $regions = Region::all()->pluck('id');
-            $groups = null;
-        }
-        if($competitions == "Coupe départementale"){
+        if($competition_id == 5){
             $districts = Department::all()->pluck('id');
             $dDepartment = null;
             $dRegions = null;
             $regions = Region::all()->pluck('id');
             $groups = null;
         }
-        if($competitions == "Match amical"){
+        if($competition_id == 6){
             $districts = null;
             $dDepartment = null;
             $dRegions = null;
@@ -82,12 +84,12 @@ class MatchFactory extends Factory
             'home_team_id' => $this->faker->randomElement($clubs),
             'away_team_id' => $this->faker->randomElement($clubs),
             'date_match' => $this->faker->dateTimeBetween($startDate = 'now', $endDate = "+1 year"),
-            'competition_id' => $this->faker->randomElement($competitions),
-            'region_id' => $this->faker->randomElement($regions),
-            'department_id' => $this->faker->randomElement($districts),
-            'division_region_id' => $this->faker->randomElement($dRegions),
-            'division_department_id' => $this->faker->randomElement($dDepartment),
-            'group_id' => $this->faker->randomElement($groups),
+            'competition_id' => $this->faker->randomElement($competition_id),
+            'region_id' => isset($regions) ? $this->faker->randomElement($regions) : null,
+            'department_id' => isset($districts) ? $this->faker->randomElement($districts) : null,
+            'division_region_id' => isset($dRegions) ? $this->faker->randomElement($dRegions) : null,
+            'division_department_id' => isset($dDepartment) ? $this->faker->randomElement($dDepartment) : null,
+            'group_id' => isset($groups) ? $this->faker->randomElement($groups) : null,
             'user_id' =>$this->faker->randomElement($users),
         ];
     }

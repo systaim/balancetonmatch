@@ -40,21 +40,28 @@ class SearchTeams extends Component
         $this->resetPage();
     }
 
-    // // appel du composant pour la pagination
-    // public function paginationView()
-    // {
-    //     return 'vendor.pagination.tailwind';
-    // }
+    public function gotoPage($page)
+    {
+        $this->page = $page;
+
+        $this->emit('goToPage');
+    }
+
+    // appel du composant pour la pagination
+    public function paginationView()
+    {
+        return 'vendor.pagination.tailwind';
+    }
 
     public function render()
     {
         return view('livewire.search-teams', [
             'clubs' => Club::where('name', 'like', '%' . $this->query . '%')
-            ->orwhere('city', 'like', '%' . $this->query . '%')
-            ->orwhere('zip_code', 'like', '%' . $this->query . '%')
-            ->orwhere('abbreviation', 'like', '%' . $this->query . '%')
-            ->inRandomOrder()
-            ->paginate(20),
+                ->orwhere('city', 'like', '%' . $this->query . '%')
+                ->orwhere('zip_code', 'like', '%' . $this->query . '%')
+                ->orwhere('abbreviation', 'like', '%' . $this->query . '%')
+                ->inRandomOrder()
+                ->paginate(20),
         ]);
     }
 }

@@ -529,7 +529,7 @@
 
     @auth
     @if($match->commentateur)
-    @if($match->commentateur->user_id == Auth::user()->id)
+    @if($match->commentateur->user->id == Auth::user()->id)
     <div class="mx-6 my-2 text-right">
         <p class="text-xs cursor-pointer underline" wire:click="needHelp">Besoin d'aide ?</p>
     </div>

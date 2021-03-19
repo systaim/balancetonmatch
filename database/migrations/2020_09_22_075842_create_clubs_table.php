@@ -19,7 +19,7 @@ class CreateClubsTable extends Migration
             $table->string('name');
             $table->integer('numAffiliation');
             $table->string('logo_path')->nullable();
-            $table->string('bg_path')->nullable();
+            $table->string('bg_path')->default('images/default-team.jpg');
             $table->string('primary_color')->default('#ffffff');
             $table->string('secondary_color')->default('#ffffff');
             $table->integer('number_teams')->nullable();

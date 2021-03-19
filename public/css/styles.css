@@ -121,6 +121,11 @@ h1,
           animation: right-to-left 1000ms;
 }
 
+#listMatchs{
+  -webkit-animation: bottom-to-top 1000ms;
+          animation: bottom-to-top 1000ms;
+}
+
 .bg-login {
   background-image: url("https://cdn.pixabay.com/photo/2014/10/14/20/24/ball-488718_960_720.jpg");
   background-repeat: no-repeat;
@@ -1098,7 +1103,7 @@ input:checked+.inputAction {
 @-webkit-keyframes bottom-to-top {
   0%{
     opacity:0;
-    transform: translateY(100%);
+    transform: translateY(100vh);
   }
 
   100%{
@@ -1110,7 +1115,7 @@ input:checked+.inputAction {
 @keyframes bottom-to-top {
   0%{
     opacity:0;
-    transform: translateY(100%);
+    transform: translateY(100vh);
   }
 
   100%{
