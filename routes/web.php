@@ -45,7 +45,14 @@ Route::get('/', function () {
     $goals= Statistic::where('action', 'goal')->get();
     $yellowCards= Statistic::where('action', 'yellow_card')->get();
     $redCards= Statistic::where('action','red_card')->get();
-    $commentators = Commentator::all();    
+    $commentators = Commentator::all();
+    $liveMatches = Match::where('date_match','>=', Carbon::now()->subMinutes(150))
+                            ->where(function($query) {
+                                $query->where('live', 'debut')
+                                ->orwhere('live', 'mitemps')
+                                ->orwhere('live', 'repriseMT');
+                            })
+                            ->get();
 
     return view('welcome', compact(
         'matchesToday', 
@@ -62,6 +69,7 @@ Route::get('/', function () {
         'yellowCards',
         'redCards',
         'commentators',
+        'liveMatches',
     ));
 });
 

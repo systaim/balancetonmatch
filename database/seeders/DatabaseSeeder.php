@@ -93,69 +93,8 @@ class DatabaseSeeder extends Seeder
         Schema::enableForeignKeyConstraints();
 
         $users = \App\Models\User::factory()->count(10)->create();
-        $players = \App\Models\Player::factory()->count(100)->create();
-
-        $competitions = Competition::all();
-        $users = User::all()->pluck('id');
-        $clubs = Club::all()->pluck('id');
-
-        foreach($competitions as $competition){
-            if($competition->id == 1){
-                $districts = null;
-                $dDepartment = null;
-                $dRegions = DivisionsRegion::all()->pluck('id');
-                $regions = Region::all()->pluck('id');
-                $groups = Group::all()->pluck('id');
-            }
-            if($competition->id == 2){
-                $districts = Department::all()->pluck('id');
-                $dDepartment = DivisionsDepartment::all()->pluck('id');
-                $dRegions = null;
-                $regions = Region::all()->pluck('id');
-                $groups = Group::all()->pluck('id');
-            }
-            if($competition->id == 3){
-                $districts = null;
-                $dDepartment = null;
-                $dRegions = null;
-                $regions = null;
-                $groups = null;
-            }
-            if($competition->id == 4){
-                $districts = null;
-                $dDepartment = null;
-                $dRegions = null;
-                $regions = Region::all()->pluck('id');
-                $groups = null;
-            }
-            if($competition->id == 5){
-                $districts = Department::all()->pluck('id');
-                $dDepartment = null;
-                $dRegions = null;
-                $regions = Region::all()->pluck('id');
-                $groups = null;
-            }
-            if($competition->id == 6){
-                $districts = null;
-                $dDepartment = null;
-                $dRegions = null;
-                $regions = Region::all()->pluck('id');
-                $groups = null;
-            }
-
-            Match::create([
-                'home_team_id' => shuffle($this->clubs),
-                'away_team_id' => shuffle($this->clubs),
-                'date_match' => Carbon::now()->subDays(rand(1, 365)),
-                'competition_id' => $this->competition->id,
-                'region_id' => isset($this->regions) ? shuffle($this->regions) : null,
-                'department_id' => isset($this->districts) ? shuffle($this->districts) : null,
-                'division_region_id' => isset($this->dRegions) ? shuffle($this->dRegions) : null,
-                'division_department_id' => isset($this->dDepartment) ? shuffle($this->dDepartment) : null,
-                'group_id' => isset($this->groups) ? shuffle($this->groups) : null,
-                'user_id' =>shuffle($this->users),
-            ]);
-        }
+        $players = \App\Models\Player::factory()->count(1000)->create();
+        $matchs = \App\Models\Match::factory()->count(100)->create();
 
         
     }

@@ -15,21 +15,28 @@ use Livewire\WithFileUploads;
 
 use function App\Models\commentateur;
 
+
 class FormCommentaires extends Component
 {
 
     use WithFileUploads;
-
+    
+    // Variables initailisées dans MatchContoller@show 
+    public $commentator;
     public $match;
     public $commentsMatch;
+    public $nbrFavoris;
+
+    // Variables donnant accès aux colonnes de la table match
     public $type_comments;
     public $type_but = "";
     public $type_carton = "";
     public $type_actionMatch = "";
-    public $commentPerso = "";
     public $minute = 0;
-    public $minuteCom;
     public $team_action = '';
+
+    public $commentPerso = "";
+    public $minuteCom;
     public $player;
     public $home_score;
     public $away_score;
@@ -38,8 +45,6 @@ class FormCommentaires extends Component
     public $dateMatch;
     public $heureMatch;
     public $matchNonDispo = "";
-    public $nbrFavoris;
-    public $commentator;
     public $firstCom;
     public $file;
     public $menuCom;
@@ -47,16 +52,16 @@ class FormCommentaires extends Component
     public $playerNom;
     public $playerMatch;
     public $visitors;
-    public $user;
     public $textInfo;
 
     public $listGoal = ['GOOOOAAL !', 'BUUUUT !!!', 'GOAL GOAL GOAL !!'];
     public $mitempsJoueurs = ['Les joueurs rentrent aux vestiaires', 'Tout le monde à la buv... euuuh aux vestiaires !'];
-
+    
     public function mount()
     {
         $this->dateMatch = $this->match->date_match;
 
+        //calcul du temps de jeu
         if ($this->dateMatch->diffInMinutes(now(), false) >= 0 && $this->dateMatch->diffInMinutes(now(), false) <= 45) {
             $this->minute = now()->diffInMinutes($this->dateMatch);
         } elseif ($this->dateMatch->diffInMinutes(now(), false) >= 45 && $this->dateMatch->diffInMinutes(now(), false) <= 60) {
@@ -72,9 +77,9 @@ class FormCommentaires extends Component
             $this->match->save();
         }
 
-        $this->miseAJourCom();
-
         $this->minuteCom = $this->minute;
+        
+        $this->miseAJourCom();
 
         $this->countVisitor();
     }
@@ -102,10 +107,9 @@ class FormCommentaires extends Component
 
     public function needHelp()
     {
-        $user = Auth::user();
         $this->firstCom = 1;
-        $user->first_com = 1;
-        $user->save();
+        Auth::user()->first_com = 1;
+        Auth::user()->save();
     }
 
     public function deleteMenu()
@@ -118,7 +122,7 @@ class FormCommentaires extends Component
         // dd($this->playerMatch);
         // dd($teamAction);
 
-        $user = Auth::user();
+        
 
         if (empty($this->playerMatch) || $this->playerMatch == null) {
             // dd('creation');
@@ -136,7 +140,7 @@ class FormCommentaires extends Component
             if ($teamAction == "away") {
                 $player['club_id'] = $this->match->away_team_id;
             }
-            $player['user_id'] = $user->id;
+            $player['user_id'] = Auth::user()->id;
 
             if ($player->save()) {
                 $stat->player()->associate($player);
@@ -155,7 +159,7 @@ class FormCommentaires extends Component
     public function countVisitor()
     {
 
-        $user = Auth::user();
+        
         $visitor = Counter::where('ip-address', request()->ip())->first();
 
         if (!$visitor) {
@@ -165,8 +169,8 @@ class FormCommentaires extends Component
 
         $visitor['page-address'] = $this->match->id;
 
-        if ($user) {
-            $visitor['user_id'] = $user->id;
+        if (Auth::user()) {
+            $visitor['user_id'] = Auth::user()->id;
         }
 
         $visitor->touch();
@@ -197,19 +201,19 @@ class FormCommentaires extends Component
 
     public function clickFirstCom()
     {
-        $user = Auth::user();
+        
         $this->firstCom = 0;
-        $user->first_com = 0;
-        $user->save();
+        Auth::user()->first_com = 0;
+        Auth::user()->save();
     }
 
     public function becomeCommentator()
     {
-        $user = Auth::user();
+        
 
         if ($this->dateMatch->diffInMinutes(now(), false) > -30) {
             $commentateur = new Commentator;
-            $commentateur['user_id'] = $user->id;
+            $commentateur['user_id'] = Auth::user()->id;
             $commentateur['match_id'] = $this->match->id;
             $commentateur->save();
 
@@ -223,11 +227,11 @@ class FormCommentaires extends Component
 
     public function matchReporte()
     {
-        $user = Auth::user();
+        
 
         if ($this->dateMatch->diffInMinutes(now(), false) > -30) {
             $commentateur = new Commentator;
-            $commentateur['user_id'] = $user->id;
+            $commentateur['user_id'] = Auth::user()->id;
             $commentateur['match_id'] = $this->match->id;
             $commentateur->save();
             $this->match->live = "reporte";
@@ -247,7 +251,7 @@ class FormCommentaires extends Component
             $commentData['minute'] = 0;
             $commentData['team_action'] = 'match';
             $commentData['commentator_id'] = $this->match->commentateur->id;
-            // $commentData['images'] = "images/gifs/start.gif";
+            $commentData['images'] = "images/gifs/start.gif";
 
             $comment = Commentaire::create($commentData);
 
@@ -263,12 +267,8 @@ class FormCommentaires extends Component
 
                 $this->match->save();
 
-                // foreach ($this->commentator as $comm) {
-                //     $comment->commentator()->associate($comm->id);
-                // }
                 $comment->save();
 
-                // $this->commentsMatch =  $this->match->commentaires()->orderBy('minute', 'desc')->orderBy('updated_at', 'desc')->get();
                 session()->flash('success', 'Bon Match ! ⚽⚽⚽');
                 return redirect()->to('matches/' . $this->match->id);
             } else {
@@ -284,7 +284,7 @@ class FormCommentaires extends Component
     public function timeMitemps()
     {
 
-        $user = Auth::user();
+        
         $this->match->live = "mitemps";
         $this->match->save();
 
@@ -301,9 +301,6 @@ class FormCommentaires extends Component
 
         if ($comment) {
 
-            // foreach ($this->commentator as $comm) {
-            //     $comment->commentator()->associate($comm->id);
-            // }
             $comment->save();
 
             session()->flash('success', 'Mi-temps ! Repos bien mérité... Rendez-vous dans 15 minutes 🍻');
@@ -313,7 +310,7 @@ class FormCommentaires extends Component
 
     public function timeReprise()
     {
-        $user = Auth::user();
+        
         $this->match->live = "repriseMT";
 
         $commentData['type_comments'] = "C'est la reprise ! 😎";
@@ -326,9 +323,6 @@ class FormCommentaires extends Component
 
         if ($comment) {
 
-            // foreach ($this->commentator as $comm) {
-            //     $comment->commentator()->associate($comm->id);
-            // }
             $this->match->save();
             $comment->save();
             $this->commentsMatch =  $this->match->commentaires()->orderBy('minute', 'desc')->orderBy('updated_at', 'desc')->get();
@@ -339,7 +333,7 @@ class FormCommentaires extends Component
 
     public function timeFinDuMatch()
     {
-        $user = Auth::user();
+        
         $this->match->live = "finDeMatch";
 
         $this->nbrFavoris = 0;
@@ -353,9 +347,6 @@ class FormCommentaires extends Component
 
         if ($comment) {
 
-            // foreach ($this->commentator as $comm) {
-            //     $comment->commentator()->associate($comm->id);
-            // }
             $this->match->save();
             $comment->save();
             $this->commentsMatch =  $this->match->commentaires()->orderBy('minute', 'desc')->orderBy('updated_at', 'desc')->get();
@@ -387,7 +378,7 @@ class FormCommentaires extends Component
                 'type_comments' => 'required|string',
                 'minute' => 'required|integer|between:1,120',
                 'team_action' => 'required|string',
-                'file' => 'nullable | mimes:jpeg,jpg,png,gif|mimetypes:video/mp4,video/mov,video/ogg,video/quicktime,video/m3u8,video/ts,video/3gp|max:10240'
+                'file' => 'nullable | mimes:jpeg,jpg,png,gif,mp4,gif,mov,ogg,quicktime,m3u8,ts,3gp|max:10240'
             ]);
 
 
@@ -451,9 +442,7 @@ class FormCommentaires extends Component
             $comment = Commentaire::create($commentData);
 
             if ($comment) {
-                // foreach ($this->commentator as $comm) {
-                //     $comment->commentator()->associate($comm->id);
-                // }
+
                 if ($this->file) {
                     $path = $this->file->store('uploads');
                     $comment->images = $path;

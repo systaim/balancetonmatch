@@ -20,8 +20,8 @@
             <h2 class="sm:text-4xl text-3xl mb-4 font-medium">Le sport amateur à l'arrêt !</h2>
             <p class="mb-8">La crise sanitaire étant, le foot amateur est bloqué jusque nouvel ordre...</p>
             <p class="mb-8">
-            En espérant que tout reparte à la normal, pour la saison 2021-2022 vous pourrez créer de nouveau vos matchs.
-            En attendant, vous pouvez continuer à créer ou gérer les joueurs de votre club.
+                En espérant que tout reparte à la normal, pour la saison 2021-2022 vous pourrez créer de nouveau vos matchs.
+                En attendant, vous pouvez continuer à créer ou gérer les joueurs de votre club.
             </p>
         </div>
         <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 mb-10 md:mb-0">
@@ -29,44 +29,29 @@
         </div>
     </div>
 </div>
-<div class="relative py-4">
-    <div class="w-11/12 py-8 m-auto md:w-8/12 xl:w-6/12">
-        <form class="w-full shadow-2xl" action="{{ asset('clubs') }}" method="get">
-            @csrf
-            <label class="relative" for="search">
-                <input class="inputForm w-full border-2" type="search" placeholder="Nom du club, de la ville ou code postal" name="search" id="search">
-                <i class="absolute text-xl mr-3 top-0 right-0 text-primary fas fa-search"></i>
-            </label>
-            <input class="sr-only" type="submit">
-        </form>
-    </div>
-    <div class="flex flex-wrap justify-around items-center m-auto xl:w-8/12">
-        <a href="/live" class="cursor-pointer">
-            <div id="live" class="relative w-80 lg:w-96 bg-primary h-64 lg:h-72 p-2 text-white flex flex-col justify-around items-center m-6 shadow-xl">
-                <p class="font-bold uppercase">Les matchs en live</p>
-                <i class="relative text-6xl fas fa-microphone-alt my-4">
-                    <div class="animate-ping absolute -top-0.5 right-1 bg-red-500 h-3 w-3 rounded-full z-10"></div>
-                </i>
-                <p class="absolute top-2 left-2 py-1 px-2 text-xl text-primary font-bold bg-secondary">LIVE</p>
-                <div class="flex justify-end w-full">
-                    <button class="btn btnSecondary">Par ici !</button>
-                </div>
-                <!-- <p>Tous les matchs en live</p> -->
+
+<div class="container px-5 py-24 mx-auto">
+    <div class="flex flex-wrap justify-evenly mx-4 mb-10 text-center text-white">
+        <div class="lg:w-2/5 mb-10 bg-primary rounded-t-lg shadow-2xl">
+            <div class="rounded-lg h-64 overflow-hidden">
+                <img alt="tous les matchs" class="object-cover object-center h-full w-full" src="{{ asset('images/ballon-feu.jpg') }}">
             </div>
-        </a>
-        <a href="/matches" class="cursor-ponter">
-            <div id="weekend" class="relative w-80 lg:w-96 bg-primary h-64 lg:h-72 px-2 text-white flex flex-col justify-between items-center m-6 shadow-xl py-4">
-                <p class="font-bold uppercase">Les prochains matchs</p>
-                <!-- <i class="relative text-6xl fas fa-futbol my-4"></i> -->
-                <div class="flex justify-end w-full">
-                    <button class="btn btnSecondary">Je jette un oeil</button>
-                </div>
+            <h2 class="text-2xl font-medium mt-6 mb-3">Les matchs à venir</h2>
+            <p class="leading-relaxed text-base">Les matchs programmés sont à retrouvés ici.</p>
+            <a href="/matches"><button class="btn btnSecondary">Je vais voir</button></a>
+        </div>
+        <div class="lg:w-2/5 mb-10 bg-primary rounded-t-lg shadow-2xl">
+            <div class="rounded-lg h-64 overflow-hidden">
+                <img alt="les matchs en live" class="object-cover object-center h-full w-full" src="{{ asset('images/on-air.jpg') }}">
             </div>
-        </a>
+            <h2 class="text-2xl font-medium mt-6 mb-3">Les matchs en Live</h2>
+            <p class="leading-relaxed text-base">En ce moment <span class="bg-secondary text-primary py-1 px-2 rounded-lg">{{ count($liveMatches) }}</span> {{ count($liveMatches) <= 1 ? 'match' : 'matchs'}} en cours</p>
+            <a href="/live"><button class="btn btnSecondary">Je vais voir</button></a>
+        </div>
     </div>
 </div>
 
-<div class="py-6">
+<!-- <div class="py-6">
     <div class="flex justify-center">
         <h3 class="p-2 text-primary text-2xl">La saison 2020/2021 c'est : </h3>
     </div>
@@ -88,7 +73,7 @@
         <div class="flex justify-between">
             <div class="flex flex-col items-center justify-center text-primary w-20 h-20 md:w-28 md:h-28 lg:w-40 lg:h-40 md:bg-primary md:text-white my-2 mx-1 rounded-lg shadow-lg">
                 <p class="compteur text-xl lg:text-5xl font-bold">{{ count($goals) + 580}}</p>
-                <p class="text-xs lg:text-base">{{ count($goals) <= 1 ? "buts" : "buts"}}</p>
+                <p class="text-xs lg:text-base">{{ count($goals) <= 1 ? "but" : "buts"}}</p>
             </div>
             <div class="flex flex-col items-center justify-center text-primary w-20 h-20 md:w-28 md:h-28 lg:w-40 lg:h-40 md:bg-primary md:text-white my-2 mx-1 rounded-lg shadow-lg">
                 <p class="compteur text-xl lg:text-5xl font-bold">{{ count($commentators) + 90}}</p>
@@ -100,7 +85,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
 @auth
 <div class="flex flex-col w-full lg:flex-row justify-around py-8">

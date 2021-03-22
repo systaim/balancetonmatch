@@ -229,21 +229,21 @@
                         @if($type_comments == 'carton')
                         <div class="p-6 border rounded-lg shadow-2xl bg-white flex flex-col items-center justify-center md:flex-row">
                             <div class="actionsMatch relative">
-                                <input class="sr-only" type="radio" id="cartonJaune" wire:model="type_carton" name="type_comments" value="Carton jaune">
+                                <input class="sr-only" type="radio" id="cartonJaune" wire:model="type_carton" name="type_comments" value="Carton jaune" {{ $type_carton == 'Carton jaune' ? 'checked=1' : '' }}>
                                 <label class="inputAction" for="cartonJaune"><img src="{{ asset('images/yellow-card.png') }}" alt="1er carton jaune"></label>
                                 <p class="absolute top-9 left-10 font-sans">1er</p>
                             </div>
                             <div class="actionsMatch relative">
-                                <input class="sr-only" type="radio" id="cartonJaune2" wire:model="type_carton" name="type_comments" value="2e carton jaune">
+                                <input class="sr-only" type="radio" id="cartonJaune2" wire:model="type_carton" name="type_comments" value="2e carton jaune" {{ $type_carton == '2e carton jaune' ? 'checked=1' : '' }}>
                                 <label class="inputAction" for="cartonJaune2"><img src="{{ asset('images/yellow-card.png') }}" alt="2e carton jaune"></label>
                                 <p class="absolute top-9 left-11 font-sans">2e</p>
                             </div>
                             <div class="actionsMatch">
-                                <input class="sr-only" type="radio" id="cartonRouge" wire:model="type_carton" name="type_comments" value="Carton rouge">
+                                <input class="sr-only" type="radio" id="cartonRouge" wire:model="type_carton" name="type_comments" value="Carton rouge" {{ $type_carton == 'Carton rouge' ? 'checked=1' : '' }}>
                                 <label class="inputAction" for="cartonRouge"><img src="{{ asset('images/red-card.png') }}" alt="carton rouge"></label>
                             </div>
                             <div class="actionsMatch">
-                                <input class="sr-only" type="radio" id="cartonBlanc" wire:model="type_carton" name="type_comments" value="Carton blanc">
+                                <input class="sr-only" type="radio" id="cartonBlanc" wire:model="type_carton" name="type_comments" value="Carton blanc" {{ $type_carton == 'Carton blanc' ? 'checked=1' : '' }}>
                                 <label class="inputAction" for="cartonBlanc"><img src="{{ asset('images/white-card.png') }}" alt="carton blanc"></label>
                             </div>
                             @error('file')
@@ -605,7 +605,7 @@
                         </div>
                         <!-- FIN menu ajout d'un joueur par utilisateur -->
                         @if($comment->images != null)
-                        <div class="flex justify-center">
+                        <div class="flex justify-end pr-8">
                             <a href="{{ asset($comment->images)}}">
                                 <img class="max-h-32 rounded-md shadow-xl transform hover:scale-150" src="{{ asset($comment->images)}}" alt="action">
                             </a>
