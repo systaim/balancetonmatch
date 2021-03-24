@@ -226,19 +226,19 @@
         </header>
         @if (\Session::has('success'))
         <div class="message-alert success" x-show.transition="open">
-            <i class="fas fa-check-circle text-5xl text-white rounded-full shadow-xl"></i>
+            <i class="fas fa-check-circle text-5xl text-white rounded-full shadow-xl m-4"></i>
             <p> {!! \Session::get('success') !!}</p>
         </div>
         @endif
         @if (\Session::has('warning'))
         <div class="message-alert warning">
-            <i class="fas fa-exclamation-circle text-5xl text-white rounded-full shadow-xl"></i>
+            <i class="fas fa-exclamation-circle text-5xl text-white rounded-full shadow-xl m-4"></i>
             <p> {!! \Session::get('warning') !!}</p>
         </div>
         @endif
         @if (\Session::has('danger'))
         <div class="message-alert danger">
-            <i class="fas fa-times-circle text-5xl text-white rounded-full shadow-xl"></i>
+            <i class="fas fa-times-circle text-5xl text-white rounded-full shadow-xl m-4"></i>
             <p> {!! \Session::get('danger') !!}</p>
         </div>
         @endif

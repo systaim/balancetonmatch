@@ -29,10 +29,9 @@
         </div>
     </div>
 </div>
-
 <div class="container px-5 py-24 mx-auto">
     <div class="flex flex-wrap justify-evenly mx-4 mb-10 text-center text-white">
-        <div class="lg:w-2/5 mb-10 bg-primary rounded-t-lg shadow-2xl">
+        <div class="lg:w-2/5 mb-10 pb-10 bg-primary rounded-t-lg shadow-2xl">
             <div class="rounded-lg h-64 overflow-hidden">
                 <img alt="tous les matchs" class="object-cover object-center h-full w-full" src="{{ asset('images/ballon-feu.jpg') }}">
             </div>
@@ -130,7 +129,7 @@
             @foreach($user->favorismatches as $favorimatch)
             @if($favorimatch->match->date_match > $today)
             <a href="{{route('matches.show',$favorimatch->match)}}">
-                <div class="p-2 bg-primary text-white rounded-lg">
+                <div class="p-2 bg-primary text-white rounded-lg m-2">
                     <div class="text-center flex justify-center font-bold">
                         <p class="px-4 bg-primary text-secondary rounded-tl-md">{{ $favorimatch->match->date_match->formatLocalized('%d/%m/%y')}}</p>
                         <p class="px-4 bg-primary text-secondary rounded-tr-md">{{ $favorimatch->match->date_match->formatLocalized('%H:%M')}}</p>

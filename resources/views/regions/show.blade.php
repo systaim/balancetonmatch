@@ -9,7 +9,7 @@
         @endforeach
     </div>
 </div>
-<div class="flex flex-col lg:flex-row justify-between bg-primary rounded-lg my-4 sm:w-11/12 m-auto overflow-hidden">
+<div class="flex flex-col lg:flex-row justify-between bg-primary rounded-lg my-4 sm:w-11/12 m-auto ">
     <div class="h-48 lg:h-auto lg:w-6/12 flex justify-center items-center">
         @livewire('search-match')
     </div>
@@ -22,7 +22,7 @@
     </div>
 </div>
 <div class="relative lg:flex lg:justify-center">
-    <div class="w-11/12 sm:w-9/12 lg:w-5/12 h-auto mb-2 rounded-md mx-auto p-4">
+    <div class="w-11/12 sm:w-9/12 lg:w-8/12 h-auto mb-2 rounded-md mx-auto p-4">
         @if(count($matchesByRegion) != 0)
         @foreach($matchesByRegion->sortByDesc('date_match') as $match)
         <div class="rounded-b-md rounded-tr-md">

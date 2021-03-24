@@ -53,7 +53,7 @@ class RegionController extends Controller
     {
         $clubs = Club::all();
         $user = Auth::user();
-        $matchesByRegion = Match::where('region_id', $region->id)->paginate(10);
+        $matchesByRegion = Match::where('region_id', $region->id)->where('date_match','>=', Carbon::now()->subHours(12))->paginate(10);
         $competitions = Competition::find($matchesByRegion->keys());
 
         return view('regions.show', compact('region','matchesByRegion','user', 'competitions', 'clubs'));

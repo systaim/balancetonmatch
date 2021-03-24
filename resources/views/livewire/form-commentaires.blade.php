@@ -1,6 +1,6 @@
 <div {{ $match->live != 'finDeMatch' && $match->live != 'reporte' ? "wire:poll.5000ms" : "" }}>
     <form wire:submit.prevent="saveComment">
-    @csrf
+        @csrf
         <!-- affichage bannière du match -->
         <div class="backMatch">
             <div class="py-6">
@@ -221,9 +221,6 @@
                                     <label class="inputAction" for="penalty">But sur pénalty</label>
                                 </div>
                             </div>
-                            @error('file')
-                            <span class="error">{{ $message }}</span>
-                            @enderror
                         </div>
                         @endif
                         @if($type_comments == 'carton')
@@ -246,9 +243,6 @@
                                 <input class="sr-only" type="radio" id="cartonBlanc" wire:model="type_carton" name="type_comments" value="Carton blanc" {{ $type_carton == 'Carton blanc' ? 'checked=1' : '' }}>
                                 <label class="inputAction" for="cartonBlanc"><img src="{{ asset('images/white-card.png') }}" alt="carton blanc"></label>
                             </div>
-                            @error('file')
-                            <span class="error">{{ $message }}</span>
-                            @enderror
                         </div>
                         @endif
                         <!-- @if($type_comments == 'action')
@@ -298,6 +292,9 @@
                         <input class="hidden" type="file" wire:model="file" name="file" id="file" accept="jpeg,png,jpg,gif,svg">
                     </label>
                 </div>
+                @error('type_comments')
+                <span class="error">{{ $message }}</span>
+                @enderror
                 @if ($file)
                 <div class="flex flex-col items-center">
                     Aperçu de l'image :
@@ -305,7 +302,7 @@
                 </div>
                 @endif
                 @error('file')
-                <span class="error">{{ $message }}</span>
+                <span class="alert alert-danger">{{ $message }}</span>
                 @enderror
                 <div class="flex flex-row justify-center">
                     <div class="flex flex-col jsutify-center">
@@ -354,7 +351,7 @@
                 </div>
                 @endif
                 @error('file')
-                <span class="error">{{ $message }}</span>
+                <span class="alert alert-danger">{{ $message }}</span>
                 @enderror
                 <div class="m-4 flex flex-row justify-center">
                     <div class="flex flex-col jsutify-center">
@@ -369,12 +366,6 @@
                     <button wire:loading.attr="disabled" wire:loading.class.remove="btnSecondary" wire:target="file" class="btn btnSecondary" type="submit" value="">Je commente</button>
                     <input class="hidden" type="radio" id="exit" wire:model="team_action" name="team_action" value="">
                     <label for="exit" class="btn btnSecondary text-center" wire:click="retour">Retour</label>
-                    @if (\Session::has('warning'))
-                    <div class="message-alert warning">
-                        <i class="fas fa-exclamation-circle text-5xl text-white rounded-full shadow-xl"></i>
-                        <p> {!! \Session::get('warning') !!}</p>
-                    </div>
-                    @endif
                 </div>
                 @endif
             </div>

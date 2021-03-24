@@ -39,15 +39,12 @@ class MatchController extends Controller
         $clubs = Club::all();
         $user = Auth::user();
         $players = Player::all();
-        $matches = Match::where('date_match', '>=', Carbon::now())
-        ->orderBy('date_match', 'asc')->get()->groupBy('region_id');
         $matchesByCompet = Match::where('date_match','>=', Carbon::now()->subHours(12))
         ->orderBy('date_match', 'asc')->get()->groupBy('competition_id');
 
         $competitions = Competition::find($matchesByCompet->keys());
-        // $competitions = $competitions->only([2,3,4]);
 
-        return view('matches.listMatchs', compact('clubs', 'players', 'matches', 'matchesByCompet', 'competitions', 'user'));
+        return view('matches.listMatchs', compact('clubs', 'players', 'matchesByCompet', 'competitions', 'user'));
     }
 
     /**

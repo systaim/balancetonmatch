@@ -121,10 +121,10 @@ h1,
           animation: right-to-left 1000ms;
 }
 
-#listMatchs{
-  -webkit-animation: bottom-to-top 1000ms;
-          animation: bottom-to-top 1000ms;
-}
+/* #listMatchs{
+        animation: bottom-to-top 1000ms;
+
+    } */
 
 .bg-login {
   background-image: url("https://cdn.pixabay.com/photo/2014/10/14/20/24/ball-488718_960_720.jpg");
@@ -190,11 +190,9 @@ h1,
   right: 1rem;
   padding: 1rem;
   height: 9rem;
-  border-width: 2px;
-  border-radius: 0.5rem;
+  border-width: 0px;
   z-index: 50;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: space-around;
   font-weight: 700;
@@ -211,27 +209,30 @@ h1,
   --bg-opacity: 1;
   background-color: #00ff48;
   background-color: rgba(0, 255, 72, var(--bg-opacity));
+  border-left-width: 4px;
   --border-opacity: 1;
-  border-color: #31c48d;
-  border-color: rgba(49, 196, 141, var(--border-opacity))
+  border-color: #009628;
+  border-color: rgba(0, 150, 40, var(--border-opacity))
 }
 
 .message-alert.warning {
   --bg-opacity: 1;
   background-color: #ff5a1f;
   background-color: rgba(255, 90, 31, var(--bg-opacity));
+  border-left-width: 4px;
   --border-opacity: 1;
-  border-color: #ff8a4c;
-  border-color: rgba(255, 138, 76, var(--border-opacity))
+  border-color: #d03801;
+  border-color: rgba(208, 56, 1, var(--border-opacity))
 }
 
 .message-alert.danger {
   --bg-opacity: 1;
   background-color: #ff1500;
   background-color: rgba(255, 21, 0, var(--bg-opacity));
+  border-left-width: 4px;
   --border-opacity: 1;
-  border-color: #f05252;
-  border-color: rgba(240, 82, 82, var(--border-opacity))
+  border-color: #e02424;
+  border-color: rgba(224, 36, 36, var(--border-opacity))
 }
 
 #live {
@@ -965,54 +966,6 @@ input:checked+.inputAction {
   animation-duration: 0.2s;
 }
 
-@-webkit-keyframes disparition {
-  0% {
-    opacity: 1;
-  }
-
-  80% {
-    opacity: 1;
-  }
-
-  100% {
-    opacity: 0;
-  }
-}
-
-@keyframes disparition {
-  0% {
-    opacity: 1;
-  }
-
-  80% {
-    opacity: 1;
-  }
-
-  100% {
-    opacity: 0;
-  }
-}
-
-@-webkit-keyframes rotate {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(133deg);
-  }
-}
-
-@keyframes rotate {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(133deg);
-  }
-}
-
 /*************************
           SPINNER
   *************************/
@@ -1063,6 +1016,54 @@ input:checked+.inputAction {
   position: absolute;
   top: 2vmin;
   width: 12vmin;
+}
+
+@-webkit-keyframes disparition {
+  0% {
+    opacity: 1;
+  }
+
+  80% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes disparition {
+  0% {
+    opacity: 1;
+  }
+
+  80% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(133deg);
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(133deg);
+  }
 }
 
 @-webkit-keyframes spin {

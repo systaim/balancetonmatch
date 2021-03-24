@@ -13,9 +13,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules\RequiredIf;
 use Livewire\WithFileUploads;
 
-use function App\Models\commentateur;
-
-
 class FormCommentaires extends Component
 {
 
@@ -44,7 +41,6 @@ class FormCommentaires extends Component
     public $stats;
     public $dateMatch;
     public $heureMatch;
-    public $matchNonDispo = "";
     public $firstCom;
     public $file;
     public $menuCom;
@@ -466,6 +462,7 @@ class FormCommentaires extends Component
             }
         } else {
             session()->flash('warning', "Il n'est pas possible de commenter maintenant");
+            return redirect()->to('matches/' . $this->match->id);
         }
     }
 
