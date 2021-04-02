@@ -155,7 +155,6 @@ class FormCommentaires extends Component
     public function countVisitor()
     {
 
-        
         $visitor = Counter::where('ip-address', request()->ip())->first();
 
         if (!$visitor) {
