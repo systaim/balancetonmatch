@@ -10,16 +10,16 @@
             <h2 class="text-xl md:text-3xl my-2 mx-6 font-medium">Bienvenue</h2>
             <hr class="w-10 border border-secondary">
         </div>
-        <p class="text-sm md:text-base">BalanceTonMatch.com a pour but de rassembler les passionnés du ballon rond AMATEUR.</p>
-        <p class="text-sm md:text-base">Vous pourrez suivre les matchs en <span class="uppercase text-primary font-bold bg-secondary px-2 rounded-sm">live</span> soit en tant que commentateur soit en tant que spectateur</p>
+        <p class="text-sm md:text-base text-justify">BalanceTonMatch.com a pour but de rassembler les passionnés du ballon rond AMATEUR.</p>
+        <p class="text-sm md:text-base text-justify">Vous pourrez suivre les matchs en <span class="uppercase text-primary font-bold bg-secondary px-2 rounded-sm">live</span> soit en tant que commentateur soit en tant que spectateur</p>
     </div>
 </div>
-<div id="wrong" class="bg-red-600 shadow-xl text-white">
+<div id="wrong" class="shadow-xl">
     <div class="container mx-auto flex justify-around px-5 py-6 md:flex-row flex-col items-center">
-        <div class="lg:flex-grow md:w-1/2 flex flex-col md:items-start md:text-left items-center text-center">
+        <div class="lg:flex-grow md:w-1/2 px-8 flex flex-col md:items-start md:text-left items-center text-center">
             <h2 class="sm:text-4xl text-3xl mb-4 font-medium">Le sport amateur à l'arrêt !</h2>
-            <p class="mb-8">La crise sanitaire étant, le foot amateur est bloqué jusque nouvel ordre...</p>
-            <p class="mb-8">
+            <p class="mb-8">La crise sanitaire étant, le foot amateur est arrêté jusque nouvel ordre...</p>
+            <p class="mb-8 text-justify">
                 En espérant que tout reparte à la normal, pour la saison 2021-2022 vous pourrez créer de nouveau vos matchs.
                 En attendant, vous pouvez continuer à créer ou gérer les joueurs de votre club.
             </p>
@@ -29,6 +29,14 @@
         </div>
     </div>
 </div>
+<div class="text-gray-200 bg-gray-900 body-font shadow-2xl">
+    <div class="container px-5 py-24 mx-auto">
+      <div class="lg:w-2/3 flex flex-col sm:flex-row sm:items-center items-start mx-auto">
+        <h1 class="flex-grow sm:pr-16 text-2xl font-medium title-font text-white">Jete un oeil au match de démonstration</h1>
+        <a href="matches/0"><button class="btn btnSecondary h-14 w-48">J'y vais</button></a>
+      </div>
+    </div>
+  </div>
 <div class="container px-5 py-24 mx-auto">
     <div class="flex flex-wrap justify-evenly mx-4 mb-10 text-center text-white">
         <div class="lg:w-2/5 mb-10 pb-10 bg-primary rounded-t-lg shadow-2xl">

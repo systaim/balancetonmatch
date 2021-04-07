@@ -141,4 +141,6 @@ Route::get('matchsduweekend', function(){
 
 Route::get('commentaire/delete/{id}', 'App\Http\Controllers\CommentaireController@destroy')->name('supprimer');
 
+Route::get('demo', 'App\Http\Controllers\MatchController@demo')->name('demo');
+
 

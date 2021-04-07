@@ -190,8 +190,8 @@
                 @enderror
                 <select class="inputForm focus:outline-none focus:shadow-outline w-full my-1" name="district" id="district" wire:model="district" :value="old('district')" autocomplete="district" required>
                     <option>Choisis un district</option>
-                    @foreach($departments->sortBy('name') as $department)
-                    <option value="{{ $department['id'] }}">{{ $department['name'] }}</option>
+                    @foreach($districts as $district)
+                    <option value="{{ $district['id'] }}">{{ $district['name'] }}</option>
                     @endforeach
 
                 </select>

@@ -15,9 +15,9 @@ class CreateClubsTable extends Migration
     {
         Schema::create('clubs', function (Blueprint $table) {
             $table->id();
-            $table->string('abbreviation')->nullable();
+            $table->string('abbreviation', 6)->nullable();
             $table->string('name');
-            $table->integer('numAffiliation');
+            $table->integer('numAffiliation', 6);
             $table->string('logo_path')->nullable();
             $table->string('bg_path')->default('images/default-team.jpg');
             $table->string('primary_color')->default('#ffffff');
@@ -25,7 +25,7 @@ class CreateClubsTable extends Migration
             $table->integer('number_teams')->nullable();
             $table->text('address')->nullable();
             $table->string('zip_code', 5)->nullable();
-            $table->string('city')->nullable();
+            $table->integer('city', 5)->nullable();
             $table->unsignedBigInteger('region_id')->nullable();
             $table->unsignedBigInteger('department_id')->nullable();
             $table->timestamps();

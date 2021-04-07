@@ -34,7 +34,7 @@ class CreateMatch extends Component
     public $competition;
     public $groups;
     public $group;
-    public $departments;
+    public $districts;
     public $divisionsDepartments;
     public $divisionsRegions;
     public $dateMatch;
@@ -54,17 +54,6 @@ class CreateMatch extends Component
         'district' => 'nullable',
         'group' => 'nullable',
     ];
-
-    // public function mount()
-    // {
-    //     $this->regions = collect(Region::all());
-    //     // dd($this->regions);
-    //     $this->competitions = collect(Competition::all());
-    //     $this->departments = collect(Department::all());
-    //     $this->groups = collect(Group::all());
-    //     $this->divisionsDepartments = collect(DivisionsDepartment::all());
-    //     $this->divisionsRegions = collect(DivisionsRegion::all());
-    // }
 
     public function updatedSearchHome()
     {
@@ -91,6 +80,12 @@ class CreateMatch extends Component
             $this->clubsAway = [];
         }
     }
+
+    // public function updatedRegion()
+    // {
+    //     dd($this->region);
+    //     $this->district = Department::where('region_id', $this->region['id'])->get();
+    // }
 
     public function addHomeTeam(Club $club)
     {

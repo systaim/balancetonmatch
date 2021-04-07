@@ -342,6 +342,8 @@ class FormCommentaires extends Component
 
         if ($comment) {
 
+            $this->textInfo = "Commentaires fermés";
+
             $this->match->save();
             $comment->save();
             $this->commentsMatch =  $this->match->commentaires()->orderBy('minute', 'desc')->orderBy('updated_at', 'desc')->get();
@@ -355,11 +357,6 @@ class FormCommentaires extends Component
         'minute' => 'required|string',
         'team_action' => 'required|string',
         'file' => 'nullable | mimes:jpeg,jpg,png,gif,mp4,mov,ogg,qt,m3u8,ts,3gp|max:10240'
-    ];
-
-    protected $messages = [
-        'type_comments.required' => 'c\'est requis !',
-        'type_comments.string' => 'mauvais format',
     ];
 
     public function saveComment()

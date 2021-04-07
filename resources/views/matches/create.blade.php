@@ -4,7 +4,7 @@
     @livewire('create-match', [
     'regions' => $regions,
     'groups' => $groups,
-    'departments' => $departments,
+    'districts' => $districts,
     'divisionsDepartments' => $divisionsDepartments,
     'divisionsRegions' => $divisionsRegions,
     'competitions' => $competitions
