@@ -18,7 +18,6 @@
         </div>
         @endif
         @endauth
-        @dump($match->slug)
         <a href="{{route('match.show',[Str::slug($match->competition->name, '-'),$match->slug]) }}">
             <div class="">
                 <div class="text-center flex justify-center font-bold">
