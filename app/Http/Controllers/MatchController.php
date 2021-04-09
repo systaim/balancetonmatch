@@ -20,7 +20,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use PhpParser\Node\Expr\Match_;
+use Illuminate\Support\Str;
 
 class MatchController extends Controller
 {
@@ -29,6 +29,7 @@ class MatchController extends Controller
     {
         $this->middleware('auth')->only('create');
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -104,6 +105,8 @@ class MatchController extends Controller
      */
     public function show(Match $match)
     {
+        $match = Match::where('slug', $match->slug)->first();
+
         $commentator = Commentator::where('match_id', $match->id)->get();
         $commentsMatch = $match->commentaires()->with(['statistic'])
                                 ->orderBy('minute', 'desc')
@@ -114,6 +117,8 @@ class MatchController extends Controller
         $stats = Statistic::all();
         $nbrFavoris = Favorismatch::where('match_id', $match->id)->count();
         $competitions = $match->competition()->get();
+
+        
 
         return view('matches.show', compact('match', 'commentsMatch', 'clubHome', 'clubAway', 'competitions', 'stats', 'nbrFavoris', 'commentator'));
     }

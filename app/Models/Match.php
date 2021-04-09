@@ -15,7 +15,7 @@ class Match extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable = ['home_team_id', 'home_score', 'away_team_id', 'away_score', 'date_match', 'time', 'location', 'weather', 'competition_id', 'region_id','live'];
+    protected $fillable = ['slug', 'home_team_id', 'home_score', 'away_team_id', 'away_score', 'date_match', 'time', 'location', 'weather', 'competition_id', 'region_id','live'];
 
     protected $dates = ['date_match'];
 

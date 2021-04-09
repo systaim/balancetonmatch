@@ -15,6 +15,7 @@ class CreateMatchesTable extends Migration
     {
         Schema::create('matches', function (Blueprint $table) {
             $table->id();
+            $table->string('slug');
             $table->enum('live',['attente','debut','mitemps','repriseMT','finDeMatch','reporte','annule','arrete'])->default('attente');
             $table->unsignedBigInteger('home_team_id');
             $table->integer('home_score')->nullable();

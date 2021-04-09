@@ -18,7 +18,8 @@
         </div>
         @endif
         @endauth
-        <a href="{{route('matches.show',$match) }}">
+        @dump($match->slug)
+        <a href="{{route('match.show',[Str::slug($match->competition->name, '-'),$match->slug]) }}">
             <div class="">
                 <div class="text-center flex justify-center font-bold">
                     <p class="px-4 bg-primary text-secondary rounded-tl-md">{{ $match->date_match->formatLocalized('%d/%m/%y')}}</p>

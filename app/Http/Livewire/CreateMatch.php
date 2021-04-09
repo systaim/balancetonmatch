@@ -12,9 +12,11 @@ use App\Models\Group;
 use App\Models\Match;
 use App\Models\Region;
 use App\Models\User;
+use Carbon\Carbon;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 class CreateMatch extends Component
 {
@@ -151,6 +153,10 @@ class CreateMatch extends Component
         $match->user_id = $user->id;
 
         if ($homeTeam != $awayTeam) {
+
+            $slug = Str::slug($match->homeClub->name .' vs '. $match->awayClub->name .' '. $match->date_match->formatLocalized('%d %m %Y'), '-');
+            $match->slug = $slug;
+
             $match->save();
 
             $matchCreate = [

@@ -15,6 +15,7 @@ class CreateClubsTable extends Migration
     {
         Schema::create('clubs', function (Blueprint $table) {
             $table->id();
+            $table->string('slug');
             $table->string('abbreviation', 6)->nullable();
             $table->string('name');
             $table->integer('numAffiliation', 6);

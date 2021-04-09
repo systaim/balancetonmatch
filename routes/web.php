@@ -29,7 +29,7 @@ $club = ClubController::class;
 |
 */
 
-Route::get('/', function () {
+Route::get('/', function (Match $match) {
     $matchesToday = Match::whereBetween('date_match', [Carbon::now()
         ->startOfDay(), Carbon::now()->endOfDay()])->get();
     $matchesTomorrow = Match::where('date_match', [Carbon::tomorrow()])->get();
@@ -53,6 +53,8 @@ Route::get('/', function () {
                                 ->orwhere('live', 'repriseMT');
                             })
                             ->get();
+    $match = Match::where('slug', $match->slug)->first();
+
 
     return view('welcome', compact(
         'matchesToday', 
@@ -70,6 +72,7 @@ Route::get('/', function () {
         'redCards',
         'commentators',
         'liveMatches',
+        'match',
     ));
 });
 
@@ -103,7 +106,8 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 Route::resource('clubs', 'App\Http\Controllers\ClubController');
 Route::resource('players', 'App\Http\Controllers\PlayerController');
-Route::resource('matches', 'App\Http\Controllers\MatchController');
+Route::resource('matches', 'App\Http\Controllers\MatchController')->except('show');
+Route::get('match/{id}/{slug?}', 'App\Http\Controllers\MatchController@show')->name('match.show');
 Route::resource('commentaires', 'App\Http\Controllers\CommentaireController');
 Route::resource('clubs.players', 'App\Http\Controllers\PlayerController');
 Route::resource('clubs.staffs', 'App\Http\Controllers\StaffController');

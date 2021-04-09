@@ -15,6 +15,7 @@ class CreateDivisionsDepartmentsTable extends Migration
     {
         Schema::create('divisions_departments', function (Blueprint $table) {
             $table->id();
+            $table->string('slug');
             $table->string('name');
             $table->string('season')->default('2020/2021');
             $table->timestamps();

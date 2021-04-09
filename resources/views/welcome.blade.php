@@ -32,7 +32,7 @@
 <div class="text-gray-200 bg-gray-900 body-font shadow-2xl">
     <div class="container px-5 py-24 mx-auto">
       <div class="lg:w-2/3 flex flex-col sm:flex-row sm:items-center items-start mx-auto">
-        <h1 class="flex-grow sm:pr-16 text-2xl font-medium title-font text-white">Jete un oeil au match de démonstration</h1>
+        <h3 class="flex-grow sm:pr-16 text-xl font-medium text-white">Jete un oeil au match de démonstration pour voir comment ca fonctionne</h3>
         <a href="matches/0"><button class="btn btnSecondary h-14 w-48">J'y vais</button></a>
       </div>
     </div>

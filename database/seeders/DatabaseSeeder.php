@@ -17,6 +17,7 @@ use App\Models\Role;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
 {
@@ -34,7 +35,9 @@ class DatabaseSeeder extends Seeder
         $divisions = ['Régional 1', 'Régional 2', 'Régional 3'];
 
         foreach ($divisions as $division) {
+            $slug = Str::slug($division, '-');
             DivisionsRegion::create([
+                'slug' => $slug,
                 'name' => $division,
             ]);
         }
@@ -49,7 +52,9 @@ class DatabaseSeeder extends Seeder
         // tables players numéros génériques
 
         for ($i = 1; $i <= 16; $i++) {
+            $slug = Str::slug('numero '. $i, '-');
             Player::create([
+                'slug' => $slug,
                 'last_name' => $i,
                 'first_name' => 'numéro',
 
@@ -61,7 +66,10 @@ class DatabaseSeeder extends Seeder
         $regions = ['Auvergne - Rhones-Alpes', 'Bourgogne - Franche Comté', 'Bretagne', 'Centre Val de Loire', 'Corse', 'Grand Est', 'Guadeloupe', 'Guyane', 'Hauts de France', 'Martinique', 'Mayotte', 'Mediterrannée', 'Normandie', 'Nouvelle Aquitaine', 'Occitanie', 'Paris IDF', 'Pays de la Loire', 'Réunion', 'St Pierre & Miquelon'];
 
         foreach ($regions as $region) {
+            $slug = Str::slug($region, '-');
+
             Region::create([
+                'slug' => $slug,
                 'name' => $region,
             ]);
         }
@@ -75,7 +83,9 @@ class DatabaseSeeder extends Seeder
         $competitions = ['Championnat régional', 'Championnat départemental', 'Coupe de France', 'Coupe régionale', 'Coupe départementale', 'Match amical'];
 
         foreach ($competitions as $competition) {
+            $slug = Str::slug($competition, '-');
             Competition::create([
+                'slug' => $slug,
                 'name' => $competition,
             ]);
         }
@@ -84,7 +94,10 @@ class DatabaseSeeder extends Seeder
         $districts = ['Division 1', 'Division 2', 'Division 3', 'Division 4', 'Division 5'];
 
         foreach ($districts as $district) {
+            $slug = Str::slug($district, '-');
+
             DivisionsDepartment::create([
+                'slug' => $slug,
                 'name' => $district,
 
             ]);
