@@ -105,8 +105,6 @@ class MatchController extends Controller
      */
     public function show(Match $match)
     {
-        $match = Match::where('slug', $match->slug)->first();
-
         $commentator = Commentator::where('match_id', $match->id)->get();
         $commentsMatch = $match->commentaires()->with(['statistic'])
                                 ->orderBy('minute', 'desc')

@@ -106,8 +106,8 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 Route::resource('clubs', 'App\Http\Controllers\ClubController');
 Route::resource('players', 'App\Http\Controllers\PlayerController');
-Route::resource('matches', 'App\Http\Controllers\MatchController')->except('show');
-Route::get('match/{id}/{slug?}', 'App\Http\Controllers\MatchController@show')->name('match.show');
+Route::resource('matches', 'App\Http\Controllers\MatchController');
+// Route::get('match/{id}/{slug?}', 'App\Http\Controllers\MatchController@show')->name('match.show');
 Route::resource('commentaires', 'App\Http\Controllers\CommentaireController');
 Route::resource('clubs.players', 'App\Http\Controllers\PlayerController');
 Route::resource('clubs.staffs', 'App\Http\Controllers\StaffController');
