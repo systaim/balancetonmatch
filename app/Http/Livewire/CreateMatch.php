@@ -40,7 +40,7 @@ class CreateMatch extends Component
     public $divisionsDepartments;
     public $divisionsRegions;
     public $dateMatch;
-    public $timeMatch =null;
+    public $timeMatch;
     public $district;
 
 

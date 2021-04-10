@@ -352,12 +352,12 @@ class FormCommentaires extends Component
         }
     }
 
-    protected $rules = [
-        'type_comments' => 'required|string',
-        'minute' => 'required|string',
-        'team_action' => 'required|string',
-        'file' => 'nullable | mimes:jpeg,jpg,png,gif,mp4,mov,ogg,qt,m3u8,ts,3gp|max:10240'
-    ];
+    // protected $rules = [
+    //     'type_comments' => 'required|string',
+    //     'minute' => 'required|string',
+    //     'team_action' => 'required|string',
+    //     // 'file' => 'nullable | mimes:jpeg,jpg,png,gif,mp4,mov,ogg,qt,m3u8,ts,3gp|max:10240'
+    // ];
 
     public function saveComment()
     {
@@ -370,7 +370,7 @@ class FormCommentaires extends Component
                 'type_comments' => 'required|string',
                 'minute' => 'required|integer|between:1,120',
                 'team_action' => 'required|string',
-                'file' => 'nullable | mimes:jpeg,jpg,png,gif,mp4,gif,mov,ogg,quicktime,m3u8,ts,3gp|max:10240'
+                // 'file' => 'nullable | mimes:jpeg,jpg,png,gif,mp4,gif,mov,ogg,quicktime,m3u8,ts,3gp|max:10240'
             ]);
 
 

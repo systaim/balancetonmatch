@@ -517,7 +517,12 @@
     <!-- fin option commentaires "match" -->
 
     <!-- Affichage des commentaires -->
-
+    @if ($match->id == 0)
+    <div class="flex flex-col items-center justify-center bg-secondary p-8">
+        <p class="font-semibold uppercase">Ce match est fictif</p>
+        <p class="text-sm">Il sert d'exemple pour découvrir un match commenté</p>
+    </div>
+    @endif
     @auth
     @if($match->commentateur)
     @if($match->commentateur->user->id == Auth::user()->id)
