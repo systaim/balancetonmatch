@@ -966,6 +966,16 @@
         width: 12vmin;
     }
 
+    /*****************************************
+
+                    ANIMATIONS
+
+    ****************************************/
+
+    .moveToLeft{
+        opacity: 0;
+    }
+
     @-webkit-keyframes disparition {
         0% {
             opacity: 1;

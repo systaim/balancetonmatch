@@ -2,19 +2,31 @@ const { forEach } = require("lodash");
 
 require("./bootstrap");
 
-// Menu hamburger
+
+
+/******************************
+ * 
+ * menu Hamburger
+ * 
+ ******************************/
 
 let burger = document.getElementById("burger");
 let nav = document.getElementById("main-nav");
 let container = document.getElementById("container");
 
-burger.addEventListener("click", function() {
+burger.addEventListener("click", function () {
     this.classList.toggle("is-open");
     nav.classList.toggle("is-open");
     container.classList.toggle("is-open");
 });
 
-// Compteurs animés homepage
+/******************************
+ * 
+ * compteurs animés Ma page
+ * 
+ ******************************/
+
+
 let compteurs = document.querySelectorAll(".compteur");
 
 compteurs.forEach(compteur => {
@@ -35,20 +47,100 @@ compteurs.forEach(compteur => {
     animateValue(compteur, 0, valeurCompteur, 3000);
 });
 
-// main menu
+/******************************
+ * 
+ * main menu
+ * 
+ ******************************/
 
 let menuRegions = document.getElementById('menuRegions')
 let sousMenuRegion = document.getElementById('sousMenuRegions')
 
-menuRegions.addEventListener('click', function() {
+menuRegions.addEventListener('click', function () {
     sousMenuRegion.classList.toggle('select')
 })
 
-// desactiver bouton pendant chargement
+/******************************
+ * 
+ * desactiver bouton pendant chargement
+ * 
+ ******************************/
 
 let submitButton = document.querySelector('[type=Submit]')
+if (submitButton != null) {
+    submitButton.addEventListener('load', function () {
+        submitButton.setAttribute('disabled', 'disabled')
 
-submitButton.addEventListener('load', function() {
-    submitButton.setAttribute('disabled', 'disabled')
+    })
+}
 
+
+/******************************
+ * 
+ * detections position écran pour animations
+ * 
+ ******************************/
+
+function moveLeftToRight(div) {
+    for (let i = 0; i < div.length; i++) {
+        if (div[i].style.opacity == 0 && window.scrollY >= (div[i].offsetTop - (window.screen.height - 300))) {
+            console.log(div[i]);
+            div[i].style.opacity = 1
+            div[i].style.animation = "left-to-right 500ms"
+        }
+    }
+}
+
+function moveRightToLeft(div) {
+    for (let i = 0; i < div.length; i++) {
+        if (div[i].style.opacity == 0 && window.scrollY >= (div[i].offsetTop - (window.screen.height - 300))) {
+            console.log(div[i]);
+            div[i].style.opacity = 1
+            div[i].style.animation = "right-to-left 500ms"
+        }
+    }
+}
+
+function moveBottomToTop(div) {
+    for (let i = 0; i < div.length; i++) {
+        if (div[i].style.opacity == 0 && window.scrollY >= (div[i].offsetTop - (window.screen.height - 300))) {
+            console.log(div[i]);
+            div[i].style.opacity = 1
+            div[i].style.animation = "bottom-to-top 500ms"
+        }
+    }
+}
+
+function moveTopToBottom(div) {
+    for (let i = 0; i < div.length; i++) {
+        if (div[i].style.opacity == 0 && window.scrollY >= (div[i].offsetTop - (window.screen.height - 300))) {
+            console.log(div[i]);
+            div[i].style.opacity = 1
+            div[i].style.animation = "top-to-bottom 500ms"
+        }
+    }
+}
+window.addEventListener('scroll', function () {
+    let moveToLeft = document.querySelectorAll('.moveToLeft')
+    let moveToRight = document.querySelectorAll('.moveToRight')
+    let moveToBottom = document.querySelectorAll('.moveToBottom')
+    let moveToTop = document.querySelectorAll('.moveToTop')
+    if (moveToLeft != null) {
+        moveLeftToRight(moveToLeft)
+    }
+    if (moveToRight != null) {
+        moveRightToLeft(moveToRight)
+    }
+    if (moveToBottom != null) {
+        moveTopToBottom(moveToBottom)
+    }
+    if (moveToTop != null) {
+        moveBottomToTop(moveToTop)
+    }
 })
+
+
+
+
+
+

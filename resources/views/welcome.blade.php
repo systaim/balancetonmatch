@@ -35,16 +35,16 @@
     </div>
     <div class="text-gray-200 bg-gray-900 body-font shadow-2xl">
         <div class="container px-5 py-24 mx-auto">
-            <div class="lg:w-2/3 flex flex-col sm:flex-row sm:items-center items-start mx-auto">
+            <div class="lg:w-2/3 flex flex-col sm:flex-row sm:items-center items-start mx-auto moveToLeft">
                 <h3 class="flex-grow sm:pr-16 text-xl font-medium text-white">Jete un oeil au match de démonstration pour
                     voir comment ca fonctionne</h3>
                 <a href="matches/0"><button class="btn btnSecondary h-14 w-48">J'y vais</button></a>
             </div>
         </div>
     </div>
-    <div class="container px-5 py-24 mx-auto">
-        <div class="flex flex-wrap justify-evenly mx-4 mb-10 text-center text-white">
-            <div class="lg:w-2/5 pb-10 bg-primary rounded-t-lg shadow-2xl">
+    <div class="container px-5 mx-auto">
+        <div class="flex flex-wrap justify-evenly mx-4 mb-10 text-center text-white moveToTop opacity-0">
+            <div class="lg:w-2/5 my-5 pb-10 bg-primary rounded-t-lg shadow-2xl">
                 <div class="rounded-lg h-64 overflow-hidden">
                     <img alt="tous les matchs" class="object-cover object-center h-full w-full"
                         src="{{ asset('images/ballon-feu.jpg') }}">
@@ -53,7 +53,7 @@
                 <p class="leading-relaxed text-base">Les matchs programmés sont à retrouvés ici.</p>
                 <a href="/matches"><button class="btn btnSecondary">Je vais voir</button></a>
             </div>
-            <div class="lg:w-2/5 pb-10 bg-primary rounded-t-lg shadow-2xl">
+            <div class="lg:w-2/5 my-5 pb-10 bg-primary rounded-t-lg shadow-2xl moveToTop opacity-0">
                 <div class="rounded-lg h-64 overflow-hidden">
                     <img alt="les matchs en live" class="object-cover object-center h-full w-full"
                         src="{{ asset('images/on-air.jpg') }}">

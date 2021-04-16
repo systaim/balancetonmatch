@@ -78,6 +78,7 @@ class FormCommentaires extends Component
         $this->miseAJourCom();
 
         $this->countVisitor();
+
     }
 
     public function hydrate()

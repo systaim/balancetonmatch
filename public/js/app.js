@@ -19402,7 +19402,12 @@ module.exports = function(module) {
 var _require = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js"),
     forEach = _require.forEach;
 
-__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); // Menu hamburger
+__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+/******************************
+ * 
+ * menu Hamburger
+ * 
+ ******************************/
 
 
 var burger = document.getElementById("burger");
@@ -19412,7 +19417,12 @@ burger.addEventListener("click", function () {
   this.classList.toggle("is-open");
   nav.classList.toggle("is-open");
   container.classList.toggle("is-open");
-}); // Compteurs animés homepage
+});
+/******************************
+ * 
+ * compteurs animés Ma page
+ * 
+ ******************************/
 
 var compteurs = document.querySelectorAll(".compteur");
 compteurs.forEach(function (compteur) {
@@ -19434,17 +19444,99 @@ compteurs.forEach(function (compteur) {
 
   var valeurCompteur = compteur.innerHTML;
   animateValue(compteur, 0, valeurCompteur, 3000);
-}); // main menu
+});
+/******************************
+ * 
+ * main menu
+ * 
+ ******************************/
 
 var menuRegions = document.getElementById('menuRegions');
 var sousMenuRegion = document.getElementById('sousMenuRegions');
 menuRegions.addEventListener('click', function () {
   sousMenuRegion.classList.toggle('select');
-}); // desactiver bouton pendant chargement
+});
+/******************************
+ * 
+ * desactiver bouton pendant chargement
+ * 
+ ******************************/
 
 var submitButton = document.querySelector('[type=Submit]');
-submitButton.addEventListener('load', function () {
-  submitButton.setAttribute('disabled', 'disabled');
+
+if (submitButton != null) {
+  submitButton.addEventListener('load', function () {
+    submitButton.setAttribute('disabled', 'disabled');
+  });
+}
+/******************************
+ * 
+ * detections position écran pour animations
+ * 
+ ******************************/
+
+
+function moveLeftToRight(div) {
+  for (var i = 0; i < div.length; i++) {
+    if (div[i].style.opacity == 0 && window.scrollY >= div[i].offsetTop - (window.screen.height - 300)) {
+      console.log(div[i]);
+      div[i].style.opacity = 1;
+      div[i].style.animation = "left-to-right 500ms";
+    }
+  }
+}
+
+function moveRightToLeft(div) {
+  for (var i = 0; i < div.length; i++) {
+    if (div[i].style.opacity == 0 && window.scrollY >= div[i].offsetTop - (window.screen.height - 300)) {
+      console.log(div[i]);
+      div[i].style.opacity = 1;
+      div[i].style.animation = "right-to-left 500ms";
+    }
+  }
+}
+
+function moveBottomToTop(div) {
+  for (var i = 0; i < div.length; i++) {
+    if (div[i].style.opacity == 0 && window.scrollY >= div[i].offsetTop - (window.screen.height - 300)) {
+      console.log(div[i]);
+      div[i].style.opacity = 1;
+      div[i].style.animation = "bottom-to-top 500ms";
+    }
+  }
+}
+
+function moveTopToBottom(div) {
+  for (var i = 0; i < div.length; i++) {
+    if (div[i].style.opacity == 0 && window.scrollY >= div[i].offsetTop - (window.screen.height - 300)) {
+      console.log(div[i]);
+      div[i].style.opacity = 1;
+      div[i].style.animation = "top-to-bottom 500ms";
+    }
+  }
+}
+
+window.addEventListener('scroll', function () {
+  var moveToLeft = document.querySelectorAll('.moveToLeft');
+  var moveToRight = document.querySelectorAll('.moveToRight');
+  var moveToBottom = document.querySelectorAll('.moveToBottom');
+  var moveToTop = document.querySelectorAll('.moveToTop');
+
+  if (moveToLeft != null) {
+    moveLeftToRight(moveToLeft);
+  }
+
+  if (moveToRight != null) {
+    moveRightToLeft(moveToRight);
+  }
+
+  if (moveToBottom != null) {
+    moveTopToBottom(moveToBottom);
+  }
+
+  if (moveToTop != null) {
+    moveBottomToTop(moveToTop);
+  }
 });
 
 /***/ }),

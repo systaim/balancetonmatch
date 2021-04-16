@@ -603,7 +603,7 @@
                         @if($comment->images != null)
                         <div class="flex justify-end pr-8">
                             <a href="{{ asset($comment->images)}}">
-                                <img class="max-h-32 rounded-md shadow-xl transform hover:scale-150" src="{{ asset($comment->images)}}" alt="action">
+                                <img class="max-h-32 rounded-md shadow-xl transform" src="{{ asset($comment->images)}}" alt="action">
                             </a>
                         </div>
                         @endif
