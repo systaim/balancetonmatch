@@ -16,31 +16,50 @@
     <link rel="stylesheet" href="{{ mix('css/styles.css') }}" />
     <script src="https://kit.fontawesome.com/c03c2336c3.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.0/dist/alpine.min.js" defer></script>
-    <script data-ad-client="ca-pub-7237777700901740" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script data-ad-client="ca-pub-7237777700901740" async
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MWPW5WC37V"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
 
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-MWPW5WC37V');
+
+    </script>
 </head>
 
 <body>
     <div id="container">
         <header id="header" class="relative bg-gray-100 h-24 xl:h-auto">
-            <div id="burger" class="xl:hidden absolute cursor-pointer top-5 left-3 flex justify-center items-center h-12 w-12 bg-primary z-50">
+            <div id="burger"
+                class="xl:hidden absolute cursor-pointer top-5 left-3 flex justify-center items-center h-12 w-12 bg-primary z-50">
                 <div class="open-main-nav flex justify-center">
                     <span class="burger"></span>
                 </div>
             </div>
-            <div class="relative text-primary flex xl:flex-col justify-end sm:justify-center xl:justify-between items-center xl:items-between h-24 xl:block xl:h-auto">
+            <div
+                class="relative text-primary flex xl:flex-col justify-end sm:justify-center xl:justify-between items-center xl:items-between h-24 xl:block xl:h-auto">
 
                 <div class="relative">
                     <div class="flex justify-center items-center mx-8">
                         <div>
                             <a href="/">
-                                <img class="w-20 md:w-24" src="{{ asset('/images/logos/btmLogoJB.png') }}" alt="logo de BTM">
+                                <img class="w-20 md:w-24" src="{{ asset('/images/logos/btmLogoJB.png') }}"
+                                    alt="logo de BTM">
                             </a>
                         </div>
                         <div class="h-auto relative">
                             <a href="/">
                                 <h1 class="sm:text-2xl md:text-3xl">Balance Ton Match</h1>
-                                <p class="float-right inline-block text-xs60 sm:text-xs md:text-base px-2 bg-primary rounded-lg text-white ">Quand la touche part en live...</p>
+                                <p
+                                    class="float-right inline-block text-xs60 sm:text-xs md:text-base px-2 bg-primary rounded-lg text-white ">
+                                    Quand la touche part en live...</p>
                             </a>
                         </div>
                     </div>
@@ -53,12 +72,23 @@
                         <a href="{{ route('clubs.index') }}">Rechercher un club</a>
                         <!-- <li id="menuRegions"class="mb-4 border-b border-black text-xl md:text-3xl lg:text-4xl uppercase"><a href="{{ route('matches.index') }}">Liste des matchs</a></li> -->
                         <div class="dropdown">
-                            <button class="dropbtn" @click="open = true">Liste des matchs <i class="fa fa-caret-down"></i></button>
-                            <div class="dropdown-content" x-show="open" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0 h-0" @click.away="open = false">
+                            <button class="dropbtn" @click="open = true">Liste des matchs <i
+                                    class="fa fa-caret-down"></i></button>
+                            <div class="dropdown-content" x-show="open"
+                                x-transition:enter="transition ease-out duration-300"
+                                x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+                                x-transition:leave="transition ease-in duration-300"
+                                x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0 h-0"
+                                @click.away="open = false">
                                 <div x-data="{ open: false }">
                                     <a href="/matches">Les prochains matchs</a>
                                     <div>
-                                        <a class="cursor-pointer" @click="open = true" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0 h-0">
+                                        <a class="cursor-pointer" @click="open = true"
+                                            x-transition:enter="transition ease-out duration-300"
+                                            x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+                                            x-transition:leave="transition ease-in duration-300"
+                                            x-transition:leave-start="opacity-100"
+                                            x-transition:leave-end="opacity-0 h-0">
                                             Les matchs par régions
                                         </a>
                                         <div class="pl-4" x-show="open" @click.away="open = false">
@@ -92,41 +122,51 @@
                 </nav>
                 <div class="absolute right-2 top-6 text-white hidden lg:block w-64 lg:mr-4" x-data="{ open : false }">
                     @auth
-                    <div class="flex justify-center items-center px-2 py-1 cursor-pointer text-primary" @click="open = true">
-                        <img class="rounded-full h-8 w-8 object-cover mr-4 mb-2" src="{{ Auth::user()->profile_photo_url }}">
-                        <div id="btnMenu" class="focus:outline-none">Bonjour {{ Auth::user()->first_name }} <i class="fas fa-caret-down"></i></div>
-                    </div>
-                    @else
-                    <div class="flex justify-end pr-6 cursor-pointer" @click="open = true">
-                        <div id="btnMenu" class="focus:outline-none text-primary ml-2">
-                            <i class="far fa-user text-xl"></i> <i class="fas fa-caret-down"></i>
+                        <div class="flex justify-center items-center px-2 py-1 cursor-pointer text-primary"
+                            @click="open = true">
+                            <img class="rounded-full h-8 w-8 object-cover mr-4 mb-2"
+                                src="{{ Auth::user()->profile_photo_url }}">
+                            <div id="btnMenu" class="focus:outline-none">Bonjour {{ Auth::user()->first_name }} <i
+                                    class="fas fa-caret-down"></i></div>
                         </div>
-                    </div>
+                    @else
+                        <div class="flex justify-end pr-6 cursor-pointer" @click="open = true">
+                            <div id="btnMenu" class="focus:outline-none text-primary ml-2">
+                                <i class="far fa-user text-xl"></i> <i class="fas fa-caret-down"></i>
+                            </div>
+                        </div>
                     @endauth
-                    <div id="menuUser" class="absolute z-50 border bg-primary rounded-lg shadow-lg overflow-hidden left-0 w-full" x-show="open" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0 h-0" @click.away="open = false">
+                    <div id="menuUser"
+                        class="absolute z-50 border bg-primary rounded-lg shadow-lg overflow-hidden left-0 w-full"
+                        x-show="open" x-transition:enter="transition ease-out duration-300"
+                        x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+                        x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100"
+                        x-transition:leave-end="opacity-0 h-0" @click.away="open = false">
                         <div>
                             @auth
-                            <a class="px-6 py-4 hover:bg-blue-900 block" href="/user/profile">Mon profil</a>
-                            @if(Auth::user()->club)
-                            <a class="px-6 py-4 hover:bg-blue-900 block" href="/clubs/{{Auth::user()->club->id }}"><span class="text-sm">Mon club</span></br>{{Auth::user()->club->name }}</a>
-                            @endif
-                            <a class="px-6 py-4 hover:bg-blue-900 block" href="{{ route('matches.create') }}">
-                                Je crée un match
-                            </a>
-                            @canany(['isSuperAdmin', 'isAdmin'])
-                            <a class="px-6 py-4 hover:bg-blue-900 block" href="/admin">
-                                Page admin
-                            </a>
-                            @endcanany
-                            <a class="px-6 py-4 hover:bg-blue-900 block" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                            document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
-                            </a>
+                                <a class="px-6 py-4 hover:bg-blue-900 block" href="/user/profile">Mon profil</a>
+                                @if (Auth::user()->club)
+                                    <a class="px-6 py-4 hover:bg-blue-900 block"
+                                        href="/clubs/{{ Auth::user()->club->id }}"><span class="text-sm">Mon
+                                            club</span></br>{{ Auth::user()->club->name }}</a>
+                                @endif
+                                <a class="px-6 py-4 hover:bg-blue-900 block" href="{{ route('matches.create') }}">
+                                    Je crée un match
+                                </a>
+                                @canany(['isSuperAdmin', 'isAdmin'])
+                                    <a class="px-6 py-4 hover:bg-blue-900 block" href="/admin">
+                                        Page admin
+                                    </a>
+                                @endcanany
+                                <a class="px-6 py-4 hover:bg-blue-900 block" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
+                                </a>
                             @else
-                            <ul class="list-none">
-                                <a class="px-6 py-4 hover:bg-blue-900 block" href="/login">Se connecter</a>
-                                <a class="px-6 py-4 hover:bg-blue-900 block" href="/register">S'enregistrer</a>
-                            </ul>
+                                <ul class="list-none">
+                                    <a class="px-6 py-4 hover:bg-blue-900 block" href="/login">Se connecter</a>
+                                    <a class="px-6 py-4 hover:bg-blue-900 block" href="/register">S'enregistrer</a>
+                                </ul>
                             @endauth
                         </div>
                     </div>
@@ -140,57 +180,66 @@
                             <img class="w-2/12" src="{{ asset('images/logos/btmLogoJB.png') }}" alt="logo">
                         </div>
                         @auth
-                        <div class="flex flex-col justify-end mt-2">
-                            <div class="flex flex-row justify-center items-center px-4">
-                                <nav class="overflow-hidden w-full">
-                                    <div class="flex justify-center">
-                                        <div class="mr-6">
-                                            @auth
-                                            <a class="p-2 hover:bg-blue-900 block" href="/user/profile">Mon profil</a>
-                                            @if(Auth::user()->club)
-                                            <a class="p-2 hover:bg-blue-900 block" href="/clubs/{{Auth::user()->club->id }}"><span class="text-sm">Mon club</span></br>{{Auth::user()->club->name }}</a>
-                                            @endif
+                            <div class="flex flex-col justify-end mt-2">
+                                <div class="flex flex-row justify-center items-center px-4">
+                                    <nav class="overflow-hidden w-full">
+                                        <div class="flex justify-center">
+                                            <div class="mr-6">
+                                                @auth
+                                                    <a class="p-2 hover:bg-blue-900 block" href="/user/profile">Mon profil</a>
+                                                    @if (Auth::user()->club)
+                                                        <a class="p-2 hover:bg-blue-900 block"
+                                                            href="/clubs/{{ Auth::user()->club->id }}"><span
+                                                                class="text-sm">Mon
+                                                                club</span></br>{{ Auth::user()->club->name }}</a>
+                                                    @endif
+                                                </div>
+                                                <div>
+                                                    @canany(['isSuperAdmin', 'isAdmin'])
+                                                        <a class="p-2 hover:bg-blue-900 block"
+                                                            href="{{ route('matches.create') }}">
+                                                            Je crée un match
+                                                        </a>
+                                                        <a class="p-2 hover:bg-blue-900 block" href="/admin">
+                                                            Page admin
+                                                        </a>
+                                                    @endcanany
+                                                </div>
+                                                <a class="absolute bottom-2 right-6 p-2 hover:bg-blue-900 block"
+                                                    href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                    document.getElementById('logout-form').submit();">
+                                                    {{ __('Logout') }}
+                                                </a>
+                                            @else
+                                                <ul class="list-none">
+                                                    <a class="py-2 hover:bg-blue-900 block" href="/login">Se connecter</a>
+                                                    <a class="py-2 hover:bg-blue-900 block" href="/register">S'enregistrer</a>
+                                                </ul>
+                                            @endauth
                                         </div>
-                                        <div>
-                                            @canany(['isSuperAdmin', 'isAdmin'])
-                                            <a class="p-2 hover:bg-blue-900 block" href="{{ route('matches.create') }}">
-                                                Je crée un match
-                                            </a>
-                                            <a class="p-2 hover:bg-blue-900 block" href="/admin">
-                                                Page admin
-                                            </a>
-                                            @endcanany
-                                        </div>
-                                        <a class="absolute bottom-2 right-6 p-2 hover:bg-blue-900 block" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                            document.getElementById('logout-form').submit();">
-                                            {{ __('Logout') }}
-                                        </a>
-                                        @else
-                                        <ul class="list-none">
-                                            <a class="py-2 hover:bg-blue-900 block" href="/login">Se connecter</a>
-                                            <a class="py-2 hover:bg-blue-900 block" href="/register">S'enregistrer</a>
-                                        </ul>
-                                        @endauth
-                                    </div>
-                                </nav>
+                                    </nav>
+                                </div>
                             </div>
-                        </div>
                         @else
-                        <div class="text-center flex flex-row justify-evenly mt-8">
-                            <div class="">
-                                <a class="btn btnSecondary" href="/login">{{ __('Login') }}</a>
-                                <a class="" href="/register">{{ __('Register') }}</a>
+                            <div class="text-center flex flex-row justify-evenly mt-8">
+                                <div class="">
+                                    <a class="btn btnSecondary" href="/login">{{ __('Login') }}</a>
+                                    <a class="" href="/register">{{ __('Register') }}</a>
+                                </div>
                             </div>
-                        </div>
                         @endauth
                     </div>
                 </div>
                 <nav class="xl:hidden mt-12 flex flex-col items-center justify-start w-4/5 lg:h-screen">
                     <ul class="w-10/12 m-auto">
-                        <li class=" mb-4 border-b border-black text-xl md:text-3xl lg:text-4xl uppercase"><a href="/">Accueil</a></li>
-                        <li class=" mb-4 border-b border-black text-xl md:text-3xl lg:text-4xl uppercase"><a href="{{ route('clubs.index') }}">Rechercher un club</a></li>
+                        <li class=" mb-4 border-b border-black text-xl md:text-3xl lg:text-4xl uppercase"><a
+                                href="/">Accueil</a></li>
+                        <li class=" mb-4 border-b border-black text-xl md:text-3xl lg:text-4xl uppercase"><a
+                                href="{{ route('clubs.index') }}">Rechercher un club</a></li>
                         <!-- <li id="menuRegions"class="mb-4 border-b border-black text-xl md:text-3xl lg:text-4xl uppercase"><a href="{{ route('matches.index') }}">Liste des matchs</a></li> -->
-                        <li id="menuRegions" class="cursor-pointer mb-4 border-b border-black text-xl md:text-3xl lg:text-4xl uppercase">Liste des matchs</li>
+                        <li id="menuRegions"
+                            class="cursor-pointer mb-4 border-b border-black text-xl md:text-3xl lg:text-4xl uppercase">
+                            Liste des matchs</li>
                         <ul id="sousMenuRegions" class="pl-12">
                             <li><a href="/matches">Les prochains matchs</a></li>
                             <li>Les matchs par régions</li>
@@ -216,7 +265,8 @@
                                 <li class=""><a href="/regions/19">St Pierre & Miquelon</a></li>
                             </ul>
                         </ul>
-                        <li class=" mb-4 border-b border-black text-xl md:text-3xl lg:text-4xl uppercase"><a href="/contact">Contact</a></li>
+                        <li class=" mb-4 border-b border-black text-xl md:text-3xl lg:text-4xl uppercase"><a
+                                href="/contact">Contact</a></li>
                     </ul>
                 </nav>
             </div>
@@ -225,22 +275,22 @@
             </form>
         </header>
         @if (\Session::has('success'))
-        <div class="message-alert success" x-show.transition="open">
-            <i class="fas fa-check-circle text-5xl text-white rounded-full shadow-xl m-4"></i>
-            <p> {!! \Session::get('success') !!}</p>
-        </div>
+            <div class="message-alert success" x-show.transition="open">
+                <i class="fas fa-check-circle text-5xl text-white rounded-full shadow-xl m-4"></i>
+                <p> {!! \Session::get('success') !!}</p>
+            </div>
         @endif
         @if (\Session::has('warning'))
-        <div class="message-alert warning">
-            <i class="fas fa-exclamation-circle text-5xl text-white rounded-full shadow-xl m-4"></i>
-            <p> {!! \Session::get('warning') !!}</p>
-        </div>
+            <div class="message-alert warning">
+                <i class="fas fa-exclamation-circle text-5xl text-white rounded-full shadow-xl m-4"></i>
+                <p> {!! \Session::get('warning') !!}</p>
+            </div>
         @endif
         @if (\Session::has('danger'))
-        <div class="message-alert danger">
-            <i class="fas fa-times-circle text-5xl text-white rounded-full shadow-xl m-4"></i>
-            <p> {!! \Session::get('danger') !!}</p>
-        </div>
+            <div class="message-alert danger">
+                <i class="fas fa-times-circle text-5xl text-white rounded-full shadow-xl m-4"></i>
+                <p> {!! \Session::get('danger') !!}</p>
+            </div>
         @endif
         @yield('content')
         @include('footer')
