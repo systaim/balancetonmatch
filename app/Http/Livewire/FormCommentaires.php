@@ -17,7 +17,7 @@ class FormCommentaires extends Component
 {
 
     use WithFileUploads;
-    
+
     // Variables initailisées dans MatchContoller@show 
     public $commentator;
     public $match;
@@ -52,7 +52,7 @@ class FormCommentaires extends Component
 
     public $listGoal = ['GOOOOAAL !', 'BUUUUT !!!', 'GOAL GOAL GOAL !!'];
     public $mitempsJoueurs = ['Les joueurs rentrent aux vestiaires', 'Tout le monde à la buv... euuuh aux vestiaires !'];
-    
+
     public function mount()
     {
         $this->dateMatch = $this->match->date_match;
@@ -74,11 +74,10 @@ class FormCommentaires extends Component
         }
 
         $this->minuteCom = $this->minute;
-        
+
         $this->miseAJourCom();
 
         $this->countVisitor();
-
     }
 
     public function hydrate()
@@ -119,7 +118,7 @@ class FormCommentaires extends Component
         // dd($this->playerMatch);
         // dd($teamAction);
 
-        
+
 
         if (empty($this->playerMatch) || $this->playerMatch == null) {
             // dd('creation');
@@ -197,7 +196,7 @@ class FormCommentaires extends Component
 
     public function clickFirstCom()
     {
-        
+
         $this->firstCom = 0;
         Auth::user()->first_com = 0;
         Auth::user()->save();
@@ -205,7 +204,7 @@ class FormCommentaires extends Component
 
     public function becomeCommentator()
     {
-        
+
 
         if ($this->dateMatch->diffInMinutes(now(), false) > -30) {
             $commentateur = new Commentator;
@@ -223,7 +222,7 @@ class FormCommentaires extends Component
 
     public function matchReporte()
     {
-        
+
 
         if ($this->dateMatch->diffInMinutes(now(), false) > -30) {
             $commentateur = new Commentator;
@@ -253,17 +252,27 @@ class FormCommentaires extends Component
 
             if ($comment) {
 
-                $this->match->live = "debut";
+                $this->match->live = "debut"; // modification colonne live
 
+                /* demarrage du score */
                 $this->home_score = 0;
                 $this->match->home_score = 0;
 
                 $this->away_score = 0;
                 $this->match->away_score = 0;
 
+                /* sauvegarde du match et du commentaire */
                 $this->match->save();
-
                 $comment->save();
+
+                /*creation second com PUB */
+                $commentData2['type_comments'] = 'Publicité';
+                $commentData2['minute'] = 0;
+                $commentData2['team_action'] = 'match';
+                $commentData2['commentator_id'] = $this->match->commentateur->id;
+
+                $comment2 = Commentaire::create($commentData2);
+                $comment2->save();
 
                 session()->flash('success', 'Bon Match ! ⚽⚽⚽');
                 return redirect()->to('matches/' . $this->match->id);
@@ -280,7 +289,7 @@ class FormCommentaires extends Component
     public function timeMitemps()
     {
 
-        
+
         $this->match->live = "mitemps";
         $this->match->save();
 
@@ -306,7 +315,7 @@ class FormCommentaires extends Component
 
     public function timeReprise()
     {
-        
+
         $this->match->live = "repriseMT";
 
         $commentData['type_comments'] = "C'est la reprise ! 😎";
@@ -329,7 +338,7 @@ class FormCommentaires extends Component
 
     public function timeFinDuMatch()
     {
-        
+
         $this->match->live = "finDeMatch";
 
         $this->nbrFavoris = 0;
