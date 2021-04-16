@@ -386,7 +386,8 @@
                         wire:model="player" required>
                         <option value="">Choisis un joueur</option>
                         @foreach ($match->awayClub->players as $player)
-                            <option value="{{ $player->id }}">{{ $player->first_name }} {{ $player->last_name }}
+                            <option value="{{ $player->id }}">{{ $player->first_name }}
+                                {{ $player->last_name }}
                             </option>
                         @endforeach
                         @for ($i = 1; $i <= 16; $i++)
@@ -666,24 +667,23 @@
                                         data-ad-client="ca-pub-7237777700901740" data-ad-slot="5934879385"></ins>
                                     <script>
                                         (adsbygoogle = window.adsbygoogle || []).push({});
+
                                     </script>
-                                @else
-                                    <p>{{ $comment->comments }}</p>
-                                    <div class="flex items-center">
-                                        @if ($comment->team_action == 'away' || $comment->team_action == 'home')
-                                            <p class="font-bold mr-4">{{ $comment->statistic->player->first_name }}
-                                                {{ $comment->statistic->player->last_name }}
-                                            </p>
-                                            @if ($comment->statistic->player->id >= 1 && $comment->statistic->player->id <= 16)
-                                                <button type="button"
-                                                    class="text-xs px-2 bg-primary text-white rounded-md"
-                                                    @click="open = true">
-                                                    Qui est ce ?
-                                                </button>
-                                            @endif
-                                        @endif
-                                    </div>
                                 @endif
+                                <p>{{ $comment->comments }}</p>
+                                <div class="flex items-center">
+                                    @if ($comment->team_action == 'away' || $comment->team_action == 'home')
+                                        <p class="font-bold mr-4">{{ $comment->statistic->player->first_name }}
+                                            {{ $comment->statistic->player->last_name }}
+                                        </p>
+                                        @if ($comment->statistic->player->id >= 1 && $comment->statistic->player->id <= 16)
+                                            <button type="button" class="text-xs px-2 bg-primary text-white rounded-md"
+                                                @click="open = true">
+                                                Qui est ce ?
+                                            </button>
+                                        @endif
+                                    @endif
+                                </div>
                             </div>
                             <!-- Menu ajout d'un joueur par utilisateur -->
                             <div class="border-t-2 pt-4 flex flex-col justify-center items-center" x-show="open"
@@ -743,7 +743,8 @@
                         @if (($match->commentateur->user_id == Auth::user()->id && $match->live != 'finDeMatch') || Auth::user()->role == 'super-admin' || Auth::user()->role == 'admin')
                             <div class="absolute flex justify-center items-center right-1 top-0">
                                 <div>
-                                    <a class="text-lg text-danger" href="{{ route('supprimer', ['id' => $comment->id]) }}"
+                                    <a class="text-lg text-danger"
+                                        href="{{ route('supprimer', ['id' => $comment->id]) }}"
                                         onclick="return confirm('Etes vous sûr de vouloir supprimer ce commentaire ?')"><i
                                             class="far fa-times-circle"></i></a>
                                 </div>
