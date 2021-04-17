@@ -81,7 +81,7 @@
                                 x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0 h-0"
                                 @click.away="open = false">
                                 <div x-data="{ open: false }">
-                                    <a href="/matches">Les prochains matchs</a>
+                                    {{-- <a href="/matches">Les prochains matchs</a> --}}
                                     <div>
                                         <a class="cursor-pointer" @click="open = true"
                                             x-transition:enter="transition ease-out duration-300"
@@ -241,7 +241,7 @@
                             class="cursor-pointer mb-4 border-b border-black text-xl md:text-3xl lg:text-4xl uppercase">
                             Liste des matchs</li>
                         <ul id="sousMenuRegions" class="pl-12">
-                            <li><a href="/matches">Les prochains matchs</a></li>
+                            {{-- <li><a href="/matches">Les prochains matchs</a></li> --}}
                             <li>Les matchs par régions</li>
                             <ul class="pl-12">
                                 <li class=""><a href="/regions/1">Auvergne - Rhones-Alpes</a></li>
