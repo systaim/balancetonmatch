@@ -58,13 +58,39 @@
                 <div
                     class="relative col-span-2 bg-gradient-to-r from-primary to-secondary flex flex-col justify-center items-center">
                     <div class="flex justify-center mt-2">
-                        <div class="bg-white rounded-sm mr-1 z-10">
-                            <p class="flex justify-center w-4 text-3xl px-4 sm:text-5xl sm:px-6 font-bold">
-                                {{ $home_score }}</p>
+                        <div class="z-10">
+                            <p class="bg-white rounded-sm mr-1 flex justify-center w-4 text-3xl px-4 sm:text-5xl sm:px-6 font-bold">
+                                {{ $home_score }}
+                            </p>
+                            @if(Auth::check() && $match->commentateur)
+                            @if($match->commentateur->user_id == Auth::user()->id || ($match->live == "finDeMatch" && Auth::user()->role == "manager" && (Auth::user()->club_id == $match->homeClub->id || Auth::user()->club_id == $match->awayClub->id)))
+                                <div class="flex justify-evenly items-center mt-1 z-10">
+                                    <button type="button" wire:click="decrementHomeScore" class="focus:outline-none">
+                                        <span class="h-4 w-4 flex items-center justify-center border-2 border-danger rounded-full text-danger bg-white">-</span>
+                                    </button>
+                                    <button type="button" wire:click="incrementHomeScore" class="focus:outline-none">
+                                        <span class="h-4 w-4 flex items-center justify-center border-2 border-darkSuccess rounded-full text-darkSuccess bg-white">+</span>
+                                    </button>
+                                </div>
+                            @endif
+                            @endif
                         </div>
-                        <div class="bg-white rounded-sm ml-1 z-10">
-                            <p class="flex justify-center w-4 text-3xl px-4 sm:text-5xl sm:px-6 font-bold">
-                                {{ $away_score }}</p>
+                        <div class="z-10">
+                            <p class="bg-white rounded-sm ml-1 flex justify-center w-4 text-3xl px-4 sm:text-5xl sm:px-6 font-bold">
+                                {{ $away_score }}
+                            </p>
+                            @if(Auth::check() && $match->commentateur)
+                            @if ($match->commentateur->user_id == Auth::user()->id || ($match->live == "finDeMatch" && Auth::user()->role == "manager" && (Auth::user()->club_id == $match->homeClub->id || Auth::user()->club_id == $match->awayClub->id)))
+                                <div class="flex justify-evenly items-center mt-1 z-10">
+                                    <button type="button" wire:click="decrementAwayScore" class="focus:outline-none">
+                                        <span class="h-4 w-4 flex items-center justify-center border-2 border-danger rounded-full text-danger bg-white">-</span>
+                                    </button>
+                                    <button type="button" wire:click="incrementAwayScore" class="focus:outline-none">
+                                        <span class="h-4 w-4 flex items-center justify-center border-2 border-darkSuccess rounded-full text-darkSuccess bg-white">+</span>
+                                    </button>
+                                </div>
+                            @endif
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -173,42 +199,15 @@
                 @endif
             </div>
         </div>
-        <div class="flex justify-evenly">
-            @auth
-            @if($match->commentateur)
-                @if ($match->commentateur->user_id == Auth::user()->id || ($match->live == "finDeMatch" && Auth::user()->role == "manager" && (Auth::user()->club_id == $match->homeClub->id || Auth::user()->club_id == $match->awayClub->id)))
-                    <div class="flex items-center justify-center">
-                        <button type="button" wire:click="decrementHomeScore" class="focus:outline-none"><span
-                                class="h-12 w-12 flex items-center justify-center border-2 border-danger rounded-full text-2xl text-danger m-1">-</span></button>
-                        <button type="button" wire:click="incrementHomeScore" class="focus:outline-none"><span
-                                class="h-12 w-12 flex items-center justify-center border-2 border-darkSuccess rounded-full text-2xl text-darkSuccess m-1">+</span></button>
-                    </div>
-                @endif
+        <div class="bg-gray-900 px-8 py-2 text-white text-center">
+            @if($match->live != "finDeMatch")
+                <p>Nombre de spectateurs : </p>
+                <p class="ml-1 font-bold">{{ count($visitors) }}</p>
+            @else
+                <p>{{ $textInfo }}</p>
             @endif
-            @endauth
-            
-            <div class="bg-primary px-8 py-2 text-secondary flex items-center">
-                @if($match->live != "finDeMatch")
-                    <p>Nombre de spectateurs : </p>
-                    <p class="ml-1 font-bold">{{ count($visitors) }}</p>
-                @else
-                    <p>{{ $textInfo }}</p>
-                @endif
-            </div>
-            @auth
-            @if($match->commentateur)
-            @if ($match->commentateur->user_id == Auth::user()->id || ($match->live == "finDeMatch" && Auth::user()->role == "manager"  && (Auth::user()->club_id == $match->homeClub->id || Auth::user()->club_id == $match->awayClub->id)))
-            <div class="flex items-center justify-center">
-                <button type="button" wire:click="decrementAwayScore" class="focus:outline-none"><span
-                        class="h-12 w-12 flex items-center justify-center border-2 border-danger rounded-full text-2xl text-danger m-1">-</span></button>
-                <button type="button" wire:click="incrementAwayScore" class="focus:outline-none"><span
-                        class="h-12 w-12 flex items-center justify-center border-2 border-darkSuccess rounded-full text-2xl text-darkSuccess m-1">+</span></button>
-            </div>
-            @endif
-            @endif
-            @endauth
         </div>
-
+        
         <!-- fin affichage bannière du match -->
 
         <!-------------------------
