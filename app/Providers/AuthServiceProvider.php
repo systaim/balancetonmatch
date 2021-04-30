@@ -7,6 +7,7 @@ use App\Models\Commentaire;
 use App\Models\Commentator;
 use App\Models\User;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use PhpParser\Node\Expr\Match_;
 

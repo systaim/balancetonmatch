@@ -18,8 +18,8 @@
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.0/dist/alpine.min.js" defer></script>
     <script data-ad-client="ca-pub-7237777700901740" async
         src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-    
-        <!-- Global site tag (gtag.js) - Google Analytics -->
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-MWPW5WC37V"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -43,9 +43,7 @@
                     <span class="burger"></span>
                 </div>
             </div>
-            <div
-                class="relative text-primary flex xl:flex-col justify-end sm:justify-center xl:justify-between items-center xl:items-between h-24 xl:block xl:h-auto">
-
+            <div class="relative text-primary flex xl:flex-col justify-end sm:justify-center xl:justify-between items-center xl:items-between h-24 xl:block xl:h-auto">
                 <div class="relative">
                     <div class="flex justify-center items-center mx-8">
                         <div>
@@ -54,11 +52,11 @@
                                     alt="logo de BTM">
                             </a>
                         </div>
-                        <div class="h-auto relative">
+                        <div class="h-auto relative diagonale">
                             <a href="/">
                                 <h1 class="sm:text-2xl md:text-3xl">Balance Ton Match</h1>
                                 <p
-                                    class="float-right inline-block text-xs60 sm:text-xs md:text-base px-2 bg-primary rounded-lg text-white ">
+                                    class="float-right inline-block text-xs60 sm:text-xs md:text-base px-2 bg-primary rounded-md text-white ">
                                     Quand la touche part en live...</p>
                             </a>
                         </div>
@@ -159,7 +157,7 @@
                                     </a>
                                 @endcanany
                                 <a class="px-6 py-4 hover:bg-blue-900 block" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                document.getElementById('logout-form').submit();">
+                                                    document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
                             @else
@@ -207,7 +205,7 @@
                                                 </div>
                                                 <a class="absolute bottom-2 right-6 p-2 hover:bg-blue-900 block"
                                                     href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                    document.getElementById('logout-form').submit();">
+                                                            document.getElementById('logout-form').submit();">
                                                     {{ __('Logout') }}
                                                 </a>
                                             @else

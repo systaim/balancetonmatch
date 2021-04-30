@@ -71,6 +71,9 @@ class FormCommentaires extends Component
             $this->match->live = "finDeMatch";
             $this->textInfo = "Commentaires fermés";
             $this->match->save();
+        } 
+        if ($this->match->live == "finDeMatch") {
+            $this->textInfo = "Commentaires fermés";
         }
 
         $this->minuteCom = $this->minute;
@@ -181,18 +184,38 @@ class FormCommentaires extends Component
         $this->commentsMatch = $this->match->commentaires()->orderBy('minute', 'desc')->orderBy('updated_at', 'desc')->get();
     }
 
-    // public function updateHomeScore()
-    // {
-    //     $this->home_score += 1;
-    //     $this->match->home_score += 1;
-    //     $this->match->save();
-    // }
-    // public function updateAwayScore()
-    // {
-    //     $this->away_score += 1;
-    //     $this->match->away_score += 1;
-    //     $this->match->save();
-    // }
+    //incrémentation, décrémentation du score
+
+    public function incrementHomeScore()
+    {
+        $this->home_score += 1;
+        $this->match->home_score += 1;
+        $this->match->save();
+    }
+
+    public function incrementAwayScore()
+    {
+        $this->away_score += 1;
+        $this->match->away_score += 1;
+        $this->match->save();
+    }
+
+    public function decrementHomeScore()
+    {
+        if ($this->home_score > 0) {
+            $this->home_score -= 1;
+            $this->match->home_score -= 1;
+            $this->match->save();
+        }
+    }
+    public function decrementAwayScore()
+    {
+        if ($this->away_score > 0) {
+            $this->away_score -= 1;
+            $this->match->away_score -= 1;
+            $this->match->save();
+        }
+    }
 
     public function clickFirstCom()
     {
@@ -204,8 +227,6 @@ class FormCommentaires extends Component
 
     public function becomeCommentator()
     {
-
-
         if ($this->dateMatch->diffInMinutes(now(), false) > -30) {
             $commentateur = new Commentator;
             $commentateur['user_id'] = Auth::user()->id;
@@ -288,7 +309,6 @@ class FormCommentaires extends Component
 
     public function timeMitemps()
     {
-
 
         $this->match->live = "mitemps";
         $this->match->save();

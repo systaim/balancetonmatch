@@ -172,11 +172,43 @@
                     </div>
                 @endif
             </div>
-            <div class="bg-primary px-8 py-2 text-secondary flex justify-center">
-                <p>Nombre de spectateurs : </p>
-                <p class="ml-1 font-bold">{{ count($visitors) }}</p>
-            </div>
         </div>
+        <div class="flex justify-evenly">
+            @auth
+            @if($match->commentateur)
+                @if ($match->commentateur->user_id == Auth::user()->id || ($match->live == "finDeMatch" && Auth::user()->role == "manager" && (Auth::user()->club_id == $match->homeClub->id || Auth::user()->club_id == $match->awayClub->id)))
+                    <div class="flex items-center justify-center">
+                        <button type="button" wire:click="decrementHomeScore" class="focus:outline-none"><span
+                                class="h-12 w-12 flex items-center justify-center border-2 border-danger rounded-full text-2xl text-danger m-1">-</span></button>
+                        <button type="button" wire:click="incrementHomeScore" class="focus:outline-none"><span
+                                class="h-12 w-12 flex items-center justify-center border-2 border-darkSuccess rounded-full text-2xl text-darkSuccess m-1">+</span></button>
+                    </div>
+                @endif
+            @endif
+            @endauth
+            
+            <div class="bg-primary px-8 py-2 text-secondary flex items-center">
+                @if($match->live != "finDeMatch")
+                    <p>Nombre de spectateurs : </p>
+                    <p class="ml-1 font-bold">{{ count($visitors) }}</p>
+                @else
+                    <p>{{ $textInfo }}</p>
+                @endif
+            </div>
+            @auth
+            @if($match->commentateur)
+            @if ($match->commentateur->user_id == Auth::user()->id || ($match->live == "finDeMatch" && Auth::user()->role == "manager"  && (Auth::user()->club_id == $match->homeClub->id || Auth::user()->club_id == $match->awayClub->id)))
+            <div class="flex items-center justify-center">
+                <button type="button" wire:click="decrementAwayScore" class="focus:outline-none"><span
+                        class="h-12 w-12 flex items-center justify-center border-2 border-danger rounded-full text-2xl text-danger m-1">-</span></button>
+                <button type="button" wire:click="incrementAwayScore" class="focus:outline-none"><span
+                        class="h-12 w-12 flex items-center justify-center border-2 border-darkSuccess rounded-full text-2xl text-darkSuccess m-1">+</span></button>
+            </div>
+            @endif
+            @endif
+            @endauth
+        </div>
+
         <!-- fin affichage bannière du match -->
 
         <!-------------------------
@@ -495,11 +527,6 @@
             @if ($match->live == 'reporte')
                 <div class="flex justify-center items-center my-6">
                     <p class="bg-danger font-bold py-2 px-3">Le match est reporté à une date ultérieure</p>
-                </div>
-            @endif
-            @if ($match->live == 'finDeMatch')
-                <div class="flex justify-center items-center my-6">
-                    <p class="bg-primary text-white py-2 px-3">{{ $textInfo }}</p>
                 </div>
             @endif
             @if (empty($match->commentateur) && $match->live != 'finDeMatch')

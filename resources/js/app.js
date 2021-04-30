@@ -22,31 +22,31 @@ burger.addEventListener("click", function () {
 
 /******************************
  * 
- * compteurs animés Ma page
+ * compteurs animés
  * 
  ******************************/
 
 
 let compteurs = document.querySelectorAll(".compteur");
 
-compteurs.forEach(compteur => {
-    function animateValue(obj, start, end, duration) {
-        let startTimestamp = null;
-        const step = timestamp => {
-            if (!startTimestamp) startTimestamp = timestamp;
-            const progress = Math.min(
-                (timestamp - startTimestamp) / duration, 1);
-            obj.innerHTML = Math.floor(progress * (start + end) + start);
-            if (progress < valeurCompteur) {
-                window.requestAnimationFrame(step);
-            }
-        };
-        window.requestAnimationFrame(step);
-    }
-    let valeurCompteur = compteur.innerHTML;
-    animateValue(compteur, 0, valeurCompteur, 3000);
-});
-
+    compteurs.forEach(compteur => {
+        console.log(compteur);
+        function animateValue(obj, start, end, duration) {
+            let startTimestamp = null;
+            const step = timestamp => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min(
+                    (timestamp - startTimestamp) / duration, 1);
+                obj.innerHTML = Math.floor(progress * (start + end) + start);
+                if (progress < valeurCompteur) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+        let valeurCompteur = compteur.innerHTML;
+        animateValue(compteur, 0, valeurCompteur, 3000);
+    });
 /******************************
  * 
  * main menu
@@ -125,18 +125,18 @@ window.addEventListener('scroll', function () {
     let moveToRight = document.querySelectorAll('.moveToRight')
     let moveToBottom = document.querySelectorAll('.moveToBottom')
     let moveToTop = document.querySelectorAll('.moveToTop')
-    if (moveToLeft != null) {
+    if (moveToLeft != null)
         moveLeftToRight(moveToLeft)
-    }
-    if (moveToRight != null) {
+
+    if (moveToRight != null)
         moveRightToLeft(moveToRight)
-    }
-    if (moveToBottom != null) {
+
+    if (moveToBottom != null)
         moveTopToBottom(moveToBottom)
-    }
-    if (moveToTop != null) {
+
+    if (moveToTop != null)
         moveBottomToTop(moveToTop)
-    }
+
 })
 
 

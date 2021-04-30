@@ -19420,12 +19420,14 @@ burger.addEventListener("click", function () {
 });
 /******************************
  * 
- * compteurs animés Ma page
+ * compteurs animés
  * 
  ******************************/
 
 var compteurs = document.querySelectorAll(".compteur");
 compteurs.forEach(function (compteur) {
+  console.log(compteur);
+
   function animateValue(obj, start, end, duration) {
     var startTimestamp = null;
 
@@ -19521,22 +19523,10 @@ window.addEventListener('scroll', function () {
   var moveToRight = document.querySelectorAll('.moveToRight');
   var moveToBottom = document.querySelectorAll('.moveToBottom');
   var moveToTop = document.querySelectorAll('.moveToTop');
-
-  if (moveToLeft != null) {
-    moveLeftToRight(moveToLeft);
-  }
-
-  if (moveToRight != null) {
-    moveRightToLeft(moveToRight);
-  }
-
-  if (moveToBottom != null) {
-    moveTopToBottom(moveToBottom);
-  }
-
-  if (moveToTop != null) {
-    moveBottomToTop(moveToTop);
-  }
+  if (moveToLeft != null) moveLeftToRight(moveToLeft);
+  if (moveToRight != null) moveRightToLeft(moveToRight);
+  if (moveToBottom != null) moveTopToBottom(moveToBottom);
+  if (moveToTop != null) moveBottomToTop(moveToTop);
 });
 
 /***/ }),
