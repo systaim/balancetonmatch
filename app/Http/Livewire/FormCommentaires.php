@@ -71,7 +71,7 @@ class FormCommentaires extends Component
             $this->match->live = "finDeMatch";
             $this->textInfo = "Commentaires fermés";
             $this->match->save();
-        } 
+        }
         if ($this->match->live == "finDeMatch") {
             $this->textInfo = "Commentaires fermés";
         }

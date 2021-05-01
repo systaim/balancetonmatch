@@ -67,7 +67,7 @@
         </div>
     </div>
 
-    <div class="py-6">
+    {{-- <div class="py-6">
         <div class="flex justify-center">
             <h3 class="p-2 text-primary text-2xl">La saison 2020/2021 c'est : </h3>
         </div>
@@ -110,7 +110,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
     @auth
         <div class="flex flex-col w-full lg:flex-row justify-around py-8">

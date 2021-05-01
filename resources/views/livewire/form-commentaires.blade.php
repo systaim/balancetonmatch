@@ -66,10 +66,10 @@
                             @if($match->commentateur->user_id == Auth::user()->id || ($match->live == "finDeMatch" && Auth::user()->role == "manager" && (Auth::user()->club_id == $match->homeClub->id || Auth::user()->club_id == $match->awayClub->id)))
                                 <div class="flex justify-evenly items-center mt-1 z-10">
                                     <button type="button" wire:click="decrementHomeScore" class="focus:outline-none">
-                                        <span class="h-4 w-4 flex items-center justify-center border-2 border-danger rounded-full text-danger bg-white">-</span>
+                                        <span class="h-4 w-4 flex items-center justify-center border- rounded-fu bg-white">-</span>
                                     </button>
                                     <button type="button" wire:click="incrementHomeScore" class="focus:outline-none">
-                                        <span class="h-4 w-4 flex items-center justify-center border-2 border-darkSuccess rounded-full text-darkSuccess bg-white">+</span>
+                                        <span class="h-4 w-4 flex items-center justify-center border-2 rounded-fu bg-white">+</span>
                                     </button>
                                 </div>
                             @endif
@@ -83,10 +83,10 @@
                             @if ($match->commentateur->user_id == Auth::user()->id || ($match->live == "finDeMatch" && Auth::user()->role == "manager" && (Auth::user()->club_id == $match->homeClub->id || Auth::user()->club_id == $match->awayClub->id)))
                                 <div class="flex justify-evenly items-center mt-1 z-10">
                                     <button type="button" wire:click="decrementAwayScore" class="focus:outline-none">
-                                        <span class="h-4 w-4 flex items-center justify-center border-2 border-danger rounded-full text-danger bg-white">-</span>
+                                        <span class="h-4 w-4 flex items-center justify-center border-2rounded-fullbg-white">-</span>
                                     </button>
                                     <button type="button" wire:click="incrementAwayScore" class="focus:outline-none">
-                                        <span class="h-4 w-4 flex items-center justify-center border-2 border-darkSuccess rounded-full text-darkSuccess bg-white">+</span>
+                                        <span class="h-4 w-4 flex items-center justify-center border-2 rounded-full bg-white">+</span>
                                     </button>
                                 </div>
                             @endif
