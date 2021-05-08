@@ -47,9 +47,9 @@
                 <div class="relative">
                     <div class="flex justify-center items-center mx-8">
                         <div>
-                            <a href="/">
-                                <img class="w-20 md:w-24" src="{{ asset('/images/logos/btmLogoJB.png') }}"
-                                    alt="logo de BTM">
+                            <a href="/" class="relative">
+                                <img class="w-20 md:w-24" src="{{ asset('/images/logos/btmLogoJB.png') }}" alt="logo de BTM">
+                                <p class="absolute top-1 -left-4 bg-primary px-1 text-white font-light rounded-md">Beta</p>
                             </a>
                         </div>
                         <div class="h-auto relative diagonale">
@@ -57,7 +57,8 @@
                                 <h1 class="sm:text-2xl md:text-3xl">Balance Ton Match</h1>
                                 <p
                                     class="float-right inline-block text-xs60 sm:text-xs md:text-base px-2 bg-primary rounded-md text-white ">
-                                    Quand la touche part en live...</p>
+                                    Quand la touche part en live...
+                                </p>
                             </a>
                         </div>
                     </div>
