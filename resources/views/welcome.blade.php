@@ -20,16 +20,16 @@
     <div id="wrong" class="shadow-xl">
         <div class="container mx-auto flex justify-around px-5 py-6 md:flex-row flex-col items-center">
             <div class="lg:flex-grow md:w-1/2 px-8 flex flex-col md:items-start md:text-left items-center text-center">
-                <h2 class="sm:text-4xl text-3xl mb-4 font-medium">Le sport amateur à l'arrêt !</h2>
-                <p class="mb-8">La crise sanitaire étant, le foot amateur est arrêté jusque nouvel ordre...</p>
+                <h2 class="text-3xl mb-4 font-medium">Le sport amateur va reprendre !</h2>
+                <p class="mb-4">La saison 2021-2022 est déjà dans toutes les têtes.</p>
                 <p class="mb-8 text-justify">
-                    En espérant que tout reparte à la normal, pour la saison 2021-2022 vous pourrez créer de nouveau vos
-                    matchs.
-                    En attendant, vous pouvez continuer à créer ou gérer les joueurs de votre club.
+                    Les mutations commencent déjà à faire parler 😎 <br>
+                    Et l'organisation des matchs amicaux pour préparer cette saison également. <br>
+                    Ne faites pas les timides, partagez vos matchs en live et profitez des matchs amicaux de cette inter-saison pour vous exercer.
                 </p>
             </div>
             <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 mb-10 md:mb-0">
-                <img class="object-cover object-center rounded" alt="hero" src="{{ asset('images/wrong.jpg') }}">
+                <img class="object-cover object-center rounded" alt="hero" src="{{ asset('images/reprise.jpg') }}">
             </div>
         </div>
     </div>

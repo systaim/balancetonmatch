@@ -286,19 +286,16 @@ class FormCommentaires extends Component
                 $this->match->save();
                 $comment->save();
 
-                /*creation second com PUB */
-                $commentData2['type_comments'] = 'Publicité';
-                $commentData2['minute'] = 0;
-                $commentData2['team_action'] = 'match';
-                $commentData2['commentator_id'] = $this->match->commentateur->id;
+                // /*creation second com PUB */
+                // $commentData2['type_comments'] = 'Publicité';
+                // $commentData2['minute'] = 0;
+                // $commentData2['team_action'] = 'match';
+                // $commentData2['commentator_id'] = $this->match->commentateur->id;
 
-                $comment2 = Commentaire::create($commentData2);
-                $comment2->save();
+                // $comment2 = Commentaire::create($commentData2);
+                // $comment2->save();
 
                 session()->flash('success', 'Bon Match ! ⚽⚽⚽');
-                return redirect()->to('matches/' . $this->match->id);
-            } else {
-                session()->flash('danger', 'Un problème s\'est produit');
                 return redirect()->to('matches/' . $this->match->id);
             }
         } else {
