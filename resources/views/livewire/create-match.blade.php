@@ -8,7 +8,7 @@
         <div class="lg:grid grid-cols-12 w-11/12 m-auto">
             <div class="lg:col-span-5 flex items-start justify-center">
                 @if($homeTeam == "")
-                <div class="mx-2 ">
+                <div class="mx-4">
                     <label class="sr-only" for="searchHome">DOM</label>
                     @error('searchHome')
                     <div class="alert alert-danger">{{ $message }}</div>

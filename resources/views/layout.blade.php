@@ -146,7 +146,7 @@
                                 @if (Auth::user()->club)
                                     <a class="px-6 py-4 hover:bg-blue-900 block"
                                         href="/clubs/{{ Auth::user()->club->id }}"><span class="text-sm">Mon
-                                            club</span></br>{{ Auth::user()->club->name }}</a>
+                                            club</span><br>{{ Auth::user()->club->name }}</a>
                                 @endif
                                 <a class="px-6 py-4 hover:bg-blue-900 block" href="{{ route('matches.create') }}">
                                     Je crée un match
