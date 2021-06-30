@@ -23,9 +23,9 @@
                 <h2 class="text-3xl mb-4 font-medium">Le sport amateur va reprendre !</h2>
                 <p class="mb-4">La saison 2021-2022 est déjà dans toutes les têtes.</p>
                 <p class="mb-8 text-justify">
-                    Les mutations commencent déjà à faire parler 😎 <br>
+                    Les mutations sont lancées 😎 <br>
                     Et l'organisation des matchs amicaux pour préparer cette saison également. <br>
-                    Ne faites pas les timides, partagez vos matchs en live et profitez des matchs amicaux de cette inter-saison pour vous exercer.
+                    Ne fais pas le timide, partage et profite des matchs amicaux de cette inter-saison pour t'exercer.
                 </p>
             </div>
             <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 mb-10 md:mb-0">

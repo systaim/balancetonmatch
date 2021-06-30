@@ -36,13 +36,24 @@
                             <label for="homeAction">
                                 <div
                                     class="logo h-16 w-16 sm:h-20 sm:w-20 lg:h-32 lg:w-32 cursor-pointer lg:mr-1 xl:mr-4">
+                                    @if ($match->id == 0)
                                     <img class="object-contain w-full"
+                                        src="{{ asset('images/100000.jpg') }}"
+                                        alt="logo">
+                                    @else
+                                        <img class="object-contain w-full"
                                         src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $match->homeClub->numAffiliation }}.jpg"
                                         alt="logo">
+                                    @endif
                                 </div>
                             </label>
                         </div>
                         <div>
+                            @if ($match->id == 0)
+                                <p class="truncate text-center sm:font-bold lg:text-2xl">
+                                    EQUIPE 1
+                                </p>
+                            @else
                             <p class="truncate text-center sm:font-bold lg:text-2xl">
                                 {{ $match->homeClub->name }}
                             </p>
@@ -51,6 +62,7 @@
                                     page club →
                                 </p>
                             </a>
+                            @endif
                         </div>
                     </div>
 
@@ -98,14 +110,21 @@
                     <div
                         class="bg-secondary p-2 text-primary flex flex-col-reverse lg:flex-row lg:items-center lg:justify-end lg:rounded-r-full">
                         <div>
-                            <p class="truncate text-center lg:text-left sm:font-bold lg:text-2xl">
-                                {{ $match->awayClub->name }}
-                            </p>
-                            <a href="{{ route('clubs.show', $match->awayClub->id) }}">
-                                <p class="truncate text-right text-xs underline leading-6">
-                                    page club →
+                            @if ($match->id == 0)
+                                <p class="truncate text-center lg:text-left sm:font-bold lg:text-2xl">
+                                    EQUIPE 2
                                 </p>
-                            </a>
+                            @else
+                                <p class="truncate text-center lg:text-left sm:font-bold lg:text-2xl">
+                                    {{ $match->awayClub->name }}
+                                </p>
+                                <a href="{{ route('clubs.show', $match->awayClub->id) }}">
+                                    <p class="truncate text-right text-xs underline leading-6">
+                                        page club →
+                                    </p>
+                                </a>
+                            @endif
+                            
                         </div>
                         <div class="flex justify-center">
                             @auth
@@ -115,11 +134,16 @@
                                 @endif
                             @endauth
                             <label for="awayAction">
-                                <div
-                                    class="logo h-16 w-16 sm:h-20 sm:w-20 lg:h-32 lg:w-32 cursor-pointer lg:ml-1 xl:ml-4">
+                                <div class="logo h-16 w-16 sm:h-20 sm:w-20 lg:h-32 lg:w-32 cursor-pointer lg:ml-1 xl:ml-4">
+                                    @if ($match->id == 0)
+                                    <img class="object-contain w-full"
+                                        src="{{ asset('images/200000.jpg') }}"
+                                        alt="logo">
+                                    @else
                                     <img class="object-contain w-full"
                                         src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $match->awayClub->numAffiliation }}.jpg"
                                         alt="logo">
+                                    @endif
                                 </div>
                             </label>
                         </div>
@@ -702,7 +726,7 @@
                                         <p class="font-bold mr-4">{{ $comment->statistic->player->first_name }}
                                             {{ $comment->statistic->player->last_name }}
                                         </p>
-                                        @if ($comment->statistic->player->id >= 1 && $comment->statistic->player->id <= 16)
+                                        @if ($comment->statistic->player->id >= 1 && $comment->statistic->player->id <= 16 && $match->id != 0)
                                             <button type="button" class="text-xs px-2 bg-primary text-white rounded-md"
                                                 @click="open = true">
                                                 Qui est ce ?
