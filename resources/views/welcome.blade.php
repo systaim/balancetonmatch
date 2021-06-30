@@ -33,39 +33,82 @@
             </div>
         </div>
     </div>
-    <div class="text-gray-200 bg-gray-900 body-font shadow-2xl">
+    <section>
+        <div class="text-gray-200 bg-gray-900 body-font shadow-2xl">
+            <div class="container px-5 py-24 mx-auto">
+                <div class="lg:w-2/3 flex flex-col sm:flex-row sm:items-center items-start mx-auto moveToLeft">
+                    <h3 class="flex-grow sm:pr-16 text-xl font-medium text-white">Jete un oeil au match de démonstration
+                        pour
+                        voir comment ca fonctionne</h3>
+                    <a href="matches/0"><button class="btn btnSecondary h-14 w-48">J'y vais</button></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="text-gray-600 body-font overflow-hidden">
         <div class="container px-5 py-24 mx-auto">
-            <div class="lg:w-2/3 flex flex-col sm:flex-row sm:items-center items-start mx-auto moveToLeft">
-                <h3 class="flex-grow sm:pr-16 text-xl font-medium text-white">Jete un oeil au match de démonstration pour
-                    voir comment ca fonctionne</h3>
-                <a href="matches/0"><button class="btn btnSecondary h-14 w-48">J'y vais</button></a>
+            <div class="-my-8 divide-y-2 divide-gray-100">
+                <div class="py-8 flex flex-wrap md:flex-nowrap">
+                    <div class="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col">
+                        <span class="font-semibold title-font text-primary">BREAKING NEWS</span>
+                        <span class="mt-1 text-gray-500 text-sm">01 juillet 2021</span>
+                    </div>
+                    <div class="md:flex-grow">
+                        <h2 class="text-2xl font-medium text-gray-900 title-font mb-2">En mode application</h2>
+                        <p class="leading-relaxed">Pour l'instant BTM, n'existe qu'en version web mais sa version mobile
+                            arrivera très vite ! <br>
+                            Cela prend du temps mais on va tout faire pour vous proposer une
+                            expérience encore meilleure.
+                        </p>
+                    </div>
+                </div>
+                <div class="py-8 flex flex-wrap md:flex-nowrap">
+                    <div class="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col">
+                        <span class="font-semibold title-font text-primary">BREAKING NEWS</span>
+                        <span class="mt-1 text-gray-500 text-sm">01 mai 2020</span>
+                    </div>
+                    <div class="md:flex-grow">
+                        <h2 class="text-2xl font-medium text-gray-900 title-font mb-2">Lancement du site</h2>
+                        <p class="leading-relaxed">
+                            Le site est enfin publié. Cela aura prit du temps et le site sera resté longtemps à l'état de
+                            projet (merci Covid 😒)... <br>
+                            On a décidé de le lancer et d'attendre vos retours qui nous seront
+                            précieux.<br>
+                            Nous en sommes qu'à la version bêta mais tout va s'accélérer une fois les matchs et compétitions
+                            repartis !
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="container px-5 mx-auto">
-        <div class="flex flex-wrap justify-evenly mx-4 mb-10 text-center text-white moveToTop opacity-0">
-            <div class="lg:w-2/5 my-5 pb-10 bg-primary rounded-lg shadow-2xl">
-                <div class="rounded-lg h-64 overflow-hidden">
-                    <img alt="tous les matchs" class="object-cover object-center h-full w-full"
-                        src="{{ asset('images/ballon-feu.jpg') }}">
+    </section>
+    <section>
+        <div class="container px-5 mx-auto">
+            <div class="flex flex-wrap justify-evenly mx-4 mb-10 text-center text-white moveToTop opacity-0">
+                <div class="lg:w-2/5 my-5 pb-10 bg-primary rounded-lg shadow-2xl">
+                    <div class="rounded-lg h-64 overflow-hidden">
+                        <img alt="tous les matchs" class="object-cover object-center h-full w-full"
+                            src="{{ asset('images/ballon-feu.jpg') }}">
+                    </div>
+                    <h2 class="text-2xl font-medium mt-6 mb-3">Les matchs à venir</h2>
+                    <p class="leading-relaxed text-base">Les matchs programmés sont à retrouvés ici.</p>
+                    <a href="/matches"><button class="btn btnSecondary">Je vais voir</button></a>
                 </div>
-                <h2 class="text-2xl font-medium mt-6 mb-3">Les matchs à venir</h2>
-                <p class="leading-relaxed text-base">Les matchs programmés sont à retrouvés ici.</p>
-                <a href="/matches"><button class="btn btnSecondary">Je vais voir</button></a>
-            </div>
-            <div class="lg:w-2/5 my-5 pb-10 bg-primary rounded-lg shadow-2xl moveToTop opacity-0">
-                <div class="rounded-lg h-64 overflow-hidden">
-                    <img alt="les matchs en live" class="object-cover object-center h-full w-full"
-                        src="{{ asset('images/on-air.jpg') }}">
+                <div class="lg:w-2/5 my-5 pb-10 bg-primary rounded-lg shadow-2xl moveToTop opacity-0">
+                    <div class="rounded-lg h-64 overflow-hidden">
+                        <img alt="les matchs en live" class="object-cover object-center h-full w-full"
+                            src="{{ asset('images/on-air.jpg') }}">
+                    </div>
+                    <h2 class="text-2xl font-medium mt-6 mb-3">Les matchs en Live</h2>
+                    <p class="leading-relaxed text-base">En ce moment <span
+                            class="bg-secondary text-primary py-1 px-2 rounded-lg">{{ count($liveMatches) }}</span>
+                        {{ count($liveMatches) <= 1 ? 'match' : 'matchs' }} en cours</p>
+                    <a href="/live"><button class="btn btnSecondary">Je vais voir</button></a>
                 </div>
-                <h2 class="text-2xl font-medium mt-6 mb-3">Les matchs en Live</h2>
-                <p class="leading-relaxed text-base">En ce moment <span
-                        class="bg-secondary text-primary py-1 px-2 rounded-lg">{{ count($liveMatches) }}</span>
-                    {{ count($liveMatches) <= 1 ? 'match' : 'matchs' }} en cours</p>
-                <a href="/live"><button class="btn btnSecondary">Je vais voir</button></a>
             </div>
         </div>
-    </div>
+    </section>
+
 
     {{-- <div class="py-6">
         <div class="flex justify-center">

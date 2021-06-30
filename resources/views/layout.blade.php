@@ -129,13 +129,13 @@
                         </div>
                     @else
                         <div class="flex justify-end pr-6 cursor-pointer" @click="open = true">
-                            <div id="btnMenu" class="focus:outline-none text-primary ml-2">
+                            <div id="btnMenu" class="focus:outline-none text-gray-200 ml-2 bg-primary p-4 rounded-lg shadow-xl">
                                 <i class="far fa-user text-xl"></i> <i class="fas fa-caret-down"></i>
                             </div>
                         </div>
                     @endauth
                     <div id="menuUser"
-                        class="absolute z-50 border bg-primary rounded-lg shadow-lg overflow-hidden left-0 w-full"
+                        class="absolute z-50 border bg-primary rounded-lg shadow-lg overflow-hidden left-0 right-0 w-full"
                         x-show="open" x-transition:enter="transition ease-out duration-300"
                         x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
                         x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100"
