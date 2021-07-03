@@ -36,12 +36,12 @@
 <body>
     <div id="container">
         <header id="header" class="relative bg-gray-100 h-24 xl:h-auto">
-            {{-- <div id="burger"
-                class="xl:hidden absolute cursor-pointer top-5 left-3 flex justify-center items-center h-12 w-12 bg-primary z-50">
+            <div id="burger"
+                class="hidden absolute cursor-pointer top-5 left-3 justify-center items-center h-12 w-12 bg-primary z-50">
                 <div class="open-main-nav flex justify-center">
                     <span class="burger"></span>
                 </div>
-            </div> --}}
+            </div>
             <div
                 class="relative text-primary flex xl:flex-col justify-center xl:justify-between items-center xl:items-between h-24 xl:block xl:h-auto">
                 <div class="relative">
