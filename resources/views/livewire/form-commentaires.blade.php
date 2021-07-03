@@ -74,7 +74,7 @@
                             <p class="bg-white rounded-sm mr-1 flex justify-center w-4 text-3xl px-4 sm:text-5xl sm:px-6 font-bold">
                                 {{ $home_score }}
                             </p>
-                            @if(Auth::check() && $match->commentateur)
+                            @if(Auth::check() && $match->commentateur && ($match->live == "debut" || $match->live == "mitemps" || $match->live == "repriseMT"))
                             @if($match->commentateur->user_id == Auth::user()->id || ($match->live == "finDeMatch" && Auth::user()->role == "manager" && (Auth::user()->club_id == $match->homeClub->id || Auth::user()->club_id == $match->awayClub->id)))
                                 <div class="flex justify-evenly items-center mt-1 z-10">
                                     <button type="button" wire:click="decrementHomeScore" class="focus:outline-none">
@@ -91,7 +91,7 @@
                             <p class="bg-white rounded-sm ml-1 flex justify-center w-4 text-3xl px-4 sm:text-5xl sm:px-6 font-bold">
                                 {{ $away_score }}
                             </p>
-                            @if(Auth::check() && $match->commentateur)
+                            @if(Auth::check() && $match->commentateur && ($match->live == "debut" || $match->live == "mitemps" || $match->live == "repriseMT"))
                             @if ($match->commentateur->user_id == Auth::user()->id || ($match->live == "finDeMatch" && Auth::user()->role == "manager" && (Auth::user()->club_id == $match->homeClub->id || Auth::user()->club_id == $match->awayClub->id)))
                                 <div class="flex justify-evenly items-center mt-1 z-10">
                                     <button type="button" wire:click="decrementAwayScore" class="focus:outline-none">
@@ -820,20 +820,20 @@
                     </div>
                 </div>
             </div>
-            <div>
-                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                <!-- vertical match -->
-                <ins class="adsbygoogle"
-                    style="display:block"
-                    data-ad-client="ca-pub-7237777700901740"
-                    data-ad-slot="2316864272"
-                    data-ad-format="auto"
-                    data-full-width-responsive="true"></ins>
-                <script>
-                    (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
-            </div>
         @endif
+        <div>
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <!-- vertical match -->
+            <ins class="adsbygoogle"
+                style="display:block"
+                data-ad-client="ca-pub-7237777700901740"
+                data-ad-slot="2316864272"
+                data-ad-format="auto"
+                data-full-width-responsive="true"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
     </div>
     <!-- Fin affichage des commentaires -->
 </div>

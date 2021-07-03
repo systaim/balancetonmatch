@@ -30,31 +30,33 @@
         gtag('js', new Date());
 
         gtag('config', 'G-MWPW5WC37V');
-
     </script>
 </head>
 
 <body>
     <div id="container">
         <header id="header" class="relative bg-gray-100 h-24 xl:h-auto">
-            <div id="burger"
+            {{-- <div id="burger"
                 class="xl:hidden absolute cursor-pointer top-5 left-3 flex justify-center items-center h-12 w-12 bg-primary z-50">
                 <div class="open-main-nav flex justify-center">
                     <span class="burger"></span>
                 </div>
-            </div>
-            <div class="relative text-primary flex xl:flex-col justify-end sm:justify-center xl:justify-between items-center xl:items-between h-24 xl:block xl:h-auto">
+            </div> --}}
+            <div
+                class="relative text-primary flex xl:flex-col justify-center xl:justify-between items-center xl:items-between h-24 xl:block xl:h-auto">
                 <div class="relative">
                     <div class="flex justify-center items-center mx-8">
                         <div>
                             <a href="/">
-                                <img class="w-20 md:w-24" src="{{ asset('/images/logos/btmLogoJB.png') }}" alt="logo de BTM">
+                                <img class="w-20 md:w-24" src="{{ asset('/images/logos/btmLogoJB.png') }}"
+                                    alt="logo de BTM">
                             </a>
                         </div>
                         <div class="relative h-auto diagonale">
                             <a href="/">
                                 <h1 class="sm:text-2xl md:text-3xl">Balance Ton Match</h1>
-                                <p class="float-right inline-block text-xs60 sm:text-xs md:text-base px-2 bg-primary rounded-md text-white ">
+                                <p
+                                    class="float-right inline-block text-xs60 sm:text-xs md:text-base px-2 bg-primary rounded-md text-white ">
                                     Quand la touche part en live...
                                 </p>
                                 <p class="float-left text-primary bg-secondary px-1 rounded-md text-xs">Beta</p>
@@ -129,7 +131,8 @@
                         </div>
                     @else
                         <div class="flex justify-end pr-6 cursor-pointer" @click="open = true">
-                            <div id="btnMenu" class="focus:outline-none text-gray-200 ml-2 bg-primary p-4 rounded-lg shadow-xl">
+                            <div id="btnMenu"
+                                class="focus:outline-none text-gray-200 ml-2 bg-primary p-4 rounded-lg shadow-xl">
                                 <i class="far fa-user text-xl"></i> <i class="fas fa-caret-down"></i>
                             </div>
                         </div>
@@ -157,7 +160,7 @@
                                     </a>
                                 @endcanany
                                 <a class="px-6 py-4 hover:bg-blue-900 block" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                    document.getElementById('logout-form').submit();">
+                                                                    document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
                             @else
@@ -204,8 +207,9 @@
                                                     @endcanany
                                                 </div>
                                                 <a class="absolute bottom-2 right-6 p-2 hover:bg-blue-900 block"
-                                                    href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                            document.getElementById('logout-form').submit();">
+                                                    href="{{ route('logout') }}"
+                                                    onclick="event.preventDefault();
+                                                                                            document.getElementById('logout-form').submit();">
                                                     {{ __('Logout') }}
                                                 </a>
                                             @else
@@ -292,6 +296,39 @@
         @endif
         @yield('content')
         @include('footer')
+    </div>
+    <div class="md:hidden fixed right-0 left-0 bottom-0 h-12 bg-gray-100 shadow-2xl rounded-t-sm z-50">
+        <div class="flex justify-around items-center h-full">
+            <a href="/">
+                <div class="flex flex-col items-center justify-center">
+                    <i class="fas fa-home text-xl"></i>
+                    <p class="text-xs">Accueil</p>
+                </div>
+            </a>
+            <a href="/clubs">
+                <div class="flex flex-col items-center justify-center">
+                    <i class="fas fa-futbol text-xl"></i>
+                    <p class="text-xs">Clubs</p>
+                </div>
+            </a>
+            {{-- <a href="#">
+                <div class="flex justify-center items-center rounded-full h-16 w-16 bg-primary mb-4 shadow-outline">
+                    <i class="far fa-bars text-4xl text-white shadow-2xl"></i>
+                </div>
+            </a> --}}
+            <a href="matches">
+                <div class="flex flex-col items-center justify-center">
+                    <i class="fas fa-list text-xl"></i>
+                    <p class="text-xs">Matchs</p>
+                </div>
+            </a>
+            <a href="user/profile">
+                <div class="flex flex-col items-center justify-center">
+                    <i class="far fa-user text-xl"></i>
+                    <p class="text-xs">Profil</p>
+                </div>
+            </a>
+        </div>
     </div>
     @livewireScripts
     <script src="{{ asset('js/app.js') }}"></script>
