@@ -17,6 +17,8 @@ class Club extends Model
 
     protected $fillable = ['abbreviation','numAffiliation','zip_code', 'name', 'city', 'logo_path', 'primary_color', 'secondary_color', 'region_id'];
 
+    protected $hidden = ['id', 'created_at', 'updated_at', 'deleted_at'];
+
     public function staffs()
     {
         return $this->hasMany(Staff::class);
