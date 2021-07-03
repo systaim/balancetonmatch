@@ -316,7 +316,7 @@
                     <i class="far fa-bars text-4xl text-white shadow-2xl"></i>
                 </div>
             </a> --}}
-            <a href="matches">
+            <a href="/matches">
                 <div class="flex flex-col items-center justify-center">
                     <i class="fas fa-list text-xl"></i>
                     <p class="text-xs">Matchs</p>
