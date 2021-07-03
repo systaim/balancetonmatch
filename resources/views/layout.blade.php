@@ -322,7 +322,7 @@
                     <p class="text-xs">Matchs</p>
                 </div>
             </a>
-            <a href="user/profile">
+            <a href="/user/profile">
                 <div class="flex flex-col items-center justify-center">
                     <i class="far fa-user text-xl"></i>
                     <p class="text-xs">Profil</p>
