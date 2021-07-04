@@ -175,7 +175,7 @@
             </div>
             <!-- NAV MOBILE -->
             <div id="main-nav" class="main-nav">
-                <div class="relative w-4/5 rounded-b-lg shadow-2xl py-12 bg-primary text-white lg:hidden">
+                <div class="relative rounded-bl-full shadow-2xl py-12 bg-primary text-white lg:hidden">
                     <div class="">
                         <div class="flex justify-center items-start">
                             <img class="w-2/12" src="{{ asset('images/logos/btmLogoJB.png') }}" alt="logo">
@@ -298,7 +298,7 @@
         @include('footer')
     </div>
     <div class="md:hidden fixed right-0 left-0 bottom-0 h-12 bg-gray-100 shadow-2xl rounded-t-sm z-50">
-        <div class="flex justify-around items-center h-full">
+        <div class="relative flex justify-around items-center h-full">
             <a href="/">
                 <div class="flex flex-col items-center justify-center">
                     <i class="fas fa-home text-xl"></i>
@@ -311,14 +311,20 @@
                     <p class="text-xs">Clubs</p>
                 </div>
             </a>
+            <div id="burger2"
+                class="cursor-pointer top-5 left-3 flex justify-center items-center h-12 w-12 bg-primary z-50">
+                <div class="open-main-nav flex justify-center">
+                    <span class="burger"></span>
+                </div>
+            </div>
             {{-- <a href="#">
-                <div class="flex justify-center items-center rounded-full h-16 w-16 bg-primary mb-4 shadow-outline">
-                    <i class="far fa-bars text-4xl text-white shadow-2xl"></i>
+                <div class="flex flex-col justify-center items-center rounded-full h-16 w-16 bg-primary mb-4 shadow-outline">
+                    <i class="fas fa-bars text-4xl text-white shadow-2xl"></i>
                 </div>
             </a> --}}
             <a href="/matches">
                 <div class="flex flex-col items-center justify-center">
-                    <i class="fas fa-list text-xl"></i>
+                    <i class="far fa-list-alt text-xl"></i>
                     <p class="text-xs">Matchs</p>
                 </div>
             </a>

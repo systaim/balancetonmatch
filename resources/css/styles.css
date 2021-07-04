@@ -823,7 +823,7 @@
     }
     
     #container.is-open {
-        transform: translateX(80%);
+        transform: translateX(100%);
         transition: all 0.5s;
     }
     
@@ -836,7 +836,7 @@
         bottom: 0;
         /* z-index: 9999; */
         visibility: hidden;
-        transform: translateX(-80%);
+        transform: translateX(-100%);
     }
     
     #main-nav.is-open {
