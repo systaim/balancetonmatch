@@ -31,7 +31,6 @@
 
         gtag('config', 'G-MWPW5WC37V');
     </script>
-    <script src="{{ mix('js/app.js') }}"></script>
 
 </head>
 
@@ -300,79 +299,7 @@
         @yield('content')
         @include('footer')
     </div>
-    <div id="menu-mobile" class="invisible fixed bottom-12 w-full bg-primary py-4">
-        <div class="flex flex-wrap justify-center">
-            @auth
-                <div class="flex flex-col justify-center items-center bg-secondary h-36 w-36 m-2 rounded-md">
-                    <i class="far fa-plus-square text-4xl"></i>
-                    <p class="text-md">Créer un match</p>
-                </div>
-                <a href="{{ route('logout') }}" onclick="event.preventDefault();
-                                document.getElementById('logout-form').submit();">
-                    <div class="flex flex-col justify-center items-center bg-secondary h-36 w-36 m-2 rounded-md">
-                        <i class="fas fa-power-off text-4xl"></i>
-                        <p class="text-md">Déconnexion</p>
-                    </div>
-                </a>
-                <div class="flex flex-col justify-center items-center bg-secondary h-36 w-36 m-2 rounded-md">
-                    <i class="far fa-envelope text-4xl"></i>
-                    <p class="text-md">Contact</p>
-                </div>
-            @else
-                <a href="/login">
-                    <div class="flex flex-col justify-center items-center bg-secondary h-36 w-36 m-2 rounded-md">
-                        <i class="fas fa-user-check text-4xl"></i>
-                        <p class="text-md">Connexion</p>
-                    </div>
-                </a>
-                <a href="/register">
-                    <div class="flex flex-col justify-center items-center bg-secondary h-36 w-36 m-2 rounded-md">
-                        <i class="fas fa-user-plus text-4xl"></i>
-                        <p class="text-md">Inscription</p>
-                    </div>
-                </a>
-            @endauth
-        </div>
-    </div>
-    <div class="md:hidden fixed right-0 left-0 bottom-0 h-12 bg-gray-100 shadow-2xl rounded-t-sm z-50">
-        <div class="relative flex justify-around items-center h-full">
-            <a href="/">
-                <div class="flex flex-col items-center justify-center">
-                    <i class="fas fa-home text-xl"></i>
-                    <p class="text-xs">Accueil</p>
-                </div>
-            </a>
-            <a href="/clubs">
-                <div class="flex flex-col items-center justify-center">
-                    <i class="fas fa-search text-xl"></i>
-                    <p class="text-xs">Clubs</p>
-                </div>
-            </a>
-            <div id="burger2"
-                class="cursor-pointer flex flex-col justify-center items-center rounded-full h-16 w-16 bg-primary mb-4 shadow-outline">
-                <div class="open-main-nav flex justify-center">
-                    <span class="burger"></span>
-                </div>
-            </div>
-            {{-- <a href="#">
-                <div class="flex flex-col justify-center items-center rounded-full h-16 w-16 bg-primary mb-4 shadow-outline">
-                    <i class="fas fa-bars text-4xl text-white shadow-2xl"></i>
-                </div>
-            </a> --}}
-            <a href="/matches">
-                <div class="flex flex-col items-center justify-center">
-                    <i class="far fa-list-alt text-xl"></i>
-                    <p class="text-xs">Matchs</p>
-                </div>
-            </a>
-            <a href="/user/profile">
-                <div class="flex flex-col items-center justify-center">
-                    <i class="fas fa-user-cog text-xl"></i>
-                    <p class="text-xs">Profil</p>
-                </div>
-            </a>
-        </div>
-    </div>
+
     <script src="{{ mix('js/app.js') }}"></script>
     @livewireScripts
 </body>
