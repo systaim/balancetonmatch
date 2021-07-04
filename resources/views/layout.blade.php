@@ -159,8 +159,9 @@
                                         Page admin
                                     </a>
                                 @endcanany
-                                <a class="px-6 py-4 hover:bg-blue-900 block" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                                    document.getElementById('logout-form').submit();">
+                                <a class="px-6 py-4 hover:bg-blue-900 block" href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
+                                                                                                            document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
                             @else
@@ -209,7 +210,7 @@
                                                 <a class="absolute bottom-2 right-6 p-2 hover:bg-blue-900 block"
                                                     href="{{ route('logout') }}"
                                                     onclick="event.preventDefault();
-                                                                                            document.getElementById('logout-form').submit();">
+                                                                                                                                    document.getElementById('logout-form').submit();">
                                                     {{ __('Logout') }}
                                                 </a>
                                             @else
@@ -297,6 +298,40 @@
         @yield('content')
         @include('footer')
     </div>
+    <div id="menu-mobile" class="fixed bottom-12 w-full bg-primary py-4">
+        <div class="flex flex-wrap justify-center">
+            @auth
+                <div class="flex flex-col justify-center items-center bg-secondary h-36 w-36 m-2 rounded-md">
+                    <i class="far fa-plus-square text-4xl"></i>
+                    <p class="text-md">Créer un match</p>
+                </div>
+                <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">
+                    <div class="flex flex-col justify-center items-center bg-secondary h-36 w-36 m-2 rounded-md">
+                        <i class="fas fa-power-off text-4xl"></i>
+                        <p class="text-md">Déconnexion</p>
+                    </div>
+                </a>
+                <div class="flex flex-col justify-center items-center bg-secondary h-36 w-36 m-2 rounded-md">
+                    <i class="far fa-envelope text-4xl"></i>
+                    <p class="text-md">Contact</p>
+                </div>
+            @else
+                <a href="/login">
+                    <div class="flex flex-col justify-center items-center bg-secondary h-36 w-36 m-2 rounded-md">
+                        <i class="fas fa-user-check text-4xl"></i>
+                        <p class="text-md">Connexion</p>
+                    </div>
+                </a>
+                <a href="/register">
+                    <div class="flex flex-col justify-center items-center bg-secondary h-36 w-36 m-2 rounded-md">
+                        <i class="fas fa-user-plus text-4xl"></i>
+                        <p class="text-md">Inscription</p>
+                    </div>
+                </a>
+            @endauth
+        </div>
+    </div>
     <div class="md:hidden fixed right-0 left-0 bottom-0 h-12 bg-gray-100 shadow-2xl rounded-t-sm z-50">
         <div class="relative flex justify-around items-center h-full">
             <a href="/">
@@ -307,12 +342,12 @@
             </a>
             <a href="/clubs">
                 <div class="flex flex-col items-center justify-center">
-                    <i class="fas fa-futbol text-xl"></i>
+                    <i class="fas fa-search text-xl"></i>
                     <p class="text-xs">Clubs</p>
                 </div>
             </a>
             <div id="burger2"
-                class="cursor-pointer top-5 left-3 flex justify-center items-center h-12 w-12 bg-primary z-50">
+                class="cursor-pointer flex flex-col justify-center items-center rounded-full h-16 w-16 bg-primary mb-4 shadow-outline">
                 <div class="open-main-nav flex justify-center">
                     <span class="burger"></span>
                 </div>
@@ -330,7 +365,7 @@
             </a>
             <a href="/user/profile">
                 <div class="flex flex-col items-center justify-center">
-                    <i class="far fa-user text-xl"></i>
+                    <i class="fas fa-user-cog text-xl"></i>
                     <p class="text-xs">Profil</p>
                 </div>
             </a>

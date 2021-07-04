@@ -823,8 +823,18 @@
     }
     
     #container.is-open {
-        transform: translateX(100%);
+        transform: translateX(80%);
         transition: all 0.5s;
+    }
+
+    #menu-mobile{
+        z-index: 1000;
+        visibility: hidden;
+    }
+
+    #menu-mobile.is-open{
+        display: fixed;
+        visibility: visible;
     }
     
     #main-nav {
@@ -836,7 +846,7 @@
         bottom: 0;
         /* z-index: 9999; */
         visibility: hidden;
-        transform: translateX(-100%);
+        transform: translateX(-80%);
     }
     
     #main-nav.is-open {

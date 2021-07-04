@@ -19425,11 +19425,10 @@ burger.addEventListener("click", function () {
  ******************************/
 
 var burger2 = document.getElementById("burger2");
+var menuMobile = document.getElementById("menu-mobile");
 burger2.addEventListener("click", function () {
   this.classList.toggle("is-open");
-  nav.classList.toggle("is-open");
-  container.classList.toggle("is-open");
-  console.log("clic");
+  menuMobile.classList.toggle("is-open");
 });
 /******************************
  * 
