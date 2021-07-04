@@ -877,11 +877,9 @@ input:checked+.inputAction {
 
 #menu-mobile{
   z-index: 1000;
-  visibility: hidden;
 }
 
 #menu-mobile.is-open{
-  display: fixed;
   visibility: visible;
 }
 

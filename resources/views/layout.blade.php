@@ -298,7 +298,7 @@
         @yield('content')
         @include('footer')
     </div>
-    <div id="menu-mobile" class="fixed bottom-12 w-full bg-primary py-4">
+    <div id="menu-mobile" class="invisible fixed bottom-12 w-full bg-primary py-4">
         <div class="flex flex-wrap justify-center">
             @auth
                 <div class="flex flex-col justify-center items-center bg-secondary h-36 w-36 m-2 rounded-md">
