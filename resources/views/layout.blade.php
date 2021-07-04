@@ -31,6 +31,8 @@
 
         gtag('config', 'G-MWPW5WC37V');
     </script>
+    <script src="{{ mix('js/app.js') }}"></script>
+
 </head>
 
 <body>
