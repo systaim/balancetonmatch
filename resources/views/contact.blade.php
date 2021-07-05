@@ -46,7 +46,7 @@
     </div>
     <script type="text/javascript">
         function onReCaptchaValid(token) {
-            document.getElementById('id_du_formulaire').submit();
+            document.getElementById('contact').submit();
         }
     </script>
 @endsection
