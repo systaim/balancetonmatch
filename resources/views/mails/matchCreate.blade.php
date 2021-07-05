@@ -11,12 +11,28 @@
 <body>
     <div class="p-10 bg-primary text-white">
         <p>Voici les informations envoyées par
-            <span class="capitalize">{{ $match['user_first_name'] }}</span> <span
-                class="uppercase">{{ $match['user_last_name'] }}</span> ({{ $match['user_id'] }}) :
+            <span class="capitalize">{{ $match['user_first_name'] }}</span> 
+            <span  style="display: display: inline-block;
+            text-align: center;
+            --bg-opacity: 1;
+            background-color: #091c3e;
+            background-color: rgba(9, 28, 62, var(--bg-opacity));
+            --text-opacity: 1;
+            color: #cdfb0a;
+            color: rgba(205, 251, 10, var(--text-opacity));
+            font-size: 1.25rem;
+            padding-top: 0.25rem;
+            padding-bottom: 0.25rem;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
+            margin-left: auto;
+            margin-right: auto;">{{ $match['user_last_name'] }}</span> ({{ $match['user_id'] }}) :
         </p>
     </div>
 
-    <div class="">
+    <div>
         <div class="text-center flex justify-center font-bold">
             <p class="px-4 bg-primary text-secondary rounded-tl-md">{{ $match['date_match'] }}</p>
         </div>
