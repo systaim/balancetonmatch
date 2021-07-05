@@ -811,7 +811,9 @@
                     <div class="bg-primary text-secondary rounded-t-lg">
                         <h3 class="text-center p-2">Le "Thierry Roland" du jour</h3>
                     </div>
-                    <div class="flex justify-evenly items-center p-4">
+                    <div class="flex flex-wrap justify-evenly items-center p-4">
+                        <img class="rounded-full h-8 w-8 object-cover mr-4 mb-2"
+                                src="{{ Auth::user()->profile_photo_url }}">
                         <div>
                             <p class="font-bold">{{ $match->commentateur->user->pseudo }}</p>
                         </div>

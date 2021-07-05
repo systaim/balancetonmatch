@@ -156,7 +156,7 @@ class CreateMatch extends Component
 
             $slug = Str::slug($match->homeClub->name .' vs '. $match->awayClub->name .' '. $match->date_match->formatLocalized('%d %m %Y'), '-');
             $match->slug = $slug;
-
+            
             $match->save();
 
             $matchCreate = [
