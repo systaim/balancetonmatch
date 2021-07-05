@@ -1,9 +1,11 @@
 <footer class="realtive bg-gray-900 mb-0 w-full relative bottom-0 mt-12 h-auto">
     <div class="flex flex-col items-center text-white py-3">
         <div class="flex justify-center p-2">
-            <a class="px-4" href="https://www.facebook.com/balancetonmatch" target="_blank"><img src="{{ asset('images/logoFacebook.png') }}" alt="logo Facebook" class="w-10"></a>
+            <a class="px-4" href="https://www.facebook.com/balancetonmatch" target="_blank"><img
+                    src="{{ asset('images/logoFacebook.png') }}" alt="logo Facebook" class="w-10"></a>
             <!-- <a class="px-4" href="http://" target="_blank"><img src="{{ asset('images/logoInsta.png') }}" alt="logo Instagram" class="w-10"></a> -->
-            <a class="px-4" href="https://twitter.com/BalanceMatch" target="_blank"><img src="{{ asset('images/logoTwitter.png') }}" alt="logo Twitter" class="w-10"></a>
+            <a class="px-4" href="https://twitter.com/BalanceMatch" target="_blank"><img
+                    src="{{ asset('images/logoTwitter.png') }}" alt="logo Twitter" class="w-10"></a>
         </div>
         <div class="text-center m-2 p-2">
             <p class="font-bold mb-4">Plus d'infos...</p>
@@ -21,21 +23,25 @@
     <div id="menu-mobile" class="invisible fixed bottom-12 w-full bg-primary py-4">
         <div class="flex flex-wrap justify-center">
             @auth
-                <div class="flex flex-col justify-center items-center bg-secondary h-36 w-36 m-2 rounded-md">
-                    <i class="far fa-plus-square text-4xl"></i>
-                    <p class="text-md">Créer un match</p>
-                </div>
+                <a href="{{ route('matches.create') }}">
+                    <div class="flex flex-col justify-center items-center bg-secondary h-36 w-36 m-2 rounded-md">
+                        <i class="far fa-plus-square text-4xl"></i>
+                        <p class="text-md">Créer un match</p>
+                    </div>
+                </a>
                 <a href="{{ route('logout') }}" onclick="event.preventDefault();
-                                document.getElementById('logout-form').submit();">
+                                        document.getElementById('logout-form').submit();">
                     <div class="flex flex-col justify-center items-center bg-secondary h-36 w-36 m-2 rounded-md">
                         <i class="fas fa-power-off text-4xl"></i>
                         <p class="text-md">Déconnexion</p>
                     </div>
                 </a>
-                <div class="flex flex-col justify-center items-center bg-secondary h-36 w-36 m-2 rounded-md">
-                    <i class="far fa-envelope text-4xl"></i>
-                    <p class="text-md">Contact</p>
-                </div>
+                <a href="/contact">
+                    <div class="flex flex-col justify-center items-center bg-secondary h-36 w-36 m-2 rounded-md">
+                        <i class="far fa-envelope text-4xl"></i>
+                        <p class="text-md">Contact</p>
+                    </div>
+                </a>
             @else
                 <a href="/login">
                     <div class="flex flex-col justify-center items-center bg-secondary h-36 w-36 m-2 rounded-md">

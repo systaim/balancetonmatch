@@ -684,7 +684,8 @@
         <div class="m-auto sm:w-10/12 lg:w-8/12 diagonale">
             @foreach ($commentsMatch as $comment)
                 <div class="relative commentaires minHeight16 h-auto {{ $comment->team_action }}"
-                    x-data="{ open: false }">
+                    x-data="{ open: false }"
+                    loading="lazy">
                     <div
                         class="minuteCommentaires w-24 sm:w-32 {{ $comment->team_action }} p-4 flex flex-col items-center">
                         <div>

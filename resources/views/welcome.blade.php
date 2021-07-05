@@ -17,7 +17,7 @@
                 commentateur soit en tant que spectateur</p>
         </div>
     </div>
-    <div id="wrong" class="shadow-xl">
+    <div id="wrong" class="shadow-xl" loading="lazy">
         <div class="container mx-auto flex justify-around px-5 py-6 md:flex-row flex-col items-center">
             <div class="lg:flex-grow md:w-1/2 px-8 flex flex-col md:items-start md:text-left items-center text-center">
                 <h2 class="text-3xl mb-4 font-medium">Le sport amateur va reprendre !</h2>
@@ -45,7 +45,7 @@
             </div>
         </div>
     </section>
-    <section class="text-gray-600 body-font overflow-hidden">
+    <section class="text-gray-600 body-font overflow-hidden" loading="lazy">
         <div class="container px-5 py-24 mx-auto">
             <div class="-my-8 divide-y-2 divide-gray-100">
                 <div class="py-8 flex flex-wrap md:flex-nowrap">
@@ -82,7 +82,7 @@
             </div>
         </div>
     </section>
-    <section>
+    <section loading="lazy">
         <div class="container px-5 mx-auto">
             <div class="flex flex-wrap justify-evenly mx-4 mb-10 text-center text-white moveToTop opacity-0">
                 <div class="lg:w-2/5 my-5 pb-10 bg-primary rounded-lg shadow-2xl">
