@@ -31,7 +31,7 @@
 
         gtag('config', 'G-MWPW5WC37V');
     </script>
-
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 
 <body>
@@ -162,7 +162,7 @@
                                 @endcanany
                                 <a class="px-6 py-4 hover:bg-blue-900 block" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
-                                                                                                            document.getElementById('logout-form').submit();">
+                                                                                                                document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
                             @else
@@ -211,7 +211,7 @@
                                                 <a class="absolute bottom-2 right-6 p-2 hover:bg-blue-900 block"
                                                     href="{{ route('logout') }}"
                                                     onclick="event.preventDefault();
-                                                                                                                                    document.getElementById('logout-form').submit();">
+                                                                                                                                            document.getElementById('logout-form').submit();">
                                                     {{ __('Logout') }}
                                                 </a>
                                             @else

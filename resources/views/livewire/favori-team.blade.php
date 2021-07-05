@@ -1,13 +1,13 @@
-<div class="ml-2 flex justify-center items-center">
+<div class="flex flex-col justify-center items-center p-3">
     @auth
     <div>
         @if ($user->isfavoriTeam($club))
         <div>
-            <i wire:model="heart" class="{{ $heart }} fa-heart text-3xl text-red-700 cursor-pointer" wire:click="myTeam({{ $club->id }})"></i>
+            <i wire:model="heart" class="{{ $heart }} fa-heart text-3xl text-red-700 cursor-pointer bg-secondary p-4 rounded-full" wire:click="myTeam({{ $club->id }})"></i>
         </div>
         @else
         <div class="flex items-center">
-            <i wire:model="heart" class="{{ $heart }} fa-heart text-3xl text-red-700 cursor-pointer" wire:click="myTeam({{ $club->id }})"></i>
+            <i wire:model="heart" class="{{ $heart }} fa-heart text-3xl text-red-700 cursor-pointer bg-secondary p-4 rounded-full" wire:click="myTeam({{ $club->id }})"></i>
         </div>
         @endif
         <div>
@@ -31,7 +31,7 @@
         @endif
     </div>
     @endauth
-    <div class="ml-4">
+    <div>
         @if($nbrFavoris == 0)
         <p>Sois le premier fan</p>
         @elseif($nbrFavoris > 0)

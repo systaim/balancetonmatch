@@ -39,11 +39,11 @@
             <div class="bg-primary text-white p-4">
                 <div class="flex flex-col items-center justify-center mb-3">
                     <p class="text-2xl">OUPS ! </p>
+                    <img src="{{ asset('images/gifs/fail.gif') }}" alt="">
                     <p>Renouvelle ta recherche ou demande l'ajout du club !</p>
                 </div>
 
-                <div class="flex flex-col-reverse items-center justify-around lg:flex-row" role="alert">
-                    <img src="{{ asset('images/gifs/fail.gif') }}" alt="">
+                <div class="flex flex-col items-center justify-around lg:flex-row" role="alert">
                     @auth
                         <div class="text-sm my-2 flex-grow mx-3">
                             <form class="my-4 m-auto" action="{{ route('contacts.askNewTeam') }}" method="POST">
@@ -60,11 +60,11 @@
                                     </select>
                                 </div>
                                 <div>
-                                    <label for="departement">Quel district ?</label>
+                                    <label for="departement">Quel département ?</label>
                                     <select class="inputForm focus:outline-none focus:shadow-outline w-full my-1"
                                         name="departement" id="departement" wire:model="departement"
                                         :value="old('departement')" autocomplete="departement" required>
-                                        <option>Choisis le district</option>
+                                        <option>Choisis le département</option>
                                         @foreach ($departements as $departement)
                                             <option value="{{ $departement->name }}">{{ $departement->name }}</option>
                                         @endforeach

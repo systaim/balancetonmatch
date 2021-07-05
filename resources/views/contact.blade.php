@@ -4,7 +4,8 @@
         <div class="relative w-full py-10 px-4 bg-primary text-white flex justify-center items-center mb-6">
             <h2 class="text-4xl lg:text-6xl">Contact</h2>
         </div>
-        <form class="flex flex-col w-11/12 lg:w-6/12 m-auto" action="{{ route('contacts.store') }}" method="POST">
+        <form id="contact" class="flex flex-col w-11/12 lg:w-6/12 m-auto" action="{{ route('contacts.store') }}"
+            method="POST">
             @csrf
             <div class="flex flex-col mt-4">
                 <label class="text-primary font-bold" for="prenom">Mon prénom</label>
@@ -37,13 +38,15 @@
                     <div class="text-danger font-bold">{{ $message }}</div>
                 @enderror
             </div>
-            <div class="g-recaptcha m-auto my-4" data-sitekey="6LeCv3AbAAAAAD9lZIfoMuIKi9YBl1Sz6Kibyppo"
-                data-callback='onSubmit' data-action='submit'>
-                Submit
-            </div>
+            <div class="g-recaptcha m-auto my-3" data-sitekey="6LcAdncbAAAAAGgUz92LCVdZgmgW6Yv48AlqPO0h"></div>
             <div class="m-auto">
                 <button class="btn btnPrimary" type="submit">Envoyer</button>
             </div>
         </form>
     </div>
+    <script type="text/javascript">
+        function onReCaptchaValid(token) {
+            document.getElementById('id_du_formulaire').submit();
+        }
+    </script>
 @endsection
