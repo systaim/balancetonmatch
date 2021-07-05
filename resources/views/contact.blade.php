@@ -38,7 +38,7 @@
                     <div class="text-danger font-bold">{{ $message }}</div>
                 @enderror
             </div>
-            <div class="g-recaptcha m-auto my-3" data-sitekey="6LcAdncbAAAAAGgUz92LCVdZgmgW6Yv48AlqPO0h"></div>
+            <div class="g-recaptcha m-auto my-3" for="recaptcha" data-sitekey="6LcAdncbAAAAAGgUz92LCVdZgmgW6Yv48AlqPO0h"></div>
             <div class="m-auto">
                 <button class="btn btnPrimary" type="submit">Envoyer</button>
             </div>
