@@ -25,7 +25,7 @@ class ContactController extends Controller
             'nom' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:255'],
             'message' => ['required', 'string', 'min:10', 'max:1000'],
-            'g-recaptcha-response' => ['required|recaptcha'],
+            'g-recaptcha-response' => ['required'],
         ]);
 
         $contactCreate = [
