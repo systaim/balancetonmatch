@@ -1,4 +1,4 @@
-<footer class="realtive bg-gray-900 mb-0 w-full relative bottom-0 mt-12 h-auto">
+<footer class="realtive bg-gray-900 mb-0 pb-16 md:pb-2 w-full relative bottom-0 mt-12 h-auto">
     <div class="flex flex-col items-center text-white py-3">
         <div class="flex justify-center p-2">
             <a class="px-4" href="https://www.facebook.com/balancetonmatch" target="_blank"><img
@@ -20,6 +20,9 @@
         <p class="hidden sm:inline-block p-1"> | </p>
         <p class="p-1">propulsé fièrement par Anthony</p>
     </div>
+
+    {{-- MENU MOBILE --}}
+
     <div id="menu-mobile" class="invisible fixed bottom-12 w-full bg-primary py-4">
         <div class="flex flex-wrap justify-center">
             @auth
@@ -30,7 +33,7 @@
                     </div>
                 </a>
                 <a href="{{ route('logout') }}" onclick="event.preventDefault();
-                                        document.getElementById('logout-form').submit();">
+                                            document.getElementById('logout-form').submit();">
                     <div class="flex flex-col justify-center items-center bg-secondary h-36 w-36 m-2 rounded-md">
                         <i class="fas fa-power-off text-4xl"></i>
                         <p class="text-md">Déconnexion</p>
@@ -42,6 +45,14 @@
                         <p class="text-md">Contact</p>
                     </div>
                 </a>
+                @canany(['isSuperAdmin', 'isAdmin'])
+                    <a class="px-6 py-4 hover:bg-blue-900 block" href="/admin">
+                        <div class="flex flex-col justify-center items-center bg-secondary h-36 w-36 m-2 rounded-md">
+                            <i class="fas fa-user-shield text-4xl"></i>
+                            <p class="text-md">Admin</p>
+                        </div>
+                    </a>
+                @endcanany
             @else
                 <a href="/login">
                     <div class="flex flex-col justify-center items-center bg-secondary h-36 w-36 m-2 rounded-md">
@@ -58,7 +69,7 @@
             @endauth
         </div>
     </div>
-    <div class="md:hidden fixed right-0 left-0 bottom-0 h-12 bg-gray-100 shadow-2xl rounded-t-sm z-50">
+    <div class="md:hidden fixed right-0 left-0 bottom-0 h-14 bg-gray-100 shadow-2xl rounded-t-sm z-50">
         <div class="relative flex justify-around items-center h-full">
             <a href="/">
                 <div class="flex flex-col items-center justify-center">
