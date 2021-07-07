@@ -46,7 +46,7 @@
                     </div>
                 </a>
                 @canany(['isSuperAdmin', 'isAdmin'])
-                    <a class="px-6 py-4 hover:bg-blue-900 block" href="/admin">
+                    <a href="/admin">
                         <div class="flex flex-col justify-center items-center bg-secondary h-36 w-36 m-2 rounded-md">
                             <i class="fas fa-user-shield text-4xl"></i>
                             <p class="text-md">Admin</p>
