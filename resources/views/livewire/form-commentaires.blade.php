@@ -813,7 +813,7 @@
                     </div>
                     <div class="flex flex-wrap justify-evenly items-center p-4">
                         <img class="rounded-full h-8 w-8 object-cover mr-4 mb-2"
-                                src="{{ Auth::user()->profile_photo_url }}">
+                                src="{{ $match->commentateur->user->profile_photo_url }}">
                         <div>
                             <p class="font-bold">{{ $match->commentateur->user->pseudo }}</p>
                         </div>
