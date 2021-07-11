@@ -45,6 +45,8 @@ class MatchController extends Controller
 
         $competitions = Competition::find($matchesByCompet->keys());
 
+        
+
         return view('matches.listMatchs', compact('clubs', 'players', 'matchesByCompet', 'competitions', 'user'));
     }
 

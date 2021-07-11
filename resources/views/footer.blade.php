@@ -33,7 +33,7 @@
                     </div>
                 </a>
                 <a href="{{ route('logout') }}" onclick="event.preventDefault();
-                                            document.getElementById('logout-form').submit();">
+                                                                document.getElementById('logout-form').submit();">
                     <div class="flex flex-col justify-center items-center bg-secondary h-36 w-36 m-2 rounded-md">
                         <i class="fas fa-power-off text-4xl"></i>
                         <p class="text-md">Déconnexion</p>
@@ -69,22 +69,22 @@
             @endauth
         </div>
     </div>
-    <div class="md:hidden fixed right-0 left-0 bottom-0 h-14 bg-gray-100 shadow-2xl rounded-t-sm z-50">
+    <div class="md:hidden fixed right-0 left-0 bottom-0 h-14 bg-primary shadow-2xl rounded-t-sm z-50 text-white">
         <div class="relative flex justify-around items-center h-full">
             <a href="/">
-                <div class="flex flex-col items-center justify-center">
+                <div class="flex flex-col items-center justify-center w-16 h-14">
                     <i class="fas fa-home text-xl"></i>
                     <p class="text-xs">Accueil</p>
                 </div>
             </a>
             <a href="/clubs">
-                <div class="flex flex-col items-center justify-center">
+                <div class="flex flex-col items-center justify-center w-16">
                     <i class="fas fa-search text-xl"></i>
                     <p class="text-xs">Clubs</p>
                 </div>
             </a>
             <div id="burger2"
-                class="cursor-pointer flex flex-col justify-center items-center rounded-full h-16 w-16 bg-primary mb-4 shadow-outline">
+                class="cursor-pointer flex flex-shrink-0 flex-col justify-center items-center rounded-full h-16 w-16 bg-primary mb-4 shadow-outline">
                 <div class="open-main-nav flex justify-center">
                     <span class="burger"></span>
                 </div>
@@ -95,16 +95,24 @@
                 </div>
             </a> --}}
             <a href="/matches">
-                <div class="flex flex-col items-center justify-center">
+                <div class="flex flex-col items-center justify-center w-16">
                     <i class="far fa-list-alt text-xl"></i>
                     <p class="text-xs">Matchs</p>
                 </div>
             </a>
             <a href="/user/profile">
-                <div class="flex flex-col items-center justify-center">
-                    <i class="fas fa-user-cog text-xl"></i>
-                    <p class="text-xs">Profil</p>
-                </div>
+                @auth
+                    <div class="flex flex-col items-center justify-center w-16">
+                        <i class="fas fa-user-cog text-xl"></i>
+                        <p class="text-xs">Profil</p>
+                    </div>
+                @else
+                    <div class="flex flex-grow-0 flex-col items-center justify-center w-16">
+                        <i class="fas fa-user-check text-xl"></i>
+                        <p class="text-xs truncate">Se connecter</p>
+                    </div>
+                @endauth
+
             </a>
         </div>
     </div>

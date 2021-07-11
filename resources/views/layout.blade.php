@@ -121,7 +121,7 @@
                         <a href="/contact">Contact</a>
                     </div>
                 </nav>
-                <div class="absolute right-2 top-6 text-white hidden lg:block w-64 lg:mr-4" x-data="{ open : false }">
+                <div class="absolute right-0 top-0 m-2 text-white hidden lg:block w-80 lg:mr-4" x-data="{ open : false }">
                     @auth
                         <div class="flex justify-center items-center px-2 py-1 cursor-pointer text-primary"
                             @click="open = true">
@@ -131,11 +131,11 @@
                                     class="fas fa-caret-down"></i></div>
                         </div>
                     @else
-                        <div class="flex justify-end pr-6 cursor-pointer" @click="open = true">
-                            <div id="btnMenu"
-                                class="focus:outline-none text-gray-200 ml-2 bg-primary p-4 rounded-lg shadow-xl">
-                                <i class="far fa-user text-xl"></i> <i class="fas fa-caret-down"></i>
-                            </div>
+                        <div class="flex justify-evenly items-center p-4">
+                            <a class="text-primary" href="/login">Se connecter</a>
+                            <a href="/register">
+                                <button class="btn btnPrimary">S'enregistrer</button>
+                            </a>
                         </div>
                     @endauth
                     <div id="menuUser"
@@ -145,32 +145,24 @@
                         x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100"
                         x-transition:leave-end="opacity-0 h-0" @click.away="open = false">
                         <div>
-                            @auth
-                                <a class="px-6 py-4 hover:bg-blue-900 block" href="/user/profile">Mon profil</a>
-                                @if (Auth::user()->club)
-                                    <a class="px-6 py-4 hover:bg-blue-900 block"
-                                        href="/clubs/{{ Auth::user()->club->id }}"><span class="text-sm">Mon
-                                            club</span><br>{{ Auth::user()->club->name }}</a>
-                                @endif
-                                <a class="px-6 py-4 hover:bg-blue-900 block" href="{{ route('matches.create') }}">
-                                    Je crée un match
+                            <a class="px-6 py-4 hover:bg-blue-900 block" href="/user/profile">Mon profil</a>
+                            @if (Auth::check() && Auth::user()->club)
+                                <a class="px-6 py-4 hover:bg-blue-900 block"
+                                    href="/clubs/{{ Auth::user()->club->id }}"><span class="text-sm">Mon
+                                        club</span><br>{{ Auth::user()->club->name }}</a>
+                            @endif
+                            <a class="px-6 py-4 hover:bg-blue-900 block" href="{{ route('matches.create') }}">
+                                Je crée un match
+                            </a>
+                            @canany(['isSuperAdmin', 'isAdmin'])
+                                <a class="px-6 py-4 hover:bg-blue-900 block" href="/admin">
+                                    Page admin
                                 </a>
-                                @canany(['isSuperAdmin', 'isAdmin'])
-                                    <a class="px-6 py-4 hover:bg-blue-900 block" href="/admin">
-                                        Page admin
-                                    </a>
-                                @endcanany
-                                <a class="px-6 py-4 hover:bg-blue-900 block" href="{{ route('logout') }}"
-                                    onclick="event.preventDefault();
-                                                                                                                document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
-                                </a>
-                            @else
-                                <ul class="list-none">
-                                    <a class="px-6 py-4 hover:bg-blue-900 block" href="/login">Se connecter</a>
-                                    <a class="px-6 py-4 hover:bg-blue-900 block" href="/register">S'enregistrer</a>
-                                </ul>
-                            @endauth
+                            @endcanany
+                            <a class="px-6 py-4 hover:bg-blue-900 block" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">
+                                {{ __('Logout') }}
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -211,7 +203,7 @@
                                                 <a class="absolute bottom-2 right-6 p-2 hover:bg-blue-900 block"
                                                     href="{{ route('logout') }}"
                                                     onclick="event.preventDefault();
-                                                                                                                                            document.getElementById('logout-form').submit();">
+                                                                                                                                                                                document.getElementById('logout-form').submit();">
                                                     {{ __('Logout') }}
                                                 </a>
                                             @else

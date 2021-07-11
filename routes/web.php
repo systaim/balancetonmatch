@@ -15,6 +15,7 @@ use App\Models\Staff;
 use App\Models\Statistic;
 use App\Models\User;
 use Carbon\Carbon;
+use Symfony\Component\HttpFoundation\Request;
 use Illuminate\Support\Facades\Auth;
 
 $club = ClubController::class;
@@ -54,7 +55,6 @@ Route::get('/', function (Match $match) {
                             })
                             ->get();
     $match = Match::where('slug', $match->slug)->first();
-
 
     return view('welcome', compact(
         'matchesToday', 
