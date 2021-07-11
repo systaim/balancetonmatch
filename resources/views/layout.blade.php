@@ -9,7 +9,7 @@
     <meta property="og:url" content="https://www.balancetonmatch.com">
     <meta property="og:title" content="Balance ton match !">
     <meta property="og:description" content="Quand la touche part en live...">
-    <meta property="og:image" content="https://balancetonmatch.com/images/logos/btmLogoJB.png">
+    <meta property="og:image" content="{{ $club->bg_path != '' || $club->bg_path == null ? $club->bg_path :"https://balancetonmatch.com/images/logos/btmLogoJB.png"}}">
 
     <title>Balance Ton Match</title>
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
