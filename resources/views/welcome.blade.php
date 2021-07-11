@@ -1,38 +1,49 @@
 @extends('layout')
 @section('content')
-
-    <div id="slideHome" class="flex flex-col md:flex-row justify-between bg-primary overflow-hidden h-96 z-0">
-        <div class="h-6/12 sm:h-8/12 md:h-auto md:w-6/12 img-bg-blend-home">
-        </div>
-        <div id="welcome" class="h-auto text-white py-4 md:w-6/12 px-12 xl:w-4/12 m-auto text-center">
-            <div class="flex items-center justify-center">
-                <hr class="w-10 border border-secondary">
-                <h2 class="text-xl md:text-3xl my-2 mx-6 font-medium">Bienvenue</h2>
-                <hr class="w-10 border border-secondary">
+    <section>
+        <div id="slideHome" class="flex flex-col md:flex-row justify-between bg-primary overflow-hidden h-96 z-0">
+            <div class="h-6/12 sm:h-8/12 md:h-auto md:w-6/12 img-bg-blend-home">
             </div>
-            <p class="text-sm md:text-base text-justify">BalanceTonMatch.com a pour but de rassembler les passionnés du
-                ballon rond AMATEUR.</p>
-            <p class="text-sm md:text-base text-justify">Vous pourrez suivre les matchs en <span
-                    class="uppercase text-primary font-bold bg-secondary px-2 rounded-sm">live</span> soit en tant que
-                commentateur soit en tant que spectateur</p>
-        </div>
-    </div>
-    <div id="wrong" class="shadow-xl" loading="lazy">
-        <div class="container mx-auto flex justify-around px-5 py-6 md:flex-row flex-col items-center">
-            <div class="lg:flex-grow md:w-1/2 px-8 flex flex-col md:items-start md:text-left items-center text-center">
-                <h2 class="text-3xl mb-4 font-medium">Le sport amateur va reprendre !</h2>
-                <p class="mb-4">La saison 2021-2022 est déjà dans toutes les têtes.</p>
-                <p class="mb-8 text-justify">
-                    Les mutations sont lancées 😎 <br>
-                    Et l'organisation des matchs amicaux pour préparer cette saison également. <br>
-                    Ne fais pas le timide, partage et profite des matchs amicaux de cette inter-saison pour t'exercer.
-                </p>
-            </div>
-            <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 mb-10 md:mb-0">
-                <img class="object-cover object-center rounded" alt="hero" src="{{ asset('images/reprise.jpg') }}">
+            <div id="welcome" class="h-auto text-white py-4 md:w-6/12 px-12 xl:w-4/12 m-auto text-center">
+                <div class="flex items-center justify-center">
+                    <hr class="w-10 border border-secondary">
+                    <h2 class="text-xl md:text-3xl my-2 mx-6 font-medium">Bienvenue</h2>
+                    <hr class="w-10 border border-secondary">
+                </div>
+                <p class="text-sm md:text-base text-justify">BalanceTonMatch.com a pour but de rassembler les passionnés du
+                    ballon rond AMATEUR.</p>
+                <p class="text-sm md:text-base text-justify">Vous pourrez suivre les matchs en <span
+                        class="uppercase text-primary font-bold bg-secondary px-2 rounded-sm">live</span> soit en tant que
+                    commentateur soit en tant que spectateur</p>
             </div>
         </div>
-    </div>
+    </section>
+    <section loading="lazy">
+        <div class="container px-5 mx-auto">
+            <div class="flex flex-wrap justify-evenly mx-4 mb-10 text-center text-white moveToTop opacity-0">
+                <div class="lg:w-2/5 my-5 pb-10 bg-primary rounded-lg shadow-2xl">
+                    <div class="rounded-lg h-48 overflow-hidden">
+                        <img alt="tous les matchs" class="object-cover object-center h-full w-full"
+                            src="{{ asset('images/ballon-feu.jpg') }}">
+                    </div>
+                    <h2 class="text-2xl font-medium mt-6 mb-3">Les matchs à venir</h2>
+                    <p class="leading-relaxed text-base">Les matchs programmés sont à retrouvés ici.</p>
+                    <a href="/matches"><button class="btn btnSecondary">Je vais voir</button></a>
+                </div>
+                <div class="lg:w-2/5 my-5 pb-10 bg-primary rounded-lg shadow-2xl moveToTop opacity-0">
+                    <div class="rounded-lg h-48 overflow-hidden">
+                        <img alt="les matchs en live" class="object-cover object-center h-full w-full"
+                            src="{{ asset('images/on-air.jpg') }}">
+                    </div>
+                    <h2 class="text-2xl font-medium mt-6 mb-3">Les matchs en Live</h2>
+                    <p class="leading-relaxed text-base">En ce moment <span
+                            class="bg-secondary text-primary py-1 px-2 rounded-lg">{{ count($liveMatches) }}</span>
+                        {{ count($liveMatches) <= 1 ? 'match' : 'matchs' }} en cours</p>
+                    <a href="/live"><button class="btn btnSecondary">Je vais voir</button></a>
+                </div>
+            </div>
+        </div>
+    </section>
     <section>
         <div class="text-gray-200 bg-gray-900 body-font shadow-2xl">
             <div class="container px-5 py-24 mx-auto">
@@ -82,33 +93,6 @@
             </div>
         </div>
     </section>
-    <section loading="lazy">
-        <div class="container px-5 mx-auto">
-            <div class="flex flex-wrap justify-evenly mx-4 mb-10 text-center text-white moveToTop opacity-0">
-                <div class="lg:w-2/5 my-5 pb-10 bg-primary rounded-lg shadow-2xl">
-                    <div class="rounded-lg h-64 overflow-hidden">
-                        <img alt="tous les matchs" class="object-cover object-center h-full w-full"
-                            src="{{ asset('images/ballon-feu.jpg') }}">
-                    </div>
-                    <h2 class="text-2xl font-medium mt-6 mb-3">Les matchs à venir</h2>
-                    <p class="leading-relaxed text-base">Les matchs programmés sont à retrouvés ici.</p>
-                    <a href="/matches"><button class="btn btnSecondary">Je vais voir</button></a>
-                </div>
-                <div class="lg:w-2/5 my-5 pb-10 bg-primary rounded-lg shadow-2xl moveToTop opacity-0">
-                    <div class="rounded-lg h-64 overflow-hidden">
-                        <img alt="les matchs en live" class="object-cover object-center h-full w-full"
-                            src="{{ asset('images/on-air.jpg') }}">
-                    </div>
-                    <h2 class="text-2xl font-medium mt-6 mb-3">Les matchs en Live</h2>
-                    <p class="leading-relaxed text-base">En ce moment <span
-                            class="bg-secondary text-primary py-1 px-2 rounded-lg">{{ count($liveMatches) }}</span>
-                        {{ count($liveMatches) <= 1 ? 'match' : 'matchs' }} en cours</p>
-                    <a href="/live"><button class="btn btnSecondary">Je vais voir</button></a>
-                </div>
-            </div>
-        </div>
-    </section>
-
 
     {{-- <div class="py-6">
         <div class="flex justify-center">
@@ -159,7 +143,7 @@
         <div class="flex flex-col w-full lg:flex-row justify-around py-8">
 
             @if (count($user->favoristeams) > 0)
-                <div class="lg:w-5/12">
+                <div class="m-auto">
                     <div>
                         <h3><i class="fas fa-heart text-red-700"></i> Mes teams préférées <i
                                 class="fas fa-heart text-red-700"></i></h3>

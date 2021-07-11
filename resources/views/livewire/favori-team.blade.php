@@ -1,4 +1,4 @@
-<div class="flex flex-col justify-center items-center p-3">
+<div class="flex flex-col justify-center items-center p-3 md:w-1/2 mr-2 hover:shadow-2xl">
     @auth
     <div>
         @if ($user->isfavoriTeam($club))
@@ -20,7 +20,7 @@
     </div>
     @else
     <div>
-        <i class="far fa-heart text-3xl text-red-700 cursor-pointer" wire:click="clickLogin"></i>
+        <i class="far fa-heart text-3xl text-red-700 cursor-pointer bg-secondary p-4 rounded-full" wire:click="clickLogin"></i>
         @if($login)
         <div wire:loading.class.remove="alertFavori" class="absolute inline-block bg-black text-white text-xs p-2 rounded-lg alertFavori z-50">
             <a href="/login">
