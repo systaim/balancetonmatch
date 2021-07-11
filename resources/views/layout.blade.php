@@ -18,7 +18,7 @@
         <meta property="og:image"
             content="{{ $club->bg_path != '' || $club->bg_path != null ? asset($club->bg_path) : 'https://android-apiapp.azureedge.net/common/bib_img/logo/' . $club->numAffiliation }}">
     @else
-        <meta property="og:image" content="https://balancetonmatch.com/images/logos/btmLogoJB.png">
+        <meta property="og:image" content="https://balancetonmatch.com/images/logos/btmB1.jpg">
     @endisset()
 
     <title>Balance Ton Match</title>
@@ -92,8 +92,10 @@
                                 x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0 h-0"
                                 @click.away="open = false">
                                 <div x-data="{ open: false }">
-                                    {{-- <a href="/matches">Les prochains matchs</a> --}}
                                     <div>
+                                        <a href="/matches">Les prochains matchs</a>
+                                    </div>
+                                    {{-- <div>
                                         <a class="cursor-pointer" @click="open = true"
                                             x-transition:enter="transition ease-out duration-300"
                                             x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
@@ -123,7 +125,7 @@
                                             <a href="/regions/18">Réunion</a>
                                             <a href="/regions/19">St Pierre & Miquelon</a>
                                         </div>
-                                    </div>
+                                    </div> --}}
 
                                 </div>
                             </div>
@@ -214,7 +216,7 @@
                                                 <a class="absolute bottom-2 right-6 p-2 hover:bg-blue-900 block"
                                                     href="{{ route('logout') }}"
                                                     onclick="event.preventDefault();
-                                                                                                                                                                                                                        document.getElementById('logout-form').submit();">
+                                                                                                                                                                                                                                                document.getElementById('logout-form').submit();">
                                                     {{ __('Logout') }}
                                                 </a>
                                             @else
