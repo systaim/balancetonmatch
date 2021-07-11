@@ -11,7 +11,7 @@
     <meta property="og:description" content="Quand la touche part en live...">
     @isset($club)
         <meta property="og:image"
-            content="{{ $club->bg_path != '' || $club->bg_path != null ? $club->bg_path : 'https://balancetonmatch.com/images/logos/btmLogoJB.png' }}">
+            content="{{ $club->bg_path != '' || $club->bg_path != null ? asset($club->bg_path) : 'https://android-apiapp.azureedge.net/common/bib_img/logo/'. $club->numAffiliation }}">
     @else
         <meta property="og:image" content="https://balancetonmatch.com/images/logos/btmLogoJB.png">
     @endisset()
