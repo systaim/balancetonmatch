@@ -6,12 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- meta Facebook -->
-    <meta property="og:url" content="https://www.balancetonmatch.com">
+    <meta property="og:url" content="{{ request()->url() }}">
     <meta property="og:title" content="Balance ton match !">
-    <meta property="og:description" content="Quand la touche part en live...">
+    @isset($club)
+        <meta property="og:description" content="{{ $club->name }}">
+    @else
+        <meta property="og:description" content="Quand la touche part en live...">
+    @endisset
+
     @isset($club)
         <meta property="og:image"
-            content="{{ $club->bg_path != '' || $club->bg_path != null ? asset($club->bg_path) : 'https://android-apiapp.azureedge.net/common/bib_img/logo/'. $club->numAffiliation }}">
+            content="{{ $club->bg_path != '' || $club->bg_path != null ? asset($club->bg_path) : 'https://android-apiapp.azureedge.net/common/bib_img/logo/' . $club->numAffiliation }}">
     @else
         <meta property="og:image" content="https://balancetonmatch.com/images/logos/btmLogoJB.png">
     @endisset()
@@ -209,7 +214,7 @@
                                                 <a class="absolute bottom-2 right-6 p-2 hover:bg-blue-900 block"
                                                     href="{{ route('logout') }}"
                                                     onclick="event.preventDefault();
-                                                                                                                                                                                        document.getElementById('logout-form').submit();">
+                                                                                                                                                                                                                        document.getElementById('logout-form').submit();">
                                                     {{ __('Logout') }}
                                                 </a>
                                             @else
