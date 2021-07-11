@@ -9,7 +9,12 @@
     <meta property="og:url" content="https://www.balancetonmatch.com">
     <meta property="og:title" content="Balance ton match !">
     <meta property="og:description" content="Quand la touche part en live...">
-    <meta property="og:image" content="{{ $club->bg_path != '' || $club->bg_path == null ? $club->bg_path :"https://balancetonmatch.com/images/logos/btmLogoJB.png"}}">
+    @isset($club)
+        <meta property="og:image"
+            content="{{ $club->bg_path != '' || $club->bg_path == null ? $club->bg_path : 'https://balancetonmatch.com/images/logos/btmLogoJB.png' }}">
+    @else
+        <meta property="og:image" content="https://balancetonmatch.com/images/logos/btmLogoJB.png">
+    @endisset()
 
     <title>Balance Ton Match</title>
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
@@ -121,7 +126,8 @@
                         <a href="/contact">Contact</a>
                     </div>
                 </nav>
-                <div class="absolute right-0 top-0 m-2 text-white hidden lg:block w-80 lg:mr-4" x-data="{ open : false }">
+                <div class="absolute right-0 top-0 m-2 text-white hidden lg:block w-80 lg:mr-4"
+                    x-data="{ open : false }">
                     @auth
                         <div class="flex justify-center items-center px-2 py-1 cursor-pointer text-primary"
                             @click="open = true">
@@ -203,7 +209,7 @@
                                                 <a class="absolute bottom-2 right-6 p-2 hover:bg-blue-900 block"
                                                     href="{{ route('logout') }}"
                                                     onclick="event.preventDefault();
-                                                                                                                                                                                document.getElementById('logout-form').submit();">
+                                                                                                                                                                                        document.getElementById('logout-form').submit();">
                                                     {{ __('Logout') }}
                                                 </a>
                                             @else
