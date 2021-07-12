@@ -36,7 +36,7 @@ class CreateNewUser implements CreatesNewUsers
             'password' => $this->passwordRules(),
         ])->validate();
 
-        $club = Club::where('name', $input['club'])->first();
+        // $club = Club::where('name', $input['club'])->first();
         // $region = Region::where('name', $input['region'])->first();
 
         return User::create([
@@ -44,7 +44,7 @@ class CreateNewUser implements CreatesNewUsers
             'first_name' => $input['first_name'],
             'pseudo' => $input['pseudo'],
             'date_of_birth' => $input['date_of_birth'],
-            'club_id' => $club ? $club->id : null,
+            // 'club_id' => $club ? $club->id : null,
             // 'is_player' => $input['isPlayer'],
             // 'region_id' => $region->id,
             'email' => $input['email'],
