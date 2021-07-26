@@ -31,6 +31,7 @@ class FormCommentaires extends Component
     public $type_actionMatch = "";
     public $minute = 0;
     public $team_action = '';
+    public $imageAction = '';
 
     public $commentPerso = "";
     public $minuteCom;
@@ -77,6 +78,10 @@ class FormCommentaires extends Component
         }
 
         $this->minuteCom = $this->minute;
+
+        foreach ($this->commentsMatch as $comment) {
+            $this->imageAction = $comment->images;
+        }
 
         $this->miseAJourCom();
 
@@ -397,7 +402,7 @@ class FormCommentaires extends Component
                 'type_comments' => 'required|string',
                 'minute' => 'required|integer|between:1,120',
                 'team_action' => 'required|string',
-                // 'file' => 'nullable | mimes:jpeg,jpg,png,gif,mp4,gif,mov,ogg,quicktime,m3u8,ts,3gp|max:10240'
+                'file' => 'nullable | mimes:jpeg,jpg,png,gif,mp4,gif,mov,ogg,quicktime,m3u8,ts,3gp|max:10240'
             ]);
 
 

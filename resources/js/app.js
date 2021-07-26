@@ -98,7 +98,7 @@ if (submitButton != null) {
 function moveLeftToRight(div) {
     for (let i = 0; i < div.length; i++) {
         if (div[i].style.opacity == 0 && window.scrollY >= (div[i].offsetTop - (window.screen.height - 300))) {
-            console.log(div[i]);
+            
             div[i].style.opacity = 1
             div[i].style.animation = "left-to-right 500ms"
         }
@@ -108,7 +108,7 @@ function moveLeftToRight(div) {
 function moveRightToLeft(div) {
     for (let i = 0; i < div.length; i++) {
         if (div[i].style.opacity == 0 && window.scrollY >= (div[i].offsetTop - (window.screen.height - 300))) {
-            console.log(div[i]);
+            
             div[i].style.opacity = 1
             div[i].style.animation = "right-to-left 500ms"
         }
@@ -118,7 +118,7 @@ function moveRightToLeft(div) {
 function moveBottomToTop(div) {
     for (let i = 0; i < div.length; i++) {
         if (div[i].style.opacity == 0 && window.scrollY >= (div[i].offsetTop - (window.screen.height - 300))) {
-            console.log(div[i]);
+            
             div[i].style.opacity = 1
             div[i].style.animation = "bottom-to-top 500ms"
         }
@@ -128,7 +128,7 @@ function moveBottomToTop(div) {
 function moveTopToBottom(div) {
     for (let i = 0; i < div.length; i++) {
         if (div[i].style.opacity == 0 && window.scrollY >= (div[i].offsetTop - (window.screen.height - 300))) {
-            console.log(div[i]);
+            
             div[i].style.opacity = 1
             div[i].style.animation = "top-to-bottom 500ms"
         }

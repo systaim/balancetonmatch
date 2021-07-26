@@ -7,10 +7,11 @@
     </div>
     <div>
         @auth()
+        @dump($user->club_id)
             @if ($user->club_id == $club->id)
-                <p>Je fais partie de la team ! 💪</p>
+                <p>Je fais partie de ce club ! 💪</p>
             @else
-                <p>Je suis membre de ce club</p>
+                <p>C'est mon club !</p>
             @endif
         @else
             <div class="text-center flex flex-col justify-center">

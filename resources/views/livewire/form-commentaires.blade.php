@@ -223,10 +223,10 @@
                 @endif
             </div>
         </div>
-        <div class="bg-gray-900 px-8 py-2 text-white text-center">
+        <div class="bg-gray-900 px-8 py-2 text-white text-center flex justify-center">
             @if($match->live != "finDeMatch")
                 <p>Nombre de spectateurs : </p>
-                <p class="ml-1 font-bold">{{ count($visitors) }}</p>
+                <p class="ml-2 font-bold">{{ count($visitors) }}</p>
             @else
                 <p>{{ $textInfo }}</p>
             @endif
@@ -260,14 +260,14 @@
                             <p>Choisis l'action à commenter</p>
                         </div>
                         <div class="flex justify-center items-center m-3">
-                            <label for="but">
+                            <label for="but" class="cursor-pointer">
                                 <input class="hidden" type="radio" id="but" wire:model="type_comments"
                                     name="type_comments" value="but">
                                 <img class="border-2 border-secondary rounded-full shadow-xl bg-white m-2 p-2"
                                     src="{{ asset('images/ball.png') }}" width="100px" height="100px" alt="But !">
                                 <p class="text-center text-white">But !</p>
                             </label>
-                            <label for="carton">
+                            <label for="carton" class="cursor-pointer">
                                 <input class="hidden" type="radio" id="carton" wire:model="type_comments"
                                     name="type_comments" value="carton">
                                 <img class="border-2 border-secondary rounded-full shadow-xl bg-white m-2 p-2"
@@ -281,7 +281,7 @@
                             </label> -->
                         </div>
                         @if ($type_comments == 'but')
-                            <div class="p-6 border rounded-lg shadow-2xl bg-white">
+                            <div class="p-6 border rounded-lg shadow-2x bg-white">
                                 <div class="flex flex-col">
                                     <div>
                                         <input class="hidden" type="radio" id="butCF" wire:model="type_but"
@@ -317,34 +317,30 @@
                             <div
                                 class="p-6 border rounded-lg shadow-2xl bg-white flex flex-col items-center justify-center md:flex-row">
                                 <div class="actionsMatch relative">
-                                    <input class="sr-only" type="radio" id="cartonJaune" wire:model="type_carton"
-                                        name="type_comments" value="Carton jaune"
-                                        {{ $type_carton == 'Carton jaune' ? 'checked=1' : '' }}>
+                                    <input class="hidden" type="radio" id="cartonJaune" wire:model="type_carton"
+                                        name="type_comments" value="Carton jaune">
                                     <label class="inputAction" for="cartonJaune"><img
                                             src="{{ asset('images/yellow-card.png') }}"
                                             alt="1er carton jaune"></label>
                                     <p class="absolute top-9 left-10 font-sans">1er</p>
                                 </div>
                                 <div class="actionsMatch relative">
-                                    <input class="sr-only" type="radio" id="cartonJaune2" wire:model="type_carton"
-                                        name="type_comments" value="2e carton jaune"
-                                        {{ $type_carton == '2e carton jaune' ? 'checked=1' : '' }}>
+                                    <input class="hidden" type="radio" id="cartonJaune2" wire:model="type_carton"
+                                        name="type_comments" value="2e carton jaune">
                                     <label class="inputAction" for="cartonJaune2"><img
                                             src="{{ asset('images/yellow-card.png') }}"
                                             alt="2e carton jaune"></label>
                                     <p class="absolute top-9 left-11 font-sans">2e</p>
                                 </div>
                                 <div class="actionsMatch">
-                                    <input class="sr-only" type="radio" id="cartonRouge" wire:model="type_carton"
-                                        name="type_comments" value="Carton rouge"
-                                        {{ $type_carton == 'Carton rouge' ? 'checked=1' : '' }}>
+                                    <input class="hidden" type="radio" id="cartonRouge" wire:model="type_carton"
+                                        name="type_comments" value="Carton rouge">
                                     <label class="inputAction" for="cartonRouge"><img
                                             src="{{ asset('images/red-card.png') }}" alt="carton rouge"></label>
                                 </div>
                                 <div class="actionsMatch">
-                                    <input class="sr-only" type="radio" id="cartonBlanc" wire:model="type_carton"
-                                        name="type_comments" value="Carton blanc"
-                                        {{ $type_carton == 'Carton blanc' ? 'checked=1' : '' }}>
+                                    <input class="hidden" type="radio" id="cartonBlanc" wire:model="type_carton"
+                                        name="type_comments" value="Carton blanc">
                                     <label class="inputAction" for="cartonBlanc"><img
                                             src="{{ asset('images/white-card.png') }}" alt="carton blanc"></label>
                                 </div>
@@ -402,7 +398,7 @@
                                 </div>
                             </div>
                             <input class="hidden" type="file" wire:model="file" name="file" id="file"
-                                accept="jpeg,png,jpg,gif,svg">
+                                accept="jpeg,png,jpg,gif,svg,mp4,mov">
                         </label>
                     </div>
                     @error('type_comments')
@@ -508,7 +504,7 @@
             <div>
                 @if (Auth::user()->first_com == 1)
                     <div class="bg-primary w-11/12 rounded-lg p-4 text-white m-auto my-2">
-                        <h3 class="text-secondary text-center text-base mb-4">Comment bien commenter ?</h3>
+                        <h3 class="text-secondary text-center text-lg mb-4">Commenter facilement</h3>
                         <div class="flex justify-evenly">
                             <div class="logo h-16 w-16 sm:h-20 sm:w-20 lg:h-24 lg:w-24 cursor-pointer lg:mr-1 xl:mr-4">
                                 <img class="object-contain"
@@ -684,8 +680,7 @@
         <div class="m-auto sm:w-10/12 lg:w-8/12 diagonale">
             @foreach ($commentsMatch as $comment)
                 <div class="relative commentaires minHeight16 h-auto {{ $comment->team_action }}"
-                    x-data="{ open: false }"
-                    loading="lazy">
+                    x-data="{ open: false }">
                     <div
                         class="minuteCommentaires w-24 sm:w-32 {{ $comment->team_action }} p-4 flex flex-col items-center">
                         <div>
@@ -777,14 +772,26 @@
                                 </div>
                             </div>
                             <!-- FIN menu ajout d'un joueur par utilisateur -->
-                            @if ($comment->images != null)
-                                <div class="flex justify-end pr-8">
-                                    <a href="{{ asset($comment->images) }}">
-                                        <img class="max-h-32 rounded-md shadow-xl transform"
-                                            src="{{ asset($comment->images) }}" alt="action">
-                                    </a>
-                                </div>
-                            @endif
+                            <div>
+                                @if ($comment->images != null)
+                                    @if(pathinfo($comment->images)['extension'] == "mp4" || pathinfo($comment->images)['extension'] == "mov")
+                                        <div class="flex justify-end pr-8">
+                                            <video autoplay loop controls class="max-h-48 w-auto rounded-md shadow-xl">
+                                                <source src="{{ asset($comment->images) }}" type="video/mp4">
+                                                <source src="{{ asset($comment->images) }}" type="video/mov">
+                                                Your browser does not support the video tag.      
+                                            </video>
+                                        </div>
+                                    @else
+                                        <div class="flex justify-end pr-8">
+                                            <a href="{{ asset($comment->images) }}">
+                                                <img class="max-h-48 rounded-md shadow-xl"
+                                                    src="{{ asset($comment->images) }}" alt="action">
+                                            </a>
+                                        </div>
+                                    @endif
+                                @endif
+                            </div>
                         </div>
                         <div class="flex justify-end items-end mt-4 mx-1">
                             <p class="text-xs">Commenté par {{ $match->commentateur->user->pseudo }}</p>

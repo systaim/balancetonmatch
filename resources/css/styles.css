@@ -235,6 +235,7 @@
   *************************/
     
     .btn {
+        text-transform: uppercase;
         padding-left: 1.5rem;
         padding-right: 1.5rem;
         padding-top: 0.5rem;
@@ -242,7 +243,7 @@
         margin: 0.5rem;
         /* border-radius: 0.25rem; */
         cursor: pointer;
-        font-weight: 700;
+        font-weight: 500;
         box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         outline: 0;
         transition: all 0.25s;

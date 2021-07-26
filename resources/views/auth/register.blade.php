@@ -10,14 +10,14 @@
                     <div class="lg:flex lg:justify-between">
                         <div class="flex flex-col lg:w-5/12 mb-6">
                             <label for="last_name">Mon nom de famille</label>
-                            <input class="inputForm border-2 focus:outline-none focus:shadow-outline" type="text" name="last_name" id="last_name" :value="old('last_name')" required autocomplete="last_name">
+                            <input class="inputForm border-2 focus:outline-none focus:shadow-outline" type="text" name="last_name" id="last_name" :value="old('last_name')" required autofocus>
                             @error('last_name')
                             <div class="alert danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="flex flex-col lg:w-5/12 mb-6">
                             <label for="first_name">Mon prénom</label>
-                            <input class="inputForm border-2 focus:outline-none focus:shadow-outline" type="text" name="first_name" id="first_name" :value="old('first_name')" required autocomplete="first_name">
+                            <input class="inputForm border-2 focus:outline-none focus:shadow-outline" type="text" name="first_name" id="first_name" :value="old('first_name')" required>
                             @error('first_name')
                             <div class="alert danger">{{ $message }}</div>
                             @enderror
@@ -26,14 +26,14 @@
                     <div class="lg:flex lg:justify-between">
                         <div class="flex flex-col lg:w-5/12 mb-6">
                             <label for="Peudo">Mon pseudo</label>
-                            <input class="inputForm border-2 focus:outline-none focus:shadow-outline w-full my-1" type="text" name="pseudo" id="pseudo" :value="old('pseudo')" required autocomplete="pseudo">
+                            <input class="inputForm border-2 focus:outline-none focus:shadow-outline w-full my-1" type="text" name="pseudo" id="pseudo" :value="old('pseudo')" required>
                             @error('pseudo')
                             <div class="alert danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="flex flex-col lg:w-5/12 mb-6">
                             <label for="date_of_birth">Ma date de naissance</label>
-                            <input class="inputForm border-2 focus:outline-none focus:shadow-outline w-full my-1" type="date" name="date_of_birth" id="date_of_birth" :value="old('date_of_birth')" autocomplete="date_of_birth">
+                            <input class="inputForm border-2 focus:outline-none focus:shadow-outline w-full my-1" type="date" name="date_of_birth" id="date_of_birth" :value="old('date_of_birth')">
                             @error('date_of_birth')
                             <div class="alert danger">{{ $message }}</div>
                             @enderror
@@ -42,7 +42,7 @@
                     <div class="lg:flex lg:justify-center">
                         <div class="flex flex-col lg:w-5/12 mb-6">
                             <label for="email">Mon email</label>
-                            <input class="inputForm border-2 focus:outline-none focus:shadow-outline w-full my-1" type="email" name="email" id="email" :value="old('email')" required autocomplete="email">
+                            <input class="inputForm border-2 focus:outline-none focus:shadow-outline w-full my-1" type="email" name="email" id="email" :value="old('email')" required>
                             @error('email')
                             <div class="alert danger">{{ $message }}</div>
                             @enderror
@@ -76,14 +76,14 @@
                     <div class="lg:flex lg:justify-between mb-4">
                         <div class="flex flex-col lg:w-5/12 mb-6">
                             <label for="password">Mon mot de passe</label>
-                            <input class="inputForm border-2 focus:outline-none focus:shadow-outline w-full my-1" type="password" name="password" required autocomplete="new-password">
+                            <input class="inputForm border-2 focus:outline-none focus:shadow-outline w-full my-1" type="password" name="password" required>
                             @error('password')
                             <div class="alert danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="flex flex-col lg:w-5/12 mb-6">
                             <label for="passwordConfirm">Mot de passe à confirmer</label>
-                            <input class="inputForm border-2 focus:outline-none focus:shadow-outline w-full my-1" type="password" name="password_confirmation" required autocomplete="new-password">
+                            <input class="inputForm border-2 focus:outline-none focus:shadow-outline w-full my-1" type="password" name="password_confirmation" required>
                         </div>
                     </div>
 

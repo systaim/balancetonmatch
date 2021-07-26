@@ -18,7 +18,7 @@
             </div>
         </div>
     </section>
-    <section loading="lazy">
+    <section>
         <div class="container px-5 mx-auto">
             <div class="flex flex-wrap justify-evenly mx-4 mb-10 text-center text-white moveToTop opacity-0">
                 <div class="lg:w-2/5 my-5 pb-10 bg-primary rounded-lg shadow-2xl">
