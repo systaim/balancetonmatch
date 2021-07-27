@@ -274,11 +274,11 @@
                                     src="{{ asset('images/cards.png') }}" width="100px" height="100px" alt="Carton">
                                 <p class="text-center text-white">Carton</p>
                             </label>
-                            <!-- <label for="action">
+                            {{-- <label for="action">
                                 <input class="hidden" type="radio" id="action" wire:model="type_comments" name="type_comments" value="action">
                                 <img class="border-2 border-secondary rounded-full shadow-xl bg-white m-2 p-2" src="{{ asset('images/fire.png') }}" width="100px" height="100px" alt="Action">
                                 <p class="text-center text-white">Action</p>
-                            </label> -->
+                            </label> --}}
                         </div>
                         @if ($type_comments == 'but')
                             <div class="p-6 border rounded-lg shadow-2x bg-white">

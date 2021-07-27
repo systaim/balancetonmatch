@@ -13,10 +13,9 @@
                         @error('searchHome')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
-                        <input
-                            class="bg-transparent w-full my-1 border-b border-gray-600 focus:outline-none text-2xl xl:text-5xl uppercase"
+                        <input class="bg-transparent w-full my-1 border-b border-gray-600 focus:outline-none text-2xl xl:text-5xl uppercase"
                             placeholder="DOMICILE" wire:model="searchHome" type="search" name="searchHome"
-                            id="searchHome" :value="old('searchHome')" autocomplete="searchHome" required>
+                            id="searchHome" :value="old('searchHome')" autocomplete="searchHome" required autofocus>
                         @if ($clubsHome != [] && count($clubsHome) != 0)
                             <p class="text-sm py-1">Clique sur une équipe<br>Fais le bon choix 😉</p>
                         @elseif(count($clubsHome) == 0 && strlen($searchHome) > 2)
@@ -25,7 +24,7 @@
                                 </p>
                             </div>
                         @else
-                            <p class="text-sm py-1">Nom du club, de la ville, code postal ou initiales si renseigné</p>
+                            <p class="text-xs py-1">Nom du club, de la ville, code postal ou initiales si renseigné</p>
                         @endif
                         @foreach ($clubsHome as $club)
                             <div class="flex flex-col mb-3 w-full">
@@ -66,9 +65,8 @@
                 @endif
             </div>
 
-            <div
-                class="lg:col-span-2 flex justify-center {{ $clubsHome != [] || $clubsAway != [] ? 'items-start' : 'items-center' }}">
-                <p class="flex justify-center items-center text-6xl lg:text-4xl xl:text-6xl text-center font-bold h-52 w-5h-52 m-4">
+            <div class="lg:col-span-2 flex justify-center {{ $clubsHome != [] || $clubsAway != [] ? 'items-start' : 'items-center' }}">
+                <p class="flex justify-center items-center font-bold h-52 w-52 m-4">
                     <img src="{{ asset('images/vs-primary.png') }}" alt="">
                 </p>
             </div>
@@ -89,7 +87,7 @@
                         @elseif(count($clubsAway) == 0 && strlen($searchAway) > 2)
                             <p class="text-sm py-1">Pas de résultats ? 😓
                         @else
-                            <p class="text-sm py-1">Nom du club, de la ville, code postal ou initiales si renseigné</p>
+                            <p class="text-xs py-1">Nom du club, de la ville, code postal ou initiales si renseigné</p>
                         @endif
                         @foreach ($clubsAway as $club)
                             <div class="flex flex-col mb-3 w-full">
