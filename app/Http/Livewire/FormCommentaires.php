@@ -51,8 +51,52 @@ class FormCommentaires extends Component
     public $visitors;
     public $textInfo;
 
-    public $listGoal = ['GOOOOAAL !', 'BUUUUT !!!', 'GOAL GOAL GOAL !!'];
+    public int $clickBut = 0;
+    public int $clickPenalty = 0;
+
+    public $listGoal = ['GOOOOAAL !', 'BUUUUT !!!', 'GOAL GOAL GOAL !!', 'ET C\'EST LE BUUUUUUUUUTTTT'];
     public $mitempsJoueurs = ['Les joueurs rentrent aux vestiaires', 'Tout le monde à la buv... euuuh aux vestiaires !'];
+    public $goalsText = [
+        "Patate au ras du poteau qui surprend le gardien !!!",
+        "Une grosse frappe de mule qui finit au fond des filets !",
+        "Une frappe de toute beauté.",
+        "Il a nettoyé la lucarne !",
+        "Une frappe limpide en pleine lucarne",
+        "Plat du pied sécurité",
+        "Le 1V1 est remporté par le joueur de champs et ca fait ficelle !",
+        "Une séquence de jeu magnifique qui se solde par un but",
+        "Quel lob !!!"
+    ];
+    public $cardsText = [
+        "Il l'a fauché comme un lapin en plein vol !",
+        "Celui là n'est pas venu faire le voyage pour rien !",
+
+    ];
+    public $occasionsText = [
+        "Une frappe trop enlevée qui passe au dessus du cadre, dommage...",
+        "Sa frappe est trop écrasée pour inquiéter le gardien",
+        "Le face à face est remporté par le gardien",
+        "Une frappe bien partie mais non cadrée",
+        "Une belle séquence de possession qui ne se concrétise pas. 6 mètres !"
+    ];
+    public $penaltysScoreText = [
+        "La panenka est tentée et réussie ! Quel geste mes amis !!!",
+        "Le gardien était sur la trajectoire mais le ballon fini sa course dans les filets",
+        "Pénalty transformé ! Contre pied parfait",
+    ];
+    public $penaltysNoScoreText = [
+        "La panenka est tentée et... manquée !",
+        "Superbe arrêt du gardien qui est parti du bon côté",
+        "La frappe a heurté un montant !",
+        "HORS CADRE..."
+    ];
+    public $penaltysText = [
+        "Faute du défenseur, PÉNALTY !",
+        "MAAAIIIIINNN dans la surface, PÉNALTY",
+        "L'équipe prend le jeu à son compte.",
+        "FAUTE !!! Pénalty !",
+        "Coup franc",
+    ];
 
     public function mount()
     {
@@ -107,6 +151,12 @@ class FormCommentaires extends Component
         $this->miseAJourCom();
 
         $this->countVisitor();
+    }
+
+    public function menuBut()
+    {
+        if ($this->clickBut == 1) $this->clickBut = 0;
+        if ($this->clickBut == 0) $this->clickBut = 1;
     }
 
     public function needHelp()
@@ -459,7 +509,11 @@ class FormCommentaires extends Component
                     $commentData['type_action'] = "white_card";
                     $commentData['comments'] = "Le joueur est exclu pendant 10 minutes";
                 }
-            } else {
+            } elseif ($this->type_comments == "action") {
+                $commentData['type_comments'] = "Le live en direct";
+                $commentData['comments'] = $this->type_actionMatch;
+            } 
+            else {
                 $commentData['type_comments'] = $this->type_comments;
             }
 
@@ -473,17 +527,19 @@ class FormCommentaires extends Component
                 }
 
                 $comment->save();
-
-                $statData['commentaire_id'] = $comment->id;
-                $statData['player_id'] = $this->player;
-                $statComment = Statistic::create($statData);
-                $statComment->commentaire()->associate($comment);
-                $statComment->save();
-                if ($statData2['action'] != '') {
-                    $statComment2 = Statistic::create($statData2);
-                    $statComment2->commentaire()->associate($comment);
-                    $statComment2->save();
+                if ($this->type_comments == "but" || $this->type_comments == "carton") {
+                    $statData['commentaire_id'] = $comment->id;
+                    $statData['player_id'] = $this->player;
+                    $statComment = Statistic::create($statData);
+                    $statComment->commentaire()->associate($comment);
+                    $statComment->save();
+                    if ($statData2['action'] != '') {
+                        $statComment2 = Statistic::create($statData2);
+                        $statComment2->commentaire()->associate($comment);
+                        $statComment2->save();
+                    }
                 }
+
                 $this->commentsMatch = $this->match->commentaires()->orderBy('minute', 'desc')->orderBy('updated_at', 'desc')->get();
                 session()->flash('success', 'Commentaire bien pris en compte ! 💪');
                 return redirect()->to('matches/' . $this->match->id);

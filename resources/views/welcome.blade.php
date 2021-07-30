@@ -27,7 +27,7 @@
                             src="{{ asset('images/ballon-feu.jpg') }}">
                     </div>
                     <h2 class="text-2xl font-medium mt-6 mb-3">Les matchs à venir</h2>
-                    <p class="leading-relaxed text-base">Les matchs programmés sont à retrouvés ici.</p>
+                    <p class="leading-relaxed text-base">Les matchs programmés sont à retrouver ici.</p>
                     <a href="/matches"><button class="btn btnSecondary">Je vais voir</button></a>
                 </div>
                 <div class="lg:w-2/5 my-5 pb-10 bg-primary rounded-lg shadow-2xl moveToTop opacity-0">
