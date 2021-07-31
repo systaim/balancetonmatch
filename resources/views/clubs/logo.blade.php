@@ -4,7 +4,12 @@
             <div class="w-1/2" style="background-color:{{ $club->primary_color }}"></div>
             <div class="flex items-center" style="background:linear-gradient(90deg, {{ $club->primary_color }}, {{ $club->secondary_color }})">
                 <div class="flex-grow-0 logo h-24 w-24">
-                    <img class="object-contain" src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{$club->numAffiliation}}.jpg" alt="logo">
+                    @if ($club->logo_path)
+                        <img class="object-contain" src="{{ asset($club->logo_path)}}" alt="Logo de {{ $club->name }}">
+                    @else
+                        <img class="object-contain" src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{$club->numAffiliation}}.jpg" alt="logo">
+                    @endif
+                    
                 </div>
             </div>
             <div class="w-1/2" style="background-color:{{ $club->secondary_color }}"></div>

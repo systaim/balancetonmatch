@@ -20,9 +20,9 @@
         @endauth
         <a href="{{route('matches.show',[$match, Str::slug($match->slug, '-')]) }}">
             <div class="">
-                <div class="text-center flex justify-center font-bold">
-                    <p class="px-4 bg-primary text-secondary rounded-tl-md">{{ $match->date_match->formatLocalized('%d/%m/%y')}}</p>
-                    <p class="px-4 bg-primary text-secondary rounded-tr-md">{{ $match->date_match->formatLocalized('%H:%M')}}</p>
+                <div class="text-center flex justify-center mb-2">
+                    <p class="px-4 bg-primary text-white">{{ $match->date_match->formatLocalized('%d/%m/%y')}}</p>
+                    <p class="px-4 bg-primary text-white">{{ $match->date_match->formatLocalized('%H:%M')}}</p>
                 </div>
                 <div class="grid grid-cols-12">
                     <div class="flex flex-col justify-center items-center col-span-5 overflow-hidden">
@@ -36,7 +36,7 @@
                     <div class="col-span-2 flex flex-row justify-center items-center">
                         @if($match->live == 'attente')
                         <div class="flex items-center justify-center text-secondary">
-                            <p class="text-3xl p-2 font-bold">VS</p>
+                            <img src="{{ asset('images/vs-secondary.png') }}" alt="versus" class="h-24 w-24">
                         </div>
                         @elseif($match->live == 'reporte')
                         <p class="bg-green-600 text-xs text-white rounded-md px-2 shadow-md border-b-2 border-r-2 border-white">REPORTÉ</p>

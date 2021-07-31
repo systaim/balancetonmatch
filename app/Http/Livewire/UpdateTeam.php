@@ -4,14 +4,17 @@ namespace App\Http\Livewire;
 
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class UpdateTeam extends Component
 {
+    use WithFileUploads;
 
     public $club;
     public $city;
     public $inputCity;
     public $inputZip;
+    public $inputLogo;
     public $inputAddress;
     public $buttonCity;
     public $inputPrimaryColor;
@@ -64,6 +67,10 @@ class UpdateTeam extends Component
             'inputSecondaryColor' => 'regex:/#[a-fA-F0-9]{6}/',
             'inputZip' => 'nullable|digits:5',
         ]);
+
+        $path = $this->inputLogo->store('logos');
+        $this->club->logo_path = $path;
+
         $this->club->save();
 
         return redirect()->to('clubs/' . $this->club->id);

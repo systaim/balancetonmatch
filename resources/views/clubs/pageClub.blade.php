@@ -14,10 +14,9 @@
         <h4 class="text-center text-6xl">{{ $club->abbreviation }}</h4>
         <h3 class="text-center text-secondary mb-4">Infos du club</h3>
         @livewire('update-team',['club' => $club])
-
-        @cannot('update-club', $club)
+        {{-- @cannot('update-club', $club)
             <div class="flex-col justify-center my-4 m-auto">
-                <p>Des joueurs ou managers manquent ?</p>
+                <p>Des joueurs ou dirigeants manquent ?</p>
                 @auth
                     <form class="flex justify-center" action="{{ route('contacts.askPlayer') }}" method="POST">
                         @csrf
@@ -29,44 +28,46 @@
                     <a href="/login" class="flex justify-center"><button class="btn btnSecondary">Se connecter</button></a>
                 @endauth
             </div>
-        @endcannot
+        @endcannot --}}
         <div class="flex flex-col items-center xl:flex-row xl:justify-center mt-3">
-            @canany(['update-club', 'isAdmin', 'isSuperAdmin'], $club)
-                @if ($nbrPlayers == 0)
+            @if ($nbrPlayers == 0)
+                @canany(['update-club', 'isAdmin', 'isSuperAdmin'], $club)
                     <a href="{{ route('clubs.players.create', $club) }}">
                         <button class="btn btnSecondary">
                             Créer un joueur
                         </button>
                     </a>
-                @else
-                    <a href="{{ route('clubs.players.index', $club) }}">
-                        <button class="btn btnSecondary">
-                            @if ($nbrPlayers == 1)
-                                Voir le joueur
-                            @else
-                                Voir les {{ $nbrPlayers }} joueurs
-                            @endif
-                        </button>
-                    </a>
-                @endif
-                @if ($nbrStaffs == 0)
+                @endcanany
+            @else
+                <a href="{{ route('clubs.players.index', $club) }}">
+                    <button class="btn btnSecondary">
+                        @if ($nbrPlayers == 1)
+                            Voir le joueur
+                        @else
+                            Voir les {{ $nbrPlayers }} joueurs
+                        @endif
+                    </button>
+                </a>
+            @endif
+            @if ($nbrStaffs == 0)
+                @canany(['update-club', 'isAdmin', 'isSuperAdmin'], $club)
                     <a href="{{ route('clubs.staffs.create', $club) }}">
                         <button class="btn btnSecondary">
                             Créer un dirigeant
                         </button>
                     </a>
-                @else
-                    <a href="{{ route('clubs.staffs.index', $club) }}">
-                        <button class="btn btnSecondary">
-                            @if ($nbrStaffs == 1)
-                                Voir le manager
-                            @else
-                                Voir les {{ $nbrStaffs }} managers
-                            @endif
-                        </button>
-                    </a>
-                @endif
-            @endcanany
+                @endcanany
+            @else
+                <a href="{{ route('clubs.staffs.index', $club) }}">
+                    <button class="btn btnSecondary">
+                        @if ($nbrStaffs == 1)
+                            Voir le manager
+                        @else
+                            Voir les {{ $nbrStaffs }} managers
+                        @endif
+                    </button>
+                </a>
+            @endif
         </div>
     </div>
     <div class="sm:w-11/12 md:w-9/12 xl:w-7/12 mx-auto">
