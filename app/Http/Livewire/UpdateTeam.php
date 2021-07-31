@@ -68,8 +68,10 @@ class UpdateTeam extends Component
             'inputZip' => 'nullable|digits:5',
         ]);
 
-        $path = $this->inputLogo->store('logos');
-        $this->club->logo_path = $path;
+        if ($this->inputLogo) {
+            $path = $this->inputLogo->store('logos');
+            $this->club->logo_path = $path;
+        }
 
         $this->club->save();
 
