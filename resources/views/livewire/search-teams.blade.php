@@ -16,8 +16,14 @@
                         style="animation-delay: {{ $key }}00ms;">
                         <div class="w-16 m-2 z-10">
                             <div class="logo h-12 w-12">
-                                <img class="object-contain"
-                                    src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $club->numAffiliation }}.jpg">
+                                @if ($club->logo_path)
+                                    <img class="object-contain" src="{{ asset($club->logo_path) }}"
+                                        alt="Logo de {{ $club->name }}">
+                                @else
+                                    <img class="object-contain"
+                                        src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $club->numAffiliation }}.jpg"
+                                        alt="logo">
+                                @endif
                             </div>
                         </div>
                         <div class=" py-2 w-full text-secondary overflow-hidden ml-2 z-10">

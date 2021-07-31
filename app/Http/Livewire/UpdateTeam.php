@@ -85,6 +85,14 @@ class UpdateTeam extends Component
         $this->club->save();
     }
 
+    public function deleteLogo()
+    {
+        $this->club->logo_path = "";
+        $this->club->save();
+
+        return redirect()->to('clubs/' . $this->club->id);
+    }
+
     public function render()
     {
         return view('livewire.update-team');

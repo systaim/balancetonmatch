@@ -9,7 +9,6 @@
                     @else
                         <img class="object-contain" src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{$club->numAffiliation}}.jpg" alt="logo">
                     @endif
-                    
                 </div>
             </div>
             <div class="w-1/2" style="background-color:{{ $club->secondary_color }}"></div>
