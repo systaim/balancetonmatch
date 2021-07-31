@@ -69,7 +69,7 @@ class UpdateTeam extends Component
         ]);
 
         if ($this->inputLogo) {
-            $path = $this->inputLogo->store('logos');
+            $path = $this->inputLogo->store('teamlogo');
             $this->club->logo_path = $path;
         }
 
