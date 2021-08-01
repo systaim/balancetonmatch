@@ -37,13 +37,18 @@
                                 <div
                                     class="logo h-16 w-16 sm:h-20 sm:w-20 lg:h-32 lg:w-32 cursor-pointer lg:mr-1 xl:mr-4">
                                     @if ($match->id == 0)
-                                    <img class="object-contain w-full"
-                                        src="{{ asset('images/100000.jpg') }}"
-                                        alt="logo">
-                                    @else
                                         <img class="object-contain w-full"
-                                        src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $match->homeClub->numAffiliation }}.jpg"
-                                        alt="logo">
+                                            src="{{ asset('images/100000.jpg') }}"
+                                            alt="logo">
+                                    @else
+                                        @if ($match->homeClub->logo_path)
+                                            <img class="object-contain" src="{{ asset($match->homeClub->logo_path) }}"
+                                                alt="Logo de {{ $match->homeClub->name }}">
+                                        @else
+                                            <img class="object-contain"
+                                                src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $match->homeClub->numAffiliation }}.jpg"
+                                                alt="Logo de {{ $match->homeClub->name }}">
+                                        @endif
                                     @endif
                                 </div>
                             </label>
@@ -140,9 +145,14 @@
                                         src="{{ asset('images/200000.jpg') }}"
                                         alt="logo">
                                     @else
-                                    <img class="object-contain w-full"
-                                        src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $match->awayClub->numAffiliation }}.jpg"
-                                        alt="logo">
+                                        @if ($match->awayClub->logo_path)
+                                            <img class="object-contain" src="{{ asset($match->awayClub->logo_path) }}"
+                                                alt="Logo de {{ $match->awayClub->name }}">
+                                        @else
+                                            <img class="object-contain"
+                                                src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $match->awayClub->numAffiliation }}.jpg"
+                                                alt="Logo de {{ $match->awayClub->name }}">
+                                        @endif
                                     @endif
                                 </div>
                             </label>
