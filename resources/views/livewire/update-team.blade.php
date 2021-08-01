@@ -3,9 +3,11 @@
         <div class="hidden" style="display:{{ $buttonCity == 1 ? 'block' : '' }}">
             <div class="my-4">
                 <div class="flex justify-center">
-                    <label for="inputLogo" class="btn btnSecondary my-4 border border-black">Changer le logo du club 📷</label>
+                    <label for="inputLogo" class="btn btnSecondary my-4 border border-black">Changer le logo du club
+                        📷</label>
                     <input class="hidden" type="file" name="inputLogo" id="inputLogo" wire:model="inputLogo">
-                    <button class="btn btnDanger" wire:click="deleteLogo" onclick="confirm('Etes vous sûr de vouloir supprimer le logo ?')">Supprimer le logo</button>
+                    <button class="btn btnDanger" wire:click="deleteLogo"
+                        onclick="confirm('Etes vous sûr de vouloir rétablir le logo par défaut ?')">Supprimer le logo</button>
                 </div>
                 <div class="hidden font-bold py-1 px-2 bg-primary text-white rounded-md" wire:loading
                     wire:target="inputLogo">
@@ -121,7 +123,7 @@
             @csrf
             <input class="text-primary rounded text-sm shadow outline-none focus:outline-none focus:shadow-outline py-2 ml-4" placeholder="Nombre d'équipes" type="number" name="inputNbrTeams" id="inputNbrTeams" wire:model="inputNbrTeams">
             @error('inputZip')
-                            <div class="alert alert-danger">{{ $message }}</div>
+                                    <div class="alert alert-danger">{{ $message }}</div>
             @enderror
             <input class="btn btnPrimary" type="submit" value="Valider">
         </form>

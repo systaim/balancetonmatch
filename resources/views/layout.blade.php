@@ -70,7 +70,6 @@
                                     class="float-right inline-block text-xs60 sm:text-xs md:text-base px-2 bg-primary rounded-md text-white ">
                                     Quand la touche part en live...
                                 </p>
-                                <p class="float-left text-primary bg-secondary px-1 rounded-md text-xs">Beta</p>
                             </a>
                         </div>
                     </div>
