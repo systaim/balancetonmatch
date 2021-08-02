@@ -85,6 +85,14 @@ Route::get('/matches/coupe-de-france-2021-2022', function () {
     return view('matches.coupeDeFrance', compact('matchs','user'));
 });
 
+Route::get('/matches/amicaux-2021-2022', function () {
+
+    $matchs = Match::where('competition_id', 6)->get();
+    $user = Auth::user();
+
+    return view('matches.amicaux', compact('matchs','user'));
+});
+
 Route::get('/contact', function(){
 
     return view('contact');

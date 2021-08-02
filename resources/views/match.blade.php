@@ -5,7 +5,7 @@
     <div class="relative my-2 p-2 bg-primary text-white shadow-lg cursor-pointer">
         @auth
             @if ((Auth::user() && $match->user_id == Auth::user()->id && $match->live == 'attente') || Auth::user()->role == 'super-admin' || Auth::user()->role == 'admin')
-                <div class="bg-secondary w-6 h-6 absolute top-2 right-1 flex justify-center items-center rounded-full text-primary"
+                <div class="bg-secondary w-6 h-6 absolute top-2 right-1 flex justify-center items-center rounded-full text-primary z-50"
                     @click="open= true">
                     <div class="dotMenu"></div>
                     <div class="absolute top-0 right-0 w-32 h-auto py-4 pl-6 bg-secondary shadow-xl rounded-lg"

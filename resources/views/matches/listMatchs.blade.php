@@ -42,6 +42,19 @@
                         </div>
                     </div>
                 </div> --}}
+                <div class="p-4 md:w-1/3">
+                    <a href="matches/amicaux-2021-2022">
+                        <div
+                            class="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden bg-primary shadow-2xl">
+                            <img class="lg:h-48 md:h-36 w-full object-cover object-center"
+                                src="{{ asset('images/amicaux.jpg') }}" alt="Coupe de France">
+                            <div class="p-6">
+                                <h1 class="title-font text-lg font-medium mb-3">Matchs amicaux</h1>
+                                <p class="leading-relaxed mb-3">Matchs de préparation pour la saison 2021-2022</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
             </div>
         </div>
     </section>
