@@ -79,7 +79,7 @@ Route::get('/', function (Match $match) {
 
 Route::get('/matches/coupe-de-france-2021-2022', function () {
 
-    $matchs = Match::where('competition_id', 3)->get();
+    $matchs = Match::where('competition_id', 3)->where('date_match','>=', Carbon::now()->subHours(12))->orderBy('date_match', 'asc')->get();
     $user = Auth::user();
 
     return view('matches.coupeDeFrance', compact('matchs','user'));
@@ -87,7 +87,7 @@ Route::get('/matches/coupe-de-france-2021-2022', function () {
 
 Route::get('/matches/amicaux-2021-2022', function () {
 
-    $matchs = Match::where('competition_id', 6)->get();
+    $matchs = Match::where('competition_id', 6)->where('date_match','>=', Carbon::now()->subHours(12))->orderBy('date_match', 'asc')->get();
     $user = Auth::user();
 
     return view('matches.amicaux', compact('matchs','user'));
