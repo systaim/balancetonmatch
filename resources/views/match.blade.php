@@ -2,6 +2,9 @@
     <div class="absolute top-2 -left-8 md:left-6 z-10 text-center flex justify-center font-bold">
         @livewire('favori-match', ['user' => $user, 'match' => $match])
     </div>
+    @if (Auth::user()->role == 'super-admin')
+        <p class="text-xs flex justify-end">{{ $match->user->first_name . ' ' . $match->user->last_name }}</p>
+    @endif
     <div class="relative my-2 p-2 bg-primary text-white shadow-lg cursor-pointer">
         @auth
             @if ((Auth::user() && $match->user_id == Auth::user()->id && $match->live == 'attente') || Auth::user()->role == 'super-admin' || Auth::user()->role == 'admin')
@@ -10,8 +13,9 @@
                     <div class="dotMenu"></div>
                     <div class="absolute top-0 right-0 w-32 h-auto py-4 pl-6 bg-secondary shadow-xl rounded-lg"
                         x-show="open" @click.away="open = false">
-                        <a class="w-full py-2 font-bold" href="{{ route('matches.destroy', $match) }}" onclick="event.preventDefault();
-                                    document.getElementById('delete-match').submit();">Effacer</a>
+                        <a class="w-full py-2 font-bold" href="{{ route('matches.destroy', $match) }}"
+                            onclick="event.preventDefault();
+                                                                        document.getElementById('delete-match').submit();">Effacer</a>
                     </div>
                     <form id="delete-match" action="{{ route('matches.destroy', $match) }}" method="POST">
                         @method('DELETE')
@@ -23,8 +27,8 @@
         <a href="{{ route('matches.show', [$match, Str::slug($match->slug, '-')]) }}">
             <div class="">
                 <div class="text-center flex justify-center mb-2">
-                    <p class="px-4 bg-primary text-white">{{ $match->date_match->formatLocalized('%d/%m/%y') }}</p>
-                    <p class="px-4 bg-primary text-white">{{ $match->date_match->formatLocalized('%H:%M') }}</p>
+                    <p class="px-4 text-white">{{ $match->date_match->formatLocalized('%d/%m/%y') }}</p>
+                    <p class="px-4 text-white">{{ $match->date_match->formatLocalized('%H:%M') }}</p>
                 </div>
                 <div class="grid grid-cols-12">
                     <div class="flex flex-col justify-center items-center col-span-5 overflow-hidden">
@@ -45,7 +49,8 @@
                     <div class="col-span-2 flex flex-row justify-center items-center">
                         @if ($match->live == 'attente')
                             <div class="flex items-center justify-center text-secondary">
-                                <img src="{{ asset('images/vs-secondary.png') }}" alt="versus" class="h-12 lg:h-24 w-12 lg:w-24">
+                                <img src="{{ asset('images/vs-secondary.png') }}" alt="versus"
+                                    class="h-12 lg:h-24 w-12 lg:w-24">
                             </div>
                         @elseif($match->live == 'reporte')
                             <p
