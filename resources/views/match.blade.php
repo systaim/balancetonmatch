@@ -2,9 +2,11 @@
     <div class="absolute top-2 -left-8 md:left-6 z-10 text-center flex justify-center font-bold">
         @livewire('favori-match', ['user' => $user, 'match' => $match])
     </div>
-    @if (Auth::user()->role == 'super-admin')
-        <p class="text-xs flex justify-end">{{ $match->user->first_name . ' ' . $match->user->last_name }}</p>
-    @endif
+    @auth
+        @if (Auth::user()->role == 'super-admin')
+            <p class="text-xs flex justify-end">{{ $match->user->first_name . ' ' . $match->user->last_name }}</p>
+        @endif
+    @endauth
     <div class="relative my-2 p-2 bg-primary text-white shadow-lg cursor-pointer">
         @auth
             @if ((Auth::user() && $match->user_id == Auth::user()->id && $match->live == 'attente') || Auth::user()->role == 'super-admin' || Auth::user()->role == 'admin')
@@ -15,7 +17,7 @@
                         x-show="open" @click.away="open = false">
                         <a class="w-full py-2 font-bold" href="{{ route('matches.destroy', $match) }}"
                             onclick="event.preventDefault();
-                                                                        document.getElementById('delete-match').submit();">Effacer</a>
+                                                                            document.getElementById('delete-match').submit();">Effacer</a>
                     </div>
                     <form id="delete-match" action="{{ route('matches.destroy', $match) }}" method="POST">
                         @method('DELETE')
