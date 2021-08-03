@@ -30,7 +30,7 @@
                             </div>
                             <div class="col-span-1 flex flex-col items-center">
                                 <div class="logo h-12 w-12 cursor-pointer m-4 border-2 border-primary">
-                                    <div class="flex-grow-0 logo h-24 w-24">
+                                    <div class="flex-grow-0 logo h-12 w-12">
                                         @if ($match->awayClub->logo_path)
                                             <img class="object-contain" src="{{ asset($match->awayClub->logo_path)}}" alt="Logo de {{ $match->awayClub->name }}">
                                         @else

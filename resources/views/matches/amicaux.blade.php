@@ -8,7 +8,7 @@
     <div class="relative lg:flex lg:justify-center">
         <div class="lg:w-9/12">
 
-            {{-- @livewire('search-match') --}}
+            @livewire('search-match-amicaux')
 
             @foreach ($matchs as $match)
                 <div class="rounded-b-md rounded-tr-md">

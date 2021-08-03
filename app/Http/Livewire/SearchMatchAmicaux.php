@@ -10,7 +10,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
-class SearchMatch extends Component
+class SearchMatchAmicaux extends Component
 {
 
     public $search;
@@ -18,6 +18,7 @@ class SearchMatch extends Component
     public $matches;
     public $regions;
     public $user;
+    public $title;
 
     public function mount()
     {
@@ -37,6 +38,7 @@ class SearchMatch extends Component
                 ->get()
                 ->pluck('id');
             $this->matches = Match::where('date_match', '>=', Carbon::now()->subHours(12))
+                ->where('competition_id', 6)
                 ->where(function ($query) use ($club) {
                     $query->wherein('home_team_id', $club)
                         ->orwherein('away_team_id', $club);
@@ -49,6 +51,6 @@ class SearchMatch extends Component
 
     public function render()
     {
-        return view('livewire.search-match');
+        return view('livewire.search-match-coupe-de-france');
     }
 }

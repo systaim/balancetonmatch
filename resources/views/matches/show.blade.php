@@ -96,8 +96,6 @@
     'stats' => $stats,
     ])
 
-    @include('footer')
-
     {{-- <script src="{{ mix('js/app.js') }}"></script> --}}
     @livewireScripts
 </body>
