@@ -1,19 +1,19 @@
-<div class="relative z-50 p-6">
+<div class="relative w-36 z-50">
     @auth
     <div>
         @if ($user && $user->isfavoriMatch($match))
         <div>
-            <i wire:model="star" class="{{ $star }} fa-star cursor-pointer text-red-700 text-xl" wire:click="myMatch({{ $match->id }})"></i>
+            <i wire:model="star" class="{{ $star }} fa-star cursor-pointer text-red-700 text-4xl" wire:click="myMatch({{ $match->id }})"></i>
         </div>
         @else
         <div>
-            <i wire:model="star" class="{{ $star }} fa-star cursor-pointer text-red-700 text-xl" wire:click="myMatch({{ $match->id }})"></i>
+            <i wire:model="star" class="{{ $star }} fa-star cursor-pointer text-red-700 text-4xl" wire:click="myMatch({{ $match->id }})"></i>
         </div>
         @endif
     </div>
     @else
     <div>
-        <i class="far fa-star cursor-pointer text-red-700 text-xl" wire:click="clickLogin"></i>
+        <i class="far fa-star cursor-pointer text-red-700 text-4xl" wire:click="clickLogin"></i>
         @if($login)
         <a href="/login">
             <div wire:loading.class.remove="alertFavori" class="absolute bg-black text-white text-xs p-2 rounded-lg alertFavori z-50">
