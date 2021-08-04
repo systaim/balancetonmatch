@@ -8,10 +8,10 @@
     <!-- meta Facebook -->
     <meta property="og:url" content="{{ request()->url() }}">
     <meta property="og:title"
-        content="Balance ton match ! {{ $match->homeclub->name . 'VS' . $match->awayclub->name }}">
+        content="Balance ton match ! {{ $match->homeclub->name . ' VS ' . $match->awayclub->name }}">
     <meta property="og:description" content=" {{ "Match de". $match->competition->name. "entre ". $match->homeclub->name . ' et ' . $match->awayclub->name }}">
 
-    <title>Balance ton match ! {{ $match->homeclub->name . 'VS' . $match->awayclub->name }}</title>
+    <title>Balance ton match ! {{ $match->homeclub->name . ' VS ' . $match->awayclub->name }}</title>
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     <link rel="stylesheet" href="{{ mix('css/styles.css') }}" />
     <script src="https://kit.fontawesome.com/c03c2336c3.js" crossorigin="anonymous"></script>
