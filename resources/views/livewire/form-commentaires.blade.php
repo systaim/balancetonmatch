@@ -28,7 +28,7 @@
                         class="bg-primary p-2 text-secondary flex flex-col lg:flex-row lg:items-center lg:rounded-l-full">
                         <div class="relative flex justify-center">
                             @auth
-                                @if ($match->commentateur != null && $match->commentateur->user->id == Auth::user()->id && $match->live != 'attente' && $match->live != 'finDeMatch')
+                                @if (Auth::user()->role == "super-admin" || ($match->commentateur != null && $match->commentateur->user_id == Auth::user()->id && $match->live != 'attente' && $match->live != 'finDeMatch'))
                                     <input class="hidden" type="radio" wire:model="team_action" id="homeAction"
                                         name="team_action" value="home">
                                 @endif
@@ -79,7 +79,7 @@
                             <p class="bg-white rounded-sm mr-1 flex justify-center w-4 text-3xl px-4 sm:text-5xl sm:px-6 font-bold">
                                 {{ $home_score }}
                             </p>
-                            @if(Auth::check() && $match->commentateur && ($match->live == "debut" || $match->live == "mitemps" || $match->live == "repriseMT"))
+                            @if(Auth::user()->role == "super-admin" || Auth::check() && $match->commentateur)
                             @if($match->commentateur->user_id == Auth::user()->id || ($match->live == "finDeMatch" && Auth::user()->role == "manager" && (Auth::user()->club_id == $match->homeClub->id || Auth::user()->club_id == $match->awayClub->id)))
                                 <div class="flex justify-evenly items-center mt-1 z-10">
                                     <button type="button" wire:click="decrementHomeScore" class="focus:outline-none">
@@ -96,7 +96,7 @@
                             <p class="bg-white rounded-sm ml-1 flex justify-center w-4 text-3xl px-4 sm:text-5xl sm:px-6 font-bold">
                                 {{ $away_score }}
                             </p>
-                            @if(Auth::check() && $match->commentateur && ($match->live == "debut" || $match->live == "mitemps" || $match->live == "repriseMT"))
+                            @if(Auth::user()->role == "super-admin" || Auth::check() && $match->commentateur)
                             @if ($match->commentateur->user_id == Auth::user()->id || ($match->live == "finDeMatch" && Auth::user()->role == "manager" && (Auth::user()->club_id == $match->homeClub->id || Auth::user()->club_id == $match->awayClub->id)))
                                 <div class="flex justify-evenly items-center mt-1 z-10">
                                     <button type="button" wire:click="decrementAwayScore" class="focus:outline-none">
@@ -133,7 +133,7 @@
                         </div>
                         <div class="flex justify-center">
                             @auth
-                                @if ($match->commentateur != null && $match->commentateur->user_id == Auth::user()->id && $match->live != 'attente' && $match->live != 'finDeMatch')
+                                @if (Auth::user()->role == "super-admin" || ($match->commentateur != null && $match->commentateur->user_id == Auth::user()->id && $match->live != 'attente' && $match->live != 'finDeMatch'))
                                     <input class="hidden" type="radio" wire:model="team_action" id="awayAction"
                                         name="team_action" value="away">
                                 @endif
@@ -564,7 +564,7 @@
                     <p class="bg-danger font-bold py-2 px-3">Le match est reporté à une date ultérieure</p>
                 </div>
             @endif
-            @if (empty($match->commentateur) && $match->live != 'finDeMatch')                
+            @if (Auth::user()->role== "super-admin" || empty($match->commentateur) && $match->live != 'finDeMatch')                
                 <div class="flex justify-center items-center my-6">
                     <p class="bg-primary text-white py-2 px-3">En attente d'un commentateur</p>
                 </div>
@@ -794,7 +794,7 @@
                                 @if ($comment->images != null)
                                     @if(pathinfo($comment->images)['extension'] == "mp4" || pathinfo($comment->images)['extension'] == "mov")
                                         <div class="flex justify-end pr-8">
-                                            <video autoplay loop controls class="max-h-48 w-auto rounded-md shadow-xl">
+                                            <video autoplay controls class="max-h-48 w-auto rounded-md shadow-xl">
                                                 <source src="{{ asset($comment->images) }}" type="video/mp4">
                                                 <source src="{{ asset($comment->images) }}" type="video/mov">
                                                 Your browser does not support the video tag.      

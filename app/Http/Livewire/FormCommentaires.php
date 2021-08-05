@@ -444,110 +444,110 @@ class FormCommentaires extends Component
     public function saveComment()
     {
 
-        if ($this->dateMatch->diffInMinutes(now(), false) >= 0 && $this->match->live == "debut" || $this->match->live == "repriseMT") {
+        // if ($this->dateMatch->diffInMinutes(now(), false) >= 0 && $this->match->live == "debut" || $this->match->live == "repriseMT") {
 
-            $statData2['action'] = '';
+        $statData2['action'] = '';
 
-            $this->validate([
-                'type_comments' => 'required|string',
-                'minute' => 'required|integer|between:1,120',
-                'team_action' => 'required|string',
-                'file' => 'nullable | mimes:jpeg,jpg,png,gif,mp4,gif,mov,ogg,quicktime,m3u8,ts,3gp|max:10240'
-            ]);
-
-
-            $commentData = ['minute' => $this->minuteCom, 'team_action' => $this->team_action];
-            $commentData['commentator_id'] = $this->commentator[0]->id;
-
-            if ($this->type_comments == "but") {
-                $commentData['type_action'] = "goal";
-                $commentData['type_comments'] = $this->listGoal[array_rand($this->listGoal)];
-                $commentData['comments'] = $this->type_but;
-                // if($this->type_but == "perso"){
-                //     $commentData['comments'] = $this->commentPerso;
-                // } else {
-                //     $commentData['comments'] = $this->type_but;
-                // }
-
-                $statData['action'] = "goal";
+        $this->validate([
+            'type_comments' => 'required|string',
+            'minuteCom' => 'required|integer|between:1,120',
+            'team_action' => 'required|string',
+            'file' => 'nullable | mimes:jpeg,jpg,png,gif,mp4,gif,mov,ogg,quicktime,m3u8,ts,3gp|max:10240'
+        ]);
 
 
-                if ($this->team_action == 'home') {
-                    $this->home_score += 1;
-                    $this->match->home_score += 1;
-                    $this->match->save();
-                }
-                if ($this->team_action == 'away') {
-                    $this->away_score += 1;
-                    $this->match->away_score += 1;
-                    $this->match->save();
-                }
-            } elseif ($this->type_comments == "carton") {
+        $commentData = ['minute' => $this->minuteCom, 'team_action' => $this->team_action];
+        $commentData['commentator_id'] = $this->commentator[0]->id;
 
-                $commentData['type_comments'] = $this->type_carton;
+        if ($this->type_comments == "but") {
+            $commentData['type_action'] = "goal";
+            $commentData['type_comments'] = $this->listGoal[array_rand($this->listGoal)];
+            $commentData['comments'] = $this->type_but;
+            // if($this->type_but == "perso"){
+            //     $commentData['comments'] = $this->commentPerso;
+            // } else {
+            //     $commentData['comments'] = $this->type_but;
+            // }
 
-                if ($this->type_carton == 'Carton jaune') {
+            $statData['action'] = "goal";
 
-                    $commentData['type_action'] = "1st yellow_card";
-                    $statData['action'] = "yellow_card";
-                    $commentData['comments'] = "1er carton jaune";
-                }
-                if ($this->type_carton == '2e carton jaune') {
-                    $commentData['type_action'] = "2nd yellow_card";
-                    $statData['action'] = "yellow_card";
-                    $commentData['comments'] = "2e carton jaune";
 
-                    $statData2['action'] = "red_card";
-                    $statData2['player_id'] = $this->player;
-                }
-                if ($this->type_carton == 'Carton rouge') {
-                    $commentData['type_action'] = "red_card";
-                    $commentData['comments'] = "Le joueur est exclu du match";
-                    $statData['action'] = "red_card";
-                }
-                if ($this->type_carton == 'Carton blanc') {
-                    $commentData['type_action'] = "white_card";
-                    $commentData['comments'] = "Le joueur est exclu pendant 10 minutes";
-                }
-            } elseif ($this->type_comments == "action") {
-                $commentData['type_comments'] = "Le live en direct";
-                $commentData['comments'] = $this->type_actionMatch;
-            } 
-            else {
-                $commentData['type_comments'] = $this->type_comments;
+            if ($this->team_action == 'home') {
+                $this->home_score += 1;
+                $this->match->home_score += 1;
+                $this->match->save();
             }
-
-            $comment = Commentaire::create($commentData);
-
-            if ($comment) {
-
-                if ($this->file) {
-                    $path = $this->file->store('uploads');
-                    $comment->images = $path;
-                }
-
-                $comment->save();
-                if ($this->type_comments == "but" || $this->type_comments == "carton") {
-                    $statData['commentaire_id'] = $comment->id;
-                    $statData['player_id'] = $this->player;
-                    $statComment = Statistic::create($statData);
-                    $statComment->commentaire()->associate($comment);
-                    $statComment->save();
-                    if ($statData2['action'] != '') {
-                        $statComment2 = Statistic::create($statData2);
-                        $statComment2->commentaire()->associate($comment);
-                        $statComment2->save();
-                    }
-                }
-
-                $this->commentsMatch = $this->match->commentaires()->orderBy('minute', 'desc')->orderBy('updated_at', 'desc')->get();
-                session()->flash('success', 'Commentaire bien pris en compte ! 💪');
-                return redirect()->to('matches/' . $this->match->id);
+            if ($this->team_action == 'away') {
+                $this->away_score += 1;
+                $this->match->away_score += 1;
+                $this->match->save();
             }
+        } elseif ($this->type_comments == "carton") {
+
+            $commentData['type_comments'] = $this->type_carton;
+
+            if ($this->type_carton == 'Carton jaune') {
+
+                $commentData['type_action'] = "1st yellow_card";
+                $statData['action'] = "yellow_card";
+                $commentData['comments'] = "1er carton jaune";
+            }
+            if ($this->type_carton == '2e carton jaune') {
+                $commentData['type_action'] = "2nd yellow_card";
+                $statData['action'] = "yellow_card";
+                $commentData['comments'] = "2e carton jaune";
+
+                $statData2['action'] = "red_card";
+                $statData2['player_id'] = $this->player;
+            }
+            if ($this->type_carton == 'Carton rouge') {
+                $commentData['type_action'] = "red_card";
+                $commentData['comments'] = "Le joueur est exclu du match";
+                $statData['action'] = "red_card";
+            }
+            if ($this->type_carton == 'Carton blanc') {
+                $commentData['type_action'] = "white_card";
+                $commentData['comments'] = "Le joueur est exclu pendant 10 minutes";
+            }
+        } elseif ($this->type_comments == "action") {
+            $commentData['type_comments'] = "Le live en direct";
+            $commentData['comments'] = $this->type_actionMatch;
         } else {
-            session()->flash('warning', "Il n'est pas possible de commenter maintenant");
+            $commentData['type_comments'] = $this->type_comments;
+        }
+
+
+        $comment = Commentaire::create($commentData);
+
+        if ($comment) {
+
+            if ($this->file) {
+                $path = $this->file->store('uploads');
+                $comment->images = $path;
+            }
+
+            $comment->save();
+            if ($this->type_comments == "but" || $this->type_comments == "carton") {
+                $statData['commentaire_id'] = $comment->id;
+                $statData['player_id'] = $this->player;
+                $statComment = Statistic::create($statData);
+                $statComment->commentaire()->associate($comment);
+                $statComment->save();
+                if ($statData2['action'] != '') {
+                    $statComment2 = Statistic::create($statData2);
+                    $statComment2->commentaire()->associate($comment);
+                    $statComment2->save();
+                }
+            }
+
+            $this->commentsMatch = $this->match->commentaires()->orderBy('minute', 'desc')->orderBy('updated_at', 'desc')->get();
+            session()->flash('success', 'Commentaire bien pris en compte ! 💪');
             return redirect()->to('matches/' . $this->match->id);
         }
+        // } else {
+        //     session()->flash('warning', "Il n'est pas possible de commenter maintenant");
+        //     return redirect()->to('matches/' . $this->match->id);
+        // }
     }
 
     public function retour()
