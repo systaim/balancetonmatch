@@ -79,35 +79,39 @@
                             <p class="bg-white rounded-sm mr-1 flex justify-center w-4 text-3xl px-4 sm:text-5xl sm:px-6 font-bold">
                                 {{ $home_score }}
                             </p>
-                            @if(Auth::user()->role == "super-admin" || Auth::check() && $match->commentateur)
-                            @if($match->commentateur->user_id == Auth::user()->id || ($match->live == "finDeMatch" && Auth::user()->role == "manager" && (Auth::user()->club_id == $match->homeClub->id || Auth::user()->club_id == $match->awayClub->id)))
-                                <div class="flex justify-evenly items-center mt-1 z-10">
-                                    <button type="button" wire:click="decrementHomeScore" class="focus:outline-none">
-                                        <span class="h-5 w-5 flex items-center justify-center rounded-full bg-white">-</span>
-                                    </button>
-                                    <button type="button" wire:click="incrementHomeScore" class="focus:outline-none">
-                                        <span class="h-5 w-5 flex items-center justify-center rounded-full bg-white">+</span>
-                                    </button>
-                                </div>
-                            @endif
-                            @endif
+                            @auth
+                                @if((Auth::user()->role == "super-admin" || $match->commentateur) && $match->home_score != null)
+                                    @if($match->commentateur && $match->commentateur->user_id == Auth::user()->id || ($match->live == "finDeMatch" && Auth::user()->role == "manager" && (Auth::user()->club_id == $match->homeClub->id || Auth::user()->club_id == $match->awayClub->id)))
+                                    <div class="flex justify-evenly items-center mt-1 z-10">
+                                        <button type="button" wire:click="decrementHomeScore" class="focus:outline-none">
+                                            <span class="h-5 w-5 flex items-center justify-center rounded-full bg-white">-</span>
+                                        </button>
+                                        <button type="button" wire:click="incrementHomeScore" class="focus:outline-none">
+                                            <span class="h-5 w-5 flex items-center justify-center rounded-full bg-white">+</span>
+                                        </button>
+                                    </div>
+                                    @endif
+                                @endif
+                            @endauth
                         </div>
                         <div class="z-10">
                             <p class="bg-white rounded-sm ml-1 flex justify-center w-4 text-3xl px-4 sm:text-5xl sm:px-6 font-bold">
                                 {{ $away_score }}
                             </p>
-                            @if(Auth::user()->role == "super-admin" || Auth::check() && $match->commentateur)
-                            @if ($match->commentateur->user_id == Auth::user()->id || ($match->live == "finDeMatch" && Auth::user()->role == "manager" && (Auth::user()->club_id == $match->homeClub->id || Auth::user()->club_id == $match->awayClub->id)))
-                                <div class="flex justify-evenly items-center mt-1 z-10">
-                                    <button type="button" wire:click="decrementAwayScore" class="focus:outline-none">
-                                        <span class="h-5 w-5 flex items-center justify-center rounded-full bg-white">-</span>
-                                    </button>
-                                    <button type="button" wire:click="incrementAwayScore" class="focus:outline-none">
-                                        <span class="h-5 w-5 flex items-center justify-center rounded-full bg-white">+</span>
-                                    </button>
-                                </div>
-                            @endif
-                            @endif
+                            @auth
+                                @if((Auth::user()->role == "super-admin" || $match->commentateur) && $match->home_score != null)
+                                    @if($match->commentateur && $match->commentateur->user_id == Auth::user()->id || ($match->live == "finDeMatch" && Auth::user()->role == "manager" && (Auth::user()->club_id == $match->homeClub->id || Auth::user()->club_id == $match->awayClub->id)))
+                                    <div class="flex justify-evenly items-center mt-1 z-10">
+                                        <button type="button" wire:click="decrementAwayScore" class="focus:outline-none">
+                                            <span class="h-5 w-5 flex items-center justify-center rounded-full bg-white">-</span>
+                                        </button>
+                                        <button type="button" wire:click="incrementAwayScore" class="focus:outline-none">
+                                            <span class="h-5 w-5 flex items-center justify-center rounded-full bg-white">+</span>
+                                        </button>
+                                    </div>
+                                    @endif
+                                @endif
+                            @endauth
                         </div>
                     </div>
                 </div>
@@ -440,12 +444,12 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="mt-6 flex flex-col justify-center">
+                    <div class="mt-6 flex items-center justify-center">
+                        <label for="exit" class="mr-6 cursor-pointer" wire:click="retour">Retour</label>
                         <button wire:loading.attr="disabled" wire:loading.class.remove="btnPrimary" wire:target="file"
                             class="btn btnPrimary" type="submit">Je commente</button>
                         <input class="hidden" type="radio" id="exit" wire:model="team_action" name="team_action"
                             value="">
-                        <label for="exit" class="btn btnPrimary text-center" wire:click="retour">Retour</label>
                     </div>
                 @endif
                 @if ($team_action == 'away')
@@ -502,12 +506,12 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="mt-6 flex flex-col justify-center">
+                    <div class="mt-6 flex items-center justify-center">
+                        <label for="exit" class="mr-6 cursor-pointer" wire:click="retour">Retour</label>
                         <button wire:loading.attr="disabled" wire:loading.class.remove="btnSecondary" wire:target="file"
                             class="btn btnSecondary" type="submit" value="">Je commente</button>
                         <input class="hidden" type="radio" id="exit" wire:model="team_action" name="team_action"
                             value="">
-                        <label for="exit" class="btn btnSecondary text-center" wire:click="retour">Retour</label>
                     </div>
                 @endif
             </div>
@@ -571,7 +575,7 @@
                 @auth
                     <button type="button"
                         class="relative commentaires h-24 bg-white commandeMatch items-stretch w-full focus:outline-none minHeight16"
-                        wire:click="becomeCommentator" wire:model="commentator">
+                        wire:click="becomeCommentator" wire:model="commentator" onclick="return confirm('Es-tu bien au bord du terrain ?')">
                         <div class="minuteCommentaires w-24 commandeMatch flex flex-col justify-center items-center">
                             <img src="{{ asset('images/whistle-white.png') }}">
                         </div>

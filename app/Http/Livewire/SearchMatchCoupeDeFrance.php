@@ -15,17 +15,17 @@ class SearchMatchCoupeDeFrance extends Component
 
     public $search;
     public $clubs;
-    public $matches;
+    public $matchs;
     public $regions;
     public $user;
     public $title;
 
     public function mount()
     {
-        $this->matches = Match::where('date_match', '>=', Carbon::now()->subHours(12))
-            ->orderBy('date_match', 'asc')->get();
-        $this->regions = Region::find($this->matches->keys());
-        $this->matches = [];
+        // $this->matchs = Match::where('date_match', '>=', Carbon::now()->subHours(12))->where('competition_id', 3)
+        //     ->orderBy('date_match', 'asc')->get();
+        // $this->regions = Region::find($this->matchs->keys());
+        $this->matchs = [];
     }
 
     public function updatedSearch()
@@ -37,7 +37,7 @@ class SearchMatchCoupeDeFrance extends Component
                 ->orwhere('abbreviation', 'like', '%' . $this->search . '%')
                 ->get()
                 ->pluck('id');
-            $this->matches = Match::where('date_match', '>=', Carbon::now()->subHours(12))
+            $this->matchs = Match::where('date_match', '>=', Carbon::now()->subHours(12))
                 ->where('competition_id', 3)
                 ->where(function ($query) use ($club) {
                     $query->wherein('home_team_id', $club)
@@ -45,7 +45,9 @@ class SearchMatchCoupeDeFrance extends Component
                 })
                 ->get();
         } else {
-            $this->matches = [];
+            // $this->matchs = Match::where('date_match', '>=', Carbon::now()->subHours(12))->where('competition_id', 3)
+            // ->orderBy('date_match', 'asc')->get();
+            $this->matchs = [];
         }
     }
 

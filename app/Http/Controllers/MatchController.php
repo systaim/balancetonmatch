@@ -117,10 +117,11 @@ class MatchController extends Controller
         $stats = Statistic::all();
         $nbrFavoris = Favorismatch::where('match_id', $match->id)->count();
         $competitions = $match->competition()->get();
+        $user = Auth::user();
 
         
 
-        return view('matches.show', compact('match', 'commentsMatch', 'clubHome', 'clubAway', 'competitions', 'stats', 'nbrFavoris', 'commentator'));
+        return view('matches.show', compact('match', 'commentsMatch', 'clubHome', 'clubAway', 'competitions', 'stats', 'nbrFavoris', 'commentator', 'user'));
     }
 
     /**

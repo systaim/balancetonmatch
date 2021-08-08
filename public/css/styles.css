@@ -703,6 +703,7 @@ input:checked+.inputAction {
   top: 0;
   width: 100%;
   height: auto;
+  padding-bottom: 150px;
   transform-origin: 0% 0%;
   transform: translate(0, -100%);
   background-color: #fff;
