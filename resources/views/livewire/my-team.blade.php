@@ -6,8 +6,7 @@
             wire:click="itsMyTeam({{ $club->id }})"></i>
     </div>
     <div>
-        @auth()
-        @dump($user->club_id)
+        @auth
             @if ($user->club_id == $club->id)
                 <p>Je fais partie de ce club ! 💪</p>
             @else

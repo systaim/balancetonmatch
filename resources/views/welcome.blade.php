@@ -19,6 +19,9 @@
         </div>
     </section>
     <section>
+        @livewire('my-team', ['user' => $user])
+    </section>
+    <section>
         <div class="container px-5 mx-auto">
             <div class="flex flex-wrap justify-evenly mx-4 mb-10 text-center text-white moveToTop opacity-0">
                 <div class="lg:w-2/5 my-5 pb-10 bg-primary rounded-lg shadow-2xl">
@@ -140,7 +143,7 @@
     </div> --}}
 
     @auth
-        <div class="flex flex-col w-full lg:flex-row justify-around py-8">
+        <div class="flex flex-col w-11/12 lg:flex-row justify-around p-8">
             @if (count($user->favoristeams) > 0)
                 <div class="m-auto">
                     <div>
