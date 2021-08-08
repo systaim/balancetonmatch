@@ -10,7 +10,7 @@ class FavoriMatch extends Component
 {
 
     public $club;
-    public $user = Auth::user();
+    public $user;
     public $star = "";
     public $nbrFavoris;
     public $login;
