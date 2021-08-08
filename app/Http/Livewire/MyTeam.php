@@ -13,27 +13,39 @@ class MyTeam extends Component
     public $club;
     public $user;
     public $login;
+    public $message;
 
     public function mount(Club $club)
     {
         if (Auth::check()) {
-            if ($this->user->club_id) {
+            if ($this->user->club_id == $this->club->id) {
                 $this->star = "fas";
+                $this->message = 'Je suis licencié dans ce club ! 💪';
             } else {
                 $this->star = "far";
+                $this->message = 'Je suis licencié dans un autre club';
             }
         } else {
             $this->star = "far";
         }
     }
 
-    public function itsMyTeam(Club $club)
+    public function itsMyTeam()
     {
-        if($this->user->club_id != $this->club->id){
-            dd('pas le meme club');
-        } else {
-            $this->user->club_id == $this->club->id;
-            $this->user->save();
+        if (Auth::check()) {
+            if ($this->user->club == null) {
+                if ($this->user->club_id != $this->club->id) {
+                    $this->star = 'far';
+                    $this->user->club_id = $this->club->id;
+                    $this->user->save();
+                }
+                if ($this->user->club_id == $this->club->id) {
+                    $this->star = 'fas';
+                    $this->message = 'Je suis licencié dans ce club ! 💪';
+                }
+            } else {
+                $this->message = "Vous êtes déjà licencié ailleurs";
+            }
         }
     }
 

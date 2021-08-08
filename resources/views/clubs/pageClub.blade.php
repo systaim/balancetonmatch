@@ -5,7 +5,7 @@
 
     <div id="infos" class="flex flex-col items-center justify-between">
         <div class="w-11/12 md:w-8/12 lg:w-6/12 m-auto bg-primary p-2 shadow-lg text-white rounded-lg flex flex-col md:flex-row justify-around items-center">
-            {{-- @livewire('my-team', ['user' => $user, 'club' => $club]) --}}
+            @livewire('my-team', ['user' => $user, 'club' => $club])
             @livewire('favori-team', ['user' => $user, 'club' => $club,'nbrFavoris' => $nbrFavoris])
         </div>
     </div>

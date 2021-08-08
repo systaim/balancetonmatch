@@ -1,5 +1,5 @@
 <div class="flex flex-col justify-center items-center p-3 md:w-1/2 mr-2 hover:shadow-2xl"
-    wire:click="itsMyTeam({{ $club->id }})">
+    wire:click="itsMyTeam">
     <div>
         <i wire:model="star"
             class="{{ $star }} fa-star text-3xl text-red-700 cursor-pointer bg-secondary p-4 rounded-full"
@@ -8,14 +8,16 @@
     <div>
         @auth
             @if ($user->club_id == $club->id)
-                <p>Je fais partie de ce club ! 💪</p>
+                <p class="text-sm">{{ $message }}</p>
             @else
-                <p>C'est mon club !</p>
+                <p class="text-sm">{{ $message }}</p>
             @endif
         @else
-            <div class="text-center flex flex-col justify-center">
-                <p>C'est ta team ?</p>
-            </div>
+            <a href="/login">
+                <div class="text-center flex flex-col justify-center">
+                    <p class="text-sm">C'est ta team ? connecte toi →</p>
+                </div>
+            </a>
         @endauth
 
     </div>

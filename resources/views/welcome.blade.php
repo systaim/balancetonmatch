@@ -19,7 +19,37 @@
         </div>
     </section>
     <section>
-        @livewire('my-team', ['user' => $user])
+        @auth
+
+                <div class="p-4 shadow-2xl flex w-full">
+                    <div class="m-2 p-10 flex flex-col items-center justify-center bg-primary text-white">
+                        <h3 class="text-center">Ma licence :</h3>
+                        @if (Auth::user()->club)
+                            <div class="flex justify-center items-center">
+                                <div class="flex-grow-0 logo h-16 w-16 m-2">
+                                    @if (Auth::user()->club->logo_path)
+                                        <img class="object-contain" src="{{ asset(Auth::user()->club->logo_path) }}"
+                                            alt="Logo de {{ Auth::user()->club->name }}">
+                                    @else
+                                        <img class="object-contain"
+                                            src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ Auth::user()->club->numAffiliation }}.jpg"
+                                            alt="logo">
+                                    @endif
+                                </div>
+                                <p class="font-bold">{{ Auth::user()->club->name }}</p>
+                            </div>
+                        @else
+                            <div class="p-4 shadow-2xl flex w-full">
+                                @auth
+                                    <a href="/clubs"><button class="btn btnSecondary">Je cherche mon club →</button></a>
+                                @endauth
+                            </div>
+                        @endif
+                    </div>
+                </div>
+
+        @endauth
+
     </section>
     <section>
         <div class="container px-5 mx-auto">

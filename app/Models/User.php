@@ -33,13 +33,13 @@ class User extends Authenticatable
         'date_of_birth',
         'tel',
         'password',
-        'club_id',
         'rank',
         'profile_photo_path',
         'region_id',
         'note',
         'first_com',
-        'is_player'
+        'is_player',
+        'club_id',
     ];
 
     /**
