@@ -557,9 +557,9 @@
             @if ($nbrFavoris > 0 && $match->live == 'attente')
                 <div class="bg-secondary text-primary rounded-lg relative my-2 flex justify-center m-auto p-1">
                     @if ($nbrFavoris == 1)
-                        <p>{{ $nbrFavoris }} personne veut un LIVE</p>
+                        <p>{{ $nbrFavoris }} personne aimerait le direct LIVE</p>
                     @else
-                        <p>{{ $nbrFavoris }} personnes veulent par un LIVE</p>
+                        <p>{{ $nbrFavoris }} personnes aimeraient le direct LIVE</p>
                     @endif
                 </div>
             @endif
