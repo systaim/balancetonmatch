@@ -575,7 +575,7 @@
                 @auth
                     <button type="button"
                         class="relative commentaires h-24 bg-white commandeMatch items-stretch w-full focus:outline-none minHeight16"
-                        wire:click="becomeCommentator" wire:model="commentator" onclick="return confirm('Es-tu bien au bord du terrain ?')">
+                        wire:click="becomeCommentator" wire:model="commentator">
                         <div class="minuteCommentaires w-24 commandeMatch flex flex-col justify-center items-center">
                             <img src="{{ asset('images/whistle-white.png') }}">
                         </div>
