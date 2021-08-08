@@ -18,7 +18,7 @@
             </div>
         </div>
     </section>
-    <section>
+    {{-- <section>
         @auth
             <div class="p-4 shadow-2xl flex w-full">
                 <div class="m-2 p-10 flex flex-col items-center justify-center bg-primary text-white w-11/12 lg:w-6/12">
@@ -46,10 +46,8 @@
                     @endif
                 </div>
             </div>
-
         @endauth
-
-    </section>
+    </section> --}}
     <section>
         <div class="container px-5 mx-auto">
             <div class="flex flex-wrap justify-evenly mx-4 mb-10 text-center text-white moveToTop opacity-0">
