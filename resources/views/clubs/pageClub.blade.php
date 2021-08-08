@@ -75,9 +75,7 @@
         @foreach ($matchs as $match)
             @if ($match->date_match > now())
                 <h3>{{ $match->competition->name }}</h3>
-                <a href="{{ route('matches.show', $match) }}">
                     @include('match')
-                </a>
             @endif
         @endforeach
         @if ($matchs == '' || $matchs == null)
@@ -94,9 +92,7 @@
             @foreach ($matchs as $match)
                 @if ($match->date_match < now())
                     <h3>{{ $match->competition->name }}</h3>
-                    <a href="{{ route('matches.show', $match) }}">
                         @include('match')
-                    </a>
                 @endif
             @endforeach
         @else
