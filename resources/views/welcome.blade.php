@@ -18,40 +18,56 @@
             </div>
         </div>
     </section>
-    {{-- <section>
+    <section>
         @auth
-            <div class="p-4 shadow-2xl flex w-full">
-                <div class="m-2 p-10 flex flex-col items-center justify-center bg-primary text-white w-11/12 lg:w-6/12">
-                    <h3 class="text-center mb-3">Mon club :</h3>
-                    @if (Auth::user()->club)
-                        <div class="flex justify-center items-center">
-                            <div class="flex-grow-0 logo h-16 w-16 m-2">
-                                @if (Auth::user()->club->logo_path)
-                                    <img class="object-contain" src="{{ asset(Auth::user()->club->logo_path) }}"
-                                        alt="Logo de {{ Auth::user()->club->name }}">
-                                @else
-                                    <img class="object-contain"
-                                        src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ Auth::user()->club->numAffiliation }}.jpg"
-                                        alt="logo">
-                                @endif
-                            </div>
-                            <p class="font-bold">{{ Auth::user()->club->name }}</p>
+            @if (Auth::user()->club)
+                <div class="shadow-2xl py-10 md:py-4 w-full flex justify-around"
+                    style="background:linear-gradient(-150deg, {{ Auth::user()->club->primary_color }}, {{ Auth::user()->club->secondary_color }})">
+                    <div class="bg-white p-10 flex flex-col items-center sm:w-11/12 md:w-8/12 lg:w-4/12 rounded-lg">
+                        <div class="logo h-48 w-48">
+                            @if (Auth::user()->club->logo_path)
+                                <img class="object-contain" src="{{ asset(Auth::user()->club->logo_path) }}"
+                                    alt="Logo de {{ Auth::user()->club->name }}">
+                            @else
+                                <img class="object-contain"
+                                    src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ Auth::user()->club->numAffiliation }}.jpg"
+                                    alt="logo">
+                            @endif
                         </div>
-                    @else
-                        <div class="p-4 shadow-2xl flex w-full">
-                            @auth
-                                <a href="/clubs"><button class="btn btnSecondary">Je l'ajoute →</button></a>
-                            @endauth
+                        <div>
+                            <h3 class="mb-3 text-3xl">{{ Auth::user()->club->name }}</h3>
                         </div>
-                    @endif
+                        <div class="">
+                            <a href="{{ route('clubs.show', Auth::user()->club) }}"><button class="btn btnPrimary">Je vais
+                                    voir →</button></a>
+                        </div>
+                    </div>
                 </div>
+            @else
+                <div class="w-full flex flex-col sm:flex-row items-center justify-center mx-auto p-3 shadow-xl">
+                    <div>
+                        <h3 class="text-center text-2xl font-normal sm:mr-3">Tu es licencié dans un club ?</h3>
+                        <p class="text-xs">Ou tu supportes simplement un club...</p>
+                    </div>
+                    <a href="/clubs"><button class="btn btnSecondary h-14 w-auto">Ajoute le <i
+                                class="fas fa-arrow-right"></i></button></a>
+                </div>
+            @endif
+        @else
+            <div class="w-full flex flex-col sm:flex-row items-center justify-center mx-auto p-3 shadow-xl">
+                <div>
+                    <h3 class="text-center text-2xl font-normal sm:mr-3">Tu es licencié dans un club ?</h3>
+                    <p class="text-xs">Ou tu supportes simplement un club...</p>
+                </div>
+                <a href="/login"><button class="btn btnSecondary h-14 w-auto">Connecte toi <i
+                            class="fas fa-arrow-right"></i></button></a>
             </div>
         @endauth
-    </section> --}}
+    </section>
     <section>
         <div class="container px-5 mx-auto">
-            <div class="flex flex-wrap justify-evenly mx-4 mb-10 text-center text-white moveToTop opacity-0">
-                <div class="lg:w-2/5 my-5 pb-10 bg-primary rounded-lg shadow-2xl">
+            <div class="flex flex-wrap justify-evenly mx-4 mb-10 text-center text-white">
+                <div class="w-11/12 md:w-2/5 my-5 pb-5 bg-primary rounded-lg shadow-2xl">
                     <div class="rounded-lg h-48 overflow-hidden">
                         <img alt="tous les matchs" class="object-cover object-center h-full w-full"
                             src="{{ asset('images/ballon-feu.jpg') }}">
@@ -60,7 +76,7 @@
                     <p class="leading-relaxed text-base">Les matchs programmés sont à retrouver ici.</p>
                     <a href="/matches"><button class="btn btnSecondary">Je vais voir</button></a>
                 </div>
-                <div class="lg:w-2/5 my-5 pb-10 bg-primary rounded-lg shadow-2xl moveToTop opacity-0">
+                <div class="w-11/12 md:w-2/5 my-5 pb-5 bg-primary rounded-lg shadow-2xl">
                     <div class="rounded-lg h-48 overflow-hidden">
                         <img alt="les matchs en live" class="object-cover object-center h-full w-full"
                             src="{{ asset('images/on-air.jpg') }}">
@@ -170,26 +186,27 @@
     </div> --}}
 
     @auth
-        <div class="flex flex-col w-11/12 lg:flex-row justify-around p-8">
+        <div class="flex flex-col justify-center md:justify-around md:flex-row p-8">
             @if (count($user->favoristeams) > 0)
-                <div class="m-auto">
-                    <div>
-                        <h3><i class="fas fa-heart text-red-700"></i> Mes teams préférées <i
-                                class="fas fa-heart text-red-700"></i></h3>
-                    </div>
+                <div class="w-full m-1">
+                    <h3 class="text-center">
+                        <i class="fas fa-heart text-red-700"></i>
+                        Mes teams préférées
+                        <i class="fas fa-heart text-red-700"></i>
+                    </h3>
                     <div class="py-4">
                         @foreach ($user->favoristeams->shuffle() as $favoriteam)
                             <a href="{{ route('clubs.show', $favoriteam->club->id) }}">
                                 <div class="flex flex-col mb-3">
-                                    <div class="relative flex flex-row items-center bg-primary rounded-lg overflow-hidden">
-                                        <div class="w-16 m-2 z-10">
+                                    <div class="relative bg-primary rounded-lg overflow-hidden">
+                                        <div class=" m-auto w-16 h-16 z-10">
                                             <div class="logo h-12 w-12">
                                                 <img class="object-contain"
                                                     src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $favoriteam->club->numAffiliation }}.jpg">
                                             </div>
                                         </div>
                                         <div class=" py-2 w-full text-secondary overflow-hidden ml-2 z-10">
-                                            <p class="truncate font-bold">{{ $favoriteam->club->name }}</p>
+                                            <p class="truncate font-bold text-center">{{ $favoriteam->club->name }}</p>
                                         </div>
                                         <div class="absolute -bottom-7 -right-7 transform -rotate-45 z-0">
                                             <div class="h-2 w-36 mb-1"
@@ -206,16 +223,16 @@
             @endif
 
             @if (count($user->favorismatches) > 0)
-                <div class="lg:w-5/12">
+                <div class="w-full m-1">
                     <div class="">
-                        <h3 class=""><i class="fas fa-star text-red-700"></i> Mes matchs favoris <i
+                        <h3 class="text-center"><i class="fas fa-star text-red-700"></i> Mes matchs favoris <i
                                 class="fas fa-star text-red-700"></i></h3>
                     </div>
                     <div class="py-4">
                         @foreach ($user->favorismatches as $favorimatch)
                             @if ($favorimatch->match->date_match > $today)
                                 <a href="{{ route('matches.show', $favorimatch->match) }}">
-                                    <div class="p-2 bg-primary text-white rounded-lg m-2">
+                                    <div class="bg-primary text-white rounded-lg mb-2">
                                         <div class="text-center flex justify-center font-bold">
                                             <p class="px-4 bg-primary text-secondary rounded-tl-md">
                                                 {{ $favorimatch->match->date_match->formatLocalized('%d/%m/%y') }}</p>
