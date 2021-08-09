@@ -9,6 +9,7 @@
             <tr class="border-collapse">
                 <th class="p-5 border">Nom prénom</th>
                 <th class="p-5 border">role</th>
+                <th class="p-5 border">Club</th>
                 <th class="p-5 border">profil</th>
             </tr>
         </thead>
@@ -17,6 +18,7 @@
             <tr class="border-collapse hover:bg-blue-200 cursor-pointer" onclick="location.href='{{ route('users.show', $user) }}'">
                 <td class="p-3 border">{{ $user->last_name }} {{ $user->first_name }}</td>
                 <td class="p-3 border">{{ $user->role}}</td>
+                <td class="p-3 border">{{ $user->club ? $user->club->name : "Pas de club"}}</td>
                 <td><a class="text-center btn" href="{{ route('users.show', $user) }}">voir</a></td>
             </tr>
             @endforeach
