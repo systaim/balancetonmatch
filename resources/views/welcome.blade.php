@@ -47,7 +47,7 @@
                 <div class="w-full flex flex-col sm:flex-row items-center justify-center mx-auto p-3 shadow-xl">
                     <div>
                         <h3 class="text-center text-2xl font-normal sm:mr-3">Tu es licencié dans un club ?</h3>
-                        <p class="text-xs">Ou tu supportes simplement un club...</p>
+                        <p class="text-center text-xs">Ou tu supportes simplement un club...</p>
                     </div>
                     <a href="/clubs"><button class="btn btnSecondary h-14 w-auto">Ajoute le <i
                                 class="fas fa-arrow-right"></i></button></a>
@@ -57,7 +57,7 @@
             <div class="w-full flex flex-col sm:flex-row items-center justify-center mx-auto p-3 shadow-xl">
                 <div>
                     <h3 class="text-center text-2xl font-normal sm:mr-3">Tu es licencié dans un club ?</h3>
-                    <p class="text-xs">Ou tu supportes simplement un club...</p>
+                    <p class="text-center text-xs">Ou tu supportes simplement un club...</p>
                 </div>
                 <a href="/login"><button class="btn btnSecondary h-14 w-auto">Connecte toi <i
                             class="fas fa-arrow-right"></i></button></a>

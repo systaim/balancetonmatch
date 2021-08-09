@@ -830,11 +830,15 @@
     }
 
     #menu-mobile{
-        z-index: 1000;
+        z-index: 40;
+        transform: translateY(100%);
+        transition: all 0.5s;
     }
 
     #menu-mobile.is-open{
         visibility: visible;
+        transform: translateY(-3.5rem);
+        transition: all 0.5s;
     }
     
     #main-nav {

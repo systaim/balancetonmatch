@@ -23,7 +23,7 @@
 
     {{-- MENU MOBILE --}}
 
-    <div class="xl:hidden fixed right-0 left-0 bottom-0 h-14 bg-primary shadow-2xl rounded-t-sm z-50 text-white">
+    <div class="xl:hidden fixed right-0 left-0 bottom-0 h-14 bg-white shadow-2xl rounded-t-sm z-50 text-primary">
         <div class="relative flex justify-around items-center h-full">
             <a href="/">
                 <div class="flex flex-col items-center justify-center w-16 h-14">
@@ -38,7 +38,7 @@
                 </div>
             </a>
             <div id="burger2"
-                class="cursor-pointer flex flex-shrink-0 flex-col justify-center items-center rounded-full h-16 w-16 bg-primary mb-4 shadow-outline">
+                class="cursor-pointer flex flex-shrink-0 flex-col justify-center items-center rounded-full h-16 w-16 bg-primary mb-4 border border-white z-50 ">
                 <div class="open-main-nav flex justify-center">
                     <span class="burger"></span>
                 </div>
@@ -70,31 +70,31 @@
             </a>
         </div>
     </div>
-    <div id="menu-mobile" class="invisible fixed bottom-12 w-full bg-primary py-4">
+    <div id="menu-mobile" class="invisible fixed bottom-0 w-full bg-white text-primary py-6">
         <div class="flex flex-wrap justify-center">
             @auth
                 <a href="{{ route('matches.create') }}">
-                    <div class="flex flex-col justify-center items-center bg-secondary h-36 w-36 m-2 rounded-md">
+                    <div class="flex flex-col justify-center items-center w-36 m-2 rounded-md">
                         <i class="far fa-plus-square text-4xl"></i>
                         <p class="text-md">Créer un match</p>
                     </div>
                 </a>
                 <a href="{{ route('logout') }}" onclick="event.preventDefault();
                                                                 document.getElementById('logout-form').submit();">
-                    <div class="flex flex-col justify-center items-center bg-secondary h-36 w-36 m-2 rounded-md">
+                    <div class="flex flex-col justify-center items-center w-36 m-2 rounded-md">
                         <i class="fas fa-power-off text-4xl"></i>
                         <p class="text-md">Déconnexion</p>
                     </div>
                 </a>
                 <a href="/contact">
-                    <div class="flex flex-col justify-center items-center bg-secondary h-36 w-36 m-2 rounded-md">
+                    <div class="flex flex-col justify-center items-center w-36 m-2 rounded-md">
                         <i class="far fa-envelope text-4xl"></i>
                         <p class="text-md">Contact</p>
                     </div>
                 </a>
                 @canany(['isSuperAdmin', 'isAdmin'])
                     <a href="/admin">
-                        <div class="flex flex-col justify-center items-center bg-secondary h-36 w-36 m-2 rounded-md">
+                        <div class="flex flex-col justify-center items-center w-36 m-2 rounded-md">
                             <i class="fas fa-user-shield text-4xl"></i>
                             <p class="text-md">Admin</p>
                         </div>
@@ -102,13 +102,13 @@
                 @endcanany
             @else
                 <a href="/login">
-                    <div class="flex flex-col justify-center items-center bg-secondary h-36 w-36 m-2 rounded-md">
+                    <div class="flex flex-col justify-center items-center w-36 m-2 rounded-md">
                         <i class="fas fa-user-check text-4xl"></i>
                         <p class="text-md">Connexion</p>
                     </div>
                 </a>
                 <a href="/register">
-                    <div class="flex flex-col justify-center items-center bg-secondary h-36 w-36 m-2 rounded-md">
+                    <div class="flex flex-col justify-center items-center w-36 m-2 rounded-md">
                         <i class="fas fa-user-plus text-4xl"></i>
                         <p class="text-md">Inscription</p>
                     </div>
