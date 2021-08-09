@@ -3,7 +3,7 @@
         <input wire:model="search" class="inputForm w-full" type="text" name="search" placeholder="Nom du club, de la ville ou code postal">
         <i class="absolute text-xl mt-3 mr-3 top-0 right-0 text-primary fas fa-search"></i>
     </div>
-    <div class="absolute w-full top-13 z-20 h-auto">
+    <div class="absolute w-full top-13 z-50 h-auto">
         @foreach ($matches as $match)
         <div>
             <a href="{{ route('matches.show', $match) }}">

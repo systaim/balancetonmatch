@@ -3,11 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Club;
 use Illuminate\Http\Request;
-use App\Http\Resources\Club as ClubResource;
 
-class ClubController extends Controller
+class CommentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +14,7 @@ class ClubController extends Controller
      */
     public function index()
     {
-        return Club::paginate(10);
+        //
     }
 
     /**
@@ -36,9 +34,9 @@ class ClubController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Club $club)
+    public function show($id)
     {
-        return new ClubResource($club);
+        //
     }
 
     /**

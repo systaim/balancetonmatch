@@ -14,6 +14,10 @@ class Commentaire extends Model
 
     protected $fillable = ['commentator_id','type_action','player_id','match_id','type_comments', 'comments','minute','team_action','images'];
 
+    protected $hidden = ['id', 'created_at', 'updated_at', 'deleted_at'];
+
+    protected $visible = ['type_comments', 'comments', 'team_action', 'minute', 'images'];
+
     // public function user(){
     //     return $this->belongsTo(User::class);
     // }

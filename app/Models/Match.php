@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
 
 
+
 class Match extends Model
 {
 
@@ -18,6 +19,8 @@ class Match extends Model
     protected $fillable = ['slug', 'home_team_id', 'home_score', 'away_team_id', 'away_score', 'date_match', 'time', 'location', 'weather', 'competition_id', 'region_id','live'];
 
     protected $dates = ['date_match'];
+
+    protected $hidden = ['id', 'created_at', 'updated_at', 'deleted_at'];
 
     public function user()
     {

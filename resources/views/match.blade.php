@@ -2,11 +2,6 @@
     <div class="absolute h-full left-0 sm:left-2 z-40 text-center flex justify-center items-center font-bold">
         @livewire('favori-match', ['user' => $user, 'match' => $match])
     </div>
-    @auth
-        @if (Auth::user()->role == 'super-admin')
-            <p class="text-xs flex justify-end">{{ $match->user->first_name . ' ' . $match->user->last_name }}</p>
-        @endif
-    @endauth
     <div class="relative my-2 p-2 bg-primary text-white shadow-lg cursor-pointer">
         @auth
             @if ((Auth::user() && $match->user_id == Auth::user()->id && $match->live == 'attente') || Auth::user()->role == 'super-admin' || Auth::user()->role == 'admin')
