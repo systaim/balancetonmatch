@@ -1,4 +1,4 @@
-<div class="relative z-50">
+<div class="relative z-10">
     @auth
     <div>
         @if ($user && $user->isfavoriMatch($match))

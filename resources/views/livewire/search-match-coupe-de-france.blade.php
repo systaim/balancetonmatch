@@ -4,7 +4,7 @@
             placeholder="Nom du club, de la ville ou code postal">
         <i class="absolute text-xl mt-3 mr-3 top-0 right-0 text-primary fas fa-search"></i>
     </div>
-    <div class="absolute w-full top-13 z-20 h-auto">
+    <div class="absolute w-full top-13 h-auto z-50">
         @foreach ($matchs as $match)
             <a href="{{ route('matches.show', $match) }}">
                 <div class="relative text-primary bg-white px-2 py-2 hover:bg-blue-200">
