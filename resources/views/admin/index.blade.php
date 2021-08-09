@@ -15,7 +15,7 @@
     <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
         @livewire('api.api-token-manager')
     </div>
-    <p class="m-4">Jeton systaimAdmin : cFOlmZg2MM81owr521CVJwSG6izknscY6TM1tAzK</p>
+    <p class="m-4">Jeton systaimAdmin : qexgLizuIRSyCUKLAIorg36xYvswAw9q8c1rXA2X</p>
 
 
 
