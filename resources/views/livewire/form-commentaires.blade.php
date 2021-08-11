@@ -243,8 +243,6 @@
             @if($match->live != "finDeMatch")
                 <p>Nombre de spectateurs : </p>
                 <p class="ml-2 font-bold">{{ count($visitors) }}</p>
-            @else
-                <p>{{ $textInfo }}</p>
             @endif
         </div>
         
