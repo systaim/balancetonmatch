@@ -28,7 +28,7 @@
                         class="bg-primary p-2 text-secondary flex flex-col lg:flex-row lg:items-center lg:rounded-l-full">
                         <div class="relative flex justify-center">
                             @auth
-                                @if (Auth::user()->role == "super-admin" || ($match->commentateur != null && $match->commentateur->user_id == Auth::user()->id && $match->live != 'attente' && $match->live != 'finDeMatch'))
+                                @if (Auth::user()->role == "super-admin" && ($match->commentateur != null && $match->commentateur->user_id == Auth::user()->id && $match->live != 'attente' && $match->live != 'finDeMatch'))
                                     <input class="hidden" type="radio" wire:model="team_action" id="homeAction"
                                         name="team_action" value="home">
                                 @endif
@@ -137,7 +137,7 @@
                         </div>
                         <div class="flex justify-center">
                             @auth
-                                @if (Auth::user()->role == "super-admin" || ($match->commentateur != null && $match->commentateur->user_id == Auth::user()->id && $match->live != 'attente' && $match->live != 'finDeMatch'))
+                                @if (Auth::user()->role == "super-admin" && ($match->commentateur != null && $match->commentateur->user_id == Auth::user()->id && $match->live != 'attente' && $match->live != 'finDeMatch'))
                                     <input class="hidden" type="radio" wire:model="team_action" id="awayAction"
                                         name="team_action" value="away">
                                 @endif
