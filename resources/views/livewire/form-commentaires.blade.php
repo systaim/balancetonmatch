@@ -28,7 +28,7 @@
                         class="bg-primary p-2 text-secondary flex flex-col lg:flex-row lg:items-center lg:rounded-l-full">
                         <div class="relative flex justify-center">
                             @auth
-                                @if (Auth::user()->role == "super-admin" && ($match->commentateur != null && $match->commentateur->user_id == Auth::user()->id && $match->live != 'attente' && $match->live != 'finDeMatch'))
+                                @if (Auth::user()->role == "super-admin" || ($match->commentateur != null && $match->commentateur->user_id == Auth::user()->id && $match->live != 'attente' && $match->live != 'finDeMatch'))
                                     <input class="hidden" type="radio" wire:model="team_action" id="homeAction"
                                         name="team_action" value="home">
                                 @endif
@@ -100,7 +100,7 @@
                             </p>
                             @auth
                                 @if((Auth::user()->role == "super-admin" || $match->commentateur) && $match->home_score != null)
-                                    @if($match->commentateur && $match->commentateur->user_id == Auth::user()->id || ($match->live == "finDeMatch" && Auth::user()->role == "manager" && (Auth::user()->club_id == $match->homeClub->id || Auth::user()->club_id == $match->awayClub->id)))
+                                    {{-- @if($match->commentateur && $match->commentateur->user_id == Auth::user()->id || ($match->live == "finDeMatch" && Auth::user()->role == "manager" && (Auth::user()->club_id == $match->homeClub->id || Auth::user()->club_id == $match->awayClub->id))) --}}
                                     <div class="flex justify-evenly items-center mt-1 z-10">
                                         <button type="button" wire:click="decrementAwayScore" class="focus:outline-none">
                                             <span class="h-5 w-5 flex items-center justify-center rounded-full bg-white">-</span>
@@ -109,7 +109,7 @@
                                             <span class="h-5 w-5 flex items-center justify-center rounded-full bg-white">+</span>
                                         </button>
                                     </div>
-                                    @endif
+                                    {{-- @endif --}}
                                 @endif
                             @endauth
                         </div>
@@ -137,7 +137,7 @@
                         </div>
                         <div class="flex justify-center">
                             @auth
-                                @if (Auth::user()->role == "super-admin" && ($match->commentateur != null && $match->commentateur->user_id == Auth::user()->id && $match->live != 'attente' && $match->live != 'finDeMatch'))
+                                @if (Auth::user()->role == "super-admin" || ($match->commentateur != null && $match->commentateur->user_id == Auth::user()->id && $match->live != 'attente' && $match->live != 'finDeMatch'))
                                     <input class="hidden" type="radio" wire:model="team_action" id="awayAction"
                                         name="team_action" value="away">
                                 @endif
