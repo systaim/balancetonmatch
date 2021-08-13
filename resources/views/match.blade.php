@@ -14,7 +14,7 @@
                             onclick="event.preventDefault();
                             document.getElementById('delete-match').submit();">Effacer</a>
                     </div>
-                    <form id="delete-match-{{$match->id}}" action="{{ route('matches.destroy', $match) }}" method="POST">
+                    <form id="delete-match" action="{{ route('matches.destroy', $match->id) }}" method="POST">
                         @method('DELETE')
                         @csrf
                     </form>
