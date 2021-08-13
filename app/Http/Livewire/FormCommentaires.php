@@ -54,18 +54,27 @@ class FormCommentaires extends Component
     public int $clickBut = 0;
     public int $clickPenalty = 0;
 
-    public $listGoal = ['GOOOOAAL !', 'BUUUUT !!!', 'GOAL GOAL GOAL !!', 'ET C\'EST LE BUUUUUUUUUTTTT'];
-    public $mitempsJoueurs = ['Les joueurs rentrent aux vestiaires', 'Tout le monde à la buv... euuuh aux vestiaires !'];
+    public $listGoal = [
+        'GOOOOAAL !',
+        'BUUUUT !!!',
+        'GOAL GOAL GOAL !!',
+        'ET C\'EST LE BUUUUUUUUUTTTT'
+    ];
+    public $mitempsJoueurs = [
+        'Les joueurs rentrent aux vestiaires',
+        'Tout le monde à la buv... euuuh aux vestiaires !'
+    ];
     public $goalsText = [
-        "Patate au ras du poteau qui surprend le gardien !!!",
+        "Patate au ras du poteau !!!",
         "Une grosse frappe de mule qui finit au fond des filets !",
         "Une frappe de toute beauté.",
         "Il a nettoyé la lucarne !",
-        "Une frappe limpide en pleine lucarne",
         "Plat du pied sécurité",
-        "Le 1V1 est remporté par le joueur de champs et ca fait ficelle !",
+        "Le 1 contre 1 est remporté par le joueur et ca fait ficelle !",
         "Une séquence de jeu magnifique qui se solde par un but",
-        "Quel lob !!!"
+        "Quel lob !!!",
+        "Une frappe écrasée qui rentre tout de même...",
+
     ];
     public $cardsText = [
         "Il l'a fauché comme un lapin en plein vol !",
@@ -75,9 +84,9 @@ class FormCommentaires extends Component
     public $occasionsText = [
         "Une frappe trop enlevée qui passe au dessus du cadre, dommage...",
         "Sa frappe est trop écrasée pour inquiéter le gardien",
-        "Le face à face est remporté par le gardien",
+        "Le face à face est remporté par le gardien !!!",
         "Une frappe bien partie mais non cadrée",
-        "Une belle séquence de possession qui ne se concrétise pas. 6 mètres !"
+        "Une belle séquence de possession qui ne se concrétise pas..."
     ];
     public $penaltysScoreText = [
         "La panenka est tentée et réussie ! Quel geste mes amis !!!",
@@ -93,9 +102,19 @@ class FormCommentaires extends Component
     public $penaltysText = [
         "Faute du défenseur, PÉNALTY !",
         "MAAAIIIIINNN dans la surface, PÉNALTY",
+    ];
+    public $cfText = [
+        "Coup franc direeeect !!!!",
+        "Beau coup-franc en 2 temps",
+        "Un centre qui est concrétisé dans la surface",
+    ];
+    public $gameFactsText = [
+        "Corner !",
+        "6 mètres",
+        "Touche",
         "L'équipe prend le jeu à son compte.",
         "FAUTE !!! Pénalty !",
-        "Coup franc",
+        "Faute ! Coup-franc !",
     ];
 
     public function mount()
@@ -341,14 +360,14 @@ class FormCommentaires extends Component
                 $this->match->save();
                 $comment->save();
 
-                /*creation second com PUB */
-                $commentData2['type_comments'] = 'Publicité';
-                $commentData2['minute'] = 0;
-                $commentData2['team_action'] = 'match';
-                $commentData2['commentator_id'] = $this->match->commentateur->id;
+                // /*creation second com PUB */
+                // $commentData2['type_comments'] = 'Publicité';
+                // $commentData2['minute'] = 0;
+                // $commentData2['team_action'] = 'match';
+                // $commentData2['commentator_id'] = $this->match->commentateur->id;
 
-                $comment2 = Commentaire::create($commentData2);
-                $comment2->save();
+                // $comment2 = Commentaire::create($commentData2);
+                // $comment2->save();
 
                 session()->flash('success', 'Bon Match ! ⚽⚽⚽');
                 return redirect()->to('matches/' . $this->match->id);

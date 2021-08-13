@@ -89,7 +89,7 @@
     <div class="sm:w-11/12 md:w-9/12 xl:w-7/12 mx-auto">
         <h3 class="text-center my-4 border-b-2 border-darkGray">Historique des matchs</h3>
         @if (count($matchs) != 0)
-            @foreach ($matchs as $match)
+            @foreach ($matchs as $key => $match)
                 @if ($match->date_match < now())
                     <h3>{{ $match->competition->name }}</h3>
                         @include('match')

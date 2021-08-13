@@ -49,7 +49,7 @@
                         <h3 class="text-center text-2xl font-normal sm:mr-3">Tu es licencié dans un club ?</h3>
                         <p class="text-center text-xs">Ou tu supportes simplement un club...</p>
                     </div>
-                    <a href="/clubs"><button class="btn btnSecondary h-14 w-auto">Ajoute le <i
+                    <a href="/clubs"><button class="btn btnSecondary h-14 w-auto">Choisis le <i
                                 class="fas fa-arrow-right"></i></button></a>
                 </div>
             @endif

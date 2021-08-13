@@ -288,12 +288,12 @@
                                     src="{{ asset('images/cards.png') }}" width="100px" height="100px" alt="Carton">
                                 <p class="text-center text-white">Carton</p>
                             </label>
-                            {{-- <label for="action" class="cursor-pointer">
+                            <label for="action" class="cursor-pointer">
                                 <input class="hidden" type="radio" id="action" wire:model="type_comments" name="type_comments" value="action">
                                 <img class="border-2 border-secondary rounded-full shadow-xl bg-white m-2 p-2" 
                                     src="{{ asset('images/fire.png') }}" width="100px" height="100px" alt="Action">
                                 <p class="text-center text-white">Action</p>
-                            </label> --}}
+                            </label>
                         </div>
                         @if ($type_comments == 'but')
                             <div class="p-6 border rounded-lg shadow-2x bg-white">
@@ -313,14 +313,28 @@
                                 </div>
                                 <div class="border rounded-lg my-3 shadow-xl">
                                     <div class="bg-primary py-2 rounded-t-lg">
+                                        <h3 class="text-center text-2xl text-white">Coup-Franc</h3>
+                                    </div>
+                                    <div class="flex flex-col p-5">
+                                        @foreach ($cfText as $key => $cf)
+                                            <div>
+                                                <input class="hidden" type="radio" id="cf{{$key}}" wire:model="type_but"
+                                                    name="type_but" value="{{$cf}}">
+                                                <label class="inputAction text-sm" for="cf{{$key}}">{{$cf}}</label>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                                <div class="border rounded-lg my-3 shadow-xl">
+                                    <div class="bg-primary py-2 rounded-t-lg">
                                         <h3 class="text-center text-2xl text-white">Pénalty</h3>
                                     </div>
                                     <div class="flex flex-col p-5">
-                                        @foreach ($penaltysScoreText as $key => $goal)
+                                        @foreach ($penaltysScoreText as $key => $penalty)
                                             <div>
                                                 <input class="hidden" type="radio" id="pen{{$key}}" wire:model="type_but"
-                                                    name="type_but" value="{{$goal}}">
-                                                <label class="inputAction text-sm" for="pen{{$key}}">{{$goal}}</label>
+                                                    name="type_but" value="{{$penalty}}">
+                                                <label class="inputAction text-sm" for="pen{{$key}}">{{$penalty}}</label>
                                             </div>
                                         @endforeach
                                     </div>
@@ -360,44 +374,87 @@
                                 </div>
                             </div>
                         @endif
-                        {{-- @if ($type_comments == 'action') 
+                        @if ($type_comments == 'action') 
                             <div class="p-6 border rounded-lg shadow-2xl bg-white">
                                 <div class="border rounded-lg my-3 shadow-xl">
                                     <div class="bg-primary py-2 rounded-t-lg">
-                                        <h3 class="text-center text-2xl text-white">But dans le jeu</h3>
+                                        <h3 class="text-center text-2xl text-white">Faits de jeu</h3>
                                     </div>
                                     <div class="flex flex-col p-5">
-                                        @foreach ($penaltysText as $key => $action)
+                                        @foreach ($gameFactsText as $key => $action)
+                                            <div>
+                                                <input class="hidden" type="radio" id="fact{{$key}}" wire:model="type_actionMatch"
+                                                    name="type_action" value="{{$action}}">
+                                                <label class="inputAction text-sm" for="fact{{$key}}">{{$action}}</label>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                                <div class="border rounded-lg my-3 shadow-xl">
+                                    <div class="bg-primary py-2 rounded-t-lg">
+                                        <h3 class="text-center text-2xl text-white">Occasions de but</h3>
+                                    </div>
+                                    <div class="flex flex-col p-5">
+                                        @foreach ($occasionsText as $key => $occaz)
+                                            <div>
+                                                <input class="hidden" type="radio" id="occaz{{$key}}" wire:model="type_actionMatch"
+                                                    name="type_action" value="{{$occaz}}">
+                                                <label class="inputAction text-sm" for="occaz{{$key}}">{{$occaz}}</label>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                                <div class="border rounded-lg my-3 shadow-xl">
+                                    <div class="bg-primary py-2 rounded-t-lg">
+                                        <h3 class="text-center text-2xl text-white">Actions chaudes</h3>
+                                    </div>
+                                    <div class="flex flex-col p-5">
+                                        @foreach ($penaltysText as $key => $penalty)
                                             <div>
                                                 <input class="hidden" type="radio" id="action{{$key}}" wire:model="type_actionMatch"
-                                                    name="type_action" value="{{$action}}">
-                                                <label class="inputAction text-sm" for="action{{$key}}">{{$action}}</label>
+                                                    name="type_action" value="{{$penalty}}">
+                                                <label class="inputAction text-sm" for="action{{$key}}">{{$penalty}}</label>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                                <div class="border rounded-lg my-3 shadow-xl">
+                                    <div class="bg-primary py-2 rounded-t-lg">
+                                        <h3 class="text-center text-2xl text-white">Pénaltys ratés</h3>
+                                    </div>
+                                    <div class="flex flex-col p-5">
+                                        @foreach ($penaltysNoScoreText as $key => $penNoScore)
+                                            <div>
+                                                <input class="hidden" type="radio" id="penNoScore{{$key}}" wire:model="type_actionMatch"
+                                                    name="type_action" value="{{$penNoScore}}">
+                                                <label class="inputAction text-sm" for="penNoScore{{$key}}">{{$penNoScore}}</label>
                                             </div>
                                         @endforeach
                                     </div>
                                 </div>
                             </div> 
-                        @endif --}}
+                        @endif
                     </div>
                 </div>
                 @if ($team_action == 'home')
-                    <div
-                        class="bg-primary rounded-lg my-2 flex flex-col justify-center items-center p-4 w-full sm:w-10/12 lg:w-9/12">
-                        <p class="text-white text-center">Choisis un joueur ou un numéro</p>
-                        <select class="inputForm border border-black text-black m-4" name="player" id="player"
-                            wire:model="player" required>
-                            <option value="">Choisis un joueur</option>
-                            @foreach ($match->homeClub->players as $player)
-                                <option value="{{ $player->id }}">{{ $player->first_name }}
-                                    {{ $player->last_name }}</option>
-                            @endforeach
-                            @for ($i = 1; $i <= 16; $i++)
-                                <option value="{{ $i }}">Numéro {{ $i }}</option>
-                            @endfor
-                        </select>
-                        <p class="font-normal text-sm text-center text-white">Si le joueur n'est pas dans la liste, il
-                            sera possible de l'ajouter après le commentaire</p>
-                    </div>
+                    @if($type_comments == "but" || $type_comments == "carton")
+                        <div class="bg-primary rounded-lg my-2 flex flex-col justify-center items-center p-4 w-full sm:w-10/12 lg:w-9/12">
+                            <p class="text-white text-center">Choisis un joueur ou un numéro</p>
+                            <select class="inputForm border border-black text-black m-4" name="player" id="player"
+                                wire:model="player" {{ $type_comments == "but" || $type_comments == "carton" ? "required" : "" }}>
+                                <option value="">Choisis un joueur</option>
+                                @foreach ($match->homeClub->players as $player)
+                                    <option value="{{ $player->id }}">{{ $player->first_name }}
+                                        {{ $player->last_name }}</option>
+                                @endforeach
+                                @for ($i = 1; $i <= 16; $i++)
+                                    <option value="{{ $i }}">Numéro {{ $i }}</option>
+                                @endfor
+                            </select>
+                            <p class="font-normal text-sm text-center text-white">Si le joueur n'est pas dans la liste, il
+                                sera possible de l'ajouter après le commentaire</p>
+                        </div>
+                    @endif
                     <div class="flex items-center text-white m-auto my-4">
                         <label class="cursor-pointer my-4 btn border border-black text-black" for="file">
                             <div class="flex justify-between">
@@ -451,18 +508,23 @@
                     </div>
                 @endif
                 @if ($team_action == 'away')
-                    <select class="inputForm focus:outline-none focus:shadow-outline my-1" name="player" id="player"
-                        wire:model="player" required>
-                        <option value="">Choisis un joueur</option>
-                        @foreach ($match->awayClub->players as $player)
-                            <option value="{{ $player->id }}">{{ $player->first_name }}
-                                {{ $player->last_name }}
-                            </option>
-                        @endforeach
-                        @for ($i = 1; $i <= 16; $i++)
-                            <option value="{{ $i }}">Numéro {{ $i }}</option>
-                        @endfor
-                    </select>
+                @if($type_comments == "but" || $type_comments == "carton")
+                    <div class="bg-primary rounded-lg my-2 flex flex-col justify-center items-center p-4 w-full sm:w-10/12 lg:w-9/12">
+                        <p class="text-white text-center">Choisis un joueur ou un numéro</p>
+                        <select class="inputForm focus:outline-none focus:shadow-outline my-1" name="player" id="player"
+                            wire:model="player" {{ $type_comments == "but" || $type_comments == "carton" ? "required" : "" }}>
+                            <option value="">Choisis un joueur</option>
+                            @foreach ($match->awayClub->players as $player)
+                                <option value="{{ $player->id }}">{{ $player->first_name }}
+                                    {{ $player->last_name }}
+                                </option>
+                            @endforeach
+                            @for ($i = 1; $i <= 16; $i++)
+                                <option value="{{ $i }}">Numéro {{ $i }}</option>
+                            @endfor
+                        </select>
+                    </div>
+                @endif
                     <div class="flex items-center text-white m-auto my-4">
                         <label class="cursor-pointer my-4 btn border border-black text-black" for="file">
                             <div class="flex justify-between">
@@ -520,7 +582,7 @@
                 ------------------------->
         @auth
             <div>
-                @if (Auth::user()->first_com == 1)
+                @if (Auth::user()->first_com == 1 && $match->commentateur->user_id == Auth::user()->id)
                     <div class="bg-primary w-11/12 rounded-lg p-4 text-white m-auto my-2">
                         <h3 class="text-secondary text-center text-lg mb-4">Commenter facilement</h3>
                         <div class="flex justify-evenly">
@@ -544,7 +606,7 @@
                             </ol>
                         </div>
                         <div class="text-center">
-                            <button class="btn btnSecondary" wire:click="clickFirstCom" wire:model="firstCom">J'ai
+                            <button type="button" class="btn btnSecondary" wire:click="clickFirstCom" wire:model="firstCom">J'ai
                                 compris</button>
                         </div>
                     </div>
@@ -687,7 +749,7 @@
     @endif
     @auth
         @if ($match->commentateur)
-            @if ($match->commentateur->user->id == Auth::user()->id)
+            @if ($match->commentateur->user_id == Auth::user()->id)
                 <div class="mx-6 my-2 text-right">
                     <p class="text-xs cursor-pointer underline" wire:click="needHelp">Besoin d'aide ?</p>
                 </div>
