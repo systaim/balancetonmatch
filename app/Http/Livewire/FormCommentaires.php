@@ -364,6 +364,7 @@ class FormCommentaires extends Component
                 // $commentData2['type_comments'] = 'Publicité';
                 // $commentData2['minute'] = 0;
                 // $commentData2['team_action'] = 'match';
+                // $commentData2['comments'] = $this->pub;
                 // $commentData2['commentator_id'] = $this->match->commentateur->id;
 
                 // $comment2 = Commentaire::create($commentData2);

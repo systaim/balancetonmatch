@@ -785,7 +785,7 @@
                         <div class="flex flex-col justify-between">
                             <div class="mb-4">
                                 <p class="text-lg font-bold">{{ $comment->type_comments }}</p>
-                                @if ($comment->type_comments == 'Publicité')
+                                {{-- @if ($comment->type_comments == 'Publicité')
                                     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
                                     </script>
                                     <ins class="adsbygoogle" style="display:block; text-align:center;"
@@ -795,7 +795,7 @@
                                         (adsbygoogle = window.adsbygoogle || []).push({});
 
                                     </script>
-                                @endif
+                                @endif --}}
                                 <p>{{ $comment->comments }}</p>
                                 <div class="flex items-center">
                                     @if ($comment->statistic)
