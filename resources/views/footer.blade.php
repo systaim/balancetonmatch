@@ -116,5 +116,5 @@
             @endauth
         </div>
     </div>
-
+@dump(url()->previous())
 </footer>
