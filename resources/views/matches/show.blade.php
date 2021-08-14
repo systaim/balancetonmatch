@@ -103,6 +103,9 @@
             </div>
         @endif
 
+        
+        
+
         @livewire('form-commentaires', [
         'commentator'=> $commentator,
         'nbrFavoris'=> $nbrFavoris,
@@ -115,11 +118,9 @@
         ])
 
         <script src="{{ mix('js/app.js') }}?ver=1.01"></script>
-        <script async defer crossorigin="anonymous" 
-            src="https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v11.0&appId=956162407752245&autoLogAppEvents=1" 
-            nonce="aVhf21ZM">
-        </script>
+        
         @livewireScripts
+
 </body>
 
 
