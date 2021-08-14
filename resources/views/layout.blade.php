@@ -47,7 +47,6 @@
 </head>
 
 <body>
-    @dump(request()->path())
     <div id="container">
         <header id="header" class="relative bg-gray-100 h-24 xl:h-auto">
             <div id="burger"
