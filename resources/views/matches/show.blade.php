@@ -13,14 +13,14 @@
         content=" {{ $match->competition->name . ' entre ' . $match->homeclub->name . ' et ' . $match->awayclub->name }}">
     @if ($match->home_score > $match->away_score)
         @if ($match->homeClub->logo_path)
-            <meta property="og:image" content="{{ $match->homeClub->logo_path }}">
+            <meta property="og:image" content="{{ asset($match->homeClub->logo_path) }}">
         @else
             <meta property="og:image"
                 content="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $match->homeClub->numAffiliation }}.jpg">
         @endif
     @elseif ($match->home_score < $match->away_score)
         @if ($match->awayClub->logo_path)
-            <meta property="og:image" content="{{ $match->awayClub->logo_path }}">
+            <meta property="og:image" content="{{ asset($match->awayClub->logo_path) }}">
         @endif
     @else
         <meta property="og:image" content="{{ asset('images/logos/btmLogo.jpg') }}">
