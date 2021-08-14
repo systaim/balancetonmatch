@@ -738,19 +738,41 @@
             </div>
         @endif
     </form>
-    <!-- fin option commentaires "match" -->
+    <!-- fin option commentaires "match" -->    
 
     <!-- Affichage des commentaires -->
+    
     @if ($match->id == 0)
         <div class="flex flex-col items-center justify-center bg-secondary p-8">
             <p class="font-semibold uppercase">Ce match est fictif</p>
             <p class="text-sm">Il sert d'exemple pour découvrir un match commenté</p>
         </div>
     @endif
+
+    <!-- Load Facebook SDK for JavaScript -->
+    <div class="mx-6 my-2">
+        <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" 
+        src="https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v11.0&appId=956162407752245&autoLogAppEvents=1" 
+        nonce="aVhf21ZM">
+    </script>
+
+<!-- Your share button code -->
+    <div class="fb-share-button" 
+        data-href="{{ request()->url() }}" 
+        data-layout="button"
+        data-size="large">
+        <a target="_blank" 
+            href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" 
+            class="fb-xfbml-parse-ignore">
+        </a>
+    </div>
+    </div>
+    
     @auth
         @if ($match->commentateur)
             @if ($match->commentateur->user_id == Auth::user()->id)
-                <div class="mx-6 my-2 text-right">
+                <div class="mx-6 my-2">
                     <p class="text-xs cursor-pointer underline" wire:click="needHelp">Besoin d'aide ?</p>
                 </div>
             @endif
