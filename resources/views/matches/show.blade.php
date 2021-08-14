@@ -11,21 +11,21 @@
         content="Balance ton match ! {{ $match->homeclub->name }} {{ $match->home_score == null ? ' VS ' : $match->home_score . ' - ' . $match->away_score }} {{ $match->awayclub->name }}">
     <meta property="og:description"
         content=" {{ 'Match de' . $match->competition->name . 'entre ' . $match->homeclub->name . ' et ' . $match->awayclub->name }}">
-    {{-- @if ($match->home_score > $match->awayclub)
+    @if ($match->home_score > $match->away_score)
         @if ($match->homeClub->logo_path)
             <meta property="og:image" content="{{ $match->homeClub->logo_path }}">
         @else
             <meta property="og:image"
                 content="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $match->homeClub->numAffiliation }}.jpg">
         @endif
-    @elseif ($match->away_score < $match->awayclub)
+    @elseif ($match->home_score < $match->away_score)
         @if ($match->awayClub->logo_path)
             <meta property="og:image" content="{{ $match->awayClub->logo_path }}">
         @else
             <meta property="og:image"
                 content="{{ asset('images/logos/btmLogo.jpg') }}">
         @endif
-    @endif --}}
+    @endif
     <!-- Meta du site -->
     <title>Balance ton match ! {{ $match->homeclub->name }}
         {{ $match->home_score == null ? ' VS ' : $match->home_score . ' - ' . $match->away_score }}
