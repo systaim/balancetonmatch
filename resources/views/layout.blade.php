@@ -41,10 +41,13 @@
 
         gtag('config', 'G-MWPW5WC37V');
     </script>
-    {{-- <script src="https://www.google.com/recaptcha/api.js" async defer></script> --}}
+    @if (request()->path() == 'contact')
+        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    @endif
 </head>
 
 <body>
+    @dump(request()->path())
     <div id="container">
         <header id="header" class="relative bg-gray-100 h-24 xl:h-auto">
             <div id="burger"
