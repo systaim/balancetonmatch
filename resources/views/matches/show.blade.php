@@ -12,8 +12,8 @@
     <meta property="og:description" content=" {{ "Match de". $match->competition->name. "entre ". $match->homeclub->name . ' et ' . $match->awayclub->name }}">
 
     <title>Balance ton match ! {{ $match->homeclub->name }} {{ $match->home_score == null ? " VS " : $match->home_score. " - " .$match->away_score}} {{ $match->awayclub->name }}</title>
-    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-    <link rel="stylesheet" href="{{ mix('css/styles.css') }}" />
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}?ver=1.01">
+    <link rel="stylesheet" href="{{ mix('css/styles.css') }}?ver=1.01" />
     <script src="https://kit.fontawesome.com/c03c2336c3.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.0/dist/alpine.min.js" defer></script>
     <script data-ad-client="ca-pub-7237777700901740" async
@@ -96,7 +96,7 @@
     'stats' => $stats,
     ])
 
-    {{-- <script src="{{ mix('js/app.js') }}"></script> --}}
+    <script src="{{ mix('js/app.js') }}?ver=1.01"></script>
     @livewireScripts
 </body>
 
