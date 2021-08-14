@@ -29,7 +29,7 @@
                         @foreach ($clubsHome as $club)
                             <div class="flex flex-col mb-3 w-full">
                                 <div class="relative flex flex-row justify-around items-center bg-primary overflow-hidden cursor-pointer"
-                                    wire:click="addHomeTeam({{ $club->id }})">
+                                    wire:click="addHomeTeam({{ $club->id }})" wire:key="{{ $loop->index }}">
                                     <div class="w-16 m-2 z-10">
                                         <div class="logo h-12 w-12">
                                             <img class="object-contain"
@@ -92,7 +92,7 @@
                         @foreach ($clubsAway as $club)
                             <div class="flex flex-col mb-3 w-full">
                                 <div class="relative flex flex-row items-center bg-primary overflow-hidden cursor-pointer"
-                                    wire:click="addAwayTeam({{ $club->id }})">
+                                    wire:click="addAwayTeam({{ $club->id }})" wire:key="{{ $loop->index }}">
                                     <div class="w-16 m-2 z-10">
                                         <div class="logo h-12 w-12">
                                             <img class="object-contain"
