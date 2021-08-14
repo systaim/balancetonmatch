@@ -6,24 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- meta Facebook -->
-    <meta property="og:url" content="{{ request()->url() }}">
+    <meta property="og:url" content="{{ request()->url() }}" />
     <meta property="og:title"
-        content="Balance ton match ! {{ $match->homeclub->name }} {{ $match->live != "attente" ? $match->home_score . ' - ' . $match->away_score : "VS"}} {{ $match->awayclub->name }}">
+        content="Balance ton match ! {{ $match->homeclub->name }} {{ $match->live != "attente" ? $match->home_score . ' - ' . $match->away_score : "VS"}} {{ $match->awayclub->name }}" />
     <meta property="og:description"
-        content=" {{ $match->competition->name . ' entre ' . $match->homeclub->name . ' et ' . $match->awayclub->name }}">
+        content=" {{ $match->competition->name . ' entre ' . $match->homeclub->name . ' et ' . $match->awayclub->name }}" />
     @if ($match->home_score > $match->away_score)
         @if ($match->homeClub->logo_path)
-            <meta property="og:image" content="{{ asset($match->homeClub->logo_path) }}">
+            <meta property="og:image" content="{{ asset($match->homeClub->logo_path) }}" />
         @else
             <meta property="og:image"
-                content="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $match->homeClub->numAffiliation }}.jpg">
+                content="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $match->homeClub->numAffiliation }}.jpg" />
         @endif
     @elseif ($match->home_score < $match->away_score)
         @if ($match->awayClub->logo_path)
-            <meta property="og:image" content="{{ asset($match->awayClub->logo_path) }}">
+            <meta property="og:image" content="{{ asset($match->awayClub->logo_path) }}" />
         @endif
     @else
-        <meta property="og:image" content="{{ asset('images/logos/btmLogo.jpg') }}">
+        <meta property="og:image" content="{{ asset('images/logos/btmLogo.jpg') }}" />
     @endif
     <!-- Meta du site -->
     <title>Balance ton match ! {{ $match->homeclub->name }}
