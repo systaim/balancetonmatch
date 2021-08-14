@@ -9,7 +9,8 @@
     <meta property="og:url" content="{{ request()->url() }}" />
     <meta property="og:title"
         content="Balance ton match ! {{ $match->homeclub->name }} {{ $match->live != 'attente' ? $match->home_score . ' - ' . $match->away_score : 'VS' }} {{ $match->awayclub->name }}" />
-    <meta property="og:description"
+        <meta property="og:type" content="Direct Live" />
+        <meta property="og:description"
         content=" {{ $match->competition->name . ' entre ' . $match->homeclub->name . ' et ' . $match->awayclub->name }}" />
     @if ($match->home_score > $match->away_score)
         @if ($match->homeClub->logo_path)
