@@ -239,7 +239,22 @@
                 @endif
             </div>
         </div>
-        <div class="bg-gray-900 px-8 py-2 text-white text-center flex justify-center">
+        <div class="bg-gray-900 px-8 py-2 text-white text-center flex justify-center items-center">
+            <!-- Load Facebook SDK for JavaScript -->
+            <div class="mx-6">
+                <div id="fb-root"></div>
+                
+            <!-- Your share button code -->
+                <div class="fb-share-button" 
+                    data-href="{{ request()->url() }}" 
+                    data-layout="button"
+                    data-size="large">
+                    <a target="_blank" 
+                        href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" 
+                        class="fb-xfbml-parse-ignore">
+                    </a>
+                </div>
+            </div>
             @if($match->live != "finDeMatch")
                 <p>Nombre de spectateurs : </p>
                 <p class="ml-2 font-bold">{{ count($visitors) }}</p>
@@ -748,23 +763,6 @@
             <p class="text-sm">Il sert d'exemple pour découvrir un match commenté</p>
         </div>
     @endif
-
-    <!-- Load Facebook SDK for JavaScript -->
-    <div class="mx-6 my-2">
-        <div id="fb-root"></div>
-        
-
-<!-- Your share button code -->
-        <div class="fb-share-button" 
-            data-href="{{ request()->url() }}" 
-            data-layout="button"
-            data-size="large">
-            <a target="_blank" 
-                href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" 
-                class="fb-xfbml-parse-ignore">
-            </a>
-        </div>
-    </div>
     
     @auth
         @if ($match->commentateur)
