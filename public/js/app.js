@@ -19445,6 +19445,7 @@ burger2.addEventListener("click", function () {
 profile.addEventListener("click", function () {
   this.classList.toggle("is-open");
   menuProfile.classList.toggle("is-open");
+  console.log(menuProfile);
 
   if (menuMobile.classList.contains('is-open')) {
     menuMobile.classList.toggle("is-open");
