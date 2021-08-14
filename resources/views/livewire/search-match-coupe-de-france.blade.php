@@ -52,7 +52,7 @@
         @if (count($matchs) == 0 && strlen($search) >= 3)
             <div class="bg-white py-4">
                 <p class="text-center">Tu n'as pas trouvé ce que tu voulais ?</p>
-                <a class="flex justify-center" href="{{ route('matchs.create') }}">
+                <a class="flex justify-center" href="{{ route('matches.create') }}">
                     <button class="btn btnSecondary">Crée un match</button>
                 </a>
             </div>

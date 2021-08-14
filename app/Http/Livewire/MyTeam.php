@@ -35,7 +35,7 @@ class MyTeam extends Component
     public function itsMyTeam()
     {
         if (Auth::check()) {
-            if ($this->user->club == null) {
+            // if ($this->user->club == null) {
                 if ($this->user->club_id != $this->club->id) {
                     $this->star = 'far';
                     $this->user->club_id = $this->club->id;
@@ -50,7 +50,7 @@ class MyTeam extends Component
                     session()->flash('success', 'Bienvenue au club !');
                     return redirect()->to('/clubs/' . $this->club->id);
                 }
-            }
+            // }
             if ($this->user->club_id == $this->club->id) {
                 $this->star = 'fas';
                 $this->animation = 'animate-pulse';

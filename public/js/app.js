@@ -19426,9 +19426,53 @@ burger.addEventListener("click", function () {
 
 var burger2 = document.getElementById("burger2");
 var menuMobile = document.getElementById("menu-mobile");
+var profile = document.getElementById("profile");
+var menuProfile = document.getElementById("menu-profile");
+var matchs = document.getElementById("matchs");
+var menuMatchs = document.getElementById("menu-matchs");
 burger2.addEventListener("click", function () {
   this.classList.toggle("is-open");
   menuMobile.classList.toggle("is-open");
+
+  if (menuProfile.classList.contains('is-open')) {
+    menuProfile.classList.toggle("is-open");
+  }
+
+  if (menuMatchs.classList.contains('is-open')) {
+    menuMatchs.classList.toggle("is-open");
+  }
+});
+profile.addEventListener("click", function () {
+  this.classList.toggle("is-open");
+  menuProfile.classList.toggle("is-open");
+
+  if (menuMobile.classList.contains('is-open')) {
+    menuMobile.classList.toggle("is-open");
+  }
+
+  if (menuMatchs.classList.contains('is-open')) {
+    menuMatchs.classList.toggle("is-open");
+  }
+
+  if (burger2.classList.contains('is-open')) {
+    burger2.classList.toggle("is-open");
+  }
+});
+matchs.addEventListener("click", function () {
+  this.classList.toggle("is-open");
+  menuMatchs.classList.toggle("is-open");
+
+  if (menuProfile.classList.contains('is-open')) {
+    menuProfile.classList.toggle("is-open");
+  }
+
+  if (menuMobile.classList.contains('is-open')) {
+    menuMobile.classList.toggle("is-open");
+  }
+
+  if (burger2.classList.contains('is-open')) {
+    burger2.classList.toggle("is-open");
+  }
 });
 /******************************
  * 

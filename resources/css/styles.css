@@ -840,6 +840,18 @@
         transform: translateY(-3.5rem);
         transition: all 0.5s;
     }
+
+    #menu-profile.is-open{
+        visibility: visible;
+        transform: translateY(-3.5rem);
+        transition: all 0.5s;
+    }
+
+    #menu-matchs.is-open{
+        visibility: visible;
+        transform: translateY(-3.5rem);
+        transition: all 0.5s;
+    }
     
     #main-nav {
         display: none;
@@ -929,6 +941,10 @@
         height: 0;
         -webkit-animation-duration: 0.2s;
         animation-duration: 0.2s;
+    }
+
+    .main-menu-mobile{
+        box-shadow:  0 0 20px #0d0f12;
     }
     
     /*************************
