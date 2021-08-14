@@ -752,21 +752,21 @@
     <!-- Load Facebook SDK for JavaScript -->
     <div class="mx-6 my-2">
         <div id="fb-root"></div>
-    <script async defer crossorigin="anonymous" 
-        src="https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v11.0&appId=956162407752245&autoLogAppEvents=1" 
-        nonce="aVhf21ZM">
-    </script>
+        <script async defer crossorigin="anonymous" 
+            src="https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v11.0&appId=956162407752245&autoLogAppEvents=1" 
+            nonce="aVhf21ZM">
+        </script>
 
 <!-- Your share button code -->
-    <div class="fb-share-button" 
-        data-href="{{ request()->url() }}" 
-        data-layout="button"
-        data-size="large">
-        <a target="_blank" 
-            href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" 
-            class="fb-xfbml-parse-ignore">
-        </a>
-    </div>
+        <div class="fb-share-button" 
+            data-href="{{ request()->url() }}" 
+            data-layout="button"
+            data-size="large">
+            <a target="_blank" 
+                href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" 
+                class="fb-xfbml-parse-ignore">
+            </a>
+        </div>
     </div>
     
     @auth
