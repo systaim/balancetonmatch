@@ -8,10 +8,28 @@
     <!-- meta Facebook -->
     <meta property="og:url" content="{{ request()->url() }}">
     <meta property="og:title"
-        content="Balance ton match ! {{ $match->homeclub->name }} {{ $match->home_score == null ? " VS " : $match->home_score. " - " .$match->away_score}} {{ $match->awayclub->name }}">
-    <meta property="og:description" content=" {{ "Match de". $match->competition->name. "entre ". $match->homeclub->name . ' et ' . $match->awayclub->name }}">
-
-    <title>Balance ton match ! {{ $match->homeclub->name }} {{ $match->home_score == null ? " VS " : $match->home_score. " - " .$match->away_score}} {{ $match->awayclub->name }}</title>
+        content="Balance ton match ! {{ $match->homeclub->name }} {{ $match->home_score == null ? ' VS ' : $match->home_score . ' - ' . $match->away_score }} {{ $match->awayclub->name }}">
+    <meta property="og:description"
+        content=" {{ 'Match de' . $match->competition->name . 'entre ' . $match->homeclub->name . ' et ' . $match->awayclub->name }}">
+    @if ($match->home_score > $match->awayclub)
+        @if ($match->homeClub->logo_path)
+            <meta property="og:image" content="{{ $match->homeClub->logo_path }}">
+        @else
+            <meta property="og:image"
+                content="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $match->homeClub->numAffiliation }}.jpg">
+        @endif
+    @elseif ($match->away_score > $match->awayclub)
+        @if ($match->awayClub->logo_path)
+            <meta property="og:image" content="{{ $match->awayClub->logo_path }}">
+        @else
+            <meta property="og:image"
+                content="{{ asset('images/logos/btmLogo.jpg') }}">
+        @endif
+    @endif
+    <!-- Meta du site -->
+    <title>Balance ton match ! {{ $match->homeclub->name }}
+        {{ $match->home_score == null ? ' VS ' : $match->home_score . ' - ' . $match->away_score }}
+        {{ $match->awayclub->name }}</title>
     <link rel="stylesheet" href="{{ mix('css/app.css') }}?ver=1.01">
     <link rel="stylesheet" href="{{ mix('css/styles.css') }}?ver=1.01" />
     <script src="https://kit.fontawesome.com/c03c2336c3.js" crossorigin="anonymous"></script>
@@ -85,19 +103,19 @@
             </div>
         @endif
 
-    @livewire('form-commentaires', [
-    'commentator'=> $commentator,
-    'nbrFavoris'=> $nbrFavoris,
-    'match' =>$match,
-    'clubHome' => $clubHome,
-    'clubAway' => $clubAway,
-    'commentsMatch' => $commentsMatch,
-    'competitions' => $competitions,
-    'stats' => $stats,
-    ])
+        @livewire('form-commentaires', [
+        'commentator'=> $commentator,
+        'nbrFavoris'=> $nbrFavoris,
+        'match' =>$match,
+        'clubHome' => $clubHome,
+        'clubAway' => $clubAway,
+        'commentsMatch' => $commentsMatch,
+        'competitions' => $competitions,
+        'stats' => $stats,
+        ])
 
-    <script src="{{ mix('js/app.js') }}?ver=1.01"></script>
-    @livewireScripts
+        <script src="{{ mix('js/app.js') }}?ver=1.01"></script>
+        @livewireScripts
 </body>
 
 
