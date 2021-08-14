@@ -78,7 +78,7 @@
             @endcanany
         </div>
     </div>
-    <div id="menu-matchs" class="invisible fixed bottom-0 w-full bg-white text-primary py-6">
+    <div id="menu-matchs" class="invisible fixed bottom-0 w-full bg-white text-primary py-6 z-40">
         <div class="flex flex-wrap justify-center">
             <a href="{{ route('matches.create') }}">
                 <div class="flex flex-col justify-center items-center w-36 m-2 rounded-md">
