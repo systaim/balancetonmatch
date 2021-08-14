@@ -752,10 +752,7 @@
     <!-- Load Facebook SDK for JavaScript -->
     <div class="mx-6 my-2">
         <div id="fb-root"></div>
-        <script async defer crossorigin="anonymous" 
-            src="https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v11.0&appId=956162407752245&autoLogAppEvents=1" 
-            nonce="aVhf21ZM">
-        </script>
+        
 
 <!-- Your share button code -->
         <div class="fb-share-button" 
