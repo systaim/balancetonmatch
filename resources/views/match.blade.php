@@ -12,9 +12,9 @@
                         x-show="open" @click.away="open = false">
                         <a class="w-full py-2 font-bold" href="{{ route('matches.destroy', $match) }}"
                             onclick="event.preventDefault();
-                            document.getElementById('delete-match').submit();">Effacer</a>
+                            document.getElementById('delete-match-{{$match->id}}').submit();">Effacer</a>
                     </div>
-                    <form id="delete-match" action="{{ route('matches.destroy', $match->id) }}" method="POST">
+                    <form id="delete-match-{{$match->id}}" action="{{ route('matches.destroy', $match) }}" method="POST">
                         @method('DELETE')
                         @csrf
                     </form>
