@@ -9,8 +9,8 @@
     <meta property="og:url" content="{{ request()->url() }}" />
     <meta property="og:title"
         content="Balance ton match ! {{ $match->homeclub->name }} {{ $match->live != 'attente' ? $match->home_score . ' - ' . $match->away_score : 'VS' }} {{ $match->awayclub->name }}" />
-        <meta property="og:type" content="Direct Live" />
-        <meta property="og:description"
+    <meta property="og:type" content="Direct Live" />
+    <meta property="og:description"
         content=" {{ $match->competition->name . ' entre ' . $match->homeclub->name . ' et ' . $match->awayclub->name }}" />
     @if ($match->home_score > $match->away_score)
         @if ($match->homeClub->logo_path)
@@ -37,7 +37,7 @@
     <script data-ad-client="ca-pub-7237777700901740" async
         src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
-    <!-- Global site tag (gtag.js) - Google Analytics -->
+    {{-- <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-MWPW5WC37V"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -48,8 +48,7 @@
         gtag('js', new Date());
 
         gtag('config', 'G-MWPW5WC37V');
-    </script>
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    </script> --}}
 </head>
 
 <body>
@@ -103,8 +102,8 @@
             </div>
         @endif
 
-        
-        
+
+
 
         @livewire('form-commentaires', [
         'commentator'=> $commentator,
@@ -118,7 +117,7 @@
         ])
 
         <script src="{{ mix('js/app.js') }}?ver=1.01"></script>
-        
+
         @livewireScripts
 
 </body>
