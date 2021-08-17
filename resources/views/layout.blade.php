@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- meta Facebook -->
-    <meta property="og:url" content="{{ request()->url() }}">
+    {{-- <meta property="og:url" content="{{ request()->url() }}">
     <meta property="og:title" content="Balance ton match !">
     @isset($club)
         <meta property="og:description" content="{{ $club->name }}">
@@ -19,7 +19,7 @@
             content="{{ $club->bg_path != '' || $club->bg_path != null ? asset($club->bg_path) : 'https://android-apiapp.azureedge.net/common/bib_img/logo/' . $club->numAffiliation }}">
     @else
         <meta property="og:image" content="https://balancetonmatch.com/images/logos/btmB1.jpg">
-    @endisset()
+    @endisset() --}}
 
     <title>Balance Ton Match</title>
     <link rel="stylesheet" href="{{ mix('css/app.css') }}?ver=1.01">
@@ -100,7 +100,7 @@
         @include('footer')
     </div>
 
-    <script src="{{ mix('js/app.js') }}?ver=1.011"></script>
+    <script src="{{ mix('js/app.js') }}?ver=1.01"></script>
     @livewireScripts
 </body>
 
