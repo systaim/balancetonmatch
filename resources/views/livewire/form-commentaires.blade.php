@@ -422,7 +422,7 @@
                                         @endforeach
                                     </div>
                                 </div>
-                                <div class="border rounded-lg my-3 shadow-xl">
+                                {{-- <div class="border rounded-lg my-3 shadow-xl">
                                     <div class="bg-primary py-2 rounded-t-lg">
                                         <h3 class="text-center text-2xl text-white">Actions chaudes</h3>
                                     </div>
@@ -435,7 +435,7 @@
                                             </div>
                                         @endforeach
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="border rounded-lg my-3 shadow-xl">
                                     <div class="bg-primary py-2 rounded-t-lg">
                                         <h3 class="text-center text-2xl text-white">Pénaltys ratés</h3>
