@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Club;
 use Illuminate\Http\Request;
-use App\Http\Resources\Club as ClubResource;
+use App\Http\Resources\ClubResource as ClubResource;
 
 class APIClubController extends Controller
 {

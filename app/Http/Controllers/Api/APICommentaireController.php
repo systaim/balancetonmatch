@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Commentaire;
 use App\Models\Commentator;
 use Illuminate\Http\Request;
-use App\Http\Resources\Commentaire as CommentaireResource;
+use App\Http\Resources\CommentaireResource as CommentaireResource;
 
 
 class APICommentaireController extends Controller

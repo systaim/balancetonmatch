@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Match;
-use App\Http\Resources\Match as MatchResource;
+use App\Http\Resources\MatchResource as MatchResource;
 
 
 class APIMatchController extends Controller
