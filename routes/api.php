@@ -24,31 +24,31 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// Route::apiResource('clubs', ApiClubController::class);
+Route::apiResource('clubs', ApiClubController::class);
 // Route::apiResource('matchs', ApiMatchController::class);
 // Route::apiResource('commentaires', ApiCommentaireController::class);
 // Route::apiResource('commentators', ApiCommentatorController::class);
 
-// API Clubs GET ET POST
-Route::get('/clubs', function () {
+// // API Clubs GET ET POST
+// Route::get('/clubs', function () {
 
-    $clubs = Club::all();
-    return [
-        'clubs' => $clubs->count(),
-        'results' => ClubResource::collection($clubs)
+//     $clubs = Club::all();
+//     return [
+//         'clubs' => $clubs->count(),
+//         'results' => ClubResource::collection($clubs)
 
-    ];
-});
-Route::post('/clubs', function (Request $request) {
+//     ];
+// });
+// Route::post('/clubs', function (Request $request) {
    
-    Club::create($request->all());
+//     Club::create($request->all());
 
-    $clubs= Club::all();
-    return [
-        'results' => ClubResource::collection($clubs)
+//     $clubs= Club::all();
+//     return [
+//         'results' => ClubResource::collection($clubs)
 
-    ];
-});
+//     ];
+// });
 
 
 

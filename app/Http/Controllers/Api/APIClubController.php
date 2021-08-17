@@ -16,7 +16,7 @@ class APIClubController extends Controller
      */
     public function index()
     {
-        return Club::paginate(10);
+        return Club::paginate(100);
     }
 
     /**
@@ -27,7 +27,7 @@ class APIClubController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Club::create($request->all());
     }
 
     /**
@@ -48,9 +48,9 @@ class APIClubController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Club $club)
     {
-        //
+        $club->update($request->all());
     }
 
     /**
@@ -59,8 +59,8 @@ class APIClubController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Club $club)
     {
-        //
+        $club->delete();
     }
 }
