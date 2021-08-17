@@ -73,7 +73,7 @@
                                 {{ $home_score }}
                             </p>
                             @auth
-                                @if((Auth::user()->role == "super-admin" || $match->commentateur) && $match->home_score != null)
+                                @if(Auth::user()->role == "super-admin" || $match->commentateur)
                                     @if($match->commentateur && $match->commentateur->user_id == Auth::user()->id || ($match->live == "finDeMatch" && Auth::user()->role == "manager" && (Auth::user()->club_id == $match->homeClub->id || Auth::user()->club_id == $match->awayClub->id)))
                                     <div class="flex justify-evenly items-center mt-1 z-10">
                                         <button type="button" wire:click="decrementHomeScore" class="focus:outline-none">
@@ -92,7 +92,7 @@
                                 {{ $away_score }}
                             </p>
                             @auth
-                                @if((Auth::user()->role == "super-admin" || $match->commentateur) && $match->home_score != null)
+                                @if(Auth::user()->role == "super-admin" || $match->commentateur)
                                     @if($match->commentateur && $match->commentateur->user_id == Auth::user()->id || ($match->live == "finDeMatch" && Auth::user()->role == "manager" && (Auth::user()->club_id == $match->homeClub->id || Auth::user()->club_id == $match->awayClub->id)))
                                     <div class="flex justify-evenly items-center mt-1 z-10">
                                         <button type="button" wire:click="decrementAwayScore" class="focus:outline-none">
