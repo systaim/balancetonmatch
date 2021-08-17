@@ -4,6 +4,8 @@ use App\Http\Controllers\Api\APIClubController as ApiClubController;
 use App\Http\Controllers\Api\APIMatchController as ApiMatchController;
 use App\Http\Controllers\Api\APICommentaireController as ApiCommentaireController;
 use App\Http\Controllers\Api\APICommentatorController as ApiCommentatorController;
+use App\Http\Resources\ClubResource;
+use App\Models\Club;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
