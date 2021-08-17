@@ -19532,54 +19532,52 @@ if (submitButton != null) {
  * detections position écran pour animations
  * 
  ******************************/
-
-
-function moveLeftToRight(div) {
-  for (var i = 0; i < div.length; i++) {
-    if (div[i].style.opacity == 0 && window.scrollY >= div[i].offsetTop - (window.screen.height - 300)) {
-      div[i].style.opacity = 1;
-      div[i].style.animation = "left-to-right 500ms";
-    }
-  }
-}
-
-function moveRightToLeft(div) {
-  for (var i = 0; i < div.length; i++) {
-    if (div[i].style.opacity == 0 && window.scrollY >= div[i].offsetTop - (window.screen.height - 300)) {
-      div[i].style.opacity = 1;
-      div[i].style.animation = "right-to-left 500ms";
-    }
-  }
-}
-
-function moveBottomToTop(div) {
-  for (var i = 0; i < div.length; i++) {
-    if (div[i].style.opacity == 0 && window.scrollY >= div[i].offsetTop - (window.screen.height - 300)) {
-      div[i].style.opacity = 1;
-      div[i].style.animation = "bottom-to-top 500ms";
-    }
-  }
-}
-
-function moveTopToBottom(div) {
-  for (var i = 0; i < div.length; i++) {
-    if (div[i].style.opacity == 0 && window.scrollY >= div[i].offsetTop - (window.screen.height - 300)) {
-      div[i].style.opacity = 1;
-      div[i].style.animation = "top-to-bottom 500ms";
-    }
-  }
-}
-
-window.addEventListener('scroll', function () {
-  var moveToLeft = document.querySelectorAll('.moveToLeft');
-  var moveToRight = document.querySelectorAll('.moveToRight');
-  var moveToBottom = document.querySelectorAll('.moveToBottom');
-  var moveToTop = document.querySelectorAll('.moveToTop');
-  if (moveToLeft != null) moveLeftToRight(moveToLeft);
-  if (moveToRight != null) moveRightToLeft(moveToRight);
-  if (moveToBottom != null) moveTopToBottom(moveToBottom);
-  if (moveToTop != null) moveBottomToTop(moveToTop);
-});
+// function moveLeftToRight(div) {
+//     for (let i = 0; i < div.length; i++) {
+//         if (div[i].style.opacity == 0 && window.scrollY >= (div[i].offsetTop - (window.screen.height - 300))) {
+//             div[i].style.opacity = 1
+//             div[i].style.animation = "left-to-right 500ms"
+//         }
+//     }
+// }
+// function moveRightToLeft(div) {
+//     for (let i = 0; i < div.length; i++) {
+//         if (div[i].style.opacity == 0 && window.scrollY >= (div[i].offsetTop - (window.screen.height - 300))) {
+//             div[i].style.opacity = 1
+//             div[i].style.animation = "right-to-left 500ms"
+//         }
+//     }
+// }
+// function moveBottomToTop(div) {
+//     for (let i = 0; i < div.length; i++) {
+//         if (div[i].style.opacity == 0 && window.scrollY >= (div[i].offsetTop - (window.screen.height - 300))) {
+//             div[i].style.opacity = 1
+//             div[i].style.animation = "bottom-to-top 500ms"
+//         }
+//     }
+// }
+// function moveTopToBottom(div) {
+//     for (let i = 0; i < div.length; i++) {
+//         if (div[i].style.opacity == 0 && window.scrollY >= (div[i].offsetTop - (window.screen.height - 300))) {
+//             div[i].style.opacity = 1
+//             div[i].style.animation = "top-to-bottom 500ms"
+//         }
+//     }
+// }
+// window.addEventListener('scroll', function () {
+//     let moveToLeft = document.querySelectorAll('.moveToLeft')
+//     let moveToRight = document.querySelectorAll('.moveToRight')
+//     let moveToBottom = document.querySelectorAll('.moveToBottom')
+//     let moveToTop = document.querySelectorAll('.moveToTop')
+//     if (moveToLeft != null)
+//         moveLeftToRight(moveToLeft)
+//     if (moveToRight != null)
+//         moveRightToLeft(moveToRight)
+//     if (moveToBottom != null)
+//         moveTopToBottom(moveToBottom)
+//     if (moveToTop != null)
+//         moveBottomToTop(moveToTop)
+// })
 
 /***/ }),
 
