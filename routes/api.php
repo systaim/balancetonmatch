@@ -26,8 +26,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::apiResource('teams', ApiClubController::class);
 Route::apiResource('matchs', ApiMatchController::class);
-// Route::apiResource('commentaires', ApiCommentaireController::class);
-// Route::apiResource('commentators', ApiCommentatorController::class);
+Route::apiResource('commentaires', ApiCommentaireController::class);
+Route::apiResource('commentators', ApiCommentatorController::class);
 
 
 
