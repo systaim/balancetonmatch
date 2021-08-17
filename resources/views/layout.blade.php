@@ -41,9 +41,9 @@
 
         gtag('config', 'G-MWPW5WC37V');
     </script>
-    {{-- @if (request()->path() == 'contact')
+    @if (request()->path() == 'contact')
         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-    @endif --}}
+    @endif
 </head>
 
 <body>
