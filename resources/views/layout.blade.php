@@ -100,7 +100,7 @@
         @include('footer')
     </div>
 
-    <script src="{{ mix('js/app.js') }}?ver=1.01"></script>
+    <script src="{{ mix('js/app.js') }}?ver=1.011"></script>
     @livewireScripts
 </body>
 
