@@ -422,20 +422,20 @@
                                         @endforeach
                                     </div>
                                 </div>
-                                {{-- <div class="border rounded-lg my-3 shadow-xl">
+                                <div class="border rounded-lg my-3 shadow-xl">
                                     <div class="bg-primary py-2 rounded-t-lg">
                                         <h3 class="text-center text-2xl text-white">Actions chaudes</h3>
                                     </div>
                                     <div class="flex flex-col p-5">
-                                        @foreach ($penaltysText as $key => $penalty)
+                                        @foreach ($faultsText as $key => $fault)
                                             <div>
                                                 <input class="hidden" type="radio" id="action{{$key}}" wire:model="type_actionMatch"
-                                                    name="type_action" value="{{$penalty}}">
-                                                <label class="inputAction text-sm" for="action{{$key}}">{{$penalty}}</label>
+                                                    name="type_action" value="{{$fault}}">
+                                                <label class="inputAction text-sm" for="action{{$key}}">{{$fault}}</label>
                                             </div>
                                         @endforeach
                                     </div>
-                                </div> --}}
+                                </div>
                                 <div class="border rounded-lg my-3 shadow-xl">
                                     <div class="bg-primary py-2 rounded-t-lg">
                                         <h3 class="text-center text-2xl text-white">Pénaltys ratés</h3>

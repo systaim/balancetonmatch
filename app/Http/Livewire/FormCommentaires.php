@@ -95,13 +95,15 @@ class FormCommentaires extends Component
     ];
     public $penaltysNoScoreText = [
         "La panenka est tentée et... manquée !",
-        "Superbe arrêt du gardien qui est parti du bon côté",
-        "La frappe a heurté un montant !",
-        "HORS CADRE..."
+        "Pénalty arrêté par le gardien ! Superbe arrêt ! Il qui est parti du bon côté",
+        "Le pénalty a heurté un montant !",
+        "Le joueur sélance pour tirer le pénalty... HORS CADRE..."
     ];
-    public $penaltysText = [
+    public $faultsText = [
         "Faute du défenseur, PÉNALTY !",
         "MAAAIIIIINNN dans la surface, PÉNALTY",
+        "FAUTE !!! Pénalty !",
+        "Faute ! Coup-franc !",
     ];
     public $cfText = [
         "Coup franc direeeect !!!!",
@@ -113,8 +115,6 @@ class FormCommentaires extends Component
         "6 mètres",
         "Touche",
         "L'équipe prend le jeu à son compte.",
-        "FAUTE !!! Pénalty !",
-        "Faute ! Coup-franc !",
     ];
 
     public function mount()
