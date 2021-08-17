@@ -54,11 +54,6 @@
                             </label>
                         </div>
                         <div>
-                            @if ($match->id == 0)
-                                <p class="truncate text-center sm:font-bold lg:text-2xl">
-                                    EQUIPE 1
-                                </p>
-                            @else
                             <p class="truncate text-center sm:font-bold lg:text-2xl">
                                 {{ $match->homeClub->name }}
                             </p>
@@ -67,10 +62,8 @@
                                     page club →
                                 </p>
                             </a>
-                            @endif
                         </div>
                     </div>
-
                 </div>
                 <div
                     class="relative col-span-2 bg-gradient-to-r from-primary to-secondary flex flex-col justify-center items-center">
@@ -119,21 +112,14 @@
                     <div
                         class="bg-secondary p-2 text-primary flex flex-col-reverse lg:flex-row lg:items-center lg:justify-end lg:rounded-r-full">
                         <div>
-                            @if ($match->id == 0)
-                                <p class="truncate text-center lg:text-left sm:font-bold lg:text-2xl">
-                                    EQUIPE 2
+                            <p class="truncate text-center lg:text-left sm:font-bold lg:text-2xl">
+                                {{ $match->awayClub->name }}
+                            </p>
+                            <a href="{{ route('clubs.show', $match->awayClub->id) }}">
+                                <p class="truncate text-right text-xs underline leading-6">
+                                    page club →
                                 </p>
-                            @else
-                                <p class="truncate text-center lg:text-left sm:font-bold lg:text-2xl">
-                                    {{ $match->awayClub->name }}
-                                </p>
-                                <a href="{{ route('clubs.show', $match->awayClub->id) }}">
-                                    <p class="truncate text-right text-xs underline leading-6">
-                                        page club →
-                                    </p>
-                                </a>
-                            @endif
-                            
+                            </a>
                         </div>
                         <div class="flex justify-center">
                             @auth
@@ -787,18 +773,26 @@
                             <p class="text-lg mb-4">{{ $comment->minute }}'</p>
                         </div>
                         @if ($comment->team_action == 'home')
-                            <div class="logo h-8 w-8 cursor-pointer">
+                            @if ($match->homeClub->logo_path)
+                                <img class="object-contain" src="{{ asset($match->homeClub->logo_path) }}"
+                                    alt="Logo de {{ $match->homeClub->name }}">
+                        @else
                                 <img class="object-contain"
                                     src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $match->homeClub->numAffiliation }}.jpg"
-                                    alt="logo">
-                            </div>
+                                    alt="Logo de {{ $match->homeClub->name }}">
+                            @endif
                         @endif
                         @if ($comment->team_action == 'away')
-                            <div class="logo h-8 w-8 cursor-pointer">
-                                <img class="object-contain"
-                                    src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $match->awayClub->numAffiliation }}.jpg"
-                                    alt="logo">
-                            </div>
+                            @if ($comment->team_action == 'home')
+                                @if ($match->awayClub->logo_path)
+                                    <img class="object-contain" src="{{ asset($match->awayClub->logo_path) }}"
+                                        alt="Logo de {{ $match->awayClub->name }}">
+                                @else
+                                    <img class="object-contain"
+                                        src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $match->awayClub->numAffiliation }}.jpg"
+                                        alt="Logo de {{ $match->awayClub->name }}">
+                                @endif
+                            @endif
                         @endif
                     </div>
                     <div class="relative bg-white w-full p-4 flex flex-col">
