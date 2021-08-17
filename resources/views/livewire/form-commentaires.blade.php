@@ -73,7 +73,7 @@
                                 {{ $home_score }}
                             </p>
                             @auth
-                                @if(Auth::user()->role == "super-admin" || $match->commentateur)
+                                @if((Auth::user()->role == "super-admin" || $match->commentateur) && $match->home_score != null)
                                     <div class="flex justify-evenly items-center mt-1 z-10">
                                         <button type="button" wire:click="decrementHomeScore" class="focus:outline-none">
                                             <span class="h-5 w-5 flex items-center justify-center rounded-full bg-white">-</span>
@@ -90,7 +90,7 @@
                                 {{ $away_score }}
                             </p>
                             @auth
-                                @if(Auth::user()->role == "super-admin" || $match->commentateur)
+                                @if((Auth::user()->role == "super-admin" || $match->commentateur) && $match->away_score != null)
                                     <div class="flex justify-evenly items-center mt-1 z-10">
                                         <button type="button" wire:click="decrementAwayScore" class="focus:outline-none">
                                             <span class="h-5 w-5 flex items-center justify-center rounded-full bg-white">-</span>
