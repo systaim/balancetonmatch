@@ -773,7 +773,7 @@
                             <p class="text-lg mb-4">{{ $comment->minute }}'</p>
                         </div>
                         @if ($comment->team_action == 'home')
-                            <div class="logo h-8 w-8 cursor-pointer">
+                            <div class="logo h-12 w-12 cursor-pointer">
                                 @if ($match->homeClub->logo_path)
                                     <img class="object-contain" src="{{ asset($match->homeClub->logo_path) }}"
                                         alt="Logo de {{ $match->homeClub->name }}">
@@ -785,7 +785,7 @@
                             </div>
                         @endif
                         @if ($comment->team_action == 'away')
-                            <div class="logo h-8 w-8 cursor-pointer">
+                            <div class="logo h-12 w-12 cursor-pointer">
                                 @if ($match->awayClub->logo_path)
                                     <img class="object-contain" src="{{ asset($match->awayClub->logo_path) }}"
                                         alt="Logo de {{ $match->awayClub->name }}">
