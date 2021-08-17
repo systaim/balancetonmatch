@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Commentator;
+use App\Models\Club;
 use Illuminate\Http\Request;
+use App\Http\Resources\Club as ClubResource;
 
-class CommentatorController extends Controller
+class APIClubController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +16,7 @@ class CommentatorController extends Controller
      */
     public function index()
     {
-        return Commentator::all();
+        return Club::paginate(10);
     }
 
     /**
@@ -26,7 +27,7 @@ class CommentatorController extends Controller
      */
     public function store(Request $request)
     {
-        Commentator::create($request->all());
+        //
     }
 
     /**
@@ -35,9 +36,9 @@ class CommentatorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(commentator $commentator)
+    public function show(Club $club)
     {
-        return $commentator;
+        return new ClubResource($club);
     }
 
     /**
@@ -47,9 +48,9 @@ class CommentatorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Commentator $commentator)
+    public function update(Request $request, $id)
     {
-        $commentator->update($request->all());
+        //
     }
 
     /**
@@ -58,8 +59,8 @@ class CommentatorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Commentator $commentator)
+    public function destroy($id)
     {
-        $commentator->delete();
+        //
     }
 }

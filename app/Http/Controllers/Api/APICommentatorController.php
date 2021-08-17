@@ -3,13 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Commentaire;
 use App\Models\Commentator;
 use Illuminate\Http\Request;
-use App\Http\Resources\Commentaire as CommentaireResource;
 
-
-class CommentaireController extends Controller
+class APICommentatorController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,8 +15,7 @@ class CommentaireController extends Controller
      */
     public function index()
     {
-        $commentaires = Commentator::with('commentaires')->get();
-        return $commentaires;
+        return Commentator::all();
     }
 
     /**
@@ -30,7 +26,7 @@ class CommentaireController extends Controller
      */
     public function store(Request $request)
     {
-        Commentaire::create($request->all());
+        Commentator::create($request->all());
     }
 
     /**
@@ -39,9 +35,9 @@ class CommentaireController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Commentaire $commentaire)
+    public function show(commentator $commentator)
     {
-        return new CommentaireResource($commentaire);
+        return $commentator;
     }
 
     /**
@@ -51,9 +47,9 @@ class CommentaireController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Commentaire $commentaire)
+    public function update(Request $request, Commentator $commentator)
     {
-        $commentaire->update($request->all());
+        $commentator->update($request->all());
     }
 
     /**
@@ -62,8 +58,8 @@ class CommentaireController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Commentaire $commentaire)
+    public function destroy(Commentator $commentator)
     {
-        $commentaire->delete();
+        $commentator->delete();
     }
 }

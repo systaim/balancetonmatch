@@ -3,12 +3,13 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Commentaire;
+use App\Models\Commentator;
 use Illuminate\Http\Request;
-use App\Models\Match;
-use App\Http\Resources\Match as MatchResource;
+use App\Http\Resources\Commentaire as CommentaireResource;
 
 
-class MatchController extends Controller
+class APICommentaireController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +18,8 @@ class MatchController extends Controller
      */
     public function index()
     {
-        return Match::all();
+        $commentaires = Commentator::with('commentaires')->get();
+        return $commentaires;
     }
 
     /**
@@ -28,7 +30,7 @@ class MatchController extends Controller
      */
     public function store(Request $request)
     {
-        Match::create($request->all());
+        Commentaire::create($request->all());
     }
 
     /**
@@ -37,9 +39,9 @@ class MatchController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Match $match)
+    public function show(Commentaire $commentaire)
     {
-        return new MatchResource($match);
+        return new CommentaireResource($commentaire);
     }
 
     /**
@@ -49,9 +51,9 @@ class MatchController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Match $match)
+    public function update(Request $request, Commentaire $commentaire)
     {
-        $match->update($request->all());
+        $commentaire->update($request->all());
     }
 
     /**
@@ -60,8 +62,8 @@ class MatchController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Match $match)
+    public function destroy(Commentaire $commentaire)
     {
-        $match->delete();
+        $commentaire->delete();
     }
 }
