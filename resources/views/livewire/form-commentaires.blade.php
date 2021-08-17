@@ -74,7 +74,6 @@
                             </p>
                             @auth
                                 @if(Auth::user()->role == "super-admin" || $match->commentateur)
-                                    {{-- @if($match->commentateur && $match->commentateur->user_id == Auth::user()->id || ($match->live == "finDeMatch" && Auth::user()->role == "manager" && (Auth::user()->club_id == $match->homeClub->id || Auth::user()->club_id == $match->awayClub->id))) --}}
                                     <div class="flex justify-evenly items-center mt-1 z-10">
                                         <button type="button" wire:click="decrementHomeScore" class="focus:outline-none">
                                             <span class="h-5 w-5 flex items-center justify-center rounded-full bg-white">-</span>
@@ -83,7 +82,6 @@
                                             <span class="h-5 w-5 flex items-center justify-center rounded-full bg-white">+</span>
                                         </button>
                                     </div>
-                                    {{-- @endif --}}
                                 @endif
                             @endauth
                         </div>
@@ -93,7 +91,6 @@
                             </p>
                             @auth
                                 @if(Auth::user()->role == "super-admin" || $match->commentateur)
-                                    @if($match->commentateur && $match->commentateur->user_id == Auth::user()->id || ($match->live == "finDeMatch" && Auth::user()->role == "manager" && (Auth::user()->club_id == $match->homeClub->id || Auth::user()->club_id == $match->awayClub->id)))
                                     <div class="flex justify-evenly items-center mt-1 z-10">
                                         <button type="button" wire:click="decrementAwayScore" class="focus:outline-none">
                                             <span class="h-5 w-5 flex items-center justify-center rounded-full bg-white">-</span>
@@ -102,7 +99,6 @@
                                             <span class="h-5 w-5 flex items-center justify-center rounded-full bg-white">+</span>
                                         </button>
                                     </div>
-                                    @endif
                                 @endif
                             @endauth
                         </div>
