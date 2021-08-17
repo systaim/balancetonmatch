@@ -19423,57 +19423,49 @@ burger.addEventListener("click", function () {
  * menu Hamburger bas de page
  * 
  ******************************/
+// let burger2 = document.getElementById("burger2");
+// let menuMobile = document.getElementById("menu-mobile");
+// let profile = document.getElementById("profile");
+// let menuProfile = document.getElementById("menu-profile");
+// let matchs = document.getElementById("matchs");
+// let menuMatchs = document.getElementById("menu-matchs");
+// burger2.addEventListener("click", function () {
+//     this.classList.toggle("is-open");
+//     menuMobile.classList.toggle("is-open");
+//     if (menuProfile.classList.contains('is-open')) {
+//         menuProfile.classList.toggle("is-open");
+//     }
+//     if (menuMatchs.classList.contains('is-open')) {
+//         menuMatchs.classList.toggle("is-open");
+//     }
+// });
+// profile.addEventListener("click", function () {
+//     this.classList.toggle("is-open");
+//     menuProfile.classList.toggle("is-open");
+//     if (menuMobile.classList.contains('is-open')) {
+//         menuMobile.classList.toggle("is-open");
+//     }
+//     if (menuMatchs.classList.contains('is-open')) {
+//         menuMatchs.classList.toggle("is-open");
+//     }
+//     if (burger2.classList.contains('is-open')) {
+//         burger2.classList.toggle("is-open");
+//     }
+// });
+// matchs.addEventListener("click", function () {
+//     this.classList.toggle("is-open");
+//     menuMatchs.classList.toggle("is-open");
+//     if (menuProfile.classList.contains('is-open')) {
+//         menuProfile.classList.toggle("is-open");
+//     }
+//     if (menuMobile.classList.contains('is-open')) {
+//         menuMobile.classList.toggle("is-open");
+//     }
+//     if (burger2.classList.contains('is-open')) {
+//         burger2.classList.toggle("is-open");
+//     }
+// });
 
-var burger2 = document.getElementById("burger2");
-var menuMobile = document.getElementById("menu-mobile");
-var profile = document.getElementById("profile");
-var menuProfile = document.getElementById("menu-profile");
-var matchs = document.getElementById("matchs");
-var menuMatchs = document.getElementById("menu-matchs");
-burger2.addEventListener("click", function () {
-  this.classList.toggle("is-open");
-  menuMobile.classList.toggle("is-open");
-
-  if (menuProfile.classList.contains('is-open')) {
-    menuProfile.classList.toggle("is-open");
-  }
-
-  if (menuMatchs.classList.contains('is-open')) {
-    menuMatchs.classList.toggle("is-open");
-  }
-});
-profile.addEventListener("click", function () {
-  this.classList.toggle("is-open");
-  menuProfile.classList.toggle("is-open");
-
-  if (menuMobile.classList.contains('is-open')) {
-    menuMobile.classList.toggle("is-open");
-  }
-
-  if (menuMatchs.classList.contains('is-open')) {
-    menuMatchs.classList.toggle("is-open");
-  }
-
-  if (burger2.classList.contains('is-open')) {
-    burger2.classList.toggle("is-open");
-  }
-});
-matchs.addEventListener("click", function () {
-  this.classList.toggle("is-open");
-  menuMatchs.classList.toggle("is-open");
-
-  if (menuProfile.classList.contains('is-open')) {
-    menuProfile.classList.toggle("is-open");
-  }
-
-  if (menuMobile.classList.contains('is-open')) {
-    menuMobile.classList.toggle("is-open");
-  }
-
-  if (burger2.classList.contains('is-open')) {
-    burger2.classList.toggle("is-open");
-  }
-});
 /******************************
  * 
  * compteurs animés
@@ -19532,52 +19524,54 @@ if (submitButton != null) {
  * detections position écran pour animations
  * 
  ******************************/
-// function moveLeftToRight(div) {
-//     for (let i = 0; i < div.length; i++) {
-//         if (div[i].style.opacity == 0 && window.scrollY >= (div[i].offsetTop - (window.screen.height - 300))) {
-//             div[i].style.opacity = 1
-//             div[i].style.animation = "left-to-right 500ms"
-//         }
-//     }
-// }
-// function moveRightToLeft(div) {
-//     for (let i = 0; i < div.length; i++) {
-//         if (div[i].style.opacity == 0 && window.scrollY >= (div[i].offsetTop - (window.screen.height - 300))) {
-//             div[i].style.opacity = 1
-//             div[i].style.animation = "right-to-left 500ms"
-//         }
-//     }
-// }
-// function moveBottomToTop(div) {
-//     for (let i = 0; i < div.length; i++) {
-//         if (div[i].style.opacity == 0 && window.scrollY >= (div[i].offsetTop - (window.screen.height - 300))) {
-//             div[i].style.opacity = 1
-//             div[i].style.animation = "bottom-to-top 500ms"
-//         }
-//     }
-// }
-// function moveTopToBottom(div) {
-//     for (let i = 0; i < div.length; i++) {
-//         if (div[i].style.opacity == 0 && window.scrollY >= (div[i].offsetTop - (window.screen.height - 300))) {
-//             div[i].style.opacity = 1
-//             div[i].style.animation = "top-to-bottom 500ms"
-//         }
-//     }
-// }
-// window.addEventListener('scroll', function () {
-//     let moveToLeft = document.querySelectorAll('.moveToLeft')
-//     let moveToRight = document.querySelectorAll('.moveToRight')
-//     let moveToBottom = document.querySelectorAll('.moveToBottom')
-//     let moveToTop = document.querySelectorAll('.moveToTop')
-//     if (moveToLeft != null)
-//         moveLeftToRight(moveToLeft)
-//     if (moveToRight != null)
-//         moveRightToLeft(moveToRight)
-//     if (moveToBottom != null)
-//         moveTopToBottom(moveToBottom)
-//     if (moveToTop != null)
-//         moveBottomToTop(moveToTop)
-// })
+
+
+function moveLeftToRight(div) {
+  for (var i = 0; i < div.length; i++) {
+    if (div[i].style.opacity == 0 && window.scrollY >= div[i].offsetTop - (window.screen.height - 300)) {
+      div[i].style.opacity = 1;
+      div[i].style.animation = "left-to-right 500ms";
+    }
+  }
+}
+
+function moveRightToLeft(div) {
+  for (var i = 0; i < div.length; i++) {
+    if (div[i].style.opacity == 0 && window.scrollY >= div[i].offsetTop - (window.screen.height - 300)) {
+      div[i].style.opacity = 1;
+      div[i].style.animation = "right-to-left 500ms";
+    }
+  }
+}
+
+function moveBottomToTop(div) {
+  for (var i = 0; i < div.length; i++) {
+    if (div[i].style.opacity == 0 && window.scrollY >= div[i].offsetTop - (window.screen.height - 300)) {
+      div[i].style.opacity = 1;
+      div[i].style.animation = "bottom-to-top 500ms";
+    }
+  }
+}
+
+function moveTopToBottom(div) {
+  for (var i = 0; i < div.length; i++) {
+    if (div[i].style.opacity == 0 && window.scrollY >= div[i].offsetTop - (window.screen.height - 300)) {
+      div[i].style.opacity = 1;
+      div[i].style.animation = "top-to-bottom 500ms";
+    }
+  }
+}
+
+window.addEventListener('scroll', function () {
+  var moveToLeft = document.querySelectorAll('.moveToLeft');
+  var moveToRight = document.querySelectorAll('.moveToRight');
+  var moveToBottom = document.querySelectorAll('.moveToBottom');
+  var moveToTop = document.querySelectorAll('.moveToTop');
+  if (moveToLeft != null) moveLeftToRight(moveToLeft);
+  if (moveToRight != null) moveRightToLeft(moveToRight);
+  if (moveToBottom != null) moveTopToBottom(moveToBottom);
+  if (moveToTop != null) moveBottomToTop(moveToTop);
+});
 
 /***/ }),
 
