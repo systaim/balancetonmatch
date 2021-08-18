@@ -29,7 +29,7 @@ Route::apiResource('matchs', ApiMatchController::class);
 Route::apiResource('commentaires', ApiCommentaireController::class);
 Route::apiResource('commentators', ApiCommentatorController::class);
 
-Route::get('teams/{team}', 'App\Http\Controllers\Api\APIClubController@show');
+Route::get('api/teams/{team}', 'App\Http\Controllers\Api\APIClubController@show');
 
 
 
