@@ -24,7 +24,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// Route::apiResource('clubs', ApiClubController::class);s
+// Route::apiResource('clubs', ApiClubController::class);
 Route::apiResource('matchs', ApiMatchController::class);
 Route::apiResource('commentaires', ApiCommentaireController::class);
 Route::apiResource('commentators', ApiCommentatorController::class);
