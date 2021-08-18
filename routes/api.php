@@ -24,12 +24,19 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResource('teams', ApiClubController::class);
+// Route::apiResource('teams', ApiClubController::class);
 Route::apiResource('matchs', ApiMatchController::class);
 Route::apiResource('commentaires', ApiCommentaireController::class);
 Route::apiResource('commentators', ApiCommentatorController::class);
 
-Route::get('api/teams/{team}', 'App\Http\Controllers\Api\APIClubController@show');
+Route::get('/teams/{team}', function (Club $club) {
+
+    $club =Club::find($club);
+    return [
+        'results' => ClubResource::collection($club)
+
+    ];
+});
 
 
 
