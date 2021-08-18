@@ -15,7 +15,6 @@ class ClubResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id' => $this->id,
             'abbreviation' => $this->abbreviation,
             'nom' => $this->name,
             'background' => $this->bg_path,
