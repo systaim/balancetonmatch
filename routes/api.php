@@ -33,7 +33,6 @@ Route::get('/clubs/{club}', function (Club $club) {
 
     $club =Club::find($club);
     return [
-
         'results' => ClubResource::collection($club)
 
     ];
