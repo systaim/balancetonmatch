@@ -38,7 +38,7 @@ class APIClubController extends Controller
      */
     public function show(Club $club)
     {
-        return new ClubResource($club);
+        return new ClubResource($club->id);
     }
 
     /**
