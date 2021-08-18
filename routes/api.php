@@ -36,3 +36,4 @@ Route::get('api/teams/{team}', 'App\Http\Controllers\Api\APIClubController@show'
 
 
 
+
