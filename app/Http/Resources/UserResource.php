@@ -17,7 +17,7 @@ class UserResource extends JsonResource
      * @return array
      */
 
-    // public static $wrap = "user";
+    public static $wrap = "user";
 
     public function toArray($request)
     {

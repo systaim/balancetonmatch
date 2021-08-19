@@ -13,7 +13,7 @@ class ClubResource extends JsonResource
      * @return array
      */
 
-    // public static $wrap = "club";
+    public static $wrap = "club";
 
     public function toArray($request)
     {
