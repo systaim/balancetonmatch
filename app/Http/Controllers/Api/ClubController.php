@@ -16,7 +16,7 @@ class ClubController extends Controller
      */
     public function index()
     {
-        return Club::paginate(100);
+        return Club::all();
     }
 
     /**
@@ -27,7 +27,7 @@ class ClubController extends Controller
      */
     public function store(Request $request)
     {
-        Club::create($request->all());
+        // Club::create($request->all());
     }
 
     /**
@@ -50,7 +50,7 @@ class ClubController extends Controller
      */
     public function update(Request $request, Club $club)
     {
-        $club->update($request->all());
+        // $club->update($request->all());
     }
 
     /**
@@ -61,6 +61,6 @@ class ClubController extends Controller
      */
     public function destroy(Club $club)
     {
-        $club->delete();
+        // $club->delete();
     }
 }

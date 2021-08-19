@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\ClubController as ClubController;
 use App\Http\Controllers\Api\MatchController as MatchController;
 use App\Http\Controllers\Api\CommentaireController as CommentaireController;
 use App\Http\Controllers\Api\CommentatorController as CommentatorController;
+use App\Http\Controllers\Api\UserController as UserController;
 use App\Http\Resources\ClubResource;
 use App\Models\Club;
 use Illuminate\Http\Request;
@@ -34,6 +35,9 @@ Route::apiResource('commentaires', CommentaireController::class, [
     'as' => 'api'
 ]);
 Route::apiResource('commentators', CommentatorController::class, [
+    'as' => 'api'
+]);
+Route::apiResource('users', UserController::class, [
     'as' => 'api'
 ]);
 

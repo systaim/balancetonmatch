@@ -3,12 +3,11 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\UserResource;
+use App\Models\User;
 use Illuminate\Http\Request;
-use App\Models\Match;
-use App\Http\Resources\MatchResource as MatchResource;
 
-
-class MatchController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +16,7 @@ class MatchController extends Controller
      */
     public function index()
     {
-        return Match::all();
+        return User::all();
     }
 
     /**
@@ -28,7 +27,7 @@ class MatchController extends Controller
      */
     public function store(Request $request)
     {
-        // Match::create($request->all());
+        // User::create($request->all());
     }
 
     /**
@@ -37,9 +36,9 @@ class MatchController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Match $match)
+    public function show(User $user)
     {
-        return new MatchResource($match);
+        return new UserResource($user);
     }
 
     /**
@@ -49,9 +48,9 @@ class MatchController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Match $match)
+    public function update(Request $request, User $user)
     {
-        // $match->update($request->all());
+        // $user->update($request->all());
     }
 
     /**
@@ -60,8 +59,8 @@ class MatchController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Match $match)
+    public function destroy($user)
     {
-        // $match->delete();
+        // $user->delete();
     }
 }
