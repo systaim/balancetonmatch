@@ -32,6 +32,5 @@ class AppServiceProvider extends ServiceProvider
         setlocale(LC_ALL, "fr");
         Carbon::setLocale('fr');
         // URL::forceScheme('https');
-        JsonResource::withoutWrapping();
     }
 }
