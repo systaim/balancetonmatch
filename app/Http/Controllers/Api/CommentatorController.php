@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Commentator;
 use Illuminate\Http\Request;
 
-class APICommentController extends Controller
+class CommentatorController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +15,7 @@ class APICommentController extends Controller
      */
     public function index()
     {
-        //
+        return Commentator::all();
     }
 
     /**
@@ -25,7 +26,7 @@ class APICommentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Commentator::create($request->all());
     }
 
     /**
@@ -34,9 +35,9 @@ class APICommentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(commentator $commentator)
     {
-        //
+        return $commentator;
     }
 
     /**
@@ -46,9 +47,9 @@ class APICommentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Commentator $commentator)
     {
-        //
+        $commentator->update($request->all());
     }
 
     /**
@@ -57,8 +58,8 @@ class APICommentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Commentator $commentator)
     {
-        //
+        $commentator->delete();
     }
 }

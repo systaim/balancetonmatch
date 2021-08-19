@@ -31,7 +31,7 @@
                     <p class="text-xs">Accueil</p>
                 </div>
             </a>
-            <a href="/clubs">
+            <a href="{{Route('clubs.index')}}">
                 <div class="flex flex-col items-center justify-center w-16">
                     <i class="fas fa-search text-xl"></i>
                     <p class="text-xs">Clubs</p>

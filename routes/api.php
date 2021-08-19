@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Controllers\Api\APIClubController as ApiClubController;
-use App\Http\Controllers\Api\APIMatchController as ApiMatchController;
-use App\Http\Controllers\Api\APICommentaireController as ApiCommentaireController;
-use App\Http\Controllers\Api\APICommentatorController as ApiCommentatorController;
+use App\Http\Controllers\Api\ClubController as ClubController;
+use App\Http\Controllers\Api\MatchController as MatchController;
+use App\Http\Controllers\Api\CommentaireController as CommentaireController;
+use App\Http\Controllers\Api\CommentatorController as CommentatorController;
 use App\Http\Resources\ClubResource;
 use App\Models\Club;
 use Illuminate\Http\Request;
@@ -24,10 +24,18 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// Route::apiResource('clubs', ApiClubController::class);
-Route::apiResource('matchs', ApiMatchController::class);
-Route::apiResource('commentaires', ApiCommentaireController::class);
-Route::apiResource('commentators', ApiCommentatorController::class);
+Route::apiResource('clubs', ClubController::class, [
+    'as' => 'api'
+]);
+Route::apiResource('matchs', MatchController::class, [
+    'as' => 'api'
+]);
+Route::apiResource('commentaires', CommentaireController::class, [
+    'as' => 'api'
+]);
+Route::apiResource('commentators', CommentatorController::class, [
+    'as' => 'api'
+]);
 
 // Route::get('/clubs/{club}', function (Club $club) {
 

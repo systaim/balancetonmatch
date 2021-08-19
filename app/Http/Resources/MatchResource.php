@@ -15,6 +15,7 @@ class MatchResource extends JsonResource
     public function toArray($request)
     {
         return [
+            
             'live' =>$this->live,
             'home_team_id' =>$this->home_team_id,
             'home_score' =>$this->home_score,

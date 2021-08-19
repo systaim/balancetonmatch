@@ -3,12 +3,11 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Club;
 use Illuminate\Http\Request;
-use App\Models\Match;
-use App\Http\Resources\MatchResource as MatchResource;
+use App\Http\Resources\ClubResource as ClubResource;
 
-
-class APIMatchController extends Controller
+class ClubController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +16,7 @@ class APIMatchController extends Controller
      */
     public function index()
     {
-        return Match::all();
+        return Club::paginate(100);
     }
 
     /**
@@ -28,7 +27,7 @@ class APIMatchController extends Controller
      */
     public function store(Request $request)
     {
-        Match::create($request->all());
+        Club::create($request->all());
     }
 
     /**
@@ -37,9 +36,9 @@ class APIMatchController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Match $match)
+    public function show(Club $club)
     {
-        return new MatchResource($match);
+        return new ClubResource($club);
     }
 
     /**
@@ -49,9 +48,9 @@ class APIMatchController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Match $match)
+    public function update(Request $request, Club $club)
     {
-        $match->update($request->all());
+        $club->update($request->all());
     }
 
     /**
@@ -60,8 +59,8 @@ class APIMatchController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Match $match)
+    public function destroy(Club $club)
     {
-        $match->delete();
+        $club->delete();
     }
 }
