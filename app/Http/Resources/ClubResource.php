@@ -12,6 +12,9 @@ class ClubResource extends JsonResource
      * @param  \Illuminate\Http\Request  $request
      * @return array
      */
+
+    public static $wrap = "club";
+
     public function toArray($request)
     {
         return [
