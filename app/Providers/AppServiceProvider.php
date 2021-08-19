@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\URL;
 
 use Illuminate\Support\ServiceProvider;
 use Carbon\Carbon;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -31,5 +32,6 @@ class AppServiceProvider extends ServiceProvider
         setlocale(LC_ALL, "fr");
         Carbon::setLocale('fr');
         // URL::forceScheme('https');
+        JsonResource::withoutWrapping();
     }
 }
