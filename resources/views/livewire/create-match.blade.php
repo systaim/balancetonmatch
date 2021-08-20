@@ -9,13 +9,14 @@
             <div class="lg:col-span-5 flex items-start justify-center">
                 @if ($homeTeam == '')
                     <div class="mx-4">
-                        <label class="sr-only" for="searchHome">DOM</label>
+                        <label class="text-xs px-3" for="searchHome">Equipe à domicile</label>
                         @error('searchHome')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
-                        <input class="bg-transparent w-full my-1 border-b border-gray-600 focus:outline-none text-2xl xl:text-5xl uppercase"
+                        <input class="bg-transparent w-full focus:outline-none text-3xl xl:text-5xl uppercase px-3"
                             placeholder="DOMICILE" wire:model="searchHome" type="search" name="searchHome"
                             id="searchHome" :value="old('searchHome')" autocomplete="searchHome" required autofocus>
+                            <div class="w-full h-0.5 bg-black"></div>
                         @if ($clubsHome != [] && count($clubsHome) != 0)
                             <p class="text-sm py-1">Clique sur une équipe<br>Fais le bon choix 😉</p>
                         @elseif(count($clubsHome) == 0 && strlen($searchHome) > 2)
@@ -31,9 +32,15 @@
                                 <div class="relative flex flex-row justify-around items-center bg-primary overflow-hidden cursor-pointer"
                                     wire:click="addHomeTeam({{ $club->id }})" wire:key="{{ $loop->index }}">
                                     <div class="w-16 m-2 z-10">
-                                        <div class="logo h-12 w-12">
-                                            <img class="object-contain"
-                                                src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $club->numAffiliation }}.jpg">
+                                        <div class="logo h-12 w-12 lg:h-16 lg:w-16 cursor-pointer">
+                                            @if ($club->logo_path)
+                                                <img class="object-contain" src="{{ asset($club->logo_path) }}"
+                                                    alt="Logo de {{ $club->name }}">
+                                            @else
+                                                <img class="object-contain"
+                                                    src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $club->numAffiliation }}.jpg"
+                                                    alt="Logo de {{ $club->name }}">
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="flex items-center py-2 w-full text-secondary overflow-hidden ml-2 z-10">
@@ -66,7 +73,7 @@
             </div>
 
             <div class="lg:col-span-2 flex justify-center {{ $clubsHome != [] || $clubsAway != [] ? 'items-start' : 'items-center' }}">
-                <p class="flex justify-center items-center font-bold h-52 w-52 m-4">
+                <p class="flex justify-center items-center font-bold h-16 w-16 m-4">
                     <img src="{{ asset('images/vs-primary.png') }}" alt="">
                 </p>
             </div>
@@ -74,14 +81,15 @@
             <div class="lg:col-span-5 flex items-start justify-center">
                 @if ($awayTeam == '')
                     <div class="mx-4">
-                        <label class="sr-only" for="searchAway">EXT</label>
+                        <label class="text-xs px-3" for="searchAway">Equipe à l'extérieur</label>
                         @error('searchAway')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                         <input
-                            class="bg-transparent w-full my-1 border-b border-gray-600 focus:outline-none text-2xl xl:text-5xl uppercase"
+                            class="bg-transparent w-full focus:outline-none text-3xl xl:text-5xl uppercase px-3"
                             placeholder="EXTERIEUR" wire:model="searchAway" type="search" name="searchAway"
                             id="searchAway" :value="old('searchAway')" autocomplete="searchAway" required>
+                            <div class="w-full h-0.5 bg-black"></div>
                         @if ($clubsAway != [] && count($clubsAway) != 0)
                             <p class="text-sm py-1">Clique sur une équipe<br>Fais le bon choix 😉</p>
                         @elseif(count($clubsAway) == 0 && strlen($searchAway) > 2)
@@ -94,9 +102,15 @@
                                 <div class="relative flex flex-row items-center bg-primary overflow-hidden cursor-pointer"
                                     wire:click="addAwayTeam({{ $club->id }})" wire:key="{{ $loop->index }}">
                                     <div class="w-16 m-2 z-10">
-                                        <div class="logo h-12 w-12">
-                                            <img class="object-contain"
-                                                src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $club->numAffiliation }}.jpg">
+                                        <div class="logo h-12 w-12 lg:h-16 lg:w-16 cursor-pointer">
+                                            @if ($club->logo_path)
+                                                <img class="object-contain" src="{{ asset($club->logo_path) }}"
+                                                    alt="Logo de {{ $club->name }}">
+                                            @else
+                                                <img class="object-contain"
+                                                    src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $club->numAffiliation }}.jpg"
+                                                    alt="Logo de {{ $club->name }}">
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="flex items-center py-2 w-full text-secondary overflow-hidden ml-2 z-10">
