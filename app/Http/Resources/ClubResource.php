@@ -20,6 +20,7 @@ class ClubResource extends JsonResource
 
         return [
             'club' => [
+                'id' => $this->id,
                 'abbreviation' => $this->abbreviation,
                 'name' => $this->name,
                 'bg_path' => $this->bg_path,
