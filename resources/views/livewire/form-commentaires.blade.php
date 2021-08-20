@@ -670,7 +670,7 @@
                                 <img src="{{ asset('images/login.png') }}" alt="">
                             </div>
                             <div class="bg-white w-full h-full p-3 flex flex-col justify-center">
-                                <p class="font-bold">Je me connecte</p>
+                                <p class="font-bold">Je me connecte pour commenter</p>
                             </div>
                         </div>
                     </a>
