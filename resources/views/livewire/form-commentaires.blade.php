@@ -7,7 +7,7 @@
             @if(!$buttonComment)
                 <button type="button" wire:click="clickButtonComment" class="fixed bottom-20 left-1/2 -mx-24 z-40">
                     <div class="flex justify-evenly items-center bg-primary text-white px-1 py-2 rounded-full w-48 border-2 border-secondary">
-                        <div class="h-10 w-10 shadow-2xl border-2 border-secondary bg-primary flex justify-center items-center rounded-full">
+                        <div class="animate-pulse h-10 w-10 shadow-2xl border-2 border-secondary bg-primary flex justify-center items-center rounded-full">
                             <i class="fas fa-plus text-2xl text-white"></i>
                         </div>
                         <p class="px-3">Je commente</p>
