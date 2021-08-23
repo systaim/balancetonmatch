@@ -16,7 +16,7 @@ class ClubController extends Controller
      */
     public function index()
     {
-        $clubs = Club::all();
+        $clubs = Club::paginate(10);
         return ClubResource::collection($clubs);
     }
 

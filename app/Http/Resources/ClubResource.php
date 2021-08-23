@@ -13,13 +13,12 @@ class ClubResource extends JsonResource
      * @return array
      */
 
-    public static $wrap = "club";
 
-    public function toCollection($request)
+
+    public function toArray($request)
     {
 
         return [
-            'club' => [
                 'id' => $this->id,
                 'abbreviation' => $this->abbreviation,
                 'name' => $this->name,
@@ -30,7 +29,6 @@ class ClubResource extends JsonResource
                 'adress' => $this->adress,
                 'CP' => $this->zip_code,
                 'city' => $this->city,
-            ]
         ];
     }
 }
