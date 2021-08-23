@@ -209,7 +209,8 @@
                         </div>
                     @endif
                 </div>
-                @if ($match->live != 'attente' && $match->live != 'finDeMatch' && $match->live != 'reporte')
+                <div class="flex justify-center items-center">
+                    @if ($match->live != 'attente' && $match->live != 'finDeMatch' && $match->live != 'reporte')
                     <div class="text-center flex justify-center font-bold">
                         <p class="px-4 bg-primary text-secondary rounded-tl-md">
                             {{ $match->date_match->formatLocalized('%d/%m/%y') }}
@@ -218,7 +219,8 @@
                             {{ $match->date_match->formatLocalized('%H:%M') }}
                         </p>
                     </div>
-                @endif
+                    @endif
+                </div>
             </div>
         </div>
         <div class="bg-gray-900 px-8 py-2 text-white text-center flex justify-center items-center">
@@ -251,211 +253,107 @@
         <!-------------------------
             Formulaire d'action équipe 
             ---------------------------->
-        <div class="fixed openComment flex flex-col justify-center z-10 rounded-b-lg espaceCom {{ $team_action }}">
-            <div class="flex flex-col items-center pt-10">
-                <h3 class="text-xl text-center px-2 text-primary bg-gray-200 rounded-lg">Menu action de match</h3>
-                @if ($team_action == 'home')
-                    <div class="logo h-36 w-36 cursor-pointer m-4 border-2 border-primary">
-                        <img class="object-contain"
-                            src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $match->homeClub->numAffiliation }}.jpg"
-                            alt="logo">
-                    </div>
-                @endif
-                @if ($team_action == 'away')
-                    <div class="logo h-36 w-36 cursor-pointer m-4 border-2 border-primary">
-                        <img class="object-contain"
-                            src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $match->awayClub->numAffiliation }}.jpg"
-                            alt="logo">
-                    </div>
-                @endif
-                <div class="bg-primary p-3 rounded-lg my-2 w-full sm:w-10/12 lg:w-9/12">
-                    <div>
-                        <div class="flex justify-center text-white">
-                            <p>Choisis l'action à commenter</p>
-                        </div>
-                        <div class="flex justify-center items-center m-3">
-                            <label for="but" class="cursor-pointer">
-                                <input class="hidden" type="radio" id="but" wire:model="type_comments"
-                                    name="type_comments" value="but">
-                                <img class="border-2 border-secondary rounded-full shadow-xl bg-white m-2 p-2"
-                                    src="{{ asset('images/ball.png') }}" width="100px" height="100px" alt="But !">
-                                <p class="text-center text-white">But !</p>
-                            </label>
-                            <label for="carton" class="cursor-pointer">
-                                <input class="hidden" type="radio" id="carton" wire:model="type_comments"
-                                    name="type_comments" value="carton">
-                                <img class="border-2 border-secondary rounded-full shadow-xl bg-white m-2 p-2"
-                                    src="{{ asset('images/cards.png') }}" width="100px" height="100px" alt="Carton">
-                                <p class="text-center text-white">Carton</p>
-                            </label>
-                            <label for="action" class="cursor-pointer">
-                                <input class="hidden" type="radio" id="action" wire:model="type_comments" name="type_comments" value="action">
-                                <img class="border-2 border-secondary rounded-full shadow-xl bg-white m-2 p-2" 
-                                    src="{{ asset('images/fire.png') }}" width="100px" height="100px" alt="Action">
-                                <p class="text-center text-white">Action</p>
-                            </label>
-                        </div>
-                        @if ($type_comments == 'but')
-                            <div class="p-6 border rounded-lg shadow-2x bg-white">
-                                <div class="border rounded-lg my-3 shadow-xl">
-                                    <div class="bg-primary py-2 rounded-t-lg">
-                                        <h3 class="text-center text-2xl text-white">But dans le jeu</h3>
-                                    </div>
-                                    <div class="flex flex-col p-5">
-                                            @foreach ($goalsText as $key => $goal)
-                                            <div>
-                                                <input class="hidden" type="radio" id="but{{$key}}" wire:model="type_but"
-                                                    name="type_but" value="{{$goal}}">
-                                                <label class="inputAction text-sm" for="but{{$key}}">{{$goal}}</label>
-                                            </div>
-                                        @endforeach
-                                    </div>
-                                </div>
-                                <div class="border rounded-lg my-3 shadow-xl">
-                                    <div class="bg-primary py-2 rounded-t-lg">
-                                        <h3 class="text-center text-2xl text-white">Coup-Franc</h3>
-                                    </div>
-                                    <div class="flex flex-col p-5">
-                                        @foreach ($cfText as $key => $cf)
-                                            <div>
-                                                <input class="hidden" type="radio" id="cf{{$key}}" wire:model="type_but"
-                                                    name="type_but" value="{{$cf}}">
-                                                <label class="inputAction text-sm" for="cf{{$key}}">{{$cf}}</label>
-                                            </div>
-                                        @endforeach
-                                    </div>
-                                </div>
-                                <div class="border rounded-lg my-3 shadow-xl">
-                                    <div class="bg-primary py-2 rounded-t-lg">
-                                        <h3 class="text-center text-2xl text-white">Pénalty</h3>
-                                    </div>
-                                    <div class="flex flex-col p-5">
-                                        @foreach ($penaltysScoreText as $key => $penalty)
-                                            <div>
-                                                <input class="hidden" type="radio" id="pen{{$key}}" wire:model="type_but"
-                                                    name="type_but" value="{{$penalty}}">
-                                                <label class="inputAction text-sm" for="pen{{$key}}">{{$penalty}}</label>
-                                            </div>
-                                        @endforeach
-                                    </div>
-                                </div>
-                            </div>
-                        @endif
-                        @if ($type_comments == 'carton')
-                            <div
-                                class="p-6 border rounded-lg shadow-2xl bg-white flex flex-col items-center justify-center md:flex-row">
-                                <div class="actionsMatch relative">
-                                    <input class="hidden" type="radio" id="cartonJaune" wire:model="type_carton"
-                                        name="type_comments" value="Carton jaune">
-                                    <label class="inputAction" for="cartonJaune"><img
-                                            src="{{ asset('images/yellow-card.png') }}"
-                                            alt="1er carton jaune"></label>
-                                    <p class="absolute top-9 left-10 font-sans">1er</p>
-                                </div>
-                                <div class="actionsMatch relative">
-                                    <input class="hidden" type="radio" id="cartonJaune2" wire:model="type_carton"
-                                        name="type_comments" value="2e carton jaune">
-                                    <label class="inputAction" for="cartonJaune2"><img
-                                            src="{{ asset('images/yellow-card.png') }}"
-                                            alt="2e carton jaune"></label>
-                                    <p class="absolute top-9 left-11 font-sans">2e</p>
-                                </div>
-                                <div class="actionsMatch">
-                                    <input class="hidden" type="radio" id="cartonRouge" wire:model="type_carton"
-                                        name="type_comments" value="Carton rouge">
-                                    <label class="inputAction" for="cartonRouge"><img
-                                            src="{{ asset('images/red-card.png') }}" alt="carton rouge"></label>
-                                </div>
-                                <div class="actionsMatch">
-                                    <input class="hidden" type="radio" id="cartonBlanc" wire:model="type_carton"
-                                        name="type_comments" value="Carton blanc">
-                                    <label class="inputAction" for="cartonBlanc"><img
-                                            src="{{ asset('images/white-card.png') }}" alt="carton blanc"></label>
-                                </div>
-                            </div>
-                        @endif
-                        @if ($type_comments == 'action') 
-                            <div class="p-6 border rounded-lg shadow-2xl bg-white">
-                                <div class="border rounded-lg my-3 shadow-xl">
-                                    <div class="bg-primary py-2 rounded-t-lg">
-                                        <h3 class="text-center text-2xl text-white">Faits de jeu</h3>
-                                    </div>
-                                    <div class="flex flex-col p-5">
-                                        @foreach ($gameFactsText as $key => $action)
-                                            <div>
-                                                <input class="hidden" type="radio" id="fact{{$key}}" wire:model="type_actionMatch"
-                                                    name="type_action" value="{{$action}}">
-                                                <label class="inputAction text-sm" for="fact{{$key}}">{{$action}}</label>
-                                            </div>
-                                        @endforeach
-                                    </div>
-                                </div>
-                                <div class="border rounded-lg my-3 shadow-xl">
-                                    <div class="bg-primary py-2 rounded-t-lg">
-                                        <h3 class="text-center text-2xl text-white">Occasions de but</h3>
-                                    </div>
-                                    <div class="flex flex-col p-5">
-                                        @foreach ($occasionsText as $key => $occaz)
-                                            <div>
-                                                <input class="hidden" type="radio" id="occaz{{$key}}" wire:model="type_actionMatch"
-                                                    name="type_action" value="{{$occaz}}">
-                                                <label class="inputAction text-sm" for="occaz{{$key}}">{{$occaz}}</label>
-                                            </div>
-                                        @endforeach
-                                    </div>
-                                </div>
-                                <div class="border rounded-lg my-3 shadow-xl">
-                                    <div class="bg-primary py-2 rounded-t-lg">
-                                        <h3 class="text-center text-2xl text-white">Actions chaudes</h3>
-                                    </div>
-                                    <div class="flex flex-col p-5">
-                                        @foreach ($faultsText as $key => $fault)
-                                            <div>
-                                                <input class="hidden" type="radio" id="action{{$key}}" wire:model="type_actionMatch"
-                                                    name="type_action" value="{{$fault}}">
-                                                <label class="inputAction text-sm" for="action{{$key}}">{{$fault}}</label>
-                                            </div>
-                                        @endforeach
-                                    </div>
-                                </div>
-                                <div class="border rounded-lg my-3 shadow-xl">
-                                    <div class="bg-primary py-2 rounded-t-lg">
-                                        <h3 class="text-center text-2xl text-white">Pénaltys ratés</h3>
-                                    </div>
-                                    <div class="flex flex-col p-5">
-                                        @foreach ($penaltysNoScoreText as $key => $penNoScore)
-                                            <div>
-                                                <input class="hidden" type="radio" id="penNoScore{{$key}}" wire:model="type_actionMatch"
-                                                    name="type_action" value="{{$penNoScore}}">
-                                                <label class="inputAction text-sm" for="penNoScore{{$key}}">{{$penNoScore}}</label>
-                                            </div>
-                                        @endforeach
-                                    </div>
-                                </div>
-                            </div> 
-                        @endif
-                    </div>
-                </div>
-                @if ($team_action == 'home')
-                    @if($type_comments == "but" || $type_comments == "carton")
-                        <div class="bg-primary rounded-lg my-2 flex flex-col justify-center items-center p-4 w-full sm:w-10/12 lg:w-9/12">
-                            <p class="text-white text-center">Choisis un joueur ou un numéro</p>
-                            <select class="inputForm border border-black text-black m-4" name="player" id="player"
-                                wire:model="player" {{ $type_comments == "but" || $type_comments == "carton" ? "required" : "" }}>
-                                <option value="">Choisis un joueur</option>
-                                @foreach ($match->homeClub->players as $player)
-                                    <option value="{{ $player->id }}">{{ $player->first_name }}
-                                        {{ $player->last_name }}</option>
-                                @endforeach
-                                @for ($i = 1; $i <= 16; $i++)
-                                    <option value="{{ $i }}">Numéro {{ $i }}</option>
-                                @endfor
-                            </select>
-                            <p class="font-normal text-sm text-center text-white">Si le joueur n'est pas dans la liste, il
-                                sera possible de l'ajouter après le commentaire</p>
+        <div class="openComment z-50 rounded-t-lg {{ $team_action }} {{ $type_comments }}">
+            <div class="flex flex-col items-center pt-5">
+                <div class="flex items-center">
+                    @if ($team_action == 'home')
+                        <div class="logo h-14 w-14 cursor-pointer m-4 border-2 border-primary">
+                            <img class="object-contain"
+                                src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $match->homeClub->numAffiliation }}.jpg"
+                                alt="logo">
                         </div>
                     @endif
-                    <div class="flex items-center text-white m-auto my-4">
+                    @if ($team_action == 'away')
+                        <div class="logo h-14 w-14 cursor-pointer m-4 border-2 border-primary">
+                            <img class="object-contain"
+                                src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $match->awayClub->numAffiliation }}.jpg"
+                                alt="logo">
+                        </div>
+                    @endif 
+                    <h3 class="text-xl text-center px-2 text-primary bg-gray-200 rounded-lg">
+                        @switch($type_comments)
+                            @case('but')
+                                But !
+                                @break
+                                @case('carton')
+                                Carton !
+                                @break
+                                @case('arret')
+                                Arrêt du gardien !
+                                @break
+                        @endswitch
+                    </h3> 
+                </div>
+                @if ($type_comments == 'carton')
+                    <div
+                        class="py-1-3 border rounded-lg shadow-2xl bg-white flex flex-wrap items-center justify-center">
+                        <div class="actionsMatch relative">
+                            <input class="hidden" type="radio" id="cartonJaune" wire:model="type_carton"
+                                name="type_comments" value="Carton jaune">
+                            <label class="inputAction" for="cartonJaune">
+                                <img src="{{ asset('images/yellow-card.png') }}"
+                                    alt="1er carton jaune"
+                                    class="h-14">
+                            </label>
+                            <p class="absolute top-9 left-10 font-sans">1er</p>
+                        </div>
+                        <div class="actionsMatch relative">
+                            <input class="hidden" type="radio" id="cartonJaune2" wire:model="type_carton"
+                                name="type_comments" value="2e carton jaune">
+                            <label class="inputAction" for="cartonJaune2">
+                                <img src="{{ asset('images/yellow-card.png') }}"
+                                    alt="2e carton jaune"
+                                    class="h-14">
+                            </label>
+                            <p class="absolute top-9 left-11 font-sans">2e</p>
+                        </div>
+                        <div class="actionsMatch">
+                            <input class="hidden" type="radio" id="cartonRouge" wire:model="type_carton"
+                                name="type_comments" value="Carton rouge">
+                            <label class="inputAction" for="cartonRouge">
+                                <img src="{{ asset('images/red-card.png') }}" 
+                                    alt="carton rouge"
+                                    class="h-14">
+                            </label>
+                        </div>
+                        <div class="actionsMatch">
+                            <input class="hidden" type="radio" id="cartonBlanc" wire:model="type_carton"
+                                name="type_comments" value="Carton blanc">
+                            <label class="inputAction" for="cartonBlanc">
+                                <img src="{{ asset('images/white-card.png') }}" 
+                                    alt="carton blanc"
+                                    class="h-14">
+                            </label>
+                        </div>
+                    </div>
+                @endif
+                    @if($type_comments == "but" || $type_comments == "carton")
+                        <div class="rounded-lg flex flex-col justify-center items-center p-4 w-full">
+                            <select class="inputForm border border-black text-black" name="player" id="player"
+                                wire:model="player" {{ $type_comments == "but" || $type_comments == "carton" ? "required" : "" }}>
+                                <option value="">Choisis un joueur</option>
+                                @if ($team_action == 'home')
+                                    @foreach ($match->homeClub->players as $player)
+                                        <option value="{{ $player->id }}">{{ $player->first_name }}
+                                            {{ $player->last_name }}</option>
+                                    @endforeach
+                                    @for ($i = 1; $i <= 16; $i++)
+                                    <option value="{{ $i }}">Numéro {{ $i }}</option>
+                                    @endfor
+                                @endif
+                                @if ($team_action == 'away')
+                                    @foreach ($match->awayClub->players as $player)
+                                        <option value="{{ $player->id }}">{{ $player->first_name }}
+                                            {{ $player->last_name }}</option>
+                                    @endforeach
+                                    @for ($i = 1; $i <= 16; $i++)
+                                    <option value="{{ $i }}">Numéro {{ $i }}</option>
+                                    @endfor
+                                @endif
+                            </select>
+                        </div>
+                    @endif
+                    {{-- <div class="flex items-center text-white m-auto my-4">
                         <label class="cursor-pointer my-4 btn border border-black text-black" for="file">
                             <div class="flex justify-between">
                                 <div class="hidden" wire:loading wire:target="file">
@@ -475,11 +373,11 @@
                             <input class="hidden" type="file" wire:model="file" name="file" id="file"
                                 accept="jpeg,png,jpg,gif,svg,mp4,mov">
                         </label>
-                    </div>
+                    </div> --}}
                     @error('type_comments')
                         <span class="error">{{ $message }}</span>
                     @enderror
-                    @if ($file)
+                    {{-- @if ($file)
                         <div class="flex flex-col items-center">
                             Aperçu de l'image :
                             <img class="w-36" src="{{ $file->temporaryUrl() }}">
@@ -487,17 +385,14 @@
                     @endif
                     @error('file')
                         <span class="alert alert-danger">{{ $message }}</span>
-                    @enderror
-                    <div class="flex flex-row justify-center">
-                        <div class="flex flex-col jsutify-center">
-                            <label class="inputAction" for="minuteCom">Temps de jeu</label>
-                            <input
-                                class="p-3 bg-white rounded shadow outline-none focus:outline-none focus:shadow-outline text-center text-darkGray border border-darkGray"
+                    @enderror --}}
+                    <div class="flex flex-row justify-center items-center mt-4">
+                            <label class="" for="minuteCom">Temps de jeu</label>
+                            <input class="border border-black mx-2 py-1 text-center outline-none"
                                 type="number" name="minuteCom" wire:model="minuteCom" min="1" max="90">
                             @error('minuteCom')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
-                        </div>
                     </div>
                     <div class="mt-6 flex items-center justify-center">
                         <label for="exit" class="mr-6 cursor-pointer" wire:click="retour">Retour</label>
@@ -506,74 +401,6 @@
                         <input class="hidden" type="radio" id="exit" wire:model="team_action" name="team_action"
                             value="">
                     </div>
-                @endif
-                @if ($team_action == 'away')
-                @if($type_comments == "but" || $type_comments == "carton")
-                    <div class="bg-primary rounded-lg my-2 flex flex-col justify-center items-center p-4 w-full sm:w-10/12 lg:w-9/12">
-                        <p class="text-white text-center">Choisis un joueur ou un numéro</p>
-                        <select class="inputForm focus:outline-none focus:shadow-outline my-1" name="player" id="player"
-                            wire:model="player" {{ $type_comments == "but" || $type_comments == "carton" ? "required" : "" }}>
-                            <option value="">Choisis un joueur</option>
-                            @foreach ($match->awayClub->players as $player)
-                                <option value="{{ $player->id }}">{{ $player->first_name }}
-                                    {{ $player->last_name }}
-                                </option>
-                            @endforeach
-                            @for ($i = 1; $i <= 16; $i++)
-                                <option value="{{ $i }}">Numéro {{ $i }}</option>
-                            @endfor
-                        </select>
-                    </div>
-                @endif
-                    <div class="flex items-center text-white m-auto my-4">
-                        <label class="cursor-pointer my-4 btn border border-black text-black" for="file">
-                            <div class="flex justify-between">
-                                <div class="hidden" wire:loading wire:target="file">
-                                    <svg class="animate-spin mr-2 h-5 w-5 text-primary"
-                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
-                                            stroke-width="4"></circle>
-                                        <path class="opacity-75" fill="currentColor"
-                                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
-                                        </path>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <p>Choisir une photo 📷</p>
-                                </div>
-                            </div>
-                            <input class="hidden" type="file" wire:model="file" name="file" id="file"
-                                accept="jpeg,png,jpg,gif,svg">
-                        </label>
-                    </div>
-                    @if ($file)
-                        <div class="flex flex-col items-center">
-                            Aperçu de l'image :
-                            <img class="w-36" src="{{ $file->temporaryUrl() }}">
-                        </div>
-                    @endif
-                    @error('file')
-                        <span class="alert alert-danger">{{ $message }}</span>
-                    @enderror
-                    <div class="m-4 flex flex-row justify-center">
-                        <div class="flex flex-col jsutify-center">
-                            <label class="inputAction" for="minuteCom">Temps de jeu</label>
-                            <input
-                                class="p-3 bg-white rounded shadow outline-none focus:outline-none focus:shadow-outline text-center"
-                                type="number" name="minuteCom" wire:model="minuteCom" min="1" max="90">
-                            @error('minuteCom')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="mt-6 flex items-center justify-center">
-                        <label for="exit" class="mr-6 cursor-pointer" wire:click="retour">Retour</label>
-                        <button wire:loading.attr="disabled" wire:loading.class.remove="btnSecondary" wire:target="file"
-                            class="btn btnSecondary" type="submit" value="">Je commente</button>
-                        <input class="hidden" type="radio" id="exit" wire:model="team_action" name="team_action"
-                            value="">
-                    </div>
-                @endif
             </div>
         </div>
 
@@ -926,20 +753,106 @@
                 </div>
             </div>
         @endif
-        <div>
-            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-            <!-- vertical match -->
-            <ins class="adsbygoogle"
-                style="display:block"
-                data-ad-client="ca-pub-7237777700901740"
-                data-ad-slot="2316864272"
-                data-ad-format="auto"
-                data-full-width-responsive="true"></ins>
-            <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-        </div>
     </div>
+
+            <!----------------------
+            Options commentaires "équipe"
+            ------------------------->
+    @auth
+        @if (Auth::user()->role == "super-admin" || ($match->commentateur != null && $match->commentateur->user_id == Auth::user()->id && $match->live != 'attente' && $match->live != 'finDeMatch'))
+            @if(!$buttonComment)
+                <button type="button" wire:click="clickButtonComment" class="fixed bottom-20 left-1/2 -mx-24 z-40">
+                    <div class="flex justify-evenly items-center bg-primary text-white px-1 py-2 rounded-full w-48 border-2 border-secondary">
+                        <div class="h-10 w-10 shadow-2xl border-2 border-secondary bg-primary flex justify-center items-center rounded-full">
+                            <i class="fas fa-plus text-2xl text-white"></i>
+                        </div>
+                        <p class="px-3">Je commente</p>
+                    </div>
+                </button>
+            @endif
+        @endif
+    @endauth
+    @if($buttonComment)
+        <div>
+            <div class="fixed bottom-16 left-2 z-40">
+                <input class="hidden" type="radio" wire:model="team_action" 
+                    id="homeAction" name="team_action" value="home">
+                <label for="homeAction">
+                    <div class="logo h-20 w-20 shadow-2xl border-2 border-primary">
+                        @if ($match->homeClub->logo_path)
+                            <img class="object-contain" src="{{ asset($match->homeClub->logo_path) }}"
+                                alt="Logo de {{ $match->homeClub->name }}">
+                        @else
+                            <img class="object-contain"
+                                src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $match->homeClub->numAffiliation }}.jpg"
+                                alt="Logo de {{ $match->homeClub->name }}">
+                        @endif
+                    </div>
+                </label>
+            </div>
+            <div class="fixed bottom-16 right-2 z-40">
+                <input class="hidden" type="radio" wire:model="team_action" 
+                    id="awayAction" name="team_action" value="away">
+                <label for="awayAction">
+                    <div class="logo h-20 w-20 shadow-2xl border-2 border-primary">
+                        @if ($match->awayClub->logo_path)
+                            <img class="object-contain" src="{{ asset($match->awayClub->logo_path) }}"
+                                alt="Logo de {{ $match->awayClub->name }}">
+                        @else
+                            <img class="object-contain"
+                                src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $match->awayClub->numAffiliation }}.jpg"
+                                alt="Logo de {{ $match->awayClub->name }}">
+                        @endif
+                    </div>
+                </label>
+            </div>
+            <div>
+                @if($team_action == "home")
+                    <div>
+                        <label class="fixed m-3 z-40 bottom-32 left-0" for="but" class="cursor-pointer">
+                            <input class="hidden" type="radio" id="but" wire:model="type_comments"
+                                name="type_comments" value="but">
+                            <img class="border-2 border-secondary rounded-full shadow-xl bg-white m-2 p-2"
+                                src="{{ asset('images/ball.png') }}" width="50px" height="50px" alt="But !">
+                        </label>
+                        <label style="bottom:6.3rem; left: 4rem;" class="fixed m-3 z-40" for="carton" class="cursor-pointer" for="carton" class="cursor-pointer">
+                            <input class="hidden" type="radio" id="carton" wire:model="type_comments"
+                                name="type_comments" value="carton">
+                            <img class="border-2 border-secondary rounded-full shadow-xl bg-white m-2 p-2"
+                                src="{{ asset('images/cards.png') }}" width="50px" height="50px" alt="Carton">
+                        </label>
+                        <label class="fixed bottom-10 left-20 m-3 z-40" for="arret" class="cursor-pointer" for="arret" class="cursor-pointer">
+                            <input class="hidden" type="radio" id="arret" wire:model="type_comments" name="type_comments" value="arret">
+                            <img class="border-2 border-secondary rounded-full shadow-xl bg-white m-2 p-2" 
+                                src="{{ asset('images/gants.png') }}" width="50px" height="50px" alt="Arret">
+                        </label>
+                    </div>
+                @endif
+                @if ($team_action == "away")
+                    <div>
+                        <label class="fixed m-3 z-40 bottom-32 right-0" for="but" class="cursor-pointer">
+                            <input class="hidden" type="radio" id="but" wire:model="type_comments"
+                                name="type_comments" value="but">
+                            <img class="border-2 border-secondary rounded-full shadow-xl bg-white m-2 p-2"
+                                src="{{ asset('images/ball.png') }}" width="50px" height="50px" alt="But !">
+                        </label>
+                        <label style="bottom:6.3rem; right: 4rem;" class="fixed m-3 z-40" for="carton" class="cursor-pointer" for="carton" class="cursor-pointer">
+                            <input class="hidden" type="radio" id="carton" wire:model="type_comments"
+                                name="type_comments" value="carton">
+                            <img class="border-2 border-secondary rounded-full shadow-xl bg-white m-2 p-2"
+                                src="{{ asset('images/cards.png') }}" width="50px" height="50px" alt="Carton">
+                        </label>
+                        <label class="fixed bottom-10 right-20 m-3 z-40" for="arret" class="cursor-pointer" for="arret" class="cursor-pointer">
+                            <input class="hidden" type="radio" id="arret" wire:model="type_comments" name="type_comments" value="arret">
+                            <img class="border-2 border-secondary rounded-full shadow-xl bg-white m-2 p-2" 
+                                src="{{ asset('images/gants.png') }}" width="50px" height="50px" alt="Arret">
+                        </label>
+                    </div>
+                @endif
+                
+            </div>    
+        </div>
+    @endif
     <!-- Fin affichage des commentaires -->
     @include('footer')
 </div>

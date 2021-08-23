@@ -30,6 +30,25 @@
         text-transform: uppercase;
         font-weight: 700;
     }
+
+    /* Firefox */
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+
+    /* Chrome */
+    input::-webkit-inner-spin-button,
+    input::-webkit-outer-spin-button { 
+        -webkit-appearance: none;
+        margin:0;
+    }
+
+    /* Opéra*/
+    input::-o-inner-spin-button,
+    input::-o-outer-spin-button { 
+        -o-appearance: none;
+        margin:0
+    }
     
     .minHeight16 {
         min-height: 4rem;
@@ -190,7 +209,7 @@
         height: 9rem;
         border-width: 0px;
         z-index: 50;
-        display: flex;
+        display: none;
         align-items: center;
         justify-content: space-around;
         font-weight: 700;
@@ -198,20 +217,20 @@
         box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         animation-name: disparition;
         -webkit-animation-duration: 5s;
-        animation-duration: 10s;
+        animation-duration: 5s;
         transition-delay: 1s;
     }
     
     .message-alert.success {
-        @apply bg-success border-l-4 border-darkSuccess
+        @apply bg-success border-l-4 border-darkSuccess;
     }
     
     .message-alert.warning {
-        @apply bg-orange-500 border-l-4 border-orange-600
+        @apply bg-orange-500 border-l-4 border-orange-600;
     }
     
     .message-alert.danger {
-        @apply bg-danger border-l-4 border-red-600
+        @apply bg-danger border-l-4 border-red-600;
     }
     
     #live {
@@ -653,31 +672,42 @@
     }
     
     .openComment {
-        position: absolute;
-        top: 0;
+        position: fixed;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        bottom: 0;
         width: 100%;
         height: auto;
-        padding-bottom: 150px;
+        padding-bottom: 4rem;
         transform-origin: 0% 0%;
-        transform: translate(0, -100%);
+        transform: translate(0, 100%);
         background-color: #fff;
         transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
     }
     
-    .openComment.home {
-        position: absolute;
-        top: 0;
-        width: 100%;
-        height: auto;
+    .openComment.home.but {
+        transform: translate(0, 0);
+        transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
+    }
+    .openComment.home.carton {
+        transform: translate(0, 0);
+        transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
+    }
+    .openComment.home.arret {
         transform: translate(0, 0);
         transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
     }
     
-    .openComment.away {
-        position: absolute;
-        top: 0;
-        width: 100%;
-        height: auto;
+    .openComment.away.but {
+        transform: translate(0, 0);
+        transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
+    }
+    .openComment.away.carton {
+        transform: translate(0, 0);
+        transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
+    }
+    .openComment.away.arret {
         transform: translate(0, 0);
         transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
     }
@@ -1027,6 +1057,7 @@
         }
         100% {
             opacity: 0;
+
         }
     }
     

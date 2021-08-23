@@ -2,11 +2,13 @@
 
 namespace App\Actions\Fortify;
 
+use App\Mail\MatchMail;
 use App\Models\Club;
 use App\Models\Player;
 use App\Models\Region;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 use phpDocumentor\Reflection\Types\Nullable;
@@ -50,6 +52,17 @@ class CreateNewUser implements CreatesNewUsers
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
         ]);
+
+        $userCreate = [
+            'last_name' => $input['first_name'],
+            'first_name' => $input['last_name'],
+            'pseudo' => $input['pseudo'],
+            'email' => $input['email'],
+        ];
+
+        $superAdmin = User::where('role', 'super-admin')->get()->pluck('email');
+        Mail::to($superAdmin)
+                    ->send(new MatchMail($userCreate));
 
         // if ($input['isPlayer'] == 'yes') {
         //     $userIsPlayer = Player::where('last_name', $input['last_name'])->where('first_name', $input['first_name']);
