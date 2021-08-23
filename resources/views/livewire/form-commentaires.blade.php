@@ -17,6 +17,11 @@
         @endif
     @endauth
     @if($buttonComment)
+        <button type="button" wire:click="clickButtonComment" class="fixed w-full flex justify-center bottom-20 z-40">
+            <div class="h-14 w-14 shadow-2xl border-2 border-secondary bg-primary flex justify-center items-center rounded-full">
+                <i class="fas fa-times text-2xl text-white"></i>
+            </div>
+        </button>   
         <div>
             <div class="fixed bottom-16 left-2 z-40">
                 <input class="hidden" type="radio" wire:model="team_action" 
