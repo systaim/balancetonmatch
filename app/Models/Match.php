@@ -97,8 +97,4 @@ class Match extends Model
         return $this->hasMany(Counter::class, 'page-address');
     }
 
-    public function tirsAuBut(){
-        return $this->hasMany(Tab::class);
-    }
-
 }

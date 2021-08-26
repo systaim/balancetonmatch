@@ -57,6 +57,7 @@ class FormCommentaires extends Component
     public $tabAway;
     public $scoreTabHome;
     public $scoreTabAway;
+    public String $infoMatch = "";
 
     public int $clickBut = 0;
     public int $clickPenalty = 0;
@@ -128,11 +129,6 @@ class FormCommentaires extends Component
     {
         $this->dateMatch = $this->match->date_match;
 
-
-        if ($this->match->live == "prolongations") {
-            $this->minute = now()->diffInMinutes($this->match->debut_match_reel) - 15;
-        }
-
         if (now()->diffInMinutes($this->match->debut_match_reel, false) < -240) {
             $this->match->live = "finDeMatch";
             $this->textInfo = "Commentaires fermés";
@@ -160,10 +156,6 @@ class FormCommentaires extends Component
     public function hydrate()
     {
 
-        if ($this->match->live == "prolongations") {
-            $this->minute = now()->diffInMinutes($this->match->debut_match_reel) - 15;
-        }
-
         if (now()->diffInMinutes($this->match->debut_match_reel, false) < -240) {
             $this->match->live = "finDeMatch";
             $this->textInfo = "Commentaires fermés";
@@ -176,7 +168,7 @@ class FormCommentaires extends Component
             $this->textInfo = "Commentaires fermés";
         }
 
-        $this->minuteCom = $this->minute;
+        // $this->minuteCom = $this->minute;
 
         foreach ($this->commentsMatch as $comment) {
             $this->imageAction = $comment->images;
@@ -291,25 +283,62 @@ class FormCommentaires extends Component
         if (count($this->tabHome) <= 5 && count($this->tabAway) <= 5) {
             if ((5 - count($this->tabHome) + $this->scoreTabHome < $this->scoreTabAway) || (5 - count($this->tabAway) + $this->scoreTabAway < $this->scoreTabHome)) {
                 $this->match->live = "finDeMatch";
+                $this->match->save();
             }
         } elseif (count($this->tabHome) > 5 && count($this->tabAway) > 5 && count($this->tabHome) == count($this->tabAway)) {
             if ($this->scoreTabHome > $this->scoreTabAway || $this->scoreTabAway > $this->scoreTabHome) {
                 $this->match->live = "finDeMatch";
+                $this->match->save();
             }
         }
     }
 
     public function miseAjourTemps()
     {
-        if ($this->match->debut_match_reel) {
-            if ($this->match->debut_match_reel->diffInMinutes(now(), false) >= 0 && $this->match->debut_match_reel->diffInMinutes(now(), false) <= 45) {
-                $this->minute = now()->diffInMinutes($this->match->debut_match_reel);
-            } elseif ($this->match->debut_match_reel->diffInMinutes(now(), false) >= 45 && $this->match->debut_match_reel->diffInMinutes(now(), false) <= 60 || $this->match->live =="mitemps") {
-                $this->minute = 45;
-            } elseif ($this->match->debut_match_reel->diffInMinutes(now(), false) >= 60 && $this->match->debut_match_reel->diffInMinutes(now(), false) <= 105) {
-                $this->minute = now()->diffInMinutes($this->match->debut_match_reel) - 15;
+
+        $this->minute = now()->diffInMinutes($this->match->debut_match_reel);
+
+        if ($this->match->live == "mitemps") {
+            $this->minute = "MT";
+        }
+
+        if ($this->match->debut_match_reel < $this->match->debut_sde_mt) {
+            $this->minute = 45 + now()->diffInMinutes($this->match->debut_sde_mt);
+        }
+
+        if ($this->match->debut_debut_sde_mt < $this->match->debut_prolongations) {
+            $this->minute = 90 + now()->diffInMinutes($this->match->debut_prolongations);
+        }
+
+        if ($this->match->debut_prolongations < $this->match->debut_sde_mt_prolong) {
+            $this->minute = 105 + now()->diffInMinutes($this->match->debut_sde_mt_prolong);
+        }
+
+        if ($this->match->live == "MTProlongations") {
+            $this->minute = "MT";
+        }
+
+        if ($this->match->live == "finProlongations") {
+            $this->minute = "FIN";
+
+            if ($this->match->home_score == $this->match->away_score) {
+                $this->infoMatch = "Les tirs au but vont commencer !!!";
             }
         }
+
+
+        if ($this->match->live == "tab") {
+            $this->minute == "TAB";
+        }
+        // if ($this->match->debut_match_reel) {
+        //     if ($this->match->debut_match_reel->diffInMinutes(now(), false) >= 0 && $this->match->debut_match_reel->diffInMinutes(now(), false) <= 45) {
+        //         $this->minute = now()->diffInMinutes($this->match->debut_match_reel);
+        //     } elseif ($this->match->debut_match_reel->diffInMinutes(now(), false) >= 45 && $this->match->debut_match_reel->diffInMinutes(now(), false) <= 60 || $this->match->live =="mitemps") {
+        //         $this->minute = 45;
+        //     } elseif ($this->match->debut_match_reel->diffInMinutes(now(), false) >= 60 && $this->match->debut_match_reel->diffInMinutes(now(), false) <= 105) {
+        //         $this->minute = now()->diffInMinutes($this->match->debut_match_reel) - 15;
+        //     }
+        // }
     }
 
     //incrémentation, décrémentation du score
@@ -432,6 +461,7 @@ class FormCommentaires extends Component
         $comment->save();
 
         $this->match->live = "prolongations2";
+        $this->match->debut_sde_mt_prolong = now();
         $this->match->save();
 
         return redirect()->to('matches/' . $this->match->id);
@@ -563,6 +593,7 @@ class FormCommentaires extends Component
 
         if ($comment) {
 
+            $this->match->debut_sde_mt = now();
             $this->match->save();
             $comment->save();
             $this->commentsMatch =  $this->match->commentaires()->orderBy('minute', 'desc')->orderBy('updated_at', 'desc')->get();

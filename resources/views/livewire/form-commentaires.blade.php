@@ -282,7 +282,7 @@
                         <div
                             class="text-white font-bold text-2xl bg-primary flex justify-center items-center w-20 h-20 my-3 rounded-full border-2 border-secondary">
                             @if ($match->live != 'attente' && $match->live != 'finDeMatch' && $match->live != 'reporte')
-                                <p>{{ $minute }}'</p>
+                                <p>{{ $minute }}</p>
                             @else
                                 <div class="flex flex-col text-sm items-center justify-center">
                                     <p>{{ $match->date_match->formatLocalized('%H:%M') }}</p>
@@ -354,10 +354,8 @@
                     </a>
                 </button>
             </div>
-                @if($match->live != "finDeMatch")
-                    <p>Nombre de spectateurs : </p>
-                    <p class="ml-2 font-bold">{{ count($visitors) }}</p>
-                @endif
+                <p>Spectateurs : </p>
+                <p class="ml-2 font-bold">{{ count($visitors) }}</p>
             </div>
             
             <!-- fin affichage bannière du match -->
@@ -501,7 +499,7 @@
                         <div class="flex flex-row justify-center items-center mt-4">
                                 <label class="" for="minuteCom">Temps de jeu</label>
                                 <input class="border border-black mx-2 py-1 text-center outline-none"
-                                    type="number" name="minuteCom" wire:model="minuteCom" min="1" max="90">
+                                    type="number" name="minuteCom" wire:model="minuteCom" min="1" max="125">
                                 @error('minuteCom')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
@@ -591,7 +589,7 @@
                     @auth
                         @if (empty($match->commentateur) && $match->live != 'finDeMatch')
                             <div class="flex justify-center items-center my-6">
-                                <p class="bg-primary text-white py-2 px-3 pt-6">En attente d'un commentateur</p>
+                                <p class="bg-primary text-white py-2 px-3">En attente d'un commentateur</p>
                             </div>
                             <button type="button"
                                 class="relative commentaires h-24 bg-white commandeMatch items-stretch w-full focus:outline-none minHeight16"
@@ -651,7 +649,7 @@
                                         </div>
                                     </button>
                                 @endif
-                                @if ($match->live == 'debut' && now()->diffInMinutes($match->debut_match_reel) >= 40)
+                                @if ($match->live == 'debut' && now()->diffInMinutes($match->debut_match_reel) >= 38)
                                     <button type="button"
                                         class="relative commentaires h-24 bg-white commandeMatch items-stretch w-full focus:outline-none"
                                         wire:click="timeMitemps" wire:model="type_comments">
@@ -675,7 +673,7 @@
                                         </div>
                                     </button>
                                 @endif
-                                @if ($match->live == 'repriseMT' && now()->diffInMinutes($match->debut_match_reel) >= 95)
+                                @if ($match->live == 'repriseMT' && now()->diffInMinutes($match->debut_sde_mt) >= 38)
                                     <button type="button"
                                         class="relative commentaires h-24 bg-white commandeMatch items-stretch w-full focus:outline-none"
                                         wire:click="timeFinDuMatch" wire:model="type_comments">
@@ -683,7 +681,8 @@
                                             <img src="{{ asset('images/whistle-white.png') }}">
                                         </div>
                                         <div class="bg-white w-full h-full p-3 flex flex-col justify-center">
-                                            <p class="font-bold">Coup de sifflet final ! ⏱</p>
+                                            <p class="font-bold">Le match est terminé ! ⏱</p>
+                                            <p class="text-xs">On valide aux 3 coups de sifflet... <br>pas avant 😉</p>
                                         </div>
                                     </button>
                                 @endif
@@ -762,7 +761,11 @@
                 <p class="text-sm">Il sert d'exemple pour découvrir un match commenté</p>
             </div>
         @endif
-        
+        @if ($infoMatch)
+            <div class="flex justify-center">
+                <p class="bg-darkSuccess text-white px-3 py-2 rounded-md">{{ $infoMatch }}</p>
+            </div>
+        @endif
         <div class="my-10 w-11/12 m-auto lg:flex lg:justify-around">
             <div class="m-auto sm:w-10/12 lg:w-8/12">
                 @if($match->fin_prolongations && $match->live == "tab" || count($tabHome) != 0 && count($tabAway) != 0)
