@@ -2,11 +2,13 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Club;
 use App\Models\Commentaire;
 use App\Models\Commentator;
 use App\Models\Counter;
 use App\Models\Player;
 use App\Models\Statistic;
+use App\Models\Tab;
 use Illuminate\Http\Request;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
@@ -51,6 +53,10 @@ class FormCommentaires extends Component
     public $visitors;
     public $textInfo;
     public $buttonComment = false;
+    public $tabHome;
+    public $tabAway;
+    public $scoreTabHome;
+    public $scoreTabAway;
 
     public int $clickBut = 0;
     public int $clickPenalty = 0;
@@ -122,21 +128,19 @@ class FormCommentaires extends Component
     {
         $this->dateMatch = $this->match->date_match;
 
-        //calcul du temps de jeu
-        if ($this->dateMatch->diffInMinutes(now(), false) >= 0 && $this->dateMatch->diffInMinutes(now(), false) <= 45) {
-            $this->minute = now()->diffInMinutes($this->dateMatch);
-        } elseif ($this->dateMatch->diffInMinutes(now(), false) >= 45 && $this->dateMatch->diffInMinutes(now(), false) <= 60) {
-            $this->minute = 45;
-        } elseif ($this->dateMatch->diffInMinutes(now(), false) >= 60 && $this->dateMatch->diffInMinutes(now(), false) <= 90) {
-            $this->minute = now()->diffInMinutes($this->dateMatch) - 15;
-        } else {
-            $this->minute = 0;
+
+        if ($this->match->live == "prolongations") {
+            $this->minute = now()->diffInMinutes($this->match->debut_match_reel) - 15;
         }
-        if (now()->diffInMinutes($this->dateMatch, false) < -150) {
+
+        if (now()->diffInMinutes($this->match->debut_match_reel, false) < -240) {
             $this->match->live = "finDeMatch";
             $this->textInfo = "Commentaires fermés";
             $this->match->save();
+
+            $this->textInfo = "Commentaires fermés";
         }
+
         if ($this->match->live == "finDeMatch") {
             $this->textInfo = "Commentaires fermés";
         }
@@ -148,29 +152,40 @@ class FormCommentaires extends Component
         }
 
         $this->miseAJourCom();
-
+        $this->miseAJourPenalty();
         $this->countVisitor();
+        $this->miseAjourTemps();
     }
 
     public function hydrate()
     {
-        if ($this->dateMatch->diffInMinutes(now(), false) >= 0 && $this->dateMatch->diffInMinutes(now(), false) <= 45) {
-            $this->minute = now()->diffInMinutes($this->dateMatch);
-        } elseif ($this->dateMatch->diffInMinutes(now(), false) >= 45 && $this->dateMatch->diffInMinutes(now(), false) <= 60) {
-            $this->minute = 45;
-        } elseif ($this->dateMatch->diffInMinutes(now(), false) >= 60 && $this->dateMatch->diffInMinutes(now(), false) <= 90) {
-            $this->minute = now()->diffInMinutes($this->dateMatch) - 15;
-        } else {
-            $this->minute = "";
+
+        if ($this->match->live == "prolongations") {
+            $this->minute = now()->diffInMinutes($this->match->debut_match_reel) - 15;
         }
-        if (now()->diffInMinutes($this->dateMatch, false) < -150) {
+
+        if (now()->diffInMinutes($this->match->debut_match_reel, false) < -240) {
             $this->match->live = "finDeMatch";
+            $this->textInfo = "Commentaires fermés";
             $this->match->save();
+
+            $this->textInfo = "Commentaires fermés";
+        }
+
+        if ($this->match->live == "finDeMatch") {
+            $this->textInfo = "Commentaires fermés";
+        }
+
+        $this->minuteCom = $this->minute;
+
+        foreach ($this->commentsMatch as $comment) {
+            $this->imageAction = $comment->images;
         }
 
         $this->miseAJourCom();
-
+        $this->miseAJourPenalty();
         $this->countVisitor();
+        $this->miseAjourTemps();
     }
 
     public function menuBut()
@@ -179,9 +194,10 @@ class FormCommentaires extends Component
         if ($this->clickBut == 0) $this->clickBut = 1;
     }
 
-    public function clickButtonComment(){
+    public function clickButtonComment()
+    {
 
-        if($this->buttonComment == false){
+        if ($this->buttonComment == false) {
             $this->buttonComment = true;
         } else {
             $this->buttonComment = false;
@@ -202,10 +218,6 @@ class FormCommentaires extends Component
 
     public function miseAJourJoueur($teamAction, Statistic $stat)
     {
-        // dd($this->playerMatch);
-        // dd($teamAction);
-
-
 
         if (empty($this->playerMatch) || $this->playerMatch == null) {
             // dd('creation');
@@ -266,6 +278,38 @@ class FormCommentaires extends Component
         $this->home_score = $this->match->home_score;
         $this->away_score = $this->match->away_score;
         $this->commentsMatch = $this->match->commentaires()->orderBy('minute', 'desc')->orderBy('updated_at', 'desc')->get();
+    }
+
+    public function miseAJourPenalty()
+    {
+
+        $this->tabHome = Tab::where('match_id', $this->match->id)->where('club_id', $this->match->homeClub->id)->get();
+        $this->tabAway = Tab::where('match_id', $this->match->id)->where('club_id', $this->match->awayClub->id)->get();
+        $this->scoreTabHome = Tab::where('score', 1)->where('match_id', $this->match->id)->where('club_id', $this->match->homeClub->id)->count();
+        $this->scoreTabAway = Tab::where('score', 1)->where('match_id', $this->match->id)->where('club_id', $this->match->awayClub->id)->count();
+
+        if (count($this->tabHome) <= 5 && count($this->tabAway) <= 5) {
+            if ((5 - count($this->tabHome) + $this->scoreTabHome < $this->scoreTabAway) || (5 - count($this->tabAway) + $this->scoreTabAway < $this->scoreTabHome)) {
+                $this->match->live = "finDeMatch";
+            }
+        } elseif (count($this->tabHome) > 5 && count($this->tabAway) > 5 && count($this->tabHome) == count($this->tabAway)) {
+            if ($this->scoreTabHome > $this->scoreTabAway || $this->scoreTabAway > $this->scoreTabHome) {
+                $this->match->live = "finDeMatch";
+            }
+        }
+    }
+
+    public function miseAjourTemps()
+    {
+        if ($this->match->debut_match_reel) {
+            if ($this->match->debut_match_reel->diffInMinutes(now(), false) >= 0 && $this->match->debut_match_reel->diffInMinutes(now(), false) <= 45) {
+                $this->minute = now()->diffInMinutes($this->match->debut_match_reel);
+            } elseif ($this->match->debut_match_reel->diffInMinutes(now(), false) >= 45 && $this->match->debut_match_reel->diffInMinutes(now(), false) <= 60 || $this->match->live =="mitemps") {
+                $this->minute = 45;
+            } elseif ($this->match->debut_match_reel->diffInMinutes(now(), false) >= 60 && $this->match->debut_match_reel->diffInMinutes(now(), false) <= 105) {
+                $this->minute = now()->diffInMinutes($this->match->debut_match_reel) - 15;
+            }
+        }
     }
 
     //incrémentation, décrémentation du score
@@ -341,8 +385,98 @@ class FormCommentaires extends Component
         }
     }
 
+    public function prolongations()
+    {
+        $commentData['type_comments'] = "Début des prolongations";
+        $commentData['minute'] = 90;
+        $commentData['team_action'] = 'match';
+        $commentData['commentator_id'] = $this->match->commentateur->id;
+        // $commentData['images'] = "images/gifs/start.gif";
+
+        $comment = Commentaire::create($commentData);
+        $comment->save();
+
+        $this->match->live = "prolongations1";
+        $this->match->debut_prolongations = now();
+        $this->match->save();
+
+        return redirect()->to('matches/' . $this->match->id);
+    }
+
+    public function miTempsProlongations()
+    {
+        $commentData['type_comments'] = "Mi-temps des prolongations";
+        $commentData['minute'] = 105;
+        $commentData['team_action'] = 'match';
+        $commentData['commentator_id'] = $this->match->commentateur->id;
+        // $commentData['images'] = "images/gifs/start.gif";
+
+        $comment = Commentaire::create($commentData);
+        $comment->save();
+
+        $this->match->live = "MTProlongations";
+        $this->match->save();
+
+        return redirect()->to('matches/' . $this->match->id);
+    }
+
+    public function secondeProlongation()
+    {
+        $commentData['type_comments'] = "Reprise des prolongations";
+        $commentData['minute'] = 105;
+        $commentData['team_action'] = 'match';
+        $commentData['commentator_id'] = $this->match->commentateur->id;
+        // $commentData['images'] = "images/gifs/start.gif";
+
+        $comment = Commentaire::create($commentData);
+        $comment->save();
+
+        $this->match->live = "prolongations2";
+        $this->match->save();
+
+        return redirect()->to('matches/' . $this->match->id);
+    }
+
+    public function finProlongations()
+    {
+        $commentData['type_comments'] = "Fin des prolongations";
+        $commentData['minute'] = 120;
+        $commentData['team_action'] = 'match';
+        $commentData['commentator_id'] = $this->match->commentateur->id;
+        // $commentData['images'] = "images/gifs/start.gif";
+
+        $comment = Commentaire::create($commentData);
+        $comment->save();
+
+        $this->match->live = "finProlongations";
+        $this->match->fin_prolongations = now();
+
+        $this->match->save();
+
+        return redirect()->to('matches/' . $this->match->id);
+    }
+
+    public function tirsAuBut()
+    {
+        $commentData['type_comments'] = "La séance des tirs aux but va commencer.";
+        $commentData['minute'] = 120;
+        $commentData['team_action'] = 'match';
+        $commentData['commentator_id'] = $this->match->commentateur->id;
+        // $commentData['images'] = "images/gifs/start.gif";
+
+        $comment = Commentaire::create($commentData);
+        $comment->save();
+
+        $this->match->live = "tab";
+        $this->match->save();
+
+        return redirect()->to('matches/' . $this->match->id);
+    }
+
     public function timeZero()
     {
+
+        // dd(now());
         if ($this->dateMatch->diffInMinutes(now(), false) > -30) {
 
 
@@ -357,7 +491,7 @@ class FormCommentaires extends Component
             if ($comment) {
 
                 $this->match->live = "debut"; // modification colonne live
-
+                $this->match->debut_match_reel = now();
                 /* demarrage du score */
                 $this->home_score = 0;
                 $this->match->home_score = 0;
@@ -441,7 +575,7 @@ class FormCommentaires extends Component
     {
 
         $this->match->live = "finDeMatch";
-
+        $this->match->fin_match_reel = now();
         $this->nbrFavoris = 0;
 
         $commentData['type_comments'] = "FIN DU MATCH !!!";
@@ -577,6 +711,56 @@ class FormCommentaires extends Component
         //     session()->flash('warning', "Il n'est pas possible de commenter maintenant");
         //     return redirect()->to('matches/' . $this->match->id);
         // }
+    }
+
+    public function tabMarque(Club $club)
+    {
+        // dd($this->tabHome);
+
+        $tab['score'] = 1;
+        $tab['match_id'] = $this->match->id;
+        $tab['club_id'] = $club->id;
+
+
+        if ($club->id == $this->match->homeClub->id) {
+            $tab['number'] = count($this->tabHome) + 1;
+            $tabCreate = Tab::create($tab);
+            $tabCreate->save();
+            $this->tabHome = Tab::where('match_id', $this->match->id)->where('club_id', $this->match->homeClub->id)->get();
+        }
+
+        if ($club->id == $this->match->awayClub->id) {
+            $tab['number'] = count($this->tabAway) + 1;
+            $tabCreate = Tab::create($tab);
+            $tabCreate->save();
+            $this->tabAway = Tab::where('match_id', $this->match->id)->where('club_id', $this->match->awayClub->id)->get();
+        }
+
+        $this->miseAJourPenalty();
+    }
+
+    public function tabLoupe(Club $club)
+    {
+        $tab['score'] = 0;
+        $tab['match_id'] = $this->match->id;
+        $tab['club_id'] = $club->id;
+
+
+        if ($club->id == $this->match->homeClub->id) {
+            $tab['number'] = count($this->tabHome) + 1;
+            $tabCreate = Tab::create($tab);
+            $tabCreate->save();
+            $this->tabHome = Tab::where('match_id', $this->match->id)->where('club_id', $this->match->homeClub->id)->get();
+        }
+
+        if ($club->id == $this->match->awayClub->id) {
+            $tab['number'] = count($this->tabAway) + 1;
+            $tabCreate = Tab::create($tab);
+            $tabCreate->save();
+            $this->tabAway = Tab::where('match_id', $this->match->id)->where('club_id', $this->match->awayClub->id)->get();
+        }
+
+        $this->miseAJourPenalty();
     }
 
     public function retour()

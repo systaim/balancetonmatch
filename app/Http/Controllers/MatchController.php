@@ -16,6 +16,7 @@ use App\Models\Player;
 use App\Models\Match;
 use App\Models\Region;
 use App\Models\Statistic;
+use App\Models\Tab;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -117,11 +118,13 @@ class MatchController extends Controller
         $stats = Statistic::all();
         $nbrFavoris = Favorismatch::where('match_id', $match->id)->count();
         $competitions = $match->competition()->get();
+        $tabHome = Tab::where('match_id', $match->id)->where('club_id', $match->homeClub->id)->get();
+        $tabAway = Tab::where('match_id', $match->id)->where('club_id', $match->awayClub->id)->get();
         $user = Auth::user();
 
         
 
-        return view('matches.show', compact('match', 'commentsMatch', 'clubHome', 'clubAway', 'competitions', 'stats', 'nbrFavoris', 'commentator', 'user'));
+        return view('matches.show', compact('match', 'commentsMatch', 'clubHome', 'clubAway', 'competitions', 'stats', 'nbrFavoris', 'commentator', 'user', 'tabHome', 'tabAway'));
     }
 
     /**

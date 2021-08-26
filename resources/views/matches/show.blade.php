@@ -81,6 +81,7 @@
                         </div>
                     </div>
                 </div>
+            </div>
                 @include('menu')
         </header>
         @if (\Session::has('success'))
@@ -114,7 +115,11 @@
         'commentsMatch' => $commentsMatch,
         'competitions' => $competitions,
         'stats' => $stats,
+        'tabHome' => $tabHome,
+        'tabAway' => $tabAway,
         ])
+
+        @include('footer')
 
         <script src="{{ mix('js/app.js') }}?ver=1.01"></script>
 

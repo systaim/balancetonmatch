@@ -16,12 +16,16 @@ class CreateMatchesTable extends Migration
         Schema::create('matches', function (Blueprint $table) {
             $table->id();
             $table->string('slug');
-            $table->enum('live',['attente','debut','mitemps','repriseMT','finDeMatch','reporte','annule','arrete'])->default('attente');
+            $table->enum('live',['attente','debut','mitemps','repriseMT','finDeMatch','reporte','annule','arrete','prolongations1','MTProlongations','prolongations2','finProlongations','tab'])->default('attente');
             $table->unsignedBigInteger('home_team_id');
             $table->integer('home_score')->nullable();
             $table->unsignedBigInteger('away_team_id');
             $table->integer('away_score')->nullable();
             $table->datetime('date_match');
+            $table->datetime('debut_match_reel')->nullable();
+            $table->datetime('fin_match_reel')->nullable();
+            $table->datetime('debut_prolongations')->nullable();
+            $table->datetime('fin_prolongations')->nullable();
             $table->string('location')->nullable();
             $table->unsignedBigInteger('competition_id');
             $table->unsignedBigInteger('region_id')->nullable();

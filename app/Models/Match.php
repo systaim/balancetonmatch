@@ -18,7 +18,7 @@ class Match extends Model
 
     protected $fillable = ['slug', 'home_team_id', 'home_score', 'away_team_id', 'away_score', 'date_match', 'time', 'location', 'weather', 'competition_id', 'region_id','live'];
 
-    protected $dates = ['date_match'];
+    protected $dates = ['date_match', 'debut_match_reel', 'fin_match_reel', 'debut_prolongations','fin_prolongations'];
 
     protected $hidden = ['id', 'created_at', 'updated_at', 'deleted_at'];
 
@@ -95,6 +95,10 @@ class Match extends Model
     public function connected()
     {
         return $this->hasMany(Counter::class, 'page-address');
+    }
+
+    public function tirsAuBut(){
+        return $this->hasMany(Tab::class);
     }
 
 }
