@@ -4,7 +4,8 @@
     @livewire('team-cover', ['club' => $club])
 
     <div id="infos" class="flex flex-col items-center justify-between">
-        <div class="w-11/12 md:w-8/12 lg:w-6/12 m-auto bg-primary p-2 shadow-lg text-white rounded-lg flex flex-col md:flex-row justify-around items-center">
+        <div
+            class="w-11/12 md:w-8/12 lg:w-6/12 m-auto bg-primary p-2 shadow-lg text-white rounded-lg flex flex-col md:flex-row justify-around items-center">
             @livewire('my-team', ['user' => $user, 'club' => $club])
             @livewire('favori-team', ['user' => $user, 'club' => $club,'nbrFavoris' => $nbrFavoris])
         </div>
@@ -31,13 +32,17 @@
         @endcannot --}}
         <div class="flex flex-col items-center xl:flex-row xl:justify-center mt-3">
             @if ($nbrPlayers == 0)
-                @canany(['update-club', 'isAdmin', 'isSuperAdmin'], $club)
-                    <a href="{{ route('clubs.players.create', $club) }}">
-                        <button class="btn btnSecondary">
-                            Créer un joueur
-                        </button>
-                    </a>
-                @endcanany
+                {{-- @canany(['update-club', 'isAdmin', 'isSuperAdmin'], $club) --}}
+                @auth
+                    @if (Auth::user()->club_id == $club->id)
+                        <a href="{{ route('clubs.players.create', $club) }}">
+                            <button class="btn btnSecondary">
+                                Créer un joueur
+                            </button>
+                        </a>
+                    @endif
+                @endauth
+                {{-- @endcanany --}}
             @else
                 <a href="{{ route('clubs.players.index', $club) }}">
                     <button class="btn btnSecondary">
@@ -50,13 +55,15 @@
                 </a>
             @endif
             @if ($nbrStaffs == 0)
-                @canany(['update-club', 'isAdmin', 'isSuperAdmin'], $club)
-                    <a href="{{ route('clubs.staffs.create', $club) }}">
-                        <button class="btn btnSecondary">
-                            Créer un dirigeant
-                        </button>
-                    </a>
-                @endcanany
+                @auth
+                    @if (Auth::user()->club_id == $club->id)
+                        <a href="{{ route('clubs.staffs.create', $club) }}">
+                            <button class="btn btnSecondary">
+                                Créer un dirigeant
+                            </button>
+                        </a>
+                    @endif
+                @endauth
             @else
                 <a href="{{ route('clubs.staffs.index', $club) }}">
                     <button class="btn btnSecondary">
@@ -75,7 +82,7 @@
         @foreach ($matchs as $match)
             @if ($match->date_match > now())
                 <h3>{{ $match->competition->name }}</h3>
-                    @include('match')
+                @include('match')
             @endif
         @endforeach
         @if ($matchs == '' || $matchs == null)
@@ -92,7 +99,7 @@
             @foreach ($matchs as $key => $match)
                 @if ($match->date_match < now())
                     <h3>{{ $match->competition->name }}</h3>
-                        @include('match')
+                    @include('match')
                 @endif
             @endforeach
         @else
