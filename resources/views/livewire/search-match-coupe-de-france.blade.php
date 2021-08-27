@@ -1,10 +1,10 @@
-<div class="relative flex flex-col w-11/12 md:w-8/12 m-auto my-8">
+<div class="relative flex flex-col md:w-8/12 m-auto my-8">
     <div>
         <input wire:model="search" class="inputForm w-full" type="text" name="search"
             placeholder="Nom du club, de la ville ou code postal">
         <i class="absolute text-xl mt-3 mr-3 top-0 right-0 text-primary fas fa-search"></i>
     </div>
-    <div class="absolute w-full top-13 h-auto z-40">
+    <div class="absolute w-full top-13 h-auto z-50">
         @foreach ($matchs as $match)
 
             <div class="relative text-primary bg-white px-2 py-2 hover:bg-blue-200">
