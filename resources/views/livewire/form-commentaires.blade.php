@@ -532,7 +532,7 @@
                 Options commentaires "match"
                     ------------------------->
 
-            <div class="flex justify-center">
+            {{-- <div class="flex justify-center">
                 <div>
                     <div
                         class="flex justify-evenly items-center bg-primary text-white px-1 py-2 rounded-full w-72 border-2 border-white my-4">
@@ -544,10 +544,9 @@
                             <p class="px-3">Je veux suivre ce match</p>
                             <p class="text-xs px-3">Clique sur l'étoile</p>
                         </div>
-
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
             @auth
                 @if (Auth::user()->first_com == 1 && $match->commentateur != null && $match->commentateur->user_id == Auth::user()->id)
