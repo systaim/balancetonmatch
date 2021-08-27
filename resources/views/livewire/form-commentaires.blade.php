@@ -528,10 +528,27 @@
                     </div>
                 </div>
             </div>
-
             <!----------------------
                 Options commentaires "match"
                     ------------------------->
+
+            <div class="flex justify-center">
+                <div>
+                    <div
+                        class="flex justify-evenly items-center bg-primary text-white px-1 py-2 rounded-full w-72 border-2 border-white my-4">
+                        <div
+                            class="h-14 w-14 shadow-2xl border-2 border-white bg-primary flex justify-center items-center rounded-full">
+                            @livewire('favori-match', ['match' => $match, 'user' => Auth::user()])
+                        </div>
+                        <div>
+                            <p class="px-3">Je veux suivre ce match</p>
+                            <p class="text-xs px-3">Clique sur l'étoile</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
             @auth
                 @if (Auth::user()->first_com == 1 && $match->commentateur != null && $match->commentateur->user_id == Auth::user()->id)
                     <div class="bg-primary w-11/12 rounded-lg p-4 text-white m-auto my-2">
@@ -762,6 +779,11 @@
                     </button>
                 @endif
             @else
+                @if (empty($match->commentateur) && $match->live != 'finDeMatch')
+                    <div class="flex justify-center items-center my-6">
+                        <p class="bg-primary text-white py-2 px-3">En attente d'un commentateur</p>
+                    </div>
+                @endif
                 <a href="/login">
                     <div class="relative commentaires h-24 bg-white commandeMatch items-stretch w-full focus:outline-none">
                         <div class="minuteCommentaires w-24 commandeMatch flex flex-col justify-center items-center">
@@ -802,7 +824,8 @@
                                     @foreach ($tabHome as $tab)
                                         <div
                                             class="h-8 w-8 border border-primary rounded-md m-1 flex justify-center items-center font-bold text-xl {{ $tab->score ? 'bg-success' : 'bg-danger' }}">
-                                            <i class="{{ $tab->score ? 'fas fa-check' : 'fas fa-times' }}"></i></div>
+                                            <i class="{{ $tab->score ? 'fas fa-check' : 'fas fa-times' }}"></i>
+                                        </div>
                                     @endforeach
                                 @else
                                     <div
@@ -832,7 +855,8 @@
                                     @foreach ($tabAway as $tab)
                                         <div
                                             class="h-8 w-8 border border-primary rounded-md m-1 flex justify-center items-center font-bold text-xl {{ $tab->score ? 'bg-success' : 'bg-danger' }}">
-                                            <i class="{{ $tab->score ? 'fas fa-check' : 'fas fa-times' }}"></i></div>
+                                            <i class="{{ $tab->score ? 'fas fa-check' : 'fas fa-times' }}"></i>
+                                        </div>
                                     @endforeach
                                 @else
                                     <div

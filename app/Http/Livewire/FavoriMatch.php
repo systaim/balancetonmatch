@@ -29,8 +29,9 @@ class FavoriMatch extends Component
 
     public function myMatch(Match $match)
     {
+
         if ($this->user->isFavoriMatch($match)) {
-            $matchData = Favorismatch::where('user_id', $this->user->id)->where('match_id', $this->match->id)->delete();
+            $matchData = Favorismatch::where('user_id', $this->user->id)->where('match_id', $match->id)->delete();
             $this->star = "far";
             $this->nbrFavoris-=1;
             session()->flash('messageMyMatch', 'Tu ne suis plus ce match.');

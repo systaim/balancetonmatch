@@ -4,13 +4,21 @@
             placeholder="Nom du club, de la ville ou code postal">
         <i class="absolute text-xl mt-3 mr-3 top-0 right-0 text-primary fas fa-search"></i>
     </div>
-    <div class="absolute w-full top-13 h-auto z-50">
+    <div class="absolute w-full top-13 h-auto z-40">
         @foreach ($matchs as $match)
-            <a href="{{ route('matches.show', $match) }}">
-                <div class="relative text-primary bg-white px-2 py-2 hover:bg-blue-200">
-                    <p class="text-xs text-center">{{ $match->competition->name }}</p>
-                    <p class="text-center text-sm">{{ $match->date_match->formatLocalized('%d/%m/%y') }}
-                        {{ $match->date_match->formatLocalized('%H:%M') }}</p>
+
+            <div class="relative text-primary bg-white px-2 py-2 hover:bg-blue-200">
+                <div class="relative flex justify-center items-center z-50">
+                    <div class="absolute top-2 left-2">
+                        @livewire('favori-match', ['match' => $match, 'user' => Auth::user()])
+                    </div>
+                    <div>
+                        <p class="text-xs text-center">{{ $match->competition->name }}</p>
+                        <p class="text-center text-sm">{{ $match->date_match->formatLocalized('%d/%m/%y') }}
+                            {{ $match->date_match->formatLocalized('%H:%M') }}</p>
+                    </div>
+                </div>
+                <a href="{{ route('matches.show', $match) }}">
                     <div class="grid grid-cols-3 w-full">
                         <div class="col-span-1 flex flex-col items-center">
                             <div class="logo h-12 w-12 cursor-pointer m-4 border-2 border-primary">
@@ -46,8 +54,9 @@
                             <p class="text-center">{{ $match->awayClub->name }}</p>
                         </div>
                     </div>
-                </div>
-            </a>
+                </a>
+            </div>
+
         @endforeach
         @if (count($matchs) == 0 && strlen($search) >= 3)
             <div class="bg-white py-4">
