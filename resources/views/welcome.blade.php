@@ -65,7 +65,7 @@
         @endauth
     </section>
     <section>
-        <div class="container px-5 mx-auto">
+        <div class="container mx-auto">
             <div class="flex flex-wrap justify-evenly mx-4 mb-10 text-center text-white">
                 <div class="w-11/12 md:w-2/5 my-5 pb-5 bg-primary rounded-lg shadow-2xl">
                     <div class="rounded-lg h-48 overflow-hidden">

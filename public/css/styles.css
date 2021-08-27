@@ -608,6 +608,7 @@ input::-o-inner-spin-button,
   --border-opacity: 1;
   border-color: #0D0F12;
   border-color: rgba(13, 15, 18, var(--border-opacity));
+  margin-top: 2.5rem;
 }
 
 .minuteCommentaires {
