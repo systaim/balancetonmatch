@@ -10,7 +10,7 @@
             <div class="relative text-primary bg-white px-2 py-2 hover:bg-blue-200">
                 <div class="relative flex justify-center items-center z-50">
                     <div class="absolute top-2 left-2">
-                        @livewire('favori-match', ['match' => $match, 'user' => Auth::user()])
+                        <livewire:favori-match :match="$match" :user="Auth::user()" :key="$match->id"/>
                     </div>
                     <div>
                         <p class="text-xs text-center">{{ $match->competition->name }}</p>

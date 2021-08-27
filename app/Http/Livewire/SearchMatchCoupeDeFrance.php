@@ -13,7 +13,7 @@ use Livewire\Component;
 class SearchMatchCoupeDeFrance extends Component
 {
 
-    public $search;
+    public $search = '';
     public $clubs;
     public $matchs;
     public $regions;
@@ -30,7 +30,7 @@ class SearchMatchCoupeDeFrance extends Component
 
     public function updatedSearch()
     {
-        if (strlen($this->search) >= 2) {
+        if (strlen($this->search) >= 3) {
             $club = Club::where('name', 'like', '%' . $this->search . '%')
                 ->orwhere('zip_code', 'like', '%' . $this->search . '%')
                 ->orwhere('city', 'like', '%' . $this->search . '%')
@@ -40,8 +40,8 @@ class SearchMatchCoupeDeFrance extends Component
             $this->matchs = Match::where('date_match', '>=', Carbon::now()->subHours(12))
                 ->where('competition_id', 3)
                 ->where(function ($query) use ($club) {
-                    $query->wherein('home_team_id', $club)
-                        ->orwherein('away_team_id', $club);
+                    $query->whereIn('home_team_id', $club)
+                        ->orwhereIn('away_team_id', $club);
                 })
                 ->get();
         } else {
