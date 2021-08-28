@@ -367,14 +367,15 @@
                                                 nonce="aVhf21ZM">
                         </script>
                         <!-- Your share button code -->
-                    @endpush
-                    <button class="fb-share-button" data-href="{{ request()->url() }}" data-layout="button"
+                        <button class="fb-share-button" data-href="{{ request()->url() }}" data-layout="button"
                         data-size="large">
                         <a target="_blank"
                             href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse"
                             class="fb-xfbml-parse-ignore">
                         </a>
                     </button>
+                    @endpush
+                    
                 </div>
                 <p>Spectateurs : </p>
                 <p class="ml-2 font-bold">{{ count($visitors) }}</p>
