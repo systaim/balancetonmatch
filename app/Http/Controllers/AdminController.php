@@ -17,7 +17,7 @@ class AdminController extends Controller
 
     public function index()
     {
-        $users = User::paginate(50);
+        $users = User::all();
         $role = Auth::user()->role;
 
         if($role == "super-admin" || $role == "admin"){
