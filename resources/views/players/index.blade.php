@@ -28,10 +28,15 @@
                                 alt="logo">
                         @endif
                     </div>
-                    <div class="flex justify-between">
+                    <div>
                         <div class="relative">
-                            <img class="object-cover h-80 w-full rounded-br-lg" src="{{ asset($player->avatar_path) }}"
-                                alt="{{ $player->first_name }} {{ $player->last_name }}">
+                            <div class="absolute top-3 right-2 bg-primary py-1 rounded-lg">
+                                <p class="capitalize mx-2 font-semibold truncate">
+                                    {{ $player->first_name }} <span class="uppercase">{{ $player->last_name }}</span>
+                                </p>
+                            </div>
+                            <img class="object-cover h-80 w-full rounded-b-lg" src="{{ asset($player->avatar_path) }}"
+                                alt="photo de {{ $player->first_name }} {{ $player->last_name }}">
                             @switch($player->position)
                                 @case('Gardien de but')
                                     <p
@@ -55,16 +60,16 @@
                                 @break
                             @endswitch
                         </div>
-                        <div class="text-lg flex justify-center items-start p-2">
-                            <p class="capitalize vertical mx-2 font-semibold truncate">
-                                {{ $player->first_name }} <span class="uppercase">{{ $player->last_name }}</span>
-                            </p>
-                        </div>
                     </div>
                     <div class="relative flex justify-between items-end p-2 h-12">
-                        <div class="flex flex-col">
-                            <p class="font-bold">né le {{ date('d/m/Y', strtotime($player->date_of_birth)) }}</p>
-                        </div>
+                        @if ($player->date_of_birth)
+                            <div>
+                                <p class="font-bold">né le {{ date('d/m/Y', strtotime($player->date_of_birth)) }}</p>
+                            </div>
+                        @else
+                            <p class="font-bold">né le : <span class="text-xs">non renseigné</span></p>
+
+                        @endif
                         @canany(['isManager', 'isSuperAdmin', 'isAdmin'])
                             <div>
                                 <button onclick="openMenu({{ $player->id }})" class="mr-1"><i
@@ -75,8 +80,8 @@
                         @endcanany
                     </div>
                     <!-- ***********************
-                        Formulaire suppression d'un joueur
-                        ************************** -->
+                                        Formulaire suppression d'un joueur
+                                        ************************** -->
                     <div id=""
                         class="absolute bg-white top-0 left-0 right-0 bottom-0 text-primary z-20 flex flex-col justify-between items-center "
                         x-show="open" x-transition:enter="transition ease-out duration-300"
@@ -105,8 +110,8 @@
                     </div>
 
                     <!-- ***********************
-                        Formulaire modification d'un joueur
-                        ************************** -->
+                                        Formulaire modification d'un joueur
+                                        ************************** -->
 
                     <div id="{{ $player->id }}" class="hidden fixed z-50 inset-0 justify-center items-center"
                         style="background-color: rgba(0,0,0,.5);">
@@ -126,8 +131,7 @@
                                     <div>
                                         <label class="flex flex-col" for="last_name">Nom de famille</label>
                                         <input class="inputForm focus:outline-none focus:shadow-outline w-full my-1"
-                                            type="text" name="last_name" id="last_name"
-                                            value="{{ $player->last_name }}">
+                                            type="text" name="last_name" id="last_name" value="{{ $player->last_name }}">
                                         @error('last_name')
                                             <span class="error">{{ $message }}</span>
                                         @enderror
@@ -180,22 +184,26 @@
                     </div>
                 </div>
             @endforeach
-            <div
-                class="relative w-72 m-4 bg-success text-darkGray flex flex-col justify-between rounded-lg overflow-hidden shadow-2xl">
-                <a href="{{ route('clubs.players.create', $club) }}">
-                    <div class="flex justify-between">
-                        <div class="flex justify-center items-center h-80 w-full bg-gray-400 rounded-br-lg">
-                            <p class="giant-text text-gray-500">+</p>
-                        </div>
-                        <div class="text-lg flex justify-center items-start p-2">
-                            <p class="vertical mx-2 font-semibold">Ajouter un joueur</p>
-                        </div>
+            @auth
+                @if (Auth::user()->club_id == $club->id)
+                    <div
+                        class="relative w-72 m-4 bg-success text-darkGray flex flex-col justify-between rounded-lg overflow-hidden shadow-2xl">
+                        <a href="{{ route('clubs.players.create', $club) }}">
+                            <div class="flex justify-between">
+                                <div class="flex justify-center items-center h-80 w-full bg-gray-400 rounded-br-lg">
+                                    <p class="giant-text text-gray-500">+</p>
+                                </div>
+                                <div class="text-lg flex justify-center items-start p-2">
+                                    <p class="vertical mx-2 font-semibold">Ajouter un joueur</p>
+                                </div>
+                            </div>
+                            <div class="relative flex p-2">
+                                <p class="font-semibold">Ajouter un joueur</p>
+                            </div>
+                        </a>
                     </div>
-                    <div class="relative flex p-2">
-                        <p class="font-semibold">Ajouter un joueur</p>
-                    </div>
-                </a>
-            </div>
+                @endif
+            @endauth
         </div>
     </div>
 @endsection
