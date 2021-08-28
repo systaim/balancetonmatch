@@ -1,8 +1,8 @@
 <div class="relative flex flex-col md:w-8/12 m-auto my-8">
-    <div>
-        <input wire:model="search" class="inputForm w-full" type="text" name="search"
+    <div class="flex justify-center">
+        <input wire:model="search" class="inputForm w-11/12 relative" type="text" name="search"
             placeholder="Nom du club, de la ville ou code postal">
-        <i class="absolute text-xl mt-3 mr-3 top-0 right-0 text-primary fas fa-search"></i>
+        <i class="absolute text-xl top-3 right-7 text-primary fas fa-search"></i>
     </div>
     <div class="absolute w-full top-13 h-auto z-50">
         @foreach ($matchs as $match)
