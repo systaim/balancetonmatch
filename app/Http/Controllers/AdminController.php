@@ -6,6 +6,7 @@ use App\Models\Region;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class AdminController extends Controller
 {
@@ -17,14 +18,14 @@ class AdminController extends Controller
 
     public function index()
     {
-        $users = User::all();
+        // $users = User::paginate(3);
         $role = Auth::user()->role;
 
         if($role == "super-admin" || $role == "admin"){
-            return view('admin.index', compact('users'));
+            return view('admin.index');
         } else{
+            
             return redirect('/')->with('danger', "Vous n'êtes pas autorisé à entrer ici");
-
         }
 
     }

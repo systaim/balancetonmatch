@@ -107,12 +107,10 @@ Route::get('/mentions-legales', function(){
 
 Route::get('/admin/addClub', function(){
     $regions = Region::all();
-    $users = User::all();
     $role = Auth::user()->role;
 
-
     if($role == "super-admin" || $role == "admin"){
-    return view('admin.addClub', compact('regions', 'users'));
+    return view('admin.addClub', compact('regions'));
     } else{
         return redirect('/')->with('danger', "Vous n'êtes pas autorisé à entrer ici");
 

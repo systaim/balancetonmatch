@@ -17,7 +17,7 @@ class UserController extends Controller
 
     public function index()
     {
-        $users = User::paginate(15);
+        $users = User::all();
         $role = Auth::user()->role;
 
         if($role == "super-admin" || $role == "admin"){
@@ -36,7 +36,6 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        $users = User::paginate(15);
         $role = Auth::user()->role;
 
         if($role == "super-admin" || $role == "admin"){
