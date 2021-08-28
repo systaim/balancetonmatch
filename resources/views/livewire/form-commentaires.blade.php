@@ -378,7 +378,7 @@
                 <p class="ml-2 font-bold">{{ count($visitors) }}</p>
             </div>
             @if ($nbrFavoris > 0 && $match->live == 'attente')
-                <div class="bg-secondary text-primary rounded-b-lg relative flex justify-center m-auto p-1 shadow-lg">
+                <div class="bg-secondary text-primary rounded-lg relative flex justify-center p-1 shadow-lg m-2">
                     @if ($nbrFavoris == 1)
                         <p>{{ $nbrFavoris }} personne aimerait un direct LIVE</p>
                     @else
@@ -540,28 +540,23 @@
             <!----------------------
                 Options commentaires "match"
                     ------------------------->
-
-            <div class="flex justify-center">
-                <div>
-                    <div
-                        class="flex justify-start items-center bg-primary text-white px-1 py-2 rounded-full w-96 border-2 border-white my-4">
+            @if (!Auth::user()->isFavoriMatch($match))
+                <div class="flex justify-center">
+                    <div>
                         <div
-                            class="h-14 w-14 shadow-2xl border-2 border-white bg-primary flex justify-center items-center rounded-full">
-                            @livewire('favori-match', ['match' => $match, 'user' => Auth::user()])
-                        </div>
-                        <div>
-                            @if (Auth::user()->isFavoriMatch($match))
-                                <p class="px-3">Rendez vous le {{ $match->date_match->formatLocalized('%d/%m/%y') }}</p>
-                                <p class="px-3">à {{ $match->date_match->formatLocalized('%H:%M') }}</p>
-                            @else
+                            class="flex justify-start items-center bg-primary text-white px-1 py-2 rounded-lg w-96 border-2 border-white my-2 mx-1">
+                            <div
+                                class="h-12 w-12 shadow-2xl border-2 border-white bg-primary flex justify-center items-center rounded-full">
+                                @livewire('favori-match', ['match' => $match, 'user' => Auth::user()])
+                            </div>
+                            <div>
                                 <p class="px-3 text-xs">Toi aussi tu veux que ce match soit commenté ?</p>
                                 <p class="text-xs px-3">Clique sur l'étoile</p>
-                            @endif
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-
+            @endif
             @auth
                 @if (Auth::user()->first_com == 1 && $match->commentateur != null && $match->commentateur->user_id == Auth::user()->id)
                     <div class="bg-primary w-11/12 rounded-lg p-4 text-white m-auto my-2">
