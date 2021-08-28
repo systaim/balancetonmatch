@@ -4,6 +4,8 @@ use App\Http\Controllers\MatchController;
 use App\Http\Controllers\PlayerController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClubController;
+use App\Http\Controllers\CompetitionController;
+use App\Http\Controllers\HomeController;
 use App\Models\Competition;
 use App\Models\Department;
 use App\Models\Club;
@@ -29,54 +31,6 @@ $club = ClubController::class;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-
-Route::get('/', function (Match $match) {
-
-    $matchesToday = Match::whereBetween('date_match', [Carbon::now()
-        ->startOfDay(), Carbon::now()->endOfDay()])->get();
-    $matchesTomorrow = Match::where('date_match', [Carbon::tomorrow()])->get();
-    $futurMatches = Match::where('date_match', '>=', Carbon::now()->subHours(6))
-        ->orderBy('date_match', 'asc')->get();
-    $matches = Match::all();
-    $clubs = Club::all();
-    $staffs = Staff::all();
-    $players = Player::all();
-    $dateJour = Carbon::now();
-    $user = Auth::user();
-    $today = now()->subHours(3);
-    $goals= Statistic::where('action', 'goal')->get();
-    $yellowCards= Statistic::where('action', 'yellow_card')->get();
-    $redCards= Statistic::where('action','red_card')->get();
-    $commentators = Commentator::all();
-    $liveMatches = Match::where('date_match','>=', Carbon::now()->subMinutes(150))
-                            ->where(function($query) {
-                                $query->where('live', 'debut')
-                                ->orwhere('live', 'mitemps')
-                                ->orwhere('live', 'repriseMT');
-                            })
-                            ->get();
-    $match = Match::where('slug', $match->slug)->first();
-
-    return view('welcome', compact(
-        'matchesToday', 
-        'matchesTomorrow', 
-        'futurMatches', 
-        'staffs', 
-        'matches', 
-        'clubs', 
-        'players', 
-        'dateJour', 
-        'user', 
-        'today',
-        'goals',
-        'yellowCards',
-        'redCards',
-        'commentators',
-        'liveMatches',
-        'match',
-    ));
-});
 
 Route::get('/matches/coupe-de-france-2021-2022', function () {
 
@@ -121,6 +75,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
+Route::get('/', HomeController::class);
 Route::resource('clubs', 'App\Http\Controllers\ClubController');
 Route::resource('players', 'App\Http\Controllers\PlayerController');
 Route::resource('matches', 'App\Http\Controllers\MatchController');
@@ -128,6 +83,8 @@ Route::resource('commentaires', 'App\Http\Controllers\CommentaireController');
 Route::resource('clubs.players', 'App\Http\Controllers\PlayerController');
 Route::resource('clubs.staffs', 'App\Http\Controllers\StaffController');
 Route::resource('regions', 'App\Http\Controllers\RegionController');
+// Route::resource('competitions', CompetitionController::class);
+
 Route::resource('admin/users', 'App\Http\Controllers\UserController')->middleware('auth');
 Route::resource('admin', '\App\Http\Controllers\AdminController')->middleware('auth');
 
@@ -139,24 +96,12 @@ Route::post('contactsForBecomeManager', 'App\Http\Controllers\ContactController@
 Route::get('live', function(){
 
     $user = Auth::user();
-    $liveMatches = Match::where('date_match','>=', Carbon::now()->subMinutes(150))
+    $liveMatches = Match::where('date_match','>=', Carbon::now()->subMinutes(240))
                             ->where(function($query) {
-                                $query->where('live', 'debut')
-                                ->orwhere('live', 'mitemps')
-                                ->orwhere('live', 'repriseMT');
-                            })
-                            ->get();
+                                $query->where('live', '!=', 'attente');
+                            })->get();
 
     return view('matches.live', compact('liveMatches', 'user'));
-});
-
-Route::get('matchsduweekend', function(){
-
-    $user = Auth::user();
-    $matches = Match::all()->groupBy('competition_id');
-    $competitions = Competition::find($matches->keys());
-
-    return view('matches.weekend', compact('matches','user', 'competitions'));
 });
 
 Route::get('commentaire/delete/{id}', 'App\Http\Controllers\CommentaireController@destroy')->name('supprimer');

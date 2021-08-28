@@ -22,11 +22,11 @@
         @auth
             @if (Auth::user()->club)
                 <a href="{{ route('clubs.show', Auth::user()->club) }}">
-                    <div class="shadow-2xl py-10 md:py-4 w-full flex justify-around"
+                    <div class="shadow-2xl py-10 md:py-4 w-full flex flex-col lg:flex-row justify-around"
                         style="background:linear-gradient(-150deg, {{ Auth::user()->club->primary_color }}, {{ Auth::user()->club->secondary_color }})">
-                        <div class="sm:w-11/12 md:w-8/12 lg:w-4/12 rounded-lg bg-white">
+                        <div class="w-11/12 md:w-8/12 lg:w-4/12 rounded-lg bg-white">
                             <div class="flex justify-center items-center p-6">
-                                <div class="logo h-12 w-12 border mx-2">
+                                <div class="logo h-16 w-16 border mx-2">
                                     @if (Auth::user()->club->logo_path)
                                         <img class="object-contain" src="{{ asset(Auth::user()->club->logo_path) }}"
                                             alt="Logo de {{ Auth::user()->club->name }}">
@@ -37,12 +37,15 @@
                                     @endif
                                 </div>
                                 <div>
-                                    <h3 class="truncate">{{ Auth::user()->club->name }}</h3>
+                                    <h3 class="truncate text-xl">{{ Auth::user()->club->name }}</h3>
                                 </div>
                             </div>
                             <div class="flex items-end justify-end p-2">
                                 <p class=" border rounded-md px-1">mon club →</p>
                             </div>
+                        </div>
+                        <div>
+                            
                         </div>
                     </div>
                 </a>
@@ -222,7 +225,6 @@
                     </div>
                 </div>
             @endif
-
             @if (count($user->favorismatches) > 0)
                 <div class="w-full m-1">
                     <div class="">

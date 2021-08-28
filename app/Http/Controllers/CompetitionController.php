@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Competition;
+use App\Models\Group;
+use App\Models\Match;
 use Illuminate\Http\Request;
 
 class CompetitionController extends Controller
@@ -13,7 +16,11 @@ class CompetitionController extends Controller
      */
     public function index()
     {
-        //
+        $competitions = Competition::all();
+        $R1 = Match::where('division_region_id', 1)->get();
+        
+
+        return view("competitions.index", compact('competitions', 'R1'));
     }
 
     /**

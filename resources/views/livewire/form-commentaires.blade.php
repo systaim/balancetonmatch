@@ -377,6 +377,15 @@
                 <p>Spectateurs : </p>
                 <p class="ml-2 font-bold">{{ count($visitors) }}</p>
             </div>
+            @if ($nbrFavoris > 0 && $match->live == 'attente')
+                <div class="bg-secondary text-primary rounded-b-lg relative flex justify-center m-auto p-1 shadow-lg">
+                    @if ($nbrFavoris == 1)
+                        <p>{{ $nbrFavoris }} personne aimerait un direct LIVE</p>
+                    @else
+                        <p>{{ $nbrFavoris }} personnes aimeraient un direct LIVE</p>
+                    @endif
+                </div>
+            @endif
 
             <!-- fin affichage bannière du match -->
 
@@ -532,21 +541,26 @@
                 Options commentaires "match"
                     ------------------------->
 
-            {{-- <div class="flex justify-center">
+            <div class="flex justify-center">
                 <div>
                     <div
-                        class="flex justify-evenly items-center bg-primary text-white px-1 py-2 rounded-full w-72 border-2 border-white my-4">
+                        class="flex justify-start items-center bg-primary text-white px-1 py-2 rounded-full w-96 border-2 border-white my-4">
                         <div
                             class="h-14 w-14 shadow-2xl border-2 border-white bg-primary flex justify-center items-center rounded-full">
                             @livewire('favori-match', ['match' => $match, 'user' => Auth::user()])
                         </div>
                         <div>
-                            <p class="px-3">Je veux suivre ce match</p>
-                            <p class="text-xs px-3">Clique sur l'étoile</p>
+                            @if (Auth::user()->isFavoriMatch($match))
+                                <p class="px-3">Rendez vous le {{ $match->date_match->formatLocalized('%d/%m/%y') }}</p>
+                                <p class="px-3">à {{ $match->date_match->formatLocalized('%H:%M') }}</p>
+                            @else
+                                <p class="px-3 text-xs">Toi aussi tu veux que ce match soit commenté ?</p>
+                                <p class="text-xs px-3">Clique sur l'étoile</p>
+                            @endif
                         </div>
                     </div>
                 </div>
-            </div> --}}
+            </div>
 
             @auth
                 @if (Auth::user()->first_com == 1 && $match->commentateur != null && $match->commentateur->user_id == Auth::user()->id)
@@ -604,15 +618,6 @@
                     </div>
                 @endif
                 <div class="mt-6 mx-auto sm:w-11/12 md:w-9/12">
-                    @if ($nbrFavoris > 0 && $match->live == 'attente')
-                        <div class="bg-secondary text-primary rounded-lg relative my-2 flex justify-center m-auto p-1">
-                            @if ($nbrFavoris == 1)
-                                <p>{{ $nbrFavoris }} personne aimerait le direct LIVE</p>
-                            @else
-                                <p>{{ $nbrFavoris }} personnes aimeraient le direct LIVE</p>
-                            @endif
-                        </div>
-                    @endif
                     @if ($match->live == 'reporte')
                         <div class="flex justify-center items-center my-6">
                             <p class="bg-danger font-bold py-2 px-3">Le match est reporté à une date ultérieure</p>
@@ -745,7 +750,7 @@
                 </div>
                 @if (empty($match->commentateur) && $match->live != 'finDeMatch')
                     <div class="flex justify-center items-center my-6">
-                        <p class="bg-primary text-white py-2 px-3">En attente d'un commentateur</p>
+                        <p class="bg-primary text-white py-2 px-3 rounded-lg">En attente d'un commentateur</p>
                     </div>
                     <button type="button"
                         class="relative commentaires h-24 bg-white commandeMatch items-stretch w-full focus:outline-none minHeight16"
