@@ -361,18 +361,21 @@
                 <!-- Load Facebook SDK for JavaScript -->
                 <div class="mx-6">
                     <div id="fb-root"></div>
-                    <script async defer crossorigin="anonymous"
-                                        src="https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v11.0&appId=956162407752245&autoLogAppEvents=1"
-                                        nonce="aVhf21ZM">
-                    </script>
-                    <!-- Your share button code -->
-                    <button class="fb-share-button" data-href="{{ request()->url() }}" data-layout="button"
-                        data-size="large">
-                        <a target="_blank"
-                            href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse"
-                            class="fb-xfbml-parse-ignore">
-                        </a>
-                    </button>
+                    @push('scripts')
+                        <script async defer crossorigin="anonymous"
+                                                src="https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v11.0&appId=956162407752245&autoLogAppEvents=1"
+                                                nonce="aVhf21ZM">
+                        </script>
+                        <!-- Your share button code -->
+                        <button class="fb-share-button" data-href="{{ request()->url() }}" data-layout="button"
+                            data-size="large">
+                            <a target="_blank"
+                                href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse"
+                                class="fb-xfbml-parse-ignore">
+                            </a>
+                        </button>
+                    @endpush
+
                 </div>
                 <p>Spectateurs : </p>
                 <p class="ml-2 font-bold">{{ count($visitors) }}</p>
@@ -540,23 +543,25 @@
             <!----------------------
                 Options commentaires "match"
                     ------------------------->
-            @if (!Auth::user()->isFavoriMatch($match))
-                <div class="flex justify-center">
-                    <div>
-                        <div
-                            class="flex justify-start items-center bg-primary text-white px-1 py-2 rounded-lg w-96 border-2 border-white my-2 mx-1">
+            @auth
+                @if (!Auth::user()->isFavoriMatch($match))
+                    <div class="flex justify-center">
+                        <div>
                             <div
-                                class="h-12 w-12 shadow-2xl border-2 border-white bg-primary flex justify-center items-center rounded-full">
-                                @livewire('favori-match', ['match' => $match, 'user' => Auth::user()])
-                            </div>
-                            <div>
-                                <p class="px-3 text-xs">Toi aussi tu veux que ce match soit commenté ?</p>
-                                <p class="text-xs px-3">Clique sur l'étoile</p>
+                                class="flex justify-start items-center bg-primary text-white px-1 py-2 rounded-lg w-96 border-2 border-white my-2 mx-1">
+                                <div
+                                    class="h-12 w-12 shadow-2xl border-2 border-white bg-primary flex justify-center items-center rounded-full">
+                                    @livewire('favori-match', ['match' => $match, 'user' => Auth::user()])
+                                </div>
+                                <div>
+                                    <p class="px-3 text-xs">Toi aussi tu veux que ce match soit commenté ?</p>
+                                    <p class="text-xs px-3">Clique sur l'étoile</p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            @endif
+                @endif
+            @endauth
             @auth
                 @if (Auth::user()->first_com == 1 && $match->commentateur != null && $match->commentateur->user_id == Auth::user()->id)
                     <div class="bg-primary w-11/12 rounded-lg p-4 text-white m-auto my-2">
