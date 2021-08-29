@@ -418,7 +418,7 @@
                                     <img src="{{ asset('images/yellow-card.png') }}" alt="1er carton jaune"
                                         class="h-14">
                                 </label>
-                                <p class="absolute top-9 left-10 font-sans">1er</p>
+                                <p class="absolute top-8 left-7 font-sans">1er</p>
                             </div>
                             <div class="actionsMatch relative">
                                 <input class="hidden" type="radio" id="cartonJaune2" wire:model="type_carton"
@@ -427,7 +427,7 @@
                                     <img src="{{ asset('images/yellow-card.png') }}" alt="2e carton jaune"
                                         class="h-14">
                                 </label>
-                                <p class="absolute top-9 left-11 font-sans">2e</p>
+                                <p class="absolute top-8 left-7 font-sans">2e</p>
                             </div>
                             <div class="actionsMatch">
                                 <input class="hidden" type="radio" id="cartonRouge" wire:model="type_carton"
@@ -525,7 +525,7 @@
             <!----------------------
                 Options commentaires "match"
                     ------------------------->
-            @if (!Auth::user()->isFavoriMatch($match))
+            {{-- @if (!Auth::user()->isFavoriMatch($match))
                 <div class="flex justify-center">
                     <div>
                         <div
@@ -541,7 +541,7 @@
                         </div>
                     </div>
                 </div>
-            @endif
+            @endif --}}
             @auth
                 @if (Auth::user()->first_com == 1 && $match->commentateur != null && $match->commentateur->user_id == Auth::user()->id)
                     <div class="bg-primary w-11/12 rounded-lg p-4 text-white m-auto my-2">
