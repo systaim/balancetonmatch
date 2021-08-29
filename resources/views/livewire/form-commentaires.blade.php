@@ -358,7 +358,7 @@
                 </div>
             </div>
             <div class="bg-gray-900 px-8 py-2 text-white text-center flex justify-center items-center">
-                
+
                 <p>Spectateurs : </p>
                 <p class="ml-2 font-bold">{{ count($visitors) }}</p>
             </div>
@@ -767,18 +767,20 @@
                     <div class="flex justify-center items-center my-6">
                         <p class="bg-primary text-white py-2 px-3">En attente d'un commentateur</p>
                     </div>
+                @else
+                    <a href="/login">
+                        <div
+                            class="relative commentaires h-24 bg-white commandeMatch items-stretch w-full focus:outline-none">
+                            <div class="minuteCommentaires w-24 commandeMatch flex flex-col justify-center items-center">
+                                <img src="{{ asset('images/login.png') }}" alt="">
+                            </div>
+                            <div class="bg-white w-full h-full p-3 flex flex-col justify-center">
+                                <p class="font-bold">Tu souhaites commenter le match ?</p>
+                                <p>Connecte toi →</p>
+                            </div>
+                        </div>
+                    </a>
                 @endif
-                <a href="/login">
-                    <div class="relative commentaires h-24 bg-white commandeMatch items-stretch w-full focus:outline-none">
-                        <div class="minuteCommentaires w-24 commandeMatch flex flex-col justify-center items-center">
-                            <img src="{{ asset('images/login.png') }}" alt="">
-                        </div>
-                        <div class="bg-white w-full h-full p-3 flex flex-col justify-center">
-                            <p class="font-bold">Tu souhaites commenter le match ?</p>
-                            <p>Connecte toi →</p>
-                        </div>
-                    </div>
-                </a>
             @endauth
         </form>
         <!-- fin option commentaires "match" -->
@@ -960,9 +962,9 @@
                                                 </select>
                                             </div>
                                             <div class="flex flex-col justify-center items-center ">
-                                                <p class="text-sm">Ou crée le en mode <span class="font-bold">#rapide</span>
-                                                </p>
-                                                <input
+                                                {{-- <p class="text-sm">Ou crée le ici</p>
+                                                <a href="{{route(players.index, [])}}"></a> --}}
+                                                {{-- <input
                                                     {{ $playerMatch != '' && $playerMatch != null ? 'disabled' : '' }}
                                                     wire:model="playerPrenom" name="playerPrenom"
                                                     class="{{ $playerMatch != '' && $playerMatch == null ? 'cursor-not-allowed' : '' }} text-primary border-b border-primary focus:outline-none w-2/3 sm:m-1 p-1"
@@ -971,7 +973,7 @@
                                                     {{ $playerMatch != '' && $playerMatch != null ? 'disabled' : '' }}
                                                     wire:model="playerNom" name="playerNom"
                                                     class="{{ $playerMatch != '' && $playerMatch != null ? 'cursor-not-allowed' : '' }} text-primary border-b border-primary focus:outline-none w-2/3 m-1 p-1"
-                                                    type="text" placeholder="nom">
+                                                    type="text" placeholder="nom"> --}}
                                             </div>
                                             <button type="button"
                                                 wire:click="miseAJourJoueur('{{ $comment->team_action }}' ,  {{ $comment->statistic }})">Envoyer</button>
