@@ -20,11 +20,16 @@
                 content="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $match->homeClub->numAffiliation }}.jpg" />
         @endif
     @elseif ($match->home_score < $match->away_score)
-            @if ($match->awayClub->logo_path)
-                <meta property="og:image:url" content="{{ asset($match->awayClub->logo_path) }}" />
-            @endif
+        @if ($match->awayClub->logo_path)
+            <meta property="og:image:url" content="{{ asset($match->awayClub->logo_path) }}" />
         @else
-            <meta property="og:image:url" content="{{ asset('images/logos/vs-primary.png') }}" />
+            <meta property="og:image:url"
+                content="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $match->awayClub->numAffiliation }}.jpg" />
+        @endif
+    @elseif ($match->live == "attente")
+        <meta property="og:image:url" content="{{ asset('images/logos/vs-primary.png') }}" />
+    @else
+        <meta property="og:image:url" content="{{ asset('images/logos/btmLogo.jpg') }}" />
     @endif
     <!-- Meta du site -->
     <title>Balance ton match ! {{ $match->homeclub->name }}
