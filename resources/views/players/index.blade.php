@@ -15,6 +15,26 @@
             <h3 class="titlePage">Les joueurs</h3>
         </div>
         <div class="flex flex-row flex-wrap justify-center">
+            @auth
+                @if (Auth::user()->club_id == $club->id)
+                    <div
+                        class="relative w-72 m-4 bg-success text-darkGray flex flex-col justify-between rounded-lg overflow-hidden shadow-2xl">
+                        <a href="{{ route('clubs.players.create', $club) }}">
+                            <div class="flex justify-between">
+                                <div class="flex justify-center items-center h-80 w-full bg-gray-400 rounded-br-lg">
+                                    <p class="giant-text text-gray-500">+</p>
+                                </div>
+                                <div class="text-lg flex justify-center items-start p-2">
+                                    <p class="vertical mx-2 font-semibold">Ajouter un joueur</p>
+                                </div>
+                            </div>
+                            <div class="relative flex p-2">
+                                <p class="font-semibold">Ajouter un joueur</p>
+                            </div>
+                        </a>
+                    </div>
+                @endif
+            @endauth
             @foreach ($club->players->sortBy('last_name') as $key => $player)
                 <div x-data="{ open: false }"
                     class="relative w-72 m-4 bg-primary text-white flex flex-col justify-between rounded-lg shadow-2xl overflow-x-hidden">
@@ -80,8 +100,8 @@
                         @endcanany
                     </div>
                     <!-- ***********************
-                                        Formulaire suppression d'un joueur
-                                        ************************** -->
+                                            Formulaire suppression d'un joueur
+                                            ************************** -->
                     <div id=""
                         class="absolute bg-white top-0 left-0 right-0 bottom-0 text-primary z-20 flex flex-col justify-between items-center "
                         x-show="open" x-transition:enter="transition ease-out duration-300"
@@ -110,8 +130,8 @@
                     </div>
 
                     <!-- ***********************
-                                        Formulaire modification d'un joueur
-                                        ************************** -->
+                                            Formulaire modification d'un joueur
+                                            ************************** -->
 
                     <div id="{{ $player->id }}" class="hidden fixed z-50 inset-0 justify-center items-center"
                         style="background-color: rgba(0,0,0,.5);">
@@ -184,26 +204,7 @@
                     </div>
                 </div>
             @endforeach
-            @auth
-                @if (Auth::user()->club_id == $club->id)
-                    <div
-                        class="relative w-72 m-4 bg-success text-darkGray flex flex-col justify-between rounded-lg overflow-hidden shadow-2xl">
-                        <a href="{{ route('clubs.players.create', $club) }}">
-                            <div class="flex justify-between">
-                                <div class="flex justify-center items-center h-80 w-full bg-gray-400 rounded-br-lg">
-                                    <p class="giant-text text-gray-500">+</p>
-                                </div>
-                                <div class="text-lg flex justify-center items-start p-2">
-                                    <p class="vertical mx-2 font-semibold">Ajouter un joueur</p>
-                                </div>
-                            </div>
-                            <div class="relative flex p-2">
-                                <p class="font-semibold">Ajouter un joueur</p>
-                            </div>
-                        </a>
-                    </div>
-                @endif
-            @endauth
+
         </div>
     </div>
 @endsection
