@@ -3,6 +3,7 @@
 namespace App\Actions\Fortify;
 
 use App\Mail\MatchMail;
+use App\Mail\UserMail;
 use App\Models\Club;
 use App\Models\Player;
 use App\Models\Region;
@@ -62,7 +63,7 @@ class CreateNewUser implements CreatesNewUsers
 
         $superAdmin = User::where('role', 'super-admin')->get()->pluck('email');
         Mail::to($superAdmin)
-                    ->send(new MatchMail($userCreate));
+                    ->send(new UserMail($userCreate));
 
         // if ($input['isPlayer'] == 'yes') {
         //     $userIsPlayer = Player::where('last_name', $input['last_name'])->where('first_name', $input['first_name']);

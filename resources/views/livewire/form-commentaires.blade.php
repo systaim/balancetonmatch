@@ -463,7 +463,7 @@
                             </div>
                         </div>
                     @endif
-                    {{-- @if ($type_comments == 'but' || $type_comments == 'carton') --}}
+                    @if ($type_comments == 'but' || $type_comments == 'carton')
                         <div class="rounded-lg flex flex-col justify-center items-center p-4 w-full">
                             <select class="inputForm border border-black text-black" name="player" id="player"
                                 wire:model="player"
@@ -489,7 +489,7 @@
                                 @endif
                             </select>
                         </div>
-                    {{-- @endif --}}
+                    @endif
                     {{-- <div class="flex items-center text-white m-auto my-4">
                             <label class="cursor-pointer my-4 btn border border-black text-black" for="file">
                                 <div class="flex justify-between">
