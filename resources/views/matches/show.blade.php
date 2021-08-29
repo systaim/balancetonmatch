@@ -129,7 +129,6 @@
         <script src="{{ mix('js/app.js') }}?ver=1.01"></script>
 
         @livewireScripts
-        @method('scripts')
 
 </body>
 
