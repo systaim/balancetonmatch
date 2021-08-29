@@ -22,8 +22,8 @@
     @endisset() --}}
 
     <title>Balance Ton Match</title>
-    <link rel="stylesheet" href="{{ mix('css/app.css') }}?ver=1.01">
-    <link rel="stylesheet" href="{{ mix('css/styles.css') }}?ver=1.01" />
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}?ver=1.02">
+    <link rel="stylesheet" href="{{ mix('css/styles.css') }}?ver=1.02" />
     <script src="https://kit.fontawesome.com/c03c2336c3.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.0/dist/alpine.min.js" defer></script>
     {{-- <script data-ad-client="ca-pub-7237777700901740" async
@@ -100,7 +100,7 @@
         @include('footer')
     </div>
 
-    <script src="{{ mix('js/app.js') }}?ver=1.01"></script>
+    <script src="{{ mix('js/app.js') }}?ver=1.02"></script>
     @livewireScripts
 </body>
 
