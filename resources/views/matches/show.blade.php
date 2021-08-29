@@ -24,7 +24,7 @@
                 <meta property="og:image:url" content="{{ asset($match->awayClub->logo_path) }}" />
             @endif
         @else
-            <meta property="og:image:url" content="{{ asset('images/logos/btmLogo.jpg') }}" />
+            <meta property="og:image:url" content="{{ asset('images/logos/vs-primary.png') }}" />
     @endif
     <!-- Meta du site -->
     <title>Balance ton match ! {{ $match->homeclub->name }}
@@ -82,7 +82,7 @@
                     </div>
                 </div>
             </div>
-                @include('menu')
+            @include('menu')
         </header>
         @if (\Session::has('success'))
             <div class="message-alert success" x-show.transition="open">
