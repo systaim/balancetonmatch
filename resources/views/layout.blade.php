@@ -26,8 +26,8 @@
     <link rel="stylesheet" href="{{ mix('css/styles.css') }}?ver=1.02" />
     <script src="https://kit.fontawesome.com/c03c2336c3.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.0/dist/alpine.min.js" defer></script>
-    {{-- <script data-ad-client="ca-pub-7237777700901740" async
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> --}}
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7237777700901740"
+     crossorigin="anonymous"></script>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-MWPW5WC37V"></script>
