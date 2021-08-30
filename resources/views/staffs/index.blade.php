@@ -100,7 +100,7 @@
                             </div>
                         </div>
                         <div class="flex justify-center items-center">
-                            <form action="{{ route('clubs.players.destroy', [$club, $staff]) }}" method="POST">
+                            <form action="{{ route('clubs.staffs.destroy', [$club, $staff]) }}" method="POST">
                                 @method('DELETE')
                                 @csrf
                                 <button type="button" @click="open = false" class="btn">Annuler</button>
@@ -119,7 +119,7 @@
                             <a href=""><button class="text-4xl text-primary">X</button></a>
                         </div>
                         <div class="p-10 bg-white w-full sm:w-11/12 md:w-9/12 lg:w-6/12 rounded-lg shadow-xl">
-                            <form action="{{ route('clubs.players.update', [$club, $staff]) }}" method="post"
+                            <form action="{{ route('clubs.staffs.update', [$club, $staff]) }}" method="post"
                                 enctype="multipart/form-data">
                                 @foreach ($errors->all() as $message)
                                     {{ $message }}
