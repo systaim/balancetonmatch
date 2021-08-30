@@ -2,11 +2,11 @@
     style="background-image: url({{ asset($club->bg_path) }});">
     @include('clubs.logo')
     @if ($club->bg_path == null || $club->bg_path == '' || $club->bg_path == 'images/default-team.jpg')
-        <p class="absolute top-1/2 text-xl px-3 py-2 bg-primary text-secondary font-bold shadow-outline rounded-lg">
-            Pas encore de photo officielle pour ce club
+        <p class="text-base px-3 py-2 bg-primary text-white font-bold rounded-lg my-8">
+            Photo de couverture en attente...
         </p>
         @can('update-club', $club)
-            <button class="lg:right-10 bg-white border border-success font-bold text-xs px-2 py-1 rounded-md"
+            <button class="lg:right-10 bg-white border border-success font-bold text-sm px-2 py-1 rounded-md"
                 wire:click="clickButton">
                 Ajouter une photo de couverture 📷
             </button>
