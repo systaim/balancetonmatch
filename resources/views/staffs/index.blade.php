@@ -151,20 +151,21 @@
                                             type="date" name="date_of_birth" id="date_of_birth"
                                             value="{{ $staff->date_of_birth }}">
                                     </div>
-                                    <div>
-                                        <p>Position</p>
-                                        <div class="flex flex-col">
-                                            <select class="inputForm focus:outline-none focus:shadow-outline w-full my-1"
-                                                name="position" id="position" value="{{ $staff->position }}">
-                                                <option value="{{ $staff->position }}">{{ $staff->position }}
-                                                </option>
-                                                <option value="Gardien de but">Gardien de but</option>
-                                                <option value="Défenseur">Défenseur</option>
-                                                <option value="Milieu">Milieu</option>
-                                                <option value="Attaquant">Attaquant</option>
-                                            </select>
-                                        </div>
+                                    <p>Qualité</p>
+                                    <div class="flex flex-col">
+                                        <select class="inputForm focus:outline-none focus:shadow-outline w-full my-1" name="quality" id="quality" value="{{ $staff->quality }}">
+                                            <option value="{{ $staff->quality }}">{{ $staff->quality }}</option>
+                                            <option value="president">Président</option>
+                                            <option value="vice-president">Vice-président</option>
+                                            <option value="tresorier">Trésorier</option>
+                                            <option value="tresorier-adj">Trésorier-adjoint</option>
+                                            <option value="secretaire">Secrétaire</option>
+                                            <option value="secretaire-adj">Secrétaire-adjoint</option>
+                                            <option value="coach">Coach</option>
+                                            <option value="coach-adj">Coach-adjoint</option>
+                                        </select>
                                     </div>
+
                                     <div>
                                         <label for="file">Ajoute une photo</label>
                                         <input type="file" name="file" id="file" accept="jpeg,png,jpg,gif,svg">
