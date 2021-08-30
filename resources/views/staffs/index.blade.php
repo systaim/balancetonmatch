@@ -37,28 +37,8 @@
                             </div>
                             <img class="object-cover h-80 w-full rounded-b-lg" src="{{ asset($staff->avatar_path) }}"
                                 alt="photo de {{ $staff->first_name }} {{ $staff->last_name }}">
-                            @switch($staff->position)
-                                @case('Gardien de but')
-                                    <p
-                                        class="absolute bottom-1 right-1 bg-primary text-secondary font-bold py-1 px-2 rounded-lg">
-                                        GB</p>
-                                @break
-                                @case('Défenseur')
-                                    <p
-                                        class="absolute bottom-1 right-1 bg-primary text-secondary font-bold py-1 px-2 rounded-lg">
-                                        DEF</p>
-                                @break
-                                @case('Milieu')
-                                    <p
-                                        class="absolute bottom-1 right-1 bg-primary text-secondary font-bold py-1 px-2 rounded-lg">
-                                        MIL</p>
-                                @break
-                                @case('Attaquant')
-                                    <p
-                                        class="absolute bottom-1 right-1 bg-primary text-secondary font-bold py-1 px-2 rounded-lg">
-                                        ATT</p>
-                                @break
-                            @endswitch
+                            <p class="absolute bottom-1 right-1 bg-primary text-secondary font-bold py-1 px-2 rounded-lg">
+                                {{ $staff->quality }}</p>
                         </div>
                     </div>
                     <div class="relative flex justify-between items-end p-2 h-12">
@@ -80,8 +60,8 @@
                         @endcanany
                     </div>
                     <!-- ***********************
-                                                    Formulaire suppression d'un dirigeant
-                                                    ************************** -->
+                                                        Formulaire suppression d'un dirigeant
+                                                        ************************** -->
                     <div id=""
                         class="absolute bg-white top-0 left-0 right-0 bottom-0 text-primary z-20 flex flex-col justify-between items-center "
                         x-show="open" x-transition:enter="transition ease-out duration-300"
@@ -110,8 +90,8 @@
                     </div>
 
                     <!-- ***********************
-                                                    Formulaire modification d'un dirigeant
-                                                    ************************** -->
+                                                        Formulaire modification d'un dirigeant
+                                                        ************************** -->
 
                     <div id="{{ $staff->id }}" class="hidden fixed z-50 inset-0 justify-center items-center"
                         style="background-color: rgba(0,0,0,.5);">
@@ -153,16 +133,17 @@
                                     </div>
                                     <p>Qualité</p>
                                     <div class="flex flex-col">
-                                        <select class="inputForm focus:outline-none focus:shadow-outline w-full my-1" name="quality" id="quality" value="{{ $staff->quality }}">
+                                        <select class="inputForm focus:outline-none focus:shadow-outline w-full my-1"
+                                            name="quality" id="quality" value="{{ $staff->quality }}">
                                             <option value="{{ $staff->quality }}">{{ $staff->quality }}</option>
-                                            <option value="president">Président</option>
-                                            <option value="vice-president">Vice-président</option>
-                                            <option value="tresorier">Trésorier</option>
-                                            <option value="tresorier-adj">Trésorier-adjoint</option>
-                                            <option value="secretaire">Secrétaire</option>
-                                            <option value="secretaire-adj">Secrétaire-adjoint</option>
-                                            <option value="coach">Coach</option>
-                                            <option value="coach-adj">Coach-adjoint</option>
+                                            <option value="Président">Président</option>
+                                            <option value="Vice-président">Vice-président</option>
+                                            <option value="Trésorier">Trésorier</option>
+                                            <option value="Trésorier-adj">Trésorier-adjoint</option>
+                                            <option value="Secrétaire">Secrétaire</option>
+                                            <option value="Secrétaire-adj">Secrétaire-adjoint</option>
+                                            <option value="Coach">Coach</option>
+                                            <option value="Coach-adjoint">Coach-adjoint</option>
                                         </select>
                                     </div>
 
