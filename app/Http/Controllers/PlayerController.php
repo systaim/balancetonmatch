@@ -105,11 +105,11 @@ class PlayerController extends Controller
      * @param  \App\Models\Player  $player
      * @return \Illuminate\Http\Response
      */
-    public function show(Player $player)
+    public function show(Club $club, Player $player)
     {
         $goals = Statistic::where('action', 'goal')->count();
 
-        return View('players.show', compact('player', 'goals'));
+        return View('players.show', compact('player', 'goals', 'club'));
     }
 
     /**
@@ -169,6 +169,7 @@ class PlayerController extends Controller
     public function destroy(Club $club, Player $player)
     {
         $player->delete();
-        return back();
+        return redirect('clubs/' .$club->id. '/players')->with('success', 'Joueur supprimé !');
+
     }
 }

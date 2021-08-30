@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Competition;
 use App\Models\DivisionsRegion;
 use App\Models\Group;
+use App\Models\Journee;
 use App\Models\Match;
 use App\Models\Region;
 use Illuminate\Http\Request;
@@ -19,11 +20,10 @@ class CompetitionController extends Controller
     public function index()
     {
         $competitions = Competition::all();
-        $matchsR1 = Match::where('division_region_id', 1)->get();
         
         
 
-        return view("competitions.index", compact('competitions', 'matchsR1'));
+        return view("competitions.index", compact('competitions'));
     }
 
     /**
@@ -55,7 +55,15 @@ class CompetitionController extends Controller
      */
     public function show(Competition $competition, Group $group, Region $region, DivisionsRegion $division)
     {
-        //
+
+        $matchs = Match::where('division_region_id', $division->id)
+                    ->where('competition_id', $competition->id)
+                    ->where('region_id', $region->id)
+                    ->where('group_id', $group->id)
+                    ->get()->groupBy('journee_id');
+        $journees = Journee::find($matchs->keys());
+
+        return view('competitions.show', compact('competition', 'group', 'region', 'division', 'matchs', 'journees'));
     }
 
     /**

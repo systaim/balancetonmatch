@@ -44,6 +44,7 @@
                 </div>
             </div>
             <div id="matchs" class="cursor-pointer flex flex-col items-center justify-center w-16">
+                {{-- {{ count($liveMatches) }} --}}
                 <i class="far fa-list-alt text-xl"></i>
                 <p class="text-xs">Matchs</p>
             </div>

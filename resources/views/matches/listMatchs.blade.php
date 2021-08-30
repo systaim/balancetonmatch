@@ -58,7 +58,7 @@
             </div>
         </div>
     </section>
-    <section>
+    {{-- <section>
     <div class="flex flex-col lg:flex-row justify-between bg-primary rounded-lg my-4 sm:w-11/12 m-auto overflow-hidden">
         <div class="h-48 lg:h-auto lg:w-6/12 img-bg-blend-listMatchs">
         </div>
@@ -76,7 +76,7 @@
     <div class="relative lg:flex lg:justify-center">
         <div class="lg:w-9/12">
 
-            {{-- @livewire('search-match') --}}
+            @livewire('search-match')
             
             @foreach ($competitions as $competition)
             <h2 class="text-primary border-b-2 border-primary px-4 py-2 rounded-t-md lg:text-2xl">{{ $competition->name }}</h2>
@@ -88,5 +88,5 @@
             @endforeach
         </div>
     </div>
-</section>
+</section> --}}
 @endsection

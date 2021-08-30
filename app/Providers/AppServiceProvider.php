@@ -2,11 +2,14 @@
 
 namespace App\Providers;
 
+use App\Http\Controllers\Api\MatchController;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\URL;
 
 use Illuminate\Support\ServiceProvider;
 use Carbon\Carbon;
+use App\Models\Match;
+use Illuminate\Support\Facades\View;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class AppServiceProvider extends ServiceProvider
@@ -28,6 +31,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $liveMatchs = Match::where('date_match','>=', Carbon::now()->subMinutes(240))
+                ->where(function($query) {
+                    $query->where('live', '!=', 'attente');
+                })->get();
+        View::share('liveMatches', $liveMatchs);
+        
 
         setlocale(LC_ALL, "fr");
         Carbon::setLocale('fr');

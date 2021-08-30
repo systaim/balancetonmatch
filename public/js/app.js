@@ -19402,27 +19402,26 @@ module.exports = function(module) {
 var _require = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js"),
     forEach = _require.forEach;
 
-__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
-/******************************
- * 
- * menu Hamburger
- * 
- ******************************/
+__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); // /******************************
+//  * 
+//  * menu Hamburger
+//  * 
+//  ******************************/
+// let burger = document.getElementById("burger");
+// let nav = document.getElementById("main-nav");
+// let container = document.getElementById("container");
+// burger.addEventListener("click", function () {
+//     this.classList.toggle("is-open");
+//     nav.classList.toggle("is-open");
+//     container.classList.toggle("is-open");
+// });
 
-
-var burger = document.getElementById("burger");
-var nav = document.getElementById("main-nav");
-var container = document.getElementById("container");
-burger.addEventListener("click", function () {
-  this.classList.toggle("is-open");
-  nav.classList.toggle("is-open");
-  container.classList.toggle("is-open");
-});
 /******************************
  * 
  * menu Hamburger bas de page
  * 
  ******************************/
+
 
 var burger2 = document.getElementById("burger2");
 var menuMobile = document.getElementById("menu-mobile");

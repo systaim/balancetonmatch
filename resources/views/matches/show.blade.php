@@ -54,7 +54,7 @@
         gtag('js', new Date());
 
         gtag('config', 'G-MWPW5WC37V');
-    </script> --}}
+    </script>
 </head>
 
 <body>
