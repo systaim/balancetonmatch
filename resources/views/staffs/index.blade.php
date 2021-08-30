@@ -210,9 +210,9 @@
 
 <script>
     function openMenu(id) {
-        let players = <?php echo json_encode($club->players); ?>;
-        players.forEach(player => {
-            if (player.id == id) {
+        let staffs = <?php echo json_encode($club->staffs); ?>;
+        staffs.forEach(player => {
+            if (staff.id == id) {
                 let form = document.getElementById(id)
                 form.style.display = "flex"
             }
