@@ -15,7 +15,7 @@
             <h3 class="titlePage">Les dirigeants</h3>
         </div>
         <div class="flex flex-row flex-wrap justify-center">
-            @foreach ($club->players->sortBy('last_name') as $key => $staff)
+            @foreach ($club->staffs->sortBy('last_name') as $key => $staff)
                 <div x-data="{ open: false }"
                     class="relative w-72 m-4 bg-primary text-white flex flex-col justify-between rounded-lg shadow-2xl overflow-x-hidden">
                     <div class="absolute top-2 left-2 logo h-12 w-12 z-10">
