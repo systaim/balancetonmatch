@@ -1,5 +1,4 @@
 <div class="m-8 relative">
-    <h3>bonjour</h3>
     <form submit:prevent="logoSave">
         <label for="inputLogo">
             <input type="file" name="inputLogo" id="inputLogo" wire:model="inputLogo">

@@ -2,8 +2,15 @@
     style="background-image: url({{ asset($club->bg_path) }});">
     @include('clubs.logo')
     @if ($club->bg_path == null || $club->bg_path == '' || $club->bg_path == 'images/default-team.jpg')
-        <p class="absolute top-1/2 text-xl px-3 py-2 bg-primary text-secondary font-bold shadow-outline rounded-lg">Pas
-            encore de photo officielle pour ce club</p>
+        <p class="absolute top-1/2 text-xl px-3 py-2 bg-primary text-secondary font-bold shadow-outline rounded-lg">
+            Pas encore de photo officielle pour ce club
+        </p>
+        @can('update-club', $club)
+            <button class="lg:right-10 bg-white border border-success font-bold text-xs px-2 py-1 rounded-md"
+                wire:click="clickButton">
+                Ajouter une photo de couverture 📷
+            </button>
+        @endcan
     @endif
 
     @can('update-club', $club)
@@ -39,17 +46,18 @@
                 </div>
             </form>
         @else
-            <button
-                class="absolute top-2 right-3 lg:right-10 bg-white border border-success font-bold text-xs px-2 py-1 rounded-md"
-                wire:click="clickButton">Modifier 📷</button>
+            @if ($club->bg_path != 'images/default-team.jpg')
+                <button
+                    class="absolute top-2 right-3 lg:right-10 bg-white border border-success font-bold text-xs px-2 py-1 rounded-md"
+                    wire:click="clickButton">
+                    Modifier 📷
+                </button>
+            @endif
         @endif
-
     @endcan
-
     <div class="absolute bottom-20 h-10 w-10 bg-secondary pt-3 rounded-full flex justify-center border border-black">
         <a href="#infos">
             <i class="animate-bounce fas fa-arrow-down text-xl"></i>
         </a>
     </div>
-
 </div>
