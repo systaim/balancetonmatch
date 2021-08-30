@@ -211,7 +211,7 @@
 <script>
     function openMenu(id) {
         let staffs = <?php echo json_encode($club->staffs); ?>;
-        staffs.forEach(player => {
+        staffs.forEach(staff => {
             if (staff.id == id) {
                 let form = document.getElementById(id)
                 form.style.display = "flex"
