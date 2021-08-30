@@ -15,7 +15,7 @@
             <h3 class="titlePage">Les dirigeants</h3>
         </div>
         <div class="flex flex-row flex-wrap justify-center">
-            @foreach ($club->staffs->sortBy('last_name') as $key => $staff)
+            @foreach ($club->players->sortBy('last_name') as $key => $staff)
                 <div x-data="{ open: false }"
                     class="relative w-72 m-4 bg-primary text-white flex flex-col justify-between rounded-lg shadow-2xl overflow-x-hidden">
                     <div class="absolute top-2 left-2 logo h-12 w-12 z-10">
@@ -70,150 +70,149 @@
                             <p class="font-bold">né le : <span class="text-xs">non renseigné</span></p>
 
                         @endif
-                        @auth
-                            @if (Auth::user()->club_id == $club->id)
-                                <div>
-                                    <button onclick="openMenu({{ $staff->id }})" class="mr-1"><i
-                                            class="far fa-edit"></i></button>
-                            @endif
-                        @endauth
                         @canany(['isManager', 'isSuperAdmin', 'isAdmin'])
-                            <button id="{{ $key }}" @click="open = true"><i class="far fa-times-circle"></i></button>
+                            <div>
+                                <button onclick="openMenu({{ $staff->id }})" class="mr-1"><i
+                                        class="far fa-edit"></i></button>
+                                <button id="{{ $key }}" @click="open = true"><i
+                                        class="far fa-times-circle"></i></button>
+                            </div>
                         @endcanany
                     </div>
-                </div>
-                <!-- ***********************
+                    <!-- ***********************
                                                     Formulaire suppression d'un dirigeant
                                                     ************************** -->
-                <div id=""
-                    class="absolute bg-white top-0 left-0 right-0 bottom-0 text-primary z-20 flex flex-col justify-between items-center "
-                    x-show="open" x-transition:enter="transition ease-out duration-300"
-                    x-transition:enter-start="opacity-0 transform scale-90"
-                    x-transition:enter-end="opacity-100 transform scale-100"
-                    x-transition:leave="transition ease-in duration-300"
-                    x-transition:leave-start="opacity-100 transform scale-100"
-                    x-transition:leave-end="opacity-0 transform scale-90" @click.away="open = false">
-                    <div class="mt-3">
-                        <h3 class="text-xl text-center my-2 text-darkGray">{{ $staff->first_name }} <span
-                                class="uppercase">{{ $staff->last_name }}</span></h3>
-                        <div class="mt-12">
-                            <p class="text-lg text-center leading-5 text-gray-800">
-                                Etes vous sûr de vouloir supprimer ce dirigeant ?
-                            </p>
+                    <div id=""
+                        class="absolute bg-white top-0 left-0 right-0 bottom-0 text-primary z-20 flex flex-col justify-between items-center "
+                        x-show="open" x-transition:enter="transition ease-out duration-300"
+                        x-transition:enter-start="opacity-0 transform scale-90"
+                        x-transition:enter-end="opacity-100 transform scale-100"
+                        x-transition:leave="transition ease-in duration-300"
+                        x-transition:leave-start="opacity-100 transform scale-100"
+                        x-transition:leave-end="opacity-0 transform scale-90" @click.away="open = false">
+                        <div class="mt-3">
+                            <h3 class="text-xl text-center my-2 text-darkGray">{{ $staff->first_name }} <span
+                                    class="uppercase">{{ $staff->last_name }}</span></h3>
+                            <div class="mt-12">
+                                <p class="text-lg text-center leading-5 text-gray-800">
+                                    Etes vous sûr de vouloir supprimer ce dirigeant ?
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex justify-center items-center">
+                            <form action="{{ route('clubs.players.destroy', [$club, $staff]) }}" method="POST">
+                                @method('DELETE')
+                                @csrf
+                                <button type="button" @click="open = false" class="btn">Annuler</button>
+                                <input class="btn btnDanger" type="submit" value="Confirmer">
+                            </form>
                         </div>
                     </div>
-                    <div class="flex justify-center items-center">
-                        <form action="{{ route('clubs.staffs.destroy', [$club, $staff]) }}" method="POST">
-                            @method('DELETE')
-                            @csrf
-                            <button type="button" @click="open = false" class="btn">Annuler</button>
-                            <input class="btn btnDanger" type="submit" value="Confirmer">
-                        </form>
-                    </div>
-                </div>
 
-                <!-- ***********************
+                    <!-- ***********************
                                                     Formulaire modification d'un dirigeant
                                                     ************************** -->
 
-                <div id="{{ $staff->id }}" class="hidden fixed z-50 inset-0 justify-center items-center"
-                    style="background-color: rgba(0,0,0,.5);">
-                    <div class="absolute top-10 right-10">
-                        <a href=""><button class="text-4xl text-primary">X</button></a>
-                    </div>
-                    <div class="p-10 bg-white w-full sm:w-11/12 md:w-9/12 lg:w-6/12 rounded-lg shadow-xl">
-                        <form action="{{ route('clubs.staffs.update', [$club, $staff]) }}" method="post"
-                            enctype="multipart/form-data">
-                            @foreach ($errors->all() as $message)
-                                {{ $message }}
-                            @endforeach
-                            @method('PUT')
-                            @csrf
-                            <h5 class="text-primary text-center">Modifier le dirigeant</h5>
-                            <div class="text-primary">
-                                <div>
-                                    <label class="flex flex-col" for="last_name">Nom de famille</label>
-                                    <input class="inputForm focus:outline-none focus:shadow-outline w-full my-1" type="text"
-                                        name="last_name" id="last_name" value="{{ $staff->last_name }}">
-                                    @error('last_name')
-                                        <span class="error">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                                <div>
-                                    <label class="flex flex-col" for="first_name">Prénom</label>
-                                    <input class="inputForm focus:outline-none focus:shadow-outline w-full my-1" type="text"
-                                        name="first_name" value="{{ $staff->first_name }}" id="first_name">
-                                    @error('first_name')
-                                        <span class="error">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                                <div class="flex flex-col">
-                                    <label for="date_of_birth">Date de naissance</label>
-                                    <input class="inputForm focus:outline-none focus:shadow-outline w-full my-1" type="date"
-                                        name="date_of_birth" id="date_of_birth" value="{{ $staff->date_of_birth }}">
-                                </div>
-                                <div>
-                                    <p>Position</p>
+                    <div id="{{ $staff->id }}" class="hidden fixed z-50 inset-0 justify-center items-center"
+                        style="background-color: rgba(0,0,0,.5);">
+                        <div class="absolute top-10 right-10">
+                            <a href=""><button class="text-4xl text-primary">X</button></a>
+                        </div>
+                        <div class="p-10 bg-white w-full sm:w-11/12 md:w-9/12 lg:w-6/12 rounded-lg shadow-xl">
+                            <form action="{{ route('clubs.players.update', [$club, $staff]) }}" method="post"
+                                enctype="multipart/form-data">
+                                @foreach ($errors->all() as $message)
+                                    {{ $message }}
+                                @endforeach
+                                @method('PUT')
+                                @csrf
+                                <h5 class="text-primary text-center">Modifier le dirigeant</h5>
+                                <div class="text-primary">
+                                    <div>
+                                        <label class="flex flex-col" for="last_name">Nom de famille</label>
+                                        <input class="inputForm focus:outline-none focus:shadow-outline w-full my-1"
+                                            type="text" name="last_name" id="last_name" value="{{ $staff->last_name }}">
+                                        @error('last_name')
+                                            <span class="error">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <div>
+                                        <label class="flex flex-col" for="first_name">Prénom</label>
+                                        <input class="inputForm focus:outline-none focus:shadow-outline w-full my-1"
+                                            type="text" name="first_name" value="{{ $staff->first_name }}"
+                                            id="first_name">
+                                        @error('first_name')
+                                            <span class="error">{{ $message }}</span>
+                                        @enderror
+                                    </div>
                                     <div class="flex flex-col">
-                                        <select class="inputForm focus:outline-none focus:shadow-outline w-full my-1"
-                                            name="position" id="position" value="{{ $staff->position }}">
-                                            <option value="{{ $staff->position }}">{{ $staff->position }}
-                                            </option>
-                                            <option value="Gardien de but">Gardien de but</option>
-                                            <option value="Défenseur">Défenseur</option>
-                                            <option value="Milieu">Milieu</option>
-                                            <option value="Attaquant">Attaquant</option>
-                                        </select>
+                                        <label for="date_of_birth">Date de naissance</label>
+                                        <input class="inputForm focus:outline-none focus:shadow-outline w-full my-1"
+                                            type="date" name="date_of_birth" id="date_of_birth"
+                                            value="{{ $staff->date_of_birth }}">
+                                    </div>
+                                    <div>
+                                        <p>Position</p>
+                                        <div class="flex flex-col">
+                                            <select class="inputForm focus:outline-none focus:shadow-outline w-full my-1"
+                                                name="position" id="position" value="{{ $staff->position }}">
+                                                <option value="{{ $staff->position }}">{{ $staff->position }}
+                                                </option>
+                                                <option value="Gardien de but">Gardien de but</option>
+                                                <option value="Défenseur">Défenseur</option>
+                                                <option value="Milieu">Milieu</option>
+                                                <option value="Attaquant">Attaquant</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label for="file">Ajoute une photo</label>
+                                        <input type="file" name="file" id="file" accept="jpeg,png,jpg,gif,svg">
+                                        @error('file')
+                                            <span class="error">{{ $message }}</span>
+                                        @enderror
                                     </div>
                                 </div>
-                                <div>
-                                    <label for="file">Ajoute une photo</label>
-                                    <input type="file" name="file" id="file" accept="jpeg,png,jpg,gif,svg">
-                                    @error('file')
-                                        <span class="error">{{ $message }}</span>
-                                    @enderror
+                                <div class="mt-6 flex flex-col items-center justify-center sm:flex-row">
+                                    <a href="">
+                                        <button type="button" class="btn text-primary">J'annule</button>
+                                    </a>
+                                    <input class="btn btnSuccess" type="submit" value="Je modifie le dirigeant">
                                 </div>
-                            </div>
-                            <div class="mt-6 flex flex-col items-center justify-center sm:flex-row">
-                                <a href="">
-                                    <button type="button" class="btn text-primary">J'annule</button>
-                                </a>
-                                <input class="btn btnSuccess" type="submit" value="Je modifie le dirigeant">
-                            </div>
-                        </form>
+                            </form>
+                        </div>
                     </div>
                 </div>
+            @endforeach
+            @auth
+                @if (Auth::user()->club_id == $club->id)
+                    <div
+                        class="relative w-72 m-4 bg-success text-darkGray flex flex-col justify-between rounded-lg overflow-hidden shadow-2xl">
+                        <a href="{{ route('clubs.players.create', $club) }}">
+                            <div class="flex justify-between">
+                                <div class="flex justify-center items-center h-80 w-full bg-gray-400 rounded-br-lg">
+                                    <p class="giant-text text-gray-500">+</p>
+                                </div>
+                                <div class="text-lg flex justify-center items-start p-2">
+                                    <p class="vertical mx-2 font-semibold">Ajouter un dirigeant</p>
+                                </div>
+                            </div>
+                            <div class="relative flex p-2">
+                                <p class="font-semibold">Ajouter un dirigeant</p>
+                            </div>
+                        </a>
+                    </div>
+                @endif
+            @endauth
         </div>
-        @endforeach
-        @auth
-            @if (Auth::user()->club_id == $club->id)
-                <div
-                    class="relative w-72 m-4 bg-success text-darkGray flex flex-col justify-between rounded-lg overflow-hidden shadow-2xl">
-                    <a href="{{ route('clubs.staffs.create', $club) }}">
-                        <div class="flex justify-between">
-                            <div class="flex justify-center items-center h-80 w-full bg-gray-400 rounded-br-lg">
-                                <p class="giant-text text-gray-500">+</p>
-                            </div>
-                            <div class="text-lg flex justify-center items-start p-2">
-                                <p class="vertical mx-2 font-semibold">Ajouter un dirigeant</p>
-                            </div>
-                        </div>
-                        <div class="relative flex p-2">
-                            <p class="font-semibold">Ajouter un dirigeant</p>
-                        </div>
-                    </a>
-                </div>
-            @endif
-        @endauth
-    </div>
     </div>
 @endsection
 
 <script>
     function openMenu(id) {
-        let staffs = <?php echo json_encode($club->staffs); ?>;
-        staffs.forEach(staff => {
-            if (staff.id == id) {
+        let players = <?php echo json_encode($club->players); ?>;
+        players.forEach(player => {
+            if (player.id == id) {
                 let form = document.getElementById(id)
                 form.style.display = "flex"
             }

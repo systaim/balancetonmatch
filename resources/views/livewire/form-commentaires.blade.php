@@ -927,10 +927,12 @@
                                     <div class="flex items-center">
                                         @if ($comment->statistic)
                                             @if ($comment->team_action == 'away' || $comment->team_action == 'home')
-                                                <p class="font-bold mr-4">
-                                                    {{ $comment->statistic->player->first_name }}
-                                                    {{ $comment->statistic->player->last_name }}
-                                                </p>
+                                                @if ($comment->statistic->player)
+                                                    <p class="font-bold mr-4">
+                                                        {{ $comment->statistic->player->first_name }}
+                                                        {{ $comment->statistic->player->last_name }}
+                                                    </p>
+                                                @endif
                                                 @if ($comment->statistic->player->id >= 1 && $comment->statistic->player->id <= 16 && $match->id != 0)
                                                     <button type="button"
                                                         class="text-xs px-2 bg-primary text-white rounded-md"
@@ -960,7 +962,16 @@
                                                     @endforeach
                                                 </select>
                                             </div>
+                                            <button type="button" class="border rounded-lg py-1 shadow-xl hover:shadow-inner m-2"
+                                                wire:click="miseAJourJoueur('{{ $comment->team_action }}' ,  {{ $comment->statistic }})">
+                                                Je valide
+                                            </button>
                                             <div class="flex flex-col justify-center items-center ">
+                                                <p>Ou</p>
+                                                <a class="border rounded-lg py-1 shadow-xl hover:shadow-inner m-2 px-2" 
+                                                href="{{ route('clubs.players.index' ,[$comment->team_action == 'home' ? $match->homeClub->id : $match->awayClub->id])}}">
+                                                    Je crée le joueur ici
+                                                </a>
                                                 {{-- <p class="text-sm">Ou crée le ici</p>
                                                 <a href="{{route(players.index, [])}}"></a> --}}
                                                 {{-- <input
@@ -974,8 +985,6 @@
                                                     class="{{ $playerMatch != '' && $playerMatch != null ? 'cursor-not-allowed' : '' }} text-primary border-b border-primary focus:outline-none w-2/3 m-1 p-1"
                                                     type="text" placeholder="nom"> --}}
                                             </div>
-                                            <button type="button"
-                                                wire:click="miseAJourJoueur('{{ $comment->team_action }}' ,  {{ $comment->statistic }})">Envoyer</button>
                                         @else
                                             <div class="my-2 text-center">
                                                 <p class="text-xs">pour pouvoir renseigner ce joueur</p>

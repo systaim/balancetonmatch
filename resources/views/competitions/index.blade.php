@@ -7,8 +7,8 @@
 
     @endforeach
 
-    @foreach ($R1->divisions as $r1)
-        <p>{{ $r1->name }}</p>
+    @foreach ($matchsR1 as $match)
+        @include('match')
     @endforeach
 
 

@@ -83,7 +83,7 @@ Route::resource('commentaires', 'App\Http\Controllers\CommentaireController');
 Route::resource('clubs.players', 'App\Http\Controllers\PlayerController');
 Route::resource('clubs.staffs', 'App\Http\Controllers\StaffController');
 Route::resource('regions', 'App\Http\Controllers\RegionController');
-// Route::resource('competitions', CompetitionController::class);
+Route::resource('competitions', CompetitionController::class);
 
 Route::resource('admin/users', 'App\Http\Controllers\UserController')->middleware('auth');
 Route::resource('admin', '\App\Http\Controllers\AdminController')->middleware('auth');
