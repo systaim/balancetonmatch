@@ -11,9 +11,9 @@
         </div>
     </div>
     <div
-        class="bg-primary text-white shadow-lg relative my-2 flex flex-col p-4 w-full m-auto md:w-8/12 lg:w-6/12 rounded-lg">
+        class="bg-primary text-white shadow-lg relative my-2 flex flex-col p-4 w-full m-auto md:w-8/12 lg:w-6/12">
         <h4 class="text-center text-6xl">{{ $club->abbreviation }}</h4>
-        <h3 class="text-center text-secondary mb-4">Infos du club</h3>
+        <h3 class="text-center text-secondary mb-4 text-2xl">Infos du club</h3>
         @livewire('update-team',['club' => $club])
         {{-- @cannot('update-club', $club)
             <div class="flex-col justify-center my-4 m-auto">
