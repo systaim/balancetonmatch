@@ -31,7 +31,7 @@
                     <p class="text-xs">Accueil</p>
                 </div>
             </a>
-            <a href="{{Route('clubs.index')}}">
+            <a href="{{ Route('clubs.index') }}">
                 <div class="flex flex-col items-center justify-center w-16">
                     <i class="fas fa-search text-xl"></i>
                     <p class="text-xs">Clubs</p>
@@ -44,8 +44,11 @@
                 </div>
             </div>
             <div id="matchs" class="cursor-pointer flex flex-col items-center justify-center w-16">
-                {{-- {{ count($liveMatches) }} --}}
-                <i class="far fa-list-alt text-xl"></i>
+                @if (count($liveMatches) != 0)
+                    <p class="bg-secondary text-primary h-5 w-5 rounded-full text-xs flex justify-center items-center">{{ count($liveMatches) }}</p>
+                @else
+                    <i class="far fa-list-alt text-xl"></i>
+                @endif
                 <p class="text-xs">Matchs</p>
             </div>
             @auth
@@ -63,6 +66,21 @@
     </div>
     <div id="menu-mobile" class="invisible fixed bottom-0 w-full bg-white text-primary py-6 z-40">
         <div class="flex flex-wrap justify-center">
+            <a href="{{ route('clubs.show', [Auth::user()->club->id]) }}">
+                <div class="flex flex-col justify-center items-center w-36 m-2 rounded-md">
+                    <div class="logo h-10 w-10 cursor-pointer border-2">
+                        @if (Auth::user()->club->logo_path)
+                            <img class="object-contain" src="{{ asset(Auth::user()->club->logo_path) }}"
+                                alt="Logo de {{ Auth::user()->club->name }}">
+                        @else
+                            <img class="object-contain"
+                                src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ Auth::user()->club->numAffiliation }}.jpg"
+                                alt="Logo de {{ Auth::user()->club->name }}">
+                        @endif
+                    </div>
+                    <p class="text-md">Mon club</p>
+                </div>
+            </a>
             <a href="/contact">
                 <div class="flex flex-col justify-center items-center w-36 m-2 rounded-md">
                     <i class="far fa-envelope text-4xl"></i>
@@ -106,7 +124,7 @@
                 </a>
                 <a href="{{ route('logout') }}"
                     onclick="event.preventDefault();
-                                                                            document.getElementById('logout-form').submit();">
+                                                                                                document.getElementById('logout-form').submit();">
                     <div class="flex flex-col justify-center items-center w-36 m-2 rounded-md">
                         <i class="fas fa-power-off text-4xl"></i>
                         <p class="text-md">Déconnexion</p>
