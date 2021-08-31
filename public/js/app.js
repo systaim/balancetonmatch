@@ -19579,6 +19579,18 @@ window.addEventListener('scroll', function () {
   if (moveToBottom != null) moveTopToBottom(moveToBottom);
   if (moveToTop != null) moveBottomToTop(moveToTop);
 });
+/******************************
+ * 
+ * bouton demande dirigeant
+ * 
+ ******************************/
+
+var formDirigeant = document.getElementById("formDirigeant");
+var btnDemande = document.getElementById("btnDemande");
+btnDemande.addEventListener("click", function () {
+  formDirigeant.classList.add("flex");
+  formDirigeant.classList.remove("hidden");
+});
 
 /***/ }),
 

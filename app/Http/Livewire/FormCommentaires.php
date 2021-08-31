@@ -31,16 +31,15 @@ class FormCommentaires extends Component
     public $type_but = "";
     public $type_carton = "";
     public $type_actionMatch = "";
-    public $minute = 0;
+    public $minute;
     public $team_action = '';
     public $imageAction = '';
-
+    public $minuteMatch;
     public $commentPerso = "";
     public $minuteCom;
     public $player;
     public $home_score;
     public $away_score;
-    public $tpsMatch;
     public $stats;
     public $dateMatch;
     public $heureMatch;
@@ -58,9 +57,9 @@ class FormCommentaires extends Component
     public $scoreTabHome;
     public $scoreTabAway;
     public String $infoMatch = "";
-
-    public int $clickBut = 0;
-    public int $clickPenalty = 0;
+    public $btnTpsDejeu = false;
+    public $minuteModifiee;
+    public $btnScore = false;
 
     public $listGoal = [
         'GOOOOAAL !',
@@ -180,20 +179,11 @@ class FormCommentaires extends Component
         $this->miseAjourTemps();
     }
 
-    public function menuBut()
-    {
-        if ($this->clickBut == 1) $this->clickBut = 0;
-        if ($this->clickBut == 0) $this->clickBut = 1;
-    }
-
     public function clickButtonComment()
     {
 
-        if ($this->buttonComment == false) {
-            $this->buttonComment = true;
-        } else {
-            $this->buttonComment = false;
-        }
+        if ($this->buttonComment == false) $this->buttonComment = true;
+        else $this->buttonComment = false;
     }
 
     public function needHelp()
@@ -293,24 +283,41 @@ class FormCommentaires extends Component
         }
     }
 
+    public function clickTpsDeJeu()
+    {
+        if ($this->btnTpsDejeu == false) $this->btnTpsDejeu = true;
+        else $this->btnTpsDejeu = false;
+    }
+
+    public function corrigerTpsDeJeu()
+    {
+        $this->minute = $this->minuteModifiee;
+        $this->match->tps_de_jeu = $this->minuteModifiee;
+        $this->match->save();
+
+        $this->btnTpsDejeu = false;
+        $this->miseAjourTemps();
+    }
+
     public function miseAjourTemps()
     {
-
-        $this->minute = now()->diffInMinutes($this->match->debut_match_reel);
+        if ($this->match->live == "debut") {
+            $this->minute = now()->diffInMinutes($this->match->date_match);
+        }
 
         if ($this->match->live == "mitemps") {
             $this->minute = "MT";
         }
 
-        if ($this->match->debut_match_reel < $this->match->debut_sde_mt) {
-            $this->minute = 45 + now()->diffInMinutes($this->match->debut_sde_mt);
+        if ($this->match->live == "repriseMT") {
+            $this->minute = 60 + now()->diffInMinutes($this->match->date_match);
         }
 
-        if ($this->match->debut_debut_sde_mt < $this->match->debut_prolongations) {
+        if ($this->match->live == "prolongations1") {
             $this->minute = 90 + now()->diffInMinutes($this->match->debut_prolongations);
         }
 
-        if ($this->match->debut_prolongations < $this->match->debut_sde_mt_prolong) {
+        if ($this->match->live == "prolongations2") {
             $this->minute = 105 + now()->diffInMinutes($this->match->debut_sde_mt_prolong);
         }
 
@@ -342,6 +349,12 @@ class FormCommentaires extends Component
     }
 
     //incrémentation, décrémentation du score
+
+    public function clickBtnScore()
+    {
+        if ($this->btnScore == false) $this->btnScore = true;
+        else $this->btnScore = false;
+    }
 
     public function incrementHomeScore()
     {

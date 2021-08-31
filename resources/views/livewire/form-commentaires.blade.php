@@ -190,46 +190,49 @@
                                     class="bg-white rounded-sm mr-1 flex justify-center w-4 text-3xl px-4 sm:text-5xl sm:px-6 font-bold">
                                     {{ $home_score }}
                                 </p>
-                                @auth
-                                    @if ((Auth::user()->role == 'super-admin' || $match->commentateur) && $match->home_score >= 0)
-                                        <div class="flex justify-evenly items-center mt-1 z-10">
-                                            <button type="button" wire:click="decrementHomeScore"
-                                                class="focus:outline-none">
-                                                <span
-                                                    class="h-4 w-4 flex items-center justify-center text-black bg-danger font-bold">-</span>
-                                            </button>
-                                            <button type="button" wire:click="incrementHomeScore"
-                                                class="focus:outline-none">
-                                                <span
-                                                    class="h-4 w-4 flex items-center justify-center bg-success text-black font-bold">+</span>
-                                            </button>
-                                        </div>
-                                    @endif
-                                @endauth
+                                @if ($btnScore)
+                                    <div class="flex justify-evenly items-center mt-1 z-10">
+                                        <button type="button" wire:click="decrementHomeScore"
+                                            class="focus:outline-none">
+                                            <span
+                                                class="h-4 w-4 flex items-center justify-center text-black bg-danger font-bold">-</span>
+                                        </button>
+                                        <button type="button" wire:click="incrementHomeScore"
+                                            class="focus:outline-none">
+                                            <span
+                                                class="h-4 w-4 flex items-center justify-center bg-success text-black font-bold">+</span>
+                                        </button>
+                                    </div>
+                                @endif
                             </div>
                             <div class="z-10">
                                 <p
                                     class="bg-white rounded-sm ml-1 flex justify-center w-4 text-3xl px-4 sm:text-5xl sm:px-6 font-bold">
                                     {{ $away_score }}
                                 </p>
-                                @auth
-                                    @if ((Auth::user()->role == 'super-admin' || $match->commentateur) && $match->away_score >= 0)
-                                        <div class="flex justify-evenly items-center mt-1 z-10">
-                                            <button type="button" wire:click="decrementAwayScore"
-                                                class="focus:outline-none">
-                                                <span
-                                                    class="h-4 w-4 flex items-center justify-center text-black bg-danger font-bold">-</span>
-                                            </button>
-                                            <button type="button" wire:click="incrementAwayScore"
-                                                class="focus:outline-none">
-                                                <span
-                                                    class="h-4 w-4 flex items-center justify-center bg-success text-black font-bold">+</span>
-                                            </button>
-                                        </div>
-                                    @endif
-                                @endauth
+                                @if ($btnScore)
+                                    <div class="flex justify-evenly items-center mt-1 z-10">
+                                        <button type="button" wire:click="decrementAwayScore"
+                                            class="focus:outline-none">
+                                            <span
+                                                class="h-4 w-4 flex items-center justify-center text-black bg-danger font-bold">-</span>
+                                        </button>
+                                        <button type="button" wire:click="incrementAwayScore"
+                                            class="focus:outline-none">
+                                            <span
+                                                class="h-4 w-4 flex items-center justify-center bg-success text-black font-bold">+</span>
+                                        </button>
+                                    </div>
+                                @endif
                             </div>
                         </div>
+                        @if ((Auth::user()->role == 'super-admin' || $match->commentateur) && $match->home_score >= 0)
+                            @if (!$btnScore)
+                                <div class="mt-2">
+                                    <button type="button" wire:click="clickBtnScore" class="text-white text-xs">Corriger le score</button>
+                                </div>
+                            @endif
+                        @endif
                         @if (count($tabHome) != 0 && count($tabAway) != 0)
                             <div class="text-white flex flex-col items-center justify-center ">
                                 <p class="text-xs">Tab</p>
@@ -300,7 +303,7 @@
                             @endif
                         @endforeach
                     </div>
-                    <div class="col-span-4 flex justify-center">
+                    <div class="col-span-4 flex justify-center" wire:click="clickTpsDeJeu">
                         <div
                             class="text-white font-bold text-2xl bg-primary flex justify-center items-center w-20 h-20 my-3 rounded-full border-2 border-secondary">
                             @if ($match->live != 'attente' && $match->live != 'finDeMatch' && $match->live != 'reporte')
@@ -332,6 +335,15 @@
                         @endforeach
                     </div>
                 </div>
+                {{-- @if ($btnTpsDejeu)
+                    <div class="flex flex-col items-center justify-center">
+                        <div class="bg-primary rounded-lg p-4 w-60 flex flex-col items-center mb-3">
+                            <label class="sr-only" for="minuteModifiee">Modifier</label>
+                        <input class="bg-transparent text-white border border-white text-center font-bold px-2 py-1 text-xl" min="0" max="125" type="number" name="minuteModifiee" id="minuteModifiee" wire:model="minuteModifiee" autofocus placeholder="{{$minute}}" >
+                        <button class="btn btnSuccess" type="button" wire:click="corrigerTpsDeJeu">Valider</button>
+                        </div>
+                    </div>
+                @endif --}}
                 <div class="flex flex-col items-center justify-center w-full">
                     <div class="flex justify-center">
                         @if ($match->live != 'reporte' && $match->live != 'attente' && $match->live != 'finDeMatch')
@@ -544,14 +556,14 @@
             @endif --}}
             @auth
                 @if (Auth::user()->first_com == 1 && $match->commentateur != null && $match->commentateur->user_id == Auth::user()->id)
-                    <div class="bg-primary w-11/12 rounded-lg p-4 text-white m-auto my-2">
+                    <div class="bg-cool-gray-800 w-11/12 rounded-lg p-4 text-white m-auto my-2 text-center">
                         <h3 class="text-secondary text-center text-lg mb-4">Commenter facilement</h3>
                         <div class="my-4 mx-6 flex justify-center">
                             <div class="p-2">
-                                <div class="flex justify-center items-center">
-                                    <p>Appuie sur ce bouton</p>
+                                <div class="">
+                                    <p>Appuie sur ce bouton en bas de la page</p>
                                     <div
-                                        class="ml-2 flex justify-evenly items-center bg-primary text-white px-1 py-2 rounded-full w-48 border-2 border-secondary">
+                                        class="my-4 mx-auto flex justify-evenly items-center bg-primary text-white px-1 py-2 rounded-full w-48 border-2 border-secondary">
                                         <div
                                             class="h-10 w-10 shadow-2xl border-2 border-secondary bg-primary flex justify-center items-center rounded-full">
                                             <i class="fas fa-plus text-2xl text-white"></i>
@@ -588,12 +600,20 @@
                                 </div>
                                 {{-- <p>Tu peux ajouter une photo de l'exploit si tu veux</p> --}}
                                 <p>Valide ! et c'est tout... 😉</p>
+                                {{-- <div class="w-11/12 h-0.5 bg-white my-2"></div>
+                                <div class="my-2">
+                                    <div
+                                        class="mx-auto text-white font-bold text-2xl bg-primary flex justify-center items-center w-20 h-20 my-3 rounded-full border-2 border-secondary">
+                                        20
+                                    </div>
+                                    <p class="my-2">Tu es arrivé en retard ? Il y a eu un soucis pendant le match ?</p>
+                                    <p class="my-2">Appuie sur la bulle de temps de jeu et modifie le</p>
+                                </div> --}}
                             </div>
                         </div>
                         <div class="text-center">
                             <button type="button" class="btn btnSecondary" wire:click="clickFirstCom"
-                                wire:model="firstCom">J'ai
-                                compris</button>
+                                wire:model="firstCom">Fermer</button>
                         </div>
                     </div>
                 @endif
@@ -619,7 +639,7 @@
                                         </div>
                                     </button>
                                 @endif
-                                @if ($match->live == 'debut' && now()->diffInMinutes($match->debut_match_reel) >= 38)
+                                @if ($match->live == 'debut')
                                     <button type="button"
                                         class="relative commentaires h-24 bg-white commandeMatch items-stretch w-full focus:outline-none"
                                         wire:click="timeMitemps" wire:model="type_comments">
@@ -628,7 +648,7 @@
                                             <img src="{{ asset('images/whistle-white.png') }}">
                                         </div>
                                         <div class="bg-white w-full h-full p-3 flex flex-col justify-center items-center">
-                                            <p class="font-bold">Valider la mi-temps</p>
+                                            <p class="font-bold">C'est la mi-temps</p>
                                         </div>
                                     </button>
                                 @endif
@@ -641,11 +661,11 @@
                                             <img src="{{ asset('images/whistle-white.png') }}">
                                         </div>
                                         <div class="bg-white w-full h-full p-3 flex flex-col justify-center">
-                                            <p class="font-bold">Valider la reprise</p>
+                                            <p class="font-bold">C'est la reprise</p>
                                         </div>
                                     </button>
                                 @endif
-                                @if ($match->live == 'repriseMT' && now()->diffInMinutes($match->debut_sde_mt) >= 38)
+                                @if ($match->live == 'repriseMT')
                                     <button type="button"
                                         class="relative commentaires h-24 bg-white commandeMatch items-stretch w-full focus:outline-none"
                                         wire:click="timeFinDuMatch" wire:model="type_comments">
@@ -962,14 +982,15 @@
                                                     @endforeach
                                                 </select>
                                             </div>
-                                            <button type="button" class="border rounded-lg py-1 shadow-xl hover:shadow-inner m-2"
+                                            <button type="button"
+                                                class="border rounded-lg py-1 shadow-xl hover:shadow-inner m-2"
                                                 wire:click="miseAJourJoueur('{{ $comment->team_action }}' ,  {{ $comment->statistic }})">
                                                 Je valide
                                             </button>
                                             <div class="flex flex-col justify-center items-center ">
                                                 <p>Ou</p>
-                                                <a class="border rounded-lg py-1 shadow-xl hover:shadow-inner m-2 px-2" 
-                                                href="{{ route('clubs.players.index' ,[$comment->team_action == 'home' ? $match->homeClub->id : $match->awayClub->id])}}">
+                                                <a class="border rounded-lg py-1 shadow-xl hover:shadow-inner m-2 px-2"
+                                                    href="{{ route('clubs.players.index', [$comment->team_action == 'home' ? $match->homeClub->id : $match->awayClub->id]) }}">
                                                     Je crée le joueur ici
                                                 </a>
                                                 {{-- <p class="text-sm">Ou crée le ici</p>

@@ -18,14 +18,14 @@
             </div>
         </div>
     </section>
-    <section>
+    {{-- <section>
         @auth
             @if (Auth::user()->club)
                 <a href="{{ route('clubs.show', Auth::user()->club) }}">
                     <div class="shadow-2xl py-10 md:py-4 w-full flex flex-col lg:flex-row justify-center items-center"
                         style="background:linear-gradient(-150deg, {{ Auth::user()->club->primary_color }}, {{ Auth::user()->club->secondary_color }})">
-                        <div class="w-11/12 md:w-8/12 lg:w-4/12 rounded-lg bg-white">
-                            <div class="flex justify-center items-center p-6">
+                        <div class="relative w-11/12 md:w-8/12 lg:w-4/12 rounded-lg bg-white">
+                            <div class="flex justify-start items-center p-6">
                                 <div class="logo h-16 w-16 border mx-2">
                                     @if (Auth::user()->club->logo_path)
                                         <img class="object-contain" src="{{ asset(Auth::user()->club->logo_path) }}"
@@ -40,8 +40,8 @@
                                     <h3 class="truncate text-xl">{{ Auth::user()->club->name }}</h3>
                                 </div>
                             </div>
-                            <div class="flex items-end justify-end p-2">
-                                <p class=" border rounded-md px-1">mon club →</p>
+                            <div class="absolute bottom-2 right-2 flex items-end justify-end p-2">
+                                <p class="border rounded-md px-1">mon club →</p>
                             </div>
                         </div>
                         <div>
@@ -69,7 +69,7 @@
                             class="fas fa-arrow-right"></i></button></a>
             </div>
         @endauth
-    </section>
+    </section> --}}
     <section>
         <div class="container mx-auto">
             <div class="flex flex-wrap justify-evenly mx-4 mb-10 text-center text-white">

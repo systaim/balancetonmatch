@@ -59,7 +59,7 @@
 
 <body>
     <div id="container">
-        {{-- <header id="header" class="relative bg-gray-100 h-24 xl:h-auto">
+        <header id="header" class="hidden lg:block relative bg-gray-100 h-24 xl:h-auto">
             <div id="burger"
                 class="hidden absolute cursor-pointer top-5 left-3 justify-center items-center h-12 w-12 bg-primary z-50">
                 <div class="open-main-nav flex justify-center">
@@ -89,7 +89,7 @@
                 </div>
             </div>
             @include('menu')
-        </header> --}}
+        </header>
         @if (\Session::has('success'))
             <div class="message-alert success" x-show.transition="open">
                 <i class="fas fa-check-circle text-5xl text-white rounded-full shadow-xl m-4"></i>
