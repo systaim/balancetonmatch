@@ -77,38 +77,41 @@
             @endif
         </div>
     </div>
-    <div class="w-11/12 md:w-8/12 lg:w-6/12 m-auto">
-        <!-- devenir referent-club -->
-        @if (Auth::user()->club && Auth::user()->role == 'guest')
-            <div class="flex items-center justify-around my-2 bg-primary p-4 text-white shadow-xl rounded-lg">
-                <p>Je souhaite devenir un des référent de mon club</p>
-                <form action="{{ route('contacts.becomeManager') }}" method="post" style="display: none;">
-                    @csrf
-                </form>
-                <a id="btnDemande" class="btn btnSecondary">Demander</a>
-            </div>
-
-            <div id="formDirigeant" class="hidden fixed z-50 inset-0 justify-center items-center"
-                style="background-color: rgba(0,0,0,.5);">
-                <div class="absolute top-10 right-10">
-                    <a href="" class="text-4xl text-secondary font-bold">X</a>
-                </div>
-                <div class="p-10 bg-white w-full sm:w-11/12 md:w-9/12 lg:w-6/12 rounded-lg shadow-xl">
-                    <form action="{{ route('contacts.becomeManager') }}" method="post">
+    <!-- devenir referent-club -->
+    @auth
+        @if (Auth::user()->club && Auth::user()->role == 'guest' && $club->id == Auth::user()->club_id)
+            <div class="w-11/12 md:w-8/12 lg:w-6/12 m-auto">
+                <div class="flex items-center justify-around my-2 bg-primary p-4 text-white shadow-xl rounded-lg">
+                    <p>Je souhaite devenir un des référent du club</p>
+                    <form action="{{ route('contacts.becomeManager') }}" method="post" style="display: none;">
                         @csrf
-                        <h2 class="text-center mb-6">Es-tu sûr de vouloir faire la demande pour <span
-                                class="font-bold">{{ Auth::user()->club->name }}</span> ?</h2>
-                        <p>Avant de valider, vérifie bien ton adresse mail pour bien recevoir nos messages</p>
-                        <p>On reviendra très vite vers toi !</p>
-                        <div class="flex justify-end">
-                            <a href="" class="btn mx-8">J'annule</a>
-                            <input type="submit" class="btn btnSuccess" value="Je valide"></input>
-                        </div>
                     </form>
+                    <a id="btnDemande" class="btn btnSecondary">Demander</a>
+                </div>
+
+                <div id="formDirigeant" class="hidden fixed z-50 inset-0 justify-center items-center"
+                    style="background-color: rgba(0,0,0,.5);">
+                    <div class="absolute top-10 right-10">
+                        <a href="" class="text-4xl text-secondary font-bold">X</a>
+                    </div>
+                    <div class="p-10 bg-white w-full sm:w-11/12 md:w-9/12 lg:w-6/12 rounded-lg shadow-xl">
+                        <form action="{{ route('contacts.becomeManager') }}" method="post">
+                            @csrf
+                            <h2 class="text-center mb-6">Es-tu sûr de vouloir faire la demande pour <span
+                                    class="font-bold">{{ Auth::user()->club->name }}</span> ?</h2>
+                            <p>Avant de valider, vérifie bien ton adresse mail pour bien recevoir nos messages</p>
+                            <p>On reviendra très vite vers toi !</p>
+                            <div class="flex justify-end">
+                                <a href="" class="btn mx-8">J'annule</a>
+                                <input type="submit" class="btn btnSuccess" value="Je valide"></input>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         @endif
-    </div>
+    @endauth
+
     <div class="sm:w-11/12 md:w-9/12 xl:w-7/12 mx-auto">
         <h3 class="text-center my-4 border-b-2 border-darkGray">Prochain(s) match(s)</h3>
         @foreach ($matchs as $match)
