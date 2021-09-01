@@ -15,7 +15,7 @@ class CreateMatchesTable extends Migration
     {
         Schema::create('matches', function (Blueprint $table) {
             $table->id();
-            $table->string('slug');
+            $table->string('slug')->nullable();
             $table->enum('live',['attente','debut','mitemps','repriseMT','finDeMatch','reporte','annule','arrete','prolongations1','MTProlongations','prolongations2','finProlongations','tab'])->default('attente');
             $table->integer('tps_de_jeu')->nullable();
             $table->unsignedBigInteger('home_team_id');
@@ -28,7 +28,7 @@ class CreateMatchesTable extends Migration
             $table->datetime('debut_prolongations')->nullable();
             $table->datetime('fin_prolongations')->nullable();
             $table->string('location')->nullable();
-            $table->unsignedBigInteger('journee_id');
+            $table->unsignedBigInteger('journee_id')->nullable();
             $table->unsignedBigInteger('competition_id');
             $table->unsignedBigInteger('region_id')->nullable();
             $table->unsignedBigInteger('department_id')->nullable();

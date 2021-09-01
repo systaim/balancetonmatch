@@ -13,6 +13,7 @@ use App\Models\Division;
 use App\Models\DivisionsDepartment;
 use App\Models\Group;
 use App\Models\DivisionsRegion;
+use App\Models\Journee;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
@@ -52,12 +53,20 @@ class DatabaseSeeder extends Seeder
         // tables players numéros génériques
 
         for ($i = 1; $i <= 16; $i++) {
-            $slug = Str::slug('numero '. $i, '-');
+            $slug = Str::slug('numero ' . $i, '-');
             Player::create([
                 'slug' => $slug,
                 'last_name' => $i,
                 'first_name' => 'numéro',
 
+            ]);
+        }
+
+        // tables journees
+
+        for ($i = 1; $i <= 30; $i++) {
+            Journee::create([
+                'name' => $i,
             ]);
         }
 
@@ -75,9 +84,9 @@ class DatabaseSeeder extends Seeder
         }
         // envoi des départements
         DB::unprepared(file_get_contents('database/seeders/departments.sql'));
-        
+
         //liste des clubs
-        DB::unprepared(file_get_contents('database/seeders/clubs.sql'));
+        // DB::unprepared(file_get_contents('database/seeders/clubs.sql'));
 
         //nom de compétitions
         $competitions = ['Championnat régional', 'Championnat départemental', 'Coupe de France', 'Coupe régionale', 'Coupe départementale', 'Match amical'];
@@ -104,11 +113,5 @@ class DatabaseSeeder extends Seeder
         }
 
         Schema::enableForeignKeyConstraints();
-
-        $users = \App\Models\User::factory()->count(10)->create();
-        $players = \App\Models\Player::factory()->count(1000)->create();
-        $matchs = \App\Models\Match::factory()->count(100)->create();
-
-        
     }
 }

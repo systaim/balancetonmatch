@@ -17,7 +17,7 @@ class CreateCompetitionsTable extends Migration
             $table->id();
             $table->string('slug');
             $table->string('name');
-            $table->string('season')->default('2020/2021');
+            $table->string('season')->default('2021/2022');
             $table->timestamps();
         });
     }
