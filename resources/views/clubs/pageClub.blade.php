@@ -142,3 +142,14 @@
         @endif
     </div>
 @endsection
+
+<script>
+    let formDirigeant = document.getElementById("formDirigeant");
+    let btnDemande = document.getElementById("btnDemande");
+
+    btnDemande.addEventListener("click", function() {
+        formDirigeant.classList.add("flex");
+        formDirigeant.classList.remove("hidden");
+    });
+
+</script>

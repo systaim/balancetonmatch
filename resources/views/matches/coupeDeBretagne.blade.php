@@ -2,13 +2,13 @@
 @section('content')
 
 <div class="relative w-full py-10 bg-primary text-white  mb-6">
-    <h2 class="text-4xl lg:text-6xl text-center">COUPE DE FRANCE</h2>
+    <h2 class="text-4xl lg:text-6xl text-center">COUPE DE BRETAGNE</h2>
 </div>
 @livewire('search-match-coupe-de-france')
 
     <div class="relative lg:flex lg:justify-center">
         <div class="lg:w-9/12">            
-            <h2 class="inline-block text-2xl font-normal my-4 py-2 px-3 text-white bg-primary">2e tour</h2>
+            <h2 class="inline-block text-2xl font-normal my-4 py-2 px-3 text-white bg-primary">1er tour</h2>
             @foreach ($matchs as $match)
                 <div class="rounded-b-md rounded-tr-md">
                     @include('match')

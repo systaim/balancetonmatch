@@ -67,8 +67,8 @@
                 @if ($team_action == 'home')
                     <div>
                         <label class="fixed m-3 z-40 bottom-32 left-0" for="but" class="cursor-pointer">
-                            <input class="hidden" type="radio" id="but" wire:model="type_comments" name="type_comments"
-                                value="but">
+                            <input class="hidden" type="radio" id="but" wire:model="type_comments"
+                                name="type_comments" value="but">
                             <img class="border-2 border-secondary rounded-full shadow-xl bg-white m-2 p-2"
                                 src="{{ asset('images/ball.png') }}" width="50px" height="50px" alt="But !">
                         </label>
@@ -91,8 +91,8 @@
                 @if ($team_action == 'away')
                     <div>
                         <label class="fixed m-3 z-40 bottom-32 right-0" for="but" class="cursor-pointer">
-                            <input class="hidden" type="radio" id="but" wire:model="type_comments" name="type_comments"
-                                value="but">
+                            <input class="hidden" type="radio" id="but" wire:model="type_comments"
+                                name="type_comments" value="but">
                             <img class="border-2 border-secondary rounded-full shadow-xl bg-white m-2 p-2"
                                 src="{{ asset('images/ball.png') }}" width="50px" height="50px" alt="But !">
                         </label>
@@ -230,7 +230,8 @@
                             @if ((Auth::user()->role == 'super-admin' || $match->commentateur) && $match->home_score >= 0)
                                 @if (!$btnScore)
                                     <div class="mt-2">
-                                        <button type="button" wire:click="clickBtnScore" class="text-white text-xs">Corriger le score</button>
+                                        <button type="button" wire:click="clickBtnScore" class="text-white text-xs">Corriger
+                                            le score</button>
                                     </div>
                                 @endif
                             @endif
@@ -447,14 +448,16 @@
                                 <input class="hidden" type="radio" id="cartonRouge" wire:model="type_carton"
                                     name="type_comments" value="Carton rouge">
                                 <label class="inputAction" for="cartonRouge">
-                                    <img src="{{ asset('images/red-card.png') }}" alt="carton rouge" class="h-14">
+                                    <img src="{{ asset('images/red-card.png') }}" alt="carton rouge"
+                                        class="h-14">
                                 </label>
                             </div>
                             <div class="actionsMatch">
                                 <input class="hidden" type="radio" id="cartonBlanc" wire:model="type_carton"
                                     name="type_comments" value="Carton blanc">
                                 <label class="inputAction" for="cartonBlanc">
-                                    <img src="{{ asset('images/white-card.png') }}" alt="carton blanc" class="h-14">
+                                    <img src="{{ asset('images/white-card.png') }}" alt="carton blanc"
+                                        class="h-14">
                                 </label>
                             </div>
                         </div>
@@ -520,7 +523,7 @@
                             <span class="alert alert-danger">{{ $message }}</span>
                         @enderror --}}
                     <div class="flex flex-row justify-center items-center mt-4">
-                        <label class="" for="minuteCom">Temps de jeu</label>
+                        <label class="___class_+?156___" for="minuteCom">Temps de jeu</label>
                         <input class="border border-black mx-2 py-1 text-center outline-none" type="number"
                             name="minuteCom" wire:model="minuteCom" min="1" max="125">
                         @error('minuteCom')
@@ -531,38 +534,40 @@
                         <label for="exit" class="mr-6 cursor-pointer" wire:click="retour">Retour</label>
                         <button wire:loading.attr="disabled" wire:loading.class.remove="btnPrimary" wire:target="file"
                             class="btn btnPrimary" type="submit">Je commente</button>
-                        <input class="hidden" type="radio" id="exit" wire:model="team_action" name="team_action"
-                            value="">
+                        <input class="hidden" type="radio" id="exit" wire:model="team_action"
+                            name="team_action" value="">
                     </div>
                 </div>
             </div>
             <!----------------------
                 Options commentaires "match"
                     ------------------------->
-            {{-- @if (!Auth::user()->isFavoriMatch($match))
-                <div class="flex justify-center">
-                    <div>
-                        <div
-                            class="flex justify-start items-center bg-primary text-white px-1 py-2 rounded-lg w-96 border-2 border-white my-2 mx-1">
+            @auth
+                @if (!Auth::user()->isFavoriMatch($match))
+                    <div class="flex justify-center">
+                        <div>
                             <div
-                                class="h-12 w-12 shadow-2xl border-2 border-white bg-primary flex justify-center items-center rounded-full">
-                                @livewire('favori-match', ['match' => $match, 'user' => Auth::user()])
-                            </div>
-                            <div>
-                                <p class="px-3 text-xs">Toi aussi tu veux que ce match soit commenté ?</p>
-                                <p class="text-xs px-3">Clique sur l'étoile</p>
+                                class="flex justify-start items-center bg-primary text-white px-1 py-2 rounded-lg w-96 border-2 border-white my-2 mx-1">
+                                <div
+                                    class="h-12 w-12 shadow-2xl border-2 border-white bg-primary flex justify-center items-center rounded-full">
+                                    @livewire('favori-match', ['match' => $match, 'user' => Auth::user()])
+                                </div>
+                                <div>
+                                    <p class="px-3 text-xs">Toi aussi tu veux que ce match soit commenté ?</p>
+                                    <p class="text-xs px-3">Clique sur l'étoile</p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            @endif --}}
+                @endif
+            @endauth
             @auth
                 @if (Auth::user()->first_com == 1 && $match->commentateur != null && $match->commentateur->user_id == Auth::user()->id)
                     <div class="bg-cool-gray-800 w-11/12 rounded-lg p-4 text-white m-auto my-2 text-center">
                         <h3 class="text-secondary text-center text-lg mb-4">Commenter facilement</h3>
                         <div class="my-4 mx-6 flex justify-center">
                             <div class="p-2">
-                                <div class="">
+                                <div class="___class_+?172___">
                                     <p>Appuie sur ce bouton en bas de la page</p>
                                     <div
                                         class="my-4 mx-auto flex justify-evenly items-center bg-primary text-white px-1 py-2 rounded-full w-48 border-2 border-secondary">
@@ -677,7 +682,8 @@
                                         </div>
                                         <div class="bg-white w-full h-full p-3 flex flex-col justify-center">
                                             <p class="font-bold">Le match est terminé ! ⏱</p>
-                                            <p class="text-xs">On valide aux 3 coups de sifflet... <br>pas avant 😉</p>
+                                            <p class="text-xs">On valide aux 3 coups de sifflet... <br>pas avant 😉
+                                            </p>
                                         </div>
                                     </button>
                                 @endif
@@ -690,7 +696,7 @@
                                             <img src="{{ asset('images/whistle-white.png') }}">
                                         </div>
                                         <div class="bg-white w-full h-full p-3 flex flex-col justify-center items-center">
-                                            <p class="">Début de la 1ère mi-temps des prolongations</p>
+                                            <p class="___class_+?210___">Début de la 1ère mi-temps des prolongations</p>
                                         </div>
                                     </button>
                                 @endif
@@ -703,7 +709,7 @@
                                             <img src="{{ asset('images/whistle-white.png') }}">
                                         </div>
                                         <div class="bg-white w-full h-full p-3 flex flex-col justify-center items-center">
-                                            <p class="">Mi-temps de prolongations</p>
+                                            <p class="___class_+?214___">Mi-temps de prolongations</p>
                                         </div>
                                     </button>
                                 @endif
@@ -716,7 +722,8 @@
                                             <img src="{{ asset('images/whistle-white.png') }}">
                                         </div>
                                         <div class="bg-white w-full h-full p-3 flex flex-col justify-center items-center">
-                                            <p class="">Reprise de la seconde mi-temps des prolongations</p>
+                                            <p class="___class_+?218___">Reprise de la seconde mi-temps des prolongations
+                                            </p>
                                         </div>
                                     </button>
                                 @endif
@@ -729,7 +736,7 @@
                                             <img src="{{ asset('images/whistle-white.png') }}">
                                         </div>
                                         <div class="bg-white w-full h-full p-3 flex flex-col justify-center items-center">
-                                            <p class="">Fin des prolongations</p>
+                                            <p class="___class_+?222___">Fin des prolongations</p>
                                         </div>
                                     </button>
                                 @endif
@@ -742,7 +749,7 @@
                                             <img src="{{ asset('images/whistle-white.png') }}">
                                         </div>
                                         <div class="bg-white w-full h-full p-3 flex flex-col justify-center items-center">
-                                            <p class="">Tirs au but !!!</p>
+                                            <p class="___class_+?226___">Tirs au but !!!</p>
                                         </div>
                                     </button>
                                 @endif
@@ -761,7 +768,7 @@
                             <img src="{{ asset('images/whistle-white.png') }}">
                         </div>
                         <div class="bg-white w-full h-full p-3 flex flex-col justify-center items-center">
-                            <p class="">Je souhaite commenter ⏱</p>
+                            <p class="___class_+?232___">Je souhaite commenter ⏱</p>
                         </div>
                     </button>
                     <button type="button"
@@ -771,7 +778,8 @@
                             <img src="{{ asset('images/danger.png') }}">
                         </div>
                         <div class="bg-white w-full h-full p-3 flex flex-col justify-center">
-                            <p class="text-center">Le match est reporté ou annulé <i class="fas fa-cloud-showers-heavy"></i>
+                            <p class="text-center">Le match est reporté ou annulé <i
+                                    class="fas fa-cloud-showers-heavy"></i>
                             </p>
                             <div>
                                 @if (session()->has('messageAnnulation'))

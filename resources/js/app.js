@@ -102,18 +102,18 @@ compteurs.forEach(compteur => {
     let valeurCompteur = compteur.innerHTML;
     animateValue(compteur, 0, valeurCompteur, 3000);
 });
-/******************************
- * 
- * main menu
- * 
- ******************************/
+// /******************************
+//  * 
+//  * main menu
+//  * 
+//  ******************************/
 
-let menuRegions = document.getElementById('menuRegions')
-let sousMenuRegion = document.getElementById('sousMenuRegions')
+// let menuRegions = document.getElementById('menuRegions')
+// let sousMenuRegion = document.getElementById('sousMenuRegions')
 
-menuRegions.addEventListener('click', function () {
-    sousMenuRegion.classList.toggle('select')
-})
+// menuRegions.addEventListener('click', function () {
+//     sousMenuRegion.classList.toggle('select')
+// })
 
 /******************************
  * 
@@ -192,22 +192,6 @@ window.addEventListener('scroll', function () {
     if (moveToTop != null)
         moveBottomToTop(moveToTop)
 })
-/******************************
- * 
- * bouton demande dirigeant
- * 
- ******************************/
-
-
-    let formDirigeant = document.getElementById("formDirigeant");
-    let btnDemande = document.getElementById("btnDemande");
-
-    btnDemande.addEventListener("click", function() {
-        formDirigeant.classList.add("flex");
-        formDirigeant.classList.remove("hidden");
-    });
-
-
 
 
 

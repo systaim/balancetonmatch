@@ -19501,18 +19501,17 @@ compteurs.forEach(function (compteur) {
 
   var valeurCompteur = compteur.innerHTML;
   animateValue(compteur, 0, valeurCompteur, 3000);
-});
-/******************************
- * 
- * main menu
- * 
- ******************************/
+}); // /******************************
+//  * 
+//  * main menu
+//  * 
+//  ******************************/
+// let menuRegions = document.getElementById('menuRegions')
+// let sousMenuRegion = document.getElementById('sousMenuRegions')
+// menuRegions.addEventListener('click', function () {
+//     sousMenuRegion.classList.toggle('select')
+// })
 
-var menuRegions = document.getElementById('menuRegions');
-var sousMenuRegion = document.getElementById('sousMenuRegions');
-menuRegions.addEventListener('click', function () {
-  sousMenuRegion.classList.toggle('select');
-});
 /******************************
  * 
  * desactiver bouton pendant chargement
@@ -19579,18 +19578,6 @@ window.addEventListener('scroll', function () {
   if (moveToBottom != null) moveTopToBottom(moveToBottom);
   if (moveToTop != null) moveBottomToTop(moveToTop);
 });
-/******************************
- * 
- * bouton demande dirigeant
- * 
- ******************************/
-
-var formDirigeant = document.getElementById("formDirigeant");
-var btnDemande = document.getElementById("btnDemande");
-btnDemande.addEventListener("click", function () {
-  formDirigeant.classList.add("flex");
-  formDirigeant.classList.remove("hidden");
-});
 
 /***/ }),
 
@@ -19633,9 +19620,9 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/systaim/Documents/projets web/balancetonmatch/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /Users/systaim/Documents/projets web/balancetonmatch/resources/css/app.css */"./resources/css/app.css");
-module.exports = __webpack_require__(/*! /Users/systaim/Documents/projets web/balancetonmatch/resources/css/styles.css */"./resources/css/styles.css");
+__webpack_require__(/*! C:\Users\Systa\Documents\PROJETS WEB\balancetonmatch\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! C:\Users\Systa\Documents\PROJETS WEB\balancetonmatch\resources\css\app.css */"./resources/css/app.css");
+module.exports = __webpack_require__(/*! C:\Users\Systa\Documents\PROJETS WEB\balancetonmatch\resources\css\styles.css */"./resources/css/styles.css");
 
 
 /***/ })

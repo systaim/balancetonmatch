@@ -41,6 +41,16 @@ Route::get('/matches/coupe-de-france-2021-2022', function () {
     return view('matches.coupeDeFrance', compact('matchs','user','title'));
 });
 
+Route::get('/matches/coupe-de-bretagne-2021-2022', function () {
+
+    $matchs = Match::where('competition_id', 4)->where('date_match','>=', Carbon::now()->subHours(12))->where('region_id', 3)->orderBy('date_match', 'asc')->get();
+    $user = Auth::user();
+    $title = "coupeDeFrance";
+
+    return view('matches.coupeDeBretagne', compact('matchs','user','title'));
+});
+
+
 Route::get('/matches/amicaux-2021-2022', function () {
 
     $matchs = Match::where('competition_id', 6)->where('date_match','>=', Carbon::now()->subHours(12))->orderBy('date_match', 'asc')->get();

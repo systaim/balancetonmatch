@@ -104,13 +104,13 @@
     </div>
     <div id="menu-matchs" class="invisible fixed bottom-0 w-full bg-white text-primary py-6 z-40">
         <div class="flex flex-wrap justify-center">
-            <a href="{{ route('matches.create') }}">
+            {{-- <a href="{{ route('matches.create') }}">
                 <div class="flex flex-col justify-center items-center w-36 m-2 rounded-md">
                     <i class="far fa-plus-square text-4xl"></i>
                     <p class="text-md">Créer un match</p>
                 </div>
-            </a>
-            <a href="/matches">
+            </a> --}}
+            <a href="{{route('competitions.index')}}">
                 <div class="flex flex-col justify-center items-center w-36 m-2 rounded-md">
                     <i class="far fa-futbol text-4xl"></i>
                     <p class="text-md">Voir les matchs</p>
