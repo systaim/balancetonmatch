@@ -73,25 +73,38 @@
     <section>
         <div class="container mx-auto">
             <div class="flex flex-wrap justify-evenly mx-4 mb-10 text-center text-white">
-                <div class="w-11/12 md:w-2/5 my-5 pb-5 bg-primary rounded-lg shadow-2xl">
-                    <div class="rounded-lg h-48 overflow-hidden">
-                        <img alt="tous les matchs" class="object-cover object-center h-full w-full"
-                            src="{{ asset('images/ballon-feu.jpg') }}">
-                    </div>
-                    <h2 class="text-2xl font-medium mt-6 mb-3">Les matchs à venir</h2>
-                    <p class="leading-relaxed text-base">Les matchs programmés sont à retrouver ici.</p>
-                    <a href="/matches"><button class="btn btnSecondary">Je vais voir</button></a>
+                <div class="relative w-11/12 md:w-2/5 my-5 pb-5 bg-primary rounded-lg shadow-2xl">
+                    <a href="{{ route('competitions.index') }}">
+                        <div class="rounded-lg h-48 overflow-hidden">
+                            <img alt="tous les matchs" class="object-cover object-center h-full w-full"
+                                src="{{ asset('images/ballon-feu.jpg') }}">
+                        </div>
+                        <h2 class="text-2xl font-medium mt-6 mb-3">Les matchs à venir</h2>
+
+                        <div class="absolute bottom-2 right-2 px-2 border rounded-md">
+                            →
+                        </div>
+                    </a>
                 </div>
-                <div class="w-11/12 md:w-2/5 my-5 pb-5 bg-primary rounded-lg shadow-2xl">
-                    <div class="rounded-lg h-48 overflow-hidden">
-                        <img alt="les matchs en live" class="object-cover object-center h-full w-full"
-                            src="{{ asset('images/on-air.jpg') }}">
-                    </div>
-                    <h2 class="text-2xl font-medium mt-6 mb-3">Les matchs en Live</h2>
-                    <p class="leading-relaxed text-base">En ce moment <span
-                            class="bg-secondary text-primary py-1 px-2 rounded-lg">{{ count($liveMatches) }}</span>
-                        {{ count($liveMatches) <= 1 ? 'match' : 'matchs' }} en cours</p>
-                    <a href="/live"><button class="btn btnSecondary">Je vais voir</button></a>
+                <div class="relative w-11/12 md:w-2/5 my-5 pb-5 bg-primary rounded-lg shadow-2xl">
+                    <a href="/live">
+                        <div class="rounded-lg h-48 overflow-hidden">
+                            <img alt="les matchs en live" class="object-cover object-center h-full w-full"
+                                src="{{ asset('images/on-air.jpg') }}">
+                        </div>
+                        <h2 class="text-2xl font-medium mt-6">Les matchs en Live</h2>
+                        @if (count($liveMatches) == 0)
+                            <p class="leading-relaxed text-base">Pas de matchs en ce moment</p>
+                        @else
+                            <p class="leading-relaxed text-base">En ce moment <span
+                                    class="bg-secondary text-primary py-1 px-2 rounded-lg">{{ count($liveMatches) }}</span>
+                                {{ count($liveMatches) == 1 ? 'match' : 'matchs' }} en cours</p>
+                        @endif
+
+                        <div class="absolute bottom-2 right-2 px-2 border rounded-md">
+                            →
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>
@@ -227,7 +240,7 @@
             @endif
             @if (count($user->favorismatches) > 0)
                 <div class="w-full m-1">
-                    <div class="">
+                    <div class="___class_+?62___">
                         <h3 class="text-center"><i class="fas fa-star text-red-700"></i> Mes matchs favoris <i
                                 class="fas fa-star text-red-700"></i></h3>
                     </div>
