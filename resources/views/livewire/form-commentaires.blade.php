@@ -226,13 +226,15 @@
                                 @endif
                             </div>
                         </div>
-                        @if ((Auth::user()->role == 'super-admin' || $match->commentateur) && $match->home_score >= 0)
-                            @if (!$btnScore)
-                                <div class="mt-2">
-                                    <button type="button" wire:click="clickBtnScore" class="text-white text-xs">Corriger le score</button>
-                                </div>
+                        @auth
+                            @if ((Auth::user()->role == 'super-admin' || $match->commentateur) && $match->home_score >= 0)
+                                @if (!$btnScore)
+                                    <div class="mt-2">
+                                        <button type="button" wire:click="clickBtnScore" class="text-white text-xs">Corriger le score</button>
+                                    </div>
+                                @endif
                             @endif
-                        @endif
+                        @endauth
                         @if (count($tabHome) != 0 && count($tabAway) != 0)
                             <div class="text-white flex flex-col items-center justify-center ">
                                 <p class="text-xs">Tab</p>
