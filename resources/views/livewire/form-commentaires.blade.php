@@ -542,25 +542,24 @@
             <!----------------------
                 Options commentaires "match"
                     ------------------------->
-            @auth
-                @if (!Auth::user()->isFavoriMatch($match))
-                    <div class="flex justify-center">
-                        <div>
+                    @dump(Auth::user()->isFavoriMatch($match))
+            @if (!Auth::user()->isFavoriMatch($match))
+                <div class="flex justify-center">
+                    <div>
+                        <div
+                            class="flex justify-start items-center bg-primary text-white px-1 py-2 rounded-lg w-96 border-2 border-white my-2 mx-1">
                             <div
-                                class="flex justify-start items-center bg-primary text-white px-1 py-2 rounded-lg w-96 border-2 border-white my-2 mx-1">
-                                <div
-                                    class="h-12 w-12 shadow-2xl border-2 border-white bg-primary flex justify-center items-center rounded-full">
-                                    @livewire('favori-match', ['match' => $match, 'user' => Auth::user()])
-                                </div>
-                                <div>
-                                    <p class="px-3 text-xs">Toi aussi tu veux que ce match soit commenté ?</p>
-                                    <p class="text-xs px-3">Clique sur l'étoile</p>
-                                </div>
+                                class="h-12 w-12 shadow-2xl border-2 border-white bg-primary flex justify-center items-center rounded-full">
+                                @livewire('favori-match', ['match' => $match, 'user' => Auth::user()])
+                            </div>
+                            <div>
+                                <p class="px-3 text-xs">Toi aussi tu veux que ce match soit commenté ?</p>
+                                <p class="text-xs px-3">Clique sur l'étoile</p>
                             </div>
                         </div>
                     </div>
-                @endif
-            @endauth
+                </div>
+            @endif
             @auth
                 @if (Auth::user()->first_com == 1 && $match->commentateur != null && $match->commentateur->user_id == Auth::user()->id)
                     <div class="bg-cool-gray-800 w-11/12 rounded-lg p-4 text-white m-auto my-2 text-center">

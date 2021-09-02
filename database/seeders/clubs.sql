@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : db5001503922.hosting-data.io
--- Généré le : mer. 01 sep. 2021 à 20:03
+-- Généré le : jeu. 02 sep. 2021 à 19:33
 -- Version du serveur :  5.7.33-log
 -- Version de PHP : 7.0.33-0+deb9u11
 
@@ -34,9 +34,9 @@ CREATE TABLE `clubs` (
   `name` varchar(255) NOT NULL,
   `numAffiliation` varchar(10) DEFAULT NULL,
   `logo_path` varchar(255) DEFAULT NULL,
-  `bg_path` varchar(255) DEFAULT 'images/default-team.jpg' NULL,
-  `primary_color` varchar(10) DEFAULT '#ffffff' NULL,
-  `secondary_color` varchar(10) DEFAULT '#ffffff' NULL,
+  `bg_path` varchar(255) DEFAULT 'images/default-team.jpg',
+  `primary_color` varchar(10) DEFAULT '#ffffff',
+  `secondary_color` varchar(10) DEFAULT '#ffffff',
   `number_teams` int(11) DEFAULT NULL,
   `address` text,
   `zip_code` varchar(6) DEFAULT NULL,
@@ -11288,7 +11288,13 @@ INSERT INTO `clubs` (`id`, `abbreviation`, `name`, `numAffiliation`, `logo_path`
 (20905, NULL, 'ST HUBERT SPORT LANOUEE', '563824', NULL, 'images/default-team.jpg', '#092669', '#FFFFFF', NULL, NULL, '56120', 'LANOUEE', 3, NULL, '2021-08-31 15:57:15', '2021-08-31 15:57:15', NULL),
 (20906, NULL, 'F.C . BAIE DU MONT ST MICHEL', '580486', NULL, 'images/default-team.jpg', '#092669', '#DC143C', NULL, NULL, '35610', 'ROZ SUR COUESNON', 3, NULL, '2021-08-31 15:58:09', '2021-08-31 15:58:09', NULL),
 (20907, NULL, 'F.C. MESLAN', '525505', NULL, 'images/default-team.jpg', '092669', 'FFFFFF', NULL, NULL, '56320', 'MESLAN', 3, NULL, '2021-08-31 15:58:40', '2021-08-31 15:58:40', NULL),
-(20908, NULL, 'AVENIR STE HELENE', '551301', NULL, 'images/default-team.jpg', '#FFFFFF', '#FFFFFF', NULL, NULL, '56700', 'SAINTE HELENE', 3, NULL, '2021-08-31 15:59:10', '2021-08-31 15:59:10', NULL);
+(20908, NULL, 'AVENIR STE HELENE', '551301', NULL, 'images/default-team.jpg', '#FFFFFF', '#FFFFFF', NULL, NULL, '56700', 'SAINTE HELENE', 3, NULL, '2021-08-31 15:59:10', '2021-08-31 15:59:10', NULL),
+(20909, NULL, 'F. C.DU LIZILDRY PLOUGRESCANT', '553922', NULL, 'images/default-team.jpg', '#dc143c', '#000000', NULL, NULL, '22820', 'PLOUGRESCANT', 3, NULL, '2021-09-02 12:04:59', '2021-09-02 12:04:59', NULL),
+(20910, NULL, 'A. S. PLUMAUDAN', '553730', NULL, 'images/default-team.jpg', '#092669', '#FFFFFF', NULL, NULL, '22350', 'PLUMAUDAN', 3, NULL, '2021-09-02 12:13:09', '2021-09-02 12:13:09', NULL),
+(20911, NULL, 'BOURSEUL FC', '560791', NULL, 'images/default-team.jpg', '#FFFFFF', '#FFFFFF', NULL, NULL, '22130', 'BOURSEUL', 3, NULL, '2021-09-02 12:14:06', '2021-09-02 12:14:06', NULL),
+(20912, NULL, 'TRIEUX F. C.', '551676', NULL, 'images/default-team.jpg', '#FFFFFF', '#FFFFFF', NULL, NULL, '22720', 'PLESIDY', 3, NULL, '2021-09-02 12:14:52', '2021-09-02 12:14:52', NULL),
+(20913, NULL, 'A. S. MAYOTTE GUINGAMP', '563623', NULL, 'images/default-team.jpg', '#092669', '#DC143C', NULL, NULL, '22200', 'GUINGAMP', 3, NULL, '2021-09-02 12:16:02', '2021-09-02 12:16:02', NULL),
+(20914, NULL, 'F. C. GOMMENECOIS', '554087', NULL, 'images/default-team.jpg', NULL, NULL, NULL, NULL, '22290', 'GOMMENEC H', 3, NULL, '2021-09-02 12:17:20', '2021-09-02 12:17:20', NULL);
 
 --
 -- Index pour les tables déchargées
@@ -11308,7 +11314,7 @@ ALTER TABLE `clubs`
 -- AUTO_INCREMENT pour la table `clubs`
 --
 ALTER TABLE `clubs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20909;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20915;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

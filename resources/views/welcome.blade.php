@@ -73,20 +73,27 @@
     <section>
         <div class="container mx-auto">
             <div class="flex flex-wrap justify-evenly mx-4 mb-10 text-center text-white">
-                <div class="relative w-11/12 md:w-2/5 my-5 pb-5 bg-primary rounded-lg shadow-2xl">
+                <div class="relative w-11/12 md:w-2/5 my-5 bg-primary rounded-lg shadow-2xl">
                     <a href="{{ route('competitions.index') }}">
                         <div class="rounded-lg h-48 overflow-hidden">
                             <img alt="tous les matchs" class="object-cover object-center h-full w-full"
                                 src="{{ asset('images/ballon-feu.jpg') }}">
                         </div>
                         <h2 class="text-2xl font-medium mt-6 mb-3">Les matchs à venir</h2>
-
-                        <div class="absolute bottom-2 right-2 px-2 border rounded-md">
-                            →
+                        <div class="flex justify-end">
+                            <button class="btn btnSecondary">
+                                <p class="flex items-center">
+                                    J'y vais
+                                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
+                                        <path d="M5 12h14M12 5l7 7-7 7"></path>
+                                    </svg>
+                                </p>
+                            </button>
                         </div>
                     </a>
                 </div>
-                <div class="relative w-11/12 md:w-2/5 my-5 pb-5 bg-primary rounded-lg shadow-2xl">
+                <div class="relative w-11/12 md:w-2/5 my-5 bg-primary rounded-lg shadow-2xl">
                     <a href="/live">
                         <div class="rounded-lg h-48 overflow-hidden">
                             <img alt="les matchs en live" class="object-cover object-center h-full w-full"
@@ -100,9 +107,16 @@
                                     class="bg-secondary text-primary py-1 px-2 rounded-lg">{{ count($liveMatches) }}</span>
                                 {{ count($liveMatches) == 1 ? 'match' : 'matchs' }} en cours</p>
                         @endif
-
-                        <div class="absolute bottom-2 right-2 px-2 border rounded-md">
-                            →
+                        <div class="flex justify-end">
+                            <button class="btn btnSecondary">
+                                <p class="flex items-center">
+                                    J'y vais
+                                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
+                                        <path d="M5 12h14M12 5l7 7-7 7"></path>
+                                    </svg>
+                                </p>
+                            </button>
                         </div>
                     </a>
                 </div>
