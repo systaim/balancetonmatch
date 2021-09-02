@@ -56,7 +56,7 @@ class FormCommentaires extends Component
     public $tabAway;
     public $scoreTabHome;
     public $scoreTabAway;
-    public String $infoMatch = "";
+    public $infoMatch = "";
     public $btnTpsDejeu = false;
     public $minuteModifiee;
     public $btnScore = false;

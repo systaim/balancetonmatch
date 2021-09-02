@@ -86,7 +86,7 @@ class DatabaseSeeder extends Seeder
         DB::unprepared(file_get_contents('database/seeders/departments.sql'));
 
         //liste des clubs
-        // DB::unprepared(file_get_contents('database/seeders/clubs.sql'));
+        DB::unprepared(file_get_contents('database/seeders/clubs.sql'));
 
         //nom de compétitions
         $competitions = ['Championnat régional', 'Championnat départemental', 'Coupe de France', 'Coupe régionale', 'Coupe départementale', 'Match amical'];

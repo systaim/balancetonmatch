@@ -24,8 +24,10 @@ class CreateMatchesTable extends Migration
             $table->integer('away_score')->nullable();
             $table->datetime('date_match');
             $table->datetime('debut_match_reel')->nullable();
+            $table->datetime('debut_sde_mt')->nullable();
             $table->datetime('fin_match_reel')->nullable();
             $table->datetime('debut_prolongations')->nullable();
+            $table->datetime('debut_sde_mt_prolong')->nullable();
             $table->datetime('fin_prolongations')->nullable();
             $table->string('location')->nullable();
             $table->unsignedBigInteger('journee_id')->nullable();
