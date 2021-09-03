@@ -359,7 +359,7 @@
             <div class="bg-gray-900 px-8 py-2 text-white text-center flex justify-evenly items-center">
                 <div class="flex items-center font-sans text-sm rounded-md px-2 bg-blue-500">
                     <i class="fab fa-facebook mr-2 text-lg"></i>
-                    <div data-href="{{ request()->url() }}" data-layout="button" data-size="small">
+                    <div data-href="https://balancetonmatch.com/matches/{{$match->id}}" data-layout="button" data-size="small">
                         <a target="_blank"
                             href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse"
                             class="fb-xfbml-parse-ignore">
@@ -369,7 +369,6 @@
                 </div>
                 <p>Spectateurs : <span class="ml-2 font-bold">{{ count($visitors) }}</span></p>
             </div>
-            @dump(request()->url())
             @if ($nbrFavoris > 0 && $match->live == 'attente')
                 <div class="bg-secondary text-primary rounded-lg relative flex justify-center p-1 shadow-lg m-2">
                     @if ($nbrFavoris == 1)
