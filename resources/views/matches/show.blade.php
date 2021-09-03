@@ -20,16 +20,17 @@
                 content="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $match->homeClub->numAffiliation }}.jpg" />
         @endif
     @elseif ($match->home_score < $match->away_score)
-        @if ($match->awayClub->logo_path)
-            <meta property="og:image:url" content="{{ asset($match->awayClub->logo_path) }}" />
+            @if ($match->awayClub->logo_path)
+                <meta property="og:image:url" content="{{ asset($match->awayClub->logo_path) }}" />
+            @else
+                <meta property="og:image:url"
+                    content="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $match->awayClub->numAffiliation }}.jpg" />
+            @endif
         @else
-            <meta property="og:image:url"
-                content="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $match->awayClub->numAffiliation }}.jpg" />
-        @endif
-    @elseif ($match->live == "attente")
+            <meta property="og:image:url" content="{{ asset('images/logos/btmLogo.jpg') }}" />
+    @endif
+    @if ($match->live == 'attente')
         <meta property="og:image:url" content="{{ asset('images/logos/vs-primary.png') }}" />
-    @else
-        <meta property="og:image:url" content="{{ asset('images/logos/btmLogo.jpg') }}" />
     @endif
     <!-- Meta du site -->
     <title>Balance ton match ! {{ $match->homeclub->name }}
@@ -40,8 +41,8 @@
     <script src="https://kit.fontawesome.com/c03c2336c3.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.0/dist/alpine.min.js" defer></script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7237777700901740"
-     crossorigin="anonymous"></script>
-        
+        crossorigin="anonymous"></script>
+
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-MWPW5WC37V"></script>

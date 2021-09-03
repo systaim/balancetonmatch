@@ -141,16 +141,11 @@
                 </div>
                 <div class="grid grid-cols-12 lg:mx-16 xl:mx-24 mb-2">
                     <div class="col-span-5 overflow-hidden">
-                        <div
-                            class="bg-primary p-2 text-secondary flex flex-col lg:flex-row lg:items-center lg:rounded-l-full">
-                            <div class="relative flex justify-center">
-                                @auth
-                                    @if (Auth::user()->role == 'super-admin' || ($match->commentateur != null && $match->commentateur->user_id == Auth::user()->id && $match->live != 'attente' && $match->live != 'finDeMatch'))
-                                        <input class="hidden" type="radio" wire:model="team_action" id="homeAction"
-                                            name="team_action" value="home">
-                                    @endif
-                                @endauth
-                                <label for="homeAction">
+                        <a href="{{ route('clubs.show', $match->homeClub->id) }}">
+                            <div
+                                class="bg-primary p-2 text-secondary flex flex-col lg:flex-row lg:items-center lg:rounded-l-full">
+
+                                <div class="relative flex justify-center">
                                     <div
                                         class="logo h-16 w-16 sm:h-20 sm:w-20 lg:h-32 lg:w-32 cursor-pointer lg:mr-1 xl:mr-4">
                                         @if ($match->id == 0)
@@ -168,19 +163,14 @@
                                             @endif
                                         @endif
                                     </div>
-                                </label>
-                            </div>
-                            <div>
-                                <p class="truncate text-center sm:font-bold lg:text-2xl">
-                                    {{ $match->homeClub->name }}
-                                </p>
-                                <a href="{{ route('clubs.show', $match->homeClub->id) }}">
-                                    <p class="float-left truncate text-right text-xs underline leading-6">
-                                        page club →
+                                </div>
+                                <div>
+                                    <p class="truncate text-center sm:font-bold lg:text-2xl">
+                                        {{ $match->homeClub->name }}
                                     </p>
-                                </a>
+                                </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
                     <div
                         class="relative col-span-2 bg-gradient-to-r from-primary to-secondary flex flex-col justify-center items-center">
@@ -227,7 +217,7 @@
                             </div>
                         </div>
                         @auth
-                            @if ((Auth::user()->role == 'super-admin' || $match->commentateur) && $match->home_score >= 0)
+                            @if ((Auth::user()->role == 'super-admin' || $match->commentateur) && $match->live != 'attente')
                                 @if (!$btnScore)
                                     <div class="mt-2">
                                         <button type="button" wire:click="clickBtnScore" class="text-white text-xs">Corriger
@@ -244,26 +234,15 @@
                         @endif
                     </div>
                     <div class="col-span-5 overflow-hidden z-0">
-                        <div
-                            class="bg-secondary p-2 text-primary flex flex-col-reverse lg:flex-row lg:items-center lg:justify-end lg:rounded-r-full">
-                            <div>
-                                <p class="truncate text-center lg:text-left sm:font-bold lg:text-2xl">
-                                    {{ $match->awayClub->name }}
-                                </p>
-                                <a href="{{ route('clubs.show', $match->awayClub->id) }}">
-                                    <p class="truncate text-right text-xs underline leading-6">
-                                        page club →
+                        <a href="{{ route('clubs.show', $match->awayClub->id) }}">
+                            <div
+                                class="bg-secondary p-2 text-primary flex flex-col-reverse lg:flex-row lg:items-center lg:justify-end lg:rounded-r-full">
+                                <div>
+                                    <p class="truncate text-center lg:text-left sm:font-bold lg:text-2xl">
+                                        {{ $match->awayClub->name }}
                                     </p>
-                                </a>
-                            </div>
-                            <div class="flex justify-center">
-                                @auth
-                                    @if (Auth::user()->role == 'super-admin' || ($match->commentateur != null && $match->commentateur->user_id == Auth::user()->id && $match->live != 'attente' && $match->live != 'finDeMatch'))
-                                        <input class="hidden" type="radio" wire:model="team_action" id="awayAction"
-                                            name="team_action" value="away">
-                                    @endif
-                                @endauth
-                                <label for="awayAction">
+                                </div>
+                                <div class="flex justify-center">
                                     <div
                                         class="logo h-16 w-16 sm:h-20 sm:w-20 lg:h-32 lg:w-32 cursor-pointer lg:ml-1 xl:ml-4">
                                         @if ($match->id == 0)
@@ -281,9 +260,9 @@
                                             @endif
                                         @endif
                                     </div>
-                                </label>
+                                </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
                 </div>
                 <div class="grid grid-cols-12">
@@ -543,7 +522,7 @@
                 Options commentaires "match"
                     ------------------------->
             @auth
-                @if (!Auth::user()->isFavoriMatch($match))
+                @if (!Auth::user()->isFavoriMatch($match) && $match->x == "attente")
                     <div>
                         <div
                             class="flex justify-start items-center bg-primary text-white px-1 py-2 rounded-lg w-full border-2 border-white my-2">
@@ -559,19 +538,18 @@
                     </div>
                 @endif
             @else
-            <a href="/login">
-                <div
-                    class="flex justify-start items-center bg-primary text-white px-1 py-2 rounded-lg w-full border-2 border-white my-2">
+                <a href="/login">
                     <div
-                        class="h-12 w-12 shadow-2xl border-2 bg-white flex justify-center items-center rounded-full">
-                        <i class="far fa-star cursor-pointer text-red-700 text-2xl"></i>
+                        class="flex justify-start items-center bg-primary text-white px-1 py-2 rounded-lg w-full border-2 border-white my-2">
+                        <div class="h-12 w-12 shadow-2xl border-2 bg-white flex justify-center items-center rounded-full">
+                            <i class="far fa-star cursor-pointer text-red-700 text-2xl"></i>
+                        </div>
+                        <div>
+                            <p class="px-3 text-xs">Toi aussi tu veux que ce match soit commenté ?</p>
+                            <p class="text-xs px-3 font-semibold">Connecte toi</p>
+                        </div>
                     </div>
-                    <div>
-                        <p class="px-3 text-xs">Toi aussi tu veux que ce match soit commenté ?</p>
-                        <p class="text-xs px-3 font-semibold">Connecte toi</p>
-                    </div>
-                </div>
-            </a>
+                </a>
             @endauth
             @auth
                 @if (Auth::user()->first_com == 1 && $match->commentateur != null && $match->commentateur->user_id == Auth::user()->id)
@@ -770,8 +748,8 @@
                     @endif
                 </div>
                 @if (empty($match->commentateur) && $match->live != 'finDeMatch')
-                    <div class="flex justify-center items-center my-6">
-                        <p class="bg-primary text-white py-2 px-3 rounded-lg">En attente d'un commentateur</p>
+                    <div class="flex justify-center items-center my-2">
+                        <p class="py-2 px-3 underline">En attente d'un commentateur</p>
                     </div>
                     <button type="button"
                         class="relative commentaires h-24 bg-white commandeMatch items-stretch w-full focus:outline-none minHeight16"
@@ -780,7 +758,14 @@
                             <img src="{{ asset('images/whistle-white.png') }}">
                         </div>
                         <div class="bg-white w-full h-full p-3 flex flex-col justify-center items-center">
-                            <p class="___class_+?232___">Je souhaite commenter ⏱</p>
+                            <p>Je souhaite commenter ⏱</p>
+                            @if (\Session::has('warning'))
+                                <div class="message-alert warning">
+                                    <i
+                                        class="fas fa-exclamation-circle text-5xl text-white rounded-full shadow-xl m-4"></i>
+                                    <p> {!! \Session::get('warning') !!}</p>
+                                </div>
+                            @endif
                         </div>
                     </button>
                     <button type="button"

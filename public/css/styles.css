@@ -206,7 +206,7 @@ input::-o-inner-spin-button,
 }
 
 .message-alert {
-  position: fixed;
+  position: absolute;
   opacity: 0;
   bottom: 2.5rem;
   right: 1rem;
