@@ -542,7 +542,6 @@
             <!----------------------
                 Options commentaires "match"
                     ------------------------->
-                    @dump(Auth::user()->isFavoriMatch($match))
             @if (!Auth::user()->isFavoriMatch($match))
                 <div class="flex justify-center">
                     <div>
