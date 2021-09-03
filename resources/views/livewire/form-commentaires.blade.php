@@ -369,6 +369,7 @@
                 </div>
                 <p>Spectateurs : <span class="ml-2 font-bold">{{ count($visitors) }}</span></p>
             </div>
+            @dump(request()->url())
             @if ($nbrFavoris > 0 && $match->live == 'attente')
                 <div class="bg-secondary text-primary rounded-lg relative flex justify-center p-1 shadow-lg m-2">
                     @if ($nbrFavoris == 1)
