@@ -19620,9 +19620,9 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/systaim/Documents/projets web/balancetonmatch/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /Users/systaim/Documents/projets web/balancetonmatch/resources/css/app.css */"./resources/css/app.css");
-module.exports = __webpack_require__(/*! /Users/systaim/Documents/projets web/balancetonmatch/resources/css/styles.css */"./resources/css/styles.css");
+__webpack_require__(/*! C:\Users\Systa\Documents\PROJETS WEB\balancetonmatch\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! C:\Users\Systa\Documents\PROJETS WEB\balancetonmatch\resources\css\app.css */"./resources/css/app.css");
+module.exports = __webpack_require__(/*! C:\Users\Systa\Documents\PROJETS WEB\balancetonmatch\resources\css\styles.css */"./resources/css/styles.css");
 
 
 /***/ })

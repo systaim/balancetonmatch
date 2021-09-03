@@ -549,7 +549,8 @@
                             class="flex justify-start items-center bg-primary text-white px-1 py-2 rounded-lg w-96 border-2 border-white my-2 mx-1">
                             <div
                                 class="h-12 w-12 shadow-2xl border-2 border-white bg-primary flex justify-center items-center rounded-full">
-                                @livewire('favori-match', ['match' => $match, 'user' => Auth::user()])
+                                {{-- @livewire('favori-match', ['match' => $match, 'user' => Auth::user(), 'key' => time().$match->id]) --}}
+                                <livewire:favori-match :match="$match" :user="Auth::user()" :key="time().$match->id"/>
                             </div>
                             <div>
                                 <p class="px-3 text-xs">Toi aussi tu veux que ce match soit commenté ?</p>
