@@ -351,22 +351,7 @@
                     </div>
                 </div>
             </div>
-            <div id="fb-root"></div>
-            <script async defer crossorigin="anonymous"
-                        src="https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v11.0&appId=956162407752245&autoLogAppEvents=1"
-                        nonce="1VieG64p">
-            </script>
-            <div class="bg-gray-900 px-8 py-2 text-white text-center flex justify-evenly items-center">
-                <div class="flex items-center font-sans text-sm rounded-md px-2 bg-blue-500">
-                    <i class="fab fa-facebook mr-2 text-lg"></i>
-                    <div data-href="https://balancetonmatch.com/matches/{{$match->id}}" data-layout="button" data-size="small">
-                        <a target="_blank"
-                            href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse"
-                            class="fb-xfbml-parse-ignore">
-                            Partager
-                        </a>
-                    </div>
-                </div>
+            <div class="bg-gray-900 px-8 py-2 text-white text-center flex justify-center items-center">
                 <p>Spectateurs : <span class="ml-2 font-bold">{{ count($visitors) }}</span></p>
             </div>
             @if ($nbrFavoris > 0 && $match->live == 'attente')
