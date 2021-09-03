@@ -542,25 +542,36 @@
             <!----------------------
                 Options commentaires "match"
                     ------------------------->
-            @auth()
+            @auth
                 @if (!Auth::user()->isFavoriMatch($match))
-                    <div class="mx-auto">
-                        <div>
+                    <div>
+                        <div
+                            class="flex justify-start items-center bg-primary text-white px-1 py-2 rounded-lg w-full border-2 border-white my-2">
                             <div
-                                class="flex justify-start items-center bg-primary text-white px-1 py-2 rounded-lg w-96 border-2 border-white my-2 mx-1">
-                                <div
-                                    class="h-12 w-12 shadow-2xl border-2 bg-white flex justify-center items-center rounded-full">
-                                    {{-- @livewire('favori-match', ['match' => $match, 'user' => Auth::user(), 'key' => time().$match->id]) --}}
-                                    <livewire:favori-match :match="$match" :user="Auth::user()" :key="time().$match->id" />
-                                </div>
-                                <div>
-                                    <p class="px-3 text-xs">Toi aussi tu veux que ce match soit commenté ?</p>
-                                    <p class="text-xs px-3">Clique sur l'étoile</p>
-                                </div>
+                                class="h-12 w-12 shadow-2xl border-2 bg-white flex justify-center items-center rounded-full">
+                                <livewire:favori-match :match="$match" :user="Auth::user()" :key="time().$match->id" />
+                            </div>
+                            <div>
+                                <p class="px-3 text-xs">Toi aussi tu veux que ce match soit commenté ?</p>
+                                <p class="text-xs px-3">Clique sur l'étoile</p>
                             </div>
                         </div>
                     </div>
                 @endif
+            @else
+            <a href="/login">
+                <div
+                    class="flex justify-start items-center bg-primary text-white px-1 py-2 rounded-lg w-full border-2 border-white my-2">
+                    <div
+                        class="h-12 w-12 shadow-2xl border-2 bg-white flex justify-center items-center rounded-full">
+                        <i class="far fa-star cursor-pointer text-red-700 text-2xl"></i>
+                    </div>
+                    <div>
+                        <p class="px-3 text-xs">Toi aussi tu veux que ce match soit commenté ?</p>
+                        <p class="text-xs px-3 font-semibold">Connecte toi</p>
+                    </div>
+                </div>
+            </a>
             @endauth
             @auth
                 @if (Auth::user()->first_com == 1 && $match->commentateur != null && $match->commentateur->user_id == Auth::user()->id)
