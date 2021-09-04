@@ -16,10 +16,10 @@
 
     @isset($club)
         <meta property="og:image"
-            content="{{ $club->logo_path != '' || $club->logo_path != null ? asset($club->logo_path) : 'https://android-apiapp.azureedge.net/common/bib_img/logo/' . $club->numAffiliation }}">
+            content="{{asset($club->bg_path)}}">
     @else
         <meta property="og:image" content="https://balancetonmatch.com/images/logos/btmB1.jpg">
-    @endisset
+    @endisset()
 
     <title>Balance Ton Match</title>
     <link rel="stylesheet" href="{{ mix('css/app.css') }}?ver=1.01">
