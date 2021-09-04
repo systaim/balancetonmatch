@@ -233,13 +233,13 @@
                                 <div class="flex flex-col mb-3">
                                     <div class="relative bg-primary rounded-lg overflow-hidden">
                                         <div class="mx-auto logo h-16 w-16 my-2">
-                                            @if ($favoriteam->logo_path)
-                                                <img class="object-contain" src="{{ asset($favoriteam->logo_path) }}"
-                                                    alt="Logo de {{ $favoriteam->name }}">
+                                            @if ($favoriteam->club->logo_path)
+                                                <img class="object-contain" src="{{ asset($favoriteam->club->logo_path) }}"
+                                                    alt="Logo de {{ $favoriteam->club->name }}">
                                             @else
                                                 <img class="object-contain"
-                                                    src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $favoriteam->numAffiliation }}.jpg"
-                                                    alt="Logo de {{ $favoriteam->name }}">
+                                                    src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $favoriteam->club->numAffiliation }}.jpg"
+                                                    alt="Logo de {{ $favoriteam->club->name }}">
                                             @endif
                                         </div>
                                         <div class=" py-2 w-full text-secondary overflow-hidden ml-2 z-10">
