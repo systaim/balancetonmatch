@@ -88,7 +88,35 @@ class ClubController extends Controller
         $nbrStaffs = Staff::where('club_id', $club->id)->count();
         $nbrFavoris = Favoristeam::where('club_id', $club->id)->count();
         $matchs = Match::where('home_team_id', $club->id)->orwhere('away_team_id', $club->id)->orderBy('date_match','asc')->get();
-        return view('clubs.pageClub', compact('club', 'matchs','user','nbrFavoris', 'nbrPlayers', 'nbrStaffs'));
+
+        $matchsR1 = Match::where('competition_id', 1)
+                            ->where('division_region_id', 1)
+                            ->where(function ($query) use ($club){
+                                    $query->where('home_team_id', $club->id)
+                                    ->orwhere('away_team_id', $club->id);
+                            })->limit(1)->get();
+
+        $matchsR2 = Match::where('competition_id', 1)
+                            ->where('division_region_id', 2)
+                            ->where(function ($query) use ($club){
+                                    $query->where('home_team_id', $club->id)
+                                    ->orwhere('away_team_id', $club->id);
+                            })->limit(1)->get();
+                            
+        $matchsR3 = Match::where('competition_id', 1)
+                            ->where('division_region_id', 3)
+                            ->where(function ($query) use ($club){
+                                    $query->where('home_team_id', $club->id)
+                                    ->orwhere('away_team_id', $club->id);
+                            })->limit(1)->get();
+
+        $matchsCF = Match::where('competition_id', 3)
+                            ->where(function ($query) use ($club){
+                                    $query->where('home_team_id', $club->id)
+                                    ->orwhere('away_team_id', $club->id);
+                            })->limit(1)->get();
+
+        return view('clubs.pageClub', compact('club', 'matchs','user','nbrFavoris', 'nbrPlayers', 'nbrStaffs', 'matchsR1','matchsR2', 'matchsR3', 'matchsCF'));
     }
 
     /**

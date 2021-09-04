@@ -11,7 +11,7 @@
         </div>
     </div>
     <div
-        class="bg-primary text-white shadow-lg relative my-2 flex flex-col p-4 w-full m-auto md:w-8/12 lg:w-6/12">
+        class="bg-primary text-white shadow-lg relative my-2 flex flex-col p-4 w-full m-auto md:w-8/12 lg:w-6/12 rounded-lg">
         <h4 class="text-center text-6xl">{{ $club->abbreviation }}</h4>
         <h3 class="text-center text-secondary mb-4 text-2xl">Infos du club</h3>
         @livewire('update-team',['club' => $club])
@@ -113,20 +113,50 @@
     @endauth
 
     <div class="sm:w-11/12 md:w-9/12 xl:w-7/12 mx-auto">
-        <h3 class="text-center my-4 border-b-2 border-darkGray">Prochain(s) match(s)</h3>
-        @foreach ($matchs as $match)
-            @if ($match->date_match > now())
-                <h3>{{ $match->competition->name }}</h3>
-                @include('match')
-            @endif
-        @endforeach
-        @if ($matchs == '' || $matchs == null)
-            <p class="pl-2">Pas de match à venir</p>
+        <h3 class="text-2xl text-center my-4 border-b-2 border-darkGray">Prochain(s) match(s)</h3>
+        @if (collect($matchsCF)->isNotEmpty())
+            <div class="mt-6">
+                <h4 class="text-xl px-3 text-center">Coupe de France</h4>
+                @foreach ($matchsCF as $match)
+                    @if ($match->date_match > now())
+                        @include('match')
+                    @endif
+                @endforeach
+            </div>
+        @endif
+        @if (collect($matchsR1)->isNotEmpty())
+            <div class="mt-6">
+                <h4 class="text-xl px-3 text-center">Championnat R1</h4>
+                @foreach ($matchsR1 as $match)
+                    @if ($match->date_match > now())
+                        @include('match')
+                    @endif
+                @endforeach
+            </div>
+        @endif
+        @if (collect($matchsR2)->isNotEmpty())
+            <div class="mt-6">
+                <h4 class="text-xl px-3 text-center">Championnat R2</h4>
+                @foreach ($matchsR2 as $match)
+                    @if ($match->date_match > now())
+                        @include('match')
+                    @endif
+                @endforeach
+            </div>
+        @endif
+        @if (collect($matchsR3)->isNotEmpty())
+            <div class="mt-6">
+                <h4 class="text-xl px-3 text-center">Championnat R3</h4>
+                @foreach ($matchsR3 as $match)
+                    @if ($match->date_match > now())
+                        @include('match')
+                    @endif
+                @endforeach
+            </div>
         @endif
         <a class="flex justify-center" href="{{ route('matches.create') }}">
             <button class="btn btnSecondary">Je crée un match</button>
         </a>
-
     </div>
     <div class="sm:w-11/12 md:w-9/12 xl:w-7/12 mx-auto">
         <h3 class="text-center my-4 border-b-2 border-darkGray">Historique des matchs</h3>
@@ -151,5 +181,4 @@
         formDirigeant.classList.add("flex");
         formDirigeant.classList.remove("hidden");
     });
-
 </script>
