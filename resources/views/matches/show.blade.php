@@ -111,6 +111,22 @@
         @endif
 
 
+        <div id="fb-root"></div>
+        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v11.0"
+                nonce="tGIyRgh0">
+        </script>
+        <div class="fixed top-2 left-2 z-50 pt-2 pb-3 px-2 rounded-full bg-blue-600 text-white">
+            <div data-href="https://balancetonmatch.com/matches/{{ $match->id }}?{{ $match->slug }}"
+                data-layout="button" data-size="large">
+                <div class="flex flex-col justify-center items-center">
+                    <a class="mx-auto" target="_blank"
+                        href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fbalancetonmatch.com%2Fmatches%2F&amp;src=sdkpreparse"
+                        class="fb-xfbml-parse-ignore"><i class="fab fa-facebook text-4xl text-white mb-1"></i>
+                    </a>
+                    <p class="font-sans text-xs text-center my-1">Partager</p>
+                </div>
+            </div>
+        </div>
 
 
         @livewire('form-commentaires', [
