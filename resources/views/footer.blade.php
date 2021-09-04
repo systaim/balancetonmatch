@@ -86,6 +86,12 @@
                     </a>
                 @endif
             @endauth
+            <a href="/mon-espace/mes-favoris">
+                <div class="flex flex-col justify-center items-center w-36 m-2 rounded-md">
+                    <i class="far fa-star text-4xl"></i>
+                    <p class="text-md">Mes favoris</p>
+                </div>
+            </a>
             <a href="/contact">
                 <div class="flex flex-col justify-center items-center w-36 m-2 rounded-md">
                     <i class="far fa-envelope text-4xl"></i>
@@ -129,7 +135,7 @@
                 </a>
                 <a href="{{ route('logout') }}"
                     onclick="event.preventDefault();
-                                                                                                        document.getElementById('logout-form').submit();">
+                                document.getElementById('logout-form').submit();">
                     <div class="flex flex-col justify-center items-center w-36 m-2 rounded-md">
                         <i class="fas fa-power-off text-4xl"></i>
                         <p class="text-md">Déconnexion</p>

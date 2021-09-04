@@ -80,6 +80,28 @@
                                 src="{{ asset('images/ballon-feu.jpg') }}">
                         </div>
                         <h2 class="text-2xl font-medium mt-6 mb-3">Les matchs à venir</h2>
+                        <p class="leading-relaxed text-base">Regroupés par compétition</p>
+                        <div class="flex justify-end">
+                            <button class="btn btnSecondary">
+                                <p class="flex items-center">
+                                    J'y vais
+                                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
+                                        <path d="M5 12h14M12 5l7 7-7 7"></path>
+                                    </svg>
+                                </p>
+                            </button>
+                        </div>
+                    </a>
+                </div>
+                <div class="relative w-11/12 md:w-2/5 my-5 bg-primary rounded-lg shadow-2xl">
+                    <a href="/mon-espace/mes-favoris">
+                        <div class="rounded-lg h-48 overflow-hidden">
+                            <img alt="mes favoris" class="object-cover object-center h-full w-full"
+                                src="{{ asset('images/fav.jpg') }}">
+                        </div>
+                        <h2 class="text-2xl font-medium mt-6 mb-3">Mes favoris</h2>
+                        <p class="leading-relaxed text-base">Les matchs et équipes mis en favoris</p>
                         <div class="flex justify-end">
                             <button class="btn btnSecondary">
                                 <p class="flex items-center">
@@ -217,103 +239,5 @@
             </div>
         </div>
     </div> --}}
-
-    @auth
-        <div class="flex flex-col justify-center md:justify-around md:flex-row p-8">
-            @if (count($user->favoristeams) > 0)
-                <div class="w-full m-1">
-                    <h3 class="text-center">
-                        <i class="fas fa-heart text-red-700"></i>
-                        Mes teams préférées
-                        <i class="fas fa-heart text-red-700"></i>
-                    </h3>
-                    <div class="py-4">
-                        @foreach ($user->favoristeams->shuffle() as $favoriteam)
-                            <a href="{{ route('clubs.show', $favoriteam->club->id) }}">
-                                <div class="flex flex-col mb-3">
-                                    <div class="relative bg-primary rounded-lg overflow-hidden">
-                                        <div class="mx-auto logo h-16 w-16 my-2">
-                                            @if ($favoriteam->club->logo_path)
-                                                <img class="object-contain" src="{{ asset($favoriteam->club->logo_path) }}"
-                                                    alt="Logo de {{ $favoriteam->club->name }}">
-                                            @else
-                                                <img class="object-contain"
-                                                    src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $favoriteam->club->numAffiliation }}.jpg"
-                                                    alt="Logo de {{ $favoriteam->club->name }}">
-                                            @endif
-                                        </div>
-                                        <div class=" py-2 w-full text-secondary overflow-hidden ml-2 z-10">
-                                            <p class="truncate font-bold text-center">{{ $favoriteam->club->name }}</p>
-                                        </div>
-                                        <div class="absolute -bottom-7 -right-7 transform -rotate-45 z-0">
-                                            <div class="h-2 w-36 mb-1"
-                                                style="background-color: {{ $favoriteam->club->primary_color }};"></div>
-                                            <div class="h-2 w-36"
-                                                style="background-color: {{ $favoriteam->club->secondary_color }};"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        @endforeach
-                    </div>
-                </div>
-            @endif
-            @if (count($user->favorismatches) > 0)
-                <div class="w-full m-1">
-                    <div class="___class_+?62___">
-                        <h3 class="text-center"><i class="fas fa-star text-red-700"></i> Mes matchs favoris <i
-                                class="fas fa-star text-red-700"></i></h3>
-                    </div>
-                    <div class="py-4">
-                        @foreach ($user->favorismatches as $favorimatch)
-                            @if ($favorimatch->match && $favorimatch->match->date_match > $today)
-                                <a href="{{ route('matches.show', $favorimatch->match) }}">
-                                    <div class="bg-primary text-white rounded-lg mb-2">
-                                        <div class="text-center flex justify-center font-bold">
-                                            <p class="px-4 bg-primary text-secondary rounded-tl-md">
-                                                {{ $favorimatch->match->date_match->formatLocalized('%d/%m/%y') }}</p>
-                                            <p class="px-4 bg-primary text-secondary rounded-tr-md">
-                                                {{ $favorimatch->match->date_match->formatLocalized('%H:%M') }}</p>
-                                        </div>
-                                        <div class="grid grid-cols-3">
-                                            <div class="flex flex-col items-center justify-center overflow-hidden">
-                                                <div class="logo h-14 w-14 cursor-pointer">
-                                                    @if ($favorimatch->match->homeClub->logo_path)
-                                                        <img class="object-contain"
-                                                            src="{{ asset($favorimatch->match->homeClub->logo_path) }}"
-                                                            alt="Logo de {{ $favorimatch->match->homeClub->name }}">
-                                                    @else
-                                                        <img class="object-contain"
-                                                            src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $favorimatch->match->homeClub->numAffiliation }}.jpg"
-                                                            alt="Logo de {{ $favorimatch->match->homeClub->name }}">
-                                                    @endif
-                                                </div>
-                                                <div class="ml-2">
-                                                    <p class="text-xs truncate">{{ $favorimatch->match->homeClub->name }}</p>
-                                                </div>
-                                            </div>
-                                            <div class="flex items-center justify-center text-secondary">
-                                                <p class="text-3xl p-2 font-bold">VS</p>
-                                            </div>
-                                            <div class="flex flex-col items-center justify-center overflow-hidden">
-                                                <div class="logo h-14 w-14 cursor-pointer">
-                                                    <img class="object-contain"
-                                                        src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $favorimatch->match->awayClub->numAffiliation }}.jpg"
-                                                        alt="logo">
-                                                </div>
-                                                <div class="ml-2">
-                                                    <p class="text-xs truncate">{{ $favorimatch->match->awayClub->name }}</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            @endif
-                        @endforeach
-                    </div>
-                </div>
-            @endif
-        </div>
-    @endauth
 
 @endsection

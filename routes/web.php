@@ -69,6 +69,10 @@ Route::get('/mentions-legales', function(){
     return view('mentionslegales');
 });
 
+Route::get('/mon-espace/mes-favoris', function () {
+    return view('mon-espace.mes-favoris');
+});
+
 Route::get('/admin/addClub', function(){
     $regions = Region::all();
     $role = Auth::user()->role;
