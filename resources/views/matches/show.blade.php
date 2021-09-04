@@ -113,7 +113,7 @@
                 nonce="tGIyRgh0">
         </script>
         <a class="mx-auto" target="_blank"
-            href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fbalancetonmatch.com%2Fmatches%2F&amp;src=sdkpreparse"
+            href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fbalancetonmatch.com%2{{$match->id}}%2Fmatches%2F&amp;src=sdkpreparse"
             class="fb-xfbml-parse-ignore">
             <div class="fixed top-2 left-2 z-50 pt-2 pb-3 px-2 rounded-full bg-blue-600 text-white">
                 <div data-href="{{ route('matches.show', [$match, Str::slug($match->slug, '-')]) }}"
