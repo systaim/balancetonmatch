@@ -119,7 +119,7 @@
             href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fbalancetonmatch.com%2Fmatches%2F&amp;src=sdkpreparse"
             class="fb-xfbml-parse-ignore">
             <div class="fixed top-2 left-2 z-50 pt-2 pb-3 px-2 rounded-full bg-blue-600 text-white">
-                <div data-href="{{ route('matches.show', [$match, Str::slug($match->slug, '-')]) }}" data-layout="button"
+                <div data-href="{{ route('matches.show', [$match]) }}" data-layout="button"
                     data-size="large">
                     <div class="flex flex-col justify-center items-center">
                         <i class="fab fa-facebook text-4xl text-white mb-1"></i>
