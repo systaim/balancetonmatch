@@ -27,7 +27,7 @@
                     content="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $match->awayClub->numAffiliation }}.jpg" />
             @endif
         @else
-            <meta property="og:image:url" content="{{ asset('images/vs-primary.png') }}" />
+            <meta property="og:image:url" content="{{ asset('images/vs-primary.jpg') }}" />
     @endif
     <!-- Meta du site -->
     <title>Balance ton match ! {{ $match->homeclub->name }}
