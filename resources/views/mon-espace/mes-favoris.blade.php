@@ -1,6 +1,8 @@
 @extends('layout')
 @section('content')
-
+<div class="relative w-full py-10 px-4 bg-primary text-white flex flex-col lg:flex-col-reverse justify-center items-center mb-6">
+    <h2 class="text-4xl lg:text-6xl">Mes Favoris</h2>
+</div>
     @auth
         <div class="flex flex-col justify-center md:justify-around md:flex-row p-8">
             @if (count(Auth::user()->favorismatches) > 0)

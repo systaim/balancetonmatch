@@ -71,7 +71,7 @@ Route::get('/mentions-legales', function(){
 
 Route::get('/mon-espace/mes-favoris', function () {
     return view('mon-espace.mes-favoris');
-});
+})->middleware('auth');
 
 Route::get('/admin/addClub', function(){
     $regions = Region::all();
