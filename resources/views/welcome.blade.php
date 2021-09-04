@@ -80,7 +80,7 @@
                                 src="{{ asset('images/ballon-feu.jpg') }}">
                         </div>
                         <h2 class="text-2xl font-medium mt-6 mb-3">Les matchs à venir</h2>
-                        <p class="leading-relaxed text-base">Regroupés par compétition</p>
+                        {{-- <p class="leading-relaxed text-base">Par compétition</p> --}}
                         <div class="flex justify-end">
                             <button class="btn btnSecondary">
                                 <p class="flex items-center">
@@ -101,7 +101,7 @@
                                 src="{{ asset('images/fav.jpg') }}">
                         </div>
                         <h2 class="text-2xl font-medium mt-6 mb-3">Mes favoris</h2>
-                        <p class="leading-relaxed text-base">Les matchs et équipes mis en favoris</p>
+                        {{-- <p class="leading-relaxed text-base">Les matchs et équipes mis en favoris</p> --}}
                         <div class="flex justify-end">
                             <button class="btn btnSecondary">
                                 <p class="flex items-center">

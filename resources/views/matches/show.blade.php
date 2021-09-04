@@ -115,38 +115,39 @@
         <script async defer crossorigin="anonymous" src="https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v11.0"
                 nonce="tGIyRgh0">
         </script>
-        <div class="fixed top-2 left-2 z-50 pt-2 pb-3 px-2 rounded-full bg-blue-600 text-white">
-            <div data-href="https://balancetonmatch.com/matches/{{ $match->id }}?{{ $match->slug }}"
-                data-layout="button" data-size="large">
-                <div class="flex flex-col justify-center items-center">
-                    <a class="mx-auto" target="_blank"
-                        href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fbalancetonmatch.com%2Fmatches%2F&amp;src=sdkpreparse"
-                        class="fb-xfbml-parse-ignore"><i class="fab fa-facebook text-4xl text-white mb-1"></i>
-                    </a>
-                    <p class="font-sans text-xs text-center my-1">Partager</p>
+        <a class="mx-auto" target="_blank"
+            href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fbalancetonmatch.com%2Fmatches%2F&amp;src=sdkpreparse"
+            class="fb-xfbml-parse-ignore">
+            <div class="fixed top-2 left-2 z-50 pt-2 pb-3 px-2 rounded-full bg-blue-600 text-white">
+                <div data-href="{{ route('matches.show', [$match, Str::slug($match->slug, '-')]) }}" data-layout="button"
+                    data-size="large">
+                    <div class="flex flex-col justify-center items-center">
+                        <i class="fab fa-facebook text-4xl text-white mb-1"></i>
+                        <p class="font-sans text-xs text-center my-1">Partager</p>
+                    </div>
                 </div>
-            </div>
-        </div>
+        </a>
+    </div>
 
 
-        @livewire('form-commentaires', [
-        'commentator'=> $commentator,
-        'nbrFavoris'=> $nbrFavoris,
-        'match' =>$match,
-        'clubHome' => $clubHome,
-        'clubAway' => $clubAway,
-        'commentsMatch' => $commentsMatch,
-        'competitions' => $competitions,
-        'stats' => $stats,
-        'tabHome' => $tabHome,
-        'tabAway' => $tabAway,
-        ])
+    @livewire('form-commentaires', [
+    'commentator'=> $commentator,
+    'nbrFavoris'=> $nbrFavoris,
+    'match' =>$match,
+    'clubHome' => $clubHome,
+    'clubAway' => $clubAway,
+    'commentsMatch' => $commentsMatch,
+    'competitions' => $competitions,
+    'stats' => $stats,
+    'tabHome' => $tabHome,
+    'tabAway' => $tabAway,
+    ])
 
-        @include('footer')
+    @include('footer')
 
-        <script src="{{ mix('js/app.js') }}?ver=1.02"></script>
+    <script src="{{ mix('js/app.js') }}?ver=1.02"></script>
 
-        @livewireScripts
+    @livewireScripts
 
 </body>
 
