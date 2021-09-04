@@ -114,7 +114,7 @@ class ClubController extends Controller
                             ->where(function ($query) use ($club){
                                     $query->where('home_team_id', $club->id)
                                     ->orwhere('away_team_id', $club->id);
-                            })->limit(1)->get();
+                            })->get();
 
         return view('clubs.pageClub', compact('club', 'matchs','user','nbrFavoris', 'nbrPlayers', 'nbrStaffs', 'matchsR1','matchsR2', 'matchsR3', 'matchsCF'));
     }
