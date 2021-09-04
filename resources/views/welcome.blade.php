@@ -233,14 +233,8 @@
                                 <div class="flex flex-col mb-3">
                                     <div class="relative bg-primary rounded-lg overflow-hidden">
                                         <div class="mx-auto logo h-16 w-16 my-2">
-                                            @if ($favoriteam->logo_path)
-                                                <img class="object-contain" src="{{ asset($favoriteam->logo_path) }}"
-                                                    alt="Logo de {{ $favoriteam->name }}">
-                                            @else
-                                                <img class="object-contain"
-                                                    src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $favoriteam->numAffiliation }}.jpg"
-                                                    alt="Logo de {{ $favoriteam->name }}">
-                                            @endif
+                                            <img class="object-contain"
+                                                src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $favoriteam->club->numAffiliation }}.jpg">
                                         </div>
                                         <div class=" py-2 w-full text-secondary overflow-hidden ml-2 z-10">
                                             <p class="truncate font-bold text-center">{{ $favoriteam->club->name }}</p>
@@ -278,15 +272,9 @@
                                         <div class="grid grid-cols-3">
                                             <div class="flex flex-col items-center justify-center overflow-hidden">
                                                 <div class="logo h-14 w-14 cursor-pointer">
-                                                    @if ($favorimatch->homeClub->logo_path)
-                                                        <img class="object-contain"
-                                                            src="{{ asset($favorimatch->homeClub->logo_path) }}"
-                                                            alt="Logo de {{ $favorimatch->homeClub->name }}">
-                                                    @else
-                                                        <img class="object-contain"
-                                                            src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $favorimatch->homeClub->numAffiliation }}.jpg"
-                                                            alt="Logo de {{ $favorimatch->homeClub->name }}">
-                                                    @endif
+                                                    <img class="object-contain"
+                                                        src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $favorimatch->match->homeClub->numAffiliation }}.jpg"
+                                                        alt="logo">
                                                 </div>
                                                 <div class="ml-2">
                                                     <p class="text-xs truncate">{{ $favorimatch->match->homeClub->name }}</p>
