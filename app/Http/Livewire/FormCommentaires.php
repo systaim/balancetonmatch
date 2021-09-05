@@ -310,7 +310,7 @@ class FormCommentaires extends Component
         }
 
         if ($this->match->live == "repriseMT") {
-            $this->minute = 60 + now()->diffInMinutes($this->match->date_match);
+            $this->minute = 15 + now()->diffInMinutes($this->match->date_match);
         }
 
         if ($this->match->live == "prolongations1") {
