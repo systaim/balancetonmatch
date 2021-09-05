@@ -116,10 +116,22 @@
                     <p class="text-md">Créer un match</p>
                 </div>
             </a> --}}
-            <a href="{{route('competitions.index')}}">
+            <a href="{{ route('competitions.index') }}">
                 <div class="flex flex-col justify-center items-center w-36 m-2 rounded-md">
                     <i class="far fa-futbol text-4xl"></i>
                     <p class="text-md">Voir les matchs</p>
+                </div>
+            </a>
+            <a href="/live">
+                <div class="flex flex-col justify-center items-center w-36 m-2 rounded-md">
+                    @if (count($liveMatches) == 0)
+                        <p class="bg-secondary text-primary h-9 w-9 rounded-full flex justify-center items-center">
+                            {{ count($liveMatches) }}
+                        </p>
+                    @else
+                        <i class="far fa-play-circle text-4xl"></i>
+                    @endif
+                    <p class="text-md">Voir les lives</p>
                 </div>
             </a>
         </div>
@@ -133,9 +145,8 @@
                         <p class="text-md">Profil</p>
                     </div>
                 </a>
-                <a href="{{ route('logout') }}"
-                    onclick="event.preventDefault();
-                                document.getElementById('logout-form').submit();">
+                <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">
                     <div class="flex flex-col justify-center items-center w-36 m-2 rounded-md">
                         <i class="fas fa-power-off text-4xl"></i>
                         <p class="text-md">Déconnexion</p>
