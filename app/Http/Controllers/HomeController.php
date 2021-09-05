@@ -40,7 +40,7 @@ class HomeController extends Controller
         $commentators = Commentator::all();
         $liveMatches = Match::where('date_match','>=', Carbon::now()->subMinutes(240))
                             ->where(function($query) {
-                                $query->where('live', '!=', 'attente');
+                                $query->where('live', '!=', 'attente')->where('live', '!=', 'finDeMatch');
                             })->get();
         // $matchsDuWeekEnd = Match::where(Auth::user()->club)
         

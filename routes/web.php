@@ -116,7 +116,7 @@ Route::get('live', function(){
     $user = Auth::user();
     $liveMatches = Match::where('date_match','>=', Carbon::now()->subMinutes(240))
                             ->where(function($query) {
-                                $query->where('live', '!=', 'attente');
+                                $query->where('live', '!=', 'attente')->where('live', '!=', 'finDeMatch');
                             })->get();
 
     return view('matches.live', compact('liveMatches', 'user'));
