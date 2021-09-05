@@ -38,10 +38,10 @@ class HomeController extends Controller
         $yellowCards= Statistic::where('action', 'yellow_card')->get();
         $redCards= Statistic::where('action','red_card')->get();
         $commentators = Commentator::all();
-        // $liveMatches = Match::where('date_match','>=', Carbon::now()->subMinutes(240))
-        //                     ->where(function($query) {
-        //                         $query->where('live', '!=', 'attente');
-        //                     })->get();
+        $liveMatches = Match::where('date_match','>=', Carbon::now()->subMinutes(240))
+                            ->where(function($query) {
+                                $query->where('live', '!=', 'attente');
+                            })->get();
         // $matchsDuWeekEnd = Match::where(Auth::user()->club)
         
 
