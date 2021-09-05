@@ -617,8 +617,7 @@
                         <p class="bg-danger font-bold py-2 px-3">Le match est reporté à une date ultérieure</p>
                     </div>
                 @endif
-                @auth
-                    @if ($match->commentateur || Auth::user()->role == 'super-admin')
+                    @if ($match->commentateur)
                         <div class="my-6 w-11/12 m-auto lg:w-8/12">
                             @if ($match->commentateur != null && $match->commentateur->user->id == Auth::user()->id)
                                 @if ($match->live == 'attente')
@@ -845,7 +844,7 @@
                                     @endif
                                 </div>
                                 @auth
-                                    @if ($match->commentateur->user_id == Auth::user()->id || Auth::user()->role == 'super-admin')
+                                    @if ($match->commentateur->user_id == Auth::user()->id)
                                         @if ($match->live == 'tab')
                                             @if ($tabHome < $tabAway || count($tabHome) == 0)
                                                 <div class="flex">
