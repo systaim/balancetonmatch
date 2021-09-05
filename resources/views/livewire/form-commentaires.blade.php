@@ -466,7 +466,7 @@
                             </select>
                         </div>
                     @endif
-                    {{-- <div class="flex items-center text-white m-auto my-4">
+                    <div class="flex items-center text-white m-auto my-4">
                             <label class="cursor-pointer my-4 btn border border-black text-black" for="file">
                                 <div class="flex justify-between">
                                     <div class="hidden" wire:loading wire:target="file">
@@ -486,11 +486,11 @@
                                 <input class="hidden" type="file" wire:model="file" name="file" id="file"
                                     accept="jpeg,png,jpg,gif,svg,mp4,mov">
                             </label>
-                        </div> --}}
+                        </div>
                     @error('type_comments')
                         <span class="error">{{ $message }}</span>
                     @enderror
-                    {{-- @if ($file)
+                    @if ($file)
                             <div class="flex flex-col items-center">
                                 Aperçu de l'image :
                                 <img class="w-36" src="{{ $file->temporaryUrl() }}">
@@ -498,7 +498,7 @@
                         @endif
                         @error('file')
                             <span class="alert alert-danger">{{ $message }}</span>
-                        @enderror --}}
+                        @enderror
                     <div class="flex flex-row justify-center items-center mt-4">
                         <label class="___class_+?156___" for="minuteCom">Temps de jeu</label>
                         <input class="border border-black mx-2 py-1 text-center outline-none" type="number"
