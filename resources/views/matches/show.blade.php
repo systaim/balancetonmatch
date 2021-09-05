@@ -20,21 +20,20 @@
                 content="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $match->homeClub->numAffiliation }}.jpg" />
         @endif
     @elseif ($match->home_score < $match->away_score)
-            @if ($match->awayClub->logo_path)
-                <meta property="og:image:url" content="{{ asset($match->awayClub->logo_path) }}" />
-            @else
-                <meta property="og:image:url"
-                    content="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $match->awayClub->numAffiliation }}.jpg" />
-            @endif
+        @if ($match->awayClub->logo_path)
+            <meta property="og:image:url" content="{{ asset($match->awayClub->logo_path) }}" />
         @else
-        @if ( $match->competition_id = 3)
+            <meta property="og:image:url"
+                content="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $match->awayClub->numAffiliation }}.jpg" />
+        @endif
+    @else
+        @if ($match->competition_id == 3)
             <meta property="og:image:url" content="{{ asset('images/Coupe-de-france.jpg') }}" />
-            @elseif ($match->competition_id = 4)
+        @elseif ($match->competition_id == 4)
             <meta property="og:image:url" content="{{ asset('images/bzh.png') }}" />
-            @else
+        @else
             <meta property="og:image:url" content="{{ asset('images/amicaux.jpg') }}" />
         @endif
-            
     @endif
     <!-- Meta du site -->
     <title>Balance ton match ! {{ $match->homeclub->name }}
@@ -120,7 +119,7 @@
                 nonce="tGIyRgh0">
         </script>
         <a class="mx-auto" target="_blank"
-            href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fbalancetonmatch.com/%2Fmatches%2F{{$match->id}}&amp;src=sdkpreparse"
+            href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fbalancetonmatch.com/%2Fmatches%2F{{ $match->id }}&amp;src=sdkpreparse"
             class="fb-xfbml-parse-ignore">
             <div class="fixed top-2 left-2 z-50 pt-2 pb-3 px-2 rounded-full bg-blue-600 text-white">
                 <div data-href="{{ route('matches.show', [$match, Str::slug($match->slug, '-')]) }}"
