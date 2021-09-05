@@ -27,7 +27,14 @@
                     content="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $match->awayClub->numAffiliation }}.jpg" />
             @endif
         @else
-            <meta property="og:image:url" content="{{ asset('images/vs-primary.jpg') }}" />
+        @if ( $match->competition_id = 3)
+            <meta property="og:image:url" content="{{ asset('images/Coupe-de-france.jpg') }}" />
+            @elseif ($match->competition_id = 4)
+            <meta property="og:image:url" content="{{ asset('images/bzh.png') }}" />
+            @else
+            <meta property="og:image:url" content="{{ asset('images/amicaux.jpg') }}" />
+        @endif
+            
     @endif
     <!-- Meta du site -->
     <title>Balance ton match ! {{ $match->homeclub->name }}
