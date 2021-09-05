@@ -875,7 +875,7 @@
                                 @endif
                             </div>
                             @auth
-                                @if ($match->commentateur->user_id == Auth::user()->id)
+                                @if ($match->commentateur->user_id == Auth::user()->id || $user->role == "super-admin")
                                     @if ($match->live == 'tab')
                                         @if ($tabAway < $tabHome || count($tabAway) == 0)
                                             <div class="flex">
