@@ -314,11 +314,11 @@ class FormCommentaires extends Component
         }
 
         if ($this->match->live == "prolongations1") {
-            $this->minute = 90 + now()->diffInMinutes($this->match->debut_prolongations);
+            $this->minute = now()->diffInMinutes($this->match->debut_prolongations) - 30;
         }
 
         if ($this->match->live == "prolongations2") {
-            $this->minute = 105 + now()->diffInMinutes($this->match->debut_sde_mt_prolong);
+            $this->minute = now()->diffInMinutes($this->match->debut_sde_mt_prolong) - 35 ;
         }
 
         if ($this->match->live == "MTProlongations") {
