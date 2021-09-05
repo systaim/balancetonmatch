@@ -823,7 +823,7 @@
         @endif
         <div class="my-10 w-11/12 m-auto lg:flex lg:justify-around">
             <div class="m-auto sm:w-10/12 lg:w-8/12">
-                @if (($match->live == 'tab') || (count($tabHome) != 0 && count($tabAway) != 0))
+                @if (($match->fin_prolongations && $match->live == 'tab') || (count($tabHome) != 0 && count($tabAway) != 0))
                     <div class="my-10">
                         <h3 class="flex justify-center text-2xl px-2 py-1 bg-primary text-white rounded-lg my-2 ">Tirs
                             au but</h3>
