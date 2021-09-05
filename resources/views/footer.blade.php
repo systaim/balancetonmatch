@@ -124,7 +124,7 @@
             </a>
             <a href="/live">
                 <div class="flex flex-col justify-center items-center w-36 m-2 rounded-md">
-                    @if (count($liveMatches) == 0)
+                    @if (count($liveMatches) != 0)
                         <p class="bg-secondary text-primary h-9 w-9 rounded-full flex justify-center items-center">
                             {{ count($liveMatches) }}
                         </p>
