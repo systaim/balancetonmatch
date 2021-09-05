@@ -31,7 +31,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $liveMatchs = Match::where('date_match','>=', Carbon::now()->subMinutes(120))
+        $liveMatchs = Match::where('date_match','>=', Carbon::now()->subMinutes(240))
                 ->where(function($query) {
                     $query->where('live', '!=', 'attente')->where('live', '!=', 'finDeMatch');
                 })->get();
