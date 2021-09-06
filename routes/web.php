@@ -34,7 +34,7 @@ $club = ClubController::class;
 
 Route::get('/matches/coupe-de-france-2021-2022', function () {
 
-    $matchs = Match::where('competition_id', 3)->where('date_match','>=', Carbon::now()->subHours(12))->orderBy('date_match', 'asc')->get();
+    $matchs = Match::where('competition_id', 3)->where('date_match','>=', Carbon::now()->subHours(24))->orderBy('date_match', 'asc')->get();
     $user = Auth::user();
     $title = "coupeDeFrance";
 
@@ -43,7 +43,7 @@ Route::get('/matches/coupe-de-france-2021-2022', function () {
 
 Route::get('/matches/coupe-de-bretagne-2021-2022', function () {
 
-    $matchs = Match::where('competition_id', 4)->where('date_match','>=', Carbon::now()->subHours(12))->where('region_id', 3)->orderBy('date_match', 'asc')->get();
+    $matchs = Match::where('competition_id', 4)->where('date_match','>=', Carbon::now()->subHours(24))->where('region_id', 3)->orderBy('date_match', 'asc')->get();
     $user = Auth::user();
     $title = "coupeDeFrance";
 

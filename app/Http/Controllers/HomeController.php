@@ -11,6 +11,7 @@ use App\Models\Statistic;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -38,10 +39,8 @@ class HomeController extends Controller
         $yellowCards= Statistic::where('action', 'yellow_card')->get();
         $redCards= Statistic::where('action','red_card')->get();
         $commentators = Commentator::all();
-        $liveMatches = Match::where('date_match','>=', Carbon::now()->subMinutes(240))
-                            ->where(function($query) {
-                                $query->where('live', '!=', 'attente')->where('live', '!=', 'finDeMatch');
-                            })->get();
+        
+        // DB::table('matches')->where('date_match', '>', Carbon::now()->subDay(1))->where('live', 'attente')->delete();
         // $matchsDuWeekEnd = Match::where(Auth::user()->club)
         
 
@@ -60,7 +59,6 @@ class HomeController extends Controller
         'yellowCards',
         'redCards',
         'commentators',
-        'liveMatches',
     ));
     }
 }
