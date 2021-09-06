@@ -2,7 +2,7 @@
      <!----------------------
     Options commentaires "équipe"
     ------------------------->
-    <div class="bg-white absoluted bottom-0 right-0 left-0">
+    <div>
         @auth
             @if (Auth::user()->role == 'super-admin' || ($match->commentateur != null && $match->commentateur->user_id == Auth::user()->id && $match->live != 'attente' && $match->live != 'finDeMatch' && $match->live != 'tab'))
                 @if (!$buttonComment)

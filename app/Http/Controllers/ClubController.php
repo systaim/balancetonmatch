@@ -12,6 +12,7 @@ use App\Models\Region;
 use App\Models\Staff;
 use App\Models\Statistic;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -89,34 +90,48 @@ class ClubController extends Controller
         $nbrFavoris = Favoristeam::where('club_id', $club->id)->count();
         $matchs = Match::where('home_team_id', $club->id)->orwhere('away_team_id', $club->id)->orderBy('date_match','asc')->get();
 
-        $matchsR1 = Match::where('competition_id', 1)
-                            ->where('division_region_id', 1)
+        $matchsR1 = Match::where('division_region_id', 1)->where('date_match','>', Carbon::now()->subHours(24))
                             ->where(function ($query) use ($club){
                                     $query->where('home_team_id', $club->id)
                                     ->orwhere('away_team_id', $club->id);
                             })->limit(1)->get();
 
-        $matchsR2 = Match::where('competition_id', 1)
-                            ->where('division_region_id', 2)
+        $matchsR2 = Match::where('division_region_id', 2)->where('date_match','>', Carbon::now()->subHours(24))
                             ->where(function ($query) use ($club){
                                     $query->where('home_team_id', $club->id)
                                     ->orwhere('away_team_id', $club->id);
                             })->limit(1)->get();
                             
-        $matchsR3 = Match::where('competition_id', 1)
-                            ->where('division_region_id', 3)
+        $matchsR3 = Match::where('division_region_id', 3)->where('date_match','>', Carbon::now()->subHours(24))
                             ->where(function ($query) use ($club){
                                     $query->where('home_team_id', $club->id)
                                     ->orwhere('away_team_id', $club->id);
                             })->limit(1)->get();
 
-        $matchsCF = Match::where('competition_id', 3)
+        $matchsCF = Match::where('competition_id', 3)->where('date_match','>', Carbon::now()->subHours(24))
                             ->where(function ($query) use ($club){
                                     $query->where('home_team_id', $club->id)
                                     ->orwhere('away_team_id', $club->id);
                             })->get();
 
-        return view('clubs.pageClub', compact('club', 'matchs','user','nbrFavoris', 'nbrPlayers', 'nbrStaffs', 'matchsR1','matchsR2', 'matchsR3', 'matchsCF'));
+        $matchsD1 = Match::where('division_department_id', 1)->where('date_match','>', Carbon::now()->subHours(24))
+                            ->where(function ($query) use ($club){
+                                    $query->where('home_team_id', $club->id)
+                                    ->orwhere('away_team_id', $club->id);
+                            })->limit(1)->get();
+        $matchsD2 = Match::where('division_department_id', 2)->where('date_match','>', Carbon::now()->subHours(24))
+                            ->where(function ($query) use ($club){
+                                    $query->where('home_team_id', $club->id)
+                                    ->orwhere('away_team_id', $club->id);
+                            })->limit(1)->get();
+
+        $matchsD3 = Match::where('division_department_id', 3)->where('date_match','>', Carbon::now()->subHours(24))
+                            ->where(function ($query) use ($club){
+                                    $query->where('home_team_id', $club->id)
+                                    ->orwhere('away_team_id', $club->id);
+                            })->limit(1)->get();
+
+        return view('clubs.pageClub', compact('club', 'matchs','user','nbrFavoris', 'nbrPlayers', 'nbrStaffs', 'matchsR1','matchsR2', 'matchsR3', 'matchsCF', 'matchsD1', 'matchsD2', 'matchsD3'));
     }
 
     /**
