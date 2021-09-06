@@ -11,6 +11,7 @@ use Carbon\Carbon;
 use App\Models\Match;
 use Illuminate\Support\Facades\View;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Schema;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -31,11 +32,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $liveMatchs = Match::where('date_match','>=', Carbon::now()->subMinutes(120))
+        if (Schema::hasTable('matches')) {
+            $liveMatchs = Match::where('date_match','>=', Carbon::now()->subMinutes(120))
                 ->where(function($query) {
                     $query->where('live', '!=', 'attente')->where('live', '!=', 'finDeMatch');
                 })->get();
-        View::share('liveMatches', $liveMatchs);
+            View::share('liveMatches', $liveMatchs);
+        }
+        
         
 
         setlocale(LC_ALL, "fr");
