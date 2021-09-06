@@ -1,56 +1,4 @@
--- phpMyAdmin SQL Dump
--- version 4.9.7
--- https://www.phpmyadmin.net/
---
--- Hôte : db5001503922.hosting-data.io
--- Généré le : jeu. 02 sep. 2021 à 19:33
--- Version du serveur :  5.7.33-log
--- Version de PHP : 7.0.33-0+deb9u11
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Base de données : `dbs1261525`
---
-
--- --------------------------------------------------------
-
---
--- Structure de la table `clubs`
---
-
-CREATE TABLE `clubs` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `abbreviation` varchar(8) DEFAULT NULL,
-  `name` varchar(255) NOT NULL,
-  `numAffiliation` varchar(10) DEFAULT NULL,
-  `logo_path` varchar(255) DEFAULT NULL,
-  `bg_path` varchar(255) DEFAULT 'images/default-team.jpg',
-  `primary_color` varchar(10) DEFAULT '#ffffff',
-  `secondary_color` varchar(10) DEFAULT '#ffffff',
-  `number_teams` int(11) DEFAULT NULL,
-  `address` text,
-  `zip_code` varchar(6) DEFAULT NULL,
-  `city` varchar(150) DEFAULT NULL,
-  `region_id` int(11) DEFAULT NULL,
-  `department_id` int(11) DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `deleted_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Déchargement des données de la table `clubs`
---
 
 INSERT INTO `clubs` (`id`, `abbreviation`, `name`, `numAffiliation`, `logo_path`, `bg_path`, `primary_color`, `secondary_color`, `number_teams`, `address`, `zip_code`, `city`, `region_id`, `department_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
 (1, NULL, 'RED STAR F.C.', '500002', NULL, 'images/default-team.jpg', '#006400', '#ffffff', NULL, NULL, '93400', 'ST OUEN', NULL, NULL, NULL, NULL, NULL),
@@ -11233,8 +11181,8 @@ INSERT INTO `clubs` (`id`, `abbreviation`, `name`, `numAffiliation`, `logo_path`
 (20850, NULL, 'FOOTBALL CLUB KLEGEREG', '563718', NULL, 'images/default-team.jpg', '#092669', '#000000', NULL, NULL, '56480', 'CLEGUEREC', NULL, NULL, NULL, NULL, NULL),
 (20851, NULL, 'LE PUY FOOTBALL 43 AUVERGNE', '554336', NULL, 'images/default-team.jpg', '#092669', '#000000', NULL, NULL, '43000', 'LE PUY EN VELAY', NULL, NULL, NULL, NULL, NULL),
 (20852, NULL, 'C. FRANCISCAIN', '513589', NULL, 'images/default-team.jpg', '#006400', '#000000', NULL, NULL, '97240', 'LE FRANCOIS', NULL, NULL, NULL, NULL, NULL),
-(20853, 'BAL1', 'BALANCE TON MATCH 1', NULL, 'teamlogo/IIlZor6UW6gA0Odq4u7IbIVBdZYGJl9i3Ovtwh5G.png', NULL, '#121654', '#e2ef34', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-07-31 12:20:07', NULL),
-(20854, 'BAL2', 'BALANCE TON MATCH 2', NULL, 'teamlogo/oc0vaZs1IJ7MurwJxQYa21mc2HpY4iF4X9aa6mfe.png', NULL, '#deea34', '#11184b', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-07-31 12:21:04', NULL),
+(20853, 'BAL1', 'BALANCE TON MATCH 1', '000001', 'teamlogo/IIlZor6UW6gA0Odq4u7IbIVBdZYGJl9i3Ovtwh5G.png', NULL, '#121654', '#e2ef34', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-07-31 12:20:07', NULL),
+(20854, 'BAL2', 'BALANCE TON MATCH 2', '000002', 'teamlogo/oc0vaZs1IJ7MurwJxQYa21mc2HpY4iF4X9aa6mfe.png', NULL, '#deea34', '#11184b', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2021-07-31 12:21:04', NULL),
 (20855, '', 'U.S. KERGRISTOISE', '525913', NULL, NULL, '#dc143c', '#000000', NULL, NULL, '22110', 'Kergrist Moelou', 3, NULL, '2021-08-02 15:35:42', '2021-08-30 20:25:49', NULL),
 (20856, NULL, 'A.S. PLOBANNALEC LESCONIL', '514310', NULL, NULL, '#FFD41C', '#000000', NULL, NULL, '29740', 'PLOBANNALEC LESCONIL', 3, NULL, '2021-08-27 13:32:34', '2021-08-27 13:32:34', NULL),
 (20857, NULL, 'AURAY FOOTBALL CLUB', '553427', NULL, NULL, '#ffffff', '#ffffff', NULL, NULL, '56400', 'AURAY', 3, NULL, '2021-08-27 13:34:37', '2021-08-27 13:34:37', NULL),
@@ -11295,28 +11243,3 @@ INSERT INTO `clubs` (`id`, `abbreviation`, `name`, `numAffiliation`, `logo_path`
 (20912, NULL, 'TRIEUX F. C.', '551676', NULL, 'images/default-team.jpg', '#FFFFFF', '#FFFFFF', NULL, NULL, '22720', 'PLESIDY', 3, NULL, '2021-09-02 12:14:52', '2021-09-02 12:14:52', NULL),
 (20913, NULL, 'A. S. MAYOTTE GUINGAMP', '563623', NULL, 'images/default-team.jpg', '#092669', '#DC143C', NULL, NULL, '22200', 'GUINGAMP', 3, NULL, '2021-09-02 12:16:02', '2021-09-02 12:16:02', NULL),
 (20914, NULL, 'F. C. GOMMENECOIS', '554087', NULL, 'images/default-team.jpg', NULL, NULL, NULL, NULL, '22290', 'GOMMENEC H', 3, NULL, '2021-09-02 12:17:20', '2021-09-02 12:17:20', NULL);
-
---
--- Index pour les tables déchargées
---
-
---
--- Index pour la table `clubs`
---
-ALTER TABLE `clubs`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT pour les tables déchargées
---
-
---
--- AUTO_INCREMENT pour la table `clubs`
---
-ALTER TABLE `clubs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20915;
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
