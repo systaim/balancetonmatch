@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Http\Controllers\Api\MatchController;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\URL;
+use App\Providers\Schema;
 
 use Illuminate\Support\ServiceProvider;
 use Carbon\Carbon;
