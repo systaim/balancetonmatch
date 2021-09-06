@@ -13,7 +13,7 @@
                     </div>
                     <div class="py-4">
                         @foreach (Auth::user()->favorismatches as $match)
-                            @if ($match->match && $match->match->date_match > now())
+                            @if ($match->match && $match->match->date_match > now()->subHours(12))
 
                                 <div class="bg-primary text-white rounded-lg mb-2 py-2 overflow-hidden">
                                     <div class="relative text-center flex justify-center items-center pb-2">
