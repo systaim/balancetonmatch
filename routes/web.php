@@ -1,15 +1,24 @@
 <?php
 
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Api\CommentaireController;
+use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\MatchController;
 use App\Http\Controllers\PlayerController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClubController;
 use App\Http\Controllers\CompetitionController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\RegionController;
+use App\Http\Controllers\StaffController;
 use App\Models\Competition;
 use App\Models\Department;
 use App\Models\Club;
 use App\Models\Commentator;
+use App\Models\DivisionsDepartment;
+use App\Models\DivisionsRegion;
+use App\Models\Group;
+use App\Models\Journee;
 use App\Models\Match;
 use App\Models\Player;
 use App\Models\Region;
@@ -32,32 +41,51 @@ $club = ClubController::class;
 |
 */
 
-Route::get('/matches/coupe-de-france-2021-2022', function () {
+Route::get('/competitions/coupe-de-france-2021-2022', function () {
 
     $matchs = Match::where('competition_id', 3)->where('date_match','>=', Carbon::now()->subHours(24))->orderBy('date_match', 'asc')->get();
     $user = Auth::user();
     $title = "coupeDeFrance";
 
-    return view('matches.coupeDeFrance', compact('matchs','user','title'));
+    return view('competitions.coupeDeFrance', compact('matchs','user','title'));
 });
 
-Route::get('/matches/coupe-de-bretagne-2021-2022', function () {
+Route::get('/competitions/coupe-de-bretagne-2021-2022', function () {
 
     $matchs = Match::where('competition_id', 4)->where('date_match','>=', Carbon::now()->subHours(24))->where('region_id', 3)->orderBy('date_match', 'asc')->get();
     $user = Auth::user();
     $title = "coupeDeFrance";
 
-    return view('matches.coupeDeBretagne', compact('matchs','user','title'));
+    return view('competitions.coupeDeBretagne', compact('matchs','user','title'));
 });
 
 
-Route::get('/matches/amicaux-2021-2022', function () {
+Route::get('region/{region}/regional/{division}/groupe/{groupe}', function (Region $region, DivisionsRegion $division, Group $groupe) {
+    
+    $matchs = Match::where('region_id', $region->id)->where('division_region_id', $division->id)->where('group_id', $groupe->id)->get()->groupBy('journee_id');
+    $journees = Journee::find($matchs->keys());
+
+    return view('competitions.regional', compact('region','matchs', 'journees', 'division', 'groupe'));
+})->name('competition.regionale');
+
+
+Route::get('region/{region}/departement/{departement}/district/{division}/groupe/{groupe}', function (Region $region, Department $departement, Competition $competition, DivisionsDepartment $division, Group $groupe) {
+    
+    $matchs = Match::where('region_id', $region->id)->where('department_id', $departement->id)->where('division_department_id', $division->id)->where('group_id', $groupe->id)->get()->groupBy('journee_id');
+    $journees = Journee::find($matchs->keys());
+
+    return view('competitions.regional', compact('region','departement', 'matchs', 'journees', 'division', 'groupe'));
+})->name('competition.district');
+
+
+Route::get('/competitions/amicaux-2021-2022', function () {
 
     $matchs = Match::where('competition_id', 6)->where('date_match','>=', Carbon::now()->subHours(12))->orderBy('date_match', 'asc')->get();
     $user = Auth::user();
 
-    return view('matches.amicaux', compact('matchs','user'));
+    return view('competitions.amicaux', compact('matchs','user'));
 });
+
 
 Route::get('/contact', function(){
 
@@ -94,17 +122,18 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 Route::get('/', HomeController::class);
-Route::resource('clubs', 'App\Http\Controllers\ClubController');
-Route::resource('players', 'App\Http\Controllers\PlayerController');
-Route::resource('matches', 'App\Http\Controllers\MatchController');
-Route::resource('commentaires', 'App\Http\Controllers\CommentaireController');
-Route::resource('clubs.players', 'App\Http\Controllers\PlayerController');
-Route::resource('clubs.staffs', 'App\Http\Controllers\StaffController');
-Route::resource('regions', 'App\Http\Controllers\RegionController');
+Route::resource('clubs', ClubController::class);
+Route::resource('players', PlayerController::class);
+Route::resource('matches', MatchController::class);
+Route::resource('commentaires', CommentaireController::class);
+Route::resource('clubs.players', PlayerController::class);
+Route::resource('clubs.staffs', StaffController::class);
+// Route::resource('regions', RegionController::class);
 Route::resource('competitions', CompetitionController::class);
+// Route::resource('competitions.division_region.groups', Group::class)->only('show');
 
-Route::resource('admin/users', 'App\Http\Controllers\UserController')->middleware('auth');
-Route::resource('admin', '\App\Http\Controllers\AdminController')->middleware('auth');
+Route::resource('admin/users', UserController::class)->middleware('auth');
+Route::resource('admin', AdminController::class)->middleware('auth');
 
 Route::post('contacts', 'App\Http\Controllers\ContactController@store')->name('contacts.store');
 Route::post('contactsNewTeam', 'App\Http\Controllers\ContactController@askNewTeam')->name('contacts.askNewTeam');
@@ -124,6 +153,6 @@ Route::get('live', function(){
 
 Route::get('commentaire/delete/{id}', 'App\Http\Controllers\CommentaireController@destroy')->name('supprimer');
 
-Route::get('demo', 'App\Http\Controllers\MatchController@demo')->name('demo');
+// Route::get('demo', 'App\Http\Controllers\MatchController@demo')->name('demo');
 
 

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Competition;
+use App\Models\Department;
+use App\Models\DivisionsDepartment;
 use App\Models\DivisionsRegion;
 use App\Models\Group;
 use App\Models\Journee;
@@ -20,10 +22,14 @@ class CompetitionController extends Controller
     public function index()
     {
         $competitions = Competition::all();
-        
+        $regionales = DivisionsRegion::all();
+        $districts = DivisionsDepartment::all(); 
+        $groupes = Group::all();
+        $departements = Department::where('region_id', 3)->get();
+        $chiffreEnLettre = ['0','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U'];
         
 
-        return view("competitions.index", compact('competitions'));
+        return view("competitions.index", compact('competitions', 'regionales', 'districts', 'departements', 'groupes', 'chiffreEnLettre'));
     }
 
     /**
@@ -53,17 +59,15 @@ class CompetitionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Competition $competition, Group $group, Region $region, DivisionsRegion $division)
+    public function show()
     {
+        // $matchs = Match::where('group_id', $group->id)
+        //             ->orwhere('division_region_id', $regionale->id)
+        //             ->orwhere('division_department_id', $district->id)
+        //             ->get()->groupBy('journee_id');
+        // $journees = Journee::find($matchs->keys());
 
-        $matchs = Match::where('division_region_id', $division->id)
-                    ->where('competition_id', $competition->id)
-                    ->where('region_id', $region->id)
-                    ->where('group_id', $group->id)
-                    ->get()->groupBy('journee_id');
-        $journees = Journee::find($matchs->keys());
-
-        return view('competitions.show', compact('competition', 'group', 'region', 'division', 'matchs', 'journees'));
+        // return view('competitions.show', compact('competition', 'group', 'regionale', 'district', 'matchs', 'journees'));
     }
 
     /**

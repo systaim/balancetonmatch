@@ -15,13 +15,23 @@ class Competition extends Model
     }
 
     /**
-     * Get all of the divisions for the Competition
+     * Get all of the divisionRegion for the Competition
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
      */
-    public function divisions(): HasManyThrough
+    public function divisionRegions(): HasManyThrough
     {
-        return $this->hasManyThrough(Match::class, DivisionsRegion::class, null, null,'division_region_id');
+        return $this->hasManyThrough(DivisionsRegion::class, Match::class);
+    }
+
+    /**
+     * Get all of the groups for the Competition
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
+     */
+    public function groups(): HasManyThrough
+    {
+        return $this->hasManyThrough(Group::class, Match::class);
     }
 
     public function matchs(){

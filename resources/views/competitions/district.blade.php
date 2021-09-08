@@ -1,14 +1,22 @@
 @extends('layout')
 @section('content')
 
-<div class="relative w-full py-10 bg-primary text-white  mb-6">
-    <h2 class="text-4xl lg:text-6xl text-center">COUPE DE BRETAGNE</h2>
-</div>
-@livewire('search-match-coupe-de-france')
+    <div class="relative w-full py-10 bg-primary text-white  mb-6">
+        <h2 class="text-4xl lg:text-6xl text-center">{{ $division->name }}</h2>
+        <h3 class="text-xl lg:text-2xl text-center">{{ $groupe->name }}</h3>
+    </div>
 
+    @foreach ($journees as $journee)
+        <div>
+            <p class="text-xl m-5">Journée {{ $journee->name }} </p>
+        </div>
+
+        @foreach ($matchs[$journee->id] as $match)
+            @include('match')
+        @endforeach
+    @endforeach
     <div class="relative lg:flex lg:justify-center">
-        <div class="lg:w-9/12">            
-            <h2 class="inline-block text-2xl font-normal my-4 py-2 px-3 text-white bg-primary">En attente du 2e tour...</h2>
+        <div class="lg:w-9/12">
             @foreach ($matchs as $match)
                 <div class="rounded-b-md rounded-tr-md">
                     @include('match')
