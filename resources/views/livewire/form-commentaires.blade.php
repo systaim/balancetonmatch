@@ -23,14 +23,14 @@
         @endauth
         @if ($buttonComment)
             <div class="flex justify-center">
-                <button type="button" wire:click="clickButtonComment" class="fixed flex justify-center bottom-20 z-40">
+                <button type="button" wire:click="clickButtonComment" class="fixed flex justify-center bottom-20 z-50">
                     <div
                         class="h-14 w-14 shadow-2xl border-2 border-secondary bg-primary flex justify-center items-center rounded-full">
                         <i class="fas fa-times text-2xl text-white"></i>
                     </div>
                 </button>
             </div>
-            <div>
+            <div class="fixed bg-white top-0 bottom-0 left-0 right-0 z-40 border border-gray-400">
                 <div class="fixed bottom-16 left-2 z-40">
                     <input class="hidden" type="radio" wire:model="team_action" id="homeAction"
                         name="team_action" value="home">
@@ -113,7 +113,7 @@
                         </div>
                     @endif
                 </div>
-                <div class="my-6 w-11/12 m-auto lg:w-8/12">
+                <div class="fixed flex justify-center top-32 left-1 right-1 z-50 my-6 w-11/12 m-auto lg:w-8/12">
                     @if ($match->commentateur != null && $match->commentateur->user->id == Auth::user()->id)
                         @if ($match->live == 'attente')
                             <button type="button"
@@ -130,13 +130,10 @@
                         @endif
                         @if ($match->live == 'debut')
                             <button type="button"
-                                class="relative commentaires h-24 bg-white commandeMatch items-stretch w-full focus:outline-none rounded-lg"
+                                {{-- class="relative commentaires h-24 bg-white commandeMatch items-stretch w-full focus:outline-none rounded-lg" --}}
                                 wire:click="timeMitemps" wire:model="type_comments">
-                                <div
-                                    class="minuteCommentaires w-24 commandeMatch flex flex-col justify-center items-center">
-                                    <img src="{{ asset('images/whistle-white.png') }}">
-                                </div>
-                                <div class="bg-white w-full h-full p-3 flex flex-col justify-center items-center">
+                                <div class="bg-primary text-white w-full h-full p-3 flex justify-evenly items-center rounded-lg">
+                                    <img src="{{ asset('images/whistle-white.png') }}" class="h-12 mr-3">
                                     <p class="font-bold">C'est la mi-temps</p>
                                 </div>
                             </button>
