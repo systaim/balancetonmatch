@@ -28,7 +28,7 @@ class MatchController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth')->only('create');
+        $this->middleware('auth')->only('create', 'edit');
     }
 
     /**
@@ -133,9 +133,13 @@ class MatchController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Match $match)
     {
-        //
+
+        $date = explode(" ",$match->date_match);
+        $dateDuMatch = $date[0];
+        $heureDuMatch = $date[1];
+        return view('matches.edit', compact('match', 'dateDuMatch', 'heureDuMatch'));
     }
 
     /**
@@ -147,7 +151,9 @@ class MatchController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+
+        
     }
 
     /**

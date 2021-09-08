@@ -11,17 +11,17 @@
                         <div class="absolute top-3 left-2 text-gray-900">
                             <select name="poules" id="poules" onchange="location = this.value;">
                                 <option>Groupes</option>
-                                <option>R1</option>
+                                <option value="#">R1</option>
                                 @for ($i = 1; $i <= 3; $i++)
                                     <option value="region/3/regional/1/groupe/{{ $i }}">Groupe
                                         {{ $chiffreEnLettre[$i] }}</option>
                                 @endfor
-                                <option>R2</option>
+                                <option value="#">R2</option>
                                 @for ($i = 1; $i <= 6; $i++)
                                     <option value="region/3/regional/2/groupe/{{ $i }}">Groupe
                                         {{ $chiffreEnLettre[$i] }}</option>
                                 @endfor
-                                <option>R3</option>
+                                <option value="#">R3</option>
                                 @for ($i = 1; $i <= 14; $i++)
                                     <option value="region/3/regional/3/groupe/{{ $i }}">Groupe
                                         {{ $chiffreEnLettre[$i] }}</option>
@@ -47,19 +47,19 @@
                             <div id="cotesDArmor" class="hidden">
                                 <select onchange="location = this.value;">
                                     <option>Groupes</option>
-                                    <option>D1</option>
+                                    <option value="#">D1</option>
                                     @for ($i = 1; $i <= 5; $i++)
                                         <option value="region/3/departement/22/district/1/groupe/{{ $i }}">
                                             Groupe {{ $chiffreEnLettre[$i] }}
                                         </option>
                                     @endfor
-                                    <option>D2</option>
+                                    <option value="#">D2</option>
                                     @for ($i = 1; $i <= 8; $i++)
                                         <option value="region/3/departement/22/district/2/groupe/{{ $i }}">
                                             Groupe {{ $chiffreEnLettre[$i] }}
                                         </option>
                                     @endfor
-                                    <option>D3</option>
+                                    <option value="#">D3</option>
                                     @for ($i = 1; $i <= 8; $i++)
                                         <option value="region/3/departement/22/district/3/groupe/{{ $i }}">
                                             Groupe {{ $chiffreEnLettre[$i] }}
@@ -70,19 +70,19 @@
                             <div id="morbihan" class="hidden">
                                 <select onchange="location = this.value;">
                                     <option>Groupes</option>
-                                    <option>D1</option>
+                                    <option value="#">D1</option>
                                     @for ($i = 1; $i <= 6; $i++)
                                         <option value="region/3/departement/56/district/1/groupe/{{ $i }}">
                                             Groupe {{ $chiffreEnLettre[$i] }}
                                         </option>
                                     @endfor
-                                    <option>D2</option>
+                                    <option value="#">D2</option>
                                     @for ($i = 1; $i <= 10; $i++)
                                         <option value="region/3/departement/56/district/2/groupe/{{ $i }}">
                                             Groupe {{ $chiffreEnLettre[$i] }}
                                         </option>
                                     @endfor
-                                    <option>D3</option>
+                                    <option value="#">D3</option>
                                     @for ($i = 1; $i <= 11; $i++)
                                         <option value="region/3/departement/56/district/3/groupe/{{ $i }}">
                                             Groupe {{ $chiffreEnLettre[$i] }}
@@ -93,19 +93,19 @@
                             <div id="finistere" class="hidden">
                                 <select onchange="location = this.value;">
                                     <option>Groupes</option>
-                                    <option>D1</option>
+                                    <option value="#">D1</option>
                                     @for ($i = 1; $i <= 7; $i++)
                                         <option value="region/3/departement/29/district/1/groupe/{{ $i }}">
                                             Groupe {{ $chiffreEnLettre[$i] }}
                                         </option>
                                     @endfor
-                                    <option>D2</option>
+                                    <option value="#">D2</option>
                                     @for ($i = 1; $i <= 10; $i++)
                                         <option value="region/3/departement/29/district/2/groupe/{{ $i }}">
                                             Groupe {{ $chiffreEnLettre[$i] }}
                                         </option>
                                     @endfor
-                                    <option>D3</option>
+                                    <option value="#">D3</option>
                                     @for ($i = 1; $i <= 12; $i++)
                                         <option value="region/3/departement/29/district/3/groupe/{{ $i }}">
                                             Groupe {{ $chiffreEnLettre[$i] }}
@@ -116,13 +116,13 @@
                             <div id="ileEtVilaine" class="hidden">
                                 <select onchange="location = this.value;">
                                     <option>Groupes</option>
-                                    <option>D1</option>
+                                    <option value="#">D1</option>
                                     @for ($i = 1; $i <= 7; $i++)
                                         <option value="region/3/departement/35/district/1/groupe/{{ $i }}">
                                             Groupe {{ $chiffreEnLettre[$i] }}
                                         </option>
                                     @endfor
-                                    <option>D2</option>
+                                    <option value="#">D2</option>
                                     @for ($i = 1; $i <= 9; $i++)
                                         <option value="region/3/departement/35/district/2/groupe/{{ $i }}">
                                             Groupe {{ $chiffreEnLettre[$i] }}

@@ -3,26 +3,27 @@
         @livewire('favori-match', ['user' => Auth::user(), 'match' => $match])
     </div>
     <div class="relative my-2 p-2 bg-primary text-white shadow-lg cursor-pointer lg:rounded-lg">
-        @auth
-            @if ((Auth::user() && $match->user_id == Auth::user()->id && $match->live == 'attente') || Auth::user()->role == 'super-admin' || Auth::user()->role == 'admin')
-                <div class="bg-secondary w-6 h-6 absolute top-2 right-1 flex justify-center items-center rounded-full text-primary z-40"
-                    @click="open= true">
-                    <div class="dotMenu"></div>
-                    <div class="absolute top-0 right-0 w-32 h-auto py-4 pl-6 bg-secondary shadow-xl rounded-lg"
-                        x-show="open" @click.away="open = false">
-                        <a class="w-full py-2 font-bold" href="{{ route('matches.destroy', $match) }}"
-                            onclick="event.preventDefault();
-                            document.getElementById('delete-match-{{$match->id}}').submit();">Effacer</a>
-                    </div>
-                    <form id="delete-match-{{$match->id}}" action="{{ route('matches.destroy', $match) }}" method="POST">
-                        @method('DELETE')
-                        @csrf
-                    </form>
-                </div>
-            @endif
-        @endauth
+
+        <div class="bg-secondary w-6 h-6 absolute top-2 right-1 flex justify-center items-center rounded-full text-primary z-40"
+            @click="open= true">
+            <div class="dotMenu"></div>
+            <div class="absolute top-0 right-0 w-32 h-auto py-4 pl-6 bg-secondary shadow-xl rounded-lg" x-show="open"
+                @click.away="open = false">
+                {{-- <a class="w-full" href="{{ route('matches.edit', ['match' => $match]) }}">modifier</a> --}}
+                @auth
+                    @if ((Auth::user() && $match->user_id == Auth::user()->id && $match->live == 'attente') || Auth::user()->role == 'super-admin' || Auth::user()->role == 'admin')
+                        <a class="w-full" href="{{ route('matches.destroy', $match) }}" onclick="event.preventDefault();
+                                    document.getElementById('delete-match-{{ $match->id }}').submit();">Effacer</a>
+                    @endif
+                @endauth
+            </div>
+            <form id="delete-match-{{ $match->id }}" action="{{ route('matches.destroy', $match) }}" method="POST">
+                @method('DELETE')
+                @csrf
+            </form>
+        </div>
         <a href="{{ route('matches.show', [$match, Str::slug($match->slug, '-')]) }}">
-            <div class="">
+            <div>
                 <div class="text-center flex justify-center mb-2">
                     <p class="px-4 text-white">{{ $match->date_match->formatLocalized('%d/%m/%y') }}</p>
                     <p class="px-4 text-white">{{ $match->date_match->formatLocalized('%H:%M') }}</p>
