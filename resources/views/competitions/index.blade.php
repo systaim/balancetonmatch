@@ -9,6 +9,9 @@
                         <img class="w-full object-cover object-center h-full"
                             src="{{ asset('images/championnat-region.jpg') }}" alt="Coupe de France">
                         <div class="absolute top-12 left-2 text-gray-900">
+                            <select name="region" id="region">
+                                <option value="">Bretagne</option>
+                            </select>
                             <select name="poules" id="poules" onchange="location = this.value;">
                                 <option>Groupes</option>
                                 <option value="#">R1</option>

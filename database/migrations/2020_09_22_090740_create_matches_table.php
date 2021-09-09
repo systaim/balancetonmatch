@@ -17,7 +17,7 @@ class CreateMatchesTable extends Migration
             $table->id();
             $table->string('slug')->nullable();
             $table->enum('live',['attente','debut','mitemps','repriseMT','finDeMatch','reporte','annule','arrete','prolongations1','MTProlongations','prolongations2','finProlongations','tab'])->default('attente');
-            $table->integer('tps_de_jeu_create')->nullable()->default(0);
+            $table->integer('tps_de_jeu_modifie')->nullable()->default(0);
             $table->integer('tps_de_jeu')->nullable();
             $table->unsignedBigInteger('home_team_id');
             $table->integer('home_score')->nullable();

@@ -1,5 +1,5 @@
 <div>
-     <!----------------------
+    <!----------------------
     Options commentaires "équipe"
     ------------------------->
     <div>
@@ -113,122 +113,98 @@
                         </div>
                     @endif
                 </div>
-                <div class="fixed flex justify-center top-32 left-1 right-1 z-50 my-6 w-11/12 m-auto lg:w-8/12">
+                <div class="flex justify-center">
+                    <div
+                        class="text-white font-bold text-2xl bg-primary flex justify-center items-center w-20 h-20 my-3 rounded-full border-2 border-secondary">
+                        <p>{{ $minute }}</p>
+                    </div>
+                </div>
+                <div class="fixed flex justify-center top-28 left-1 right-1 z-50 my-6 w-11/12 m-auto lg:w-8/12">
                     @if ($match->commentateur != null && $match->commentateur->user->id == Auth::user()->id)
                         @if ($match->live == 'attente')
-                            <button type="button"
-                                class="relative commentaires h-24 bg-white commandeMatch items-stretch w-full focus:outline-none rounded-lg"
-                                wire:click="timeZero" wire:model="commentator">
+                            <button type="button" wire:click="timeZero" wire:model="commentator">
                                 <div
-                                    class="minuteCommentaires w-24 commandeMatch flex flex-col justify-center items-center">
-                                    <img src="{{ asset('images/whistle-white.png') }}">
-                                </div>
-                                <div class="bg-white w-full h-full p-3 flex flex-col justify-center items-center">
+                                    class="bg-primary text-white w-full h-full p-3 flex justify-evenly items-center rounded-lg">
+                                    <img src="{{ asset('images/whistle-white.png') }}"" class="   h-12 mr-3">
                                     <p class="font-bold">Démarrer le match</p>
                                 </div>
                             </button>
                         @endif
                         @if ($match->live == 'debut')
-                            <button type="button"
-                                {{-- class="relative commentaires h-24 bg-white commandeMatch items-stretch w-full focus:outline-none rounded-lg" --}}
-                                wire:click="timeMitemps" wire:model="type_comments">
-                                <div class="bg-primary text-white w-full h-full p-3 flex justify-evenly items-center rounded-lg">
+                            <button type="button" wire:click="timeMitemps" wire:model="type_comments">
+                                <div
+                                    class="bg-primary text-white w-full h-full p-3 flex justify-evenly items-center rounded-lg">
                                     <img src="{{ asset('images/whistle-white.png') }}" class="h-12 mr-3">
                                     <p class="font-bold">C'est la mi-temps</p>
                                 </div>
                             </button>
                         @endif
                         @if ($match->live == 'mitemps')
-                            <button type="button"
-                                class="relative commentaires h-24 bg-white commandeMatch items-stretch w-full focus:outline-none rounded-lg"
-                                wire:click="timeReprise" wire:model="type_comments">
+                            <button type="button" wire:click="timeReprise" wire:model="type_comments">
                                 <div
-                                    class="minuteCommentaires w-24 commandeMatch flex flex-col justify-center items-center">
-                                    <img src="{{ asset('images/whistle-white.png') }}">
-                                </div>
-                                <div class="bg-white w-full h-full p-3 flex flex-col justify-center">
+                                    class="bg-primary text-white w-full h-full p-3 flex justify-evenly items-center rounded-lg">
+                                    <img src="{{ asset('images/whistle-white.png') }}" class="h-12 mr-3">
                                     <p class="font-bold">C'est la reprise</p>
                                 </div>
                             </button>
                         @endif
                         @if ($match->live == 'repriseMT')
-                            <button type="button"
-                                class="relative commentaires h-24 bg-white commandeMatch items-stretch w-full focus:outline-none rounded-lg"
-                                wire:click="timeFinDuMatch" wire:model="type_comments">
+                            <button type="button" wire:click="timeFinDuMatch" wire:model="type_comments">
                                 <div
-                                    class="minuteCommentaires w-24 commandeMatch flex flex-col justify-center items-center">
-                                    <img src="{{ asset('images/whistle-white.png') }}">
-                                </div>
-                                <div class="bg-white w-full h-full p-3 flex flex-col justify-center">
-                                    <p class="font-bold">Le match est terminé ! ⏱</p>
-                                    <p class="text-xs">On valide aux 3 coups de sifflet... <br>pas avant 😉
+                                    class="bg-primary text-white w-full h-full p-3 flex justify-evenly items-center rounded-lg">
+                                    <img src="{{ asset('images/whistle-white.png') }}" class="h-12 mr-3">
+                                    <div>
+                                        <p class="font-bold">Le match est terminé ! ⏱</p>
+                                        <p class="text-xs">On valide aux 3 coups de sifflet... <br>pas avant 😉
+                                    </div>
+
                                     </p>
                                 </div>
                             </button>
                         @endif
                         @if ($match->live == 'finDeMatch' && !$match->debut_prolongations && $match->competition_id == 3 && $match->home_score == $match->away_score)
-                            <button type="button"
-                                class="relative commentaires h-24 bg-white commandeMatch items-stretch w-full focus:outline-none minHeight16"
-                                wire:click="prolongations">
+                            <button type="button" wire:click="prolongations">
                                 <div
-                                    class="minuteCommentaires w-24 commandeMatch flex flex-col justify-center items-center">
-                                    <img src="{{ asset('images/whistle-white.png') }}">
-                                </div>
-                                <div class="bg-white w-full h-full p-3 flex flex-col justify-center items-center">
-                                    <p class="___class_+?69___">Début de la 1ère mi-temps des prolongations</p>
+                                    class="bg-primary text-white w-full h-full p-3 flex justify-evenly items-center rounded-lg">
+                                    <img src="{{ asset('images/whistle-white.png') }}" class="h-12 mr-3">
+                                    <p>Début de la 1ère mi-temps des prolongations</p>
                                 </div>
                             </button>
                         @endif
                         @if ($match->live == 'prolongations1')
-                            <button type="button"
-                                class="relative commentaires h-24 bg-white commandeMatch items-stretch w-full focus:outline-none minHeight16"
-                                wire:click="miTempsProlongations">
+                            <button type="button" wire:click="miTempsProlongations">
                                 <div
-                                    class="minuteCommentaires w-24 commandeMatch flex flex-col justify-center items-center">
-                                    <img src="{{ asset('images/whistle-white.png') }}">
-                                </div>
-                                <div class="bg-white w-full h-full p-3 flex flex-col justify-center items-center">
-                                    <p class="___class_+?73___">Mi-temps de prolongations</p>
+                                    class="bg-primary text-white w-full h-full p-3 flex justify-evenly items-center rounded-lg">
+                                    <img src="{{ asset('images/whistle-white.png') }}" class="h-12 mr-3">
+                                    <p>Mi-temps de prolongations</p>
                                 </div>
                             </button>
                         @endif
                         @if ($match->live == 'MTProlongations')
-                            <button type="button"
-                                class="relative commentaires h-24 bg-white commandeMatch items-stretch w-full focus:outline-none minHeight16"
-                                wire:click="secondeProlongation">
+                            <button type="button" wire:click="secondeProlongation">
                                 <div
-                                    class="minuteCommentaires w-24 commandeMatch flex flex-col justify-center items-center">
-                                    <img src="{{ asset('images/whistle-white.png') }}">
-                                </div>
-                                <div class="bg-white w-full h-full p-3 flex flex-col justify-center items-center">
-                                    <p class="___class_+?77___">Reprise de la seconde mi-temps des prolongations
+                                    class="bg-primary text-white w-full h-full p-3 flex justify-evenly items-center rounded-lg">
+                                    <img src="{{ asset('images/whistle-white.png') }}" class="h-12 mr-3">
+                                    <p>Reprise de la seconde mi-temps des prolongations
                                     </p>
                                 </div>
                             </button>
                         @endif
                         @if ($match->live == 'prolongations2')
-                            <button type="button"
-                                class="relative commentaires h-24 bg-white commandeMatch items-stretch w-full focus:outline-none minHeight16"
-                                wire:click="finProlongations">
+                            <button type="button" wire:click="finProlongations">
                                 <div
-                                    class="minuteCommentaires w-24 commandeMatch flex flex-col justify-center items-center">
-                                    <img src="{{ asset('images/whistle-white.png') }}">
-                                </div>
-                                <div class="bg-white w-full h-full p-3 flex flex-col justify-center items-center">
-                                    <p class="___class_+?81___">Fin des prolongations</p>
+                                    class="bg-primary text-white w-full h-full p-3 flex justify-evenly items-center rounded-lg">
+                                    <img src="{{ asset('images/whistle-white.png') }}" class="h-12 mr-3">
+                                    <p>Fin des prolongations</p>
                                 </div>
                             </button>
                         @endif
                         @if ($match->live == 'finProlongations' && $match->home_score == $match->away_score)
-                            <button type="button"
-                                class="relative commentaires h-24 bg-white commandeMatch items-stretch w-full focus:outline-none minHeight16"
-                                wire:click="tirsAuBut">
+                            <button type="button" wire:click="tirsAuBut">
                                 <div
-                                    class="minuteCommentaires w-24 commandeMatch flex flex-col justify-center items-center">
-                                    <img src="{{ asset('images/whistle-white.png') }}">
-                                </div>
-                                <div class="bg-white w-full h-full p-3 flex flex-col justify-center items-center">
-                                    <p class="___class_+?85___">Tirs au but !!!</p>
+                                    class="bg-primary text-white w-full h-full p-3 flex justify-evenly items-center rounded-lg">
+                                    <img src="{{ asset('images/whistle-white.png') }}" class="h-12 mr-3">
+                                    <p>Tirs au but !!!</p>
                                 </div>
                             </button>
                         @endif
@@ -417,7 +393,6 @@
                                     <p>{{ $match->date_match->formatLocalized('%H:%M') }}</p>
                                     <p>{{ $match->date_match->formatLocalized('%d/%m/%y') }}</p>
                                 </div>
-
                             @endif
                         </div>
                     </div>
@@ -491,7 +466,7 @@
             <!-------------------------
                 Formulaire d'action équipe 
                 ---------------------------->
-            <div class="openComment z-50 rounded-t-lg {{ $team_action }} {{ $type_comments }}">
+            <div class="openComment z-50 rounded-t-lg {{ $team_action }} {{ $type_comments }} border-t">
                 <div class="flex flex-col items-center pt-5">
                     <div class="flex items-center">
                         @if ($team_action == 'home')
@@ -886,26 +861,6 @@
                                     <p> {!! \Session::get('warning') !!}</p>
                                 </div>
                             @endif
-                        </div>
-                    </button>
-                    <button type="button"
-                        class="relative commentaires h-24 bg-white commandeMatch items-stretch w-full focus:outline-none"
-                        wire:click="matchReporte">
-                        <div class="minuteCommentaires w-24 commandeMatch flex flex-col justify-center items-center">
-                            <img src="{{ asset('images/danger.png') }}">
-                        </div>
-                        <div class="bg-white w-full h-full p-3 flex flex-col justify-center">
-                            <p class="text-center">Le match est reporté ou annulé <i
-                                    class="fas fa-cloud-showers-heavy"></i>
-                            </p>
-                            <div>
-                                @if (session()->has('messageAnnulation'))
-                                    <div wire:loading.class.remove="alertFavori"
-                                        class="flex items-center absolute top-0 right-0 bottom-0 left-0 bg-black text-white text-xs p-2 rounded-l-lg alertFavori">
-                                        {{ session('messageAnnulation') }}
-                                    </div>
-                                @endif
-                            </div>
                         </div>
                     </button>
                 @endif

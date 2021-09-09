@@ -113,10 +113,6 @@ Route::get('/admin/addClub', function(){
     }
 })->middleware('auth');
 
-Route::get('admin/recupMatchsCoupe', function () {
-    
-})->middleware('auth');
-
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
