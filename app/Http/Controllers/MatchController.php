@@ -14,10 +14,12 @@ use App\Models\Favorismatch;
 use App\Models\Group;
 use App\Models\Player;
 use App\Models\Match;
+use App\Models\Reaction as ModelsReaction;
 use App\Models\Region;
 use App\Models\Statistic;
 use App\Models\Tab;
 use App\Models\User;
+use App\Models\Reaction;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -120,9 +122,10 @@ class MatchController extends Controller
         $competitions = $match->competition()->get();
         $tabHome = Tab::where('match_id', $match->id)->where('club_id', $match->homeClub->id)->get();
         $tabAway = Tab::where('match_id', $match->id)->where('club_id', $match->awayClub->id)->get();
-        $user = Auth::user();
-
+        $user = Auth::user();   
         
+        $comment = Commentaire::find(161);
+
 
         return view('matches.show', compact('match', 'commentsMatch', 'clubHome', 'clubAway', 'competitions', 'stats', 'nbrFavoris', 'commentator', 'user', 'tabHome', 'tabAway'));
     }

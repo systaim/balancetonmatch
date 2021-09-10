@@ -9,6 +9,7 @@ use App\Models\Counter;
 use App\Models\Player;
 use App\Models\Statistic;
 use App\Models\Tab;
+use App\Models\Reaction;
 use Illuminate\Http\Request;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
@@ -60,6 +61,10 @@ class FormCommentaires extends Component
     public $btnTpsDejeu = false;
     public $minuteModifiee;
     public $btnScore = false;
+
+    public $reactionOk;
+    public $reactionHeart;
+    public $reactionApplause;
 
     public $listGoal = [
         'GOOOOAAL !',
@@ -233,6 +238,18 @@ class FormCommentaires extends Component
         return redirect()->to('matches/' . $this->match->id);
     }
 
+    public function reaction($emoji, $commentaire)
+    {
+        // dd($commentaire);
+        $visitor = new Reaction();
+        $visitor['ip-address'] = request()->ip();
+        $visitor['type'] = $emoji;
+        $visitor['commentaire_id'] = $commentaire;
+
+        // dd($visitor);
+        $visitor->save();
+    }
+
     public function countVisitor()
     {
 
@@ -303,7 +320,7 @@ class FormCommentaires extends Component
     {
         if ($this->match->live == "debut") {
             $this->minute = now()->diffInMinutes($this->match->date_match);
-            if($this->minute >= 45) {
+            if ($this->minute >= 45) {
                 $this->minute = "45+";
             }
         }
@@ -314,7 +331,7 @@ class FormCommentaires extends Component
 
         if ($this->match->live == "repriseMT") {
             $this->minute =  now()->diffInMinutes($this->match->date_match) - 15;
-            if($this->minute >= 95) {
+            if ($this->minute >= 95) {
                 $this->minute = "90+";
             }
         }

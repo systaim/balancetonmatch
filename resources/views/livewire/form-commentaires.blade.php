@@ -548,17 +548,18 @@
                 <a href="/login">
                     <div class="w-11/12 md:w-6/12 mx-auto">
                         <div
-                        class="flex justify-start items-center bg-primary text-white px-1 py-2 rounded-lg border-2 border-white my-2">
-                        <div class="h-12 w-12 shadow-2xl border-2 bg-white flex justify-center items-center rounded-full">
-                            <i class="far fa-star cursor-pointer text-red-700 text-2xl"></i>
-                        </div>
-                        <div>
-                            <p class="px-3 text-xs">Toi aussi tu veux que ce match soit commenté ?</p>
-                            <p class="text-xs px-3 font-semibold">Connecte toi</p>
+                            class="flex justify-start items-center bg-primary text-white px-1 py-2 rounded-lg border-2 border-white my-2">
+                            <div
+                                class="h-12 w-12 shadow-2xl border-2 bg-white flex justify-center items-center rounded-full">
+                                <i class="far fa-star cursor-pointer text-red-700 text-2xl"></i>
+                            </div>
+                            <div>
+                                <p class="px-3 text-xs">Toi aussi tu veux que ce match soit commenté ?</p>
+                                <p class="text-xs px-3 font-semibold">Connecte toi</p>
+                            </div>
                         </div>
                     </div>
-                    </div>
-                    
+
                 </a>
             @endauth
             @auth
@@ -637,7 +638,7 @@
                                 <button type="button" wire:click="timeZero" wire:model="commentator">
                                     <div
                                         class="bg-success text-gray-800 w-full h-full p-3 flex justify-evenly items-center rounded-lg">
-                                        <img src="{{ asset('images/whistle.png') }}"" class="            h-12 mr-3">
+                                        <img src="{{ asset('images/whistle.png') }}"" class="             h-12 mr-3">
                                         <p class="font-bold">Démarrer le match</p>
                                     </div>
                                 </button>
@@ -1001,20 +1002,26 @@
                                 @endif
                             </div>
                         </div>
-                        {{-- <div class="flex justify-end items-end mt-4 mx-1">
-                            <div class="flex items-end border px-2 py-1 m-1 rounded-lg">
-                                <p class="border-orange-400 m-1">👍</p>
-                                <p>29</p>
-                            </div>
-                            <div class="flex items-end border px-2 py-1 m-1 rounded-lg">
-                                <p class="border-orange-400 m-1">❤️</p>
-                                <p>91</p>
-                            </div>
-                            <div class="flex items-end border px-2 py-1 m-1 rounded-lg">
-                                <p class="border-orange-400 m-1">👏</p>
-                                <p>10</p>
-                            </div>
-                        </div> --}}
+                        {{-- @foreach ($comment->reactions as $reaction)
+                        @dump($reaction)
+                            <div class="flex justify-end items-end mt-4 mx-1">
+                                <div class="flex items-end border px-2 py-1 m-1 rounded-lg"
+                                    wire:click="reaction('ok', {{ $comment->id }})">
+                                    <p class="border-orange-400 m-1">👍</p>
+                                    <p class="text-sm">{{ count($reaction)}}</p>
+                                </div>
+                                <div class="flex items-end border px-2 py-1 m-1 rounded-lg"
+                                    wire:click="reaction('heart', {{ $comment->id }})">
+                                    <p class="border-orange-400 m-1">❤️</p>
+                                    <p class="text-sm">{{ count($reaction) }}</p>
+                                </div>
+                                <div class="flex items-end border px-2 py-1 m-1 rounded-lg"
+                                    wire:click="reaction('applause', {{ $comment->id }})">
+                                    <p class="border-orange-400 m-1">👏</p>
+                                    <p class="text-sm">{{ count($reaction) }}</p>
+                                </div>
+                            </div>                            
+                        @endforeach --}}
                     </div>
                     @auth
                         @if (($match->commentateur->user_id == Auth::user()->id && $match->live != 'finDeMatch') || Auth::user()->role == 'super-admin' || Auth::user()->role == 'admin')

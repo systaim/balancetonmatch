@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use Brick\Math\Exception\MathException;
+use App\Models\Reaction;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -34,4 +34,10 @@ class Commentaire extends Model
     public function player(){
         return $this->hasOneThrough(Player::class, Statistic::class);
     }
+
+    public function reactions(){
+        return $this->hasMany(Reaction::class);
+    }
+
+    
 }
