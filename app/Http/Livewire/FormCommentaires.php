@@ -303,6 +303,9 @@ class FormCommentaires extends Component
     {
         if ($this->match->live == "debut") {
             $this->minute = now()->diffInMinutes($this->match->date_match);
+            if($this->minute >= 45) {
+                $this->minute = "45+";
+            }
         }
 
         if ($this->match->live == "mitemps") {
@@ -311,6 +314,9 @@ class FormCommentaires extends Component
 
         if ($this->match->live == "repriseMT") {
             $this->minute =  now()->diffInMinutes($this->match->date_match) - 15;
+            if($this->minute >= 95) {
+                $this->minute = "90+";
+            }
         }
 
         if ($this->match->live == "prolongations1") {
@@ -650,7 +656,6 @@ class FormCommentaires extends Component
 
     public function saveComment()
     {
-
         // if ($this->dateMatch->diffInMinutes(now(), false) >= 0 && $this->match->live == "debut" || $this->match->live == "repriseMT") {
 
         $statData2['action'] = '';

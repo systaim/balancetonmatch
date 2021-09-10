@@ -381,10 +381,10 @@
     
     .btnDark:hover {
         --bg-opacity: 1;
-        background-color: #161e2e;
+        background-color: #797979;
         background-color: rgba(22, 30, 46, var(--bg-opacity));
         --text-opacity: 1;
-        color: #ffffff;
+        color: #000;
         color: rgba(255, 255, 255, var(--text-opacity));
         border-width: 2px;
         --border-opacity: 1;

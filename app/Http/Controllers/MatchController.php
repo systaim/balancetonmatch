@@ -149,11 +149,20 @@ class MatchController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Match $match)
     {
+        $dataMatch = $request->validate([
+            'dateMatch' => 'required | date',
+            'time' => 'required | date_format:H:i',
+            'location' => 'nullable | string'
+        ]);
 
+        $match->date_match = $request->dateMatch. "T" .$request->time;
+        $match->location = $request->location;
+        $match->save();
 
-        
+        return redirect('matches/'.$match->id. '?' .$match->slug);
+
     }
 
     /**
