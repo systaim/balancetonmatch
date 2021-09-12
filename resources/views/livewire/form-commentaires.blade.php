@@ -529,7 +529,7 @@
                 Options commentaires "match"
                     ------------------------->
             @auth
-                @if (!Auth::user()->isFavoriMatch($match) && $match->live == 'attente')
+                @if (!Auth::user()->isFavoriMatch($match) && $match->live == 'attente' && $match->date_match < now())
                     <div class="w-11/12 md:w-6/12 mx-auto">
                         <div
                             class="flex justify-start items-center bg-primary text-white px-1 py-2 rounded-lg border-2 border-white my-2">
