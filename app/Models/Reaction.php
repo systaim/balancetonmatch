@@ -9,6 +9,7 @@ class Reaction extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['commentaire_id', 'reaction_id'];
 
     /**
      * Get the commentaire that owns the Reaction
@@ -18,11 +19,5 @@ class Reaction extends Model
     public function commentaires()
     {
         return $this->belongsToMany(Commentaire::class);
-    }
-
-    public function getCommentaire($id)
-    {
-        $r = Commentaire::where('commentaire_id', $id);
-        return $r;
     }
 }

@@ -14,6 +14,7 @@ use App\Models\DivisionsDepartment;
 use App\Models\Group;
 use App\Models\DivisionsRegion;
 use App\Models\Journee;
+use App\Models\Reaction;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
@@ -109,6 +110,14 @@ class DatabaseSeeder extends Seeder
                 'slug' => $slug,
                 'name' => $district,
 
+            ]);
+        }
+
+        $reactions = ['ok', 'heart', 'applause'];
+
+        foreach ($reactions as $reaction) {
+            Reaction::create([
+                'type' => $reaction,
             ]);
         }
 

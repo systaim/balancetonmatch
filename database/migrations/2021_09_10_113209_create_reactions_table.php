@@ -16,8 +16,6 @@ class CreateReactionsTable extends Migration
         Schema::create('reactions', function (Blueprint $table) {
             $table->id();
             $table->enum('type', ['ok','heart','applause']);
-            $table->string('commentaire_id');
-            $table->string('ip-address');
             $table->timestamps();
         });
     }

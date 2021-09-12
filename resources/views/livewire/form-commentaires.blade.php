@@ -626,7 +626,8 @@
                     </div>
                 @endif
                 @if ($match->commentateur && $match->live == 'attente')
-                    <div class="bg-success text-gray-800 p-4 rounded-lg m-6 flex flex-col justify-center items-center">
+                    <div
+                        class="bg-primary text-secondary p-4 rounded-lg m-6 flex flex-col justify-center items-center w-11/12 md:w-6/12 mx-auto">
                         <p>Plus qu'à lancer le match ! 💪</p>
                         <i class="fas fa-arrow-circle-down animate-bounce"></i>
                     </div>
@@ -638,7 +639,7 @@
                                 <button type="button" wire:click="timeZero" wire:model="commentator">
                                     <div
                                         class="bg-success text-gray-800 w-full h-full p-3 flex justify-evenly items-center rounded-lg">
-                                        <img src="{{ asset('images/whistle.png') }}"" class="             h-12 mr-3">
+                                        <img src="{{ asset('images/whistle.png') }}" class="h-12 mr-3">
                                         <p class="font-bold">Démarrer le match</p>
                                     </div>
                                 </button>
@@ -928,6 +929,16 @@
                                         @endif
                                     @endif
                                 </div>
+                                <div class="flex justify-start">
+                                    @foreach ($comment->reactions->groupBy('emoji') as $type => $reaction)
+                                        @foreach ($reaction->groupBy('id') as $id => $react)
+                                            <div>
+                                                <p class="-pt-1 mx-1 text-sm font-normal">{{ $type }}
+                                                    <span>{{ count($reaction) }}</span></p>
+                                                </div>
+                                        @endforeach
+                                    @endforeach
+                                </div>
                             </div>
                             <!-- Menu ajout d'un joueur par utilisateur -->
                             <div class="border-t-2 pt-4 flex flex-col justify-center items-center" x-show="open"
@@ -1002,26 +1013,18 @@
                                 @endif
                             </div>
                         </div>
-                        {{-- @foreach ($comment->reactions as $reaction)
-                        @dump($reaction)
-                            <div class="flex justify-end items-end mt-4 mx-1">
-                                <div class="flex items-end border px-2 py-1 m-1 rounded-lg"
-                                    wire:click="reaction('ok', {{ $comment->id }})">
-                                    <p class="border-orange-400 m-1">👍</p>
-                                    <p class="text-sm">{{ count($reaction)}}</p>
-                                </div>
-                                <div class="flex items-end border px-2 py-1 m-1 rounded-lg"
-                                    wire:click="reaction('heart', {{ $comment->id }})">
-                                    <p class="border-orange-400 m-1">❤️</p>
-                                    <p class="text-sm">{{ count($reaction) }}</p>
-                                </div>
-                                <div class="flex items-end border px-2 py-1 m-1 rounded-lg"
-                                    wire:click="reaction('applause', {{ $comment->id }})">
-                                    <p class="border-orange-400 m-1">👏</p>
-                                    <p class="text-sm">{{ count($reaction) }}</p>
-                                </div>
-                            </div>                            
-                        @endforeach --}}
+                        @if ($comment->team_action != 'match' && ($comment->type_comments != 'Carton jaune' && $comment->type_comments != '2e carton jaune' && $comment->type_comments != 'Carton rouge' && $comment->type_comments != 'Carton blanc'))
+                            <div class="flex justify-end items-end mx-1 -mb-4 -mr-4">
+                                @foreach ($reactions as $reaction)
+                                    @if (!empty($comment->reactions))
+                                        <button class="flex items-end border px-2 py-1 m-1 rounded-lg"
+                                            wire:click="reaction({{ $reaction->id }}, {{ $comment->id }})">
+                                            <p class="border-orange-400 m-1">{{ $reaction->emoji }}</p>
+                                        </button>
+                                    @endif
+                                @endforeach
+                            </div>
+                        @endif
                     </div>
                     @auth
                         @if (($match->commentateur->user_id == Auth::user()->id && $match->live != 'finDeMatch') || Auth::user()->role == 'super-admin' || Auth::user()->role == 'admin')

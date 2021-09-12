@@ -36,7 +36,7 @@ class Commentaire extends Model
     }
 
     public function reactions(){
-        return $this->hasMany(Reaction::class);
+        return $this->belongsToMany(Reaction::class);
     }
 
     

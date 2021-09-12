@@ -10,9 +10,11 @@ use App\Models\Player;
 use App\Models\Statistic;
 use App\Models\Tab;
 use App\Models\Reaction;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rules\RequiredIf;
 use Livewire\WithFileUploads;
 
@@ -61,10 +63,7 @@ class FormCommentaires extends Component
     public $btnTpsDejeu = false;
     public $minuteModifiee;
     public $btnScore = false;
-
-    public $reactionOk;
-    public $reactionHeart;
-    public $reactionApplause;
+    public $reactions;
 
     public $listGoal = [
         'GOOOOAAL !',
@@ -150,6 +149,8 @@ class FormCommentaires extends Component
         foreach ($this->commentsMatch as $comment) {
             $this->imageAction = $comment->images;
         }
+
+        $this->reactions = Reaction::all();
 
         $this->miseAJourCom();
         $this->miseAJourPenalty();
@@ -240,14 +241,14 @@ class FormCommentaires extends Component
 
     public function reaction($emoji, $commentaire)
     {
-        // dd($commentaire);
-        $visitor = new Reaction();
-        $visitor['ip-address'] = request()->ip();
-        $visitor['type'] = $emoji;
-        $visitor['commentaire_id'] = $commentaire;
+        
+        DB::table('commentaire_reaction')->insert([
+            'commentaire_id' => $commentaire,
+            'reaction_id' => $emoji,
+            // ['ip-address' => request()->ip()],
+        ]);
 
-        // dd($visitor);
-        $visitor->save();
+        $this->miseAJourCom();
     }
 
     public function countVisitor()
@@ -276,7 +277,7 @@ class FormCommentaires extends Component
     {
         $this->home_score = $this->match->home_score;
         $this->away_score = $this->match->away_score;
-        $this->commentsMatch = $this->match->commentaires()->orderBy('minute', 'desc')->orderBy('updated_at', 'desc')->get();
+        $this->commentsMatch = $this->match->commentaires()->with(['statistic', 'reactions'])->orderBy('minute', 'desc')->orderBy('updated_at', 'desc')->get();
     }
 
     public function miseAJourPenalty()
@@ -723,11 +724,11 @@ class FormCommentaires extends Component
             }
             if ($this->type_carton == '2e carton jaune') {
                 $commentData['type_action'] = "2nd yellow_card";
-                $statData['action'] = "yellow_card";
-                $commentData['comments'] = "2e carton jaune";
+                // $statData['action'] = "yellow_card";
+                // $commentData['comments'] = "2e carton jaune";
 
-                $statData2['action'] = "red_card";
-                $statData2['player_id'] = $this->player;
+                // $statData2['action'] = "red_card";
+                // $statData2['player_id'] = $this->player;
             }
             if ($this->type_carton == 'Carton rouge') {
                 $commentData['type_action'] = "red_card";
