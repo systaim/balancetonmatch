@@ -13,7 +13,7 @@
                 @auth
                     @if ((Auth::user() && $match->user_id == Auth::user()->id && $match->live == 'attente') || Auth::user()->role == 'super-admin' || Auth::user()->role == 'admin')
                         <a class="w-full" href="{{ route('matches.destroy', $match) }}" onclick="event.preventDefault();
-                                    document.getElementById('delete-match-{{ $match->id }}').submit();">Effacer</a>
+                                        document.getElementById('delete-match-{{ $match->id }}').submit();">Effacer</a>
                     @endif
                 @endauth
             </div>
@@ -50,12 +50,8 @@
                                 <img src="{{ asset('images/vs-secondary.png') }}" alt="versus"
                                     class="h-12 lg:h-24 w-12 lg:w-24">
                             </div>
-                        @elseif($match->live == 'reporte')
-                            <p
-                                class="bg-green-600 text-xs text-white rounded-md px-2 shadow-md border-b-2 border-r-2 border-white">
-                                REPORTÉ</p>
                         @elseif($match->live != 'reporte' && $match->live != 'attente' && $match->live !=
-                            'finDeMatch' && now()->between($match->date_match, $match->date_match->addMinutes(150)))
+                            'finDeMatch' && now()->between($match->date_match, $match->date_match->addMinutes(240)))
                             <div
                                 class="relative uppercase inline-block text-primary font-bold bg-secondary px-2 rounded-sm text-xl">
                                 <div

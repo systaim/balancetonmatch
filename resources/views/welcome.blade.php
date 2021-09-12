@@ -18,6 +18,7 @@
             </div>
         </div>
     </section>
+    @dump(now()->today())
     {{-- <section>
         @auth
             @if (Auth::user()->club)

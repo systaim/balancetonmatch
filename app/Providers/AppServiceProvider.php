@@ -32,9 +32,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $liveMatchs = Match::where('date_match','>=', Carbon::now()->subMinutes(120))
+        $liveMatchs = Match::where('date_match','>=', Carbon::now()->today())
             ->where(function($query) {
-                $query->where('live', '!=', 'attente')->where('live', '!=', 'finDeMatch');
+                $query->where('live', '!=', 'attente');
             })->get();
         View::share('liveMatches', $liveMatchs);
         
