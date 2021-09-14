@@ -1,6 +1,6 @@
 @extends('layout')
 @section('content')
-    <section class="hidden md:block">
+    <section>
         <div id="slideHome" class="flex flex-col md:flex-row justify-between bg-primary overflow-hidden h-96 z-0">
             <div class="h-6/12 sm:h-8/12 md:h-auto md:w-6/12 img-bg-blend-home">
             </div>
@@ -18,7 +18,6 @@
             </div>
         </div>
     </section>
-    
     {{-- @dump(now()->today()) --}}
     {{-- <section>
         @auth
