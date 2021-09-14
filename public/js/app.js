@@ -19313,27 +19313,7 @@ process.umask = function() { return 0; };
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-var g;
-
-// This works in non-strict mode
-g = (function() {
-	return this;
-})();
-
-try {
-	// This works if eval is allowed (see CSP)
-	g = g || new Function("return this")();
-} catch (e) {
-	// This works if the window reference is available
-	if (typeof window === "object") g = window;
-}
-
-// g can still be undefined, but nothing to do about it...
-// We return undefined, instead of nothing here, so it's
-// easier to handle this case. if(!global) { ...}
-
-module.exports = g;
-
+throw new Error("Module build failed: Error: ENOENT: no such file or directory, open '/Users/systaim/Documents/projets web/balancetonmatch/node_modules/webpack/buildin/global.js'");
 
 /***/ }),
 
@@ -19344,29 +19324,7 @@ module.exports = g;
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = function(module) {
-	if (!module.webpackPolyfill) {
-		module.deprecate = function() {};
-		module.paths = [];
-		// module.parent = undefined by default
-		if (!module.children) module.children = [];
-		Object.defineProperty(module, "loaded", {
-			enumerable: true,
-			get: function() {
-				return module.l;
-			}
-		});
-		Object.defineProperty(module, "id", {
-			enumerable: true,
-			get: function() {
-				return module.i;
-			}
-		});
-		module.webpackPolyfill = 1;
-	}
-	return module;
-};
-
+throw new Error("Module build failed: Error: ENOENT: no such file or directory, open '/Users/systaim/Documents/projets web/balancetonmatch/node_modules/webpack/buildin/module.js'");
 
 /***/ }),
 
@@ -19377,7 +19335,7 @@ module.exports = function(module) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// removed by extract-text-webpack-plugin
+throw new Error("Module build failed (from ./node_modules/css-loader/index.js):\nModuleBuildError: Module build failed (from ./node_modules/postcss-loader/src/index.js):\nError: Failed to find 'tailwindcss/base'\n  in [\n    /Users/systaim/Documents/projets web/balancetonmatch/resources/css\n  ]\n    at /Users/systaim/Documents/projets web/balancetonmatch/node_modules/postcss-import/lib/resolve-id.js:35:13\n    at /Users/systaim/Documents/projets web/balancetonmatch/node_modules/webpack/lib/NormalModule.js:316:20\n    at /Users/systaim/Documents/projets web/balancetonmatch/node_modules/loader-runner/lib/LoaderRunner.js:367:11\n    at /Users/systaim/Documents/projets web/balancetonmatch/node_modules/loader-runner/lib/LoaderRunner.js:233:18\n    at context.callback (/Users/systaim/Documents/projets web/balancetonmatch/node_modules/loader-runner/lib/LoaderRunner.js:111:13)\n    at /Users/systaim/Documents/projets web/balancetonmatch/node_modules/postcss-loader/src/index.js:208:9");
 
 /***/ }),
 
@@ -19388,7 +19346,7 @@ module.exports = function(module) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// removed by extract-text-webpack-plugin
+throw new Error("Module build failed (from ./node_modules/css-loader/index.js):\nModuleBuildError: Module build failed: Error: ENOENT: no such file or directory, open '/Users/systaim/Documents/projets web/balancetonmatch/node_modules/css-loader/lib/css-base.js'\n    at /Users/systaim/Documents/projets web/balancetonmatch/node_modules/webpack/lib/NormalModule.js:316:20\n    at /Users/systaim/Documents/projets web/balancetonmatch/node_modules/loader-runner/lib/LoaderRunner.js:367:11\n    at /Users/systaim/Documents/projets web/balancetonmatch/node_modules/loader-runner/lib/LoaderRunner.js:203:19\n    at /Users/systaim/Documents/projets web/balancetonmatch/node_modules/enhanced-resolve/lib/CachedInputFileSystem.js:85:15\n    at processTicksAndRejections (internal/process/task_queues.js:77:11)");
 
 /***/ }),
 
