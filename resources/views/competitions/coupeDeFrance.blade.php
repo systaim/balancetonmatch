@@ -8,7 +8,7 @@
 
     <div class="relative lg:flex lg:justify-center">
         <div class="lg:w-9/12">            
-            <h2 class="inline-block text-2xl font-normal my-4 py-2 px-3 text-white bg-primary">En attente du 3e tour</h2>
+            <h2 class="inline-block text-2xl font-normal my-4 py-2 px-3 text-white bg-primary">3e tour</h2>
             @foreach ($matchs as $match)
                 <div class="rounded-b-md rounded-tr-md">
                     @include('match')
