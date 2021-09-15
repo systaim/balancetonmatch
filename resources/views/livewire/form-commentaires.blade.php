@@ -191,14 +191,14 @@
                                         <button type="button" wire:click="incrementHomeScore"
                                             class="focus:outline-none">
                                             <span
-                                                class="h-4 w-4 flex items-center justify-center bg-success text-black font-mono font-bold">+</span>
+                                                class="h-4 w-4 flex items-center justify-center bg-success text-black font-bold">+</span>
                                         </button>
                                     </div>
                                 @endif
                             </div>
                             <div class="z-10">
                                 <p
-                                    class="bg-white rounded-sm ml-1 flex justify-center w-4 text-3xl px-4 sm:text-5xl sm:px-6 font-bold">
+                                    class="bg-white rounded-sm ml-1 flex justify-center w-4 text-3xl px-4 sm:text-5xl sm:px-6 font-mono font-bold">
                                     {{ $away_score }}
                                 </p>
                                 @if ($btnScore)
