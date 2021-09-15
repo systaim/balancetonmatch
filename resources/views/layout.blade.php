@@ -44,6 +44,7 @@
     @if (request()->path() == 'contact')
         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     @endif
+    <link rel= "manifest" href= "manifest.json">
 </head>
 
 <body>
@@ -75,7 +76,7 @@
                             </a>
                         </div>
                     </div>
-                    <div class="">
+                    <div class="xl:hidden">
                         <a href=" /notifications">
                         <div
                             class="relative flex justify-center items-center text-primary border rounded-full h-12 w-12 mr-4">

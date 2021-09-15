@@ -26055,6 +26055,19 @@ if (window.User) {
   });
 }
 
+function registerServiceWorker() {
+  // enregistre le script sw avec les navigateurs qui le gèrent
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js', {
+      scope: '/'
+    }).then(function () {
+      console.log('Service Worker enregistré correctement.');
+    })["catch"](function (error) {
+      console.log('Erreur lors de l\'enregistrement du Service Worker : ', error);
+    });
+  }
+}
+
 /***/ }),
 
 /***/ 0:

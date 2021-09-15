@@ -186,12 +186,12 @@
                                         <button type="button" wire:click="decrementHomeScore"
                                             class="focus:outline-none">
                                             <span
-                                                class="h-4 w-4 flex items-center justify-center text-black bg-danger font-mono font-bold">-</span>
+                                                class="h-4 w-4 flex items-center justify-center text-black bg-danger font-bold">-</span>
                                         </button>
                                         <button type="button" wire:click="incrementHomeScore"
                                             class="focus:outline-none">
                                             <span
-                                                class="h-4 w-4 flex items-center justify-center bg-success text-black font-bold">+</span>
+                                                class="h-4 w-4 flex items-center justify-center bg-success text-black font-mono font-bold">+</span>
                                         </button>
                                     </div>
                                 @endif
