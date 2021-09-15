@@ -14,7 +14,7 @@
                     x-transition:leave-end="opacity-0 h-0" @click.away="open = false">
                     <div x-data="{ open: false }">
                         <div>
-                            <a href="{{route('competitions.index')}}">Les prochains matchs</a>
+                            <a href="{{ route('competitions.index') }}">Les prochains matchs</a>
                         </div>
                         {{-- <div>
                             <a class="cursor-pointer" @click="open = true"
@@ -56,12 +56,25 @@
     </nav>
     <div class="absolute right-0 top-0 m-2 text-white hidden lg:block lg:mr-4" x-data="{ open : false }">
         @auth
-            <div class="flex justify-center items-center cursor-pointer text-primary mr-5 my-3 border rounded-full px-3 py-2" @click="open = true">
-                <img class="rounded-full h-8 w-8 object-cover mr-4 border" src="{{ Auth::user()->profile_photo_url }}">
-                <div id="btnMenu" class="focus:outline-none">
-                    <p><i class="fas fa-caret-down"></i></p>
+            <div class="flex items-center">
+                <a href="/notifications">
+                    <div class="relative flex justify-center items-center text-primary border rounded-full h-12 w-12 mr-4">
+                        <i class="far fa-bell"></i>
+                            <p id="js-count"
+                                class="absolute -top-1 right-0 bg-red-500 rounded-full text-xs text-white flex items-center justify-center h-5 w-5">
+                                {{ Auth::user()->unreadNotifications->count() }}</p>
+                    </div>
+                </a>
+                <div class="flex justify-center items-center cursor-pointer text-primary mr-5 my-3 border rounded-full px-3 py-2"
+                    @click="open = true">
+                    <img class="rounded-full h-8 w-8 object-cover mr-4 border"
+                        src="{{ Auth::user()->profile_photo_url }}">
+                    <div id="btnMenu" class="focus:outline-none">
+                        <p><i class="fas fa-caret-down"></i></p>
+                    </div>
                 </div>
             </div>
+
         @else
             <div class="flex justify-evenly items-center p-4">
                 <a class="text-primary" href="/login">Se connecter</a>
@@ -70,8 +83,7 @@
                 </a>
             </div>
         @endauth
-        <div id="menuUser"
-            class="absolute z-50 border bg-primary rounded-lg shadow-lg overflow-hidden right-4 w-80"
+        <div id="menuUser" class="absolute z-50 border bg-primary rounded-lg shadow-lg overflow-hidden right-4 w-80"
             x-show="open" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0"
             x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-300"
             x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0 h-0" @click.away="open = false">

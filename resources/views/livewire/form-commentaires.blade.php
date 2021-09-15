@@ -178,7 +178,7 @@
                         <div class="flex justify-center mt-2">
                             <div class="z-10">
                                 <p
-                                    class="bg-white rounded-sm mr-1 flex justify-center w-4 text-3xl px-4 sm:text-5xl sm:px-6 font-bold">
+                                    class="bg-white rounded-sm mr-1 flex justify-center w-4 text-3xl px-4 sm:text-5xl sm:px-6 font-mono font-bold">
                                     {{ $home_score }}
                                 </p>
                                 @if ($btnScore)
@@ -186,7 +186,7 @@
                                         <button type="button" wire:click="decrementHomeScore"
                                             class="focus:outline-none">
                                             <span
-                                                class="h-4 w-4 flex items-center justify-center text-black bg-danger font-bold">-</span>
+                                                class="h-4 w-4 flex items-center justify-center text-black bg-danger font-mono font-bold">-</span>
                                         </button>
                                         <button type="button" wire:click="incrementHomeScore"
                                             class="focus:outline-none">

@@ -97,11 +97,11 @@ Route::get('/mentions-legales', function(){
     return view('mentionslegales');
 });
 
-Route::get('/mon-espace/mes-favoris', function () {
+Route::middleware(['auth:sanctum', 'verified'])->get('/mon-espace/mes-favoris', function () {
     return view('mon-espace.mes-favoris');
-})->middleware('auth');
+});
 
-Route::get('/admin/addClub', function(){
+Route::middleware(['auth:sanctum', 'verified'])->get('/admin/addClub', function(){
     $regions = Region::all();
     $role = Auth::user()->role;
 
@@ -141,6 +141,10 @@ Route::get('live', function(){
     $user = Auth::user();
 
     return view('matches.live', compact( 'user'));
+});
+
+Route::middleware(['auth:sanctum', 'verified'])->get('notifications', function () {
+    return view('notifications.index');
 });
 
 Route::get('commentaire/delete/{id}', 'App\Http\Controllers\CommentaireController@destroy')->name('supprimer');

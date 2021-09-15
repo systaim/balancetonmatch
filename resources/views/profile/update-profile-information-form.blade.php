@@ -61,7 +61,7 @@
                 class="my-4 lg:w-8/12 m-auto bg-primary p-4 text-white shadow-2xl flex flex-col justify-center items-center">
                 <div class="flex flex-col items-center">
                     @if (Auth::user()->club)
-                        <p class="text-center">Je suis licencié dans ce club :</p>
+                        <p class="text-center">Mon club :</p>
                         <div class="flex justify-center items-center">
                             <div class="flex-grow-0 logo h-16 w-16 m-2">
                                 @if (Auth::user()->club->logo_path)
@@ -77,7 +77,7 @@
                         </div>
                         
                     @else
-                        <p class="text-center">Je ne suis pas licencié dans un club</p>
+                        <p class="text-center">Je n'ai pas encore de club</p>
                     @endif
 
                 </div>

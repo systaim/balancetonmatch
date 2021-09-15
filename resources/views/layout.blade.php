@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- meta Facebook -->
     <meta property="og:url" content="{{ request()->url() }}">
@@ -15,8 +16,7 @@
     @endisset
 
     @isset($club)
-        <meta property="og:image"
-            content="{{asset($club->bg_path)}}">
+        <meta property="og:image" content="{{ asset($club->bg_path) }}">
     @else
         <meta property="og:image" content="https://balancetonmatch.com/images/logos/btmB1.jpg">
     @endisset()
@@ -57,7 +57,7 @@
             </div>
             <div
                 class="relative text-primary flex xl:flex-col justify-center xl:justify-between items-center xl:items-between h-24 xl:block xl:h-auto">
-                <div class="relative">
+                <div class="relative flex justify-evenly items-center ">
                     <div class="flex justify-center items-center mx-8">
                         <div>
                             <a href="/">
@@ -74,6 +74,19 @@
                                 </p>
                             </a>
                         </div>
+                    </div>
+                    <div class="">
+                        <a href=" /notifications">
+                        <div
+                            class="relative flex justify-center items-center text-primary border rounded-full h-12 w-12 mr-4">
+                            <i class="far fa-bell"></i>
+                            @auth
+                                <p id="js-count"
+                                    class="absolute -top-1 right-0 bg-red-500 rounded-full text-xs text-white flex items-center justify-center h-5 w-5">
+                                    {{ Auth::user()->unreadNotifications->count() }}</p>
+                            @endauth
+                        </div>
+                        </a>
                     </div>
                 </div>
                 @include('menu')
@@ -100,8 +113,17 @@
         @include('footer')
     </div>
 
-    <script src="{{ mix('js/app.js') }}?ver=1.02"></script>
     @livewireScripts
+    @auth
+        <script>
+            window.User = {
+                id: {{ optional(auth()->user())->id }}
+            }
+        </script>
+    @endauth
+
+    <script src="{{ mix('js/app.js') }}?ver=1.02"></script>
+
 </body>
 
 

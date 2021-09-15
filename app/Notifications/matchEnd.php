@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notification;
 use App\Models\Match;
 use Illuminate\Notifications\Messages\BroadcastMessage;
 
-class matchBegin extends Notification
+class matchEnd extends Notification
 {
     use Queueable;
 
@@ -60,7 +60,7 @@ class matchBegin extends Notification
     {
         return [
             'match_id' => $this->match->id,
-            'text' => "Le match a commencé",
+            'text' => "Le match est terminé",
             'homeClub' => $this->match->homeClub->name,
             'awayClub' => $this->match->awayClub->name,
         ];
@@ -69,7 +69,7 @@ class matchBegin extends Notification
     public function toBroadcast($notifiable){
         return new BroadcastMessage([
             'match_id' => $this->match->id,
-            'text' => "Le match a commencé",
+            'text' => "Le match est terminé",
             'homeClub' => $this->match->homeClub->name,
             'awayClub' => $this->match->awayClub->name,
         ]);

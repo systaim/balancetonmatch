@@ -195,26 +195,6 @@
             </div>
         </div>
     </section>
-    {{-- @auth
-        <section>
-            <div>
-                <p>notifications a lire</p>
-                <p>{{ $user->notifications->count() }}</p>
-                @foreach ($user->notifications as $notification)
-                    <div class="py-2 px-1 bg-gray-300">
-                        @if ($notification->type == "App\Notifications\matchBegin")
-                        <a href="{{ route('matches.show', $notification->data["match_id"]) }}">
-                        
-                        <p>le match a démarré</p>
-                            <p>{{ App\Models\Match::find($notification->data["match_id"])->homeClub->name }} 
-                            VS {{ App\Models\Match::find($notification->data["match_id"])->awayClub->name }}</p>
-                        </a>
-                        @endif
-                    </div>
-                @endforeach
-            </div>
-        </section>
-    @endauth --}}
 
     {{-- <div class="py-6">
         <div class="flex justify-center">

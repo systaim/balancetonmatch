@@ -21,8 +21,10 @@ class AdminController extends Controller
         // $users = User::paginate(3);
         $role = Auth::user()->role;
 
+        $users = User::all();
+
         if($role == "super-admin" || $role == "admin"){
-            return view('admin.index');
+            return view('admin.index', compact('users'));
         } else{
             
             return redirect('/')->with('danger', "Vous n'êtes pas autorisé à entrer ici");
@@ -57,7 +59,7 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
         //
     }

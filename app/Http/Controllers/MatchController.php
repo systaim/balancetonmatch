@@ -123,7 +123,7 @@ class MatchController extends Controller
         $tabHome = Tab::where('match_id', $match->id)->where('club_id', $match->homeClub->id)->get();
         $tabAway = Tab::where('match_id', $match->id)->where('club_id', $match->awayClub->id)->get();
         $user = Auth::user();   
-        $favorimatch = FavorisMatch::where('match_id', $match->id)->where('user_id', Auth::user()->id)->get();
+        $favorimatch = FavorisMatch::where('match_id', $match->id)->get();
 
 
         return view('matches.show', compact('favorimatch','match', 'commentsMatch', 'clubHome', 'clubAway', 'competitions', 'stats', 'nbrFavoris', 'commentator', 'user', 'tabHome', 'tabAway'));

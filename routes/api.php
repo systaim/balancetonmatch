@@ -39,13 +39,13 @@ Route::apiResource('commentaires', CommentaireController::class, [
 Route::apiResource('commentators', CommentatorController::class, [
     'as' => 'api'
 ]);
-// Route::apiResource('users', UserController::class, [
-//     'as' => 'api'
-// ]);
+Route::apiResource('users', UserController::class, [
+    'as' => 'api'
+]);
 
-Route::get('/users', function () {
-    return UserResource::collection(User::all());
-});
+// Route::get('/users', function () {
+//     return UserResource::collection(User::all());
+// });
 
 // Route::get('/clubs/{club}', function (Club $club) {
 

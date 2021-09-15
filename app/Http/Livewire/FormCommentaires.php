@@ -11,7 +11,9 @@ use App\Models\Statistic;
 use App\Models\Tab;
 use App\Models\Reaction;
 use App\Models\User;
+use App\Notifications\but;
 use App\Notifications\matchBegin;
+use App\Notifications\matchEnd;
 use Illuminate\Http\Request;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
@@ -134,9 +136,6 @@ class FormCommentaires extends Component
 
     public function mount()
     {
-            foreach ($this->favorimatch as $favori) {
-                $favori->user->notify(new matchBegin($this->match));
-            }
 
         $this->dateMatch = $this->match->date_match;
 
@@ -563,11 +562,14 @@ class FormCommentaires extends Component
 
             $comment = Commentaire::create($commentData);
 
-            foreach ($this->favorimatch as $favori) {
-                $favori->user->notify(new matchBegin($favori));
-            }
+
 
             if ($comment) {
+
+                foreach ($this->favorimatch as $favori) {
+                    $favori->user->notify(new matchBegin($this->match));
+                    $favori->save();
+                }
 
                 $this->match->live = "debut"; // modification colonne live
                 $this->match->debut_match_reel = now();
@@ -671,6 +673,12 @@ class FormCommentaires extends Component
 
             $this->match->save();
             $comment->save();
+
+            foreach ($this->favorimatch as $favori) {
+                $favori->user->notify(new matchEnd($this->match));
+                $favori->save();
+            }
+
             $this->commentsMatch =  $this->match->commentaires()->orderBy('minute', 'desc')->orderBy('updated_at', 'desc')->get();
             // session()->flash('success', '😍 MERCI MERCI MERCI 😍');
             return redirect()->to('matches/' . $this->match->id);
@@ -702,6 +710,7 @@ class FormCommentaires extends Component
         $commentData['commentator_id'] = $this->commentator[0]->id;
 
         if ($this->type_comments == "but") {
+            
             $commentData['type_action'] = "goal";
             $commentData['type_comments'] = $this->listGoal[array_rand($this->listGoal)];
             $commentData['comments'] = $this->type_but;
@@ -779,6 +788,13 @@ class FormCommentaires extends Component
                     $statComment2 = Statistic::create($statData2);
                     $statComment2->commentaire()->associate($comment);
                     $statComment2->save();
+                }
+            }
+
+            if($this->type_comments == "but"){
+                foreach ($this->favorimatch as $favori) {
+                    $favori->user->notify(new but($this->match));
+                    $favori->save();
                 }
             }
 
