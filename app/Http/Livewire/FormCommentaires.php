@@ -11,12 +11,15 @@ use App\Models\Statistic;
 use App\Models\Tab;
 use App\Models\Reaction;
 use App\Models\User;
+use App\Notifications\matchBegin;
 use Illuminate\Http\Request;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rules\RequiredIf;
 use Livewire\WithFileUploads;
+
+use function App\Models\favorismatches;
 
 class FormCommentaires extends Component
 {
@@ -28,6 +31,7 @@ class FormCommentaires extends Component
     public $match;
     public $commentsMatch;
     public $nbrFavoris;
+    public $favorimatch;
 
     // Variables donnant accès aux colonnes de la table match
     public $type_comments;
@@ -130,6 +134,10 @@ class FormCommentaires extends Component
 
     public function mount()
     {
+            foreach ($this->favorimatch as $favori) {
+                $favori->user->notify(new matchBegin($this->match));
+            }
+
         $this->dateMatch = $this->match->date_match;
 
         if (now()->diffInMinutes($this->match->debut_match_reel, false) < -240) {
@@ -241,7 +249,7 @@ class FormCommentaires extends Component
 
     public function reaction($emoji, $commentaire)
     {
-        
+
         DB::table('commentaire_reaction')->insert([
             'commentaire_id' => $commentaire,
             'reaction_id' => $emoji,
@@ -554,6 +562,10 @@ class FormCommentaires extends Component
             $commentData['images'] = "images/gifs/start.gif";
 
             $comment = Commentaire::create($commentData);
+
+            foreach ($this->favorimatch as $favori) {
+                $favori->user->notify(new matchBegin($favori));
+            }
 
             if ($comment) {
 

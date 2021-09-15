@@ -20,7 +20,7 @@ class Match extends Model
 
     protected $dates = ['date_match', 'debut_match_reel', 'fin_match_reel', 'debut_prolongations','fin_prolongations'];
 
-    protected $hidden = ['id', 'created_at', 'updated_at', 'deleted_at'];
+    // protected $hidden = ['id', 'created_at', 'updated_at', 'deleted_at'];
 
     public function user()
     {

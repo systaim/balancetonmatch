@@ -625,11 +625,17 @@
                         </div>
                     </div>
                 @endif
-                @if ($match->commentateur && $match->live == 'attente')
+                @if ($match->commentateur && $match->live == 'attente' && $match->commentateur->user->id == Auth::user()->id)
                     <div
                         class="bg-primary text-secondary p-4 rounded-lg m-6 flex flex-col justify-center items-center w-11/12 md:w-6/12 mx-auto">
                         <p>Plus qu'à lancer le match ! 💪</p>
                         <i class="fas fa-arrow-circle-down animate-bounce"></i>
+                    </div>
+                @elseif($match->commentateur && $match->live == 'attente')
+                <div
+                        class="bg-primary text-secondary p-4 rounded-lg m-6 flex flex-col justify-center items-center w-11/12 md:w-6/12 mx-auto">
+                        <p>On attend le départ du commentateur</p>
+                        <i class="fas fa-spinner animate-spin"></i>
                     </div>
                 @endif
                 @if ($match->commentateur)
