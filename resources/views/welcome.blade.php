@@ -1,7 +1,7 @@
 @extends('layout')
 @section('content')
     <section>
-        <div id="slideHome" class="flex flex-col md:flex-row justify-between bg-primary overflow-hidden h-96 z-0">
+        <div id="slideHome" class="hidden md:flex flex-col md:flex-row justify-between bg-primary overflow-hidden h-96 z-0">
             <div class="h-6/12 sm:h-8/12 md:h-auto md:w-6/12 img-bg-blend-home">
             </div>
             <div id="welcome" class="h-auto text-white py-4 md:w-6/12 px-12 xl:w-4/12 m-auto text-center">

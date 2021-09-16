@@ -44,7 +44,7 @@
     @if (request()->path() == 'contact')
         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     @endif
-    <link rel= "manifest" href= "manifest.json">
+    <link rel="manifest" href="manifest.json">
 </head>
 
 <body>
@@ -78,19 +78,20 @@
                     </div>
                     <div class="xl:hidden">
                         <a href=" /notifications">
-                        <div
-                            class="relative flex justify-center items-center text-primary border rounded-full h-12 w-12 mr-4">
-                            <i class="far fa-bell"></i>
-                            @auth
-                                <p id="js-count"
-                                    class="absolute -top-1 right-0 bg-red-500 rounded-full text-xs text-white flex items-center justify-center h-5 w-5">
-                                    {{ Auth::user()->unreadNotifications->count() }}</p>
-                            @endauth
-                        </div>
+                            <div
+                                class="relative flex justify-center items-center text-primary border rounded-full h-12 w-12 mr-4">
+                                <i class="far fa-bell"></i>
+                                @auth
+                                    <p id="js-count"
+                                        class="absolute -top-1 right-0 bg-red-500 rounded-full text-xs text-white flex items-center justify-center h-5 w-5">
+                                        {{ Auth::user()->unreadNotifications->count() }}</p>
+                                @endauth
+                            </div>
                         </a>
                     </div>
                 </div>
                 @include('menu')
+            </div>
         </header>
         @if (\Session::has('success'))
             <div class="message-alert success" x-show.transition="open">

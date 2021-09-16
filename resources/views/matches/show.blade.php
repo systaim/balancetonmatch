@@ -20,20 +20,20 @@
                 content="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $match->homeClub->numAffiliation }}.jpg" />
         @endif
     @elseif ($match->home_score < $match->away_score)
-        @if ($match->awayClub->logo_path)
-            <meta property="og:image:url" content="{{ asset($match->awayClub->logo_path) }}" />
+            @if ($match->awayClub->logo_path)
+                <meta property="og:image:url" content="{{ asset($match->awayClub->logo_path) }}" />
+            @else
+                <meta property="og:image:url"
+                    content="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $match->awayClub->numAffiliation }}.jpg" />
+            @endif
         @else
-            <meta property="og:image:url"
-                content="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $match->awayClub->numAffiliation }}.jpg" />
-        @endif
-    @else
-        @if ($match->competition_id == 3)
-            <meta property="og:image:url" content="{{ asset('images/Coupe-de-france.jpg') }}" />
-        @elseif ($match->competition_id == 4)
-            <meta property="og:image:url" content="{{ asset('images/bzh.png') }}" />
-        @else
-            <meta property="og:image:url" content="{{ asset('images/amicaux.jpg') }}" />
-        @endif
+            @if ($match->competition_id == 3)
+                <meta property="og:image:url" content="{{ asset('images/Coupe-de-france.jpg') }}" />
+            @elseif ($match->competition_id == 4)
+                <meta property="og:image:url" content="{{ asset('images/bzh.png') }}" />
+            @else
+                <meta property="og:image:url" content="{{ asset('images/amicaux.jpg') }}" />
+            @endif
     @endif
     <!-- Meta du site -->
     <title>Balance ton match ! {{ $match->homeclub->name }}
@@ -63,7 +63,7 @@
 
 <body>
     <div id="container">
-        <header id="header" class="hidden lg:block relative bg-gray-100 h-24 xl:h-auto">
+        <header id="header" class="relative bg-gray-100 h-24 xl:h-auto">
             <div id="burger"
                 class="hidden absolute cursor-pointer top-5 left-3 justify-center items-center h-12 w-12 bg-primary z-50">
                 <div class="open-main-nav flex justify-center">
@@ -72,7 +72,7 @@
             </div>
             <div
                 class="relative text-primary flex xl:flex-col justify-center xl:justify-between items-center xl:items-between h-24 xl:block xl:h-auto">
-                <div class="relative">
+                <div class="relative flex justify-evenly items-center ">
                     <div class="flex justify-center items-center mx-8">
                         <div>
                             <a href="/">
@@ -90,9 +90,22 @@
                             </a>
                         </div>
                     </div>
+                    <div class="xl:hidden">
+                        <a href=" /notifications">
+                            <div
+                                class="relative flex justify-center items-center text-primary border rounded-full h-12 w-12 mr-4">
+                                <i class="far fa-bell"></i>
+                                @auth
+                                    <p id="js-count"
+                                        class="absolute -top-1 right-0 bg-red-500 rounded-full text-xs text-white flex items-center justify-center h-5 w-5">
+                                        {{ Auth::user()->unreadNotifications->count() }}</p>
+                                @endauth
+                            </div>
+                        </a>
+                    </div>
                 </div>
+                @include('menu')
             </div>
-            @include('menu')
         </header>
         @if (\Session::has('success'))
             <div class="message-alert success" x-show.transition="open">
@@ -147,11 +160,16 @@
     'favorimatch' => $favorimatch,
     ])
 
-    @include('footer')
+    @livewireScripts
+    @auth
+        <script>
+            window.User = {
+                id: {{ optional(auth()->user())->id }}
+            }
+        </script>
+    @endauth
 
     <script src="{{ mix('js/app.js') }}?ver=1.02"></script>
-
-    @livewireScripts
 
 </body>
 

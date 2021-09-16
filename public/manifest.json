@@ -1,18 +1,22 @@
 {
-    "lang" : "fr",
-    "dir" : "ltr",
-    "name" : "Balance Ton Match",
-    "short_name" : "BTM",
-    "icons" :   [
+    "short_name": "BTM",
+    "name": "Balance ton match",
+    "icons": [
       {
-        "src" : "images/logos/btmLogoB.png",
-        "sizes" : "750x688",
-        "type" : "image\/png"
+        "src": "/apple-touch-icon.png",
+        "type": "image/png",
+        "sizes": "180x180"
+      },
+      {
+        "src": "/images/logos/btmLogo.jpg",
+        "type": "image/jpg",
+        "sizes": "750×641"
       }
     ],
-    "theme_color" : "#091c3e",
-    "background_color" : "#091c3e",
-    "start_url" : "/",
-    "display" : "fullscreen",
-    "orientation" : "natural"
-   }
+    "start_url": "/?source=pwa",
+    "background_color": "#cdfb0a",
+    "display": "fullscreen",
+    "scope": "/",
+    "theme_color": "#091c3e",
+    "description": "Weather forecast information"
+  }
