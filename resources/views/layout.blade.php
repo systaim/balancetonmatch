@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="theme-color" content="#091c3e"/>
 
     <!-- meta Facebook -->
     <meta property="og:url" content="{{ request()->url() }}">
@@ -24,6 +25,8 @@
     <title>Balance Ton Match</title>
     <link rel="stylesheet" href="{{ mix('css/app.css') }}?ver=1.01">
     <link rel="stylesheet" href="{{ mix('css/styles.css') }}?ver=1.01" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
     <script src="https://kit.fontawesome.com/c03c2336c3.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.0/dist/alpine.min.js" defer></script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7237777700901740"
