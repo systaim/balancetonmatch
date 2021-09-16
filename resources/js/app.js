@@ -193,11 +193,12 @@ window.addEventListener('scroll', function () {
         moveBottomToTop(moveToTop)
 })
 
-// SERVICEWORKER
+// SERVICE WORKER
 
 if("serviceWorker" in navigator){
     navigator.serviceWorker.register("/serviceWorker.js");
 }
+
  
 
 
