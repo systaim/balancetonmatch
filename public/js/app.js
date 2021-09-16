@@ -26010,7 +26010,11 @@ window.addEventListener('scroll', function () {
   if (moveToRight != null) moveRightToLeft(moveToRight);
   if (moveToBottom != null) moveTopToBottom(moveToBottom);
   if (moveToTop != null) moveBottomToTop(moveToTop);
-});
+}); // SERVICEWORKER
+
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("/serviceWorker.js");
+}
 
 /***/ }),
 

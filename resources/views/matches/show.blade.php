@@ -142,6 +142,7 @@
                         <p class="font-sans text-xs text-center my-1">Partager</p>
                     </div>
                 </div>
+            </div>
         </a>
     </div>
 
@@ -159,6 +160,8 @@
     'tabAway' => $tabAway,
     'favorimatch' => $favorimatch,
     ])
+
+    @include('footer')
 
     @livewireScripts
     @auth

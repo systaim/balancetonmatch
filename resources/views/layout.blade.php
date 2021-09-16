@@ -44,6 +44,8 @@
     @if (request()->path() == 'contact')
         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     @endif
+    
+    {{-- Manifest --}}
     <link rel="manifest" href="manifest.json">
 </head>
 
