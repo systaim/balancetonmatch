@@ -32,9 +32,7 @@
             </div>
         </div>
         <div class="flex justify-center my-6">
-            <button class="btn btnSecondary">
-                {{ __('Login') }}
-            </button>
+            <input type="submit" class="btn btnSecondary" value="{{ __('Login') }}">
         </div>
         <h2 class="text-primary text-2xl px-4 m-auto pb-4">Ou je m'inscris</h2>
         <div class="w-full">
