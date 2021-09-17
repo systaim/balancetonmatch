@@ -632,7 +632,7 @@
                         <i class="fas fa-arrow-circle-down animate-bounce"></i>
                     </div>
                 @elseif($match->commentateur && $match->live == 'attente')
-                <div
+                    <div
                         class="bg-primary text-secondary p-4 rounded-lg m-6 flex flex-col justify-center items-center w-11/12 md:w-6/12 mx-auto">
                         <p>On attend le départ du commentateur</p>
                         <i class="fas fa-spinner animate-spin"></i>
@@ -915,22 +915,30 @@
                                         </script>
                                     @endif --}}
                                     <p>{{ $comment->comments }}</p>
-                                    <div class="flex items-center">
+                                    <div class="flex flex-col items-between">
                                         @if ($comment->statistic)
                                             @if ($comment->team_action == 'away' || $comment->team_action == 'home')
-                                                @if ($comment->statistic->player)
-                                                    <p class="font-bold mr-4">
-                                                        {{ $comment->statistic->player->first_name }}
-                                                        {{ $comment->statistic->player->last_name }}
-                                                    </p>
-                                                @endif
-                                                @if ($comment->statistic->player->id >= 1 && $comment->statistic->player->id <= 16 && $match->id != 0)
-                                                    <button type="button"
-                                                        class="text-xs px-2 bg-primary text-white rounded-md"
-                                                        @click="open = true">
-                                                        Qui est ce ?
-                                                    </button>
-                                                @endif
+                                                <div class="flex justify-between">
+                                                    @if ($comment->statistic->player)
+                                                        <div>
+                                                            @if ($comment->statistic->player->id >= 1 && $comment->statistic->player->id <= 16 && $match->id != 0)
+                                                                <p class="font-bold mr-4">
+                                                                    {{ $comment->statistic->player->first_name }}
+                                                                    {{ $comment->statistic->player->last_name }}
+                                                                </p>
+                                                                <button type="button"
+                                                                    class="text-xs px-2 bg-primary text-white rounded-md"
+                                                                    @click="open = true">
+                                                                    Qui est ce ?
+                                                                </button>
+                                                            @endif
+                                                        </div>
+                                                        <img class="h-24"
+                                                            src="{{ $comment->statistic->player->avatar_path }}"
+                                                            alt="{{ $comment->statistic->player->first_name }} {{ $comment->statistic->player->last_name }}">
+                                                    @endif
+                                                </div>
+
                                             @endif
                                         @endif
                                     </div>

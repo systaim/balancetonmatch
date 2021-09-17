@@ -88,7 +88,7 @@ class ClubController extends Controller
         $nbrPlayers = Player::where('club_id', $club->id)->count();
         $nbrStaffs = Staff::where('club_id', $club->id)->count();
         $nbrFavoris = Favoristeam::where('club_id', $club->id)->count();
-        $matchs = Match::where('home_team_id', $club->id)->orwhere('away_team_id', $club->id)->orderBy('date_match','asc')->limit(3)->get();
+        $matchs = Match::where('home_team_id', $club->id)->orwhere('away_team_id', $club->id)->orderBy('date_match','asc')->get();
 
         $matchsR1 = Match::where('division_region_id', 1)->where('date_match','>=', Carbon::now()->subHours(24))
                             ->where(function ($query) use ($club){
