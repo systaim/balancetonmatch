@@ -116,7 +116,7 @@
         <h3 class="text-2xl text-center my-4 border-b-2 border-darkGray">Prochain(s) match(s)</h3>
         @if (collect($matchsCF)->isNotEmpty())
             <div class="mt-6">
-                <h4 class="text-xl px-3 text-center">Coupe de France</h4>
+                <h4 class="inline-block text-xl px-3 text-center bg-secondary text-primary rounded-md shadow-lg ml-2">Coupe de France</h4>
                 @foreach ($matchsCF as $match)
                     @if ($match->date_match > now())
                         @include('match')
@@ -126,7 +126,7 @@
         @endif
         @if (collect($matchsBZH)->isNotEmpty())
             <div class="mt-6">
-                <h4 class="text-xl px-3 text-center">Coupe de France</h4>
+                <h4 class="inline-block text-xl px-3 text-center bg-secondary text-primary rounded-md shadow-lg ml-2">Coupe de Bretagne</h4>
                 @foreach ($matchsBZH as $match)
                     @if ($match->date_match > now())
                         @include('match')
