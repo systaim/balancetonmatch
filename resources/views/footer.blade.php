@@ -23,7 +23,7 @@
 
     {{-- MENU MOBILE --}}
 
-    <div class="main-menu-mobile xl:hidden fixed right-0 left-0 bottom-0 h-14 bg-white rounded-t-sm z-50 text-primary">
+    <div class="main-menu-mobile lg:hidden fixed right-0 left-0 bottom-0 h-14 bg-white rounded-t-sm z-50 text-primary">
         <div class="relative flex justify-around items-center h-full">
             <a href="/">
                 <div class="flex flex-col items-center justify-center w-16 h-14">

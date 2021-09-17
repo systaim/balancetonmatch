@@ -54,7 +54,7 @@
             <a href="/contact">Contact</a>
         </div>
     </nav>
-    <div class="absolute right-0 top-0 m-2 text-white hidden lg:block lg:mr-4" x-data="{ open : false }">
+    <div class="absolute right-0 top-0 m-2 text-white hidden xl:block lg:mr-4" x-data="{ open : false }">
         @auth
             <div class="flex items-center">
                 <a href="/notifications">

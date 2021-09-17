@@ -124,6 +124,16 @@
                 @endforeach
             </div>
         @endif
+        @if (collect($matchsBZH)->isNotEmpty())
+            <div class="mt-6">
+                <h4 class="text-xl px-3 text-center">Coupe de France</h4>
+                @foreach ($matchsBZH as $match)
+                    @if ($match->date_match > now())
+                        @include('match')
+                    @endif
+                @endforeach
+            </div>
+        @endif
         @if (collect($matchsR1)->isNotEmpty())
             <div class="mt-6">
                 <h4 class="inline-block text-xl px-3 text-center bg-secondary text-primary rounded-md shadow-lg ml-2">R1</h4>

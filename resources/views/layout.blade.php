@@ -62,7 +62,7 @@
                 </div>
             </div>
             <div
-                class="relative text-primary flex xl:flex-col justify-center xl:justify-between items-center xl:items-between h-24 xl:block xl:h-auto">
+                class="relative text-primary flex justify-center xl:justify-between items-center xl:items-between h-24 xl:block xl:h-auto">
                 <div class="relative flex justify-evenly items-center ">
                     <div class="flex justify-center items-center mx-8">
                         <div>
@@ -81,7 +81,7 @@
                             </a>
                         </div>
                     </div>
-                    <div class="xl:hidden">
+                    <div class="">
                         <a href=" /notifications">
                             <div
                                 class="relative flex justify-center items-center text-primary border rounded-full h-12 w-12 mr-4">

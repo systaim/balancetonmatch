@@ -90,7 +90,7 @@
                             </a>
                         </div>
                     </div>
-                    <div class="xl:hidden">
+                    <div class="lg:hidden">
                         <a href=" /notifications">
                             <div
                                 class="relative flex justify-center items-center text-primary border rounded-full h-12 w-12 mr-4">
