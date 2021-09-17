@@ -687,7 +687,7 @@
                                     </div>
                                 </button>
                             @endif
-                            @if ($match->live == 'finDeMatch' && !$match->debut_prolongations && $match->competition_id == 3 && $match->home_score == $match->away_score)
+                            {{-- @if ($match->live == 'finDeMatch' && !$match->debut_prolongations && $match->competition_id == 3 && $match->home_score == $match->away_score)
                                 <button type="button" wire:click="prolongations">
                                     <div
                                         class="bg-success text-gray-800 w-full h-full p-3 flex justify-evenly items-center rounded-lg">
@@ -723,8 +723,8 @@
                                         <p>Fin des prolongations</p>
                                     </div>
                                 </button>
-                            @endif
-                            @if ($match->live == 'finProlongations' && $match->home_score == $match->away_score)
+                            @endif --}}
+                            @if ($match->live == 'finDeMatch' && $match->home_score == $match->away_score && ($match->competition_id >= 3 && $match->competition_id <= 5) && (count($tabHome) < 0 || count($tabAway) < 0))
                                 <button type="button" wire:click="tirsAuBut">
                                     <div
                                         class="bg-primary text-white w-full h-full p-3 flex justify-evenly items-center rounded-lg">
@@ -789,7 +789,7 @@
         @endif
         <div class="my-10 w-11/12 m-auto lg:flex lg:justify-around">
             <div class="m-auto sm:w-10/12 lg:w-8/12">
-                @if (($match->fin_prolongations && $match->live == 'tab') || (count($tabHome) != 0 && count($tabAway) != 0))
+                @if (($match->live == 'tab') || (count($tabHome) != 0 && count($tabAway) != 0))
                     <div class="my-10">
                         <h3 class="flex justify-center text-2xl px-2 py-1 bg-primary text-white rounded-lg my-2 ">Tirs
                             au but</h3>
@@ -918,7 +918,7 @@
                                     <div class="flex flex-col items-between">
                                         @if ($comment->statistic)
                                             @if ($comment->team_action == 'away' || $comment->team_action == 'home')
-                                                <div class="flex justify-between">
+                                                <div class="relative flex justify-between">
                                                     @if ($comment->statistic->player)
                                                         <div>
                                                             @if ($comment->statistic->player->id >= 1 && $comment->statistic->player->id <= 16 && $match->id != 0)
@@ -933,7 +933,7 @@
                                                                 </button>
                                                             @endif
                                                         </div>
-                                                        <img class="h-24"
+                                                        <img class="h-24 rounded-lg transform skew-y-3"
                                                             src="{{ $comment->statistic->player->avatar_path }}"
                                                             alt="{{ $comment->statistic->player->first_name }} {{ $comment->statistic->player->last_name }}">
                                                     @endif
