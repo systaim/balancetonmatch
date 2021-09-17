@@ -1,5 +1,5 @@
 <form action="{{ route('login') }}" method="post">
-    {{-- @csrf --}}
+    @csrf
     <div class="p-4 sm:w-8/12 md:w-7/12 lg:w-6/12 bg-white shadow-xl">
         <h2 class="text-primary text-2xl px-4 m-auto pb-4">Je me connecte</h2>
         <div class="flex flex-col">
