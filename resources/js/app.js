@@ -193,31 +193,31 @@ window.addEventListener('scroll', function () {
         moveBottomToTop(moveToTop)
 })
 
-// SERVICE WORKER
+// // SERVICE WORKER
 
-if("serviceWorker" in navigator){
-    navigator.serviceWorker.register("/serviceWorker.js");
-}
+// if("serviceWorker" in navigator){
+//     navigator.serviceWorker.register("/serviceWorker.js");
+// }
 
-import Echo from "laravel-echo";
+// import Echo from "laravel-echo";
 
-window.Pusher = require("pusher-js");
+// window.Pusher = require("pusher-js");
 
-window.Echo = new Echo({
-    broadcaster: "pusher",
-    key: process.env.MIX_PUSHER_APP_KEY,
-    cluster: process.env.MIX_PUSHER_APP_CLUSTER,
-    forceTLS: true
-});
-if (window.User) {
-    window.Echo.private("App.Models.User." + User.id).notification(
-        notification => {
-            document.getElementById("js-count").innerHTML =
-                parseInt(document.getElementById("js-count").innerHTML) + 1;
-            console.log(notification.type);
-        }
-    );
-}
+// window.Echo = new Echo({
+//     broadcaster: "pusher",
+//     key: process.env.MIX_PUSHER_APP_KEY,
+//     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
+//     forceTLS: true
+// });
+// if (window.User) {
+//     window.Echo.private("App.Models.User." + User.id).notification(
+//         notification => {
+//             document.getElementById("js-count").innerHTML =
+//                 parseInt(document.getElementById("js-count").innerHTML) + 1;
+//             console.log(notification.type);
+//         }
+//     );
+// }
  
 
 
