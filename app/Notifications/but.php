@@ -34,7 +34,7 @@ class but extends Notification
      */
     public function via($notifiable)
     {
-        return ['database', 'broadcast', WebPushChannel::class];
+        return ['database', 'broadcast'];
     }
 
     /**
@@ -76,21 +76,21 @@ class but extends Notification
         ]);
     }
 
-    public function toWebPush($notifiable, $notification) {
-        return (new WebPushMessage)
-        ->title('BUT')
-        ->icon('/approved-icon.png')
-        ->body('Your account was approved!')
-        ->action('View account', 'view_account')
-        ->options(['TTL' => 1000]);
-        // ->data(['id' => $notification->id])
-        // ->badge()
-        // ->dir()
-        // ->image()
-        // ->lang()
-        // ->renotify()
-        // ->requireInteraction()
-        // ->tag()
-        // ->vibrate()
-    }
+    // public function toWebPush($notifiable, $notification) {
+    //     return (new WebPushMessage)
+    //     ->title('BUT')
+    //     ->icon('/approved-icon.png')
+    //     ->body('Your account was approved!')
+    //     ->action('View account', 'view_account')
+    //     ->options(['TTL' => 1000]);
+    //     // ->data(['id' => $notification->id])
+    //     // ->badge()
+    //     // ->dir()
+    //     // ->image()
+    //     // ->lang()
+    //     // ->renotify()
+    //     // ->requireInteraction()
+    //     // ->tag()
+    //     // ->vibrate()
+    // }
 }
