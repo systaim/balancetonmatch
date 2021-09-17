@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {{-- <meta name="csrf-token" content="{{ csrf_token() }}"> --}}
-    <meta name="theme-color" content="#091c3e"/>
+    {{-- <meta name="theme-color" content="#091c3e"/> --}}
 
     <!-- meta Facebook -->
     <meta property="og:url" content="{{ request()->url() }}">
@@ -129,7 +129,7 @@
         </script>
     @endauth
 
-    <script src="{{ mix('js/app.js') }}?ver=1.02"></script>
+    <script src="{{ mix('js/app.js') }}?ver=1.03"></script>
 
 </body>
 

@@ -172,7 +172,7 @@
         </script>
     @endauth
 
-    <script src="{{ mix('js/app.js') }}?ver=1.02"></script>
+    <script src="{{ mix('js/app.js') }}?ver=1.03"></script>
 
 </body>
 
