@@ -198,7 +198,7 @@
             <button class="btn btnSecondary">Je crée un match</button>
         </a>
     </div>
-    <div class="sm:w-11/12 md:w-9/12 xl:w-7/12 mx-auto">
+    {{-- <div class="sm:w-11/12 md:w-9/12 xl:w-7/12 mx-auto">
         <h3 class="text-2xl text-center my-4 border-b-2 border-darkGray">Historique des matchs</h3>
         @if (count($matchs) != 0)
             @foreach ($matchs->sortByDesc('date_match') as $key => $match)
@@ -210,7 +210,7 @@
         @else
             <p class="pl-2">Pas d'historique de matchs pour le moment</p>
         @endif
-    </div>
+    </div> --}}
 @endsection
 
 <script>
