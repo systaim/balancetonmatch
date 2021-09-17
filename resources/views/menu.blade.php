@@ -54,15 +54,15 @@
             <a href="/contact">Contact</a>
         </div>
     </nav>
-    <div class="absolute right-0 top-0 m-2 text-white hidden xl:block lg:mr-4" x-data="{ open : false }">
+    <div class="absolute right-0 top-0 m-2 text-white hidden lg:block lg:mr-4" x-data="{ open : false }">
         @auth
             <div class="flex items-center">
                 <a href="/notifications">
                     <div class="relative flex justify-center items-center text-primary border rounded-full h-12 w-12 mr-4">
                         <i class="far fa-bell"></i>
-                            <p id="js-count"
-                                class="absolute -top-1 right-0 bg-red-500 rounded-full text-xs text-white flex items-center justify-center h-5 w-5">
-                                {{ Auth::user()->unreadNotifications->count() }}</p>
+                        <p id="js-count"
+                            class="absolute -top-1 right-0 bg-red-500 rounded-full text-xs text-white flex items-center justify-center h-5 w-5">
+                            {{ Auth::user()->unreadNotifications->count() }}</p>
                     </div>
                 </a>
                 <div class="flex justify-center items-center cursor-pointer text-primary mr-5 my-3 border rounded-full px-3 py-2"
@@ -74,7 +74,6 @@
                     </div>
                 </div>
             </div>
-
         @else
             <div class="flex justify-evenly items-center p-4">
                 <a class="text-primary" href="/login">Se connecter</a>
