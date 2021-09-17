@@ -8,6 +8,7 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use App\Models\Match;
 use Illuminate\Notifications\Messages\BroadcastMessage;
+use NotificationChannels\WebPush\WebPushChannel;
 
 class matchBegin extends Notification
 {
@@ -33,7 +34,7 @@ class matchBegin extends Notification
      */
     public function via($notifiable)
     {
-        return ['database', 'broadcast'];
+        return ['database', 'broadcast', WebPushChannel::class];
     }
 
     /**
@@ -73,5 +74,22 @@ class matchBegin extends Notification
             'homeClub' => $this->match->homeClub->name,
             'awayClub' => $this->match->awayClub->name,
         ]);
+    }
+    public function toWebPush($notifiable, $notification) {
+        return (new WebPushMessage)
+        ->title('Le match commence')
+        ->icon('/approved-icon.png')
+        ->body('Your account was approved!')
+        ->action('View account', 'view_account')
+        ->options(['TTL' => 1000]);
+        // ->data(['id' => $notification->id])
+        // ->badge()
+        // ->dir()
+        // ->image()
+        // ->lang()
+        // ->renotify()
+        // ->requireInteraction()
+        // ->tag()
+        // ->vibrate()
     }
 }
