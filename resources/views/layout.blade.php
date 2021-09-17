@@ -23,8 +23,8 @@
     @endisset()
 
     <title>Balance Ton Match</title>
-    <link rel="stylesheet" href="{{ mix('css/app.css') }}?ver=1.01">
-    <link rel="stylesheet" href="{{ mix('css/styles.css') }}?ver=1.01" />
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}?ver=1.03">
+    <link rel="stylesheet" href="{{ mix('css/styles.css') }}?ver=1.03" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
     <script src="https://kit.fontawesome.com/c03c2336c3.js" crossorigin="anonymous"></script>
@@ -129,7 +129,7 @@
         </script>
     @endauth
 
-    <script src="{{ mix('js/app.js') }}?ver=1.02"></script>
+    <script src="{{ mix('js/app.js') }}?ver=1.03"></script>
 
 </body>
 
