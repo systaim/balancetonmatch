@@ -38,7 +38,7 @@
                 @if (Auth::user()->club_id == $club->id)
                     <a class="flex flex-grow w-full m-2 shadow-2xl" href="{{ route('clubs.players.create', $club) }}">
                         <div
-                            class="h-full flex items-center border-gray-800 border p-4 rounded-lg bg-darkSuccess text-black w-full">
+                            class="h-full flex items-center border-gray-800 border p-4 rounded-lg bg-success text-black w-full">
 
                             <div class="w-16 h-16 bg-white flex justify-center items-center rounded-full mr-4">
                                 <p class="text-6xl text-black">+</p>
@@ -65,6 +65,8 @@
                             </div>
                         </a>
                     </div> --}}
+                    @else
+                    <p class="my-5 bg-orange-500 py-1 px-2 rounded-lg shadow-2xl border">Il faut faire parti du club pour ajouter un joueur</p>
                 @endif
             @endauth
         </div>

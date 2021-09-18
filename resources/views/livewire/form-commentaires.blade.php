@@ -349,7 +349,7 @@
                             </div>
                         @endif
                         @if ($match->live == 'attente')
-                            <button class="btnPrimary rounded-md mb-2 text-sm">
+                            <button class="btnSecondary rounded-md mb-2 text-sm">
                                 <a href="{{ route('matches.edit', ['match' => $match]) }}" class="p-2">
                                     Corriger l'heure
                                 </a>
@@ -789,7 +789,7 @@
         @endif
         <div class="my-10 w-11/12 m-auto lg:flex lg:justify-around">
             <div class="m-auto sm:w-10/12 lg:w-8/12">
-                @if (($match->live == 'tab') || (count($tabHome) != 0 && count($tabAway) != 0))
+                @if ($match->live == 'tab' || (count($tabHome) != 0 && count($tabAway) != 0))
                     <div class="my-10">
                         <h3 class="flex justify-center text-2xl px-2 py-1 bg-primary text-white rounded-lg my-2 ">Tirs
                             au but</h3>
@@ -902,56 +902,47 @@
                         <div class="relative bg-white w-full p-4 flex flex-col">
                             <div class="flex flex-col justify-between">
                                 <div class="mb-4">
-                                    <p class="text-lg font-bold">{{ $comment->type_comments }}</p>
-                                    {{-- @if ($comment->type_comments == 'Publicité')
-                                        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
-                                        </script>
-                                        <ins class="adsbygoogle" style="display:block; text-align:center;"
-                                            data-ad-layout="in-article" data-ad-format="fluid"
-                                            data-ad-client="ca-pub-7237777700901740" data-ad-slot="5934879385"></ins>
-                                        <script>
-                                            (adsbygoogle = window.adsbygoogle || []).push({});
-
-                                        </script>
-                                    @endif --}}
+                                    <p class="text-xl font-bold">{{ $comment->type_comments }}</p>
                                     <p>{{ $comment->comments }}</p>
                                     <div class="flex flex-col items-between">
                                         @if ($comment->statistic)
                                             @if ($comment->team_action == 'away' || $comment->team_action == 'home')
-                                                <div class="relative flex justify-between">
+                                                <div>
                                                     @if ($comment->statistic->player)
-                                                        <div>
-                                                            @if ($comment->statistic->player->id >= 1 && $comment->statistic->player->id <= 16 && $match->id != 0)
-                                                                <p class="font-bold mr-4">
-                                                                    {{ $comment->statistic->player->first_name }}
-                                                                    {{ $comment->statistic->player->last_name }}
-                                                                </p>
-                                                                <button type="button"
-                                                                    class="text-xs px-2 bg-primary text-white rounded-md"
-                                                                    @click="open = true">
-                                                                    Qui est ce ?
-                                                                </button>
-                                                            @endif
+                                                        <div class="relative flex flex-col">
+                                                            <div>
+                                                                <div>
+                                                                    <p class="font-bold">
+                                                                        {{ ucfirst($comment->statistic->player->first_name) }}
+                                                                        {{ ucfirst($comment->statistic->player->last_name) }}
+                                                                    </p>
+                                                                    @if ($comment->statistic->player->id >= 1 && $comment->statistic->player->id <= 16 && $match->id != 0)
+                                                                        <button type="button"
+                                                                            class="text-xs px-2 bg-primary text-white rounded-md"
+                                                                            @click="open = true">
+                                                                            Qui est ce ?
+                                                                        </button>
+                                                                    @endif
+                                                                </div>
+                                                                <div class="flex justify-start mt-2">
+                                                                    @foreach ($comment->reactions->groupBy('emoji') as $type => $reaction)
+                                                                        @foreach ($reaction->groupBy('id') as $id => $react)
+                                                                            <div>
+                                                                                <p
+                                                                                    class="-pt-1 mx-1 text-sm font-normal">
+                                                                                    {{ $type }}
+                                                                                    <span>{{ count($reaction) }}</span>
+                                                                                </p>
+                                                                            </div>
+                                                                        @endforeach
+                                                                    @endforeach
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                        <img class="h-24 rounded-lg transform skew-y-3"
-                                                            src="{{ $comment->statistic->player->avatar_path }}"
-                                                            alt="{{ $comment->statistic->player->first_name }} {{ $comment->statistic->player->last_name }}">
                                                     @endif
                                                 </div>
-
                                             @endif
                                         @endif
-                                    </div>
-                                    <div class="flex justify-start">
-                                        @foreach ($comment->reactions->groupBy('emoji') as $type => $reaction)
-                                            @foreach ($reaction->groupBy('id') as $id => $react)
-                                                <div>
-                                                    <p class="-pt-1 mx-1 text-sm font-normal">{{ $type }}
-                                                        <span>{{ count($reaction) }}</span>
-                                                    </p>
-                                                </div>
-                                            @endforeach
-                                        @endforeach
                                     </div>
                                 </div>
                                 <!-- Menu ajout d'un joueur par utilisateur -->
@@ -966,8 +957,9 @@
                                                     name="playerMatch" id="playerMatch" wire:model="playerMatch">
                                                     <option value="">Choisis un joueur</option>
                                                     @foreach ($comment->team_action == 'home' ? $match->homeClub->players->sortBy('first_name') : $match->awayClub->players->sortBy('first_name') as $player)
-                                                        <option value="{{ $player->id }}">{{ $player->first_name }}
-                                                            {{ $player->last_name }}
+                                                        <option value="{{ $player->id }}">
+                                                            {{ ucfirst($player->first_name) }}
+                                                            {{ ucfirst($player->last_name) }}
                                                         </option>
                                                     @endforeach
                                                 </select>
@@ -1009,30 +1001,37 @@
                                 <!-- FIN menu ajout d'un joueur par utilisateur -->
                                 <div>
                                     @if ($comment->images != null)
-                                        @if (pathinfo($comment->images)['extension'] == 'mp4' || pathinfo($comment->images)['extension'] == 'mov')
-                                            <div class="flex justify-end pr-8">
+                                        <div class="flex justify-end pr-8">
+                                            @if (pathinfo($comment->images)['extension'] == 'mp4' || pathinfo($comment->images)['extension'] == 'mov')
                                                 <video autoplay controls class="max-h-48 w-auto rounded-md shadow-xl">
                                                     <source src="{{ asset($comment->images) }}" type="video/mp4">
                                                     <source src="{{ asset($comment->images) }}" type="video/mov">
                                                     Your browser does not support the video tag.
                                                 </video>
-                                            </div>
-                                        @else
-                                            <div class="flex justify-end pr-8">
+                                            @else
                                                 <a href="{{ asset($comment->images) }}">
                                                     <img class="max-h-48 rounded-md shadow-xl"
                                                         src="{{ asset($comment->images) }}" alt="action">
                                                 </a>
+                                            @endif
+                                        </div>
+                                    @else
+                                        @if ($comment->statistic->player->id > 16)
+                                            <div class="flex justify-center md:justify-end my-4">
+                                                <img class="h-36 rounded-lg"
+                                                    src="{{ $comment->statistic->player->avatar_path }}"
+                                                    alt="{{ $comment->statistic->player->first_name }} {{ $comment->statistic->player->last_name }}">
                                             </div>
                                         @endif
                                     @endif
                                 </div>
                             </div>
                             @if ($comment->team_action != 'match' && ($comment->type_comments != 'Carton jaune' && $comment->type_comments != '2e carton jaune' && $comment->type_comments != 'Carton rouge' && $comment->type_comments != 'Carton blanc'))
-                                <div class="flex justify-end items-end mx-1 -mb-4 -mr-4">
+                                <div class="flex justify-end items-end mx-1 -mb-3 -mr-3">
                                     @foreach ($reactions as $reaction)
                                         @if (!empty($comment->reactions))
-                                            <button class="flex items-end border px-2 py-1 m-1 rounded-lg"
+                                            <button
+                                                class="flex items-end border px-2 py-1 m-1 rounded-lg shadow-2xl bg-gray-100"
                                                 wire:click="reaction({{ $reaction->id }}, {{ $comment->id }})">
                                                 <p class="border-orange-400 m-1">{{ $reaction->emoji }}</p>
                                             </button>
