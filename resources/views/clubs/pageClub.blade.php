@@ -203,7 +203,7 @@
         @if (count($matchs) != 0)
             @foreach ($matchs->sortByDesc('date_match') as $key => $match)
                 @if ($match->date_match < now())
-                    <h4 class="inline-block text-xl px-3 text-center bg-secondary text-primary rounded-md shadow-lg ml-2">{{ $match->competition->name }}</h4>
+                    {{-- <h4 class="inline-block text-xl px-3 text-center bg-secondary text-primary rounded-md shadow-lg ml-2">{{ $match->competition->name }}</h4> --}}
                     @include('match')
                 @endif
             @endforeach
