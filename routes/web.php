@@ -45,7 +45,7 @@ Route::get('/competitions/coupe-de-france-2021-2022', function () {
 
     $matchs = Match::where('competition_id', 3)->where('date_match','>=', Carbon::now()->subHours(24))->orderBy('date_match', 'asc')->get();
     $user = Auth::user();
-    $title = "coupeDeFrance";
+    $title = "coupe De France";
 
     return view('competitions.coupeDeFrance', compact('matchs','user','title'));
 });
@@ -54,11 +54,19 @@ Route::get('/competitions/coupe-de-bretagne-2021-2022', function () {
 
     $matchs = Match::where('competition_id', 4)->where('date_match','>=', Carbon::now()->subHours(24))->where('region_id', 3)->orderBy('date_match', 'asc')->get();
     $user = Auth::user();
-    $title = "coupeDeFrance";
+    $title = "coupe de Bretagne";
 
     return view('competitions.coupeDeBretagne', compact('matchs','user','title'));
 });
 
+Route::get('/competitions/coupe-ange-lemee-2020-2021', function () {
+
+    $matchs = Match::where('competition_id', 5)->where('date_match','>=', Carbon::now()->subHours(24))->where('department_id', 22)->orderBy('date_match', 'asc')->get();
+    $user = Auth::user();
+    $title = "coupe Ange Lemée";
+
+    return view('competitions.coupeAngeLemee', compact('matchs','user','title'));
+});
 
 Route::get('region/{region}/regional/{division}/groupe/{groupe}', function (Region $region, DivisionsRegion $division, Group $groupe) {
     

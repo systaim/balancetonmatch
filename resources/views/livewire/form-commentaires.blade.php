@@ -1016,12 +1016,14 @@
                                             @endif
                                         </div>
                                     @else
-                                        @if ($comment->statistic->player->id > 16)
-                                            <div class="flex justify-center md:justify-end my-4">
-                                                <img class="h-36 rounded-lg"
-                                                    src="{{ $comment->statistic->player->avatar_path }}"
-                                                    alt="{{ $comment->statistic->player->first_name }} {{ $comment->statistic->player->last_name }}">
-                                            </div>
+                                        @if ($comment->statistic)
+                                            @if ($comment->statistic->player->id > 16)
+                                                <div class="flex justify-center md:justify-end my-4">
+                                                    <img class="h-36 rounded-lg"
+                                                        src="{{ $comment->statistic->player->avatar_path }}"
+                                                        alt="{{ $comment->statistic->player->first_name }} {{ $comment->statistic->player->last_name }}">
+                                                </div>
+                                            @endif
                                         @endif
                                     @endif
                                 </div>
