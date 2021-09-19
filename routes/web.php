@@ -159,4 +159,5 @@ Route::get('commentaire/delete/{id}', 'App\Http\Controllers\CommentaireControlle
 
 // Route::get('demo', 'App\Http\Controllers\MatchController@demo')->name('demo');
 
+URL::forceScheme('https');
 
