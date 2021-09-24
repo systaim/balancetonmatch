@@ -33,10 +33,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
 
-        if($this->app->environment('production')) {
-            \URL::forceScheme('https');
-        }
-        
+
         $liveMatchs = Match::where('date_match','>=', Carbon::now()->today())
             ->where(function($query) {
                 $query->where('live', '!=', 'attente');

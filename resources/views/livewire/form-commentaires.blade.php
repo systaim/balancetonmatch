@@ -776,6 +776,28 @@
         <!-- fin option commentaires "match" -->
 
         <!-- Affichage des commentaires -->
+        @if ($match->commentateur)
+            <div
+                class="my-2 w-11/12 lg:w-4/12 mx-auto bg-white text-primary rounded-lg shadow-2xl text-sm overflow-hidden">
+                <div>
+                    <h3 class="bg-secondary text-center">Le "Thierry Roland" du jour</h3>
+                </div>
+                <div class=" flex justify-around items-center">
+                    <div class="flex justify-start items-center">
+                        <img class="rounded-full h-8 w-8 object-cover mr-2"
+                            src="{{ $match->commentateur->user->profile_photo_url }}">
+                        <p>{{ ucfirst($match->commentateur->user->pseudo) }}</p>
+                    </div>
+                    <div>
+                        <button class="btn btnPrimary" wire:click="merci">Merci ! 👍</button>
+                        <span class="bg-secondary px-3 py-2 rounded-md text-black">{{ $match->commentateur->merci }}</span>
+                    </div>
+
+                </div>
+            </div>
+
+
+        @endif
         @if ($match->id == 0)
             <div class="flex flex-col items-center justify-center bg-secondary p-8">
                 <p class="font-semibold uppercase">Ce match est fictif</p>
@@ -1057,26 +1079,6 @@
                     </div>
                 @endforeach
             </div>
-            @if ($match->commentateur)
-                <div>
-                    <div
-                        class="bg-white rounded-lg border-white w-11/12 m-auto my-8 shadow-2xl lg:my-0 lg:w-auto max-w-sm">
-                        <div class="bg-primary text-secondary rounded-t-lg">
-                            <h3 class="text-center p-2">Le "Thierry Roland" du jour</h3>
-                        </div>
-                        <div class="flex flex-wrap justify-evenly items-center p-4">
-                            <img class="rounded-full h-8 w-8 object-cover mr-4 mb-2"
-                                src="{{ $match->commentateur->user->profile_photo_url }}">
-                            <div>
-                                <p class="font-bold">{{ $match->commentateur->user->pseudo }}</p>
-                            </div>
-                            <!-- <div class="flex items-center justify-center bg-secondary h-12 w-12 rounded-full m-2">
-                            <p>{{ $match->commentateur->user->note }}</p>
-                        </div> -->
-                        </div>
-                    </div>
-                </div>
-            @endif
         </div>
         <!-- Fin affichage des commentaires -->
     </div>

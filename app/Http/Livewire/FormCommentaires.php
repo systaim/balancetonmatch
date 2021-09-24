@@ -70,6 +70,7 @@ class FormCommentaires extends Component
     public $minuteModifiee;
     public $btnScore = false;
     public $reactions;
+    public $merci = 0;
 
     public $listGoal = [
         'GOOOOAAL !',
@@ -380,6 +381,14 @@ class FormCommentaires extends Component
     }
 
     //incrémentation, décrémentation du score
+
+    public function merci(){
+        // dd(request()->user());
+        $this->merci += 1;
+        $this->match->commentateur->merci += 1;
+        $this->match->commentateur->save();
+
+    }
 
     public function clickBtnScore()
     {
