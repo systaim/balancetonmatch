@@ -71,6 +71,8 @@ class FormCommentaires extends Component
     public $btnScore = false;
     public $reactions;
     public $merci = 0;
+    public $listeMatchDuCommentateur;
+    public $sommeMerci = 0;
 
     public $listGoal = [
         'GOOOOAAL !',
@@ -81,58 +83,6 @@ class FormCommentaires extends Component
     public $mitempsJoueurs = [
         'Les joueurs rentrent aux vestiaires',
         'Tout le monde à la buv... euuuh aux vestiaires !'
-    ];
-    public $goalsText = [
-        "Patate au ras du poteau !!!",
-        "Une grosse frappe de mule qui finit au fond des filets !",
-        "Une frappe de toute beauté.",
-        "Il a nettoyé la lucarne !",
-        "Plat du pied sécurité",
-        "Le 1 contre 1 est remporté par le joueur et ca fait ficelle !",
-        "Une séquence de jeu magnifique qui se solde par un but",
-        "Quel lob !!!",
-        "Une frappe écrasée qui rentre tout de même...",
-
-    ];
-    public $cardsText = [
-        "Il l'a fauché comme un lapin en plein vol !",
-        "Celui là n'est pas venu faire le voyage pour rien !",
-
-    ];
-    public $occasionsText = [
-        "Une frappe trop enlevée qui passe au dessus du cadre, dommage...",
-        "Sa frappe est trop écrasée pour inquiéter le gardien",
-        "Le face à face est remporté par le gardien !!!",
-        "Une frappe bien partie mais non cadrée",
-        "Une belle séquence de possession qui ne se concrétise pas..."
-    ];
-    public $penaltysScoreText = [
-        "La panenka est tentée et réussie ! Quel geste mes amis !!!",
-        "Le gardien était sur la trajectoire mais le ballon fini sa course dans les filets",
-        "Pénalty transformé ! Contre pied parfait",
-    ];
-    public $penaltysNoScoreText = [
-        "La panenka est tentée et... manquée !",
-        "Pénalty arrêté par le gardien ! Superbe arrêt ! Il qui est parti du bon côté",
-        "Le pénalty a heurté un montant !",
-        "Le joueur sélance pour tirer le pénalty... HORS CADRE..."
-    ];
-    public $faultsText = [
-        "Faute du défenseur, PÉNALTY !",
-        "MAAAIIIIINNN dans la surface, PÉNALTY",
-        "FAUTE !!! Pénalty !",
-        "Faute ! Coup-franc !",
-    ];
-    public $cfText = [
-        "Coup franc direeeect !!!!",
-        "Beau coup-franc en 2 temps",
-        "Un centre qui est concrétisé dans la surface",
-    ];
-    public $gameFactsText = [
-        "Corner !",
-        "6 mètres",
-        "Touche",
-        "L'équipe prend le jeu à son compte.",
     ];
 
     public function mount()
@@ -159,6 +109,12 @@ class FormCommentaires extends Component
         }
 
         $this->reactions = Reaction::all();
+
+        $this->listeMatchDuCommentateur = Commentator::where('user_id', $this->match->commentateur->user->id)->get();
+        
+        foreach ($this->listeMatchDuCommentateur as $commentateur) {
+            $this->sommeMerci += $commentateur->merci;
+        }
 
         $this->miseAJourCom();
         $this->miseAJourPenalty();
@@ -388,6 +344,7 @@ class FormCommentaires extends Component
         $this->match->commentateur->merci += 1;
         $this->match->commentateur->save();
 
+        $this->sommeMerci += 1;
     }
 
     public function clickBtnScore()

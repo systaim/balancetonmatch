@@ -783,14 +783,19 @@
                     <h3 class="bg-secondary text-center">Le "Thierry Roland" du jour</h3>
                 </div>
                 <div class=" flex justify-around items-center">
-                    <div class="flex justify-start items-center">
-                        <img class="rounded-full h-8 w-8 object-cover mr-2"
-                            src="{{ $match->commentateur->user->profile_photo_url }}">
-                        <p>{{ ucfirst($match->commentateur->user->pseudo) }}</p>
+                    <div>
+                        <div class="flex justify-start items-center">
+                            <img class="rounded-full h-8 w-8 object-cover mr-2"
+                                src="{{ $match->commentateur->user->profile_photo_url }}">
+                                <div class="flex items-center">
+                                    <p class="font-semibold">{{ ucfirst($match->commentateur->user->pseudo) }}</p>
+                                    <p class="text-xs mx-2">{{ $sommeMerci }}</p>
+                                </div>
+                        </div>
                     </div>
                     <div>
-                        <button class="btn btnPrimary" wire:click="merci">Merci ! 👍</button>
-                        <span class="bg-secondary px-3 py-2 rounded-md text-black">{{ $match->commentateur->merci }}</span>
+                        <button class="btn btnPrimary" wire:click="merci">Merci ! </button>
+                        <span>{{ $match->commentateur->merci }}</span>
                     </div>
 
                 </div>
