@@ -106,7 +106,7 @@
         @endif
         @if (\Session::has('warning'))
             <div class="message-alert warning">
-                <i class="fas fa-exclamation-circle text-5xl text-white rounded-full shadow-xl m-4"></i>
+                <i class="fas fa-exclamation-circle"></i>
                 <p> {!! \Session::get('warning') !!}</p>
             </div>
         @endif

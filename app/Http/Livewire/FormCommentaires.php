@@ -405,7 +405,7 @@ class FormCommentaires extends Component
             $commentateur['match_id'] = $this->match->id;
             $commentateur->save();
 
-            // session()->flash('success', 'Tu es le commentateur de ce match ! 😎');
+            session()->flash('success', 'Tu es le commentateur de ce match ! 😎');
             return redirect()->to('matches/' . $this->match->id);
         } else {
             session()->flash('warning', "Reviens 30 minutes avant le coup d'envoi pour pouvoir commenter");
@@ -565,11 +565,11 @@ class FormCommentaires extends Component
                 // $comment2 = Commentaire::create($commentData2);
                 // $comment2->save();
 
-                // session()->flash('success', 'Bon Match ! ⚽⚽⚽');
+                session()->flash('success', 'Bon Match ! ⚽⚽⚽');
                 return redirect()->to('matches/' . $this->match->id);
             }
         } else {
-            // session()->flash('warning', "Reviens 30 minutes avant le coup d'envoi");
+            session()->flash('warning', "Reviens 30 minutes avant le coup d'envoi");
             return redirect()->to('matches/' . $this->match->id);
         }
     }
@@ -595,7 +595,7 @@ class FormCommentaires extends Component
 
             $comment->save();
 
-            // session()->flash('success', 'Mi-temps ! Repos bien mérité... Rendez-vous dans 15 minutes 🍻');
+            session()->flash('success', 'Mi-temps ! Repos bien mérité... Rendez-vous dans 15 minutes 🍻');
             return redirect()->to('matches/' . $this->match->id);
         }
     }
@@ -619,7 +619,7 @@ class FormCommentaires extends Component
             $this->match->save();
             $comment->save();
             $this->commentsMatch =  $this->match->commentaires()->orderBy('minute', 'desc')->orderBy('updated_at', 'desc')->get();
-            // session()->flash('success', 'C\'est reparti !! 😉');
+            session()->flash('success', 'C\'est reparti !! 😉');
             return redirect()->to('matches/' . $this->match->id);
         }
     }
@@ -651,7 +651,7 @@ class FormCommentaires extends Component
             }
 
             $this->commentsMatch =  $this->match->commentaires()->orderBy('minute', 'desc')->orderBy('updated_at', 'desc')->get();
-            // session()->flash('success', '😍 MERCI MERCI MERCI 😍');
+            session()->flash('success', '😍 MERCI MERCI MERCI 😍');
             return redirect()->to('matches/' . $this->match->id);
         }
     }
@@ -770,7 +770,7 @@ class FormCommentaires extends Component
             }
 
             $this->commentsMatch = $this->match->commentaires()->orderBy('minute', 'desc')->orderBy('updated_at', 'desc')->get();
-            // session()->flash('success', 'Commentaire bien pris en compte ! 💪');
+            session()->flash('success', 'Commentaire bien pris en compte ! 💪');
             return redirect()->to('matches/' . $this->match->id);
         }
         // } else {

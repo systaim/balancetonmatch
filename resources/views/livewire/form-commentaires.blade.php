@@ -744,13 +744,6 @@
                                 class="bg-success text-gray-800 w-full h-full p-3 flex justify-evenly items-center rounded-lg">
                                 <img src="{{ asset('images/whistle.png') }}" class="h-12 mr-3">
                                 <p>Je souhaite commenter ⏱</p>
-                                @if (\Session::has('warning'))
-                                    <div class="message-alert warning">
-                                        <i
-                                            class="fas fa-exclamation-circle text-5xl text-white rounded-full shadow-xl m-4"></i>
-                                        <p> {!! \Session::get('warning') !!}</p>
-                                    </div>
-                                @endif
                             </div>
                         </button>
                     </div>
