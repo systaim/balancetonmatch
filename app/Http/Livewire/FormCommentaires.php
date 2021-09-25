@@ -110,11 +110,15 @@ class FormCommentaires extends Component
 
         $this->reactions = Reaction::all();
 
-        $this->listeMatchDuCommentateur = Commentator::where('user_id', $this->match->commentateur->user->id)->get();
-        
-        foreach ($this->listeMatchDuCommentateur as $commentateur) {
-            $this->sommeMerci += $commentateur->merci;
+        if ($this->match->commentateur) {
+            $this->listeMatchDuCommentateur = Commentator::where('user_id', $this->match->commentateur->user->id)->get();
+
+            foreach ($this->listeMatchDuCommentateur as $commentateur) {
+                $this->sommeMerci += $commentateur->merci;
+            }
         }
+
+
 
         $this->miseAJourCom();
         $this->miseAJourPenalty();
@@ -338,7 +342,8 @@ class FormCommentaires extends Component
 
     //incrémentation, décrémentation du score
 
-    public function merci(){
+    public function merci()
+    {
         // dd(request()->user());
         $this->merci += 1;
         $this->match->commentateur->merci += 1;
@@ -676,7 +681,7 @@ class FormCommentaires extends Component
         $commentData['commentator_id'] = $this->commentator[0]->id;
 
         if ($this->type_comments == "but") {
-            
+
             $commentData['type_action'] = "goal";
             $commentData['type_comments'] = $this->listGoal[array_rand($this->listGoal)];
             $commentData['comments'] = $this->type_but;
@@ -757,7 +762,7 @@ class FormCommentaires extends Component
                 }
             }
 
-            if($this->type_comments == "but"){
+            if ($this->type_comments == "but") {
                 foreach ($this->favorimatch as $favori) {
                     $favori->user->notify(new but($this->match));
                     $favori->save();
