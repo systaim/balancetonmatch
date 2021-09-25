@@ -794,8 +794,8 @@
                         </div>
                     </div>
                     <div>
-                        <button class="btn btnPrimary" wire:click="merci">Merci ! </button>
-                        <span>{{ $match->commentateur->merci }}</span>
+                        <button class="btn btnPrimary" wire:click="merci">Merci ! <span class="bg-white px-1 text-primary rounded-sm ml-2">{{ $match->commentateur->merci }}</span></button>
+                        
                     </div>
 
                 </div>
