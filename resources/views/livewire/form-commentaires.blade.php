@@ -794,8 +794,6 @@
                     @endif
                 </div>
             </div>
-
-
         @endif
         @if ($match->id == 0)
             <div class="flex flex-col items-center justify-center bg-secondary p-8">
@@ -945,25 +943,24 @@
                                                                         </button>
                                                                     @endif
                                                                 </div>
-                                                                <div class="flex justify-start mt-2">
-                                                                    @foreach ($comment->reactions->groupBy('emoji') as $type => $reaction)
-                                                                        @foreach ($reaction->groupBy('id') as $id => $react)
-                                                                            <div>
-                                                                                <p
-                                                                                    class="-pt-1 mx-1 text-sm font-normal">
-                                                                                    {{ $type }}
-                                                                                    <span>{{ count($reaction) }}</span>
-                                                                                </p>
-                                                                            </div>
-                                                                        @endforeach
-                                                                    @endforeach
-                                                                </div>
                                                             </div>
                                                         </div>
                                                     @endif
                                                 </div>
                                             @endif
                                         @endif
+                                        <div class="flex justify-start mt-2">
+                                            @foreach ($comment->reactions->groupBy('emoji') as $type => $reaction)
+                                                @foreach ($reaction->groupBy('id') as $id => $react)
+                                                    <div>
+                                                        <p class="-pt-1 mx-1 text-sm font-normal">
+                                                            {{ $type }}
+                                                            <span>{{ count($reaction) }}</span>
+                                                        </p>
+                                                    </div>
+                                                @endforeach
+                                            @endforeach
+                                        </div>
                                     </div>
                                 </div>
                                 <!-- Menu ajout d'un joueur par utilisateur -->
