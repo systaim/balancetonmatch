@@ -11,6 +11,7 @@ use App\Models\Department;
 use App\Models\DivisionsDepartment;
 use App\Models\DivisionsRegion;
 use App\Models\Favorismatch;
+use App\Models\Favoristeam;
 use App\Models\Group;
 use App\Models\Player;
 use App\Models\Match;
@@ -123,10 +124,11 @@ class MatchController extends Controller
         $tabHome = Tab::where('match_id', $match->id)->where('club_id', $match->homeClub->id)->get();
         $tabAway = Tab::where('match_id', $match->id)->where('club_id', $match->awayClub->id)->get();
         $user = Auth::user();   
-        $favorimatch = FavorisMatch::where('match_id', $match->id)->get();
+        $favorimatch = Favorismatch::where('match_id', $match->id)->get();
+        $favoriteam = Favoristeam::where('club_id', $match->homeClub->id)->orwhere('club_id', $match->awayClub->id)->get();
 
 
-        return view('matches.show', compact('favorimatch','match', 'commentsMatch', 'clubHome', 'clubAway', 'competitions', 'stats', 'nbrFavoris', 'commentator', 'user', 'tabHome', 'tabAway'));
+        return view('matches.show', compact('favorimatch','favoriteam','match', 'commentsMatch', 'clubHome', 'clubAway', 'competitions', 'stats', 'nbrFavoris', 'commentator', 'user', 'tabHome', 'tabAway'));
     }
 
     /**

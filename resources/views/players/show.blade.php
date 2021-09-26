@@ -51,12 +51,12 @@
                     <p class="font-bold">né le : <span class="text-xs">non renseigné</span></p>
 
                 @endif
-                @canany(['isManager', 'isSuperAdmin', 'isAdmin'])
+                @if (Auth::user()->club_id == $club->id)
                     <div>
                         <button onclick="openMenu()" class="mr-1"><i class="far fa-edit"></i></button>
                         <button id="{{ $player->id }}" @click="open = true"><i class="far fa-times-circle"></i></button>
                     </div>
-                @endcanany
+                @endif
             </div>
             <!-- ***********************
                                                             Formulaire suppression d'un joueur

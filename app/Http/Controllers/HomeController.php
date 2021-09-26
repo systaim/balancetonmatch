@@ -38,10 +38,9 @@ class HomeController extends Controller
         $goals= Statistic::where('action', 'goal')->get();
         $yellowCards= Statistic::where('action', 'yellow_card')->get();
         $redCards= Statistic::where('action','red_card')->get();
+
         $commentators = Commentator::all();
-        
-        // DB::table('matches')->where('date_match', '>', Carbon::now()->subDay(1))->where('live', 'attente')->delete();
-        // $matchsDuWeekEnd = Match::where(Auth::user()->club)
+
         
 
     return view('welcome', compact(

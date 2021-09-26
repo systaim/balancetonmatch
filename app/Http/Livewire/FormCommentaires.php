@@ -34,6 +34,7 @@ class FormCommentaires extends Component
     public $commentsMatch;
     public $nbrFavoris;
     public $favorimatch;
+    public $favoriteam;
 
     // Variables donnant accès aux colonnes de la table match
     public $type_comments;
@@ -117,8 +118,6 @@ class FormCommentaires extends Component
                 $this->sommeMerci += $commentateur->merci;
             }
         }
-
-
 
         $this->miseAJourCom();
         $this->miseAJourPenalty();
@@ -541,6 +540,10 @@ class FormCommentaires extends Component
                     $favori->user->notify(new matchBegin($this->match));
                     $favori->save();
                 }
+                foreach($this->favoriteam as $favori) {
+                    $favori->user->notify(new matchBegin($this->match));
+                    $favori->save();
+                }
 
                 $this->match->live = "debut"; // modification colonne live
                 $this->match->debut_match_reel = now();
@@ -646,6 +649,10 @@ class FormCommentaires extends Component
             $comment->save();
 
             foreach ($this->favorimatch as $favori) {
+                $favori->user->notify(new matchEnd($this->match));
+                $favori->save();
+            }
+            foreach($this->favoriteam as $favori) {
                 $favori->user->notify(new matchEnd($this->match));
                 $favori->save();
             }
@@ -764,6 +771,10 @@ class FormCommentaires extends Component
 
             if ($this->type_comments == "but") {
                 foreach ($this->favorimatch as $favori) {
+                    $favori->user->notify(new but($this->match));
+                    $favori->save();
+                }
+                foreach($this->favoriteam as $favori) {
                     $favori->user->notify(new but($this->match));
                     $favori->save();
                 }

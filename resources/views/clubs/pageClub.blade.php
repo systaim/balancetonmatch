@@ -118,7 +118,7 @@
             <div class="mt-6">
                 <h4 class="inline-block text-xl px-3 text-center bg-secondary text-primary rounded-md shadow-lg ml-2">Coupe de France</h4>
                 @foreach ($matchsCF as $match)
-                    @if ($match->date_match > now())
+                    @if ($match->date_match > now()->subHours(12))
                         @include('match')
                     @endif
                 @endforeach
@@ -128,7 +128,7 @@
             <div class="mt-6">
                 <h4 class="inline-block text-xl px-3 text-center bg-secondary text-primary rounded-md shadow-lg ml-2">Coupe de Bretagne</h4>
                 @foreach ($matchsBZH as $match)
-                    @if ($match->date_match > now())
+                    @if ($match->date_match > now()->subHours(12))
                         @include('match')
                     @endif
                 @endforeach
@@ -138,7 +138,7 @@
             <div class="mt-6">
                 <h4 class="inline-block text-xl px-3 text-center bg-secondary text-primary rounded-md shadow-lg ml-2">R1</h4>
                 @foreach ($matchsR1 as $match)
-                    @if ($match->date_match > now())
+                    @if ($match->date_match > now()->subHours(12))
                         @include('match')
                     @endif
                 @endforeach
@@ -148,7 +148,7 @@
             <div class="mt-6">
                 <h4 class="inline-block text-xl px-3 text-center bg-secondary text-primary rounded-md shadow-lg ml-2">R2</h4>
                 @foreach ($matchsR2 as $match)
-                    @if ($match->date_match > now())
+                    @if ($match->date_match > now()->subHours(12))
                         @include('match')
                     @endif
                 @endforeach
@@ -158,7 +158,7 @@
             <div class="mt-6">
                 <h4 class="inline-block text-xl px-3 text-center bg-secondary text-primary rounded-md shadow-lg ml-2">R3</h4>
                 @foreach ($matchsR3 as $match)
-                    @if ($match->date_match > now())
+                    @if ($match->date_match > now()->subHours(12))
                         @include('match')
                     @endif
                 @endforeach
@@ -168,7 +168,7 @@
             <div class="mt-6">
                 <h4 class="inline-block text-xl px-3 text-center bg-secondary text-primary rounded-md shadow-lg ml-2">D1</h4>
                 @foreach ($matchsD1 as $match)
-                    @if ($match->date_match > now())
+                    @if ($match->date_match > now()->subHours(12))
                         @include('match')
                     @endif
                 @endforeach
@@ -178,7 +178,7 @@
             <div class="mt-6">
                 <h4 class="inline-block text-xl px-3 text-center bg-secondary text-primary rounded-md shadow-lg ml-2">D2</h4>
                 @foreach ($matchsD2 as $match)
-                    @if ($match->date_match > now())
+                    @if ($match->date_match > now()->subHours(12))
                         @include('match')
                     @endif
                 @endforeach
@@ -188,7 +188,7 @@
             <div class="mt-6">
                 <h4 class="inline-block text-xl px-3 text-center bg-secondary text-primary rounded-md shadow-lg ml-2">D3</h4>
                 @foreach ($matchsD3 as $match)
-                    @if ($match->date_match > now())
+                    @if ($match->date_match > now()->subHours(12))
                         @include('match')
                     @endif
                 @endforeach
@@ -202,7 +202,7 @@
         <h3 class="text-2xl text-center my-4 border-b-2 border-darkGray">Historique des matchs</h3>
         @if (count($matchs) != 0)
             @foreach ($matchs->sortByDesc('date_match') as $key => $match)
-                @if ($match->date_match < now())
+                @if ($match->date_match < now()->subHours(12))
                     {{-- <h4 class="inline-block text-xl px-3 text-center bg-secondary text-primary rounded-md shadow-lg ml-2">{{ $match->competition->name }}</h4> --}}
                     @include('match')
                 @endif

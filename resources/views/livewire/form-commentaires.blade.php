@@ -780,17 +780,18 @@
                         <div class="flex justify-start items-center">
                             <img class="rounded-full h-8 w-8 object-cover mr-2"
                                 src="{{ $match->commentateur->user->profile_photo_url }}">
-                                <div class="flex items-center">
-                                    <p class="font-semibold">{{ ucfirst($match->commentateur->user->pseudo) }}</p>
-                                    <p class="text-xs mx-2">{{ $sommeMerci }}</p>
-                                </div>
+                            <div class="flex items-center">
+                                <p class="font-semibold">{{ ucfirst($match->commentateur->user->pseudo) }}</p>
+                                <p class="text-xs mx-2">{{ $sommeMerci }}</p>
+                            </div>
                         </div>
                     </div>
-                    <div>
-                        <button class="btn btnPrimary" wire:click="merci">Merci ! <span class="bg-white px-1 text-primary rounded-sm ml-2">{{ $match->commentateur->merci }}</span></button>
-                        
-                    </div>
-
+                    @if ($match->id != 0)
+                        <div>
+                            <button class="btn btnPrimary" wire:click="merci">Merci ! <span
+                                    class="bg-white px-1 text-primary rounded-sm ml-2">{{ $match->commentateur->merci }}</span></button>
+                        </div>
+                    @endif
                 </div>
             </div>
 

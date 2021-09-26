@@ -18,59 +18,6 @@
             </div>
         </div>
     </section>
-    {{-- @dump(now()->today()) --}}
-    {{-- <section>
-        @auth
-            @if (Auth::user()->club)
-                <a href="{{ route('clubs.show', Auth::user()->club) }}">
-                    <div class="shadow-2xl py-10 md:py-4 w-full flex flex-col lg:flex-row justify-center items-center"
-                        style="background:linear-gradient(-150deg, {{ Auth::user()->club->primary_color }}, {{ Auth::user()->club->secondary_color }})">
-                        <div class="relative w-11/12 md:w-8/12 lg:w-4/12 rounded-lg bg-white">
-                            <div class="flex justify-start items-center p-6">
-                                <div class="logo h-16 w-16 border mx-2">
-                                    @if (Auth::user()->club->logo_path)
-                                        <img class="object-contain" src="{{ asset(Auth::user()->club->logo_path) }}"
-                                            alt="Logo de {{ Auth::user()->club->name }}">
-                                    @else
-                                        <img class="object-contain"
-                                            src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ Auth::user()->club->numAffiliation }}.jpg"
-                                            alt="logo">
-                                    @endif
-                                </div>
-                                <div>
-                                    <h3 class="truncate text-xl">{{ Auth::user()->club->name }}</h3>
-                                </div>
-                            </div>
-                            <div class="absolute bottom-2 right-2 flex items-end justify-end p-2">
-                                <p class="border rounded-md px-1">mon club →</p>
-                            </div>
-                        </div>
-                        <div>
-                            
-                        </div>
-                    </div>
-                </a>
-            @else
-                <div class="w-full flex flex-col sm:flex-row items-center justify-center mx-auto p-3 shadow-xl">
-                    <div>
-                        <h3 class="text-center text-2xl font-normal sm:mr-3">Tu es licencié dans un club ?</h3>
-                        <p class="text-center text-xs">Ou tu supportes simplement un club...</p>
-                    </div>
-                    <a href="/clubs"><button class="btn btnSecondary h-14 w-auto">Choisis le <i
-                                class="fas fa-arrow-right"></i></button></a>
-                </div>
-            @endif
-        @else
-            <div class="w-full flex flex-col sm:flex-row items-center justify-center mx-auto p-3 shadow-xl">
-                <div>
-                    <h3 class="text-center text-2xl font-normal sm:mr-3">Tu es licencié dans un club ?</h3>
-                    <p class="text-center text-xs">Ou tu supportes simplement un club...</p>
-                </div>
-                <a href="/login"><button class="btn btnSecondary h-14 w-auto">Connecte toi <i
-                            class="fas fa-arrow-right"></i></button></a>
-            </div>
-        @endauth
-    </section> --}}
     <section>
         <div class="container mx-auto">
             <div class="flex flex-wrap justify-evenly mx-4 mb-10 text-center text-white">

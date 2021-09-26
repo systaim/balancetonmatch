@@ -60,8 +60,8 @@
                         @endcanany
                     </div>
                     <!-- ***********************
-                                                        Formulaire suppression d'un dirigeant
-                                                        ************************** -->
+                                                            Formulaire suppression d'un dirigeant
+                                                            ************************** -->
                     <div id=""
                         class="absolute bg-white top-0 left-0 right-0 bottom-0 text-primary z-20 flex flex-col justify-between items-center "
                         x-show="open" x-transition:enter="transition ease-out duration-300"
@@ -90,8 +90,8 @@
                     </div>
 
                     <!-- ***********************
-                                                        Formulaire modification d'un dirigeant
-                                                        ************************** -->
+                                                            Formulaire modification d'un dirigeant
+                                                            ************************** -->
 
                     <div id="{{ $staff->id }}" class="hidden fixed z-50 inset-0 justify-center items-center"
                         style="background-color: rgba(0,0,0,.5);">
@@ -168,22 +168,12 @@
             @endforeach
             @auth
                 @if (Auth::user()->club_id == $club->id)
-                    <div
-                        class="relative w-72 m-4 bg-success text-darkGray flex flex-col justify-between rounded-lg overflow-hidden shadow-2xl">
-                        <a href="{{ route('clubs.staffs.create', $club) }}">
-                            <div class="flex justify-between">
-                                <div class="flex justify-center items-center h-80 w-full bg-gray-400 rounded-br-lg">
-                                    <p class="giant-text text-gray-500">+</p>
-                                </div>
-                                <div class="text-lg flex justify-center items-start p-2">
-                                    <p class="vertical mx-2 font-semibold">Ajouter un dirigeant</p>
-                                </div>
-                            </div>
-                            <div class="relative flex p-2">
-                                <p class="font-semibold">Ajouter un dirigeant</p>
-                            </div>
-                        </a>
-                    </div>
+                    <a href="{{ route('clubs.staffs.create', $club) }}">
+                        <div
+                            class="fixed z-50 bottom-20 right-4 lg:right-10 h-16 w-16 bg-secondary border shadow-xl rounded-full flex items-center justify-center">
+                            <p class="text-6xl text-primary">+</p>
+                        </div>
+                    </a>
                 @endif
             @endauth
         </div>

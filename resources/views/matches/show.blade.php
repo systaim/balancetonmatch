@@ -157,6 +157,7 @@
     'tabHome' => $tabHome,
     'tabAway' => $tabAway,
     'favorimatch' => $favorimatch,
+    'favoriteam' => $favoriteam,
     ])
 
     @include('footer')
