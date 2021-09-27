@@ -90,48 +90,48 @@ class ClubController extends Controller
         $nbrFavoris = Favoristeam::where('club_id', $club->id)->count();
         $matchs = Match::where('home_team_id', $club->id)->orwhere('away_team_id', $club->id)->orderBy('date_match','asc')->get();
 
-        $matchsR1 = Match::where('division_region_id', 1)->where('date_match','>=', Carbon::now()->subHours(24))
+        $matchsR1 = Match::where('division_region_id', 1)->where('date_match','>=', Carbon::now()->subHours(12))
                             ->where(function ($query) use ($club){
                                     $query->where('home_team_id', $club->id)
                                     ->orwhere('away_team_id', $club->id);
                             })->limit(1)->get();
 
-        $matchsR2 = Match::where('division_region_id', 2)->where('date_match','>=', Carbon::now()->subHours(24))
+        $matchsR2 = Match::where('division_region_id', 2)->where('date_match','>=', Carbon::now()->subHours(12))
                             ->where(function ($query) use ($club){
                                     $query->where('home_team_id', $club->id)
                                     ->orwhere('away_team_id', $club->id);
                             })->limit(1)->get();
                             
-        $matchsR3 = Match::where('division_region_id', 3)->where('date_match','>=', Carbon::now()->subHours(24))
+        $matchsR3 = Match::where('division_region_id', 3)->where('date_match','>=', Carbon::now()->subHours(12))
                             ->where(function ($query) use ($club){
                                     $query->where('home_team_id', $club->id)
                                     ->orwhere('away_team_id', $club->id);
                             })->limit(1)->get();
 
-        $matchsCF = Match::where('competition_id', 3)->where('date_match','>=', Carbon::now()->subHours(24))
+        $matchsCF = Match::where('competition_id', 3)->where('date_match','>=', Carbon::now()->subHours(12))
                             ->where(function ($query) use ($club){
                                     $query->where('home_team_id', $club->id)
                                     ->orwhere('away_team_id', $club->id);
                             })->get();
 
-        $matchsBZH = Match::where('competition_id', 4)->where('date_match','>=', Carbon::now()->subHours(24))
+        $matchsBZH = Match::where('competition_id', 4)->where('date_match','>=', Carbon::now()->subHours(12))
                             ->where(function ($query) use ($club){
                                     $query->where('home_team_id', $club->id)
                                     ->orwhere('away_team_id', $club->id);
                             })->get();
 
-        $matchsD1 = Match::where('division_department_id', 1)->where('date_match','>=', Carbon::now()->subHours(24))
+        $matchsD1 = Match::where('division_department_id', 1)->where('date_match','>=', Carbon::now()->subHours(12))
                             ->where(function ($query) use ($club){
                                     $query->where('home_team_id', $club->id)
                                     ->orwhere('away_team_id', $club->id);
                             })->limit(1)->get();
-        $matchsD2 = Match::where('division_department_id', 2)->where('date_match','>=', Carbon::now()->subHours(24))
+        $matchsD2 = Match::where('division_department_id', 2)->where('date_match','>=', Carbon::now()->subHours(12))
                             ->where(function ($query) use ($club){
                                     $query->where('home_team_id', $club->id)
                                     ->orwhere('away_team_id', $club->id);
                             })->limit(1)->get();
 
-        $matchsD3 = Match::where('division_department_id', 3)->where('date_match','>=', Carbon::now()->subHours(24))
+        $matchsD3 = Match::where('division_department_id', 3)->where('date_match','>=', Carbon::now()->subHours(12))
                             ->where(function ($query) use ($club){
                                     $query->where('home_team_id', $club->id)
                                     ->orwhere('away_team_id', $club->id);
