@@ -62,6 +62,9 @@
 
         gtag('config', 'G-MWPW5WC37V');
     </script>
+
+    {{-- Manifest --}}
+    <link rel="manifest" href="manifest.json">
 </head>
 
 <body>
