@@ -18,12 +18,12 @@
                                 <p class="uppercase text-gray-400 font-semibold text-xs">{{ $notification->created_at->diffForHumans()}}</p>
                             </div>
                             <div class="flex justify-start items-center">
-                                <div class="{{ $notification->read_at < now() && $notification->read_at > now()->subWeek(1)?"bg-gray-600":"bg-red-600"}} inline-block px-2 py-1 rounded-md text-white mr-6 font-bold">LIVE</div>
+                                <div class="{{ $notification->read_at < now()?"bg-gray-600":"bg-red-600"}} inline-block px-2 py-1 rounded-md text-white mr-6 font-bold">LIVE</div>
                                 <div class="">
                                     <p class="text-sm truncate">{{ $notification->data["homeClub"] }}</p>
                                     <img src="{{ asset('images/vs-primary.png') }}" alt="versus" class="h-6 ml-3">
                                     <p class="text-sm truncate">{{ $notification->data["awayClub"] }}</p>
-                                    <p class="{{ $notification->read_at < now() && $notification->read_at > now()->subWeek(1)?"bg-gray-600":"bg-primary"}} inline-block text-white rounded-lg font-bold p-2 mt-2 flex-none">Le match a démarré</p>
+                                    <p class="{{ $notification->read_at < now()?"bg-gray-600":"bg-primary"}} inline-block text-white rounded-lg font-bold p-2 mt-2 flex-none">Le match a démarré</p>
                                 </div>
                             </div>
                         </a>
@@ -34,12 +34,12 @@
                                 <p class="uppercase text-gray-400 font-semibold text-xs">{{ $notification->created_at->diffForHumans()}}</p>
                             </div>
                             <div class="flex justify-start items-center">
-                                <div class="{{ $notification->read_at < now() && $notification->read_at > now()->subWeek(1)?"bg-gray-600":"bg-red-600"}} inline-block px-2 py-1 rounded-md text-white mr-6 font-bold">LIVE</div>
+                                <div class="{{ $notification->read_at < now()?"bg-gray-600":"bg-red-600"}} inline-block px-2 py-1 rounded-md text-white mr-6 font-bold">LIVE</div>
                                 <div>
                                     <p class="text-sm truncate">{{ $notification->data["homeClub"] }}</p>
                                     <img src="{{ asset('images/vs-primary.png') }}" alt="versus" class="h-6 ml-6">
                                     <p class="text-sm truncate">{{ $notification->data["awayClub"] }}</p>
-                                    <p class="{{ $notification->read_at < now() && $notification->read_at > now()->subWeek(1)?"bg-gray-600":"bg-success"}} inline-block p-2 rounded-lg font-bold mt-2">{{ $notification->data['text'] }}</p>
+                                    <p class="{{ $notification->read_at < now()?"bg-gray-600":"bg-success"}} inline-block p-2 rounded-lg font-bold mt-2">{{ $notification->data['text'] }}</p>
                                 </div>
                             </div>
                         </a>

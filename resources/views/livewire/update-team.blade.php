@@ -49,8 +49,8 @@
         <div class="flex flex-col">
             <div class="flex justify-between items-center w-full sm:w-7/12 m-2">
                 <label for="inputPrimaryColor">Couleur primaire</label>
-                <div class="relative h-12 w-12 rounded-full overflow-hidden border-white border-2 cursor-pointer">
-                    <input class="absolute -top-2 -left-2 h-24 w-24" type="color" name="inputPrimaryColor"
+                <div class="relative h-12 w-12 rounded-full overflow-hidden border-white border-2">
+                    <input class="absolute -top-2 -left-2 h-24 w-24 cursor-pointer" type="color" name="inputPrimaryColor"
                         id="inputPrimaryColor" wire:model="inputPrimaryColor">
                 </div>
                 @error('inputPrimaryColor')
@@ -59,8 +59,8 @@
             </div>
             <div class="flex justify-between items-center w-full sm:w-7/12 m-2">
                 <label for="inputSecondaryColor">Couleur Secondaire</label>
-                <div class="relative h-12 w-12 rounded-full overflow-hidden border-white border-2 cursor-pointer">
-                    <input class="absolute -top-2 -left-2 h-24 w-24" type="color" name="inputSecondaryColor"
+                <div class="relative h-12 w-12 rounded-full overflow-hidden border-white border-2">
+                    <input class="absolute -top-2 -left-2 h-24 w-24 cursor-pointer" type="color" name="inputSecondaryColor"
                         id="inputSecondaryColor" wire:model="inputSecondaryColor">
                 </div>
                 @error('inputSecondaryColor')
