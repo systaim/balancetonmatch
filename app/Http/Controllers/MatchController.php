@@ -12,6 +12,7 @@ use App\Models\DivisionsDepartment;
 use App\Models\DivisionsRegion;
 use App\Models\Favorismatch;
 use App\Models\Favoristeam;
+use App\Models\Gallery;
 use App\Models\Group;
 use App\Models\Player;
 use App\Models\Match;
@@ -126,7 +127,6 @@ class MatchController extends Controller
         $user = Auth::user();   
         $favorimatch = Favorismatch::where('match_id', $match->id)->get();
         $favoriteam = Favoristeam::where('club_id', $match->homeClub->id)->orwhere('club_id', $match->awayClub->id)->get();
-
 
         return view('matches.show', compact('favorimatch','favoriteam','match', 'commentsMatch', 'clubHome', 'clubAway', 'competitions', 'stats', 'nbrFavoris', 'commentator', 'user', 'tabHome', 'tabAway'));
     }

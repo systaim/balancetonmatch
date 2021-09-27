@@ -97,4 +97,8 @@ class Match extends Model
         return $this->hasMany(Counter::class, 'page-address');
     }
 
+    public function medias()
+    {
+        return $this->HasMany(Gallery::class);
+    }
 }

@@ -876,6 +876,7 @@
                         </div>
                     </div>
                 @endif
+
                 @auth
                     @if ($match->commentateur)
                         @if ($match->commentateur->user_id == Auth::user()->id)
@@ -1021,7 +1022,7 @@
                                     @if ($comment->images != null)
                                         <div class="flex justify-end pr-8">
                                             @if (pathinfo($comment->images)['extension'] == 'mp4' || pathinfo($comment->images)['extension'] == 'mov')
-                                                <video autoplay controls class="max-h-48 w-auto rounded-md shadow-xl">
+                                                <video controls class="max-h-48 w-auto rounded-md shadow-xl">
                                                     <source src="{{ asset($comment->images) }}" type="video/mp4">
                                                     <source src="{{ asset($comment->images) }}" type="video/mov">
                                                     Your browser does not support the video tag.
