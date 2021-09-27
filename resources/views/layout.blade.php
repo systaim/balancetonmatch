@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta name="theme-color" content="#091c3e"/>
+    <meta name="theme-color" content="#091c3e" />
 
     <!-- meta Facebook -->
     <meta property="og:url" content="{{ request()->url() }}">
@@ -50,7 +50,7 @@
     @if (request()->path() == 'contact')
         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     @endif
-    
+
     {{-- Manifest --}}
     <link rel="manifest" href="manifest.json">
 </head>
@@ -66,25 +66,29 @@
             </div>
             <div
                 class="relative text-primary flex justify-center lg:justify-between items-center lg:items-between h-24 lg:block lg:h-auto">
-                <div class="relative flex justify-evenly items-center ">
-                    <div class="flex justify-center items-center mx-8">
-                        <div>
+                <div class="relative flex justify-center items-center mx-2 w-full">
+                    <div class="absolute top-7 left-5 lg:hidden flex items-center">
+                        <i class="fas fa-chevron-left mr-1"></i>
+                        <a href=javascript:history.go(-1)>retour</a>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="mx-auto">
                             <a href="/">
                                 <img class="w-20 md:w-24" src="{{ asset('/images/logos/btmLogoJB.png') }}"
                                     alt="logo de BTM">
                             </a>
                         </div>
-                        <div class="relative h-auto diagonale">
+                        <div class="relative h-auto md:diagonale">
                             <a href="/">
-                                <h1 class="sm:text-2xl md:text-3xl">Balance Ton Match</h1>
+                                <h1 class="hidden md:block md:text-3xl">Balance Ton Match</h1>
                                 <p
-                                    class="float-right inline-block text-xs60 sm:text-xs md:text-base px-2 bg-primary rounded-md text-white ">
+                                    class="hidden float-right sm:inline-block text-xs60 sm:text-xs md:text-base px-2 bg-primary rounded-md text-white ">
                                     Quand la touche part en live...
                                 </p>
                             </a>
                         </div>
                     </div>
-                    <div class="lg:hidden">
+                    <div class="absolute top-4 right-3 lg:hidden">
                         <a href=" /notifications">
                             <div
                                 class="relative flex justify-center items-center text-primary border rounded-full h-12 w-12 mr-4">
@@ -98,6 +102,7 @@
                         </a>
                     </div>
                 </div>
+                {{-- @dump(request()) --}}
                 @include('menu')
             </div>
         </header>
