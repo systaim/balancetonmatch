@@ -52,7 +52,7 @@
     @endif
 
     {{-- Manifest --}}
-    <link rel="manifest" href="manifest.json">
+    {{-- <link rel="manifest" href="manifest.json"> --}}
 </head>
 
 <body>
@@ -104,7 +104,6 @@
                         </a>
                     </div>
                 </div>
-                {{-- @dump(request()->path()) --}}
                 @include('menu')
             </div>
         </header>

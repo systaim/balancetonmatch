@@ -78,7 +78,7 @@
     </script>
 
     {{-- Manifest --}}
-    <link rel="manifest" href="manifest.json">
+    {{-- <link rel="manifest" href="manifest.json"> --}}
 </head>
 
 <body>
