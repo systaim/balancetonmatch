@@ -83,8 +83,7 @@
 
 <body>
     <div id="container">
-        <header id="header"
-            class="fixed top-O right-0 left-0 lg:relative bg-gray-100 xl:h-auto z-50 h-18 lg:h-auto lg:mt-0">
+        <header id="header" class="relative top-O right-0 left-0 lg:relative bg-gray-100 xl:h-auto z-50 lg:mt-0">
             <div id="burger"
                 class="hidden absolute cursor-pointer top-5 left-3 justify-center items-center h-12 w-12 bg-primary z-50">
                 <div class="open-main-nav flex justify-center">
@@ -94,10 +93,12 @@
             <div
                 class="relative text-primary flex justify-center lg:justify-between items-center lg:items-between lg:block lg:h-auto shadow-xl">
                 <div class="relative flex justify-center items-center mx-2 w-full">
-                    <div class="absolute top-4 left-5 lg:hidden flex items-center">
-                        <i class="fas fa-chevron-left mr-1"></i>
-                        <a href=javascript:history.go(-1)>retour</a>
-                    </div>
+                    @if (request()->path() != '/')
+                        <div class="absolute top-4 left-5 lg:hidden flex items-center">
+                            <i class="fas fa-chevron-left mr-1"></i>
+                            <a href=javascript:history.go(-1)>retour</a>
+                        </div>
+                    @endif
                     <div class="flex items-center">
                         <div class="mx-auto">
                             <a href="/">
@@ -107,7 +108,7 @@
                         </div>
                         <div class="relative h-auto md:diagonale">
                             <a href="/">
-                                <h1 class="hidden md:block md:text-3xl">Balance Ton Match</h1>
+                                <h1 class="hidden md:block text-xs md:text-3xl">Balance Ton Match</h1>
                                 <p
                                     class="hidden float-right sm:inline-block text-xs60 sm:text-xs md:text-base px-2 bg-primary rounded-md text-white ">
                                     Quand la touche part en live...
@@ -132,7 +133,7 @@
                 @include('menu')
             </div>
         </header>
-        <div class="mt-16 lg:mt-0">
+        <div>
             @if (\Session::has('success'))
                 <div class="message-alert success" x-show.transition="open">
                     <i class="fas fa-check-circle"></i>
