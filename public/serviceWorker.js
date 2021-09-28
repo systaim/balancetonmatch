@@ -48,14 +48,14 @@ self.addEventListener("fetch", event => {
 });
 
 // supprimer caches
-self.addEventListener("activate", e => {
-    e.waitUntil(
-        caches.keys().then(keys => {
-            return Promise.add(
-                keys
-                    .filter(key => key !== staticCacheName)
-                    .map(key => caches.delete(key))
-            );
-        })
-    );
-});
+// self.addEventListener("activate", e => {
+//     e.waitUntil(
+//         caches.keys().then(keys => {
+//             return Promise.add(
+//                 keys
+//                     .filter(key => key !== staticCacheName)
+//                     .map(key => caches.delete(key))
+//             );
+//         })
+//     );
+// });
