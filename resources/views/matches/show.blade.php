@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta name="theme-color" content="#091c3e"/>
+    <meta name="theme-color" content="#091c3e" />
 
     <!-- meta Facebook -->
     <meta property="og:url" content="{{ route('matches.show', [$match, Str::slug($match->slug, '-')]) }}" />
@@ -69,7 +69,7 @@
 
 <body>
     <div id="container">
-        <header id="header" class="relative bg-gray-100 h-24 xl:h-auto">
+        <header id="header" class="fixed top-O right-0 left-0 lg:relative bg-gray-100 xl:h-auto z-50 -mt-16 lg:mt-0">
             <div id="burger"
                 class="hidden absolute cursor-pointer top-5 left-3 justify-center items-center h-12 w-12 bg-primary z-50">
                 <div class="open-main-nav flex justify-center">
@@ -77,26 +77,30 @@
                 </div>
             </div>
             <div
-                class="relative text-primary flex xl:flex-col justify-center xl:justify-between items-center xl:items-between h-24 xl:block xl:h-auto">
-                <div class="relative flex justify-evenly items-center ">
-                    <div class="flex justify-center items-center mx-8">
-                        <div>
+                class="relative text-primary flex justify-center lg:justify-between items-center lg:items-between lg:block lg:h-auto shadow-xl">
+                <div class="relative flex justify-center items-center mx-2 w-full">
+                    <div class="absolute top-4 left-5 lg:hidden flex items-center">
+                        <i class="fas fa-chevron-left mr-1"></i>
+                        <a href=javascript:history.go(-1)>retour</a>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="mx-auto">
                             <a href="/">
-                                <img class="w-20 md:w-24" src="{{ asset('/images/logos/btmLogoJB.png') }}"
+                                <img class="w-16 md:w-24" src="{{ asset('/images/logos/btmLogoJB.png') }}"
                                     alt="logo de BTM">
                             </a>
                         </div>
-                        <div class="relative h-auto diagonale">
+                        <div class="relative h-auto md:diagonale">
                             <a href="/">
-                                <h1 class="sm:text-2xl md:text-3xl">Balance Ton Match</h1>
+                                <h1 class="hidden md:block md:text-3xl">Balance Ton Match</h1>
                                 <p
-                                    class="float-right inline-block text-xs60 sm:text-xs md:text-base px-2 bg-primary rounded-md text-white ">
+                                    class="hidden float-right sm:inline-block text-xs60 sm:text-xs md:text-base px-2 bg-primary rounded-md text-white ">
                                     Quand la touche part en live...
                                 </p>
                             </a>
                         </div>
                     </div>
-                    <div class="lg:hidden">
+                    <div class="absolute top-1 right-2 lg:hidden">
                         <a href=" /notifications">
                             <div
                                 class="relative flex justify-center items-center text-primary border rounded-full h-12 w-12 mr-4">
@@ -113,41 +117,43 @@
                 @include('menu')
             </div>
         </header>
-        @if (\Session::has('success'))
-            <div class="message-alert success" x-show.transition="open">
-                <i class="fas fa-check-circle"></i>
-                <p> {!! \Session::get('success') !!}</p>
-            </div>
-        @endif
-        @if (\Session::has('warning'))
-            <div class="message-alert warning">
-                <i class="fas fa-exclamation-circle mr-4"></i>
-                <p> {!! \Session::get('warning') !!}</p>
-            </div>
-        @endif
-        @if (\Session::has('danger'))
-            <div class="message-alert danger">
-                <i class="fas fa-times-circle"></i>
-                <p> {!! \Session::get('danger') !!}</p>
-            </div>
-        @endif
-        <div id="fb-root"></div>
-        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v11.0"
-                nonce="tGIyRgh0">
-        </script>
-        <a class="mx-auto" target="_blank"
-            href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fbalancetonmatch.com/%2Fmatches%2F{{ $match->id }}&amp;src=sdkpreparse"
-            class="fb-xfbml-parse-ignore">
-            <div class="fixed top-2 left-2 z-50 pt-2 pb-3 px-2 rounded-full bg-blue-600 text-white">
-                <div data-href="{{ route('matches.show', [$match, Str::slug($match->slug, '-')]) }}"
-                    data-layout="button" data-size="large">
-                    <div class="flex flex-col justify-center items-center">
-                        <i class="fab fa-facebook text-4xl text-white mb-1"></i>
-                        <p class="font-sans text-xs text-center my-1">Partager</p>
+        <div class="mt-16 lg:mt-0">
+            @if (\Session::has('success'))
+                <div class="message-alert success" x-show.transition="open">
+                    <i class="fas fa-check-circle"></i>
+                    <p> {!! \Session::get('success') !!}</p>
+                </div>
+            @endif
+            @if (\Session::has('warning'))
+                <div class="message-alert warning">
+                    <i class="fas fa-exclamation-circle mr-4"></i>
+                    <p> {!! \Session::get('warning') !!}</p>
+                </div>
+            @endif
+            @if (\Session::has('danger'))
+                <div class="message-alert danger">
+                    <i class="fas fa-times-circle"></i>
+                    <p> {!! \Session::get('danger') !!}</p>
+                </div>
+            @endif
+            <div id="fb-root"></div>
+            <script async defer crossorigin="anonymous" src="https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v11.0"
+                        nonce="tGIyRgh0">
+            </script>
+            <a class="mx-auto" target="_blank"
+                href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fbalancetonmatch.com/%2Fmatches%2F{{ $match->id }}&amp;src=sdkpreparse"
+                class="fb-xfbml-parse-ignore">
+                <div class="fixed top-18 left-6 z-50 rounded-full bg-blue-600 text-white">
+                    <div data-href="{{ route('matches.show', [$match, Str::slug($match->slug, '-')]) }}"
+                        data-layout="button" data-size="large">
+                        <div class="flex justify-center items-center">
+                            <i class="fab fa-facebook text-2xl text-white"></i>
+                            <p class="font-sans text-xs text-center mx-1">Partager</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </a>
+            </a>
+        </div>
     </div>
 
 
