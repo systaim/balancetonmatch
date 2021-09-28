@@ -7,12 +7,15 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use App\Models\Match;
+use Illuminate\Broadcasting\InteractsWithSockets;
+use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Notifications\Messages\BroadcastMessage;
+use Illuminate\Queue\SerializesModels;
 use NotificationChannels\WebPush\WebPushChannel;
 
 class matchBegin extends Notification
 {
-    use Queueable;
+    use Queueable, Dispatchable, InteractsWithSockets, SerializesModels;
 
     public $match;
 
@@ -34,7 +37,7 @@ class matchBegin extends Notification
      */
     public function via($notifiable)
     {
-        return ['database', 'broadcast'];
+        return ['database', 'broadcast', WebPushChannel::class];
     }
 
     /**
@@ -75,11 +78,22 @@ class matchBegin extends Notification
             'awayClub' => $this->match->awayClub->name,
         ]);
     }
+
+    public function broadcastOn()
+    {
+        return ['match'];
+    }
+
+    public function broadcastAs()
+    {
+        return 'matchBegin';
+    }
+
     // public function toWebPush($notifiable, $notification) {
     //     return (new WebPushMessage)
     //     ->title('Le match commence')
     //     ->icon('/approved-icon.png')
-    //     ->body('Your account was approved!')
+    //     ->body('test')
     //     ->action('View account', 'view_account')
     //     ->options(['TTL' => 1000]);
     //     // ->data(['id' => $notification->id])

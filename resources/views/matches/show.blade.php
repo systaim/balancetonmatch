@@ -63,13 +63,28 @@
         gtag('config', 'G-MWPW5WC37V');
     </script>
 
+    <script>
+        // Enable pusher logging - don't include this in production
+        Pusher.logToConsole = true;
+
+        var pusher = new Pusher('500acb0f4d3b2c9db2e8', {
+            cluster: 'eu'
+        });
+
+        var channel = pusher.subscribe('match');
+        channel.bind('matchBegin', function(data) {
+            alert(JSON.stringify(data));
+        });
+    </script>
+
     {{-- Manifest --}}
     <link rel="manifest" href="manifest.json">
 </head>
 
 <body>
     <div id="container">
-        <header id="header" class="fixed top-O right-0 left-0 lg:relative bg-gray-100 xl:h-auto z-50 -mt-16 h-18 lg:h-auto lg:mt-0">
+        <header id="header"
+            class="fixed top-O right-0 left-0 lg:relative bg-gray-100 xl:h-auto z-50 -mt-16 h-18 lg:h-auto lg:mt-0">
             <div id="burger"
                 class="hidden absolute cursor-pointer top-5 left-3 justify-center items-center h-12 w-12 bg-primary z-50">
                 <div class="open-main-nav flex justify-center">

@@ -67,10 +67,12 @@
             <div
                 class="relative text-primary flex justify-center lg:justify-between items-center lg:items-between lg:block lg:h-auto shadow-xl">
                 <div class="relative flex justify-center items-center mx-2 w-full">
+                    @if(request()->path() != "/")
                     <div class="absolute top-4 left-5 lg:hidden flex items-center">
                         <i class="fas fa-chevron-left mr-1"></i>
                         <a href=javascript:history.go(-1)>retour</a>
                     </div>
+                    @endif
                     <div class="flex items-center">
                         <div class="mx-auto">
                             <a href="/">
@@ -80,7 +82,7 @@
                         </div>
                         <div class="relative h-auto md:diagonale">
                             <a href="/">
-                                <h1 class="hidden md:block md:text-3xl">Balance Ton Match</h1>
+                                <h1 class="hidden md:block text-xs md:text-3xl">Balance Ton Match</h1>
                                 <p
                                     class="hidden float-right sm:inline-block text-xs60 sm:text-xs md:text-base px-2 bg-primary rounded-md text-white ">
                                     Quand la touche part en live...
@@ -102,6 +104,7 @@
                         </a>
                     </div>
                 </div>
+                {{-- @dump(request()->path()) --}}
                 @include('menu')
             </div>
         </header>
@@ -127,9 +130,7 @@
             @yield('content')
             @include('footer')
         </div>
-
     </div>
-
     @livewireScripts
     @auth
         <script>
