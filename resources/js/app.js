@@ -2,12 +2,10 @@ const { forEach } = require("lodash");
 
 require("./bootstrap");
 
-
-
 // /******************************
-//  * 
+//  *
 //  * menu Hamburger
-//  * 
+//  *
 //  ******************************/
 
 // let burger = document.getElementById("burger");
@@ -21,9 +19,9 @@ require("./bootstrap");
 // });
 
 /******************************
- * 
+ *
  * menu Hamburger bas de page
- * 
+ *
  ******************************/
 
 let burger2 = document.getElementById("burger2");
@@ -33,54 +31,53 @@ let menuProfile = document.getElementById("menu-profile");
 let matchs = document.getElementById("matchs");
 let menuMatchs = document.getElementById("menu-matchs");
 
-burger2.addEventListener("click", function () {
+burger2.addEventListener("click", function() {
     this.classList.toggle("is-open");
     menuMobile.classList.toggle("is-open");
 
-    if (menuProfile.classList.contains('is-open')) {
+    if (menuProfile.classList.contains("is-open")) {
         menuProfile.classList.toggle("is-open");
     }
-    if (menuMatchs.classList.contains('is-open')) {
+    if (menuMatchs.classList.contains("is-open")) {
         menuMatchs.classList.toggle("is-open");
     }
 });
 
-profile.addEventListener("click", function () {
+profile.addEventListener("click", function() {
     this.classList.toggle("is-open");
     menuProfile.classList.toggle("is-open");
-    
-    if (menuMobile.classList.contains('is-open')) {
+
+    if (menuMobile.classList.contains("is-open")) {
         menuMobile.classList.toggle("is-open");
     }
-    if (menuMatchs.classList.contains('is-open')) {
+    if (menuMatchs.classList.contains("is-open")) {
         menuMatchs.classList.toggle("is-open");
     }
-    if (burger2.classList.contains('is-open')) {
+    if (burger2.classList.contains("is-open")) {
         burger2.classList.toggle("is-open");
     }
 });
 
-matchs.addEventListener("click", function () {
+matchs.addEventListener("click", function() {
     this.classList.toggle("is-open");
     menuMatchs.classList.toggle("is-open");
 
-    if (menuProfile.classList.contains('is-open')) {
+    if (menuProfile.classList.contains("is-open")) {
         menuProfile.classList.toggle("is-open");
     }
-    if (menuMobile.classList.contains('is-open')) {
+    if (menuMobile.classList.contains("is-open")) {
         menuMobile.classList.toggle("is-open");
     }
-    if (burger2.classList.contains('is-open')) {
+    if (burger2.classList.contains("is-open")) {
         burger2.classList.toggle("is-open");
     }
 });
 
 /******************************
- * 
+ *
  * compteurs animés
- * 
+ *
  ******************************/
-
 
 let compteurs = document.querySelectorAll(".compteur");
 
@@ -91,7 +88,9 @@ compteurs.forEach(compteur => {
         const step = timestamp => {
             if (!startTimestamp) startTimestamp = timestamp;
             const progress = Math.min(
-                (timestamp - startTimestamp) / duration, 1);
+                (timestamp - startTimestamp) / duration,
+                1
+            );
             obj.innerHTML = Math.floor(progress * (start + end) + start);
             if (progress < valeurCompteur) {
                 window.requestAnimationFrame(step);
@@ -103,9 +102,9 @@ compteurs.forEach(compteur => {
     animateValue(compteur, 0, valeurCompteur, 3000);
 });
 // /******************************
-//  * 
+//  *
 //  * main menu
-//  * 
+//  *
 //  ******************************/
 
 // let menuRegions = document.getElementById('menuRegions')
@@ -116,108 +115,95 @@ compteurs.forEach(compteur => {
 // })
 
 /******************************
- * 
+ *
  * desactiver bouton pendant chargement
- * 
+ *
  ******************************/
 
-let submitButton = document.querySelector('[type=Submit]')
+let submitButton = document.querySelector("[type=Submit]");
 if (submitButton != null) {
-    submitButton.addEventListener('load', function () {
-        submitButton.setAttribute('disabled', 'disabled')
-
-    })
+    submitButton.addEventListener("load", function() {
+        submitButton.setAttribute("disabled", "disabled");
+    });
 }
 
-
 /******************************
- * 
+ *
  * detections position écran pour animations
- * 
+ *
  ******************************/
 
 function moveLeftToRight(div) {
     for (let i = 0; i < div.length; i++) {
-        if (div[i].style.opacity == 0 && window.scrollY >= (div[i].offsetTop - (window.screen.height - 300))) {
-
-            div[i].style.opacity = 1
-            div[i].style.animation = "left-to-right 500ms"
+        if (
+            div[i].style.opacity == 0 &&
+            window.scrollY >= div[i].offsetTop - (window.screen.height - 300)
+        ) {
+            div[i].style.opacity = 1;
+            div[i].style.animation = "left-to-right 500ms";
         }
     }
 }
 
 function moveRightToLeft(div) {
     for (let i = 0; i < div.length; i++) {
-        if (div[i].style.opacity == 0 && window.scrollY >= (div[i].offsetTop - (window.screen.height - 300))) {
-
-            div[i].style.opacity = 1
-            div[i].style.animation = "right-to-left 500ms"
+        if (
+            div[i].style.opacity == 0 &&
+            window.scrollY >= div[i].offsetTop - (window.screen.height - 300)
+        ) {
+            div[i].style.opacity = 1;
+            div[i].style.animation = "right-to-left 500ms";
         }
     }
 }
 
 function moveBottomToTop(div) {
     for (let i = 0; i < div.length; i++) {
-        if (div[i].style.opacity == 0 && window.scrollY >= (div[i].offsetTop - (window.screen.height - 300))) {
-
-            div[i].style.opacity = 1
-            div[i].style.animation = "bottom-to-top 500ms"
+        if (
+            div[i].style.opacity == 0 &&
+            window.scrollY >= div[i].offsetTop - (window.screen.height - 300)
+        ) {
+            div[i].style.opacity = 1;
+            div[i].style.animation = "bottom-to-top 500ms";
         }
     }
 }
 
 function moveTopToBottom(div) {
     for (let i = 0; i < div.length; i++) {
-        if (div[i].style.opacity == 0 && window.scrollY >= (div[i].offsetTop - (window.screen.height - 300))) {
-
-            div[i].style.opacity = 1
-            div[i].style.animation = "top-to-bottom 500ms"
+        if (
+            div[i].style.opacity == 0 &&
+            window.scrollY >= div[i].offsetTop - (window.screen.height - 300)
+        ) {
+            div[i].style.opacity = 1;
+            div[i].style.animation = "top-to-bottom 500ms";
         }
     }
 }
-window.addEventListener('scroll', function () {
-    let moveToLeft = document.querySelectorAll('.moveToLeft')
-    let moveToRight = document.querySelectorAll('.moveToRight')
-    let moveToBottom = document.querySelectorAll('.moveToBottom')
-    let moveToTop = document.querySelectorAll('.moveToTop')
-    if (moveToLeft != null)
-        moveLeftToRight(moveToLeft)
+window.addEventListener("scroll", function() {
+    let moveToLeft = document.querySelectorAll(".moveToLeft");
+    let moveToRight = document.querySelectorAll(".moveToRight");
+    let moveToBottom = document.querySelectorAll(".moveToBottom");
+    let moveToTop = document.querySelectorAll(".moveToTop");
+    if (moveToLeft != null) moveLeftToRight(moveToLeft);
 
-    if (moveToRight != null)
-        moveRightToLeft(moveToRight)
+    if (moveToRight != null) moveRightToLeft(moveToRight);
 
-    if (moveToBottom != null)
-        moveTopToBottom(moveToBottom)
+    if (moveToBottom != null) moveTopToBottom(moveToBottom);
 
-    if (moveToTop != null)
-        moveBottomToTop(moveToTop)
-})
+    if (moveToTop != null) moveBottomToTop(moveToTop);
+});
 
-// // SERVICE WORKER
+header = document.getElementById("header");
 
-// if("serviceWorker" in navigator){
-//     navigator.serviceWorker.register("/serviceWorker.js");
-// }
+window.addEventListener("scroll", function() {
 
-// import Echo from "laravel-echo";
-
-// window.Pusher = require("pusher-js");
-
-// window.Echo = new Echo({
-//     broadcaster: "pusher",
-//     key: process.env.MIX_PUSHER_APP_KEY,
-//     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
-//     forceTLS: true
-// });
-// if (window.User) {
-//     window.Echo.private("App.Models.User." + User.id).notification(
-//         notification => {
-//             document.getElementById("js-count").innerHTML =
-//                 parseInt(document.getElementById("js-count").innerHTML) + 1;
-//             console.log(notification.type);
-//         }
-//     );
-// }
- 
-
-
+    if (window.scrollY > 60) {
+        
+        header.style.position = "fixed"
+        header.style.transition = "all 500ms";
+    } else {
+        header.style.position = "relative"
+        header.style.transition = "all 500ms";
+    }
+});

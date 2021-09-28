@@ -119,7 +119,7 @@
 
 <body>
     <div id="container">
-        <header id="header" class="fixed top-O right-0 left-0 lg:relative bg-gray-100 xl:h-auto z-50 lg:mt-0">
+        <header id="header" class="relative top-O right-0 left-0 lg:relative bg-gray-100 xl:h-auto z-50 lg:mt-0">
             <div id="burger"
                 class="hidden absolute cursor-pointer top-5 left-3 justify-center items-center h-12 w-12 bg-primary z-50">
                 <div class="open-main-nav flex justify-center">
@@ -169,7 +169,7 @@
                 @include('menu')
             </div>
         </header>
-        <div class="">
+        <div>
             @if (\Session::has('success'))
                 <div class="message-alert success" x-show.transition="open">
                     <i class="fas fa-check-circle text-5xl text-white rounded-full shadow-xl m-4"></i>

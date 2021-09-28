@@ -19683,9 +19683,9 @@ var _require = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.j
     forEach = _require.forEach;
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); // /******************************
-//  * 
+//  *
 //  * menu Hamburger
-//  * 
+//  *
 //  ******************************/
 // let burger = document.getElementById("burger");
 // let nav = document.getElementById("main-nav");
@@ -19697,9 +19697,9 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); // /*****
 // });
 
 /******************************
- * 
+ *
  * menu Hamburger bas de page
- * 
+ *
  ******************************/
 
 
@@ -19713,11 +19713,11 @@ burger2.addEventListener("click", function () {
   this.classList.toggle("is-open");
   menuMobile.classList.toggle("is-open");
 
-  if (menuProfile.classList.contains('is-open')) {
+  if (menuProfile.classList.contains("is-open")) {
     menuProfile.classList.toggle("is-open");
   }
 
-  if (menuMatchs.classList.contains('is-open')) {
+  if (menuMatchs.classList.contains("is-open")) {
     menuMatchs.classList.toggle("is-open");
   }
 });
@@ -19725,15 +19725,15 @@ profile.addEventListener("click", function () {
   this.classList.toggle("is-open");
   menuProfile.classList.toggle("is-open");
 
-  if (menuMobile.classList.contains('is-open')) {
+  if (menuMobile.classList.contains("is-open")) {
     menuMobile.classList.toggle("is-open");
   }
 
-  if (menuMatchs.classList.contains('is-open')) {
+  if (menuMatchs.classList.contains("is-open")) {
     menuMatchs.classList.toggle("is-open");
   }
 
-  if (burger2.classList.contains('is-open')) {
+  if (burger2.classList.contains("is-open")) {
     burger2.classList.toggle("is-open");
   }
 });
@@ -19741,22 +19741,22 @@ matchs.addEventListener("click", function () {
   this.classList.toggle("is-open");
   menuMatchs.classList.toggle("is-open");
 
-  if (menuProfile.classList.contains('is-open')) {
+  if (menuProfile.classList.contains("is-open")) {
     menuProfile.classList.toggle("is-open");
   }
 
-  if (menuMobile.classList.contains('is-open')) {
+  if (menuMobile.classList.contains("is-open")) {
     menuMobile.classList.toggle("is-open");
   }
 
-  if (burger2.classList.contains('is-open')) {
+  if (burger2.classList.contains("is-open")) {
     burger2.classList.toggle("is-open");
   }
 });
 /******************************
- * 
+ *
  * compteurs animés
- * 
+ *
  ******************************/
 
 var compteurs = document.querySelectorAll(".compteur");
@@ -19782,9 +19782,9 @@ compteurs.forEach(function (compteur) {
   var valeurCompteur = compteur.innerHTML;
   animateValue(compteur, 0, valeurCompteur, 3000);
 }); // /******************************
-//  * 
+//  *
 //  * main menu
-//  * 
+//  *
 //  ******************************/
 // let menuRegions = document.getElementById('menuRegions')
 // let sousMenuRegion = document.getElementById('sousMenuRegions')
@@ -19793,22 +19793,22 @@ compteurs.forEach(function (compteur) {
 // })
 
 /******************************
- * 
+ *
  * desactiver bouton pendant chargement
- * 
+ *
  ******************************/
 
-var submitButton = document.querySelector('[type=Submit]');
+var submitButton = document.querySelector("[type=Submit]");
 
 if (submitButton != null) {
-  submitButton.addEventListener('load', function () {
-    submitButton.setAttribute('disabled', 'disabled');
+  submitButton.addEventListener("load", function () {
+    submitButton.setAttribute("disabled", "disabled");
   });
 }
 /******************************
- * 
+ *
  * detections position écran pour animations
- * 
+ *
  ******************************/
 
 
@@ -19848,36 +19848,26 @@ function moveTopToBottom(div) {
   }
 }
 
-window.addEventListener('scroll', function () {
-  var moveToLeft = document.querySelectorAll('.moveToLeft');
-  var moveToRight = document.querySelectorAll('.moveToRight');
-  var moveToBottom = document.querySelectorAll('.moveToBottom');
-  var moveToTop = document.querySelectorAll('.moveToTop');
+window.addEventListener("scroll", function () {
+  var moveToLeft = document.querySelectorAll(".moveToLeft");
+  var moveToRight = document.querySelectorAll(".moveToRight");
+  var moveToBottom = document.querySelectorAll(".moveToBottom");
+  var moveToTop = document.querySelectorAll(".moveToTop");
   if (moveToLeft != null) moveLeftToRight(moveToLeft);
   if (moveToRight != null) moveRightToLeft(moveToRight);
   if (moveToBottom != null) moveTopToBottom(moveToBottom);
   if (moveToTop != null) moveBottomToTop(moveToTop);
-}); // // SERVICE WORKER
-// if("serviceWorker" in navigator){
-//     navigator.serviceWorker.register("/serviceWorker.js");
-// }
-// import Echo from "laravel-echo";
-// window.Pusher = require("pusher-js");
-// window.Echo = new Echo({
-//     broadcaster: "pusher",
-//     key: process.env.MIX_PUSHER_APP_KEY,
-//     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
-//     forceTLS: true
-// });
-// if (window.User) {
-//     window.Echo.private("App.Models.User." + User.id).notification(
-//         notification => {
-//             document.getElementById("js-count").innerHTML =
-//                 parseInt(document.getElementById("js-count").innerHTML) + 1;
-//             console.log(notification.type);
-//         }
-//     );
-// }
+});
+header = document.getElementById("header");
+window.addEventListener("scroll", function () {
+  if (window.scrollY > 60) {
+    header.style.position = "fixed";
+    header.style.transition = "all 500ms";
+  } else {
+    header.style.position = "relative";
+    header.style.transition = "all 500ms";
+  }
+});
 
 /***/ }),
 
