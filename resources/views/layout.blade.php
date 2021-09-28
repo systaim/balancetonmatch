@@ -49,7 +49,7 @@
     @if (request()->path() == 'contact')
         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     @endif
-
+    @laravelPWA
     <!-- Web Application Manifest -->
     <link rel="manifest" href="/manifest.json">
     <!-- Chrome for Android theme color -->
@@ -115,13 +115,11 @@
             });
         }
     </script>
-
-    @laravelPWA
 </head>
 
 <body>
     <div id="container">
-        <header id="header" class="fixed top-O right-0 left-0 lg:relative bg-gray-100 xl:h-auto z-50 -mt-16 lg:mt-0">
+        <header id="header" class="fixed top-O right-0 left-0 lg:relative bg-gray-100 xl:h-auto z-50 lg:mt-0">
             <div id="burger"
                 class="hidden absolute cursor-pointer top-5 left-3 justify-center items-center h-12 w-12 bg-primary z-50">
                 <div class="open-main-nav flex justify-center">
