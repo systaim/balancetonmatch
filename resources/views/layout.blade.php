@@ -169,7 +169,7 @@
                 @include('menu')
             </div>
         </header>
-        <div class="mt-16 lg:mt-0">
+        <div class="">
             @if (\Session::has('success'))
                 <div class="message-alert success" x-show.transition="open">
                     <i class="fas fa-check-circle text-5xl text-white rounded-full shadow-xl m-4"></i>
