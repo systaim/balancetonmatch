@@ -5,7 +5,7 @@ return [
     'manifest' => [
         'name' => env('APP_NAME', 'Balance ton match'),
         'short_name' => 'BTM',
-        'start_url' => '/',
+        'start_url' => 'https://balancetonmatch.com',
         'background_color' => '#cdfb0a',
         'theme_color' => '#091c3e',
         'display' => 'standalone',
