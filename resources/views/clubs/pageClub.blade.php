@@ -130,6 +130,14 @@
                 @endforeach
             </div>
         @endif
+        @if (collect($matchsCoupeDep)->isNotEmpty())
+            <div class="mt-6">
+                <h4 class="inline-block text-xl px-3 text-center bg-secondary text-primary rounded-md shadow-lg ml-2">Coupe Ange Lemée</h4>
+                @foreach ($matchsCoupeDep as $match)
+                        @include('match')
+                @endforeach
+            </div>
+        @endif
         @if (collect($matchsR1)->isNotEmpty())
             <div class="mt-6">
                 <h4 class="inline-block text-xl px-3 text-center bg-secondary text-primary rounded-md shadow-lg ml-2">R1</h4>
