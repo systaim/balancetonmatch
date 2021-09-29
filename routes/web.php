@@ -160,7 +160,5 @@ Route::get('commentaire/delete/{id}', 'App\Http\Controllers\CommentaireControlle
 // Route::get('demo', 'App\Http\Controllers\MatchController@demo')->name('demo');
 
 Route::get('/offline', function () {
-    return view('vendor.laravelpwa.offline');
+    return view('vendor.laravelpwa.offline')->name('offline');
 });
-
-
