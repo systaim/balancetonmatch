@@ -194,6 +194,12 @@ window.addEventListener("scroll", function() {
     if (moveToTop != null) moveBottomToTop(moveToTop);
 });
 
+/******************************
+ *
+ * affichage header au défilement de l'écran
+ *
+ ******************************/
+
 header = document.getElementById("header");
 
 window.addEventListener("scroll", function() {
@@ -207,3 +213,11 @@ window.addEventListener("scroll", function() {
         header.style.transition = "all 500ms";
     }
 });
+
+/******************************
+ *
+ * preloader
+ *
+ ******************************/
+
+ window.onload = function(){ document.querySelector(".preloader").style.display = "none"; }

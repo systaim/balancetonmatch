@@ -54,6 +54,11 @@
 </head>
 
 <body>
+    {{-- preloader --}}
+    <div class="preloader">
+        <div class="loader"></div>
+    </div>
+
     <div id="container">
         <header id="header" class="relative top-O right-0 left-0 lg:relative bg-gray-100 xl:h-auto z-50 lg:mt-0">
             <div id="burger"

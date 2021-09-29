@@ -19858,6 +19858,12 @@ window.addEventListener("scroll", function () {
   if (moveToBottom != null) moveTopToBottom(moveToBottom);
   if (moveToTop != null) moveBottomToTop(moveToTop);
 });
+/******************************
+ *
+ * affichage header au défilement de l'écran
+ *
+ ******************************/
+
 header = document.getElementById("header");
 window.addEventListener("scroll", function () {
   if (window.scrollY > 60) {
@@ -19868,6 +19874,15 @@ window.addEventListener("scroll", function () {
     header.style.transition = "all 500ms";
   }
 });
+/******************************
+ *
+ * preloader
+ *
+ ******************************/
+
+window.onload = function () {
+  document.querySelector(".preloader").style.display = "none";
+};
 
 /***/ }),
 
