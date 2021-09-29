@@ -101,10 +101,10 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="/images/icons/icon-512x512.png">
 
-    {{-- <script type="text/javascript">
+    <script type="text/javascript">
         // Initialize the service worker
         if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('/serviceworker.js', {
+            navigator.serviceWorker.register('https://balancetonmatch.com/serviceworker.js', {
                 scope: '.'
             }).then(function(registration) {
                 // Registration was successful
@@ -114,7 +114,7 @@
                 console.log('Laravel PWA: ServiceWorker registration failed: ', err);
             });
         }
-    </script> --}}
+    </script>
 </head>
 
 <body>
