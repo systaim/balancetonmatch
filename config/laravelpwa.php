@@ -3,8 +3,8 @@
 return [
     'name' => 'BTM',
     'manifest' => [
-        'name' => env('APP_NAME', 'BTM'),
-        'short_name' => 'PWA',
+        'name' => env('APP_NAME', 'Balance ton match'),
+        'short_name' => 'BTM',
         'start_url' => '/',
         'background_color' => '#cdfb0a',
         'theme_color' => '#091c3e',
