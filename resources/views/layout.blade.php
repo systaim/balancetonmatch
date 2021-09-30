@@ -138,19 +138,21 @@
         </a>
     @endif
     @auth
-        @foreach (Auth::user()->commentators as $com)
-            @if ($com && $com->match['live'] != 'fin de match' && $com->created_at > now()->subHours(6))
-                <div
-                    class="fixed bottom-16 right-1 bg-primary text-white px-2 py-1 z-30 flex items-center rounded-lg shadow-xl">
-                    <div class="h-3 w-3 bg-red-600 rounded-full animate-pulse mr-1"></div>
-                    <div>
-                        <a href="{{ route('matches.show', [$com->match, Str::slug($com->match['slug'], '-')]) }}"
-                            class="text-xs">Je suis</a>
-                        <p class="text-xs">le commentateur</p>
+        @isset (Auth::user()->commentators)
+            @foreach (Auth::user()->commentators as $com)
+                @if ($com->match['live'] != 'fin de match' && $com->created_at > now()->subHours(6))
+                    <div
+                        class="fixed bottom-16 right-1 bg-primary text-white px-2 py-1 z-30 flex items-center rounded-lg shadow-xl">
+                        <div class="h-3 w-3 bg-red-600 rounded-full animate-pulse mr-1"></div>
+                        <div>
+                            <a href="{{ route('matches.show', [$com->match, Str::slug($com->match['slug'], '-')]) }}"
+                                class="text-xs">Je suis</a>
+                            <p class="text-xs">le commentateur</p>
+                        </div>
                     </div>
-                </div>
-            @endif
-        @endforeach
+                @endif
+            @endforeach
+        @endisset
     @endauth
 
 
