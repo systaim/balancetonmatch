@@ -89,7 +89,7 @@ class User extends Authenticatable
         return $this->belongsTo(Region::class, 'region_id');
     }
 
-    public function commentator()
+    public function commentators()
     {
         return $this->hasMany(Commentator::class);
     }

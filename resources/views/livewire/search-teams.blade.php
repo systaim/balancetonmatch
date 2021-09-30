@@ -12,7 +12,7 @@
         @foreach ($clubs as $key => $club)
             <a href="{{ route('clubs.show', $club) }}">
                 <div class="flex flex-col mb-3 w-full">
-                    <div id="listMatchs" class="relative flex flex-row items-center bg-primary overflow-hidden"
+                    <div id="listMatchs" class="relative flex flex-row items-center bg-primary overflow-hidden rounded-lg"
                         style="animation-delay: {{ $key }}00ms;">
                         <div class="w-16 m-2 z-10">
                             <div class="logo h-12 w-12">

@@ -14,9 +14,6 @@ html {
   --bg-opacity: 1;
   background-color: #e5e7eb;
   scroll-behavior: smooth;
-}
-
-body {
   overflow-x: hidden;
   width: 100vw;
 }

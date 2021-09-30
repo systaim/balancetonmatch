@@ -132,11 +132,28 @@
         <a href=javascript:history.go(-1)>
             <div
                 class="fixed bottom-16 left-3 lg:hidden shadow-xl flex justify-center items-center rounded-full 
-                    h-10 w-10 bg-secondary z-50 border border-darkSuccess">
+                    h-12 w-12 bg-white z-50 border border-darkSuccess">
                 <i class="fas fa-chevron-left mr-1 text-primary">
             </div>
         </a>
     @endif
+    @auth
+        @foreach (Auth::user()->commentators as $com)
+            @if ($com->match['live'] != 'fin de match' && $com->created_at > now()->subHours(6))
+                <div
+                    class="fixed bottom-16 right-1 bg-primary text-white px-2 py-1 z-50 flex items-center rounded-lg shadow-xl">
+                    <div class="h-3 w-3 bg-red-600 rounded-full animate-pulse mr-1"></div>
+                    <div>
+                        <a href="{{ route('matches.show', [$com->match, Str::slug($com->match['slug'], '-')]) }}"
+                            class="text-xs">Je suis</a>
+                        <p class="text-xs">le commentateur</p>
+                    </div>
+                </div>
+            @endif
+        @endforeach
+    @endauth
+
+
 
     @livewireScripts
 

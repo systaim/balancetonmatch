@@ -174,13 +174,13 @@
         </div>
     </section>
     <section>
-        <div class="text-gray-200 bg-gray-900 body-font shadow-2xl relative overflow-hidden">
-            <div class="container px-5 py-10 lg:py-24 mx-auto moveToLeft">
-                <div class="lg:w-2/3 flex items-center justify-start mx-auto">
-                    <h3 class="text-sm lg:text-xl font-medium text-white">
+        <div class="text-gray-200 bg-gray-900 body-font shadow-2xl relative overflow-x-hidden">
+            <div class="container px-5 py-10 lg:py-20 mx-auto moveToLeft">
+                <div class="lg:w-2/3 flex flex-col lg:flex-row items-start lg:items-center justify-center lg:justify-start mx-auto">
+                    <h3 class="text-sm lg:text-xl font-medium text-white ml-2">
                         Un match en démo
                     </h3>
-                    <a href="matches/0">
+                    <a href="matches/0" class="z-30">
                         <button class="btn btnSecondary flex items-center text-sm lg:text-base">
                             J'y vais
                             <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -189,9 +189,9 @@
                             </svg>
                         </button>
                     </a>
-                    <img src="{{ asset('images/demo2.png') }}" alt="demo" class="hidden lg:block absolute -top-18 right-48 h-96">
                 </div>
             </div>
+            <img src="{{ asset('images/demo2.png') }}" alt="demo" class="absolute -top-18 lg:-top-20 -right-8 h-72 lg:right-48 lg:h-96">
         </div>
     </section>
     <section class="text-gray-600 body-font overflow-hidden" loading="lazy">
