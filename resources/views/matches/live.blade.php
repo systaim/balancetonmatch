@@ -5,7 +5,7 @@
     <i class="text-4xl lg:text-6xl fas fa-microphone-alt"></i>
     <h2 class=" ml-4 text-4xl lg:text-6xl bg-secondary text-primary py-1 px-3 rounded-md">LIVE</h2>
 </div>
-<div class="relative lg:flex lg:justify-center">
+<div class="relative lg:flex lg:justify-center h-screen">
     <div class="w-11/12 m-auto lg:w-9/12">
         @if(count($liveMatches) == 0)
         <div class="flex flex-col items-center text-center">

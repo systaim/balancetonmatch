@@ -60,7 +60,7 @@
     </div>
 
     <div id="container">
-        <header id="header" class="relative top-O right-0 left-0 lg:relative bg-gray-100 xl:h-auto z-50 lg:mt-0">
+        <header id="header" class="relative top-O right-0 left-0 lg:relative bg-white xl:h-auto z-50 lg:mt-0">
             <div id="burger"
                 class="hidden absolute cursor-pointer top-5 left-3 justify-center items-center h-12 w-12 bg-primary z-50">
                 <div class="open-main-nav flex justify-center">
@@ -69,34 +69,28 @@
             </div>
             <div
                 class="relative text-primary flex justify-center lg:justify-between items-center lg:items-between lg:block lg:h-auto shadow-xl">
-                <div class="relative flex justify-center items-center mx-2 w-full">
-                    @if (request()->path() != '/')
-                        <div class="absolute top-4 left-5 lg:hidden flex items-center">
-                            <i class="fas fa-chevron-left mr-1"></i>
-                            <a href=javascript:history.go(-1)>retour</a>
-                        </div>
-                    @endif
+                <div class="relative flex justify-start lg:justify-center items-center mx-2 w-full">
                     <div class="flex items-center">
                         <div class="mx-auto">
                             <a href="/">
-                                <img class="w-16 md:w-24" src="{{ asset('/images/logos/btmLogoJB.png') }}"
+                                <img class="w-16 md:w-24 my-2" src="{{ asset('/images/logos/btmLogoJB.png') }}"
                                     alt="logo de BTM">
                             </a>
                         </div>
                         <div class="relative h-auto md:diagonale">
                             <a href="/">
-                                <h1 class="hidden md:block text-xs md:text-3xl">Balance Ton Match</h1>
+                                <h1 class="text-xs md:text-3xl">Balance Ton Match</h1>
                                 <p
-                                    class="hidden float-right sm:inline-block text-xs60 sm:text-xs md:text-base px-2 bg-primary rounded-md text-white ">
+                                    class="float-right inline-block text-xs60 sm:text-xs md:text-base px-2 bg-primary rounded-md text-white ">
                                     Quand la touche part en live...
                                 </p>
                             </a>
                         </div>
                     </div>
-                    <div class="absolute top-1 right-2 lg:hidden">
+                    <div class="absolute top-3 right-0 lg:hidden">
                         <a href=" /notifications">
                             <div
-                                class="relative flex justify-center items-center text-primary border rounded-full h-12 w-12 mr-4">
+                                class="relative flex justify-center items-center text-primary border rounded-full h-12 w-12 mr-1">
                                 <i class="far fa-bell"></i>
                                 @auth
                                     <p id="js-count"
@@ -133,7 +127,19 @@
             @include('footer')
         </div>
     </div>
+
+    @if (request()->path() != '/')
+        <a href=javascript:history.go(-1)>
+            <div
+                class="fixed bottom-16 left-3 lg:hidden shadow-xl flex justify-center items-center rounded-full 
+                    h-10 w-10 bg-secondary z-50 border border-darkSuccess">
+                <i class="fas fa-chevron-left mr-1 text-primary">
+            </div>
+        </a>
+    @endif
+
     @livewireScripts
+
     @auth
         <script>
             window.User = {

@@ -157,7 +157,7 @@ class MatchController extends Controller
     {
         $dataMatch = $request->validate([
             'dateMatch' => 'required | date',
-            'time' => 'required | date_format:H:i',
+            'time' => 'required',
             'location' => 'nullable | string'
         ]);
 
