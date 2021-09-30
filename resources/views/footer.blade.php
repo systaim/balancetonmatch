@@ -1,6 +1,6 @@
 <footer class="bg-gray-900 mb-0 pb-16 md:pb-2 w-full relative bottom-0 h-auto lg:mt-16">
     <div class="flex flex-col items-center text-white py-3">
-        <div class="flex justify-center p-2">
+        <div class="flex justify-center p-2 z-20">
             <a class="px-4" href="https://www.facebook.com/balancetonmatch" target="_blank"><img
                     src="{{ asset('images/logoFacebook.png') }}" alt="logo Facebook" class="w-10"></a>
             <!-- <a class="px-4" href="http://" target="_blank"><img src="{{ asset('images/logoInsta.png') }}" alt="logo Instagram" class="w-10"></a> -->
