@@ -174,7 +174,7 @@
         </div>
     </section>
     <section>
-        <div class="text-gray-200 bg-gray-900 body-font shadow-2xl relative overflow-x-hidden">
+        <div class="text-gray-200 bg-gray-900 body-font shadow-2xl relative overflow-x-hidden overflow-y-visible">
             <div class="container px-5 py-10 lg:py-20 mx-auto moveToLeft">
                 <div class="lg:w-2/3 flex flex-col lg:flex-row items-start lg:items-center justify-center lg:justify-start mx-auto">
                     <h3 class="text-sm lg:text-xl font-medium text-white ml-2">
@@ -192,43 +192,6 @@
                 </div>
             </div>
             <img src="{{ asset('images/demo2.png') }}" alt="demo" class="absolute -top-18 lg:-top-20 -right-8 h-72 lg:right-48 lg:h-96">
-        </div>
-    </section>
-    <section class="text-gray-600 body-font overflow-hidden" loading="lazy">
-        <div class="container px-5 py-24 mx-auto">
-            <div class="-my-8 divide-y-2 divide-gray-100">
-                <div class="py-8 flex flex-wrap md:flex-nowrap">
-                    <div class="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col">
-                        <span class="font-semibold title-font text-primary">BREAKING NEWS</span>
-                        <span class="mt-1 text-gray-500 text-sm">01 juillet 2021</span>
-                    </div>
-                    <div class="md:flex-grow">
-                        <h2 class="text-2xl font-medium text-gray-900 title-font mb-2">En mode application</h2>
-                        <p class="leading-relaxed">Pour l'instant BTM, n'existe qu'en version web mais sa version mobile
-                            arrivera très vite ! <br>
-                            Cela prend du temps mais on va tout faire pour vous proposer une
-                            expérience encore meilleure.
-                        </p>
-                    </div>
-                </div>
-                <div class="py-8 flex flex-wrap md:flex-nowrap">
-                    <div class="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col">
-                        <span class="font-semibold title-font text-primary">BREAKING NEWS</span>
-                        <span class="mt-1 text-gray-500 text-sm">01 mai 2020</span>
-                    </div>
-                    <div class="md:flex-grow">
-                        <h2 class="text-2xl font-medium text-gray-900 title-font mb-2">Lancement du site</h2>
-                        <p class="leading-relaxed">
-                            Le site est enfin publié. Cela aura prit du temps et le site sera resté longtemps à l'état de
-                            projet (merci Covid 😒)... <br>
-                            On a décidé de le lancer et d'attendre vos retours qui nous seront
-                            précieux.<br>
-                            Nous en sommes qu'à la version bêta mais tout va s'accélérer une fois les matchs et compétitions
-                            repartis !
-                        </p>
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
 
