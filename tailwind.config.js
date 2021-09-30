@@ -51,6 +51,7 @@ module.exports = {
                 "-16": "-4rem",
                 "-18": "-4.5rem",
                 "-20": "-5rem",
+                "-24": "-6rem",
                 "50": "12.5rem",
             },
             fontSize: {

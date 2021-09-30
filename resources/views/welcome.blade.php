@@ -65,8 +65,8 @@
         </a>
         <a href="/live">
             <div class="shadow-lg rounded-2xl w-5/6 p-4 bg-white relative overflow-hidden mx-auto mt-6">
-                <img alt="live" src="{{ asset('images/live.png') }}"
-                    class="absolute -right-12 -bottom-8 h-32 w-32 mb-4" />
+                <img alt="live" src="{{ asset('images/micro.png') }}"
+                    class="absolute -right-24 -bottom-16 h-48 w-48 mb-4" />
                 <div class="w-5/6">
                     <p class="text-gray-800 text-lg font-medium mb-2">
                         Les lives
