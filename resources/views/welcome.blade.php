@@ -173,10 +173,11 @@
             </div>
         </div>
     </section>
-    <section>
-        <div class="text-gray-200 bg-gray-900 body-font shadow-2xl relative overflow-x-hidden overflow-y-visible">
+    <section class="relative">
+        <div class="text-gray-200 bg-gray-900 body-font shadow-2xl">
             <div class="container px-5 py-10 lg:py-20 mx-auto moveToLeft">
-                <div class="lg:w-2/3 flex flex-col lg:flex-row items-start lg:items-center justify-center lg:justify-start mx-auto">
+                <div
+                    class="lg:w-2/3 flex flex-col lg:flex-row items-start lg:items-center justify-center lg:justify-start mx-auto">
                     <h3 class="text-sm lg:text-xl font-medium text-white ml-2">
                         Un match en démo
                     </h3>
@@ -191,7 +192,9 @@
                     </a>
                 </div>
             </div>
-            <img src="{{ asset('images/demo2.png') }}" alt="demo" class="absolute -top-18 lg:-top-20 -right-8 h-72 lg:right-48 lg:h-96">
+        </div>
+        <div class="absolute -top-18 lg:-top-20 right-0  lg:right-48">
+            <img src="{{ asset('images/demo2.png') }}" alt="demo" class="h-72 lg:h-96">
         </div>
     </section>
 
