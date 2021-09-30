@@ -119,7 +119,7 @@
             <a href="{{ route('competitions.index') }}">
                 <div class="flex flex-col justify-center items-center w-36 m-2 rounded-md">
                     <i class="far fa-futbol text-4xl"></i>
-                    <p class="text-md">Voir les matchs</p>
+                    <p class="text-md text-center">Voir les competitions</p>
                 </div>
             </a>
             <a href="/live">
