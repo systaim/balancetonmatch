@@ -41,8 +41,8 @@
     <title>Balance ton match ! {{ $match->homeclub->name }}
         {{ $match->home_score == null ? ' VS ' : $match->home_score . ' - ' . $match->away_score }}
         {{ $match->awayclub->name }}</title>
-    <link rel="stylesheet" href="{{ mix('css/app.css') }}?ver=1.03">
-    <link rel="stylesheet" href="{{ mix('css/styles.css') }}?ver=1.03" />
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}?ver=1.04">
+    <link rel="stylesheet" href="{{ mix('css/styles.css') }}?ver=1.04" />
 
     <!-- FontAwesome -->
     <script src="https://kit.fontawesome.com/c03c2336c3.js" crossorigin="anonymous"></script>
@@ -198,7 +198,7 @@
         </script>
     @endauth
 
-    <script src="{{ mix('js/app.js') }}?ver=1.03"></script>
+    <script src="{{ mix('js/app.js') }}?ver=1.04"></script>
 
 </body>
 

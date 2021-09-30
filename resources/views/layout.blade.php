@@ -22,8 +22,8 @@
     @endisset()
 
     <title>Balance Ton Match</title>
-    <link rel="stylesheet" href="{{ mix('css/app.css') }}?ver=1.03">
-    <link rel="stylesheet" href="{{ mix('css/styles.css') }}?ver=1.03" />
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}?ver=1.04">
+    <link rel="stylesheet" href="{{ mix('css/styles.css') }}?ver=1.04" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
     <!-- FontAwesome -->
@@ -165,7 +165,7 @@
         </script>
     @endauth
 
-    <script src="{{ mix('js/app.js') }}?ver=1.03"></script>
+    <script src="{{ mix('js/app.js') }}?ver=1.04"></script>
 
 </body>
 
