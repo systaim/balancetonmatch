@@ -138,7 +138,7 @@
         </a>
     @endif
     @auth
-        @isset (Auth::user()->commentators)
+        @if (Auth::user()->commentators)
             @foreach (Auth::user()->commentators as $com)
                 @if ($com->match['live'] != 'fin de match' && $com->created_at > now()->subHours(6))
                     <div
@@ -152,7 +152,7 @@
                     </div>
                 @endif
             @endforeach
-        @endisset
+        @endif
     @endauth
 
 
