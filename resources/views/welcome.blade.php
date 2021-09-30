@@ -20,7 +20,7 @@
     </section>
 
     {{-- affichage mobile --}}
-    <section class="md:hidden py-11">
+    <section class="md:hidden py-11 bg-primary">
         <a href="{{ route('competitions.index') }}">
             <div class="shadow-lg rounded-2xl w-5/6 p-4 bg-white relative overflow-hidden mx-auto">
                 <img alt="competitions" src="{{ asset('images/ball-fire-water.png') }}"
@@ -174,7 +174,7 @@
         </div>
     </section>
     <section class="relative">
-        <div class="text-gray-200 bg-gray-900 body-font shadow-2xl">
+        <div class="text-gray-200 bg-primary body-font shadow-2xl">
             <div class="container px-5 py-10 lg:py-20 mx-auto moveToLeft">
                 <div
                     class="lg:w-2/3 flex flex-col lg:flex-row items-start lg:items-center justify-center lg:justify-start mx-auto">
@@ -183,7 +183,7 @@
                     </h3>
                     <a href="matches/0" class="z-30">
                         <button class="btn btnSecondary flex items-center text-sm lg:text-base">
-                            J'y vais
+                            Go !
                             <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                 stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
                                 <path d="M5 12h14M12 5l7 7-7 7"></path>
@@ -193,7 +193,7 @@
                 </div>
             </div>
         </div>
-        <div class="absolute -top-18 lg:-top-20 right-0  lg:right-48">
+        <div class="absolute -top-18 lg:-top-20 right-0 lg:right-48 z-10">
             <img src="{{ asset('images/demo2.png') }}" alt="demo" class="h-72 lg:h-96">
         </div>
     </section>
