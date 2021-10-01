@@ -86,7 +86,7 @@
     <div class="preloader">
         <div class="loader"></div>
     </div>
-    
+
     <div id="container">
         <header class="relative top-O right-0 left-0 bg-white xl:h-auto z-50 lg:mt-0">
             <div id="burger"
@@ -151,28 +151,107 @@
                     <p> {!! \Session::get('danger') !!}</p>
                 </div>
             @endif
-            <div id="fb-root"></div>
-            <script async defer crossorigin="anonymous" src="https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v11.0"
-                        nonce="tGIyRgh0">
-            </script>
-            <a class="mx-auto" target="_blank"
-                href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fbalancetonmatch.com/%2Fmatches%2F{{ $match->id }}&amp;src=sdkpreparse"
-                class="fb-xfbml-parse-ignore">
-                <div class="fixed top-18 left-6 z-50 rounded-full bg-blue-600 text-white">
-                    <div data-href="{{ route('matches.show', [$match, Str::slug($match->slug, '-')]) }}"
-                        data-layout="button" data-size="large">
-                        <div class="flex justify-center items-center">
-                            <i class="fab fa-facebook text-2xl text-white"></i>
-                            <p class="font-sans text-xs text-center mx-1">Partager</p>
+        </div>
+    </div>
+
+    @livewire('dashboard-score', [
+    'match' =>$match,
+    ])
+
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v11.0"
+        nonce="tGIyRgh0">
+    </script>
+    <a class="mx-auto" target="_blank"
+        href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fbalancetonmatch.com/%2Fmatches%2F{{ $match->id }}&amp;src=sdkpreparse"
+        class="fb-xfbml-parse-ignore">
+        <div class="inline-block rounded-lg px-2 py-1 bg-blue-600 text-white m-2">
+            <div data-href="{{ route('matches.show', [$match, Str::slug($match->slug, '-')]) }}" data-layout="button"
+                data-size="large">
+                <div class="flex justify-center items-center">
+                    <i class="fab fa-facebook text-4xl text-white"></i>
+                    <p class="font-sans text-center mx-1">Partager</p>
+                </div>
+            </div>
+        </div>
+    </a>
+    <div x-data="{swiper: null}" x-init="swiper = new Swiper($refs.container, {
+      loop: true,
+      slidesPerView: 1,
+      spaceBetween: 0,
+  
+      breakpoints: {
+        640: {
+          slidesPerView: 1,
+          spaceBetween: 0,
+        },
+        768: {
+          slidesPerView: 2,
+          spaceBetween: 0,
+        },
+        1024: {
+          slidesPerView: 3,
+          spaceBetween: 0,
+        },
+      },
+    })" class="relative w-10/12 mx-auto flex flex-row">
+        <div class="absolute inset-y-0 left-0 z-10 flex items-center">
+            <button @click="swiper.slidePrev()"
+                class="bg-white -ml-2 lg:-ml-4 flex justify-center items-center w-10 h-10 rounded-full shadow focus:outline-none">
+                <svg viewBox="0 0 20 20" fill="currentColor" class="chevron-left w-6 h-6">
+                    <path fill-rule="evenodd"
+                        d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+                        clip-rule="evenodd"></path>
+                </svg>
+            </button>
+        </div>
+
+        <div class="swiper-container" x-ref="container">
+            <div class="swiper-wrapper">
+                <!-- Slides -->
+                <div class="swiper-slide p-4">
+                    <div class="flex flex-col rounded shadow overflow-hidden">
+                        <div class="flex-shrink-0">
+                            <img class="h-48 w-full object-cover"
+                                src="https://images.unsplash.com/photo-1496128858413-b36217c2ce36?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1679&q=80"
+                                alt="">
                         </div>
                     </div>
                 </div>
-            </a>
+
+                <div class="swiper-slide p-4">
+                    <div class="flex flex-col rounded shadow overflow-hidden">
+                        <div class="flex-shrink-0">
+                            <img class="h-48 w-full object-cover"
+                                src="https://images.unsplash.com/photo-1598951092651-653c21f5d0b9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80"
+                                alt="">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide p-4">
+                    <div class="flex flex-col rounded shadow overflow-hidden">
+                        <div class="flex-shrink-0">
+                            <img class="h-48 w-full object-cover"
+                                src="https://images.unsplash.com/photo-1598946423291-ce029c687a42?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80"
+                                alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="absolute inset-y-0 right-0 z-10 flex items-center">
+            <button @click="swiper.slideNext()"
+                class="bg-white -mr-2 lg:-mr-4 flex justify-center items-center w-10 h-10 rounded-full shadow focus:outline-none">
+                <svg viewBox="0 0 20 20" fill="currentColor" class="chevron-right w-6 h-6">
+                    <path fill-rule="evenodd"
+                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                        clip-rule="evenodd"></path>
+                </svg>
+            </button>
         </div>
     </div>
-    @livewire('dashboard-score', [
-        'match' =>$match,
-    ])
 
     @livewire('form-commentaires', [
     'commentator'=> $commentator,
@@ -201,6 +280,7 @@
     @endauth
 
     <script src="{{ mix('js/app.js') }}?ver=1.04"></script>
+
 
 </body>
 
