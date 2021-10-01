@@ -37,11 +37,13 @@ class DashboardScore extends Component
 
         $this->majCommentaires();
         $this->countVisitor();
+        $this->miseAjourTemps();
     }
 
     public function hydrate()
     {
         $this->majPage();
+        $this->miseAjourTemps();
     }
 
     public function majPage()
@@ -52,6 +54,61 @@ class DashboardScore extends Component
         $this->majCommentaires();
         $this->countVisitor();
 
+    }
+
+    public function miseAjourTemps()
+    {
+        if ($this->match->live == "debut") {
+            $this->minute = now()->diffInMinutes($this->match->date_match);
+            if ($this->minute >= 45) {
+                $this->minute = "45+";
+            }
+        }
+
+        if ($this->match->live == "mitemps") {
+            $this->minute = "MT";
+        }
+
+        if ($this->match->live == "repriseMT") {
+            $this->minute =  now()->diffInMinutes($this->match->date_match) - 15;
+            if ($this->minute >= 95) {
+                $this->minute = "90+";
+            }
+        }
+
+        if ($this->match->live == "prolongations1") {
+            $this->minute = now()->diffInMinutes($this->match->debut_prolongations) + 90;
+        }
+
+        if ($this->match->live == "prolongations2") {
+            $this->minute = now()->diffInMinutes($this->match->debut_sde_mt_prolong) + 105;
+        }
+
+        if ($this->match->live == "MTProlongations") {
+            $this->minute = "MT";
+        }
+
+        if ($this->match->live == "finProlongations") {
+            $this->minute = "FIN";
+
+            if ($this->match->home_score == $this->match->away_score) {
+                $this->infoMatch = "Les tirs au but vont commencer !!!";
+            }
+        }
+
+
+        if ($this->match->live == "tab") {
+            $this->minute == "TAB";
+        }
+        // if ($this->match->debut_match_reel) {
+        //     if ($this->match->debut_match_reel->diffInMinutes(now(), false) >= 0 && $this->match->debut_match_reel->diffInMinutes(now(), false) <= 45) {
+        //         $this->minute = now()->diffInMinutes($this->match->debut_match_reel);
+        //     } elseif ($this->match->debut_match_reel->diffInMinutes(now(), false) >= 45 && $this->match->debut_match_reel->diffInMinutes(now(), false) <= 60 || $this->match->live =="mitemps") {
+        //         $this->minute = 45;
+        //     } elseif ($this->match->debut_match_reel->diffInMinutes(now(), false) >= 60 && $this->match->debut_match_reel->diffInMinutes(now(), false) <= 105) {
+        //         $this->minute = now()->diffInMinutes($this->match->debut_match_reel) - 15;
+        //     }
+        // }
     }
 
     public function majCommentaires(){
