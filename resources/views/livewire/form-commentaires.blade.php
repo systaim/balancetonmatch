@@ -1,4 +1,4 @@
-<div>
+<div wire:poll.1s>
     <!----------------------
     Options commentaires "équipe"
     ------------------------->
@@ -30,7 +30,7 @@
                     </div>
                 </button>
             </div>
-            <div>
+            <div class="bg-orange-400">
                 <div class="fixed bottom-16 left-2 z-40">
                     <input class="hidden" type="radio" wire:model="team_action" id="homeAction"
                         name="team_action" value="home">
@@ -116,11 +116,11 @@
             </div>
         @endif
     </div>
-    <div {{ $match->live != 'reporte' ? 'wire:poll.5000ms' : '' }}>
+    <div>
         <form wire:submit.prevent="saveComment">
             @csrf
             <!-- affichage bannière du match -->
-            <div class="backMatch">
+            {{-- <div class="backMatch">
                 <div class="py-6">
                     <div class="relative bg-primary text-white m-auto text-center shadow-2xl p-2 max-w-md">
                         @if ($match->region_id)
@@ -217,7 +217,7 @@
                                 @endif
                             </div>
                         </div>
-                        {{-- @auth
+                        @auth
                             @if ((Auth::user()->role == 'super-admin' || $match->commentateur) && $match->live != 'attente')
                                 @if (!$btnScore)
                                     <div class="mt-2">
@@ -226,7 +226,7 @@
                                     </div>
                                 @endif
                             @endif
-                        @endauth --}}
+                        @endauth
                         @if (count($tabHome) != 0 && count($tabAway) != 0)
                             <div class="text-white flex flex-col items-center justify-center ">
                                 <p class="text-xs">Tab</p>
@@ -317,7 +317,7 @@
                         @endforeach
                     </div>
                 </div>
-                {{-- @if ($btnTpsDejeu)
+                @if ($btnTpsDejeu)
                     <div class="flex flex-col items-center justify-center">
                         <div class="bg-primary rounded-lg p-4 w-60 flex flex-col items-center mb-3">
                             <label class="sr-only" for="minuteModifiee">Modifier</label>
@@ -325,7 +325,7 @@
                         <button class="btn btnSuccess" type="button" wire:click="corrigerTpsDeJeu">Valider</button>
                         </div>
                     </div>
-                @endif --}}
+                @endif
                 <div class="flex flex-col items-center justify-center w-full">
                     <div class="flex justify-center">
                         @if ($match->live != 'reporte' && $match->live != 'attente' && $match->live != 'finDeMatch')
@@ -370,7 +370,7 @@
                         <p>{{ $nbrFavoris }} personnes aimeraient un direct LIVE</p>
                     @endif
                 </div>
-            @endif
+            @endif --}}
 
             <!-- fin affichage bannière du match -->
 
@@ -519,9 +519,9 @@
                     <div class="mt-6 flex items-center justify-center">
                         <label for="exit" class="mr-6 cursor-pointer" wire:click="retour">Retour</label>
                         <button wire:loading.attr="disabled" wire:loading.class.remove="btnPrimary" wire:target="file"
-                            class="btn btnPrimary" type="submit">Je commente</button>
-                        <input class="hidden" type="radio" id="exit" wire:model="team_action"
-                            name="team_action" value="">
+                            class="btn btnPrimary" type="submit" wire:click="$emit('majPage')">Je commente</button>
+                        <input class="hidden" type="radio" id="exit" wire:model="team_action" name="team_action"
+                            value="">
                     </div>
                 </div>
             </div>
@@ -736,7 +736,7 @@
                         @endif
                     </div>
                 @endif
-                @if (empty($match->commentateur) || now() < $match->date_match)
+                @if (empty($match->commentateur))
                     <div class="flex flex-col justify-center items-center my-2">
                         <p class="py-2 px-3 underline mb-10">En attente d'un commentateur</p>
                         <button type="button" wire:click="becomeCommentator" wire:model="commentator">
@@ -749,20 +749,19 @@
                     </div>
                 @endif
             @else
-                @if (now() < $match->date_match)
-                    <div class="flex justify-center items-center my-6">
-                        <p class="bg-primary text-white py-2 px-3">En attente d'un commentateur</p>
-                    </div>
-                    <a href="/login">
-                        <div
-                            class="mx-auto md:hidden bg-success text-gray-800 w-11/12 h-full p-3 flex flex-row-reverse justify-evenly items-center rounded-lg">
-                            <i class="fas fa-sign-in-alt text-xl"></i>
-                            <div>
+                @if (empty($match->commentateur))
+                    <div class="flex flex-col items-center my-6">
+                        <div class="">
+                        <p class=" py-2 px-3 underline mb-10">En attente d'un
+                            commentateur</p>
+                        </div>
+                        <a href="/login">
+                            <button class="btn btnSuccess">
                                 <p>Tu souhaites commenter le match ?</p>
                                 <p class="text-sm">Connecte toi</p>
-                            </div>
-                        </div>
-                    </a>
+                            </button>
+                        </a>
+                    </div>
                 @endif
             @endauth
         </form>
@@ -892,7 +891,7 @@
                         <div
                             class="minuteCommentaires w-24 sm:w-32 {{ $comment->team_action }} p-4 flex flex-col items-center">
                             <div>
-                                <p class="text-lg mb-4">{{ $comment->minute }}'</p>
+                                <p class="mb-4">{{ $comment->minute }}'</p>
                             </div>
                             @if ($comment->team_action == 'home')
                                 <div class="logo h-12 w-12 cursor-pointer">
@@ -921,8 +920,8 @@
                         </div>
                         <div class="relative bg-white w-full p-4 flex flex-col">
                             <div class="flex flex-col justify-between">
-                                <div class="mb-4">
-                                    <p class="text-xl font-bold">{{ $comment->type_comments }}</p>
+                                <div>
+                                    <p>{{ $comment->type_comments }}</p>
                                     <p>{{ $comment->comments }}</p>
                                     <div class="flex flex-col items-between">
                                         @if ($comment->statistic)
@@ -932,7 +931,7 @@
                                                         <div class="relative flex flex-col">
                                                             <div>
                                                                 <div>
-                                                                    <p class="font-bold">
+                                                                    <p>
                                                                         {{ ucfirst($comment->statistic->player->first_name) }}
                                                                         {{ ucfirst($comment->statistic->player->last_name) }}
                                                                     </p>
@@ -990,7 +989,8 @@
                                             </button>
                                             <div class="flex flex-col justify-center items-center ">
                                                 <p>Ou</p>
-                                                <a class="border rounded-lg py-1 shadow-xl hover:shadow-inner m-2 px-2"
+                                                <a target="_blank"
+                                                    class="border rounded-lg py-1 shadow-xl hover:shadow-inner m-2 px-2"
                                                     href="{{ route('clubs.players.index', [$comment->team_action == 'home' ? $match->homeClub->id : $match->awayClub->id]) }}">
                                                     Je crée le joueur ici
                                                 </a>

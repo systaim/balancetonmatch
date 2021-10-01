@@ -22,7 +22,7 @@
     {{-- affichage mobile --}}
     <section class="md:hidden py-11 bg-primary">
         <a href="{{ route('competitions.index') }}">
-            <div class="shadow-lg rounded-2xl w-5/6 p-4 bg-white relative overflow-hidden mx-auto">
+            <div class="shadow-white-xl rounded-2xl w-5/6 p-4 bg-white relative overflow-hidden mx-auto">
                 <img alt="competitions" src="{{ asset('images/ball-fire-water.png') }}"
                     class="absolute -right-16 -bottom-8 h-40 w-40 mb-4" />
                 <div class="w-5/6">
@@ -43,7 +43,7 @@
             </div>
         </a>
         <a href="/mon-espace/mes-favoris">
-            <div class="shadow-lg rounded-2xl w-5/6 p-4 bg-white relative overflow-hidden mx-auto mt-6">
+            <div class="shadow-white-xl rounded-2xl w-5/6 p-4 bg-white relative overflow-hidden mx-auto mt-6">
                 <img alt="favoris" src="{{ asset('images/favoris-mobile.png') }}"
                     class="absolute -right-14 -bottom-8 h-32 w-32 mb-4" />
                 <div class="w-5/6">
@@ -64,7 +64,7 @@
             </div>
         </a>
         <a href="/live">
-            <div class="shadow-lg rounded-2xl w-5/6 p-4 bg-white relative overflow-hidden mx-auto mt-6">
+            <div class="shadow-white-xl rounded-2xl w-5/6 p-4 bg-white relative overflow-hidden mx-auto mt-6">
                 <img alt="live" src="{{ asset('images/micro.png') }}"
                     class="absolute -right-24 -bottom-16 h-48 w-48 mb-4" />
                 <div class="w-5/6">

@@ -88,7 +88,7 @@
     </div>
     
     <div id="container">
-        <header id="header" class="relative top-O right-0 left-0 lg:relative bg-white xl:h-auto z-50 lg:mt-0">
+        <header class="relative top-O right-0 left-0 bg-white xl:h-auto z-50 lg:mt-0">
             <div id="burger"
                 class="hidden absolute cursor-pointer top-5 left-3 justify-center items-center h-12 w-12 bg-primary z-50">
                 <div class="open-main-nav flex justify-center">
@@ -170,7 +170,9 @@
             </a>
         </div>
     </div>
-
+    @livewire('dashboard-score', [
+        'match' =>$match,
+    ])
 
     @livewire('form-commentaires', [
     'commentator'=> $commentator,

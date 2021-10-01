@@ -71,9 +71,9 @@ class FormCommentaires extends Component
     public $minuteModifiee;
     public $btnScore = false;
     public $reactions;
-    public $merci = 0;
+    public $merci;
     public $listeMatchDuCommentateur;
-    public $sommeMerci = 0;
+    public $sommeMerci;
 
     public $listGoal = [
         'GOOOOAAL !',
@@ -403,6 +403,7 @@ class FormCommentaires extends Component
             $commentateur['user_id'] = Auth::user()->id;
             $commentateur['match_id'] = $this->match->id;
             $commentateur->save();
+            $this->emit('majPage');
 
             session()->flash('success', 'Tu es le commentateur de ce match ! 😎');
             return redirect()->to('matches/' . $this->match->id);
@@ -536,15 +537,6 @@ class FormCommentaires extends Component
 
             if ($comment) {
 
-                foreach ($this->favorimatch as $favori) {
-                    $favori->user->notify(new matchBegin($this->match));
-                    $favori->save();
-                }
-                foreach($this->favoriteam as $favori) {
-                    $favori->user->notify(new matchBegin($this->match));
-                    $favori->save();
-                }
-
                 $this->match->live = "debut"; // modification colonne live
                 $this->match->debut_match_reel = now();
                 /* demarrage du score */
@@ -557,6 +549,15 @@ class FormCommentaires extends Component
                 /* sauvegarde du match et du commentaire */
                 $this->match->save();
                 $comment->save();
+
+                foreach ($this->favorimatch as $favori) {
+                    $favori->user->notify(new matchBegin($this->match));
+                    $favori->save();
+                }
+                foreach($this->favoriteam as $favori) {
+                    $favori->user->notify(new matchBegin($this->match));
+                    $favori->save();
+                }
 
                 // /*creation second com PUB */
                 // $commentData2['type_comments'] = 'Publicité';
@@ -702,12 +703,12 @@ class FormCommentaires extends Component
 
 
             if ($this->team_action == 'home') {
-                $this->home_score += 1;
+                // $this->home_score += 1;
                 $this->match->home_score += 1;
                 $this->match->save();
             }
             if ($this->team_action == 'away') {
-                $this->away_score += 1;
+                // $this->away_score += 1;
                 $this->match->away_score += 1;
                 $this->match->save();
             }
