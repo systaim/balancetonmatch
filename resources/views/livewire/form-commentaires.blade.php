@@ -508,7 +508,7 @@
                         <span class="alert alert-danger">{{ $message }}</span>
                     @enderror
                     <div class="flex flex-row justify-center items-center mt-4">
-                        <label class="___class_+?188___" for="minuteCom">Temps de jeu</label>
+                        <label for="minuteCom">Temps de jeu</label>
                         <input class="border border-black mx-2 py-1 text-center outline-none" type="number"
                             name="minuteCom" wire:model="minuteCom" min="1" max="125"
                             placeholder="{{ $minute }}">
@@ -528,87 +528,91 @@
             <!----------------------
                 Options commentaires "match"
                     ------------------------->
-            @auth
-                @if (!Auth::user()->isFavoriMatch($match) && $match->live == 'attente' && $match->date_match > now())
-                    <div class="w-11/12 md:w-6/12 mx-auto">
-                        <div
-                            class="flex justify-start items-center bg-primary text-white px-1 py-2 rounded-lg border-2 border-white my-2">
+            <div>
+                @auth
+                    @if (!Auth::user()->isFavoriMatch($match) && $match->live == 'attente' && $match->date_match > now())
+                        <div class="w-11/12 md:w-6/12 mx-auto">
                             <div
-                                class="h-12 w-12 shadow-2xl border-2 bg-white flex justify-center items-center rounded-full">
-                                <livewire:favori-match :match="$match" :user="Auth::user()" :key="time().$match->id" />
-                            </div>
-                            <div>
-                                <p class="px-3 text-xs">Toi aussi tu veux que ce match soit commenté ?</p>
-                                <p class="text-xs px-3">Clique sur l'étoile</p>
+                                class="flex justify-start items-center bg-primary text-white px-1 py-2 rounded-lg border-2 border-white my-2">
+                                <div
+                                    class="h-12 w-12 shadow-2xl border-2 bg-white flex justify-center items-center rounded-full">
+                                    <livewire:favori-match :match="$match" :user="Auth::user()" :key="time().$match->id" />
+                                </div>
+                                <div>
+                                    <p class="px-3 text-xs">Toi aussi tu veux que ce match soit commenté ?</p>
+                                    <p class="text-xs px-3">Clique sur l'étoile</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                @endif
-            @elseif ($match->live == 'attente' && $match->date_match > now())
-                <a href="/login">
-                    <div class="w-11/12 md:w-6/12 mx-auto">
-                        <div
-                            class="flex justify-start items-center bg-primary text-white px-1 py-2 rounded-lg border-2 border-white my-2">
+                    @endif
+                @elseif ($match->live == 'attente' && $match->date_match > now())
+                    <a href="/login">
+                        <div class="w-11/12 md:w-6/12 mx-auto">
                             <div
-                                class="h-12 w-12 shadow-2xl border-2 bg-white flex justify-center items-center rounded-full">
-                                <i class="far fa-star cursor-pointer text-red-700 text-2xl"></i>
-                            </div>
-                            <div>
-                                <p class="px-3 text-xs">Toi aussi tu veux que ce match soit commenté ?</p>
-                                <p class="text-xs px-3 font-semibold">Connecte toi</p>
+                                class="flex justify-start items-center bg-primary text-white px-1 py-2 rounded-lg border-2 border-white my-2">
+                                <div
+                                    class="h-12 w-12 shadow-2xl border-2 bg-white flex justify-center items-center rounded-full">
+                                    <i class="far fa-star cursor-pointer text-red-700 text-2xl"></i>
+                                </div>
+                                <div>
+                                    <p class="px-3 text-xs">Toi aussi tu veux que ce match soit commenté ?</p>
+                                    <p class="text-xs px-3 font-semibold">Connecte toi</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                </a>
-            @endauth
-            @auth
-                @if (Auth::user()->first_com == 1 && $match->commentateur != null && $match->commentateur->user_id == Auth::user()->id)
-                    <div class="bg-cool-gray-800 w-11/12 rounded-lg p-4 text-white m-auto my-2 text-center">
-                        <h3 class="text-secondary text-center text-lg mb-4">Commenter facilement</h3>
-                        <div class="my-4 mx-6 flex justify-center">
-                            <div class="p-2">
-                                <div class="___class_+?208___">
-                                    <p>Appuie sur ce bouton en bas de la page</p>
-                                    <div
-                                        class="my-4 mx-auto flex justify-evenly items-center bg-primary text-white px-1 py-2 rounded-full w-48 border-2 border-secondary">
+                    </a>
+                @endauth
+                @auth
+                    @if (Auth::user()->first_com == 1 && $match->commentateur != null && $match->commentateur->user_id == Auth::user()->id)
+                        <div class="bg-cool-gray-800 w-11/12 rounded-lg p-4 text-white m-auto my-2 text-center">
+                            <h3 class="text-secondary text-center text-lg mb-4">Commenter facilement</h3>
+                            <div class="my-4 mx-6 flex justify-center">
+                                <div class="p-2">
+                                    <div class="___class_+?208___">
+                                        <p>Appuie sur ce bouton en bas de la page</p>
                                         <div
-                                            class="h-10 w-10 shadow-2xl border-2 border-secondary bg-primary flex justify-center items-center rounded-full">
-                                            <i class="fas fa-plus text-2xl text-white"></i>
+                                            class="my-4 mx-auto flex justify-evenly items-center bg-primary text-white px-1 py-2 rounded-full w-48 border-2 border-secondary">
+                                            <div
+                                                class="h-10 w-10 shadow-2xl border-2 border-secondary bg-primary flex justify-center items-center rounded-full">
+                                                <i class="fas fa-plus text-2xl text-white"></i>
+                                            </div>
+                                            <p class="px-3">Je commente</p>
                                         </div>
-                                        <p class="px-3">Je commente</p>
                                     </div>
-                                </div>
-                                <p>Les logos des 2 équipes apparaissent.</p>
-                                <p>Choisis l'équipe</p>
-                                <p>Renseigne l'action suivante ↓</p>
-                                <div class="flex justify-evenly">
-                                    <figure class="flex flex-col items-center justify-center">
-                                        <figcaption>
-                                            But !
-                                        </figcaption>
-                                        <img class="border-2 border-secondary rounded-full shadow-xl bg-white m-2 p-2"
-                                            src="{{ asset('images/ball.png') }}" width="50px" height="50px" alt="But">
-                                    </figure>
-                                    <figure class="flex flex-col items-center justify-center">
-                                        <figcaption>
-                                            Carton !
-                                        </figcaption>
-                                        <img class="border-2 border-secondary rounded-full shadow-xl bg-white m-2 p-2"
-                                            src="{{ asset('images/cards.png') }}" width="50px" height="50px" alt="Arret">
-                                    </figure>
-                                    <figure class="flex flex-col items-center justify-center">
-                                        <figcaption>
-                                            Arrêt !
-                                        </figcaption>
-                                        <img class="border-2 border-secondary rounded-full shadow-xl bg-white m-2 p-2"
-                                            src="{{ asset('images/gants.png') }}" width="50px" height="50px" alt="Arret">
-                                    </figure>
+                                    <p>Les logos des 2 équipes apparaissent.</p>
+                                    <p>Choisis l'équipe</p>
+                                    <p>Renseigne l'action suivante ↓</p>
+                                    <div class="flex justify-evenly">
+                                        <figure class="flex flex-col items-center justify-center">
+                                            <figcaption>
+                                                But !
+                                            </figcaption>
+                                            <img class="border-2 border-secondary rounded-full shadow-xl bg-white m-2 p-2"
+                                                src="{{ asset('images/ball.png') }}" width="50px" height="50px"
+                                                alt="But">
+                                        </figure>
+                                        <figure class="flex flex-col items-center justify-center">
+                                            <figcaption>
+                                                Carton !
+                                            </figcaption>
+                                            <img class="border-2 border-secondary rounded-full shadow-xl bg-white m-2 p-2"
+                                                src="{{ asset('images/cards.png') }}" width="50px" height="50px"
+                                                alt="Arret">
+                                        </figure>
+                                        <figure class="flex flex-col items-center justify-center">
+                                            <figcaption>
+                                                Arrêt !
+                                            </figcaption>
+                                            <img class="border-2 border-secondary rounded-full shadow-xl bg-white m-2 p-2"
+                                                src="{{ asset('images/gants.png') }}" width="50px" height="50px"
+                                                alt="Arret">
+                                        </figure>
 
-                                </div>
-                                <p>Tu peux ajouter une photo de l'exploit si tu veux</p>
-                                <p>Valide ! et c'est tout... 😉</p>
-                                {{-- <div class="w-11/12 h-0.5 bg-white my-2"></div>
+                                    </div>
+                                    <p>Tu peux ajouter une photo de l'exploit si tu veux</p>
+                                    <p>Valide ! et c'est tout... 😉</p>
+                                    {{-- <div class="w-11/12 h-0.5 bg-white my-2"></div>
                                 <div class="my-2">
                                     <div
                                         class="mx-auto text-white font-bold text-2xl bg-primary flex justify-center items-center w-20 h-20 my-3 rounded-full border-2 border-secondary">
@@ -617,77 +621,125 @@
                                     <p class="my-2">Tu es arrivé en retard ? Il y a eu un soucis pendant le match ?</p>
                                     <p class="my-2">Appuie sur la bulle de temps de jeu et modifie le</p>
                                 </div> --}}
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <button type="button" class="btn btnSecondary" wire:click="clickFirstCom"
+                                    wire:model="firstCom">Fermer</button>
                             </div>
                         </div>
-                        <div class="text-center">
-                            <button type="button" class="btn btnSecondary" wire:click="clickFirstCom"
-                                wire:model="firstCom">Fermer</button>
+                    @endif
+                    @if ($match->commentateur && $match->live == 'attente' && $match->commentateur->user->id == Auth::user()->id)
+                        <div
+                            class="bg-primary text-secondary p-4 rounded-lg m-6 flex flex-col justify-center items-center w-11/12 md:w-6/12 mx-auto">
+                            <p>Plus qu'à lancer le match ! 💪</p>
+                            <i class="fas fa-arrow-circle-down animate-bounce"></i>
                         </div>
-                    </div>
-                @endif
-                @if ($match->commentateur && $match->live == 'attente' && $match->commentateur->user->id == Auth::user()->id)
-                    <div
-                        class="bg-primary text-secondary p-4 rounded-lg m-6 flex flex-col justify-center items-center w-11/12 md:w-6/12 mx-auto">
-                        <p>Plus qu'à lancer le match ! 💪</p>
-                        <i class="fas fa-arrow-circle-down animate-bounce"></i>
-                    </div>
-                @elseif($match->commentateur && $match->live == 'attente')
-                    <div
-                        class="bg-primary text-secondary p-4 rounded-lg m-6 flex flex-col justify-center items-center w-11/12 md:w-6/12 mx-auto">
-                        <p>On attend le départ du commentateur</p>
-                        <i class="fas fa-spinner animate-spin"></i>
-                    </div>
-                @endif
-                @if ($match->commentateur)
-                    <div class="flex justify-center my-6 w-11/12 m-auto lg:w-8/12">
-                        @if ($match->commentateur != null && $match->commentateur->user->id == Auth::user()->id)
-                            @if ($match->live == 'attente')
-                                <button type="button" wire:click="timeZero" wire:model="commentator">
-                                    <div
-                                        class="bg-success text-gray-800 w-full h-full p-3 flex justify-evenly items-center rounded-lg">
-                                        <img src="{{ asset('images/whistle.png') }}" class="h-12 mr-3">
-                                        <p class="font-bold">Démarrer le match</p>
+                    @elseif($match->commentateur && $match->live == 'attente')
+                        <div
+                            class="bg-primary text-secondary p-4 rounded-lg m-6 flex flex-col justify-center items-center w-11/12 md:w-6/12 mx-auto">
+                            <p>On attend le départ du commentateur</p>
+                            <i class="fas fa-spinner animate-spin"></i>
+                        </div>
+                    @endif
+                    @if ($match->commentateur)
+                        <div class="flex justify-center my-6 w-11/12 m-auto lg:w-8/12">
+                            @if ($match->commentateur != null && $match->commentateur->user->id == Auth::user()->id)
+                                @if ($match->live == 'attente')
+                                    <div x-data="{ open: false }" class="flex flex-col items-center">
+                                        <button type="button" @click="open = true">
+                                            <div
+                                                class="bg-success text-gray-800 w-full h-full p-3 flex justify-evenly items-center rounded-lg">
+                                                <img src="{{ asset('images/whistle.png') }}" class="h-12 mr-3">
+                                                <p>Démarrer le match ?</p>
+                                            </div>
+                                        </button>
+                                        <button x-show="open" @click.away="open = false" type="button"
+                                            class="btn btnDanger" wire:click="timeZero" wire:model="commentator"
+                                            x-transition:enter="transition ease-out duration-300"
+                                            x-transition:enter-start="opacity-0 transform scale-90"
+                                            x-transition:enter-end="opacity-100 transform scale-100"
+                                            x-transition:leave="transition ease-in duration-300"
+                                            x-transition:leave-start="opacity-100 transform scale-100"
+                                            x-transition:leave-end="opacity-0 transform scale-90">
+                                            GO GO GO !!!
+                                        </button>
                                     </div>
-                                </button>
-                            @endif
-                            @if ($match->live == 'debut')
-                                <button type="button" wire:click="timeMitemps" wire:model="type_comments">
-                                    <div
-                                        class="bg-success text-gray-800 w-full h-full p-3 flex justify-evenly items-center rounded-lg">
-                                        <img src="{{ asset('images/whistle.png') }}" class="h-12 mr-3">
-                                        <div>
-                                            <p class="font-bold">C'est la mi-temps ?</p>
-                                            <p class="text-xs">Clique dessus ! Sinon on attend 😜</p>
-                                        </div>
+
+                                @endif
+                                @if ($match->live == 'debut')
+                                    <div x-data="{ open: false }" class="flex flex-col items-center">
+                                        <button type="button" @click="open = true">
+                                            <div
+                                                class="bg-success text-gray-800 w-full h-full p-3 flex justify-evenly items-center rounded-lg">
+                                                <img src="{{ asset('images/whistle.png') }}" class="h-12 mr-3">
+                                                <div>
+                                                    <p>C'est la mi-temps ?</p>
+                                                </div>
+                                            </div>
+                                        </button>
+                                        <button x-show="open" @click.away="open = false" type="button"
+                                            class="btn btnDanger" wire:click="timeMitemps" wire:model="type_comments"
+                                            x-transition:enter="transition ease-out duration-300"
+                                            x-transition:enter-start="opacity-0 transform scale-90"
+                                            x-transition:enter-end="opacity-100 transform scale-100"
+                                            x-transition:leave="transition ease-in duration-300"
+                                            x-transition:leave-start="opacity-100 transform scale-100"
+                                            x-transition:leave-end="opacity-0 transform scale-90">
+                                            Go a la buvette !
+                                        </button>
                                     </div>
-                                </button>
-                            @endif
-                            @if ($match->live == 'mitemps')
-                                <button type="button" wire:click="timeReprise" wire:model="type_comments">
-                                    <div
-                                        class="bg-success text-gray-800 w-full h-full p-3 flex justify-evenly items-center rounded-lg">
-                                        <img src="{{ asset('images/whistle.png') }}" class="h-12 mr-3">
-                                        <div>
-                                            <p class="font-bold">C'est la reprise</p>
-                                        </div>
+
+                                @endif
+                                @if ($match->live == 'mitemps')
+                                    <div x-data="{ open: false }" class="flex flex-col items-center">
+                                        <button @click="open = true" type="button">
+                                            <div
+                                                class="bg-success text-gray-800 w-full h-full p-3 flex justify-evenly items-center rounded-lg">
+                                                <img src="{{ asset('images/whistle.png') }}" class="h-6 mr-3">
+                                                <div>
+                                                    <p>C'est la reprise ?</p>
+                                                </div>
+                                            </div>
+                                        </button>
+                                        <button x-show="open" @click.away="open = false" type="button"
+                                            class="btn btnDanger" wire:click="timeReprise" wire:model="type_comments"
+                                            x-transition:enter="transition ease-out duration-300"
+                                            x-transition:enter-start="opacity-0 transform scale-90"
+                                            x-transition:enter-end="opacity-100 transform scale-100"
+                                            x-transition:leave="transition ease-in duration-300"
+                                            x-transition:leave-start="opacity-100 transform scale-100"
+                                            x-transition:leave-end="opacity-0 transform scale-90">
+                                            Oui
+                                        </button>
                                     </div>
-                                </button>
-                            @endif
-                            @if ($match->live == 'repriseMT')
-                                <button type="button" wire:click="timeFinDuMatch" wire:model="type_comments">
-                                    <div
-                                        class="bg-success text-gray-800 w-full h-full p-3 flex justify-evenly items-center rounded-lg">
-                                        <img src="{{ asset('images/whistle.png') }}" class="h-12 mr-3">
-                                        <div>
-                                            <p class="font-bold">Le match est terminé ! ⏱</p>
-                                            <p class="text-xs">On valide aux 3 coups de sifflet... <br>pas avant
-                                                😉
-                                        </div>
-                                        </p>
+
+                                @endif
+                                @if ($match->live == 'repriseMT')
+                                    <div x-data="{ open: false }" class="flex flex-col items-center">
+                                        <button @click="open = true" type="button">
+                                            <div
+                                                class="bg-success text-gray-800 w-full h-full p-3 flex justify-evenly items-center rounded-lg">
+                                                <img src="{{ asset('images/whistle.png') }}" class="h-12 mr-3">
+                                                <div>
+                                                    <p>Le match est terminé ? ⏱</p>
+                                                </div>
+                                                </p>
+                                            </div>
+                                        </button>
+                                        <button x-show="open" @click.away="open = false" type="button"
+                                            class="btn btnDanger" wire:click="timeFinDuMatch" wire:model="type_comments"
+                                            x-transition:enter="transition ease-out duration-300"
+                                            x-transition:enter-start="opacity-0 transform scale-90"
+                                            x-transition:enter-end="opacity-100 transform scale-100"
+                                            x-transition:leave="transition ease-in duration-300"
+                                            x-transition:leave-start="opacity-100 transform scale-100"
+                                            x-transition:leave-end="opacity-0 transform scale-90">
+                                            Yes ! C'est vraiment fini !
+                                        </button>
                                     </div>
-                                </button>
-                            @endif
-                            {{-- @if ($match->live == 'finDeMatch' && !$match->debut_prolongations && $match->competition_id == 3 && $match->home_score == $match->away_score)
+                                @endif
+                                {{-- @if ($match->live == 'finDeMatch' && !$match->debut_prolongations && $match->competition_id == 3 && $match->home_score == $match->away_score)
                                 <button type="button" wire:click="prolongations">
                                     <div
                                         class="bg-success text-gray-800 w-full h-full p-3 flex justify-evenly items-center rounded-lg">
@@ -724,46 +776,56 @@
                                     </div>
                                 </button>
                             @endif --}}
-                            @if ($match->live == 'finDeMatch' && $match->home_score == $match->away_score && ($match->competition_id >= 3 && $match->competition_id <= 5) && (count($tabHome) < 0 || count($tabAway) < 0))
-                                <button type="button" wire:click="tirsAuBut">
-                                    <div
-                                        class="bg-primary text-white w-full h-full p-3 flex justify-evenly items-center rounded-lg">
-                                        <img src="{{ asset('images/whistle-white.png') }}" class="h-12 mr-3">
-                                        <p>Tirs au but !!!</p>
-                                    </div>
-                                </button>
+                                @if ($match->live == 'finDeMatch' && $match->home_score == $match->away_score && ($match->competition_id >= 3 && $match->competition_id <= 5) && (count($tabHome) < 0 || count($tabAway) < 0))
+                                    <button type="button" wire:click="tirsAuBut">
+                                        <div
+                                            class="bg-primary text-white w-full h-full p-3 flex justify-evenly items-center rounded-lg">
+                                            <img src="{{ asset('images/whistle-white.png') }}" class="h-12 mr-3">
+                                            <p>Tirs au but !!!</p>
+                                        </div>
+                                    </button>
+                                @endif
                             @endif
-                        @endif
-                    </div>
-                @endif
-                @if (empty($match->commentateur))
-                    <div class="flex flex-col justify-center items-center my-2">
-                        <p class="py-2 px-3 underline mb-10">En attente d'un commentateur</p>
-                        <button type="button" wire:click="becomeCommentator" wire:model="commentator">
-                            <div
-                                class="bg-success text-gray-800 w-full h-full p-3 flex justify-evenly items-center rounded-lg">
-                                <img src="{{ asset('images/whistle.png') }}" class="h-12 mr-3">
-                                <p>Je souhaite commenter ⏱</p>
-                            </div>
-                        </button>
-                    </div>
-                @endif
-            @else
-                @if (empty($match->commentateur))
-                    <div class="flex flex-col items-center my-6">
-                        <div class="">
-                        <p class=" py-2 px-3 underline mb-10">En attente d'un
-                            commentateur</p>
                         </div>
-                        <a href="/login">
-                            <button class="btn btnSuccess">
-                                <p>Tu souhaites commenter le match ?</p>
-                                <p class="text-sm">Connecte toi</p>
+                    @endif
+                    @if (empty($match->commentateur))
+                        <div x-data="{open: false}" class="flex flex-col justify-center items-center my-2">
+                            <p class="py-2 px-3 underline mb-3">En attente d'un commentateur</p>
+                            <button type="button" @click="open = true">
+                                <div
+                                    class="bg-success text-gray-800 w-full h-full p-3 flex justify-evenly items-center rounded-lg">
+                                    <img src="{{ asset('images/whistle.png') }}" class="h-12 mr-3">
+                                    <p>Je souhaite commenter 😎</p>
+                                </div>
                             </button>
-                        </a>
-                    </div>
-                @endif
-            @endauth
+                            <button x-show="open" @click.away="open = false" type="button" class="btn btnDanger"
+                                wire:click="becomeCommentator" wire:model="commentator"
+                                x-transition:enter="transition ease-out duration-300"
+                                x-transition:enter-start="opacity-0 transform scale-90"
+                                x-transition:enter-end="opacity-100 transform scale-100"
+                                x-transition:leave="transition ease-in duration-300"
+                                x-transition:leave-start="opacity-100 transform scale-100"
+                                x-transition:leave-end="opacity-0 transform scale-90">
+                                Je confirme 😇
+                            </button>
+                        </div>
+                    @endif
+                @else
+                    @if (empty($match->commentateur))
+                        <div class="flex flex-col items-center my-6">
+                            <div class="">
+                        <p class=" py-2 px-3 underline mb-3">En attente d'un
+                                commentateur</p>
+                            </div>
+                            <a href="/login">
+                                <button class="btn btnSuccess">
+                                    <p>Tu souhaites commenter le match ?</p>
+                                    <p class="text-sm">Connecte toi</p>
+                                </button>
+                            </a>
+                        </div>
+                    @endif
+                @endauth
         </form>
         <!-- fin option commentaires "match" -->
 
