@@ -1,4 +1,4 @@
-<div wire:poll.1s>
+<div wire:poll.10s>
     <!----------------------
     Options commentaires "équipe"
     ------------------------->
