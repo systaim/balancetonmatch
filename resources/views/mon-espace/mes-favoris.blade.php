@@ -1,7 +1,8 @@
 @extends('layout')
 @section('content')
-<div class="relative w-full py-10 px-4 bg-primary text-white flex flex-col lg:flex-col-reverse justify-center items-center mb-6">
-    <h2 class="text-4xl lg:text-6xl">Mes Favoris</h2>
+<div class="relative w-full py-1 bg-white flex justify-center items-center mb-6">
+    <img alt="favoris" src="{{ asset('images/favoris-mobile.png') }}" class="h-36">
+    <h2 class="-ml-20 text-3xl lg:text-6xl text-primary py-1 px-3 rounded-md">Mes favoris</h2>
 </div>
     @auth
         <div class="flex flex-col justify-center md:justify-around md:flex-row p-8">

@@ -1,9 +1,9 @@
 @extends('layout')
 @section('content')
 
-<div class="relative w-full py-10 px-4 bg-primary text-white flex justify-center items-center mb-6">
-    <i class="text-4xl lg:text-6xl fas fa-microphone-alt"></i>
-    <h2 class=" ml-4 text-4xl lg:text-6xl bg-secondary text-primary py-1 px-3 rounded-md">LIVE</h2>
+<div class="relative w-full py-1 bg-white flex justify-center items-center mb-6">
+    <img alt="favoris" src="{{ asset('images/micro.png') }}" class="h-36">
+    <h2 class="-ml-20 text-6xl lg:text-6xl text-primary py-1 px-3 rounded-md">LIVE</h2>
 </div>
 <div class="relative lg:flex lg:justify-center h-screen">
     <div class="w-11/12 m-auto lg:w-9/12">
