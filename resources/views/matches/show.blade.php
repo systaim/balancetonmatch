@@ -194,7 +194,14 @@
         'favoriteam' => $favoriteam,
         ])
     </div>
-
+    
+    <a href=javascript:history.go(-1)>
+        <div
+            class="fixed bottom-16 left-3 lg:hidden shadow-xl flex justify-center items-center rounded-full 
+                h-12 w-12 bg-white z-30 border border-darkSuccess">
+            <i class="fas fa-chevron-left mr-1 text-primary">
+        </div>
+    </a>
 
     @include('footer')
 

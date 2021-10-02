@@ -18,10 +18,39 @@
             </div>
         </div>
     </section>
-    {{-- <section>
-        @foreach ($stats as $stat)
-            @dump($stat->action)
-        @endforeach
+    {{-- <section class="bg-primary overflow-x-hidden">
+        <div class="flex flex-wrap">
+            @foreach ($stats as $statsByPlayer)
+                @foreach ($statsByPlayer as $stat)
+                    @if ($stat->player->id >= 16)
+                        <div class="shadow-lg rounded-2xl bg-white p-4 w-48 m-1">
+                            <div class="flex-row gap-4 flex justify-center items-center">
+                                <div class="flex-shrink-0">
+                                    <img src="{{ asset($stat->player->avatar_path) }}"
+                                        class="logo h-6 w-6 lg:h-16 lg:w-16"
+                                        alt="photo de {{ $stat->player->first_name }} {{ $stat->player->last_name }}">
+                                </div>
+                                <div class="flex flex-col">
+                                    <p class="text-xs">{{ $stat->player->first_name }}
+                                        {{ $stat->player->last_name }}</p>
+                                    <div class="flex items-center">
+                                        <p class="text-gray-400 text-xxs uppercase">
+                                            @if ($stat->player->club['abbreviation'])
+                                                {{ $stat->player->club['abbreviation'] }}
+                                            @else
+                                                {{ $stat->player->club['name'] }}
+                                            @endif
+                                        </p>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+                @endforeach
+            @endforeach
+        </div>
+
     </section> --}}
 
     {{-- affichage mobile --}}
