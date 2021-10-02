@@ -167,7 +167,7 @@
         <a target="_blank"
             href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fbalancetonmatch.com/%2Fmatches%2F{{ $match->id }}&amp;src=sdkpreparse"
             class="fb-xfbml-parse-ignore">
-            <div class="absolute -top-18 left-0 inline-block rounded-lg bg-blue-600 text-white m-2 py-1 pl-1">
+            <div class="absolute -top-24 left-0 inline-block rounded-lg bg-blue-600 text-white m-2 py-1 pl-1">
                 <div data-href="{{ route('matches.show', [$match, Str::slug($match->slug, '-')]) }}"
                     data-layout="button" data-size="large">
                     <div class="flex flex-col justify-center items-center">
