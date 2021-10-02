@@ -194,7 +194,9 @@
         'favoriteam' => $favoriteam,
         ])
     </div>
-    
+
+    @include('footer')
+
     <a href=javascript:history.go(-1)>
         <div
             class="fixed bottom-16 left-3 lg:hidden shadow-xl flex justify-center items-center rounded-full 
@@ -203,20 +205,16 @@
         </div>
     </a>
 
-    @include('footer')
-
-    @livewireScripts
-    @auth
-        <script>
-            window.User = {
-                id: {{ optional(auth()->user())->id }}
-            }
-        </script>
-    @endauth
-
-    <script src="{{ mix('js/app.js') }}?ver=1.04"></script>
-
 </body>
+@livewireScripts
+@auth
+    <script>
+        window.User = {
+            id: {{ optional(auth()->user())->id }}
+        }
+    </script>
+@endauth
 
+<script src="{{ mix('js/app.js') }}?ver=1.04"></script>
 
 </html>
