@@ -144,7 +144,8 @@
                             <img class="w-full object-cover object-center h-full"
                                 src="{{ asset('images/Coupe-de-france.jpg') }}" alt="Coupe de France">
                             <h3 class="absolute top-1 left-1 title-font text-lg bg-primary text-white p-1 rounded-lg">
-                                COUPE DE FRANCE</h3>
+                                COUPE DE FRANCE
+                            </h3>
                         </div>
                     </a>
                 </div>
@@ -154,7 +155,8 @@
                             <img class="w-full object-cover object-center h-full" src="{{ asset('images/bzh.png') }}"
                                 alt="coupe de Bretagne">
                             <h3 class="absolute top-1 left-1 title-font text-lg bg-primary text-white p-1 rounded-lg">
-                                COUPE DE BRETAGNE</h3>
+                                COUPE DE BRETAGNE
+                            </h3>
                         </div>
                     </a>
                 </div>
@@ -162,9 +164,27 @@
                     <a href="competitions/coupe-ange-lemee-2021-2022">
                         <div class="relative h-64 border-2 rounded-lg overflow-hidden shadow-2xl border-none">
                             <img class="w-full object-cover object-center h-full" src="{{ asset('images/coupe-departement-min.jpeg') }}" alt="coupe de Bretagne">
-                            <h3 class="absolute top-1 left-1 title-font text-lg bg-primary text-white p-1 rounded-lg">COUPE ANGE LEMÉE</h3>
+                            <h3 class="absolute top-1 left-1 title-font text-lg bg-primary text-white p-1 rounded-lg">
+                                COUPE ANGE LEMÉE
+                            </h3>
                         </div>
                     </a>
+                </div>
+                <div class="p-4 w-11/12 lg:w-1/3 h-64 my-2">
+                    <div class="relative h-64 border-2 rounded-lg overflow-hidden shadow-2xl border-none">
+                        <img class="w-full object-cover object-center h-full"
+                            src="{{ asset('images/championnat-district.jpg') }}" alt="Championnat district">
+                        <div class="absolute top-12 left-2 text-gray-900 flex flex-wrap justify-center">
+                            <select class="mr-3" name="cpeDepartement" id="cpeDepartement" onchange="location = this.value;">
+                                <option>Départements</option>
+                                @foreach ($departements as $departement)
+                                    <option value="competitions/coupe-du-departement/region/3/departement/{{ $departement->id }}">{{ $departement->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <h3 class="absolute top-1 left-1 title-font text-lg bg-primary text-white p-1 rounded-lg">
+                            COUPE DU DÉPARTEMENT</h3>
+                    </div>
                 </div>
                 <div class="p-4 w-11/12 lg:w-1/3 h-64 my-2">
                     <a href="competitions/amicaux-2021-2022">
@@ -172,7 +192,8 @@
                             <img class="w-full object-cover object-center h-full" src="{{ asset('images/amicaux.jpg') }}"
                                 alt="Coupe de France">
                             <h3 class="absolute top-1 left-1 title-font text-lg bg-primary text-white p-1 rounded-lg">
-                                Matchs amicaux</h3>
+                                Matchs amicaux
+                            </h3>
                         </div>
                     </a>
                 </div>
@@ -188,11 +209,9 @@
         morbihan = document.getElementById('morbihan')
         finistere = document.getElementById('finistere')
         ileEtVilaine = document.getElementById('ileEtVilaine')
-        console.log(departement);
     }
 
     function choixDep(i) {
-        console.log(i);
         if (i == 1) {
             cotesDArmor.classList.add('block')
             cotesDArmor.classList.remove('hidden')
