@@ -38,8 +38,9 @@ class HomeController extends Controller
         $goals= Statistic::where('action', 'goal')->get();
         $yellowCards= Statistic::where('action', 'yellow_card')->get();
         $redCards= Statistic::where('action','red_card')->get();
-        $stats = Statistic::where('action', 'goal')->where('created_at', '>=', now()->subWeek(1))->orderBy('created_at', 'desc')->get()->groupBy('player_id');
-
+        $statistics = Statistic::where('action', 'goal')->where('created_at', '>=', now()->subWeek(1))->orderBy('created_at', 'desc')->get();
+        $stats = $statistics->unique('player_id');
+        
         $commentators = Commentator::all();
 
         
@@ -60,6 +61,7 @@ class HomeController extends Controller
         'redCards',
         'commentators',
         'stats',
+        'statistics'
     ));
     }
 }

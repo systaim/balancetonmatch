@@ -1,4 +1,4 @@
-<div wire:poll.10s>
+<div wire:poll.5s>
     <div class="backMatch">
         <div class="py-6">
             <div class="relative bg-primary text-white m-auto text-center shadow-2xl p-2 max-w-md">
