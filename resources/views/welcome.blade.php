@@ -18,6 +18,11 @@
             </div>
         </div>
     </section>
+    {{-- <section>
+        @foreach ($stats as $stat)
+            @dump($stat->action)
+        @endforeach
+    </section> --}}
 
     {{-- affichage mobile --}}
     <section class="md:hidden py-11 bg-primary">

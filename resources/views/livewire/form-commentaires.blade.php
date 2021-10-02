@@ -560,7 +560,6 @@
                                 </div>
                             </div>
                         </div>
-
                     </a>
                 @endauth
                 @auth

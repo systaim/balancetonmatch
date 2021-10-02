@@ -1,5 +1,5 @@
 <div class="relative flex flex-col md:w-8/12 m-auto my-8">
-    <div class="flex justify-center">
+    <div class="flex justify-center relative">
         <input wire:model="search" class="inputForm w-11/12 relative" type="text" name="search"
             placeholder="Nom du club, de la ville ou code postal">
         <i class="absolute text-xl top-3 right-7 text-primary fas fa-search"></i>

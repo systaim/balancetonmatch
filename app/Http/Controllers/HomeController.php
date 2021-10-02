@@ -38,6 +38,7 @@ class HomeController extends Controller
         $goals= Statistic::where('action', 'goal')->get();
         $yellowCards= Statistic::where('action', 'yellow_card')->get();
         $redCards= Statistic::where('action','red_card')->get();
+        $stats = Statistic::all();
 
         $commentators = Commentator::all();
 
@@ -58,6 +59,7 @@ class HomeController extends Controller
         'yellowCards',
         'redCards',
         'commentators',
+        'stats',
     ));
     }
 }

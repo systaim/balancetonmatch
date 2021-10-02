@@ -156,6 +156,7 @@
 
     @livewire('dashboard-score', [
     'match' =>$match,
+    'nbrFavoris'=> $nbrFavoris,
     ])
 
     <div class="relative">

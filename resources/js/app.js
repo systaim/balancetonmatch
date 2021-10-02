@@ -201,10 +201,10 @@ window.addEventListener("scroll", function() {
  ******************************/
 
 header = document.getElementById("header");
-
+console.log(screen.width);
 window.addEventListener("scroll", function() {
 
-    if (window.scrollY > 60) {
+    if (window.scrollY > 60 && screen.width < 640) {
         
         header.style.position = "fixed"
         header.style.transition = "all 500ms";
