@@ -8,7 +8,7 @@
         <div class="flex flex-col justify-center md:justify-around md:flex-row p-8">
             @if (count(Auth::user()->favorismatches) > 0)
                 <div class="w-full m-1">
-                    <div class="___class_+?62___">
+                    <div>
                         <h3 class="text-center"><i class="fas fa-star text-red-700"></i> Mes matchs favoris <i
                                 class="fas fa-star text-red-700"></i></h3>
                     </div>

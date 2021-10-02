@@ -159,7 +159,7 @@
                     </a>
                 </div>
                 <div class="p-4 w-11/12 lg:w-1/3 h-64 my-2">
-                    <a href="competitions/coupe-ange-lemee-2020-2021">
+                    <a href="competitions/coupe-ange-lemee-2021-2022">
                         <div class="relative h-64 border-2 rounded-lg overflow-hidden shadow-2xl border-none">
                             <img class="w-full object-cover object-center h-full" src="{{ asset('images/coupe-departement-min.jpeg') }}" alt="coupe de Bretagne">
                             <h3 class="absolute top-1 left-1 title-font text-lg bg-primary text-white p-1 rounded-lg">COUPE ANGE LEMÉE</h3>
