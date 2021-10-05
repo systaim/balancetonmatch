@@ -6,6 +6,7 @@ use App\Models\Club;
 use App\Models\Commentator;
 use App\Models\Match;
 use App\Models\Player;
+use App\Models\Region;
 use App\Models\Staff;
 use App\Models\Statistic;
 use Carbon\Carbon;
