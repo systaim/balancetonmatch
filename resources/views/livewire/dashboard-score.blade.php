@@ -220,7 +220,24 @@
             </div>
         </div>
     </div>
-    <div class="bg-gray-900 px-8 py-2 text-white text-center flex flex-col justify-center items-center">
+    <div class="bg-gray-900 px-8 py-2 text-white text-center flex justify-center items-center">
+        <div wire:ignore id="fb-root"></div>
+        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v11.0"
+                nonce="tGIyRgh0">
+        </script>
+        <a target="_blank"
+            href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fbalancetonmatch.com/%2Fmatches%2F{{ $match->id }}&amp;src=sdkpreparse"
+            class="fb-xfbml-parse-ignore">
+            <div class=" rounded-lg bg-blue-600 text-white mr-3 py-1 px-2">
+                <div data-href="{{ route('matches.show', [$match, Str::slug($match->slug, '-')]) }}"
+                    data-layout="button" data-size="large">
+                    <div class="flex justify-center items-center">
+                        <i class="fab fa-facebook text-2xl text-white"></i>
+                        <p class="font-sans text-xs text-center mx-1">Partager le match</p>
+                    </div>
+                </div>
+            </div>
+        </a>
         <p>Spectateurs : <span class="ml-2 font-bold">{{ count($visitors) }}</span></p>
     </div>
     @if ($nbrFavoris > 0 && $match->live == 'attente')

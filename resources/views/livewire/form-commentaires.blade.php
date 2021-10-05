@@ -1,21 +1,4 @@
 <div wire:poll.3s>
-    <div id="fb-root"></div>
-        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v11.0"
-                nonce="tGIyRgh0">
-        </script>
-        <a target="_blank"
-            href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fbalancetonmatch.com/%2Fmatches%2F{{ $match->id }}&amp;src=sdkpreparse"
-            class="fb-xfbml-parse-ignore">
-            <div class="absolute -top-24 left-0 inline-block rounded-lg bg-blue-600 text-white m-2 py-1 pl-1">
-                <div data-href="{{ route('matches.show', [$match, Str::slug($match->slug, '-')]) }}"
-                    data-layout="button" data-size="large">
-                    <div class="flex flex-col justify-center items-center">
-                        <i class="fab fa-facebook text-2xl text-white"></i>
-                        <p class="font-sans text-xs text-center mx-1">Partager</p>
-                    </div>
-                </div>
-            </div>
-        </a>
     <!----------------------
     Options commentaires "équipe"
     ------------------------->
@@ -537,8 +520,8 @@
                         <label for="exit" class="mr-6 cursor-pointer" wire:click="retour">Retour</label>
                         <button wire:loading.attr="disabled" wire:loading.class.remove="btnPrimary" wire:target="file"
                             class="btn btnPrimary" type="submit" wire:click="$emit('majPage')">Je commente</button>
-                        <input class="hidden" type="radio" id="exit" wire:model="team_action" name="team_action"
-                            value="">
+                        <input class="hidden" type="radio" id="exit" wire:model="team_action"
+                            name="team_action" value="">
                     </div>
                 </div>
             </div>
