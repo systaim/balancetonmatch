@@ -520,8 +520,8 @@
                         <label for="exit" class="mr-6 cursor-pointer" wire:click="retour">Retour</label>
                         <button wire:loading.attr="disabled" wire:loading.class.remove="btnPrimary" wire:target="file"
                             class="btn btnPrimary" type="submit" wire:click="$emit('majPage')">Je commente</button>
-                        <input class="hidden" type="radio" id="exit" wire:model="team_action"
-                            name="team_action" value="">
+                        <input class="hidden" type="radio" id="exit" wire:model="team_action" name="team_action"
+                            value="">
                     </div>
                 </div>
             </div>
