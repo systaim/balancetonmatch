@@ -18,6 +18,7 @@
             </div>
         </div>
     </section>
+
     {{-- <section class="bg-primary overflow-x-hidden">
         <div class="flex flex-wrap">
             @foreach ($stats as $stat)

@@ -179,7 +179,8 @@
                         <option value="2">Championnat départemental</option>
                         <option value="3">Coupe de France</option>
                         <option value="4">Coupe régionale</option>
-                        <option value="5">Coupe départementale</option>
+                        <option value="5">Coupe départementale 1</option>
+                        <option value="7">Match départementale 2</option>
                         <option value="6">Match amical</option>
                     </select>
                 </div>

@@ -51,25 +51,25 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        // tables players numéros génériques
+        // // tables players numéros génériques
 
-        for ($i = 1; $i <= 16; $i++) {
-            $slug = Str::slug('numero ' . $i, '-');
-            Player::create([
-                'slug' => $slug,
-                'last_name' => $i,
-                'first_name' => 'numéro',
+        // for ($i = 1; $i <= 16; $i++) {
+        //     $slug = Str::slug('numero ' . $i, '-');
+        //     Player::create([
+        //         'slug' => $slug,
+        //         'last_name' => $i,
+        //         'first_name' => 'numéro',
 
-            ]);
-        }
+        //     ]);
+        // }
 
-        // tables journees
+        // // tables journees
 
-        for ($i = 1; $i <= 30; $i++) {
-            Journee::create([
-                'name' => $i,
-            ]);
-        }
+        // for ($i = 1; $i <= 30; $i++) {
+        //     Journee::create([
+        //         'name' => $i,
+        //     ]);
+        // }
 
 
         //tables noms de régions
@@ -87,7 +87,7 @@ class DatabaseSeeder extends Seeder
         DB::unprepared(file_get_contents('database/seeders/departments.sql'));
 
         //liste des clubs
-        DB::unprepared(file_get_contents('database/seeders/clubs.sql'));
+        // DB::unprepared(file_get_contents('database/seeders/clubs.sql'));
 
         //nom de compétitions
         $competitions = ['Championnat régional', 'Championnat départemental', 'Coupe de France', 'Coupe régionale', 'Coupe départementale', 'Match amical'];
