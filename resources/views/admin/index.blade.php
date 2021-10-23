@@ -402,10 +402,10 @@
                                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                                         @if ($user->club)
                                                             <div class="flex-grow-0 logo h-12 w-12">
-                                                                @if (Auth::user()->club->logo_path)
+                                                                @if ($user->club->logo_path)
                                                                     <img class="object-contain"
-                                                                        src="{{ asset(Auth::user()->club->logo_path) }}"
-                                                                        alt="Logo de {{ Auth::user()->club->name }}">
+                                                                        src="{{ asset($user->club->logo_path) }}"
+                                                                        alt="Logo de {{ $user->club->name }}">
                                                                 @else
                                                                     <img class="object-contain"
                                                                         src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ Auth::user()->club->numAffiliation }}.jpg"
