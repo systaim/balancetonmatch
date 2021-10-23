@@ -408,7 +408,7 @@
                                                                         alt="Logo de {{ $user->club->name }}">
                                                                 @else
                                                                     <img class="object-contain"
-                                                                        src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ Auth::user()->club->numAffiliation }}.jpg"
+                                                                        src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $user->club->numAffiliation }}.jpg"
                                                                         alt="logo">
                                                                 @endif
                                                             </div>
