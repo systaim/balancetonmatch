@@ -37,75 +37,75 @@
         @livewire('api.api-token-manager')
     </div> --}}
     <!--
-                                  This example requires Tailwind CSS v2.0+ 
-                                  
-                                  This example requires some changes to your config:
-                                  
-                                  ```
-                                  // tailwind.config.js
-                                  const colors = require('tailwindcss/colors')
-                                  
-                                  module.exports = {
-                                    // ...
-                                    theme: {
-                                      extend: {
-                                        colors: {
-                                          cyan: colors.cyan,
+                                      This example requires Tailwind CSS v2.0+ 
+                                      
+                                      This example requires some changes to your config:
+                                      
+                                      ```
+                                      // tailwind.config.js
+                                      const colors = require('tailwindcss/colors')
+                                      
+                                      module.exports = {
+                                        // ...
+                                        theme: {
+                                          extend: {
+                                            colors: {
+                                              cyan: colors.cyan,
+                                            },
+                                          },
                                         },
-                                      },
-                                    },
-                                    plugins: [
-                                      // ...
-                                      require('@tailwindcss/forms'),
-                                    ],
-                                  }
-                                  ```
-                                -->
+                                        plugins: [
+                                          // ...
+                                          require('@tailwindcss/forms'),
+                                        ],
+                                      }
+                                      ```
+                                    -->
     <!--
-                                  This example requires updating your template:
+                                      This example requires updating your template:
 
-                                  ```
-                                  <html class="h-full bg-gray-100">
-                                  <body class="h-full">
-                                  ```
-                                -->
+                                      ```
+                                      <html class="h-full bg-gray-100">
+                                      <body class="h-full">
+                                      ```
+                                    -->
     <div class="min-h-full" x-data="{ open: false }">
         <!-- Off-canvas menu for mobile, show/hide based on off-canvas menu state. -->
         <div class="fixed inset-0 flex z-40 lg:hidden" role="dialog" aria-modal="true" x-show="open">
             <!--
-                                        Off-canvas menu overlay, show/hide based on off-canvas menu state.
-                                  
-                                        Entering: "transition-opacity ease-linear duration-300"
-                                          From: "opacity-0"
-                                          To: "opacity-100"
-                                        Leaving: "transition-opacity ease-linear duration-300"
-                                          From: "opacity-100"
-                                          To: "opacity-0"
-                                      -->
+                                            Off-canvas menu overlay, show/hide based on off-canvas menu state.
+                                      
+                                            Entering: "transition-opacity ease-linear duration-300"
+                                              From: "opacity-0"
+                                              To: "opacity-100"
+                                            Leaving: "transition-opacity ease-linear duration-300"
+                                              From: "opacity-100"
+                                              To: "opacity-0"
+                                          -->
             <div class="fixed inset-0 bg-gray-600 bg-opacity-75" aria-hidden="true" x-show="open"
                 @click.outside="open = false"></div>
 
             <!--
-                                        Off-canvas menu, show/hide based on off-canvas menu state.
-                                  
-                                        Entering: "transition ease-in-out duration-300 transform"
-                                          From: "-translate-x-full"
-                                          To: "translate-x-0"
-                                        Leaving: "transition ease-in-out duration-300 transform"
-                                          From: "translate-x-0"
-                                          To: "-translate-x-full"
-                                      -->
+                                            Off-canvas menu, show/hide based on off-canvas menu state.
+                                      
+                                            Entering: "transition ease-in-out duration-300 transform"
+                                              From: "-translate-x-full"
+                                              To: "translate-x-0"
+                                            Leaving: "transition ease-in-out duration-300 transform"
+                                              From: "translate-x-0"
+                                              To: "-translate-x-full"
+                                          -->
             <div class="relative flex-1 flex flex-col max-w-xs w-full pt-5 pb-4 bg-cyan-700">
                 <!--
-                                          Close button, show/hide based on off-canvas menu state.
-                                  
-                                          Entering: "ease-in-out duration-300"
-                                            From: "opacity-0"
-                                            To: "opacity-100"
-                                          Leaving: "ease-in-out duration-300"
-                                            From: "opacity-100"
-                                            To: "opacity-0"
-                                        -->
+                                              Close button, show/hide based on off-canvas menu state.
+                                      
+                                              Entering: "ease-in-out duration-300"
+                                                From: "opacity-0"
+                                                To: "opacity-100"
+                                              Leaving: "ease-in-out duration-300"
+                                                From: "opacity-100"
+                                                To: "opacity-0"
+                                            -->
                 <div class="absolute top-0 right-0 -mr-12 pt-2">
                     <button type="button" @click="open = ! open"
                         class="ml-1 flex items-center justify-center h-10 w-10 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
@@ -298,18 +298,24 @@
                         <ul role="list" class="mt-2 divide-y divide-gray-200 overflow-hidden shadow sm:hidden">
                             @foreach ($users as $user)
                                 <li>
-                                    <a href="{{ route('users.show', [$user->id]) }}" class="block px-4 py-4 bg-white hover:bg-gray-50">
+                                    <a href="{{ route('users.show', [$user->id]) }}"
+                                        class="block px-4 py-4 bg-white hover:bg-gray-50">
                                         <span class="flex items-center space-x-4">
                                             <span class="flex-1 flex space-x-2 truncate">
                                                 <!-- Heroicon name: solid/cash -->
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                                                  </svg>
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                                    viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                        d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                                </svg>
                                                 <span class="flex flex-col text-gray-500 text-sm truncate">
                                                     <span class="truncate">{{ $user->first_name }}
                                                         {{ $user->last_name }}</span>
-                                                        <span>{{ $user->pseudo }}</span>
-                                                    <span class="text-gray-900 font-medium">{{ $user->club->name }}</span>
+                                                    <span>{{ $user->pseudo }}</span>
+                                                    @if ($user->club)
+                                                        <span
+                                                            class="text-gray-900 font-medium">{{ $user->club->name }}</span>
+                                                    @endif
                                                     <time datetime="2020-07-11">{{ $user->created_at }}</time>
                                                 </span>
                                             </span>
@@ -397,17 +403,19 @@
                                                         <span class="text-gray-900 font-medium">{{ $user->role }} </span>
                                                     </td>
                                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                                        <div class="flex-grow-0 logo h-12 w-12">
-                                                            @if (Auth::user()->club->logo_path)
-                                                                <img class="object-contain"
-                                                                    src="{{ asset(Auth::user()->club->logo_path) }}"
-                                                                    alt="Logo de {{ Auth::user()->club->name }}">
-                                                            @else
-                                                                <img class="object-contain"
-                                                                    src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ Auth::user()->club->numAffiliation }}.jpg"
-                                                                    alt="logo">
-                                                            @endif
-                                                        </div>
+                                                        @if ($user->club)
+                                                            <div class="flex-grow-0 logo h-12 w-12">
+                                                                @if (Auth::user()->club->logo_path)
+                                                                    <img class="object-contain"
+                                                                        src="{{ asset(Auth::user()->club->logo_path) }}"
+                                                                        alt="Logo de {{ Auth::user()->club->name }}">
+                                                                @else
+                                                                    <img class="object-contain"
+                                                                        src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ Auth::user()->club->numAffiliation }}.jpg"
+                                                                        alt="logo">
+                                                                @endif
+                                                            </div>
+                                                        @endif
                                                     </td>
                                                     <td
                                                         class="px-6 py-4 text-right whitespace-nowrap text-sm text-gray-500">
