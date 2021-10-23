@@ -443,7 +443,7 @@
                                             </a>
                                         </div>
                                     </nav>
-                                    {{ $users->links() }}
+                                    {{-- {{ $users->links() }} --}}
                                 </div>
                             </div>
                         </div>
