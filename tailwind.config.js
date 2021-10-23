@@ -1,5 +1,6 @@
 const defaultTheme = require("tailwindcss/defaultTheme");
-const { colors, backgroundImage } = require("tailwindcss/defaultTheme");
+const { backgroundImage } = require("tailwindcss/defaultTheme");
+const colors = require('tailwindcss/colors');
 
 module.exports = {
     purge: [
@@ -19,7 +20,7 @@ module.exports = {
         opacity: ["responsive", "hover", "focus", "disabled"]
     },
 
-    plugins: [require("@tailwindcss/ui")],
+    plugins: [require("@tailwindcss/ui", "@tailwindcss/forms")],
 
     theme: {
         extend: {
@@ -29,7 +30,8 @@ module.exports = {
                 secondary: "#cdfb0a", //#cdfb0a ou #00ffae
                 darkGray: "#0D0F12",
                 success: "#00ff48",
-                darkSuccess: "#009628"
+                darkSuccess: "#009628",
+                cyan: colors.cyan,
             },
             inset: {
                 "-0.5": "-0.35rem",

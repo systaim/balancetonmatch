@@ -43,6 +43,7 @@ Route::apiResource('users', UserController::class, [
     'as' => 'api'
 ]);
 
+
 // Route::get('/users', function () {
 //     return UserResource::collection(User::all());
 // });

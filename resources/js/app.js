@@ -221,3 +221,12 @@ window.addEventListener("scroll", function() {
  ******************************/
 
  window.onload = function(){ document.querySelector(".preloader").style.display = "none"; }
+
+ var button = document.getElementById("notifications");
+button.addEventListener('click', function(e) {
+    Notification.requestPermission().then(function(result) {
+        if(result === 'granted') {
+            randomNotification();
+        }
+    });
+});

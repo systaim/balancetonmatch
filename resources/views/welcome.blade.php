@@ -18,7 +18,9 @@
             </div>
         </div>
     </section>
-
+    <section>
+        
+    </section>
     {{-- <section class="bg-primary overflow-x-hidden">
         <div class="flex flex-wrap">
             @foreach ($stats as $stat)
@@ -204,6 +206,58 @@
             </div>
         </div>
     </section>
+    {{-- <section class="relative bg-secondary py-8 overflow-x-hidden">
+        <div class="-my-4 absolute top-1/2 left-1 z-20">
+            <i class="fas fa-arrow-circle-left text-3xl"></i>
+        </div>
+        <div class="-my-4 absolute top-1/2 right-1 z-20">
+            <i class="fas fa-arrow-circle-right text-3xl"></i>
+        </div>
+        <div class="flex flex-no-wrap justify-start mx-5">
+            @foreach ($comOfTheWeek as $com)
+                <a href="{{ route('matches.show', [$com->matchs->id]) }}">
+                    <div class="border-gray-400 flex flex-row mb-2">
+                        <div class="shadow border select-none cursor-pointer bg-white dark:bg-gray-800 rounded-md flex flex-1 items-center p-4">
+                            <div class="flex flex-col w-10 h-10 justify-center items-center mr-4">
+                                <a href="#" class="block relative">
+                                    <img alt="profil" src="/images/person/6.jpg" class="mx-auto object-cover rounded-full h-10 w-10 "/>
+                                </a>
+                            </div>
+                            <div class="flex-1 pl-1 md:mr-16">
+                                <div class="font-medium dark:text-white">
+                                    Jean Marc
+                                </div>
+                                <div class="text-gray-600 dark:text-gray-200 text-sm">
+                                    Developer
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white h-52 w-40 rounded-lg shadow-2xl m-2 overflow-hidden p-2">
+                        <div class="relative flex flex-col items-center justify-between h-full pt-3 pb-6">
+                            <div>
+                                <div
+                                    class="absolute top-2 right-2 h-5 w-5 rounded-full bg-success flex justify-center items-center">
+                                    <span class=" text-xs  text-gray-900">{{ $com->matchs->commentateur->merci }}</span>
+                                </div>
+                                <div
+                                    class="h-16 w-16 rounded-full overflow-hidden flex items-center justify-center border bg-fixed m-2">
+                                    <img class="object-contain h-full" src="{{ $com->user->profile_photo_path }}" alt="">
+                                </div>
+                                <p class="text-xs text-center">{{ $com->user->pseudo }}</p>
+                            </div>
+                            <div class="flex flex-col items-center">
+                                <p class="text-xs text-center">{{ $com->matchs->homeClub->name }}</p>
+                                <img class="h-4 text-center" src="{{ asset('images/vs-primary.jpg') }}" alt="contre">
+                                <p class="text-xs text-center">{{ $com->matchs->awayClub->name }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            @endforeach
+        </div>
+    </section> --}}
     <section class="relative">
         <div class="text-gray-200 bg-primary body-font shadow-2xl">
             <div class="container px-5 py-10 lg:py-20 mx-auto moveToLeft">

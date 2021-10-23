@@ -117,4 +117,13 @@ class User extends Authenticatable
             return $favori->match_id == $match->id;
         });
     }
+
+    public function getnbrLikes($user_id)
+    {
+        $com = Commentator::where('user_id', $user_id)->get();
+
+        $likes = $com->merci;
+
+        return $likes;
+    }
 }

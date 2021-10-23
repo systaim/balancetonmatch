@@ -145,7 +145,7 @@ Route::resource('clubs.staffs', StaffController::class);
 Route::resource('competitions', CompetitionController::class);
 // Route::resource('competitions.division_region.groups', Group::class)->only('show');
 
-Route::resource('admin/users', UserController::class)->middleware('auth');
+Route::resource('admin/users', 'App\Http\Controllers\UserController')->middleware('auth');
 Route::resource('admin', AdminController::class)->middleware('auth');
 
 Route::post('contacts', 'App\Http\Controllers\ContactController@store')->name('contacts.store');

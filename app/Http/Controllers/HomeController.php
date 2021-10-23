@@ -9,6 +9,7 @@ use App\Models\Player;
 use App\Models\Region;
 use App\Models\Staff;
 use App\Models\Statistic;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -35,6 +36,7 @@ class HomeController extends Controller
         $players = Player::all();
         $dateJour = Carbon::now();
         $user = Auth::user();
+        $users = User::all();
         $today = now()->subHours(3);
         $goals= Statistic::where('action', 'goal')->get();
         $yellowCards= Statistic::where('action', 'yellow_card')->get();
@@ -43,6 +45,8 @@ class HomeController extends Controller
         $stats = $statistics->unique('player_id');
         
         $commentators = Commentator::all();
+
+        $comOfTheWeek = Commentator::whereBetween('created_at',[Carbon::now()->subDays(6), Carbon::now()->addDay(1)])->get() ;
 
         
 
@@ -56,13 +60,15 @@ class HomeController extends Controller
         'players', 
         'dateJour', 
         'user', 
+        'users',
         'today',
         'goals',
         'yellowCards',
         'redCards',
         'commentators',
         'stats',
-        'statistics'
+        'statistics',
+        'comOfTheWeek',
     ));
     }
 }

@@ -19,7 +19,7 @@ class Commentator extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function match()
+    public function matchs()
     {
         return $this->belongsTo(Match::class, 'match_id');
     }
@@ -28,4 +28,5 @@ class Commentator extends Model
     {
         return $this->hasMany(Commentaire::class);
     }
+
 }

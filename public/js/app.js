@@ -19885,6 +19885,15 @@ window.onload = function () {
   document.querySelector(".preloader").style.display = "none";
 };
 
+var button = document.getElementById("notifications");
+button.addEventListener('click', function (e) {
+  Notification.requestPermission().then(function (result) {
+    if (result === 'granted') {
+      randomNotification();
+    }
+  });
+});
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
