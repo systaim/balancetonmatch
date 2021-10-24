@@ -166,7 +166,7 @@
         <div class="relative">
             <img src="{{ asset('images/goalByPlayer.png') }}" alt="" class="absolute -left-8 -top-12">
 
-            <div class=" bg-white p-2 shadow rounded-lg overflow-hidden pl-36 pr-8 py-10 my-8 ml-12 z-10">
+            <div class=" bg-white p-2 shadow rounded-lg overflow-hidden pl-36 pr-8 py-10 my-8 md:ml-12 z-10">
                 <p class="">Total de buts </p>
                 <p class="text-right text-2xl font-bold"> {{ $goals }}</p>
 

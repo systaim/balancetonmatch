@@ -279,7 +279,7 @@
             </div>
         </div>
         <div class="absolute -top-18 lg:-top-20 right-0 lg:right-48 z-10">
-            <img src="{{ asset('images/demo2.png') }}" alt="demo" class="h-72 lg:h-96">
+            <img src="{{ asset('images/demo2-min.png') }}" alt="demo" class="h-72 lg:h-96">
         </div>
     </section>
 
