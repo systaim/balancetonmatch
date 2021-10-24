@@ -107,7 +107,7 @@ class PlayerController extends Controller
      */
     public function show(Club $club, Player $player)
     {
-        $goals = Statistic::where('action', 'goal')->count();
+        $goals = Statistic::where('action', 'goal')->where('player_id', $player->id)->count();
 
         return View('players.show', compact('player', 'goals', 'club'));
     }

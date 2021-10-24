@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('content')
-    <div class="flex justify-center">
+    <div class="flex md:justify-center flex-col md:flex-row items-center">
         <div x-data="{ open: false }"
             class="relative w-72 m-4 bg-primary text-white flex flex-col justify-between rounded-lg shadow-2xl overflow-x-hidden">
             <div class="absolute top-2 left-2 logo h-12 w-12 z-10">
@@ -52,7 +52,7 @@
 
                 @endif --}}
                 @auth
-                    @if (Auth::user()->club_id == $club->id)
+                    @if (Auth::user()->club_id == $club->id || Auth::user()->role == 'super-admin')
                         <div>
                             <button onclick="openMenu()" class="mr-1"><i class="far fa-edit"></i></button>
                             <button id="{{ $player->id }}" @click="open = true"><i class="far fa-times-circle"></i></button>
@@ -62,8 +62,8 @@
 
             </div>
             <!-- ***********************
-                                                                Formulaire suppression d'un joueur
-                                                                ************************** -->
+                                                                                    Formulaire suppression d'un joueur
+                                                                                    ************************** -->
             <div id="{{ $player->id }}"
                 class="absolute bg-white top-0 left-0 right-0 bottom-0 text-primary z-20 flex flex-col justify-between items-center "
                 x-show="open" x-transition:enter="transition ease-out duration-300"
@@ -92,8 +92,8 @@
             </div>
 
             <!-- ***********************
-                                                                Formulaire modification d'un joueur
-                                                                ************************** -->
+                                                                                    Formulaire modification d'un joueur
+                                                                                    ************************** -->
 
             <div id="edition" class="hidden fixed z-50 inset-0 justify-center items-center"
                 style="background-color: rgba(0,0,0,.5);">
@@ -145,7 +145,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div>
+                            <div class="mt-4">
                                 <label for="file">Ajoute une photo</label>
                                 <input type="file" name="file" id="file" accept="jpeg,png,jpg,gif,svg">
                                 @error('file')
@@ -161,6 +161,15 @@
                         </div>
                     </form>
                 </div>
+            </div>
+        </div>
+        <div class="relative">
+            <img src="{{ asset('images/goalByPlayer.png') }}" alt="" class="absolute -left-8 -top-12">
+
+            <div class=" bg-white p-2 shadow rounded-lg overflow-hidden pl-36 pr-8 py-10 my-8 ml-12 z-10">
+                <p class="">Total de buts </p>
+                <p class="text-right text-2xl font-bold"> {{ $goals }}</p>
+
             </div>
         </div>
     </div>
