@@ -18,10 +18,10 @@
                     <label for="first_name">Prénom</label>
                     <input class="inputForm focus:outline-none focus:shadow-outline w-full my-1" type="text" name="first_name" placeholder="Jean" id="first_name" :value="old('first_name')">
                 </div>
-                <div class="w-10/12 m-auto my-2">
+                {{-- <div class="w-10/12 m-auto my-2">
                     <label for="date_of_birth">Date de naissance</label>
                     <input class="inputForm focus:outline-none focus:shadow-outline w-full my-1" type="date" name="date_of_birth" id="date_of_birth" :value="old('date_of_birth')">
-                </div>
+                </div> --}}
                 <div class="w-10/12 m-auto my-2">
                     <p>Position</p>
                     <div>

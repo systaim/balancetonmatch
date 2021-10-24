@@ -42,25 +42,28 @@
                     @endswitch
                 </div>
             </div>
-            <div class="relative flex justify-between items-end p-2 h-12">
-                @if ($player->date_of_birth)
+            <div class="relative flex justify-end items-end p-2 h-12">
+                {{-- @if ($player->date_of_birth)
                     <div>
                         <p class="font-bold">né le {{ date('d/m/Y', strtotime($player->date_of_birth)) }}</p>
                     </div>
                 @else
                     <p class="font-bold">né le : <span class="text-xs">non renseigné</span></p>
 
-                @endif
-                @if (Auth::user()->club_id == $club->id)
-                    <div>
-                        <button onclick="openMenu()" class="mr-1"><i class="far fa-edit"></i></button>
-                        <button id="{{ $player->id }}" @click="open = true"><i class="far fa-times-circle"></i></button>
-                    </div>
-                @endif
+                @endif --}}
+                @auth
+                    @if (Auth::user()->club_id == $club->id)
+                        <div>
+                            <button onclick="openMenu()" class="mr-1"><i class="far fa-edit"></i></button>
+                            <button id="{{ $player->id }}" @click="open = true"><i class="far fa-times-circle"></i></button>
+                        </div>
+                    @endif
+                @endauth
+
             </div>
             <!-- ***********************
-                                                            Formulaire suppression d'un joueur
-                                                            ************************** -->
+                                                                Formulaire suppression d'un joueur
+                                                                ************************** -->
             <div id="{{ $player->id }}"
                 class="absolute bg-white top-0 left-0 right-0 bottom-0 text-primary z-20 flex flex-col justify-between items-center "
                 x-show="open" x-transition:enter="transition ease-out duration-300"
@@ -89,8 +92,8 @@
             </div>
 
             <!-- ***********************
-                                                            Formulaire modification d'un joueur
-                                                            ************************** -->
+                                                                Formulaire modification d'un joueur
+                                                                ************************** -->
 
             <div id="edition" class="hidden fixed z-50 inset-0 justify-center items-center"
                 style="background-color: rgba(0,0,0,.5);">
@@ -123,11 +126,11 @@
                                     <span class="error">{{ $message }}</span>
                                 @enderror
                             </div>
-                            <div class="flex flex-col">
+                            {{-- <div class="flex flex-col">
                                 <label for="date_of_birth">Date de naissance</label>
                                 <input class="inputForm focus:outline-none focus:shadow-outline w-full my-1" type="date"
                                     name="date_of_birth" id="date_of_birth" value="{{ $player->date_of_birth }}">
-                            </div>
+                            </div> --}}
                             <div>
                                 <p>Position</p>
                                 <div class="flex flex-col">

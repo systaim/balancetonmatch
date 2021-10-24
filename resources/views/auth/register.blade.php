@@ -31,15 +31,13 @@
                             <div class="alert danger">{{ $message }}</div>
                             @enderror
                         </div>
-                        <div class="flex flex-col lg:w-5/12 mb-6">
+                        {{-- <div class="flex flex-col lg:w-5/12 mb-6">
                             <label for="date_of_birth">Ma date de naissance</label>
                             <input class="inputForm border-2 focus:outline-none focus:shadow-outline w-full my-1" type="date" name="date_of_birth" id="date_of_birth" :value="old('date_of_birth')">
                             @error('date_of_birth')
                             <div class="alert danger">{{ $message }}</div>
                             @enderror
-                        </div>
-                    </div>
-                    <div class="lg:flex lg:justify-center">
+                        </div> --}}
                         <div class="flex flex-col lg:w-5/12 mb-6">
                             <label for="email">Mon email</label>
                             <input class="inputForm border-2 focus:outline-none focus:shadow-outline w-full my-1" type="email" name="email" id="email" :value="old('email')" required>
@@ -47,6 +45,9 @@
                             <div class="alert danger">{{ $message }}</div>
                             @enderror
                         </div>
+                    </div>
+                    <div class="lg:flex lg:justify-center">
+                        
                         {{-- <div class="flex flex-col lg:w-5/12 mb-6">
                             <x-clubSelect />
                             @error('club')
