@@ -6,6 +6,7 @@ use App\Models\Club;
 use App\Models\Commentaire;
 use App\Models\Commentator;
 use App\Models\Counter;
+use App\Models\Gallery;
 use App\Models\Player;
 use App\Models\Statistic;
 use App\Models\Tab;
@@ -29,13 +30,9 @@ class FormCommentaires extends Component
     use WithFileUploads;
 
     // Variables initailisées dans MatchContoller@show 
-    public $commentator;
-    public $match;
-    public $commentsMatch;
-    public $nbrFavoris;
-    public $favorimatch;
-    public $favoriteam;
+    public $commentator, $match, $commentsMatch, $nbrFavoris, $favorimatch, $favoriteam;
 
+    public $store_photo_match = null, $photo_match, $photos;
     // Variables donnant accès aux colonnes de la table match
     public $type_comments;
     public $type_but = "";
@@ -88,6 +85,8 @@ class FormCommentaires extends Component
 
     public function mount()
     {
+
+        $this->photos = Gallery::where('match_id', $this->match->id)->get();
 
         $this->dateMatch = $this->match->date_match;
 
@@ -150,6 +149,35 @@ class FormCommentaires extends Component
         $this->miseAJourPenalty();
         $this->countVisitor();
         $this->miseAjourTemps();
+    }
+
+    public function btnStorePhotoMatch()
+    {
+        $this->store_photo_match = !$this->store_photo_match;
+        $this->photo_match = null;
+    }
+
+    public function storePhotoMatch($match_id)
+    {
+
+        $this->validate([
+            'photo_match' => 'mimes:jpeg,jpg,png,gif|max:10240',
+        ],
+    [
+        'photo_match.mimes' => 'Format non conforme',
+    ]);
+
+        $path = $this->photo_match->store('photos_match');
+        $photo['images'] = $path;
+        $photo['match_id'] = $match_id;
+        $photoSave = Gallery::create($photo);
+
+        // dd($photoSave);
+        $photoSave->save();
+        session()->flash('success', 'Photo enregistrée');
+        // return redirect()->to('matches/' . $this->match->id);
+        $this->store_photo_match = null;
+        $this->photos = Gallery::where('match_id', $this->match->id)->get();
     }
 
     public function clickButtonComment()
@@ -554,7 +582,7 @@ class FormCommentaires extends Component
                     $favori->user->notify(new matchBegin($this->match));
                     $favori->save();
                 }
-                foreach($this->favoriteam as $favori) {
+                foreach ($this->favoriteam as $favori) {
                     $favori->user->notify(new matchBegin($this->match));
                     $favori->save();
                 }
@@ -653,7 +681,7 @@ class FormCommentaires extends Component
                 $favori->user->notify(new matchEnd($this->match));
                 $favori->save();
             }
-            foreach($this->favoriteam as $favori) {
+            foreach ($this->favoriteam as $favori) {
                 $favori->user->notify(new matchEnd($this->match));
                 $favori->save();
             }
@@ -775,7 +803,7 @@ class FormCommentaires extends Component
                     $favori->user->notify(new but($this->match));
                     $favori->save();
                 }
-                foreach($this->favoriteam as $favori) {
+                foreach ($this->favoriteam as $favori) {
                     $favori->user->notify(new but($this->match));
                     $favori->save();
                 }
