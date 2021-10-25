@@ -175,7 +175,7 @@ class FormCommentaires extends Component
         // dd($photoSave);
         $photoSave->save();
         session()->flash('success', 'Photo enregistrée');
-        // return redirect()->to('matches/' . $this->match->id);
+        return redirect()->to('matches/' . $this->match->id);
         $this->store_photo_match = null;
         $this->photos = Gallery::where('match_id', $this->match->id)->get();
     }
