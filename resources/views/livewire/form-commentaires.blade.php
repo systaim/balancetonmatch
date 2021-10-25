@@ -936,22 +936,24 @@
                         </div>
                     </div>
                 @endif
+
                 <div wire:ignore>
-                    <div class="splide">
-                        <div class="splide__track">
-                            <ul class="splide__list">
-                                @foreach ($photos as $photo)
-                                    <li class="splide__slide">
-                                        <div class="splide__slide__container">
-                                            @dump(asset($photo->images))
-                                            <img src="{{ asset($photo->images) }}" alt=""
-                                                class="rounded-lg m-1 h-56">
-                                        </div>
-                                    </li>
-                                @endforeach
-                            </ul>
+                    @if ($photos)
+                        <div class="splide">
+                            <div class="splide__track">
+                                <ul class="splide__list">
+                                    @foreach ($photos as $photo)
+                                        <li class="splide__slide">
+                                            <div class="splide__slide__container">
+                                                <img src="{{ asset($photo->images) }}" alt=""
+                                                    class="rounded-lg m-1 h-56">
+                                            </div>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
                         </div>
-                    </div>
+                    @endif
                     <script>
                         document.addEventListener('DOMContentLoaded', function() {
                             var splide = new Splide('.splide', {

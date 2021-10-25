@@ -84,7 +84,7 @@ return [
         public_path('avatars') => storage_path('app/avatars'),
         public_path('covers') => storage_path('app/covers'),
         public_path('teamlogo') => storage_path('app/teamlogo'),
-        public_path('photos_match') => storage_path('app/photos_de_match'),
+        public_path('photos_match') => storage_path('app/photos_match'),
     ],
 
 ];
