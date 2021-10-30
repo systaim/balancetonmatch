@@ -18,83 +18,7 @@
             </div>
         </div>
     </section>
-    {{-- <section>
-        <div class="bg-gray-50 overflow-hidden">
-            <div class="relative max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
-                <svg class="absolute top-0 left-full transform -translate-x-1/2 -translate-y-3/4 lg:left-auto lg:right-full lg:translate-x-2/3 lg:translate-y-1/4"
-                    width="404" height="784" fill="none" viewBox="0 0 404 784" aria-hidden="true">
-                    <defs>
-                        <pattern id="8b1b5f72-e944-4457-af67-0c6d15a99f38" x="0" y="0" width="20" height="20"
-                            patternUnits="userSpaceOnUse">
-                            <rect x="0" y="0" width="4" height="4" class="text-gray-200" fill="currentColor" />
-                        </pattern>
-                    </defs>
-                    <rect width="404" height="784" fill="url(#8b1b5f72-e944-4457-af67-0c6d15a99f38)" />
-                </svg>
-
-                <div class="relative lg:grid lg:grid-cols-3 lg:gap-x-8">
-                    <div class="lg:col-span-1">
-                        <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-                            Les commentateurs du dimanche
-                        </h2>
-                    </div>
-                    <dl
-                        class="mt-10 space-y-10 sm:space-y-0 sm:grid sm:grid-cols-2 sm:gap-x-8 sm:gap-y-10 lg:mt-0 lg:col-span-2">
-                        @foreach ($commentators->unique('user_id') as $com)
-                        <div>
-                            <div class="logo h-12 w-12 lg:h-16 lg:w-16 cursor-pointer">
-                                @if ($com->user->homeClub->logo_path)
-                                    <img class="object-contain" src="{{ asset($com->user->homeClub->logo_path) }}"
-                                        alt="Logo de {{ $com->user->homeClub->name }}">
-                                @else
-                                    <img class="object-contain"
-                                        src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $com->user->homeClub->numAffiliation }}.jpg"
-                                        alt="Logo de {{ $com->user->homeClub->name }}">
-                                @endif
-                            </div>
-                            <dt>
-                                <div class="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white">
-                                    <!-- Heroicon name: outline/globe-alt -->
-                                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
-                                    </svg>
-                                </div>
-                                <p class="mt-5 text-lg leading-6 font-medium text-gray-900">{{ $com->user->pseudo }}</p>
-                            </dt>
-                            <dd class="mt-2 text-base text-gray-500">
-                                {{ $com->match->homeClub->name }} VS
-                                    {{ $com->match->awayClub->name }}
-                            </dd>
-                        </div>
-                        @endforeach
-                    </dl>
-                </div>
-            </div>
-        </div>
-        <h2 class="text-center text-xl">Les derniers commentateurs du dimanche</h2>
-        <ul role="list" class="divide-y divide-gray-200">
-            <ul role="list" class="flex justify-center">
-                @foreach ($commentators->unique('user_id') as $com)
-                    <li class="col-span-1 bg-white rounded-lg shadow divide-y divide-gray-200 m-2">
-                        <div class="w-full flex items-center justify-between p-6 space-x-6">
-                            <div class="flex-1 truncate">
-                                <div class="flex items-center space-x-3">
-                                    <h3 class="text-gray-900 text-sm font-medium truncate">{{ $com->user->pseudo }}</h3>
-                                    <span
-                                        class="flex-shrink-0 inline-block px-2 py-0.5 text-green-800 text-xs font-medium bg-green-100 rounded-full">{{ $com->merci }}</span>
-                                </div>
-                                <p class="mt-1 text-gray-500 text-sm truncate">{{ $com->match->homeClub->name }} VS
-                                    {{ $com->match->awayClub->name }}</p>
-                            </div>
-                            <img class="w-10 h-10 bg-gray-300 rounded-full flex-shrink-0"
-                                src="{{ asset($com->user->profile_photo_path) }}" alt="">
-                        </div>
-                    </li>
-                @endforeach
-            </ul>
-    </section> --}}
+    
 
 
     {{-- affichage mobile --}}
@@ -250,6 +174,70 @@
                 </div>
             </div>
         </div>
+    </section>
+    <section>
+        <div class="bg-gray-50 overflow-hidden">
+            <div class="relative max-w-7xl mx-auto py-2 px-4 sm:px-6 lg:px-8">
+                <svg class="absolute top-0 left-full transform -translate-x-1/2 -translate-y-3/4 lg:left-auto lg:right-full lg:translate-x-2/3 lg:translate-y-1/4"
+                    width="404" height="784" fill="none" viewBox="0 0 404 784" aria-hidden="true">
+                    <defs>
+                        <pattern id="8b1b5f72-e944-4457-af67-0c6d15a99f38" x="0" y="0" width="20" height="20"
+                            patternUnits="userSpaceOnUse">
+                            <rect x="0" y="0" width="4" height="4" class="text-gray-200" fill="currentColor" />
+                        </pattern>
+                    </defs>
+                    <rect width="404" height="784" fill="url(#8b1b5f72-e944-4457-af67-0c6d15a99f38)" />
+                </svg>
+
+                <div class="relative flex-col flex md:flex-row py-6 ">
+                    <div class="">
+                        <h2 class="text-2xl tracking-tight text-gray-900 sm:text-4xl">
+                            Les commentateurs du dimanche
+                        </h2>
+                    </div>
+                    <div class="mt-10 flex flex-wrap w-full">
+                        @foreach ($commentators->unique('user_id') as $com)
+                            <div class="relative bg-primary rounded-md shadow-xl overflow-hidden text-white w-72 m-2">
+                                <a href="{{ route('matches.show', [$com->match->id]) }}">
+                                    <div class="absolute -top-3 -left-3 logo h-20 w-20 transform -rotate-12">
+                                        @if ($com->match->homeClub->logo_path != null)
+                                            <img class="object-contain"
+                                                src="{{ asset($com->match->homeClub->logo_path) }}"
+                                                alt="Logo de {{ $com->match->homeClub->name }}">
+                                        @else
+                                            <img class="object-contain"
+                                                src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $com->match->homeClub->numAffiliation }}.jpg"
+                                                alt="Logo de {{ $com->match->homeClub->name }}">
+                                        @endif
+                                    </div>
+                                    <div class="absolute -top-3 -right-3 logo h-20 w-20 transform rotate-12">
+                                        @if ($com->match->awayClub->logo_path != null)
+                                            <img class="object-contain"
+                                                src="{{ asset($com->match->awayClub->logo_path) }}"
+                                                alt="Logo de {{ $com->match->awayClub->name }}">
+                                        @else
+                                            <img class="object-contain"
+                                                src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $com->match->awayClub->numAffiliation }}.jpg"
+                                                alt="Logo de {{ $com->match->awayClub->name }}">
+                                        @endif
+                                    </div>
+                                    <div class="flex justify-center items-start py-3">
+                                        <p class="text-sm leading-6 font-medium mr-3">
+                                            {{ $com->user->pseudo }}
+                                        </p>
+                                        <span
+                                            class=" flex items-center justify-center h-6 w-6 text-xs bg-orange-600 rounded-full">
+                                            {{ $com->merci }}
+                                        </span>
+                                    </div>
+                                </a>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </section>
     {{-- <section class="relative bg-secondary py-8 overflow-x-hidden">
         <div class="-my-4 absolute top-1/2 left-1 z-20">
