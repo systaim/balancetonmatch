@@ -185,6 +185,7 @@
             </div>
         </div>
     </section> --}}
+    @if ($commentators)
     <section>
         <div class="bg-gray-50 overflow-hidden">
             <div class="relative max-w-7xl mx-auto py-2 px-4 sm:px-6 lg:px-8">
@@ -201,7 +202,7 @@
 
                 <div class="relative flex-col flex md:flex-row py-6 ">
                     <div class="">
-                        <h2 class="text-2xl tracking-tight text-gray-900 sm:text-4xl">
+                        <h2 class="text-xl tracking-tight text-gray-900 sm:text-4xl">
                             Les commentateurs du dimanche
                         </h2>
                     </div>
@@ -249,6 +250,8 @@
         </div>
 
     </section>
+    @endif
+    
     {{-- <section class="relative bg-secondary py-8 overflow-x-hidden">
         <div class="-my-4 absolute top-1/2 left-1 z-20">
             <i class="fas fa-arrow-circle-left text-3xl"></i>
