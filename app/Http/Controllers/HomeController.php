@@ -41,10 +41,10 @@ class HomeController extends Controller
         $goals= Statistic::where('action', 'goal')->get();
         $yellowCards= Statistic::where('action', 'yellow_card')->get();
         $redCards= Statistic::where('action','red_card')->get();
-        $statistics = Statistic::where('action', 'goal')->where('created_at', '>=', now()->subWeek(1))->orderBy('created_at', 'desc')->get();
+        $statistics = Statistic::where('action', 'goal')->where('created_at', '>=', now()->subDays(6))->orderBy('created_at', 'desc')->get();
         $stats = $statistics->unique('player_id');
         
-        $commentators = Commentator::where('updated_at', '>', Carbon::now()->subDays(6))->get();
+        $commentators = Commentator::where('updated_at', '>', Carbon::now()->subDays(5))->get();
 
         $comOfTheWeek = Commentator::whereBetween('created_at',[Carbon::now()->subDays(6), Carbon::now()->addDay(1)])->get() ;
 

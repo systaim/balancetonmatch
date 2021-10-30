@@ -1,6 +1,57 @@
 @extends('layout')
 
 @section('content')
+    <div>
+        <div>
+            <img class="h-32 w-full object-cover lg:h-48"
+                src="https://images.unsplash.com/photo-1568194157720-8bbe7114ebe8?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2232&q=80"
+                alt="">
+        </div>
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="-mt-12 sm:-mt-16 sm:flex sm:items-end sm:space-x-5">
+                <div class="flex">
+                    <img class="h-24 w-24 rounded-full ring-4 ring-white sm:h-32 sm:w-32"
+                        src="{{ asset($club->logo_path) }}" alt="">
+                </div>
+                <div class="mt-6 sm:flex-1 sm:min-w-0 sm:flex sm:items-center sm:justify-end sm:space-x-6 sm:pb-1">
+                    <div class="sm:hidden md:block mt-6 min-w-0 flex-1">
+                        <h1 class="text-2xl font-bold text-gray-900 truncate">
+                            {{ $player->first_name }} {{ $player->last_name }}
+                        </h1>
+                    </div>
+                    @auth
+                        @if (Auth::user()->club_id == $club->id || Auth::user()->role == 'super-admin')
+                            <div class="mt-6 flex flex-col justify-stretch space-y-3 sm:flex-row sm:space-y-0 sm:space-x-4">
+                                <button type="button" onclick="openMenu()"
+                                    class="inline-flex justify-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-green-700 bg-green-50 hover:bg-green-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="-ml-1 mr-2 h-5 w-5 text-green-700"
+                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                                    </svg>
+                                    <span>Modifier</span>
+                                </button>
+                                <button type="button"
+                                    class="inline-flex justify-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-red-700 bg-red-50 hover:bg-red-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="-ml-1 mr-2 h-5 w-5 text-red-700" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    <span>Supprimer</span>
+                                </button>
+                            </div>
+                        @endif
+                    @endauth
+                </div>
+            </div>
+            <div class="hidden sm:block md:hidden mt-6 min-w-0 flex-1">
+                <h1 class="text-2xl font-bold text-gray-900 truncate">
+                    Ricardo Cooper
+                </h1>
+            </div>
+        </div>
+    </div>
     <div class="flex md:justify-center flex-col md:flex-row items-center">
         <div x-data="{ open: false }"
             class="relative w-72 m-4 bg-primary text-white flex flex-col justify-between rounded-lg shadow-2xl overflow-x-hidden">
@@ -16,9 +67,6 @@
             <div>
                 <div class="relative">
                     <div class="absolute top-3 right-2 bg-primary py-1 rounded-lg">
-                        <p class="capitalize mx-2 font-semibold truncate">
-                            {{ $player->first_name }} <span class="uppercase">{{ $player->last_name }}</span>
-                        </p>
                     </div>
                     <img class="object-cover h-80 w-full rounded-b-lg" src="{{ asset($player->avatar_path) }}"
                         alt="photo de {{ $player->first_name }} {{ $player->last_name }}">
@@ -42,28 +90,9 @@
                     @endswitch
                 </div>
             </div>
-            <div class="relative flex justify-end items-end p-2 h-12">
-                {{-- @if ($player->date_of_birth)
-                    <div>
-                        <p class="font-bold">né le {{ date('d/m/Y', strtotime($player->date_of_birth)) }}</p>
-                    </div>
-                @else
-                    <p class="font-bold">né le : <span class="text-xs">non renseigné</span></p>
-
-                @endif --}}
-                @auth
-                    @if (Auth::user()->club_id == $club->id || Auth::user()->role == 'super-admin')
-                        <div>
-                            <button onclick="openMenu()" class="mr-1"><i class="far fa-edit"></i></button>
-                            <button id="{{ $player->id }}" @click="open = true"><i class="far fa-times-circle"></i></button>
-                        </div>
-                    @endif
-                @endauth
-
-            </div>
             <!-- ***********************
-                                                                                    Formulaire suppression d'un joueur
-                                                                                    ************************** -->
+                                                                                                        Formulaire suppression d'un joueur
+                                                                                                        ************************** -->
             <div id="{{ $player->id }}"
                 class="absolute bg-white top-0 left-0 right-0 bottom-0 text-primary z-20 flex flex-col justify-between items-center "
                 x-show="open" x-transition:enter="transition ease-out duration-300"
@@ -92,8 +121,8 @@
             </div>
 
             <!-- ***********************
-                                                                                    Formulaire modification d'un joueur
-                                                                                    ************************** -->
+                                                                                                        Formulaire modification d'un joueur
+                                                                                                        ************************** -->
 
             <div id="edition" class="hidden fixed z-50 inset-0 justify-center items-center"
                 style="background-color: rgba(0,0,0,.5);">
