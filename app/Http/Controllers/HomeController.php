@@ -44,7 +44,7 @@ class HomeController extends Controller
         $statistics = Statistic::where('action', 'goal')->where('created_at', '>=', now()->subWeek(1))->orderBy('created_at', 'desc')->get();
         $stats = $statistics->unique('player_id');
         
-        $commentators = Commentator::all();
+        $commentators = Commentator::where('updated_at', '>', Carbon::now()->subDays(6))->get();
 
         $comOfTheWeek = Commentator::whereBetween('created_at',[Carbon::now()->subDays(6), Carbon::now()->addDay(1)])->get() ;
 
