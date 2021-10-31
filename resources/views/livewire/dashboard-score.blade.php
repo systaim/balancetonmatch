@@ -20,13 +20,22 @@
             </div>
         </div>
         <div class="flex justify-center">
-            @if ((Auth::user()->role == 'super-admin' || Auth::user()->role == 'admin' || $match->commentateur->user_id == Auth::user()->id ) 
-            || ($match->live == 'attente' && $match->date_match < now() 
-            && ($match->home_score == null && $match->away_score == null)))
-                <button class="bg-secondary p-1 m-1 rounded-lg text-sm" type="button" wire:click="openBtnScore">
+            @auth
+                @if (Auth::user()->role == 'super-admin' || Auth::user()->role == 'admin' || $match->commentateur->user_id == Auth::user()->id || ($match->live == 'attente' && $match->date_match < now() && ($match->home_score == null && $match->away_score == null)))
+                    <button class="bg-secondary p-1 m-1 rounded-lg text-sm" type="button" wire:click="openBtnScore">
+                        Quel score ?
+                    </button>
+
+                @endif
+                @else
+                <a href="/login">
+                    <button class="bg-secondary p-1 m-1 rounded-lg text-sm" type="button">
                     Quel score ?
                 </button>
-            @endif
+                </a>
+                
+            @endauth
+
         </div>
         <div class="grid grid-cols-12 lg:mx-16 xl:mx-24 mb-2">
             <div class="col-span-5 overflow-hidden">
@@ -89,24 +98,25 @@
                     </div>
                 </div>
                 @if ($open_btn_score)
-            <div class="flex my-1">
-                <button class="px-1 bg-yellow-100 text-black rounded-md mr-1 shadow-xl" type="button"
-                    wire:click="openBtnScore">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-600" fill="none"
-                        viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M11 17l-5-5m0 0l5-5m-5 5h12" />
-                    </svg>
-                </button>
-                <button class="px-1 bg-green-100 text-black rounded-md ml-1 shadow-xl" type="button" wire:click="updateScore">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-600" fill="none"
-                        viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M5 13l4 4L19 7" />
-                    </svg>
-                </button>
-            </div>
-        @endif
+                    <div class="flex my-1">
+                        <button class="px-1 bg-yellow-100 text-black rounded-md mr-1 shadow-xl" type="button"
+                            wire:click="openBtnScore">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-600" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M11 17l-5-5m0 0l5-5m-5 5h12" />
+                            </svg>
+                        </button>
+                        <button class="px-1 bg-green-100 text-black rounded-md ml-1 shadow-xl" type="button"
+                            wire:click="updateScore">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-600" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M5 13l4 4L19 7" />
+                            </svg>
+                        </button>
+                    </div>
+                @endif
                 @if (count($tabHome) != 0 && count($tabAway) != 0)
                     <div class="text-white flex flex-col items-center justify-center ">
                         <p class="text-xs">Tab</p>
