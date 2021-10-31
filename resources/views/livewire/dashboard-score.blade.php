@@ -25,15 +25,16 @@
                     <button class="bg-secondary p-1 m-1 rounded-lg text-sm" type="button" wire:click="openBtnScore">
                         Quel score ?
                     </button>
-
                 @endif
-                @else
-                <a href="/login">
-                    <button class="bg-secondary p-1 m-1 rounded-lg text-sm" type="button">
-                    Quel score ?
-                </button>
-                </a>
-                
+            @else
+                @if ($match->live == 'attente' && $match->date_match < now() && ($match->home_score == null && $match->away_score == null))
+                    <a href="/login">
+                        <button class="bg-secondary p-1 m-1 rounded-lg text-sm" type="button">
+                            Quel score ?
+                        </button>
+                    </a>
+                @endif
+
             @endauth
 
         </div>
