@@ -46,7 +46,7 @@
                         </div>
                     </div>
                     <div class="col-span-2 flex flex-row justify-center items-center">
-                        @if ($match->live == 'attente' && $match->home_score != null && $match->away_score != null)
+                        @if ($match->live == 'attente' || $match->home_score != null && $match->away_score != null)
                             <div class="flex items-center justify-center text-secondary">
                                 <img src="{{ asset('images/vs-secondary.png') }}" alt="versus"
                                     class="h-12 lg:h-24 w-12 lg:w-24">
