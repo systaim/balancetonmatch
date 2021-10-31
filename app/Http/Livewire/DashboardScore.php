@@ -10,17 +10,8 @@ use Livewire\Component;
 class DashboardScore extends Component
 {
 
-    public $match;
-    public $home_score;
-    public $away_score;
-    public $btnScore = false;
-    public $tabHome;
-    public $tabAway;
-    public $scoreTabHome;
-    public $scoreTabAway;
-    public $commentsMatch;
-    public $nbrFavoris;
-    public $minute;
+    public $match, $home_score, $away_score, $btnScore = false, $tabHome, $tabAway, $scoreTabHome, $scoreTabAway;
+    public $commentsMatch, $nbrFavoris, $minute, $open_btn_score, $away_score_corrige, $home_score_corrige;
 
     protected $listeners = [ 'majPage' ];
 
@@ -54,6 +45,24 @@ class DashboardScore extends Component
         $this->majCommentaires();
         $this->countVisitor();
 
+    }
+
+    public function openBtnScore()
+    {
+        $this->open_btn_score = !$this->open_btn_score;
+    }
+
+    public function updateScore()
+    {
+
+        $this->match->home_score = $this->home_score_corrige;
+        $this->match->away_score = $this->away_score_corrige;
+        $this->match->save();
+
+        $this->home_score = $this->home_score_corrige;
+        $this->away_score = $this->away_score_corrige;
+
+        $this->openBtnScore();
     }
 
     public function miseAjourTemps()

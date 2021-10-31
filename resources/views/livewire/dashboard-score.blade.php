@@ -19,6 +19,15 @@
                 </div>
             </div>
         </div>
+        <div class="flex justify-center">
+            @if ((Auth::user()->role == 'super-admin' || Auth::user()->role == 'admin' || $match->commentateur->user_id == Auth::user()->id ) 
+            || ($match->live == 'attente' && $match->date_match < now() 
+            && ($match->home_score == null && $match->away_score == null)))
+                <button class="bg-secondary p-1 m-1 rounded-lg text-sm" type="button" wire:click="openBtnScore">
+                    Quel score ?
+                </button>
+            @endif
+        </div>
         <div class="grid grid-cols-12 lg:mx-16 xl:mx-24 mb-2">
             <div class="col-span-5 overflow-hidden">
                 <a href="{{ route('clubs.show', $match->homeClub->id) }}">
@@ -54,52 +63,50 @@
                 class="relative col-span-2 bg-gradient-to-r from-primary to-secondary flex flex-col justify-center items-center">
                 <div class="flex justify-center mt-2">
                     <div class="z-10">
-                        <p
-                            class="bg-white rounded-sm mr-1 flex justify-center w-4 text-3xl px-4 sm:text-5xl sm:px-6 font-mono font-bold">
-                            {{ $home_score }}
-                        </p>
-                        {{-- @if ($btnScore)
-                            <div class="flex justify-evenly items-center mt-1 z-10">
-                                <button type="button" wire:click="decrementHomeScore" class="focus:outline-none">
-                                    <span
-                                        class="h-4 w-4 flex items-center justify-center text-black bg-danger font-bold">-</span>
-                                </button>
-                                <button type="button" wire:click="incrementHomeScore" class="focus:outline-none">
-                                    <span
-                                        class="h-4 w-4 flex items-center justify-center bg-success text-black font-bold">+</span>
-                                </button>
-                            </div>
-                        @endif --}}
+                        @if (!$open_btn_score)
+                            <p
+                                class="bg-white rounded-sm mr-1 flex justify-center w-4 text-3xl px-4 sm:text-5xl sm:px-6 font-mono font-bold">
+                                {{ $home_score }}
+                            </p>
+                        @else
+                            <input
+                                class="bg-white rounded-sm mr-1 flex justify-center w-12 text-3xl px-4 sm:text-5xl sm:px-6 font-mono font-bold"
+                                type="number" wire:model="home_score_corrige">
+                        @endif
                     </div>
                     <div class="z-10">
-                        <p
-                            class="bg-white rounded-sm ml-1 flex justify-center w-4 text-3xl px-4 sm:text-5xl sm:px-6 font-mono font-bold">
-                            {{ $away_score }}
-                        </p>
-                        @if ($btnScore)
-                            <div class="flex justify-evenly items-center mt-1 z-10">
-                                <button type="button" wire:click="decrementAwayScore" class="focus:outline-none">
-                                    <span
-                                        class="h-4 w-4 flex items-center justify-center text-black bg-danger font-bold">-</span>
-                                </button>
-                                <button type="button" wire:click="incrementAwayScore" class="focus:outline-none">
-                                    <span
-                                        class="h-4 w-4 flex items-center justify-center bg-success text-black font-bold">+</span>
-                                </button>
-                            </div>
+                        @if (!$open_btn_score)
+                            <p
+                                class="bg-white  rounded-sm ml-1 flex justify-center w-4 text-3xl px-4 sm:text-5xl sm:px-6 font-mono font-bold">
+                                {{ $away_score }}
+                            </p>
+                        @else
+                            <input
+                                class="bg-white rounded-sm mr-1 flex justify-center w-12 text-3xl px-4 sm:text-5xl sm:px-6 font-mono font-bold"
+                                type="number" wire:model="away_score_corrige">
+
                         @endif
                     </div>
                 </div>
-                {{-- @auth
-                @if ((Auth::user()->role == 'super-admin' || $match->commentateur) && $match->live != 'attente')
-                    @if (!$btnScore)
-                        <div class="mt-2">
-                            <button type="button" wire:click="clickBtnScore" class="text-white text-xs">Corriger
-                                le score</button>
-                        </div>
-                    @endif
-                @endif
-            @endauth --}}
+                @if ($open_btn_score)
+            <div class="flex my-1">
+                <button class="px-1 bg-yellow-100 text-black rounded-md mr-1 shadow-xl" type="button"
+                    wire:click="openBtnScore">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-600" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M11 17l-5-5m0 0l5-5m-5 5h12" />
+                    </svg>
+                </button>
+                <button class="px-1 bg-green-100 text-black rounded-md ml-1 shadow-xl" type="button" wire:click="updateScore">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-600" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M5 13l4 4L19 7" />
+                    </svg>
+                </button>
+            </div>
+        @endif
                 @if (count($tabHome) != 0 && count($tabAway) != 0)
                     <div class="text-white flex flex-col items-center justify-center ">
                         <p class="text-xs">Tab</p>
@@ -157,7 +164,7 @@
                     @endif
                 @endforeach
             </div>
-            <div class="col-span-4 flex justify-center">
+            <div class="col-span-4 flex flex-col items-center justify-center">
                 <div
                     class="text-white font-bold text-2xl bg-primary flex justify-center items-center w-20 h-20 my-3 rounded-full border-2 border-secondary">
                     @if ($match->live != 'attente' && $match->live != 'finDeMatch' && $match->live != 'reporte')

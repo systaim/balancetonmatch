@@ -185,7 +185,6 @@
             </div>
         </div>
     </section> --}}
-
     @if (empty($commentators))
     <section>
         <div class="bg-gray-50 overflow-hidden">
