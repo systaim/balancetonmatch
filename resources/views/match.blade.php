@@ -12,8 +12,9 @@
                 <a class="w-full" href="{{ route('matches.edit', ['match' => $match]) }}">modifier</a>
                 @auth
                     @if ((Auth::user() && $match->user_id == Auth::user()->id && $match->live == 'attente') || Auth::user()->role == 'super-admin' || Auth::user()->role == 'admin')
-                        <a class="w-full" href="{{ route('matches.destroy', $match) }}" onclick="event.preventDefault();
-                                        document.getElementById('delete-match-{{ $match->id }}').submit();">Effacer</a>
+                        <a class="w-full" href="{{ route('matches.destroy', $match) }}"
+                            onclick="event.preventDefault();
+                                            document.getElementById('delete-match-{{ $match->id }}').submit();">Effacer</a>
                     @endif
                 @endauth
             </div>
@@ -45,7 +46,7 @@
                         </div>
                     </div>
                     <div class="col-span-2 flex flex-row justify-center items-center">
-                        @if ($match->live == 'attente')
+                        @if ($match->live == 'attente' && !$match->home_score && !$match->away_score)
                             <div class="flex items-center justify-center text-secondary">
                                 <img src="{{ asset('images/vs-secondary.png') }}" alt="versus"
                                     class="h-12 lg:h-24 w-12 lg:w-24">
