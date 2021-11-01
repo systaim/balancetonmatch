@@ -205,7 +205,7 @@
                 @endif
             </div>
         </aside>
-        <div class="flex-1">
+        <div class="flex-1 w-full">
             <a href="{{ route('competitions.index') }}">
                 <div class="shadow-white-xl rounded-2xl w-5/6 p-4 bg-white relative overflow-hidden mx-auto">
                     <img alt="competitions" src="{{ asset('images/ball-fire-water.png') }}"
