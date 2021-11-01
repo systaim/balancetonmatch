@@ -43,7 +43,7 @@ $club = ClubController::class;
 
 Route::get('/competitions/coupe-de-france-2021-2022', function () {
 
-    $matchs = Match::where('competition_id', 3)->where('date_match','>=', Carbon::now()->subHours(24))->orderBy('date_match', 'asc')->get();
+    $matchs = Match::where('competition_id', 3)->where('date_match','>=', Carbon::now()->subDays(5))->orderBy('date_match', 'asc')->get();
     $user = Auth::user();
     $title = "coupe De France";
 
@@ -52,7 +52,7 @@ Route::get('/competitions/coupe-de-france-2021-2022', function () {
 
 Route::get('/competitions/coupe-de-bretagne-2021-2022', function () {
 
-    $matchs = Match::where('competition_id', 4)->where('date_match','>=', Carbon::now()->subHours(24))->where('region_id', 3)->orderBy('date_match', 'asc')->get();
+    $matchs = Match::where('competition_id', 4)->where('date_match','>=', Carbon::now()->subDays(5))->where('region_id', 3)->orderBy('date_match', 'asc')->get();
     $user = Auth::user();
     $title = "coupe de Bretagne";
 
@@ -61,7 +61,7 @@ Route::get('/competitions/coupe-de-bretagne-2021-2022', function () {
 
 Route::get('/competitions/coupe-ange-lemee-2021-2022', function () {
 
-    $matchs = Match::where('competition_id', 5)->where('date_match','>=', Carbon::now()->subHours(24))->where('department_id', 22)->orderBy('date_match', 'asc')->get();
+    $matchs = Match::where('competition_id', 5)->where('date_match','>=', Carbon::now()->subDays(5))->where('department_id', 22)->orderBy('date_match', 'asc')->get();
     $user = Auth::user();
     $title = "coupe Ange Lemée";
 
@@ -70,7 +70,7 @@ Route::get('/competitions/coupe-ange-lemee-2021-2022', function () {
 
 Route::get('/competitions/coupe-du-departement/region/{region}/departement/{departement}', function (Region $region, Department $departement) {
     
-    $matchs = Match::where('competition_id', 7)->where('date_match','>=', Carbon::now()->subHours(24))->where('region_id', $region->id)->where('department_id', $departement->id)->orderBy('date_match', 'asc')->get();
+    $matchs = Match::where('competition_id', 7)->where('date_match','>=', Carbon::now()->subDays(5))->where('region_id', $region->id)->where('department_id', $departement->id)->orderBy('date_match', 'asc')->get();
     $user = Auth::user();
     $title = "Coupe du département";
 
