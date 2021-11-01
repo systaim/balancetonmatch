@@ -80,7 +80,7 @@
                             </p>
                         @else
                             <input
-                                class="bg-white rounded-sm mr-1 flex justify-center w-12 text-3xl px-4 sm:text-5xl sm:px-6 font-mono font-bold"
+                                class="bg-white rounded-sm mr-1 flex justify-center w-12 text-3xl sm:text-5xl text-center font-mono font-bold"
                                 type="number" wire:model="home_score_corrige">
                         @endif
                     </div>
@@ -92,7 +92,7 @@
                             </p>
                         @else
                             <input
-                                class="bg-white rounded-sm mr-1 flex justify-center w-12 text-3xl px-4 sm:text-5xl sm:px-6 font-mono font-bold"
+                                class="bg-white rounded-sm mr-1 flex justify-center w-12 text-3xl sm:text-5xl text-center font-mono font-bold"
                                 type="number" wire:model="away_score_corrige">
 
                         @endif
