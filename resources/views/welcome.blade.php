@@ -202,7 +202,7 @@
             </div>
         </div>
     </section> --}}
-    @if (!empty($commentators))
+    @if (empty($commentators))
         <section>
             <div class="bg-gray-50 overflow-hidden">
                 <div class="relative max-w-7xl mx-auto py-2 px-4 sm:px-6 lg:px-8">
