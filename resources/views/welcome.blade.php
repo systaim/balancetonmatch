@@ -25,7 +25,7 @@
     <section class="py-11 flex bg-primary flex-col-reverse md:flex-row items-center">
         <aside class="bg-white rounded-lg mx-4 py-4 shadow-white-xl my-8 overflow-y-scroll md:h-96 md:w-1/3">
             <h3 class="px-4">Dernières actus</h3>
-            <div>
+            {{-- <div>
                 @if ($stats)
                     @foreach ($stats as $stat)
                         <a href="{{ route('clubs.players.show', [$stat->player->club->id, $stat->player->id]) }}">
@@ -33,7 +33,7 @@
                         </a>
                     @endforeach
                 @endif
-            </div>
+            </div> --}}
             <div>
                 @if (empty($activities))
                     <ul role="list" class="divide-y divide-gray-200">
