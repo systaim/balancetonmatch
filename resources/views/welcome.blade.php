@@ -23,7 +23,7 @@
 
     {{-- affichage mobile --}}
     <section class="py-11 flex bg-primary flex-col-reverse md:flex-row items-center">
-        <aside class="bg-white rounded-lg mx-4 py-4 shadow-white-xl my-8 overflow-y-scroll max-h-72 md:h-96 md:w-1/3">
+        <aside class="bg-white rounded-lg mx-4 py-4 shadow-white-xl my-8 overflow-y-scroll max-h-80 md:h-96 md:w-1/3">
             <h3 class="px-4">Dernières actus</h3>
             {{-- <div>
                 @if ($stats)
