@@ -11,6 +11,8 @@ class Composition extends Model
 
     public $timestamps = false;
 
+    public $fillable =['match_id', 'user_id', 'player_id'];
+
     public function match()
     {
         return $this->hasOne(Match::class);

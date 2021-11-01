@@ -1098,6 +1098,15 @@ input:checked+.inputAction {
 
     ****************************************/
 
+.disparition{
+  transform: translateX(100vw);
+  -webkit-animation-name: disparition;
+          animation-name: disparition;
+  -webkit-animation-duration: 5s;
+  animation-duration: 5s;
+  transition-delay: 1s;
+}
+
 .moveToLeft{
   opacity: 0;
 }

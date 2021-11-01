@@ -23,14 +23,14 @@
 
     {{-- affichage mobile --}}
     <section class="py-11 flex ">
-        {{-- <aside class="bg-white rounded-lg w-1/3 mx-4">
+        <aside class="bg-white rounded-lg w-1/3 mx-4">
             <p>Mon club</p>
             @foreach ($stats as $stat)
                 <a href="{{ route('clubs.players.show', [$stat->player->club->id, $stat->player->id]) }}">
                     <p>{{ $stat->player->first_name }} {{ $stat->player->last_name }}</p>
                 </a>
             @endforeach
-        </aside> --}}
+        </aside>
         <div class="flex-1">
             <a href="{{ route('competitions.index') }}">
                 <div class="shadow-white-xl rounded-2xl w-5/6 p-4 bg-white relative overflow-hidden mx-auto">

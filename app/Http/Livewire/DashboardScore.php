@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Activity;
 use App\Models\Counter;
 use App\Models\Tab;
 use Illuminate\Support\Facades\Auth;
@@ -63,6 +64,13 @@ class DashboardScore extends Component
         $this->away_score = $this->away_score_corrige;
 
         $this->openBtnScore();
+
+        $activite['user_id'] = Auth::user()->id;
+        $activite['match_id'] = $this->match->id;
+        $activite['type'] = 'update_score';
+
+        $storeActivite = Activity::create($activite);
+        $storeActivite->save();
     }
 
     public function miseAjourTemps()

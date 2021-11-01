@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Mail\MatchMail;
+use App\Models\Activity;
 use App\Models\Club;
 use App\Models\Competition;
 use App\Models\Department;
@@ -151,12 +152,21 @@ class CreateMatch extends Component
         $match->date_match = $dateAndTime;
         $match->competition_id = $this->competition;
         $match->user_id = $user->id;
+        
 
         if ($homeTeam != $awayTeam) {
 
             $slug = Str::slug($match->homeClub->name .' vs '. $match->awayClub->name .' '. $match->date_match->formatLocalized('%d %m %Y'), '-');
             $match->slug = $slug;
             
+            $activite['user_id'] = Auth::user()->id;
+            $activite['match_id'] = $match->id;
+            $activite['type'] = 'update_score';
+    
+            $storeActivite = Activity::create($activite);
+            $storeActivite->save();
+            // dd($storeActivite);
+
             $match->save();
 
             $matchCreate = [

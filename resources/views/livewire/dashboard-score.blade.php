@@ -21,7 +21,7 @@
         </div>
         <div class="flex justify-center">
             @auth
-                @if (Auth::user()->role == 'super-admin' || Auth::user()->role == 'admin' || $match->commentateur->user_id == Auth::user()->id || ($match->live == 'attente' && $match->date_match < now() && ($match->home_score == null && $match->away_score == null)))
+                @if (Auth::user()->role == 'super-admin' || Auth::user()->role == 'admin' || ($match->live == 'attente' && $match->date_match < now() && ($match->home_score == null && $match->away_score == null)))
                     <button class="bg-secondary p-1 m-1 rounded-lg text-sm" type="button" wire:click="openBtnScore">
                         Quel score ?
                     </button>
