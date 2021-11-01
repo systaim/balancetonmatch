@@ -35,7 +35,7 @@
                 @endif
             </div> --}}
             <div>
-                @if (empty($activities))
+                @if ($activities)
                     <ul role="list" class="divide-y divide-gray-200">
                         @foreach ($activities as $activite)
                             @switch($activite->type)
@@ -50,7 +50,7 @@
                                                                 class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
                                                                 Match
                                                             </span>
-                                                            {{ $activite->user->pseudo }}
+                                                            par {{ $activite->user->pseudo }}
                                                         </p>
                                                         <p class="text-xs text-gray-500">
                                                             {{ Carbon\Carbon::create($activite->created_at)->diffForHumans() }}
@@ -93,7 +93,7 @@
                                                                 class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
                                                                 Match
                                                             </span>
-                                                            {{ $activite->user->pseudo }}
+                                                            par {{ $activite->user->pseudo }}
                                                         </p>
                                                         <p class="text-xs text-gray-500">
                                                             {{ Carbon\Carbon::create($activite->created_at)->diffForHumans() }}
@@ -130,7 +130,7 @@
                                                                 class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
                                                                 Club
                                                             </span>
-                                                            {{ $activite->user->pseudo }}
+                                                            par {{ $activite->user->pseudo }}
                                                         </p>
                                                         <p class="text-xs text-gray-500">
                                                             {{ Carbon\Carbon::create($activite->created_at)->diffForHumans() }}
@@ -166,7 +166,7 @@
                                                                 class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
                                                                 Joueur
                                                             </span>
-                                                            {{ $activite->user->pseudo }}
+                                                            par {{ $activite->user->pseudo }}
                                                         </p>
                                                         <p class="text-xs text-gray-500">
                                                             {{ Carbon\Carbon::create($activite->created_at)->diffForHumans() }}
@@ -197,10 +197,11 @@
                             @endswitch
                         @endforeach
                     </ul>
-                @else
-                <div class="p-4">
-                    <p class="text-sm text-gray-500">Aucune actualité récente...</p>
-                </div>
+                    {{-- @if (!empty($activities))
+                        <div class="p-4">
+                            <p class="text-sm text-gray-500">Aucune actualité récente...</p>
+                        </div>
+                    @endif --}}
                 @endif
             </div>
         </aside>
