@@ -24,12 +24,29 @@
     {{-- affichage mobile --}}
     <section class="py-11 flex ">
         {{-- <aside class="bg-white rounded-lg w-1/3 mx-4">
-            <p>Mon club</p>
-            @foreach ($stats as $stat)
-                <a href="{{ route('clubs.players.show', [$stat->player->club->id, $stat->player->id]) }}">
-                    <p>{{ $stat->player->first_name }} {{ $stat->player->last_name }}</p>
-                </a>
-            @endforeach
+            <div>
+                @if ($stats)
+                @foreach ($stats as $stat)
+                    <a href="{{ route('clubs.players.show', [$stat->player->club->id, $stat->player->id]) }}">
+                        <p>{{ $stat->player->first_name }} {{ $stat->player->last_name }}</p>
+                    </a>
+                @endforeach
+            @endif
+            </div>
+            <div>
+                @if ($activities)
+                    @foreach ($activities as $activite)
+                    @switch($activite->type)
+                        @case('update_score')
+                            <p>Le score a été renseigné</p>
+                            @break
+                    
+                        @default
+                            
+                    @endswitch
+                    @endforeach
+                @endif
+            </div>
         </aside> --}}
         <div class="flex-1">
             <a href="{{ route('competitions.index') }}">
@@ -185,73 +202,73 @@
             </div>
         </div>
     </section> --}}
-    @if (empty($commentators))
-    <section>
-        <div class="bg-gray-50 overflow-hidden">
-            <div class="relative max-w-7xl mx-auto py-2 px-4 sm:px-6 lg:px-8">
-                <svg class="absolute top-0 left-full transform -translate-x-1/2 -translate-y-3/4 lg:left-auto lg:right-full lg:translate-x-2/3 lg:translate-y-1/4"
-                    width="404" height="784" fill="none" viewBox="0 0 404 784" aria-hidden="true">
-                    <defs>
-                        <pattern id="8b1b5f72-e944-4457-af67-0c6d15a99f38" x="0" y="0" width="20" height="20"
-                            patternUnits="userSpaceOnUse">
-                            <rect x="0" y="0" width="4" height="4" class="text-gray-200" fill="currentColor" />
-                        </pattern>
-                    </defs>
-                    <rect width="404" height="784" fill="url(#8b1b5f72-e944-4457-af67-0c6d15a99f38)" />
-                </svg>
+    @if (!empty($commentators))
+        <section>
+            <div class="bg-gray-50 overflow-hidden">
+                <div class="relative max-w-7xl mx-auto py-2 px-4 sm:px-6 lg:px-8">
+                    <svg class="absolute top-0 left-full transform -translate-x-1/2 -translate-y-3/4 lg:left-auto lg:right-full lg:translate-x-2/3 lg:translate-y-1/4"
+                        width="404" height="784" fill="none" viewBox="0 0 404 784" aria-hidden="true">
+                        <defs>
+                            <pattern id="8b1b5f72-e944-4457-af67-0c6d15a99f38" x="0" y="0" width="20" height="20"
+                                patternUnits="userSpaceOnUse">
+                                <rect x="0" y="0" width="4" height="4" class="text-gray-200" fill="currentColor" />
+                            </pattern>
+                        </defs>
+                        <rect width="404" height="784" fill="url(#8b1b5f72-e944-4457-af67-0c6d15a99f38)" />
+                    </svg>
 
-                <div class="relative flex-col flex md:flex-row py-6 ">
-                    <div class="">
-                        <h2 class="text-xl tracking-tight text-gray-900 sm:text-4xl">
-                            Les commentateurs du dimanche
-                        </h2>
-                    </div>
-                    <div class="mt-10 flex flex-wrap w-full">
-                        @foreach ($commentators->unique('user_id') as $com)
-                            <div class="relative bg-primary rounded-md shadow-xl overflow-hidden text-white w-72 m-2">
-                                <a href="{{ route('matches.show', [$com->match->id]) }}">
-                                    <div class="absolute -top-3 -left-3 logo h-20 w-20 transform -rotate-12">
-                                        @if ($com->match->homeClub->logo_path != null)
-                                            <img class="object-contain"
-                                                src="{{ asset($com->match->homeClub->logo_path) }}"
-                                                alt="Logo de {{ $com->match->homeClub->name }}">
-                                        @else
-                                            <img class="object-contain"
-                                                src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $com->match->homeClub->numAffiliation }}.jpg"
-                                                alt="Logo de {{ $com->match->homeClub->name }}">
-                                        @endif
-                                    </div>
-                                    <div class="absolute -top-3 -right-3 logo h-20 w-20 transform rotate-12">
-                                        @if ($com->match->awayClub->logo_path != null)
-                                            <img class="object-contain"
-                                                src="{{ asset($com->match->awayClub->logo_path) }}"
-                                                alt="Logo de {{ $com->match->awayClub->name }}">
-                                        @else
-                                            <img class="object-contain"
-                                                src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $com->match->awayClub->numAffiliation }}.jpg"
-                                                alt="Logo de {{ $com->match->awayClub->name }}">
-                                        @endif
-                                    </div>
-                                    <div class="flex justify-center items-start py-3">
-                                        <p class="text-sm leading-6 font-medium mr-3">
-                                            {{ $com->user->pseudo }}
-                                        </p>
-                                        <span
-                                            class=" flex items-center justify-center h-6 w-6 text-xs bg-orange-600 rounded-full">
-                                            {{ $com->merci }}
-                                        </span>
-                                    </div>
-                                </a>
-                            </div>
-                        @endforeach
+                    <div class="relative flex-col flex md:flex-row py-6 ">
+                        <div class="">
+                            <h2 class="text-xl tracking-tight text-gray-900 sm:text-4xl">
+                                Les commentateurs du dimanche
+                            </h2>
+                        </div>
+                        <div class="mt-10 flex flex-wrap w-full">
+                            @foreach ($commentators->unique('user_id') as $com)
+                                <div class="relative bg-primary rounded-md shadow-xl overflow-hidden text-white w-72 m-2">
+                                    <a href="{{ route('matches.show', [$com->match->id]) }}">
+                                        <div class="absolute -top-3 -left-3 logo h-20 w-20 transform -rotate-12">
+                                            @if ($com->match->homeClub->logo_path != null)
+                                                <img class="object-contain"
+                                                    src="{{ asset($com->match->homeClub->logo_path) }}"
+                                                    alt="Logo de {{ $com->match->homeClub->name }}">
+                                            @else
+                                                <img class="object-contain"
+                                                    src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $com->match->homeClub->numAffiliation }}.jpg"
+                                                    alt="Logo de {{ $com->match->homeClub->name }}">
+                                            @endif
+                                        </div>
+                                        <div class="absolute -top-3 -right-3 logo h-20 w-20 transform rotate-12">
+                                            @if ($com->match->awayClub->logo_path != null)
+                                                <img class="object-contain"
+                                                    src="{{ asset($com->match->awayClub->logo_path) }}"
+                                                    alt="Logo de {{ $com->match->awayClub->name }}">
+                                            @else
+                                                <img class="object-contain"
+                                                    src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $com->match->awayClub->numAffiliation }}.jpg"
+                                                    alt="Logo de {{ $com->match->awayClub->name }}">
+                                            @endif
+                                        </div>
+                                        <div class="flex justify-center items-start py-3">
+                                            <p class="text-sm leading-6 font-medium mr-3">
+                                                {{ $com->user->pseudo }}
+                                            </p>
+                                            <span
+                                                class=" flex items-center justify-center h-6 w-6 text-xs bg-orange-600 rounded-full">
+                                                {{ $com->merci }}
+                                            </span>
+                                        </div>
+                                    </a>
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-    </section>
+        </section>
     @endif
-    
+
     {{-- <section class="relative bg-secondary py-8 overflow-x-hidden">
         <div class="-my-4 absolute top-1/2 left-1 z-20">
             <i class="fas fa-arrow-circle-left text-3xl"></i>

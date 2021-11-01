@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Activity;
 use App\Models\Club;
 use App\Models\Commentator;
 use App\Models\Match;
@@ -43,6 +44,7 @@ class HomeController extends Controller
         $redCards= Statistic::where('action','red_card')->get();
         $statistics = Statistic::where('action', 'goal')->where('created_at', '>=', now()->subDays(6))->orderBy('created_at', 'desc')->get();
         $stats = $statistics->unique('player_id');
+        $activities = Activity::where('created_at', '>', now()->subDays(15))->get();
         
         $commentators = Commentator::where('created_at', '>', Carbon::now()->subDays(5))->get();
 
@@ -69,6 +71,7 @@ class HomeController extends Controller
         'stats',
         'statistics',
         'comOfTheWeek',
+        'activities'
     ));
     }
 }
