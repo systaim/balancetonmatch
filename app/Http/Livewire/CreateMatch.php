@@ -159,12 +159,12 @@ class CreateMatch extends Component
             $slug = Str::slug($match->homeClub->name .' vs '. $match->awayClub->name .' '. $match->date_match->formatLocalized('%d %m %Y'), '-');
             $match->slug = $slug;
             
-            $activite['user_id'] = Auth::user()->id;
-            $activite['match_id'] = $match->id;
-            $activite['type'] = 'update_score';
+            // $activite['user_id'] = Auth::user()->id;
+            // $activite['match_id'] = $match->id;
+            // $activite['type'] = 'update_score';
     
-            $storeActivite = Activity::create($activite);
-            $storeActivite->save();
+            // $storeActivite = Activity::create($activite);
+            // $storeActivite->save();
             // dd($storeActivite);
 
             $match->save();
