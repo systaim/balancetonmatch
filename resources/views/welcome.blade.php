@@ -22,32 +22,188 @@
 
 
     {{-- affichage mobile --}}
-    <section class="py-11 flex ">
-        {{-- <aside class="bg-white rounded-lg w-1/3 mx-4">
+    <section class="py-11 flex bg-primary flex-col-reverse md:flex-row items-center">
+        <aside class="bg-white rounded-lg mx-4 py-4 shadow-white-xl my-8 overflow-y-scroll md:h-96 md:w-1/3">
+            <h3 class="px-4">Dernières actus</h3>
             <div>
                 @if ($stats)
-                @foreach ($stats as $stat)
-                    <a href="{{ route('clubs.players.show', [$stat->player->club->id, $stat->player->id]) }}">
-                        <p>{{ $stat->player->first_name }} {{ $stat->player->last_name }}</p>
-                    </a>
-                @endforeach
-            @endif
-            </div>
-            <div>
-                @if ($activities)
-                    @foreach ($activities as $activite)
-                    @switch($activite->type)
-                        @case('update_score')
-                            <p>Le score a été renseigné</p>
-                            @break
-                    
-                        @default
-                            
-                    @endswitch
+                    @foreach ($stats as $stat)
+                        <a href="{{ route('clubs.players.show', [$stat->player->club->id, $stat->player->id]) }}">
+                            <p>{{ $stat->player->first_name }} {{ $stat->player->last_name }}</p>
+                        </a>
                     @endforeach
                 @endif
             </div>
-        </aside> --}}
+            <div>
+                @if (empty($activities))
+                    <ul role="list" class="divide-y divide-gray-200">
+                        @foreach ($activities as $activite)
+                            @switch($activite->type)
+                                @case('update_score')
+                                    <a href="{{ route('matches.show', [$activite->match->id]) }}">
+                                        <li class="py-4 hover:bg-gray-50 px-4">
+                                            <div class="flex space-x-3 ">
+                                                <div class="flex-1 space-y-1 ">
+                                                    <div class="flex items-center justify-between">
+                                                        <p class="text-sm font-medium">
+                                                            <span
+                                                                class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                                                Match
+                                                            </span>
+                                                            {{ $activite->user->pseudo }}
+                                                        </p>
+                                                        <p class="text-xs text-gray-500">
+                                                            {{ Carbon\Carbon::create($activite->created_at)->diffForHumans() }}
+                                                        </p>
+                                                    </div>
+                                                    <div class="flex">
+                                                        <div>
+                                                            <p class="text-sm text-gray-500">
+                                                                Le score est mis à jour
+                                                            </p>
+                                                            <p class="text-sm text-gray-500">
+                                                                {{ $activite->match->homeClub->name }} -
+                                                                {{ $activite->match->awayClub->name }}
+                                                            </p>
+                                                        </div>
+
+                                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                                            class="h-5 w-5 ml-3 text-gray-500" fill="none" viewBox="0 0 24 24"
+                                                            stroke="currentColor">
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                stroke-width="2"
+                                                                d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                        </svg>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </a>
+                                @break
+                                @case('create_commentator')
+                                    <a href="{{ route('matches.show', [$activite->match->id]) }}">
+                                        <li class="py-4 hover:bg-gray-50 px-4">
+                                            <div class="flex space-x-3 ">
+                                                <div class="flex-1 space-y-1 ">
+                                                    <div class="flex items-center justify-between">
+                                                        <p class="text-sm font-medium">
+                                                            <span
+                                                                class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                                                Match
+                                                            </span>
+                                                            {{ $activite->user->pseudo }}
+                                                        </p>
+                                                        <p class="text-xs text-gray-500">
+                                                            {{ Carbon\Carbon::create($activite->created_at)->diffForHumans() }}
+                                                        </p>
+                                                    </div>
+                                                    <div class="flex items-center">
+                                                        <p class="text-sm text-gray-500"> commente<br>
+                                                            {{ $activite->match->homeClub->name }} -
+                                                            {{ $activite->match->awayClub->name }}
+                                                        </p>
+                                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                                            class="h-5 w-5 ml-3 text-gray-500" fill="none" viewBox="0 0 24 24"
+                                                            stroke="currentColor">
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                stroke-width="2"
+                                                                d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                        </svg>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </a>
+                                @break
+                                @case('update_cover')
+                                    <a href="{{ route('clubs.show', [$activite->club->id]) }}">
+                                        <li class="py-4 hover:bg-gray-50 px-4">
+                                            <div class="flex space-x-3 ">
+                                                <div class="flex-1 space-y-1 ">
+                                                    <div class="flex items-center justify-between">
+                                                        <p class="text-sm font-medium">
+                                                            <span
+                                                                class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                                                Club
+                                                            </span>
+                                                            {{ $activite->user->pseudo }}
+                                                        </p>
+                                                        <p class="text-xs text-gray-500">
+                                                            {{ Carbon\Carbon::create($activite->created_at)->diffForHumans() }}
+                                                        </p>
+                                                    </div>
+                                                    <div class="flex items-center">
+                                                        <p class="text-sm text-gray-500">Couverture mise à jour<br>
+                                                            {{ $activite->club->name }}
+                                                        </p>
+                                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                                            class="h-5 w-5 ml-3 text-gray-500" fill="none" viewBox="0 0 24 24"
+                                                            stroke="currentColor">
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                stroke-width="2"
+                                                                d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                        </svg>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </a>
+                                @break
+                                @case('create_player')
+                                    <a href="{{ route('clubs.show', [$activite->player->id]) }}">
+                                        <li class="py-4 hover:bg-gray-50 px-4">
+                                            <div class="flex space-x-3 ">
+                                                <div class="flex-1 space-y-1 ">
+                                                    <div class="flex items-center justify-between">
+                                                        <p class="text-sm font-medium">
+                                                            <span
+                                                                class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                                                Joueur
+                                                            </span>
+                                                            {{ $activite->user->pseudo }}
+                                                        </p>
+                                                        <p class="text-xs text-gray-500">
+                                                            {{ Carbon\Carbon::create($activite->created_at)->diffForHumans() }}
+                                                        </p>
+                                                    </div>
+                                                    <div class="flex items-center">
+                                                        <p class="text-sm text-gray-500">Joueur créé<br>
+                                                            {{ $activite->player->first_name }}
+                                                            {{ $activite->player->last_name }}
+                                                        </p>
+                                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                                            class="h-5 w-5 ml-3 text-gray-500" fill="none" viewBox="0 0 24 24"
+                                                            stroke="currentColor">
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                stroke-width="2"
+                                                                d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                        </svg>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </a>
+                                @break
+                                @default
+
+                            @endswitch
+                        @endforeach
+                    </ul>
+                @else
+                <div class="p-4">
+                    <p class="text-sm text-gray-500">Aucune actualité récente...</p>
+                </div>
+                @endif
+            </div>
+        </aside>
         <div class="flex-1">
             <a href="{{ route('competitions.index') }}">
                 <div class="shadow-white-xl rounded-2xl w-5/6 p-4 bg-white relative overflow-hidden mx-auto">

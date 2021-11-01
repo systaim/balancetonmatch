@@ -9,7 +9,7 @@ class Activity extends Model
 {
     use HasFactory;
 
-    public $fillable = ['user_id', 'match_id', 'type'];
+    public $fillable = ['user_id', 'match_id', 'club_id', 'type', 'player_id'];
 
     public function user()
     {
@@ -18,7 +18,17 @@ class Activity extends Model
 
     public function match()
     {
-        return $this->hasOne(Match::class);
+        return $this->belongsTo(Match::class);
+    }
+
+    public function player()
+    {
+        return $this->belongsTo(Player::class);
+    }
+
+    public function club()
+    {
+        return $this->belongsTo(Club::class);
     }
 
 }

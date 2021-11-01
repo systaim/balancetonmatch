@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Activity;
 use App\Models\Club;
 use App\Models\Commentaire;
 use App\Models\Commentator;
@@ -160,12 +161,14 @@ class FormCommentaires extends Component
     public function storePhotoMatch($match_id)
     {
 
-        $this->validate([
-            'photo_match' => 'mimes:jpeg,jpg,png,gif|max:10240',
-        ],
-    [
-        'photo_match.mimes' => 'Format non conforme',
-    ]);
+        $this->validate(
+            [
+                'photo_match' => 'mimes:jpeg,jpg,png,gif|max:10240',
+            ],
+            [
+                'photo_match.mimes' => 'Format non conforme',
+            ]
+        );
 
         $path = $this->photo_match->store('photos_match');
         $photo['images'] = $path;
@@ -432,6 +435,14 @@ class FormCommentaires extends Component
             $commentateur['match_id'] = $this->match->id;
             $commentateur->save();
             $this->emit('majPage');
+
+            $activite['user_id'] = Auth::user()->id;
+            $activite['match_id'] = $this->match->id;
+            $activite['type'] = 'create_commentator';
+
+            
+            $storeActivite = Activity::create($activite);
+            $storeActivite->save();
 
             session()->flash('success', 'Tu es le commentateur de ce match ! 😎');
             return redirect()->to('matches/' . $this->match->id);

@@ -7,6 +7,7 @@ use App\Models\Player;
 use App\Models\Statistic;
 use App\Models\Match;
 use App\Mail\PlayerMail;
+use App\Models\Activity;
 use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -76,7 +77,18 @@ class PlayerController extends Controller
         }
 
         $player = Player::create($dataPlayer);
+        
         $player->save();
+
+        $activite = new Activity();
+        $activite->user_id = Auth::user()->id;
+        $activite->club_id = $club->id;
+        $activite->player_id = $player->id;
+        $activite->type = 'create_player';
+        // dd($activite);
+
+        // $storeActivite = Activity::create($activite);
+        $activite->save();
 
         //envoi d'un mail avec les informations du joueur
 
@@ -94,9 +106,9 @@ class PlayerController extends Controller
         $superAdmin = User::where('role', 'super-admin')->get()->pluck('email');
 
         Mail::to($superAdmin)
-                ->send(new PlayerMail($playerCreate));
+            ->send(new PlayerMail($playerCreate));
 
-        return redirect('clubs/' .$club->id. '/players')->with('success', $player->first_name. ' a été créé avec succes !');
+        return redirect('clubs/' . $club->id . '/players')->with('success', $player->first_name . ' a été créé avec succes !');
     }
 
     /**
@@ -156,7 +168,7 @@ class PlayerController extends Controller
         // $player->user()->associate($user);
 
         $player->save();
-        return redirect('clubs/' .$club->id. '/players')->with('success', $player->first_name. ' a été mis à jour !');
+        return redirect('clubs/' . $club->id . '/players')->with('success', $player->first_name . ' a été mis à jour !');
         // return back()->with('messageUpdate', 'Le joueur a bien été mis à jour');
     }
 
@@ -169,7 +181,6 @@ class PlayerController extends Controller
     public function destroy(Club $club, Player $player)
     {
         $player->delete();
-        return redirect('clubs/' .$club->id. '/players')->with('success', 'Joueur supprimé !');
-
+        return redirect('clubs/' . $club->id . '/players')->with('success', 'Joueur supprimé !');
     }
 }

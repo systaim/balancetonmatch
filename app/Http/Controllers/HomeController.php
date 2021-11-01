@@ -44,7 +44,7 @@ class HomeController extends Controller
         $redCards= Statistic::where('action','red_card')->get();
         $statistics = Statistic::where('action', 'goal')->where('created_at', '>=', now()->subDays(6))->orderBy('created_at', 'desc')->get();
         $stats = $statistics->unique('player_id');
-        $activities = Activity::where('created_at', '>', now()->subDays(15))->get();
+        $activities = Activity::where('created_at', '>', now()->subDays(15))->orderByDesc('created_at')->get();
         
         $commentators = Commentator::where('created_at', '>', Carbon::now()->subDays(5))->get();
 
