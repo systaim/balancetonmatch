@@ -36,76 +36,44 @@
     {{-- <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
         @livewire('api.api-token-manager')
     </div> --}}
-    <!--
-                                      This example requires Tailwind CSS v2.0+ 
-                                      
-                                      This example requires some changes to your config:
-                                      
-                                      ```
-                                      // tailwind.config.js
-                                      const colors = require('tailwindcss/colors')
-                                      
-                                      module.exports = {
-                                        // ...
-                                        theme: {
-                                          extend: {
-                                            colors: {
-                                              cyan: colors.cyan,
-                                            },
-                                          },
-                                        },
-                                        plugins: [
-                                          // ...
-                                          require('@tailwindcss/forms'),
-                                        ],
-                                      }
-                                      ```
-                                    -->
-    <!--
-                                      This example requires updating your template:
 
-                                      ```
-                                      <html class="h-full bg-gray-100">
-                                      <body class="h-full">
-                                      ```
-                                    -->
     <div class="min-h-full" x-data="{ open: false }">
         <!-- Off-canvas menu for mobile, show/hide based on off-canvas menu state. -->
         <div class="fixed inset-0 flex z-40 lg:hidden" role="dialog" aria-modal="true" x-show="open">
             <!--
-                                            Off-canvas menu overlay, show/hide based on off-canvas menu state.
-                                      
-                                            Entering: "transition-opacity ease-linear duration-300"
-                                              From: "opacity-0"
-                                              To: "opacity-100"
-                                            Leaving: "transition-opacity ease-linear duration-300"
-                                              From: "opacity-100"
-                                              To: "opacity-0"
-                                          -->
+                                                Off-canvas menu overlay, show/hide based on off-canvas menu state.
+                                          
+                                                Entering: "transition-opacity ease-linear duration-300"
+                                                  From: "opacity-0"
+                                                  To: "opacity-100"
+                                                Leaving: "transition-opacity ease-linear duration-300"
+                                                  From: "opacity-100"
+                                                  To: "opacity-0"
+                                              -->
             <div class="fixed inset-0 bg-gray-600 bg-opacity-75" aria-hidden="true" x-show="open"
                 @click.outside="open = false"></div>
 
             <!--
-                                            Off-canvas menu, show/hide based on off-canvas menu state.
-                                      
-                                            Entering: "transition ease-in-out duration-300 transform"
-                                              From: "-translate-x-full"
-                                              To: "translate-x-0"
-                                            Leaving: "transition ease-in-out duration-300 transform"
-                                              From: "translate-x-0"
-                                              To: "-translate-x-full"
-                                          -->
-            <div class="relative flex-1 flex flex-col max-w-xs w-full pt-5 pb-4 bg-cyan-700">
+                                                Off-canvas menu, show/hide based on off-canvas menu state.
+                                          
+                                                Entering: "transition ease-in-out duration-300 transform"
+                                                  From: "-translate-x-full"
+                                                  To: "translate-x-0"
+                                                Leaving: "transition ease-in-out duration-300 transform"
+                                                  From: "translate-x-0"
+                                                  To: "-translate-x-full"
+                                              -->
+            <div class="relative flex-1 flex flex-col max-w-xs w-full pt-5 pb-4 bg-primary">
                 <!--
-                                              Close button, show/hide based on off-canvas menu state.
-                                      
-                                              Entering: "ease-in-out duration-300"
-                                                From: "opacity-0"
-                                                To: "opacity-100"
-                                              Leaving: "ease-in-out duration-300"
-                                                From: "opacity-100"
-                                                To: "opacity-0"
-                                            -->
+                                                  Close button, show/hide based on off-canvas menu state.
+                                          
+                                                  Entering: "ease-in-out duration-300"
+                                                    From: "opacity-0"
+                                                    To: "opacity-100"
+                                                  Leaving: "ease-in-out duration-300"
+                                                    From: "opacity-100"
+                                                    To: "opacity-0"
+                                                -->
                 <div class="absolute top-0 right-0 -mr-12 pt-2">
                     <button type="button" @click="open = ! open"
                         class="ml-1 flex items-center justify-center h-10 w-10 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
@@ -119,11 +87,11 @@
                     </button>
                 </div>
 
-                <div class="flex-shrink-0 flex items-center px-4">
+                {{-- <div class="flex-shrink-0 flex items-center px-4">
                     <img class="h-8 w-auto"
-                        src="https://tailwindui.com/img/logos/easywire-logo-cyan-300-mark-white-text.svg"
+                        src="https://tailwindui.com/img/logos/easywire-logo-primary-mark-white-text.svg"
                         alt="Easywire logo">
-                </div>
+                </div> --}}
                 @include('admin._nav')
             </div>
 
@@ -135,12 +103,12 @@
         <!-- Static sidebar for desktop -->
         <div class="hidden lg:flex lg:w-64 lg:flex-col lg:fixed lg:inset-y-0 z-50">
             <!-- Sidebar component, swap this element with another sidebar if you like -->
-            <div class="flex flex-col flex-grow bg-cyan-700 pt-5 pb-4 overflow-y-auto">
-                <div class="flex items-center flex-shrink-0 px-4">
+            <div class="flex flex-col flex-grow bg-primary pt-5 pb-4 overflow-y-auto">
+                {{-- <div class="flex items-center flex-shrink-0 px-4">
                     <img class="h-8 w-auto"
-                        src="https://tailwindui.com/img/logos/easywire-logo-cyan-300-mark-white-text.svg"
+                        src="https://tailwindui.com/img/logos/easywire-logo-primary-mark-white-text.svg"
                         alt="Easywire logo">
-                </div>
+                </div> --}}
                 @include('admin._nav')
             </div>
         </div>
@@ -148,7 +116,7 @@
         <div class="md:pl-64 flex flex-col flex-1">
             <div class="relative z-10 flex-shrink-0 flex h-16 bg-white border-b border-gray-200 lg:border-none">
                 <button type="button" @click="open = ! open"
-                    class="px-4 border-r border-gray-200 text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-cyan-500 lg:hidden">
+                    class="px-4 border-r border-gray-200 text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary lg:hidden">
                     <span class="sr-only">Open sidebar</span>
                     <!-- Heroicon name: outline/menu-alt-1 -->
                     <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -228,22 +196,22 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="mt-6 flex space-x-3 md:mt-0 md:ml-4">
+                            {{-- <div class="mt-6 flex space-x-3 md:mt-0 md:ml-4">
                                 <button type="button"
-                                    class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500">
+                                    class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
                                     Add money
                                 </button>
                                 <button type="button"
-                                    class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-cyan-600 hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500">
+                                    class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary hover:bg-primary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
                                     Send money
                                 </button>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
 
                 <div class="mt-8">
-                    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                    {{-- <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                         <h2 class="text-lg leading-6 font-medium text-gray-900">Overview</h2>
                         <div class="mt-2 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
                             <!-- Card -->
@@ -275,7 +243,7 @@
                                 </div>
                                 <div class="bg-gray-50 px-5 py-3">
                                     <div class="text-sm">
-                                        <a href="#" class="font-medium text-cyan-700 hover:text-cyan-900">
+                                        <a href="#" class="font-medium text-primary hover:text-primary">
                                             View all
                                         </a>
                                     </div>
@@ -284,7 +252,7 @@
 
                             <!-- More items... -->
                         </div>
-                    </div>
+                    </div> --}}
 
                     <h2 class="max-w-6xl mx-auto mt-8 px-4 text-lg leading-6 font-medium text-gray-900 sm:px-6 lg:px-8">
                         Recent activity

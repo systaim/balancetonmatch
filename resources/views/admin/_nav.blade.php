@@ -2,7 +2,7 @@
     <div class="px-2 space-y-1">
         <!-- Current: "bg-cyan-800 text-white", Default: "text-cyan-100 hover:text-white hover:bg-cyan-600" -->
         <a href="/admin"
-            class="bg-cyan-800 text-white group flex items-center px-2 py-2 text-sm leading-6 font-medium rounded-md"
+            class="bg-secondary text-primary group flex items-center px-2 py-2 text-sm leading-6 font-medium rounded-md"
             aria-current="page">
             <!-- Heroicon name: outline/home -->
             <svg class="mr-4 flex-shrink-0 h-6 w-6 text-cyan-200" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -14,7 +14,7 @@
         </a>
 
         <a href="admin/addClub"
-            class="text-cyan-100 hover:text-white hover:bg-cyan-600 group flex items-center px-2 py-2 text-sm leading-6 font-medium rounded-md">
+            class="text-secondary hover:text-white hover:bg-cyan-600 group flex items-center px-2 py-2 text-sm leading-6 font-medium rounded-md">
             <!-- Heroicon name: outline/clock -->
             <svg xmlns="http://www.w3.org/2000/svg" class="mr-4 flex-shrink-0 h-6 w-6 text-cyan-200" fill="none" viewBox="0 0 24 24"
                 stroke="currentColor">
@@ -24,7 +24,7 @@
             Ajouter un club
         </a>
 
-        <a href="#"
+        {{-- <a href="#"
             class="text-cyan-100 hover:text-white hover:bg-cyan-600 group flex items-center px-2 py-2 text-sm leading-6 font-medium rounded-md">
             <!-- Heroicon name: outline/scale -->
             <svg class="mr-4 flex-shrink-0 h-6 w-6 text-cyan-200" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -66,9 +66,9 @@
                     d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
             </svg>
             Reports
-        </a>
+        </a> --}}
     </div>
-    <div class="mt-6 pt-6">
+    {{-- <div class="mt-6 pt-6">
         <div class="px-2 space-y-1">
             <a href="#"
                 class="group flex items-center px-2 py-2 text-sm leading-6 font-medium rounded-md text-cyan-100 hover:text-white hover:bg-cyan-600">
@@ -105,5 +105,5 @@
                 Privacy
             </a>
         </div>
-    </div>
+    </div> --}}
 </nav>
