@@ -1,4 +1,4 @@
-<div class="mb-2 py-4 {{ $buttonCity == 1 ? "border-b" : ""}}">
+<div class="mb-2 py-4 {{ $buttonCity == 1 ? 'border-b' : '' }}">
     <div class="hidden" style="display:{{ $buttonCity == 1 ? 'block' : '' }}">
         <div class="my-4">
             <div class="flex justify-center">
@@ -50,8 +50,8 @@
             <div class="flex justify-between items-center w-full sm:w-7/12 m-2">
                 <label for="inputPrimaryColor">Couleur primaire</label>
                 <div class="relative h-12 w-12 rounded-full overflow-hidden border-white border-2">
-                    <input class="absolute -top-2 -left-2 h-24 w-24 cursor-pointer" type="color" name="inputPrimaryColor"
-                        id="inputPrimaryColor" wire:model="inputPrimaryColor">
+                    <input class="absolute -top-2 -left-2 h-24 w-24 cursor-pointer" type="color"
+                        name="inputPrimaryColor" id="inputPrimaryColor" wire:model="inputPrimaryColor">
                 </div>
                 @error('inputPrimaryColor')
                     <div class="alert alert-danger">{{ $message }}</div>
@@ -60,8 +60,8 @@
             <div class="flex justify-between items-center w-full sm:w-7/12 m-2">
                 <label for="inputSecondaryColor">Couleur Secondaire</label>
                 <div class="relative h-12 w-12 rounded-full overflow-hidden border-white border-2">
-                    <input class="absolute -top-2 -left-2 h-24 w-24 cursor-pointer" type="color" name="inputSecondaryColor"
-                        id="inputSecondaryColor" wire:model="inputSecondaryColor">
+                    <input class="absolute -top-2 -left-2 h-24 w-24 cursor-pointer" type="color"
+                        name="inputSecondaryColor" id="inputSecondaryColor" wire:model="inputSecondaryColor">
                 </div>
                 @error('inputSecondaryColor')
                     <div class="alert alert-danger">{{ $message }}</div>
@@ -106,10 +106,22 @@
         <div>
             @if ($buttonCity == 1)
                 <p class="absolute flex justify-center items-center top-2 right-2 bg-danger font-bold text-sm h-10 w-10 rounded-md cursor-pointer"
-                    wire:click="clickButtonCity"><i class="fas fa-times-circle"></i></p>
+                    wire:click="clickButtonCity">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                </p>
             @else
                 <p class="absolute flex justify-center items-center top-2 right-2 bg-darkSuccess font-bold text-sm h-10 w-10 rounded-md cursor-pointer"
-                    wire:click="clickButtonCity"><i class="fas fa-pencil-alt"></i></p>
+                    wire:click="clickButtonCity">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                    </svg>
+                </p>
             @endif
         </div>
     @endcan

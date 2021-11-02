@@ -59,7 +59,11 @@
             <div class="flex items-center">
                 <a href="/notifications">
                     <div class="relative flex justify-center items-center text-primary border rounded-full h-12 w-12 mr-4">
-                        <i class="far fa-bell"></i>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                        </svg>
                         <p id="js-count"
                             class="absolute -top-1 right-0 bg-red-500 rounded-full text-xs text-white flex items-center justify-center h-5 w-5">
                             {{ Auth::user()->unreadNotifications->count() }}</p>
@@ -70,7 +74,9 @@
                     <img class="rounded-full h-8 w-8 object-cover mr-4 border"
                         src="{{ Auth::user()->profile_photo_url }}">
                     <div id="btnMenu" class="focus:outline-none">
-                        <p><i class="fas fa-caret-down"></i></p>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                          </svg>
                     </div>
                 </div>
             </div>

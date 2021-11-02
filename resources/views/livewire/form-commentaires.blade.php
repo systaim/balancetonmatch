@@ -12,7 +12,11 @@
                                 class="flex justify-evenly items-center bg-primary text-white px-1 py-2 rounded-full w-48 border-2 border-secondary">
                                 <div
                                     class="animate-pulse h-10 w-10 shadow-2xl border-2 border-secondary bg-primary flex justify-center items-center rounded-full">
-                                    <i class="fas fa-plus text-2xl text-white"></i>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M4 6h16M4 12h8m-8 6h16" />
+                                    </svg>
                                 </div>
                                 <p class="px-3">Je commente</p>
                             </div>
@@ -26,7 +30,11 @@
                 <button type="button" wire:click="clickButtonComment" class="fixed flex justify-center bottom-20 z-50">
                     <div
                         class="h-14 w-14 shadow-2xl border-2 border-secondary bg-primary flex justify-center items-center rounded-full">
-                        <i class="fas fa-times text-2xl text-white"></i>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
+                        </svg>
                     </div>
                 </button>
             </div>
@@ -552,7 +560,11 @@
                                 class="flex justify-start items-center bg-primary text-white px-1 py-2 rounded-lg border-2 border-white my-2">
                                 <div
                                     class="h-12 w-12 shadow-2xl border-2 bg-white flex justify-center items-center rounded-full">
-                                    <i class="far fa-star cursor-pointer text-red-700 text-2xl"></i>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 cursor-pointer text-red-700"
+                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                                    </svg>
                                 </div>
                                 <div>
                                     <p class="px-3 text-xs">Toi aussi tu veux que ce match soit commenté ?</p>
@@ -574,7 +586,7 @@
                                             class="my-4 mx-auto flex justify-evenly items-center bg-primary text-white px-1 py-2 rounded-full w-48 border-2 border-secondary">
                                             <div
                                                 class="h-10 w-10 shadow-2xl border-2 border-secondary bg-primary flex justify-center items-center rounded-full">
-                                                <i class="fas fa-plus text-2xl text-white"></i>
+                                                
                                             </div>
                                             <p class="px-3">Je commente</p>
                                         </div>
@@ -632,13 +644,16 @@
                         <div
                             class="bg-primary text-secondary p-4 rounded-lg m-6 flex flex-col justify-center items-center w-11/12 md:w-6/12 mx-auto">
                             <p>Plus qu'à lancer le match ! 💪</p>
-                            <i class="fas fa-arrow-circle-down animate-bounce"></i>
                         </div>
                     @elseif($match->commentateur && $match->live == 'attente')
                         <div
                             class="bg-primary text-secondary p-4 rounded-lg m-6 flex flex-col justify-center items-center w-11/12 md:w-6/12 mx-auto">
                             <p>On attend le départ du commentateur</p>
-                            <i class="fas fa-spinner animate-spin"></i>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 animate-spin" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                            </svg>
                         </div>
                     @endif
                     @if ($match->commentateur)
@@ -982,7 +997,19 @@
                                     @foreach ($tabHome as $tab)
                                         <div
                                             class="h-8 w-8 border border-primary rounded-md m-1 flex justify-center items-center font-bold text-xl {{ $tab->score ? 'bg-success' : 'bg-danger' }}">
-                                            <i class="{{ $tab->score ? 'fas fa-check' : 'fas fa-times' }}"></i>
+                                            @if ($tab_score)
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6"
+                                                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2" d="M5 13l4 4L19 7" />
+                                                </svg>
+                                            @else
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6"
+                                                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                                </svg>
+                                            @endif
                                         </div>
                                     @endforeach
                                 @else
@@ -1013,7 +1040,19 @@
                                     @foreach ($tabAway as $tab)
                                         <div
                                             class="h-8 w-8 border border-primary rounded-md m-1 flex justify-center items-center font-bold text-xl {{ $tab->score ? 'bg-success' : 'bg-danger' }}">
-                                            <i class="{{ $tab->score ? 'fas fa-check' : 'fas fa-times' }}"></i>
+                                            @if ($tab_score)
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6"
+                                                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2" d="M5 13l4 4L19 7" />
+                                                </svg>
+                                            @else
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6"
+                                                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                                </svg>
+                                            @endif
                                         </div>
                                     @endforeach
                                 @else

@@ -18,14 +18,6 @@
             <option value="manager">manager</option>
             <option value="guest">guest</option>
         </select>
-        <div>
-            @if (session()->has('success'))
-            <div class="message-alert success">
-                <i class="fas fa-check-circle text-5xl text-white rounded-full shadow-xl"></i>
-                {{ session('success') }}
-            </div>
-            @endif
-        </div>
         <input class="btn btnSecondary" type="submit" value="Je valide">
         @endif
     </form>

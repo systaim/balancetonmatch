@@ -38,7 +38,13 @@
                         @if ($club->bg_path != null)
                             <button
                                 class="absolute top-2 right-3 bg-danger text-white border border-black font-bold text-xs px-2 py-1 rounded-md"
-                                wire:click="deleteCover">Supprimer <i class="far fa-times-circle"></i></button>
+                                wire:click="deleteCover">Supprimer
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </button>
                             <button type="button" class="text-red-700 font-bold ml-2" wire:loading.remove
                                 wire:target="cover" wire:click="clickButton">Annuler</button>
                         @endif
@@ -57,7 +63,13 @@
     @endcan
     <div class="absolute bottom-20 h-10 w-10 bg-secondary pt-3 rounded-full flex justify-center border border-black">
         <a href="#infos">
-            <i class="animate-bounce fas fa-arrow-down text-xl"></i>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 animate-bounce " viewBox="0 0 20 20"
+                fill="currentColor">
+                <path fill-rule="evenodd"
+                    d="M14.707 10.293a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 111.414-1.414L9 12.586V5a1 1 0 012 0v7.586l2.293-2.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd" />
+            </svg>
+            {{-- <i class="animate-bounce fas fa-arrow-down text-xl"></i> --}}
         </a>
     </div>
 </div>

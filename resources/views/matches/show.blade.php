@@ -45,7 +45,7 @@
     <link rel="stylesheet" href="{{ mix('css/styles.css') }}" />
 
     <!-- FontAwesome -->
-    <script src="https://kit.fontawesome.com/c03c2336c3.js" crossorigin="anonymous"></script>
+    {{-- <script src="https://kit.fontawesome.com/c03c2336c3.js" crossorigin="anonymous"></script> --}}
 
     <!-- AlpineJS -->
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.0/dist/alpine.min.js" defer></script>
@@ -125,7 +125,11 @@
                         <a href=" /notifications">
                             <div
                                 class="relative flex justify-center items-center text-primary border rounded-full h-12 w-12 mr-1">
-                                <i class="far fa-bell"></i>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                                </svg>
                                 @auth
                                     <p id="js-count"
                                         class="absolute -top-1 right-0 bg-red-500 rounded-full text-xs text-white flex items-center justify-center h-5 w-5">
@@ -216,10 +220,7 @@
                     <p> {!! \Session::get('danger') !!}</p>
                 </div>
             @endif --}}
-            @yield('content')
-            @include('footer')
         </div>
-    </div>
     </div>
 
     @livewire('dashboard-score', [
@@ -250,7 +251,10 @@
         <div
             class="fixed bottom-16 left-3 lg:hidden shadow-xl flex justify-center items-center rounded-full 
                 h-12 w-12 bg-white z-30 border border-darkSuccess">
-            <i class="fas fa-chevron-left mr-1 text-primary">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 17l-5-5m0 0l5-5m-5 5h12" />
+            </svg>
         </div>
     </a>
 

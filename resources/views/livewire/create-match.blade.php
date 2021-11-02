@@ -305,12 +305,12 @@
                                 </div>
                             </button>
                         </div>
-                        @if (\Session::has('danger'))
+                        {{-- @if (\Session::has('danger'))
                             <div class="message-alert danger">
                                 <i class="fas fa-times-circle text-5xl text-white rounded-full shadow-xl"></i>
                                 <p> {!! \Session::get('danger') !!}</p>
                             </div>
-                        @endif
+                        @endif --}}
                     </div>
                 @endif
             @endif
