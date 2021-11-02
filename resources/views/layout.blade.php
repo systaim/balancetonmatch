@@ -22,12 +22,12 @@
     @endisset()
 
     <title>Balance Ton Match</title>
-    <link rel="stylesheet" href="{{ mix('css/app.css') }}?ver=1.04">
-    <link rel="stylesheet" href="{{ mix('css/styles.css') }}?ver=1.04" />
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+    <link rel="stylesheet" href="{{ mix('css/styles.css') }}" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
     <!-- FontAwesome -->
-    <script src="https://kit.fontawesome.com/c03c2336c3.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/c03c2336c3.js" crossorigin="anonymous" defer></script>
 
     <!-- AlpineJS -->
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.0/dist/alpine.min.js" defer></script>
@@ -226,7 +226,7 @@
         </script>
     @endauth
 
-    <script src="{{ mix('js/app.js') }}?ver=1.04"></script>
+    <script src="{{ mix('js/app.js') }}"></script>
 
 </body>
 
