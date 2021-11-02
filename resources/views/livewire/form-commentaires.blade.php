@@ -846,7 +846,6 @@
         @if (!empty($photos))
             <div class="w-full">
                 <div wire:ignore>
-
                     <div class="splide">
                         <div class="splide__track">
                             <ul class="splide__list">
