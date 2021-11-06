@@ -88,7 +88,7 @@ Route::get('region/{region}/regional/{division}/groupe/{groupe}', function (Regi
 
 Route::get('region/{region}/departement/{departement}/district/{division}/groupe/{groupe}', function (Region $region, Department $departement, Competition $competition, DivisionsDepartment $division, Group $groupe) {
     
-    $matchs = Match::where('region_id', $region->id)->where('department_id', $departement->id)->where('division_department_id', $division->id)->where('group_id', $groupe->id)->get()->groupBy('journee_id');
+    $matchs = Match::where('region_id', $region->id)->where('date_match','>=', Carbon::now()->subDays(5))->where('department_id', $departement->id)->where('division_department_id', $division->id)->where('group_id', $groupe->id)->get()->groupBy('journee_id');
     $journees = Journee::find($matchs->keys());
 
     return view('competitions.regional', compact('region','departement', 'matchs', 'journees', 'division', 'groupe'));
@@ -97,7 +97,7 @@ Route::get('region/{region}/departement/{departement}/district/{division}/groupe
 
 Route::get('/competitions/amicaux-2021-2022', function () {
 
-    $matchs = Match::where('competition_id', 6)->where('date_match','>=', Carbon::now()->subHours(12))->orderBy('date_match', 'asc')->get();
+    $matchs = Match::where('competition_id', 6)->where('date_match','>=', Carbon::now()->subDays(5))->where('date_match','>=', Carbon::now()->subHours(12))->orderBy('date_match', 'asc')->get();
     $user = Auth::user();
 
     return view('competitions.amicaux', compact('matchs','user'));
