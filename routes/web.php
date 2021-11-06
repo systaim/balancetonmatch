@@ -79,7 +79,7 @@ Route::get('/competitions/coupe-du-departement/region/{region}/departement/{depa
 
 Route::get('region/{region}/regional/{division}/groupe/{groupe}', function (Region $region, DivisionsRegion $division, Group $groupe) {
     
-    $matchs = Match::where('region_id', $region->id)->where('division_region_id', $division->id)->where('group_id', $groupe->id)->get()->groupBy('journee_id');
+    $matchs = Match::where('region_id', $region->id)->where('date_match','>=', Carbon::now()->subDays(5))->where('division_region_id', $division->id)->where('group_id', $groupe->id)->get()->groupBy('journee_id');
     $journees = Journee::find($matchs->keys());
 
     return view('competitions.regional', compact('region','matchs', 'journees', 'division', 'groupe'));
