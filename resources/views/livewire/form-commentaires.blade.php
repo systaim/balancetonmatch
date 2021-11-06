@@ -802,7 +802,7 @@
                             @endif
                         </div>
                     @endif
-                    @if (empty($match->commentateur))
+                    @if (empty($match->commentateur) && $match->date_match > now()->subHours(3))
                         <div x-data="{open: false}" class="flex flex-col justify-center items-center my-2">
                             <p class="py-2 px-3 underline mb-3">En attente d'un commentateur</p>
                             <button type="button" @click="open = true">
