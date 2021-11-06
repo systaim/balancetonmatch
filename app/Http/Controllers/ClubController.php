@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Club;
+use App\Models\ClubActivity;
 use App\Models\Department;
 use App\Models\Favorismatch;
 use App\Models\Favoristeam;
@@ -89,7 +90,10 @@ class ClubController extends Controller
         $nbrStaffs = Staff::where('club_id', $club->id)->count();
         $nbrFavoris = Favoristeam::where('club_id', $club->id)->count();
         $matchs = Match::where('home_team_id', $club->id)->orwhere('away_team_id', $club->id)->orderBy('date_match','asc')->get();
-
+        $activities = ClubActivity::where('club_id', $club->id)
+                                ->where('created_at', '>', now()->subDays(15))
+                                ->get()->sortByDesc('created_at');
+        
         $matchsR1 = Match::where('division_region_id', 1)->where('date_match','>=', Carbon::now()->subHours(12))
                             ->where(function ($query) use ($club){
                                     $query->where('home_team_id', $club->id)
@@ -147,7 +151,7 @@ class ClubController extends Controller
                                     $query->where('home_team_id', $club->id)
                                     ->orwhere('away_team_id', $club->id);
                             })->limit(1)->get();
-        return view('clubs.pageClub', compact('club', 'matchs','user','nbrFavoris', 'nbrPlayers', 'nbrStaffs', 'matchsR1','matchsR2', 'matchsR3', 'matchsCF', 'matchsBZH', 'matchsCoupeDep', 'matchsD1', 'matchsD2', 'matchsD3', 'matchsD4'));
+        return view('clubs.pageClub', compact('activities','club', 'matchs','user','nbrFavoris', 'nbrPlayers', 'nbrStaffs', 'matchsR1','matchsR2', 'matchsR3', 'matchsCF', 'matchsBZH', 'matchsCoupeDep', 'matchsD1', 'matchsD2', 'matchsD3', 'matchsD4'));
     }
 
     /**

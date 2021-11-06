@@ -586,7 +586,7 @@
                                             class="my-4 mx-auto flex justify-evenly items-center bg-primary text-white px-1 py-2 rounded-full w-48 border-2 border-secondary">
                                             <div
                                                 class="h-10 w-10 shadow-2xl border-2 border-secondary bg-primary flex justify-center items-center rounded-full">
-                                                
+
                                             </div>
                                             <p class="px-3">Je commente</p>
                                         </div>
@@ -1254,12 +1254,17 @@
                                     @foreach ($reactions as $reaction)
                                         @if (!empty($comment->reactions))
                                             <button
-                                                class="flex items-end border px-2 py-1 m-1 rounded-lg shadow-2xl bg-gray-100"
+                                                class="flex border h-10 w-10 m-1 rounded-full shadow-2xl bg-gray-100 justify-center items-center"
                                                 wire:click="reaction({{ $reaction->id }}, {{ $comment->id }})">
                                                 <p class="border-orange-400 m-1">{{ $reaction->emoji }}</p>
                                             </button>
                                         @endif
                                     @endforeach
+                                    {{-- <button
+                                        class="flex border h-10 w-10 m-1 rounded-full shadow-2xl bg-gray-100 justify-center items-center"
+                                        wire:click="">
+                                        <p class="border-orange-400 m-1 text-2xl">+</p>
+                                    </button> --}}
                                 </div>
                             @endif
                         </div>

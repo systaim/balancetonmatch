@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Activity;
+use App\Models\ClubActivity;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -13,7 +14,7 @@ class TeamCover extends Component
 
     public $cover;
     public $club;
-    public $bouton;
+    public $store_cover = null;
 
     public function mount()
     {
@@ -24,13 +25,14 @@ class TeamCover extends Component
         }
     }
 
-    public function clickButton()
+    public function render()
     {
-        if ($this->bouton == 0) {
-            $this->bouton = 1;
-        } elseif ($this->bouton == 1) {
-            $this->bouton = 0;
-        }
+        return view('livewire.team-cover');
+    }
+
+    public function openStoreCover()
+    {
+        $this->store_cover = ! $this->store_cover;
     }
 
     public function deleteCover()
@@ -62,8 +64,14 @@ class TeamCover extends Component
         return redirect()->to('clubs/' . $this->club->id);
     }
 
-    public function render()
+    public function storeAsk()
     {
-        return view('livewire.team-cover');
+        $activite = new ClubActivity();
+        $activite['user_id'] = Auth::user()->id;
+        $activite['club_id'] = $this->club->id;
+        $activite['type'] = 'update_cover';
+        $activite['description'] = 'souhaite que le club partage une photo de couverture';
+        $activite->save();
+        session()->flash('success', 'La demande est bien enregistrée');
     }
 }
