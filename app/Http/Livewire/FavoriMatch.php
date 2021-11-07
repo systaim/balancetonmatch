@@ -15,33 +15,22 @@ class FavoriMatch extends Component
     public $nbrFavoris;
     public $login;
     public $match;
-    
-    public function mount(Match $match)
-    {
-        if ($this->user) {
-            if ($this->user->isFavoriMatch($match)) {
-                $this->star = "fas";
-            } else {
-                $this->star = "far";
-            }
-        }
-    }
 
     public function myMatch(Match $match)
     {
 
         if ($this->user->isFavoriMatch($match)) {
             $matchData = Favorismatch::where('user_id', $this->user->id)->where('match_id', $match->id)->delete();
-            $this->star = "far";
+            
             $this->nbrFavoris-=1;
-            session()->flash('messageMyMatch', 'Tu ne suis plus ce match.');
+            session()->flash('success', 'Tu ne suis plus ce match.');
         } else {
             $data['user_id'] = $this->user->id;
             $data['match_id'] = $match->id;
             $teamData = Favorismatch::create($data);
-            $this->star = "fas";
+            
             $this->nbrFavoris+=1;
-            session()->flash('messageMyMatch', 'Tu suis ce match.');
+            session()->flash('success', 'Tu suis ce match.');
         }
     }
 

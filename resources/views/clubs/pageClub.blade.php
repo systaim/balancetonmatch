@@ -10,7 +10,7 @@
                     <div class="bg-primary text-white rounded-lg shadow">
                         <div class="p-6">
                             <h2 class="text-base font-medium ">
-                                Dernieres évènements
+                                Derniers évènements
                             </h2>
                             <div class="flow-root mt-6">
                                 <ul role="list" class="-my-5 divide-y divide-gray-200">

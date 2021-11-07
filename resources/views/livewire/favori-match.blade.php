@@ -49,11 +49,12 @@
         </div>
     @endauth
     <div>
-        @if (session()->has('messageMyMatch'))
+        
+        {{-- @if (session()->has('messageMyMatch'))
             <div wire:loading.class.remove="alertFavori"
                 class="absolute bg-black text-white text-xs p-2 rounded-lg alertFavori z-50 w-36">
                 {{ session('messageMyMatch') }}
             </div>
-        @endif
+        @endif --}}
     </div>
 </div>

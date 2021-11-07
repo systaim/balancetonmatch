@@ -21,7 +21,7 @@ class MyTeam extends Component
                 $this->my_team = true;
                 $this->message = 'C\'est ma team ! 💪';
             } else {
-                $this->message = 'Je suis licencié dans un autre club';
+                $this->message = "C'est ta team ? Clique ici";
             }
         }
     }
