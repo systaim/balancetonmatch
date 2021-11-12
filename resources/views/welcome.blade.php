@@ -19,8 +19,6 @@
         </div>
     </section>
 
-
-
     {{-- affichage mobile --}}
     <section class="py-11 flex bg-primary flex-col-reverse md:flex-row items-center">
         <aside class="bg-white rounded-lg m-4 py-4 shadow-white-xl overflow-y-scroll max-h-96 md:w-1/3">

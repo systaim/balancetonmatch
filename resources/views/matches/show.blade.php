@@ -88,6 +88,7 @@
 </head>
 
 <body>
+
     {{-- preloader --}}
     <div class="preloader">
         <div class="loader"></div>
