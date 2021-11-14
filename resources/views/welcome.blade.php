@@ -206,7 +206,7 @@
                                 @break
                                 @case('create_player')
                                     @if ($activite->player)
-                                        <a href="{{ route('clubs.show', [$activite->player->id]) }}">
+                                        <a href="{{ route('clubs.players.show', [$activite->player->id]) }}">
                                             <li class="py-4 hover:bg-gray-50 px-4">
                                                 <div class="flex space-x-3 ">
                                                     <div class="flex-1 space-y-1 ">
