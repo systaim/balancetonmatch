@@ -1,4 +1,4 @@
-<div wire:poll.5s>
+<div wire:poll.5s x-data="{ open: false }">
     <div class="backMatch">
         <div class="py-6">
             <div class="relative bg-primary text-white m-auto text-center shadow-2xl p-2 max-w-md">
@@ -238,25 +238,17 @@
             </div>
         </div>
     </div>
-    <div class="bg-gray-900 px-8 py-2 text-white text-center flex justify-center items-center">
-        <div wire:ignore id="fb-root"></div>
-        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v11.0"
-                nonce="tGIyRgh0">
-        </script>
-        <a target="_blank"
-            href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fbalancetonmatch.com/%2Fmatches%2F{{ $match->id }}&amp;src=sdkpreparse"
-            class="fb-xfbml-parse-ignore">
-            <div class=" rounded-lg bg-blue-600 text-white mr-3 py-1 px-2">
-                <div data-href="{{ route('matches.show', [$match, Str::slug($match->slug, '-')]) }}"
-                    data-layout="button" data-size="large">
-                    <div class="flex justify-center items-center">
-                        <i class="fab fa-facebook text-2xl text-white"></i>
-                        <p class="font-sans text-xs text-center mx-1">Partager le match</p>
-                    </div>
-                </div>
-            </div>
-        </a>
-        <p>Spectateurs : <span class="ml-2 font-bold">{{ count($visitors) }}</span></p>
+    <div class="bg-gray-900 px-8 py-2 text-white flex justify-center">
+        <div>
+            <button @click="open = ! open" class="mr-3 border rounded-full text-sm p-2 flex justify-center items-center shadow-xl">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M15 8a3 3 0 10-2.977-2.63l-4.94 2.47a3 3 0 100 4.319l4.94 2.47a3 3 0 10.895-1.789l-4.94-2.47a3.027 3.027 0 000-.74l4.94-2.47C13.456 7.68 14.19 8 15 8z" />
+              </svg>
+              Partager
+        </button>
+        @include('livewire.commentaires._share-match')
+        </div>
+        
     </div>
     @if ($nbrFavoris > 0 && $match->live == 'attente')
         <div class="bg-secondary text-primary rounded-lg relative flex justify-center p-1 shadow-lg m-2">

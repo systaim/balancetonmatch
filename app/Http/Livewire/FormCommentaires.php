@@ -35,22 +35,9 @@ class FormCommentaires extends Component
 
     public $store_photo_match = null, $photo_match, $photos;
     // Variables donnant accès aux colonnes de la table match
-    public $type_comments;
-    public $type_but = "";
-    public $type_carton = "";
-    public $type_actionMatch = "";
-    public $minute;
-    public $team_action = '';
-    public $imageAction = '';
-    public $minuteMatch;
-    public $commentPerso = "";
-    public $minuteCom;
-    public $player;
-    public $home_score;
-    public $away_score;
-    public $stats;
-    public $dateMatch;
-    public $heureMatch;
+    public $type_comments, $type_but = "", $type_carton = "", $type_actionMatch = "", $minute, $team_action = '', $imageAction = '',
+        $minuteMatch, $commentPerso = "", $minuteCom, $player, $home_score, $away_score, $stats, $dateMatch, $heureMatch,
+        $open_btn_score, $away_score_corrige, $home_score_corrige;
     public $firstCom;
     public $file;
     public $menuCom;
@@ -83,6 +70,11 @@ class FormCommentaires extends Component
         'Les joueurs rentrent aux vestiaires',
         'Tout le monde à la buv... euuuh aux vestiaires !'
     ];
+
+    public function render()
+    {
+        return view('livewire.form-commentaires');
+    }
 
     public function mount()
     {
@@ -119,6 +111,14 @@ class FormCommentaires extends Component
             }
         }
 
+        $this->tabHome = Tab::where('match_id', $this->match->id)->where('club_id', $this->match->homeClub->id)->get();
+        $this->tabAway = Tab::where('match_id', $this->match->id)->where('club_id', $this->match->awayClub->id)->get();
+        $this->scoreTabHome = Tab::where('score', 1)->where('match_id', $this->match->id)->where('club_id', $this->match->homeClub->id)->count();
+        $this->scoreTabAway = Tab::where('score', 1)->where('match_id', $this->match->id)->where('club_id', $this->match->awayClub->id)->count();
+
+        $this->home_score = $this->match->home_score;
+        $this->away_score = $this->match->away_score;
+
         $this->miseAJourCom();
         $this->miseAJourPenalty();
         $this->countVisitor();
@@ -150,6 +150,31 @@ class FormCommentaires extends Component
         $this->miseAJourPenalty();
         $this->countVisitor();
         $this->miseAjourTemps();
+    }
+
+    public function openBtnScore()
+    {
+        $this->open_btn_score = !$this->open_btn_score;
+    }
+
+    public function updateScore()
+    {
+
+        $this->match->home_score = $this->home_score_corrige;
+        $this->match->away_score = $this->away_score_corrige;
+        $this->match->save();
+
+        $this->home_score = $this->home_score_corrige;
+        $this->away_score = $this->away_score_corrige;
+
+        $this->openBtnScore();
+
+        $activite['user_id'] = Auth::user()->id;
+        $activite['match_id'] = $this->match->id;
+        $activite['type'] = 'update_score';
+
+        $storeActivite = Activity::create($activite);
+        $storeActivite->save();
     }
 
     public function btnStorePhotoMatch()
@@ -890,8 +915,4 @@ class FormCommentaires extends Component
         $this->type_carton = "";
     }
 
-    public function render()
-    {
-        return view('livewire.form-commentaires');
-    }
 }

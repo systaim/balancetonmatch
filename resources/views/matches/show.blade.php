@@ -224,10 +224,6 @@
         </div>
     </div>
 
-    @livewire('dashboard-score', [
-    'match' =>$match,
-    'nbrFavoris'=> $nbrFavoris,
-    ])
     <div class="relative">
 
         @livewire('form-commentaires', [
