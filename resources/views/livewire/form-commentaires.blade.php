@@ -731,7 +731,7 @@
                 <p class="bg-darkSuccess text-white px-3 py-2 rounded-md">{{ $infoMatch }}</p>
             </div>
         @endif
-        <div class="my-10 w-11/12 m-auto lg:flex lg:justify-around">
+        <div class="my-4 w-11/12 m-auto lg:flex lg:justify-around">
             <div class="m-auto sm:w-10/12 lg:w-8/12">
                 @if ($match->live == 'tab' || (count($tabHome) != 0 && count($tabAway) != 0))
                     <div class="my-10">
@@ -825,9 +825,6 @@
                         </div>
                     </div>
                 @endif
-                <div>
-                    <p>{{ count($visitors) == 1?"Spectateur":"Spectateurs" }} : <span class="ml-2 font-bold">{{ count($visitors) }}</span></p>
-                </div>
                 @auth
                     @if ($match->commentateur)
                         @if ($match->commentateur->user_id == Auth::user()->id)

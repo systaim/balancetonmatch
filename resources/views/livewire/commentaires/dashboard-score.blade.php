@@ -238,17 +238,24 @@
             </div>
         </div>
     </div>
-    <div class="bg-gray-900 px-8 py-2 text-white flex justify-center">
-        <div>
-            <button @click="open = ! open" class="mr-3 border rounded-full text-sm p-2 flex justify-center items-center shadow-xl">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-                <path d="M15 8a3 3 0 10-2.977-2.63l-4.94 2.47a3 3 0 100 4.319l4.94 2.47a3 3 0 10.895-1.789l-4.94-2.47a3.027 3.027 0 000-.74l4.94-2.47C13.456 7.68 14.19 8 15 8z" />
+    <div class="bg-gray-900 px-8 py-2 text-white grid grid-cols-3 gap-0">
+        <div class="flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
               </svg>
-              Partager
-        </button>
-        @include('livewire.commentaires._share-match')
+            <p class="ml-2 font-bold">{{ count($visitors) }}</p>
         </div>
-        
+        <div class="col-span-2">
+            <button @click="open = ! open"
+                class="mr-3 border rounded-full text-sm p-2 flex justify-center items-center shadow-xl">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path
+                        d="M15 8a3 3 0 10-2.977-2.63l-4.94 2.47a3 3 0 100 4.319l4.94 2.47a3 3 0 10.895-1.789l-4.94-2.47a3.027 3.027 0 000-.74l4.94-2.47C13.456 7.68 14.19 8 15 8z" />
+                </svg>
+                Partager
+            </button>
+            @include('livewire.commentaires._share-match')
+        </div>
     </div>
     @if ($nbrFavoris > 0 && $match->live == 'attente')
         <div class="bg-secondary text-primary rounded-lg relative flex justify-center p-1 shadow-lg m-2">
