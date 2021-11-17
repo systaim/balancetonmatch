@@ -21,7 +21,7 @@ class AdminController extends Controller
         // $users = User::paginate(3);
         $role = Auth::user()->role;
 
-        $users = User::all();
+        $users = User::all()->sortByDesc('created_at');
 
         if($role == "super-admin" || $role == "admin"){
             return view('admin.index', compact('users'));

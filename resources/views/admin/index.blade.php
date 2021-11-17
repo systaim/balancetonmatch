@@ -281,7 +281,7 @@
                                                         <span
                                                             class="text-gray-900 font-medium">{{ $user->club->name }}</span>
                                                     @endif
-                                                    <time datetime="2020-07-11">{{ $user->created_at }}</time>
+                                                    <time datetime="{{ $user->created_at }}">{{ Carbon\Carbon::parse($user->created_at)->format('d-m-y') }}</time>
                                                 </span>
                                             </span>
                                             <!-- Heroicon name: solid/chevron-right -->
@@ -336,7 +336,7 @@
                                                 </th>
                                                 <th
                                                     class="px-6 py-3 bg-gray-50 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                    Date
+                                                    Création
                                                 </th>
                                             </tr>
                                         </thead>
@@ -384,7 +384,7 @@
                                                     </td>
                                                     <td
                                                         class="px-6 py-4 text-right whitespace-nowrap text-sm text-gray-500">
-                                                        <time datetime="2020-07-11">{{ $user->created_at }}</time>
+                                                        <time datetime="{{ $user->created_at }}">{{ Carbon\Carbon::parse($user->created_at)->format('d-m-y') }}</time>
                                                     </td>
                                                 </tr>
                                             @endforeach
