@@ -4,10 +4,10 @@
     @livewire('team-cover', ['club' => $club])
 
     <div class="max-w-3xl mx-auto sm:px-6 lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-12 lg:gap-8">
-        <aside class="block xl:col-span-4 mt-4 lg:mt-0">
+        <aside class="hidden xl:block xl:col-span-4 mt-4 lg:mt-0">
             <div class="sticky top-4 space-y-4">
                 <section>
-                    <div class="bg-primary text-white rounded-lg shadow">
+                    <div class="bg-primary text-white rounded-lg shadow max-h-96 overflow-scroll">
                         <div class="p-6">
                             <h2 class="text-base font-medium ">
                                 Derniers évènements
