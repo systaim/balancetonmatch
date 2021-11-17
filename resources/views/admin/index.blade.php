@@ -281,7 +281,8 @@
                                                         <span
                                                             class="text-gray-900 font-medium">{{ $user->club->name }}</span>
                                                     @endif
-                                                    <time datetime="{{ $user->created_at }}">{{ Carbon\Carbon::parse($user->created_at)->format('d-m-y') }}</time>
+                                                    <span>{{ $user->role }}</span>
+                                                    <time datetime="{{ $user->created_at }}">Créé le {{ Carbon\Carbon::parse($user->created_at)->format('d-m-y') }}</time>
                                                 </span>
                                             </span>
                                             <!-- Heroicon name: solid/chevron-right -->
