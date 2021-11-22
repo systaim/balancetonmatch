@@ -425,7 +425,7 @@
                         <rect width="404" height="784" fill="url(#8b1b5f72-e944-4457-af67-0c6d15a99f38)" />
                     </svg>
 
-                    <div class="relative flex-col flex md:flex-row py-6 ">
+                    {{-- <div class="relative flex-col flex md:flex-row py-6 ">
                         <div class="">
                             <h2 class="text-xl tracking-tight text-gray-900 sm:text-4xl">
                                 Les commentateurs du dimanche
@@ -470,7 +470,7 @@
                                 </div>
                             @endforeach
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
 
