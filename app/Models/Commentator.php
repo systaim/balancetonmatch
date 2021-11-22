@@ -21,7 +21,7 @@ class Commentator extends Model
 
     public function match()
     {
-        return $this->belongsTo(Rencontre::class);
+        return $this->belongsTo(Rencontre::class, 'rencontre_id');
     }
 
     public function commentaires()

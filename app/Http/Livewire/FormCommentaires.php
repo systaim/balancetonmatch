@@ -457,7 +457,7 @@ class FormCommentaires extends Component
         if ($this->dateMatch->diffInMinutes(now(), false) > -30) {
             $commentateur = new Commentator;
             $commentateur['user_id'] = Auth::user()->id;
-            $commentateur['match_id'] = $this->match->id;
+            $commentateur['rencontre_id'] = $this->match->id;
             $commentateur->save();
             $this->emit('majPage');
 

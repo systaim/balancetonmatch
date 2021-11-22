@@ -425,7 +425,7 @@
                         <rect width="404" height="784" fill="url(#8b1b5f72-e944-4457-af67-0c6d15a99f38)" />
                     </svg>
 
-                    {{-- <div class="relative flex-col flex md:flex-row py-6 ">
+                    <div class="relative flex-col flex md:flex-row py-6 ">
                         <div class="">
                             <h2 class="text-xl tracking-tight text-gray-900 sm:text-4xl">
                                 Les commentateurs du dimanche
@@ -433,8 +433,9 @@
                         </div>
                         <div class="mt-10 flex flex-wrap w-full">
                             @foreach ($commentators->unique('user_id') as $com)
+                            
                                 <div class="relative bg-primary rounded-md shadow-xl overflow-hidden text-white w-72 m-2">
-                                    <a href="{{ route('matches.show', [$com->match->id]) }}">
+                                    {{-- <a href="{{ route('matches.show', [$com->match->id]) }}"> --}}
                                         <div class="absolute -top-3 -left-3 logo h-20 w-20 transform -rotate-12">
                                             @if ($com->match->homeClub->logo_path != null)
                                                 <img class="object-contain"
@@ -470,7 +471,7 @@
                                 </div>
                             @endforeach
                         </div>
-                    </div> --}}
+                    </div>
                 </div>
             </div>
 
