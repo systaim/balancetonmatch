@@ -432,7 +432,7 @@
                             </h2>
                         </div>
                         <div class="mt-10 flex flex-wrap w-full">
-                            @foreach ($commentators->unique('user_id') as $com)
+                            @foreach ($commentators as $com)
                             
                                 <div class="relative bg-primary rounded-md shadow-xl overflow-hidden text-white w-72 m-2">
                                     <a href="{{ route('matches.show', [$com->match->id]) }}">
