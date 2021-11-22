@@ -3,7 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Club;
-use App\Models\Match;
+use App\Models\Rencontre;
 use App\Models\Region;
 use App\Models\Team;
 use Carbon\Carbon;
@@ -22,7 +22,7 @@ class SearchMatchCoupeDeFrance extends Component
 
     public function mount()
     {
-        // $this->matchs = Match::where('date_match', '>=', Carbon::now()->subHours(12))->where('competition_id', 3)
+        // $this->matchs = Rencontre::where('date_match', '>=', Carbon::now()->subHours(12))->where('competition_id', 3)
         //     ->orderBy('date_match', 'asc')->get();
         // $this->regions = Region::find($this->matchs->keys());
         $this->matchs = [];
@@ -37,7 +37,7 @@ class SearchMatchCoupeDeFrance extends Component
                 ->orwhere('abbreviation', 'like', '%' . $this->search . '%')
                 ->get()
                 ->pluck('id');
-            $this->matchs = Match::where('date_match', '>=', Carbon::now()->subHours(12))
+            $this->matchs = Rencontre::where('date_match', '>=', Carbon::now()->subHours(12))
                 ->where('competition_id', 3)
                 ->where(function ($query) use ($club) {
                     $query->whereIn('home_team_id', $club)
@@ -45,7 +45,7 @@ class SearchMatchCoupeDeFrance extends Component
                 })
                 ->get();
         } else {
-            // $this->matchs = Match::where('date_match', '>=', Carbon::now()->subHours(12))->where('competition_id', 3)
+            // $this->matchs = Rencontre::where('date_match', '>=', Carbon::now()->subHours(12))->where('competition_id', 3)
             // ->orderBy('date_match', 'asc')->get();
             $this->matchs = [];
         }

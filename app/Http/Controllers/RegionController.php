@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Club;
 use App\Models\Competition;
 use App\Models\Region;
-use App\Models\Match;
+use App\Models\Rencontre;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -55,7 +55,7 @@ class RegionController extends Controller
         $user = Auth::user();
         $regionDeFrance = Region::find($region->id);
         // dd($region->name);
-        // $matchesByRegion = Match::where('region_id', $region->id)->where('date_match','>=', Carbon::now()->subHours(12))->paginate(10);
+        // $matchesByRegion = Rencontre::where('region_id', $region->id)->where('date_match','>=', Carbon::now()->subHours(12))->paginate(10);
         // $competitions = Competition::find($matchesByRegion->keys());
 
         return view('regions.show', compact('region','user', 'clubs'));

@@ -3,7 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Api\CommentaireController;
 use App\Http\Controllers\Api\UserController;
-use App\Http\Controllers\MatchController;
+use App\Http\Controllers\RencontreController;
 use App\Http\Controllers\PlayerController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClubController;
@@ -19,7 +19,7 @@ use App\Models\DivisionsDepartment;
 use App\Models\DivisionsRegion;
 use App\Models\Group;
 use App\Models\Journee;
-use App\Models\Match;
+use App\Models\Rencontre;
 use App\Models\Player;
 use App\Models\Region;
 use App\Models\Staff;
@@ -43,7 +43,7 @@ $club = ClubController::class;
 
 Route::get('/competitions/coupe-de-france-2021-2022', function () {
 
-    $matchs = Match::where('competition_id', 3)->where('date_match','>=', Carbon::now()->subDays(5))->orderBy('date_match', 'asc')->get();
+    $matchs = Rencontre::where('competition_id', 3)->where('date_match','>=', Carbon::now()->subDays(5))->orderBy('date_match', 'asc')->get();
     $user = Auth::user();
     $title = "coupe De France";
 
@@ -52,7 +52,7 @@ Route::get('/competitions/coupe-de-france-2021-2022', function () {
 
 Route::get('/competitions/coupe-de-bretagne-2021-2022', function () {
 
-    $matchs = Match::where('competition_id', 4)->where('date_match','>=', Carbon::now()->subDays(5))->where('region_id', 3)->orderBy('date_match', 'asc')->get();
+    $matchs = Rencontre::where('competition_id', 4)->where('date_match','>=', Carbon::now()->subDays(5))->where('region_id', 3)->orderBy('date_match', 'asc')->get();
     $user = Auth::user();
     $title = "coupe de Bretagne";
 
@@ -61,7 +61,7 @@ Route::get('/competitions/coupe-de-bretagne-2021-2022', function () {
 
 Route::get('/competitions/coupe-ange-lemee-2021-2022', function () {
 
-    $matchs = Match::where('competition_id', 5)->where('date_match','>=', Carbon::now()->subDays(5))->where('department_id', 22)->orderBy('date_match', 'asc')->get();
+    $matchs = Rencontre::where('competition_id', 5)->where('date_match','>=', Carbon::now()->subDays(5))->where('department_id', 22)->orderBy('date_match', 'asc')->get();
     $user = Auth::user();
     $title = "coupe Ange Lemée";
 
@@ -70,7 +70,7 @@ Route::get('/competitions/coupe-ange-lemee-2021-2022', function () {
 
 Route::get('/competitions/coupe-du-departement/region/{region}/departement/{departement}', function (Region $region, Department $departement) {
     
-    $matchs = Match::where('competition_id', 7)->where('date_match','>=', Carbon::now()->subDays(5))->where('region_id', $region->id)->where('department_id', $departement->id)->orderBy('date_match', 'asc')->get();
+    $matchs = Rencontre::where('competition_id', 7)->where('date_match','>=', Carbon::now()->subDays(5))->where('region_id', $region->id)->where('department_id', $departement->id)->orderBy('date_match', 'asc')->get();
     $user = Auth::user();
     $title = "Coupe du département";
 
@@ -79,7 +79,7 @@ Route::get('/competitions/coupe-du-departement/region/{region}/departement/{depa
 
 Route::get('region/{region}/regional/{division}/groupe/{groupe}', function (Region $region, DivisionsRegion $division, Group $groupe) {
     
-    $matchs = Match::where('region_id', $region->id)->where('date_match','>=', Carbon::now()->subDays(5))->where('division_region_id', $division->id)->where('group_id', $groupe->id)->get()->groupBy('journee_id');
+    $matchs = Rencontre::where('region_id', $region->id)->where('date_match','>=', Carbon::now()->subDays(5))->where('division_region_id', $division->id)->where('group_id', $groupe->id)->get()->groupBy('journee_id');
     $journees = Journee::find($matchs->keys());
 
     return view('competitions.regional', compact('region','matchs', 'journees', 'division', 'groupe'));
@@ -88,7 +88,7 @@ Route::get('region/{region}/regional/{division}/groupe/{groupe}', function (Regi
 
 Route::get('region/{region}/departement/{departement}/district/{division}/groupe/{groupe}', function (Region $region, Department $departement, Competition $competition, DivisionsDepartment $division, Group $groupe) {
     
-    $matchs = Match::where('region_id', $region->id)->where('date_match','>=', Carbon::now()->subDays(5))->where('department_id', $departement->id)->where('division_department_id', $division->id)->where('group_id', $groupe->id)->get()->groupBy('journee_id');
+    $matchs = Rencontre::where('region_id', $region->id)->where('date_match','>=', Carbon::now()->subDays(5))->where('department_id', $departement->id)->where('division_department_id', $division->id)->where('group_id', $groupe->id)->get()->groupBy('journee_id');
     $journees = Journee::find($matchs->keys());
 
     return view('competitions.regional', compact('region','departement', 'matchs', 'journees', 'division', 'groupe'));
@@ -97,7 +97,7 @@ Route::get('region/{region}/departement/{departement}/district/{division}/groupe
 
 Route::get('/competitions/amicaux-2021-2022', function () {
 
-    $matchs = Match::where('competition_id', 6)->where('date_match','>=', Carbon::now()->subDays(5))->where('date_match','>=', Carbon::now()->subHours(12))->orderBy('date_match', 'asc')->get();
+    $matchs = Rencontre::where('competition_id', 6)->where('date_match','>=', Carbon::now()->subDays(5))->where('date_match','>=', Carbon::now()->subHours(12))->orderBy('date_match', 'asc')->get();
     $user = Auth::user();
 
     return view('competitions.amicaux', compact('matchs','user'));
@@ -137,7 +137,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::get('/', HomeController::class);
 Route::resource('clubs', ClubController::class);
 Route::resource('players', PlayerController::class);
-Route::resource('matches', MatchController::class);
+Route::resource('matches', RencontreController::class);
 Route::resource('commentaires', CommentaireController::class);
 Route::resource('clubs.players', PlayerController::class);
 Route::resource('clubs.staffs', StaffController::class);
@@ -166,6 +166,6 @@ Route::middleware(['auth:sanctum', 'verified'])->get('notifications', function (
 
 Route::get('commentaire/delete/{id}', 'App\Http\Controllers\CommentaireController@destroy')->name('supprimer');
 
-// Route::get('demo', 'App\Http\Controllers\MatchController@demo')->name('demo');
+// Route::get('demo', 'App\Http\Controllers\RencontreController@demo')->name('demo');
 
 Route::get('/offline', function () { return view('vendor/laravelpwa/offline'); });

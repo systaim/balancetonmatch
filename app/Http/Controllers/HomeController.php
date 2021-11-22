@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Activity;
 use App\Models\Club;
 use App\Models\Commentator;
-use App\Models\Match;
+use App\Models\Rencontre;
 use App\Models\Player;
 use App\Models\Region;
 use App\Models\Staff;
@@ -26,12 +26,12 @@ class HomeController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $matchesToday = Match::whereBetween('date_match', [Carbon::now()
+        $matchesToday = Rencontre::whereBetween('date_match', [Carbon::now()
         ->startOfDay(), Carbon::now()->endOfDay()])->get();
-        $matchesTomorrow = Match::where('date_match', [Carbon::tomorrow()])->get();
-        $futurMatches = Match::where('date_match', '>=', Carbon::now()->subHours(6))
+        $matchesTomorrow = Rencontre::where('date_match', [Carbon::tomorrow()])->get();
+        $futurMatches = Rencontre::where('date_match', '>=', Carbon::now()->subHours(6))
             ->orderBy('date_match', 'asc')->get();
-        $matches = Match::all();
+        $matches = Rencontre::all();
         $clubs = Club::all();
         $staffs = Staff::all();
         $players = Player::all();

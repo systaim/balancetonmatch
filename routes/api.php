@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\ClubController as ClubController;
-use App\Http\Controllers\Api\MatchController as MatchController;
+use App\Http\Controllers\Api\RencontreController as RencontreController;
 use App\Http\Controllers\Api\CommentaireController as CommentaireController;
 use App\Http\Controllers\Api\CommentatorController as CommentatorController;
 use App\Http\Controllers\Api\UserController as UserController;
@@ -30,7 +30,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::apiResource('clubs', ClubController::class, [
     'as' => 'api'
 ]);
-Route::apiResource('matchs', MatchController::class, [
+Route::apiResource('matchs', RencontreController::class, [
     'as' => 'api'
 ]);
 Route::apiResource('commentaires', CommentaireController::class, [

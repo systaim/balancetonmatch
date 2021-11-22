@@ -15,7 +15,7 @@ use App\Models\Favoristeam;
 use App\Models\Gallery;
 use App\Models\Group;
 use App\Models\Player;
-use App\Models\Match;
+use App\Models\Rencontre;
 use App\Models\Reaction as ModelsReaction;
 use App\Models\Region;
 use App\Models\Statistic;
@@ -27,7 +27,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
-class MatchController extends Controller
+class RencontreController extends Controller
 {
 
     public function __construct()
@@ -45,7 +45,7 @@ class MatchController extends Controller
         $clubs = Club::all();
         $user = Auth::user();
         $players = Player::all();
-        $matchesByCompet = Match::where('date_match','>=', Carbon::now()->subHours(12))
+        $matchesByCompet = Rencontre::where('date_match','>=', Carbon::now()->subHours(12))
         ->orderBy('date_match', 'asc')->get()->groupBy('competition_id');
 
         $competitions = Competition::find($matchesByCompet->keys());
@@ -93,7 +93,7 @@ class MatchController extends Controller
         // ]);
         // $clubHome = Club::where('name', $data['home_team'])->first();
         // $clubAway = Club::where('name', $data['away_team'])->first();
-        // $match = new Match;
+        // $match = new Rencontre;
         // $match->home_team_id = $clubHome->id;
         // $match->away_team_id = $clubAway->id;
         // $match->date_match = $request->date_match;
@@ -110,9 +110,9 @@ class MatchController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Match $match)
+    public function show(Rencontre $match)
     {
-        $commentator = Commentator::where('match_id', $match->id)->get();
+        $commentator = Commentator::where('rencontre_id', $match->id)->get();
         $commentsMatch = $match->commentaires()->with(['statistic'])
                                 ->orderBy('minute', 'desc')
                                 ->orderBy('updated_at', 'desc')
@@ -137,7 +137,7 @@ class MatchController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Match $match)
+    public function edit(Rencontre $match)
     {
 
         $date = explode(" ",$match->date_match);
@@ -153,7 +153,7 @@ class MatchController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Match $match)
+    public function update(Request $request, Rencontre $match)
     {
         $dataMatch = $request->validate([
             'dateMatch' => 'required | date',
@@ -177,7 +177,7 @@ class MatchController extends Controller
      */
     public function destroy($id)
     {
-        $match = Match::find($id);
+        $match = Rencontre::find($id);
         $match->delete();
         return back();
     }

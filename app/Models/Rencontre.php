@@ -10,7 +10,7 @@ use Illuminate\Support\Str;
 
 
 
-class Match extends Model
+class Rencontre extends Model
 {
 
     use HasFactory;
@@ -19,6 +19,8 @@ class Match extends Model
     protected $fillable = ['slug', 'home_team_id', 'home_score', 'away_team_id', 'away_score', 'date_match', 'time', 'location', 'weather', 'competition_id', 'region_id','live'];
 
     protected $dates = ['date_match', 'debut_match_reel', 'fin_match_reel', 'debut_prolongations','fin_prolongations'];
+
+    protected $table = 'matches';
 
     // protected $hidden = ['id', 'created_at', 'updated_at', 'deleted_at'];
 

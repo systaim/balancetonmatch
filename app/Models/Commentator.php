@@ -10,7 +10,7 @@ class Commentator extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'match_id'];
+    protected $fillable = ['user_id', 'rencontre_id'];
 
     protected $hidden = ['id', 'created_at', 'updated_at', 'deleted_at'];
 
@@ -21,7 +21,7 @@ class Commentator extends Model
 
     public function match()
     {
-        return $this->belongsTo(Match::class, 'match_id');
+        return $this->belongsTo(Rencontre::class);
     }
 
     public function commentaires()

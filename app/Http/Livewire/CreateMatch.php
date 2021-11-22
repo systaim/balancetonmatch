@@ -10,7 +10,7 @@ use App\Models\Department;
 use App\Models\DivisionsDepartment;
 use App\Models\DivisionsRegion;
 use App\Models\Group;
-use App\Models\Match;
+use App\Models\Rencontre;
 use App\Models\Region;
 use App\Models\User;
 use Carbon\Carbon;
@@ -118,7 +118,7 @@ class CreateMatch extends Component
         $this->awayTeam = "";
     }
 
-    public function saveMatch(Match $match)
+    public function saveMatch(Rencontre $match)
     {
         
         $user = Auth::user();
@@ -131,7 +131,7 @@ class CreateMatch extends Component
         $groupMatch = Group::where('name', $validateData['group'])->first();
         $dateAndTime = $this->dateMatch . "T" . $this->timeMatch;
 
-        $match = new Match;
+        $match = new Rencontre;
         $match->home_team_id = $homeTeam->id;
         $match->away_team_id = $awayTeam->id;
         

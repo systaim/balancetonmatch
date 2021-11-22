@@ -20,7 +20,7 @@ class Tab extends Model
      */
     public function match(): BelongsTo
     {
-        return $this->belongsTo(Match::class);
+        return $this->belongsTo(Rencontre::class);
     }
 
     /**

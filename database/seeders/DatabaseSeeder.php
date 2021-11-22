@@ -8,7 +8,7 @@ use App\Models\Department;
 use Illuminate\Database\Seeder;
 use App\Models\Region;
 use App\Models\Player;
-use App\Models\Match;
+use App\Models\Rencontre;
 use App\Models\Division;
 use App\Models\DivisionsDepartment;
 use App\Models\Group;

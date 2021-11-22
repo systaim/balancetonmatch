@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Club;
 use App\Models\Player;
 use App\Models\Statistic;
-use App\Models\Match;
+use App\Models\Rencontre;
 use App\Mail\PlayerMail;
 use App\Models\Activity;
 use App\Models\User;

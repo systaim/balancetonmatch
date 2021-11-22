@@ -22,6 +22,6 @@ class Statistic extends Model
 
     public function match()
     {
-        return $this->hasManyThrough(Commentator::class, Match::class);
+        return $this->hasManyThrough(Commentator::class, Rencontre::class);
     }
 }

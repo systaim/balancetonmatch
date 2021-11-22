@@ -4,11 +4,11 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Match;
-use App\Http\Resources\MatchResource as MatchResource;
+use App\Models\Rencontre;
+use App\Http\Resources\RencontreResource as RencontreResource;
 
 
-class MatchController extends Controller
+class RencontreController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +17,7 @@ class MatchController extends Controller
      */
     public function index()
     {
-        return Match::all();
+        return Rencontre::all();
     }
 
     /**
@@ -28,7 +28,7 @@ class MatchController extends Controller
      */
     public function store(Request $request)
     {
-        // Match::create($request->all());
+        // Rencontre::create($request->all());
     }
 
     /**
@@ -37,9 +37,9 @@ class MatchController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Match $match)
+    public function show(Rencontre $rencontre)
     {
-        return new MatchResource($match);
+        return new RencontreResource($match);
     }
 
     /**
@@ -49,7 +49,7 @@ class MatchController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Match $match)
+    public function update(Request $request, Rencontre $match)
     {
         // $match->update($request->all());
     }
@@ -60,7 +60,7 @@ class MatchController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Match $match)
+    public function destroy(Rencontre $match)
     {
         // $match->delete();
     }

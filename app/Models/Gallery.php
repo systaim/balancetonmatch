@@ -14,7 +14,7 @@ class Gallery extends Model
 
     public function match()
     {
-        return $this->BelongsTo(Match::class);
+        return $this->BelongsTo(Rencontre::class);
     }
 
     public function commentateur()

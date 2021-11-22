@@ -6,7 +6,7 @@ use App\Mail\StaffMail;
 use App\Models\Staff;
 use App\Models\Club;
 use App\Models\Player;
-use App\Models\Match;
+use App\Models\Rencontre;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -48,7 +48,7 @@ class StaffController extends Controller
     public function store(Request $request, Club $club)
     {
         $user = Auth::user();
-        $matchs = Match::where('home_team_id', $club->id)->orwhere('away_team_id', $club->id)->orderBy('date_match','desc')->get();
+        $matchs = Rencontre::where('home_team_id', $club->id)->orwhere('away_team_id', $club->id)->orderBy('date_match','desc')->get();
 
         $dataStaff = $request->validate([
             'last_name' => 'required|max:50|min:2',

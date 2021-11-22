@@ -21,7 +21,7 @@ class Competition extends Model
      */
     public function divisionRegions(): HasManyThrough
     {
-        return $this->hasManyThrough(DivisionsRegion::class, Match::class);
+        return $this->hasManyThrough(DivisionsRegion::class, Rencontre::class);
     }
 
     /**
@@ -31,10 +31,10 @@ class Competition extends Model
      */
     public function groups(): HasManyThrough
     {
-        return $this->hasManyThrough(Group::class, Match::class);
+        return $this->hasManyThrough(Group::class, Rencontre::class);
     }
 
     public function matchs(){
-        return $this->hasMany(Match::class);
+        return $this->hasMany(Rencontre::class, 'match_id');
     }
 }

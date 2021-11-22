@@ -7,7 +7,7 @@ use App\Models\ClubActivity;
 use App\Models\Department;
 use App\Models\Favorismatch;
 use App\Models\Favoristeam;
-use App\Models\Match;
+use App\Models\Rencontre;
 use App\Models\Player;
 use App\Models\Region;
 use App\Models\Staff;
@@ -89,64 +89,64 @@ class ClubController extends Controller
         $nbrPlayers = Player::where('club_id', $club->id)->count();
         $nbrStaffs = Staff::where('club_id', $club->id)->count();
         $nbrFavoris = Favoristeam::where('club_id', $club->id)->count();
-        $matchs = Match::where('home_team_id', $club->id)->orwhere('away_team_id', $club->id)->orderBy('date_match','asc')->get();
+        $matchs = Rencontre::where('home_team_id', $club->id)->orwhere('away_team_id', $club->id)->orderBy('date_match','asc')->get();
         $activities = ClubActivity::where('club_id', $club->id)
                                 ->where('created_at', '>', now()->subDays(15))
                                 ->get()->sortByDesc('created_at');
         
-        $matchsR1 = Match::where('division_region_id', 1)->where('date_match','>=', Carbon::now()->subHours(12))
+        $matchsR1 = Rencontre::where('division_region_id', 1)->where('date_match','>=', Carbon::now()->subHours(12))
                             ->where(function ($query) use ($club){
                                     $query->where('home_team_id', $club->id)
                                     ->orwhere('away_team_id', $club->id);
                             })->limit(1)->get();
 
-        $matchsR2 = Match::where('division_region_id', 2)->where('date_match','>=', Carbon::now()->subHours(12))
+        $matchsR2 = Rencontre::where('division_region_id', 2)->where('date_match','>=', Carbon::now()->subHours(12))
                             ->where(function ($query) use ($club){
                                     $query->where('home_team_id', $club->id)
                                     ->orwhere('away_team_id', $club->id);
                             })->limit(1)->get();
                             
-        $matchsR3 = Match::where('division_region_id', 3)->where('date_match','>=', Carbon::now()->subHours(12))
+        $matchsR3 = Rencontre::where('division_region_id', 3)->where('date_match','>=', Carbon::now()->subHours(12))
                             ->where(function ($query) use ($club){
                                     $query->where('home_team_id', $club->id)
                                     ->orwhere('away_team_id', $club->id);
                             })->limit(1)->get();
 
-        $matchsCF = Match::where('competition_id', 3)->where('date_match','>=', Carbon::now()->subHours(12))
+        $matchsCF = Rencontre::where('competition_id', 3)->where('date_match','>=', Carbon::now()->subHours(12))
                             ->where(function ($query) use ($club){
                                     $query->where('home_team_id', $club->id)
                                     ->orwhere('away_team_id', $club->id);
                             })->get();
 
-        $matchsBZH = Match::where('competition_id', 4)->where('date_match','>=', Carbon::now()->subHours(12))
+        $matchsBZH = Rencontre::where('competition_id', 4)->where('date_match','>=', Carbon::now()->subHours(12))
                             ->where(function ($query) use ($club){
                                     $query->where('home_team_id', $club->id)
                                     ->orwhere('away_team_id', $club->id);
                             })->get();
 
-        $matchsCoupeDep = Match::where('competition_id', 5)->where('date_match','>=', Carbon::now()->subHours(12))
+        $matchsCoupeDep = Rencontre::where('competition_id', 5)->where('date_match','>=', Carbon::now()->subHours(12))
                             ->where(function ($query) use ($club){
                                     $query->where('home_team_id', $club->id)
                                     ->orwhere('away_team_id', $club->id);
                             })->get();
 
-        $matchsD1 = Match::where('division_department_id', 1)->where('date_match','>=', Carbon::now()->subHours(12))
+        $matchsD1 = Rencontre::where('division_department_id', 1)->where('date_match','>=', Carbon::now()->subHours(12))
                             ->where(function ($query) use ($club){
                                     $query->where('home_team_id', $club->id)
                                     ->orwhere('away_team_id', $club->id);
                             })->limit(1)->get();
-        $matchsD2 = Match::where('division_department_id', 2)->where('date_match','>=', Carbon::now()->subHours(12))
+        $matchsD2 = Rencontre::where('division_department_id', 2)->where('date_match','>=', Carbon::now()->subHours(12))
                             ->where(function ($query) use ($club){
                                     $query->where('home_team_id', $club->id)
                                     ->orwhere('away_team_id', $club->id);
                             })->limit(1)->get();
 
-        $matchsD3 = Match::where('division_department_id', 3)->where('date_match','>=', Carbon::now()->subHours(12))
+        $matchsD3 = Rencontre::where('division_department_id', 3)->where('date_match','>=', Carbon::now()->subHours(12))
                             ->where(function ($query) use ($club){
                                     $query->where('home_team_id', $club->id)
                                     ->orwhere('away_team_id', $club->id);
                             })->limit(1)->get();
-        $matchsD4 = Match::where('division_department_id', 4)->where('date_match','>=', Carbon::now()->subHours(12))
+        $matchsD4 = Rencontre::where('division_department_id', 4)->where('date_match','>=', Carbon::now()->subHours(12))
                             ->where(function ($query) use ($club){
                                     $query->where('home_team_id', $club->id)
                                     ->orwhere('away_team_id', $club->id);

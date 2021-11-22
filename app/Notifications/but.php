@@ -6,7 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
-use App\Models\Match;
+use App\Models\Rencontre;
 use Illuminate\Notifications\Messages\BroadcastMessage;
 use NotificationChannels\WebPush\WebPushChannel;
 
@@ -21,7 +21,7 @@ class but extends Notification
      *
      * @return void
      */
-    public function __construct(Match $match)
+    public function __construct(Rencontre $match)
     {
         $this->match = $match;
     }

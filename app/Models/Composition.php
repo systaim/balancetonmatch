@@ -15,7 +15,7 @@ class Composition extends Model
 
     public function match()
     {
-        return $this->hasOne(Match::class);
+        return $this->hasOne(Rencontre::class);
     }
 
     public function players()

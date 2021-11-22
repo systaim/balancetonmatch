@@ -36,12 +36,12 @@ class Club extends Model
 
     // public function matchs()
     // {
-    //     return $this->hasMany(Match::class, ['home_team_id', 'away_team_id'],['id', 'id']);
+    //     return $this->hasMany(Rencontre::class, ['home_team_id', 'away_team_id'],['id', 'id']);
     // }
 
     public function matches($date = null)
     {
-        return Match::club($this->id, $date);
+        return Rencontre::club($this->id, $date);
     }
 
 
