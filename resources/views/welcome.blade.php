@@ -435,7 +435,7 @@
                             @foreach ($commentators->unique('user_id') as $com)
                             
                                 <div class="relative bg-primary rounded-md shadow-xl overflow-hidden text-white w-72 m-2">
-                                    {{-- <a href="{{ route('matches.show', [$com->match->id]) }}"> --}}
+                                    <a href="{{ route('matches.show', [$com->match->id]) }}">
                                         <div class="absolute -top-3 -left-3 logo h-20 w-20 transform -rotate-12">
                                             @if ($com->match->homeClub->logo_path != null)
                                                 <img class="object-contain"
