@@ -585,7 +585,7 @@
                 </div>
                 <div
                     class="flex flex-col items-center justify-center text-primary w-20 h-20 md:w-28 md:h-28 lg:w-40 lg:h-40 md:bg-primary md:text-white my-2 mx-1 rounded-lg shadow-lg">
-                    <p class="compteur text-xl lg:text-5xl font-bold">{{ count($commentators) }}</p>
+                    <p class="compteur text-xl lg:text-5xl font-bold">{{ count($all_commentators) }}</p>
                     <p class="text-xxs lg:text-base">{{ count($commentators) <= 1 ? 'commentateurs' : 'commentateurs' }}
                     </p>
                 </div>

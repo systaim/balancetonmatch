@@ -45,7 +45,7 @@ class HomeController extends Controller
         $statistics = Statistic::where('action', 'goal')->where('created_at', '>=', now()->subDays(6))->orderBy('created_at', 'desc')->get();
         $stats = $statistics->unique('player_id');
         $activities = Activity::where('created_at', '>', now()->subDays(15))->orderByDesc('created_at')->get();
-        
+        $all_commentators = Commentator::all();
         $commentators = Commentator::where('created_at', '>', Carbon::now()->subDays(5))->get();
 
         $comOfTheWeek = Commentator::whereBetween('created_at',[Carbon::now()->subDays(6), Carbon::now()->addDay(1)])->get() ;
@@ -71,7 +71,8 @@ class HomeController extends Controller
         'stats',
         'statistics',
         'comOfTheWeek',
-        'activities'
+        'activities',
+        'all_commentators',
     ));
     }
 }
