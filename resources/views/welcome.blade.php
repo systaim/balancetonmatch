@@ -574,7 +574,7 @@
                 <div
                     class="flex flex-col items-center justify-center text-primary w-20 h-20 md:w-28 md:h-28 lg:w-40 lg:h-40 md:bg-primary md:text-white my-2 mx-1 rounded-lg shadow-lg">
                     <p class="compteur text-xl lg:text-5xl font-bold">{{ count($players) + count($staffs) }}</p>
-                    <p class="text-xs lg:text-base">licenciés</p>
+                    <p class="text-xs lg:text-base">joueurs</p>
                 </div>
             </div>
             <div class="flex justify-between">
