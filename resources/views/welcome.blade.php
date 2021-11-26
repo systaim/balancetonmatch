@@ -555,15 +555,15 @@
         </div>
     </section>
 
-    {{-- <div class="py-6">
+    <div class="py-6">
         <div class="flex justify-center">
-            <h3 class="p-2 text-primary text-2xl">La saison 2020/2021 c'est : </h3>
+            <h3 class="p-2 text-primary text-2xl">La saison 2021/2022 c'est : </h3>
         </div>
         <div class="flex flex-wrap justify-center">
             <div class="flex justify-between">
                 <div
                     class="flex flex-col items-center justify-center text-primary w-20 h-20 md:w-28 md:h-28 lg:w-40 lg:h-40 md:bg-primary md:text-white my-2 mx-1 rounded-lg shadow-lg">
-                    <p class="compteur text-xl lg:text-5xl font-bold">{{ count($matches) + 300 }}</p>
+                    <p class="compteur text-xl lg:text-5xl font-bold">{{ count($matches) }}</p>
                     <p class="text-xs lg:text-base">{{ count($matches) <= 1 ? 'matchs' : 'matchs' }}</p>
                 </div>
                 <div
@@ -573,31 +573,31 @@
                 </div>
                 <div
                     class="flex flex-col items-center justify-center text-primary w-20 h-20 md:w-28 md:h-28 lg:w-40 lg:h-40 md:bg-primary md:text-white my-2 mx-1 rounded-lg shadow-lg">
-                    <p class="compteur text-xl lg:text-5xl font-bold">{{ count($players) + count($staffs) + 2450 }}</p>
+                    <p class="compteur text-xl lg:text-5xl font-bold">{{ count($players) + count($staffs) }}</p>
                     <p class="text-xs lg:text-base">licenciés</p>
                 </div>
             </div>
             <div class="flex justify-between">
                 <div
                     class="flex flex-col items-center justify-center text-primary w-20 h-20 md:w-28 md:h-28 lg:w-40 lg:h-40 md:bg-primary md:text-white my-2 mx-1 rounded-lg shadow-lg">
-                    <p class="compteur text-xl lg:text-5xl font-bold">{{ count($goals) + 580 }}</p>
+                    <p class="compteur text-xl lg:text-5xl font-bold">{{ count($goals) }}</p>
                     <p class="text-xs lg:text-base">{{ count($goals) <= 1 ? 'but' : 'buts' }}</p>
                 </div>
                 <div
                     class="flex flex-col items-center justify-center text-primary w-20 h-20 md:w-28 md:h-28 lg:w-40 lg:h-40 md:bg-primary md:text-white my-2 mx-1 rounded-lg shadow-lg">
-                    <p class="compteur text-xl lg:text-5xl font-bold">{{ count($commentators) + 90 }}</p>
+                    <p class="compteur text-xl lg:text-5xl font-bold">{{ count($commentators) }}</p>
                     <p class="text-xxs lg:text-base">{{ count($commentators) <= 1 ? 'commentateurs' : 'commentateurs' }}
                     </p>
                 </div>
                 <div
                     class="flex flex-col items-center justify-center text-primary w-20 h-20 md:w-28 md:h-28 lg:w-40 lg:h-40 md:bg-primary md:text-white my-2 mx-1 rounded-lg shadow-lg">
-                    <p class="compteur text-xl lg:text-5xl font-bold">{{ count($yellowCards) + count($redCards) + 359 }}
+                    <p class="compteur text-xl lg:text-5xl font-bold">{{ count($yellowCards) + count($redCards) }}
                     </p>
                     <p class="text-xs lg:text-base">
                         {{ count($yellowCards) + count($redCards) <= 1 ? 'cartons' : 'cartons' }}</p>
                 </div>
             </div>
         </div>
-    </div> --}}
+    </div>
 
 @endsection

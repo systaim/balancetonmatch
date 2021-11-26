@@ -227,7 +227,7 @@
         transition-delay: 1s;
     }
     
-    .message-alert.success {
+    /* .message-alert.success {
         @apply bg-success border-l-4 border-darkSuccess;
     }
     
@@ -237,7 +237,7 @@
     
     .message-alert.danger {
         @apply bg-danger border-l-4 border-red-600;
-    }
+    } */
     
     #live {
         background-image: url(/images/on-air.jpg);

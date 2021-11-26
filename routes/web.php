@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Api\CommentaireController;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\RencontreController;
 use App\Http\Controllers\PlayerController;
 use Illuminate\Support\Facades\Route;
@@ -11,6 +12,8 @@ use App\Http\Controllers\CompetitionController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RegionController;
 use App\Http\Controllers\StaffController;
+use App\Models\Article;
+use App\Models\Category;
 use App\Models\Competition;
 use App\Models\Department;
 use App\Models\Club;
@@ -43,73 +46,73 @@ $club = ClubController::class;
 
 Route::get('/competitions/coupe-de-france-2021-2022', function () {
 
-    $matchs = Rencontre::where('competition_id', 3)->where('date_match','>=', Carbon::now()->subDays(5))->orderBy('date_match', 'asc')->get();
+    $matchs = Rencontre::where('competition_id', 3)->where('date_match', '>=', Carbon::now()->subDays(5))->orderBy('date_match', 'asc')->get();
     $user = Auth::user();
     $title = "coupe De France";
 
-    return view('competitions.coupeDeFrance', compact('matchs','user','title'));
+    return view('competitions.coupeDeFrance', compact('matchs', 'user', 'title'));
 });
 
 Route::get('/competitions/coupe-de-bretagne-2021-2022', function () {
 
-    $matchs = Rencontre::where('competition_id', 4)->where('date_match','>=', Carbon::now()->subDays(5))->where('region_id', 3)->orderBy('date_match', 'asc')->get();
+    $matchs = Rencontre::where('competition_id', 4)->where('date_match', '>=', Carbon::now()->subDays(5))->where('region_id', 3)->orderBy('date_match', 'asc')->get();
     $user = Auth::user();
     $title = "coupe de Bretagne";
 
-    return view('competitions.coupeDeBretagne', compact('matchs','user','title'));
+    return view('competitions.coupeDeBretagne', compact('matchs', 'user', 'title'));
 });
 
 Route::get('/competitions/coupe-ange-lemee-2021-2022', function () {
 
-    $matchs = Rencontre::where('competition_id', 5)->where('date_match','>=', Carbon::now()->subDays(5))->where('department_id', 22)->orderBy('date_match', 'asc')->get();
+    $matchs = Rencontre::where('competition_id', 5)->where('date_match', '>=', Carbon::now()->subDays(5))->where('department_id', 22)->orderBy('date_match', 'asc')->get();
     $user = Auth::user();
     $title = "coupe Ange Lemée";
 
-    return view('competitions.coupeAngeLemee', compact('matchs','user','title'));
+    return view('competitions.coupeAngeLemee', compact('matchs', 'user', 'title'));
 });
 
 Route::get('/competitions/coupe-du-departement/region/{region}/departement/{departement}', function (Region $region, Department $departement) {
-    
-    $matchs = Rencontre::where('competition_id', 7)->where('date_match','>=', Carbon::now()->subDays(5))->where('region_id', $region->id)->where('department_id', $departement->id)->orderBy('date_match', 'asc')->get();
+
+    $matchs = Rencontre::where('competition_id', 7)->where('date_match', '>=', Carbon::now()->subDays(5))->where('region_id', $region->id)->where('department_id', $departement->id)->orderBy('date_match', 'asc')->get();
     $user = Auth::user();
     $title = "Coupe du département";
 
-    return view('competitions.coupeDuDepartement', compact('departement','matchs','user','title'));
+    return view('competitions.coupeDuDepartement', compact('departement', 'matchs', 'user', 'title'));
 });
 
 Route::get('region/{region}/regional/{division}/groupe/{groupe}', function (Region $region, DivisionsRegion $division, Group $groupe) {
-    
-    $matchs = Rencontre::where('region_id', $region->id)->where('date_match','>=', Carbon::now()->subDays(5))->where('division_region_id', $division->id)->where('group_id', $groupe->id)->get()->groupBy('journee_id');
+
+    $matchs = Rencontre::where('region_id', $region->id)->where('date_match', '>=', Carbon::now()->subDays(5))->where('division_region_id', $division->id)->where('group_id', $groupe->id)->get()->groupBy('journee_id');
     $journees = Journee::find($matchs->keys());
 
-    return view('competitions.regional', compact('region','matchs', 'journees', 'division', 'groupe'));
+    return view('competitions.regional', compact('region', 'matchs', 'journees', 'division', 'groupe'));
 })->name('competition.regionale');
 
 
 Route::get('region/{region}/departement/{departement}/district/{division}/groupe/{groupe}', function (Region $region, Department $departement, Competition $competition, DivisionsDepartment $division, Group $groupe) {
-    
-    $matchs = Rencontre::where('region_id', $region->id)->where('date_match','>=', Carbon::now()->subDays(5))->where('department_id', $departement->id)->where('division_department_id', $division->id)->where('group_id', $groupe->id)->get()->groupBy('journee_id');
+
+    $matchs = Rencontre::where('region_id', $region->id)->where('date_match', '>=', Carbon::now()->subDays(5))->where('department_id', $departement->id)->where('division_department_id', $division->id)->where('group_id', $groupe->id)->get()->groupBy('journee_id');
     $journees = Journee::find($matchs->keys());
 
-    return view('competitions.regional', compact('region','departement', 'matchs', 'journees', 'division', 'groupe'));
+    return view('competitions.regional', compact('region', 'departement', 'matchs', 'journees', 'division', 'groupe'));
 })->name('competition.district');
 
 
 Route::get('/competitions/amicaux-2021-2022', function () {
 
-    $matchs = Rencontre::where('competition_id', 6)->where('date_match','>=', Carbon::now()->subDays(5))->where('date_match','>=', Carbon::now()->subHours(12))->orderBy('date_match', 'asc')->get();
+    $matchs = Rencontre::where('competition_id', 6)->where('date_match', '>=', Carbon::now()->subDays(5))->where('date_match', '>=', Carbon::now()->subHours(12))->orderBy('date_match', 'asc')->get();
     $user = Auth::user();
 
-    return view('competitions.amicaux', compact('matchs','user'));
+    return view('competitions.amicaux', compact('matchs', 'user'));
 });
 
 
-Route::get('/contact', function(){
+Route::get('/contact', function () {
 
     return view('contact');
 });
 
-Route::get('/mentions-legales', function(){
+Route::get('/mentions-legales', function () {
 
     return view('mentionslegales');
 });
@@ -118,17 +121,66 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/mon-espace/mes-favoris', 
     return view('mon-espace.mes-favoris');
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/admin/addClub', function(){
-    $regions = Region::all();
-    $role = Auth::user()->role;
+// Route::middleware(['auth:sanctum', 'verified'])->get('/admin/addClub', function () {
+//     $regions = Region::all();
+//     $role = Auth::user()->role;
 
-    if($role == "super-admin" || $role == "admin"){
-    return view('admin.addClub', compact('regions'));
-    } else{
-        return redirect('/')->with('danger', "Vous n'êtes pas autorisé à entrer ici");
+//     if ($role == "super-admin" || $role == "admin") {
+//         return view('admin.addClub', compact('regions'));
+//     } else {
+//         return redirect('/')->with('danger', "Vous n'êtes pas autorisé à entrer ici");
+//     }
+// })->middleware('auth');
 
-    }
-})->middleware('auth');
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+
+    Route::resource('articles', ArticleController::class);
+    Route::get('/admin/create-article', function () {
+        $role = Auth::user()->role;
+        $categories = Category::all();
+
+        if ($role == "super-admin" || $role == "admin") {
+
+            return view('admin.create-article', compact('categories'));
+        } else {
+
+            return redirect('/')->with('danger', "Vous n'êtes pas autorisé à entrer ici");
+        }
+    });
+
+    Route::get('/admin/articles', function () {
+
+        $articles = Article::all();
+
+        return view('admin.articles', compact('articles'));
+    });
+
+    Route::get('/admin/addClub', function () {
+        $regions = Region::all();
+        $role = Auth::user()->role;
+
+        if ($role == "super-admin" || $role == "admin") {
+            return view('admin.addClub', compact('regions'));
+        } else {
+            return redirect('/')->with('danger', "Vous n'êtes pas autorisé à entrer ici");
+        }
+    });
+});
+
+
+// Route::middleware(['auth:sanctum', 'verified'])->get('/admin/create-article', function () {
+
+//     $role = Auth::user()->role;
+//     $categories = Category::all();
+
+//     if ($role == "super-admin" || $role == "admin") {
+
+//         return view('admin.create-article', compact('categories'));
+//     } else {
+
+//         return redirect('/')->with('danger', "Vous n'êtes pas autorisé à entrer ici");
+//     }
+// });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
@@ -145,6 +197,7 @@ Route::resource('clubs.staffs', StaffController::class);
 Route::resource('competitions', CompetitionController::class);
 // Route::resource('competitions.division_region.groups', Group::class)->only('show');
 
+
 Route::resource('admin/users', 'App\Http\Controllers\UserController')->middleware('auth');
 Route::resource('admin', AdminController::class)->middleware('auth');
 
@@ -153,11 +206,11 @@ Route::post('contactsNewTeam', 'App\Http\Controllers\ContactController@askNewTea
 Route::post('contactsForPlayers', 'App\Http\Controllers\ContactController@askPlayer')->name('contacts.askPlayer');
 Route::post('contactsForBecomeManager', 'App\Http\Controllers\ContactController@becomeManager')->name('contacts.becomeManager');
 
-Route::get('live', function(){
+Route::get('live', function () {
 
     $user = Auth::user();
 
-    return view('matches.live', compact( 'user'));
+    return view('matches.live', compact('user'));
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('notifications', function () {
@@ -168,4 +221,6 @@ Route::get('commentaire/delete/{id}', 'App\Http\Controllers\CommentaireControlle
 
 // Route::get('demo', 'App\Http\Controllers\RencontreController@demo')->name('demo');
 
-Route::get('/offline', function () { return view('vendor/laravelpwa/offline'); });
+Route::get('/offline', function () {
+    return view('vendor/laravelpwa/offline');
+});

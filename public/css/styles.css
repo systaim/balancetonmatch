@@ -233,35 +233,17 @@ input::-o-inner-spin-button,
   transition-delay: 1s;
 }
 
-.message-alert.success {
-  --bg-opacity: 1;
-  background-color: #00ff48;
-  background-color: rgba(0, 255, 72, var(--bg-opacity));
-  border-left-width: 4px;
-  --border-opacity: 1;
-  border-color: #009628;
-  border-color: rgba(0, 150, 40, var(--border-opacity));
-}
-
-.message-alert.warning {
-  --bg-opacity: 1;
-  background-color: #ff5a1f;
-  background-color: rgba(255, 90, 31, var(--bg-opacity));
-  border-left-width: 4px;
-  --border-opacity: 1;
-  border-color: #d03801;
-  border-color: rgba(208, 56, 1, var(--border-opacity));
-}
-
-.message-alert.danger {
-  --bg-opacity: 1;
-  background-color: #ff1500;
-  background-color: rgba(255, 21, 0, var(--bg-opacity));
-  border-left-width: 4px;
-  --border-opacity: 1;
-  border-color: #e02424;
-  border-color: rgba(224, 36, 36, var(--border-opacity));
-}
+/* .message-alert.success {
+        @apply bg-success border-l-4 border-darkSuccess;
+    }
+    
+    .message-alert.warning {
+        @apply bg-orange-500 border-l-4 border-orange-600;
+    }
+    
+    .message-alert.danger {
+        @apply bg-danger border-l-4 border-red-600;
+    } */
 
 #live {
   background-image: url(/images/on-air.jpg);
@@ -1275,4 +1257,7 @@ input:checked+.inputAction {
     opacity:100%;
     transform:translateX(0);
   }
+}
+
+.alert-favori{
 }

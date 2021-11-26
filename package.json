@@ -19,11 +19,16 @@
         "postcss-import": "^12.0.1",
         "pusher-js": "^7.0.3",
         "resolve-url-loader": "^3.1.4",
-        "tailwindcss": "^1.9.6",
         "vue-template-compiler": "^2.6.14"
     },
     "dependencies": {
         "@splidejs/splide": "^3.2.0",
+        "@tailwindcss/aspect-ratio": "^0.3.0",
+        "@tailwindcss/forms": "^0.3.4",
+        "@tailwindcss/typography": "^0.4.1",
+        "autoprefixer": "^9.8.8",
+        "postcss": "^7.0.39",
+        "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.17",
         "uikit": "^3.7.3"
     }
 }
