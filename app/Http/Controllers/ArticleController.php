@@ -27,9 +27,6 @@ class ArticleController extends Controller
      */
     public function create()
     {
-
-        
-        
     }
 
     /**
@@ -45,14 +42,19 @@ class ArticleController extends Controller
         $article['title'] = $request->title;
         $article['category_id'] = $request->category_id;
         $article['body'] = $request->body;
-        $article['excerpt'] = $request->body;
+        $article['excerpt'] = Str::substr($request->body, 0, 100);
         $article['slug'] = Str::slug($request->title);
         $article['user_id'] = Auth::user()->id;
         $article['active'] = 1;
+        if ($request->image == null) {
+            $article['image'] = "https://images.unsplash.com/photo-1499750310107-5fef28a66643?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80";
+        } else {
+            $article['image'] = $request->image;
+        }
+        
         $article->save();
 
         return redirect()->to('/admin/articles');
-
     }
 
     /**
@@ -63,7 +65,8 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
-        //
+
+        return view('articles.show', compact('article'));
     }
 
     /**
@@ -87,13 +90,16 @@ class ArticleController extends Controller
      */
     public function update(Request $request, Article $article)
     {
+        // dd($request);
         $article->title = $request['title'];
         $article->body = $request['body'];
-        $article->category_id = $request['category_id'];
+        $article['excerpt'] = Str::substr($request->body, 0, 100);
+        if ($request['category_id'] != "Choisir une catégorie") {
+            $article->category_id = $request['category_id'];
+        }
         $article->save();
 
         return redirect()->to('/admin/articles');
-
     }
 
     /**
