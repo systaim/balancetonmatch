@@ -6,10 +6,10 @@
             @csrf
             <div>
                 <div>
-                    <label for="email" class="block text-sm font-medium text-white">Titre</label>
+                    <label for="title" class="block text-sm font-medium text-white">Titre</label>
                     <input type="text" name="title" id="title"
                         class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
-                        placeholder="you@example.com">
+                        placeholder="Titre">
                 </div>
                 <div>
                     <label for="category_id" class="block text-sm font-medium text-white">categorie</label>
@@ -22,7 +22,12 @@
 
                     </select>
                 </div>
-
+                <div>
+                    <label for="image" class="block text-sm font-medium text-white">Image</label>
+                    <input type="text" name="image" id="image"
+                        class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                        placeholder="lien unsplash">
+                </div>
                 <div>
                     <label for="body" class="block text-sm font-medium text-white">texte</label>
                     <div class="mt-1">

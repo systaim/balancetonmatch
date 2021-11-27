@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Activity;
+use App\Models\Article;
 use App\Models\Club;
 use App\Models\Commentator;
 use App\Models\Rencontre;
@@ -47,6 +48,7 @@ class HomeController extends Controller
         $activities = Activity::where('created_at', '>', now()->subDays(15))->orderByDesc('created_at')->get();
         $all_commentators = Commentator::all();
         $commentators = Commentator::where('created_at', '>', Carbon::now()->subDays(5))->get();
+        $all_articles= Article::all()->take(3);
 
         $comOfTheWeek = Commentator::whereBetween('created_at',[Carbon::now()->subDays(6), Carbon::now()->addDay(1)])->get() ;
 
@@ -73,6 +75,7 @@ class HomeController extends Controller
         'comOfTheWeek',
         'activities',
         'all_commentators',
+        'all_articles'
     ));
     }
 }

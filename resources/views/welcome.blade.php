@@ -206,7 +206,8 @@
                                 @break
                                 @case('create_player')
                                     @if ($activite->player)
-                                        <a href="{{ route('clubs.players.show', [$activite->club->id, $activite->player->id]) }}">
+                                        <a
+                                            href="{{ route('clubs.players.show', [$activite->club->id, $activite->player->id]) }}">
                                             <li class="py-4 hover:bg-gray-50 px-4">
                                                 <div class="flex space-x-3 ">
                                                     <div class="flex-1 space-y-1 ">
@@ -433,7 +434,7 @@
                         </div>
                         <div class="mt-10 flex flex-wrap w-full">
                             @foreach ($commentators as $com)
-                            
+
                                 <div class="relative bg-primary rounded-md shadow-xl overflow-hidden text-white w-72 m-2">
                                     <a href="{{ route('matches.show', [$com->match->id]) }}">
                                         <div class="absolute -top-3 -left-3 logo h-20 w-20 transform -rotate-12">
@@ -554,50 +555,121 @@
             <img src="{{ asset('images/demo2-min.png') }}" alt="demo" class="h-72 lg:h-96">
         </div>
     </section>
+    <section>
+        <!-- This example requires Tailwind CSS v2.0+ -->
+        <div class="relative bg-gray-50 pt-16 pb-20 px-4 sm:px-6 lg:pb-28 lg:px-8">
+            <div class="absolute inset-0">
+                <div class="bg-white h-1/3 sm:h-2/3"></div>
+            </div>
+            <div class="relative max-w-7xl mx-auto">
+                <div class="text-center">
+                    <h2 class="text-3xl tracking-tight font-extrabold text-gray-900 sm:text-4xl">
+                        Ca vient du blog
+                    </h2>
+                    <p class="mt-3 max-w-2xl mx-auto text-xl text-gray-500 sm:mt-4">
+                        Voici les 3 derniers articles provenant du blog.
+                    </p>
+                </div>
+                <div class="mt-12 max-w-lg mx-auto grid gap-5 lg:grid-cols-3 lg:max-w-none">
+                    @foreach ($all_articles as $article)
+                        <div class="flex flex-col rounded-lg shadow-lg overflow-hidden">
+                            <div class="flex-shrink-0">
+                                <img class="h-48 w-full object-cover"
+                                    src="{{ asset($article->image) }}"
+                                    alt="">
+                            </div>
+                            <div class="flex-1 bg-white p-6 flex flex-col justify-between">
+                                <div class="flex-1">
+                                    {{-- <p class="text-sm font-medium text-indigo-600">
+                                        <a href="#" class="hover:underline">
+                                            Article
+                                        </a>
+                                    </p> --}}
+                                    <a href="#" class="block mt-2">
+                                        <p class="text-xl font-semibold text-gray-900">
+                                            {{ $article->title }}
+                                        </p>
+                                        <p class="mt-3 text-base text-gray-500">
+                                            {{ $article->excerpt }}...
+                                        </p>
+                                    </a>
+                                </div>
+                                <div class="mt-6 flex items-center">
+                                    <div class="flex-shrink-0">
+                                        <a href="#">
+                                            <span class="sr-only">Roel Aufderehar</span>
+                                            <img class="h-10 w-10 rounded-full"
+                                                src="{{ $article->user->profile_photo_path }}"
+                                                alt="">
+                                        </a>
+                                    </div>
+                                    <div class="ml-3">
+                                        <p class="text-sm font-medium text-gray-900">
+                                            <a href="#" class="hover:underline">
+                                                {{ $article->user->pseudo }}
+                                            </a>
+                                        </p>
+                                        <div class="flex space-x-1 text-sm text-gray-500">
+                                            <time datetime="{{ $article->created_at }}">
+                                                le {{ Carbon\Carbon::parse($article->created_at)->format('d/m/Y') }}
+                                            </time>                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="py-6">
+            <div class="flex justify-center">
+                <h3 class="p-2 text-primary text-2xl">La saison 2021/2022 c'est : </h3>
+            </div>
+            <div class="flex flex-wrap justify-center">
+                <div class="flex justify-between">
+                    <div
+                        class="flex flex-col items-center justify-center text-primary w-20 h-20 md:w-28 md:h-28 lg:w-40 lg:h-40 md:bg-primary md:text-white my-2 mx-1 rounded-lg shadow-lg">
+                        <p class="compteur text-xl lg:text-5xl font-bold">{{ count($matches) }}</p>
+                        <p class="text-xs lg:text-base">{{ count($matches) <= 1 ? 'matchs' : 'matchs' }}</p>
+                    </div>
+                    <div
+                        class="flex flex-col items-center justify-center text-primary w-20 h-20 md:w-28 md:h-28 lg:w-40 lg:h-40 md:bg-primary md:text-white my-2 mx-1 rounded-lg shadow-lg">
+                        <p class="compteur text-xl lg:text-5xl font-bold">{{ count($clubs) }}</p>
+                        <p class="text-xs lg:text-base">clubs</p>
+                    </div>
+                    <div
+                        class="flex flex-col items-center justify-center text-primary w-20 h-20 md:w-28 md:h-28 lg:w-40 lg:h-40 md:bg-primary md:text-white my-2 mx-1 rounded-lg shadow-lg">
+                        <p class="compteur text-xl lg:text-5xl font-bold">{{ count($players) + count($staffs) }}</p>
+                        <p class="text-xs lg:text-base">joueurs</p>
+                    </div>
+                </div>
+                <div class="flex justify-between">
+                    <div
+                        class="flex flex-col items-center justify-center text-primary w-20 h-20 md:w-28 md:h-28 lg:w-40 lg:h-40 md:bg-primary md:text-white my-2 mx-1 rounded-lg shadow-lg">
+                        <p class="compteur text-xl lg:text-5xl font-bold">{{ count($goals) }}</p>
+                        <p class="text-xs lg:text-base">{{ count($goals) <= 1 ? 'but' : 'buts' }}</p>
+                    </div>
+                    <div
+                        class="flex flex-col items-center justify-center text-primary w-20 h-20 md:w-28 md:h-28 lg:w-40 lg:h-40 md:bg-primary md:text-white my-2 mx-1 rounded-lg shadow-lg">
+                        <p class="compteur text-xl lg:text-5xl font-bold">{{ count($all_commentators) }}</p>
+                        <p class="text-xxs lg:text-base">
+                            {{ count($commentators) <= 1 ? 'commentateurs' : 'commentateurs' }}
+                        </p>
+                    </div>
+                    <div
+                        class="flex flex-col items-center justify-center text-primary w-20 h-20 md:w-28 md:h-28 lg:w-40 lg:h-40 md:bg-primary md:text-white my-2 mx-1 rounded-lg shadow-lg">
+                        <p class="compteur text-xl lg:text-5xl font-bold">{{ count($yellowCards) + count($redCards) }}
+                        </p>
+                        <p class="text-xs lg:text-base">
+                            {{ count($yellowCards) + count($redCards) <= 1 ? 'cartons' : 'cartons' }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <div class="py-6">
-        <div class="flex justify-center">
-            <h3 class="p-2 text-primary text-2xl">La saison 2021/2022 c'est : </h3>
-        </div>
-        <div class="flex flex-wrap justify-center">
-            <div class="flex justify-between">
-                <div
-                    class="flex flex-col items-center justify-center text-primary w-20 h-20 md:w-28 md:h-28 lg:w-40 lg:h-40 md:bg-primary md:text-white my-2 mx-1 rounded-lg shadow-lg">
-                    <p class="compteur text-xl lg:text-5xl font-bold">{{ count($matches) }}</p>
-                    <p class="text-xs lg:text-base">{{ count($matches) <= 1 ? 'matchs' : 'matchs' }}</p>
-                </div>
-                <div
-                    class="flex flex-col items-center justify-center text-primary w-20 h-20 md:w-28 md:h-28 lg:w-40 lg:h-40 md:bg-primary md:text-white my-2 mx-1 rounded-lg shadow-lg">
-                    <p class="compteur text-xl lg:text-5xl font-bold">{{ count($clubs) }}</p>
-                    <p class="text-xs lg:text-base">clubs</p>
-                </div>
-                <div
-                    class="flex flex-col items-center justify-center text-primary w-20 h-20 md:w-28 md:h-28 lg:w-40 lg:h-40 md:bg-primary md:text-white my-2 mx-1 rounded-lg shadow-lg">
-                    <p class="compteur text-xl lg:text-5xl font-bold">{{ count($players) + count($staffs) }}</p>
-                    <p class="text-xs lg:text-base">joueurs</p>
-                </div>
-            </div>
-            <div class="flex justify-between">
-                <div
-                    class="flex flex-col items-center justify-center text-primary w-20 h-20 md:w-28 md:h-28 lg:w-40 lg:h-40 md:bg-primary md:text-white my-2 mx-1 rounded-lg shadow-lg">
-                    <p class="compteur text-xl lg:text-5xl font-bold">{{ count($goals) }}</p>
-                    <p class="text-xs lg:text-base">{{ count($goals) <= 1 ? 'but' : 'buts' }}</p>
-                </div>
-                <div
-                    class="flex flex-col items-center justify-center text-primary w-20 h-20 md:w-28 md:h-28 lg:w-40 lg:h-40 md:bg-primary md:text-white my-2 mx-1 rounded-lg shadow-lg">
-                    <p class="compteur text-xl lg:text-5xl font-bold">{{ count($all_commentators) }}</p>
-                    <p class="text-xxs lg:text-base">{{ count($commentators) <= 1 ? 'commentateurs' : 'commentateurs' }}
-                    </p>
-                </div>
-                <div
-                    class="flex flex-col items-center justify-center text-primary w-20 h-20 md:w-28 md:h-28 lg:w-40 lg:h-40 md:bg-primary md:text-white my-2 mx-1 rounded-lg shadow-lg">
-                    <p class="compteur text-xl lg:text-5xl font-bold">{{ count($yellowCards) + count($redCards) }}
-                    </p>
-                    <p class="text-xs lg:text-base">
-                        {{ count($yellowCards) + count($redCards) <= 1 ? 'cartons' : 'cartons' }}</p>
-                </div>
-            </div>
-        </div>
-    </div>
 
 @endsection

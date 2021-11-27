@@ -43,7 +43,7 @@
                                         </div>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">{{ $article->body }}</div>
+                                        <div class="text-sm text-gray-900">{{ $article->excerpt }}...</div>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <span
