@@ -46,7 +46,7 @@
                 </h1>
             </div>
             <div class="my-6 prose prose-indigo prose-lg text-gray-500 mx-auto">
-                {{ $article->body }}
+                {!! $article->body !!}
             </div>
             <div class="mt-12 prose prose-indigo prose-lg text-gray-500 mx-auto">
                 <figure>
