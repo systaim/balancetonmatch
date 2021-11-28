@@ -538,7 +538,7 @@
                                     </div>
                                 </button>
                             @endif --}}
-                                @if ($match->live == 'finDeMatch' && $match->home_score == $match->away_score && ($match->competition_id >= 3 && $match->competition_id <= 5) && (count($tabHome) == 0 || count($tabAway) == 0))
+                                @if ($match->live == 'finDeMatch' && $match->home_score == $match->away_score && ($match->competition_id >= 3 && $match->competition_id <= 7) && (count($tabHome) == 0 || count($tabAway) == 0))
                                     <button type="button" wire:click="tirsAuBut">
                                         <div
                                             class="bg-primary text-white w-full h-full p-3 flex justify-evenly items-center rounded-lg">
