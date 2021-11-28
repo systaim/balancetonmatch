@@ -45,7 +45,7 @@ class ArticleController extends Controller
         $article['excerpt'] = Str::substr($request->body, 0, 100);
         $article['slug'] = Str::slug($request->title);
         $article['user_id'] = Auth::user()->id;
-        $article['active'] = 1;
+        $article['active'] = $request->active;
         if ($request->image == null) {
             $article['image'] = "https://images.unsplash.com/photo-1499750310107-5fef28a66643?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80";
         } else {
@@ -97,6 +97,7 @@ class ArticleController extends Controller
         if ($request['category_id'] != "Choisir une catégorie") {
             $article->category_id = $request['category_id'];
         }
+        $article['active'] = $request->active;
         $article->save();
 
         return redirect()->to('/admin/articles');
@@ -108,8 +109,13 @@ class ArticleController extends Controller
      * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Article $article)
+    public function destroy($id)
     {
-        //
+
+        $article = Article::find($id);
+        // dd($article);
+        $article->delete();
+
+        return back();
     }
 }

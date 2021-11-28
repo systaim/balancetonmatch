@@ -11,17 +11,30 @@
                         class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
                         placeholder="Titre">
                 </div>
-                <div>
-                    <label for="category_id" class="block text-sm font-medium text-white">categorie</label>
-                    <select id="category_id" name="category_id"
-                        class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
-                        <option>Choisir une catégorie</option>
-                        @foreach ($categories as $cat)
-                            <option value="{{ $cat->id }}">{{ $cat->title }}</option>
-                        @endforeach
+                <div class="flex justify-between my-4">
+                    <div>
+                        <label for="category_id" class="block text-sm font-medium text-white">categorie</label>
+                        <select id="category_id" name="category_id"
+                            class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                            <option>Choisir une catégorie</option>
+                            @foreach ($categories as $cat)
+                                <option value="{{ $cat->id }}">{{ $cat->title }}</option>
+                            @endforeach
 
-                    </select>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="active" class="block text-sm font-medium text-white">categorie</label>
+                        <select id="active" name="active"
+                            class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                            <option value="">Choisir</option>
+                            <option value="0">Non publié</option>
+                            <option value="1">Publié</option>
+
+                        </select>
+                    </div>
                 </div>
+
                 <div>
                     <label for="image" class="block text-sm font-medium text-white">Image</label>
                     <input type="text" name="image" id="image"

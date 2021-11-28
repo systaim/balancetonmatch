@@ -56,6 +56,4 @@
                 </figure>
             </div>
         </div>
-
-
     @endsection

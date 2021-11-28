@@ -25,7 +25,7 @@ class CreateArticlesTable extends Migration
             $table->boolean('active')->default(false);
             $table->string('image')->nullable();
             $table->foreignId('category_id')->constrained();
-            
+            $table->softDeletes('deleted_at');
             $table->foreignId('user_id')
                 ->constrained()
                 ->onDelete('cascade')
