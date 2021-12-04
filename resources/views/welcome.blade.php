@@ -598,7 +598,7 @@
                                         <a href="#">
                                             <span class="sr-only">Roel Aufderehar</span>
                                             <img class="h-10 w-10 rounded-full"
-                                                src="{{ asset($article->user->profile_photo_path) }}" alt="photo de profil">
+                                                src="{{ asset('storage/'.$article->user->profile_photo_path) }}" alt="photo de profil">
                                         </a>
                                     </div>
                                     <div class="ml-3">
