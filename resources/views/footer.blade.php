@@ -11,6 +11,7 @@
             <p class="font-bold mb-4">Plus d'infos...</p>
             <div class="flex flex-col">
                 <a href="/mentions-legales">Mentions légales</a>
+                <a href="{{ route('politique-de-confidentialite') }}">Politique de confidentialité</a>
                 <a href="/contact">Contact</a>
             </div>
         </div>

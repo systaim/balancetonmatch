@@ -224,3 +224,7 @@ Route::get('commentaire/delete/{id}', 'App\Http\Controllers\CommentaireControlle
 Route::get('/offline', function () {
     return view('vendor/laravelpwa/offline');
 });
+
+Route::get('/politique-de-confidentialite', function () {
+    return view('politique-de-confidentialite');
+})->name('politique-de-confidentialite');
