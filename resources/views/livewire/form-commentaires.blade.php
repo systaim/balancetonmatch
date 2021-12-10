@@ -39,7 +39,7 @@
                 </button>
             </div>
             <div class="bg-orange-400">
-                <div class="fixed bottom-16 left-2 z-40">
+                <div class="fixed bottom-16 left-2 z-40 ">
                     <input class="hidden" type="radio" wire:model="team_action" id="homeAction"
                         name="team_action" value="home">
                     <label for="homeAction">
@@ -573,7 +573,7 @@
                         </div>
                     @endif
                 @else
-                    @if (empty($match->commentateur))
+                    @if (empty($match->commentateur) && $match->date_match > now()->subHours(3))
                         <div class="flex flex-col items-center my-6">
                             <div class="">
                                 <p class=" py-2 px-3 underline mb-3">En attente d'un
@@ -585,6 +585,11 @@
                                     <p class="text-sm">Connecte toi</p>
                                 </button>
                             </a>
+                        </div>
+                    @else
+                        <div class="flex flex-col items-center my-6">
+                            <p class=" py-2 px-3 underline mb-3">
+                                Il n'est plus possible de commenter</p>
                         </div>
                     @endif
                 @endauth
@@ -628,8 +633,11 @@
                     </script>
                 </div>
                 <div class="flex justify-center my-4" wire:click="btnStorePhotoMatch">
-                    <button type="button"
-                        class="btn btnPrimary">{{ $store_photo_match ? 'Fermer le menu' : 'Ajouter une photo' }}</button>
+                    @if ($match->date_match > now()->subHours(3))
+                        <button type="button"
+                            class="btn btnPrimary">{{ $store_photo_match ? 'Fermer le menu' : 'Ajouter une photo' }}</button>
+                    @endif
+
                 </div>
                 @if ($store_photo_match)
                     <form wire:submit.prevent="storePhotoMatch">

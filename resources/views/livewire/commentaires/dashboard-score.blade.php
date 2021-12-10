@@ -1,4 +1,4 @@
-<div wire:poll.5s x-data="{ open: false }">
+<div x-data="{ open: false }">
     <div class="backMatch">
         <div class="py-6">
             <div class="relative bg-primary text-white m-auto text-center shadow-2xl p-2 max-w-md">
@@ -80,7 +80,7 @@
                             </p>
                         @else
                             <input
-                                class="bg-white rounded-sm mr-1 flex justify-center w-12 text-3xl sm:text-5xl text-center font-mono font-bold"
+                                class="bg-white rounded-sm mr-1 flex justify-center w-16 text-3xl sm:text-5xl text-center font-mono font-bold"
                                 type="number" wire:model="home_score_corrige">
                         @endif
                     </div>
@@ -92,7 +92,7 @@
                             </p>
                         @else
                             <input
-                                class="bg-white rounded-sm mr-1 flex justify-center w-12 text-3xl sm:text-5xl text-center font-mono font-bold"
+                                class="bg-white rounded-sm mr-1 flex justify-center w-16 text-3xl sm:text-5xl text-center font-mono font-bold"
                                 type="number" wire:model="away_score_corrige">
 
                         @endif
@@ -100,17 +100,17 @@
                 </div>
                 @if ($open_btn_score)
                     <div class="flex my-1">
-                        <button class="px-1 bg-yellow-100 text-black rounded-md mr-1 shadow-xl" type="button"
+                        <button class="px-3 py-2 bg-yellow-200 text-black rounded-sm mr-1 shadow-xl" type="button"
                             wire:click="openBtnScore">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-600" fill="none"
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-800" fill="none"
                                 viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M11 17l-5-5m0 0l5-5m-5 5h12" />
                             </svg>
                         </button>
-                        <button class="px-1 bg-green-100 text-black rounded-md ml-1 shadow-xl" type="button"
+                        <button class="px-3 py-2 bg-green-200 rounded-sm shadow-xl" type="button"
                             wire:click="updateScore">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-600" fill="none"
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-800" fill="none"
                                 viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M5 13l4 4L19 7" />
