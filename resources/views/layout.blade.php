@@ -53,7 +53,7 @@
 
 </head>
 
-<body>
+<body class="">
     
     {{-- preloader --}}
     <div class="preloader">

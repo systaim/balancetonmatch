@@ -593,7 +593,7 @@ class FormCommentaires extends Component
             $commentData['minute'] = 0;
             $commentData['team_action'] = 'match';
             $commentData['commentator_id'] = $this->match->commentateur->id;
-            $commentData['images'] = "images/gifs/start.gif";
+            // $commentData['images'] = "images/gifs/start.gif";
 
             $comment = Commentaire::create($commentData);
 
@@ -653,7 +653,7 @@ class FormCommentaires extends Component
         $commentData['team_action'] = 'match';
         $commentData['comments'] = $this->mitempsJoueurs[array_rand($this->mitempsJoueurs)];
         $commentData['commentator_id'] = $this->match->commentateur->id;
-        $commentData['images'] = "images/gifs/lonely-goalie.gif";
+        // $commentData['images'] = "images/gifs/lonely-goalie.gif";
 
 
 
