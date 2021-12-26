@@ -571,7 +571,7 @@
                     </p>
                 </div>
                 <div class="mt-12 max-w-lg mx-auto grid gap-5 lg:grid-cols-3 lg:max-w-none">
-                    @foreach ($all_articles as $article)
+                    @foreach ($all_articles->sortByDesc('updated_at') as $article)
 
                         <div class="flex flex-col rounded-lg shadow-lg overflow-hidden">
                             <a href="{{ route('articles.show', $article) }}">
