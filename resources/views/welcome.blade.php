@@ -590,7 +590,7 @@
                                         </p>
                                     </a>
                                     <p class="mt-3 text-base text-gray-500">
-                                        {{ $article->excerpt }}...
+                                        {!! $article->excerpt !!}...
                                     </p>
                                 </div>
                                 <div class="mt-6 flex items-center">
