@@ -32,7 +32,7 @@ class Article extends Model
 
     public function categorie()
     {
-        return $this->belongsTo(Category::class, 'category_id');
+        return $this->belongsTo(CategoryArticle::class, 'category_id');
     }
 
     public function tags()

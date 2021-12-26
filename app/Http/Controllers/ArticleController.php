@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
-use App\Models\Category;
+use App\Models\CategoryArticle;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -77,7 +77,7 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
-        $categories = Category::all();
+        $categories = CategoryArticle::all();
         return view('admin.edit-article', compact('article', 'categories'));
     }
 

@@ -13,7 +13,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RegionController;
 use App\Http\Controllers\StaffController;
 use App\Models\Article;
-use App\Models\Category;
+use App\Models\CategoryArticleArticle;
 use App\Models\Competition;
 use App\Models\Department;
 use App\Models\Club;
@@ -137,7 +137,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::resource('articles', ArticleController::class);
     Route::get('/admin/create-article', function () {
         $role = Auth::user()->role;
-        $categories = Category::all();
+        $categories = CategoryArticle::all();
 
         if ($role == "super-admin" || $role == "admin") {
 
@@ -171,7 +171,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 // Route::middleware(['auth:sanctum', 'verified'])->get('/admin/create-article', function () {
 
 //     $role = Auth::user()->role;
-//     $categories = Category::all();
+//     $categories = CategoryArticle::all();
 
 //     if ($role == "super-admin" || $role == "admin") {
 
