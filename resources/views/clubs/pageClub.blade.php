@@ -45,6 +45,11 @@
                     </div>
                 </section>
             </div>
+            <div>
+                @foreach ($teams as $team)
+                    <p>{{ $team->category->name }} {{ $team->category->type }}</p>
+                @endforeach
+            </div>
         </aside>
         <main class="lg:col-span-9 xl:col-span-8">
             <div id="infos" class="flex flex-col items-center justify-between">

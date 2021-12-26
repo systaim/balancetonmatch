@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
 
@@ -58,6 +59,16 @@ class Club extends Model
     public function region()
     {
         return $this->belongsTo(Region::class, 'region_id');
+    }
+
+    /**
+     * Get all of the teams for the Club
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function teams(): HasMany
+    {
+        return $this->hasMany(Team::class);
     }
 
 }

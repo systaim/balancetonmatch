@@ -12,6 +12,7 @@ use App\Models\Player;
 use App\Models\Region;
 use App\Models\Staff;
 use App\Models\Statistic;
+use App\Models\Team;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -93,6 +94,8 @@ class ClubController extends Controller
         $activities = ClubActivity::where('club_id', $club->id)
                                 ->where('created_at', '>', now()->subDays(15))
                                 ->get()->sortByDesc('created_at');
+
+        $teams = Team::where('club_id', $club->id)->get();
         
         $matchsR1 = Rencontre::where('division_region_id', 1)->where('date_match','>=', Carbon::now()->subHours(12))
                             ->where(function ($query) use ($club){
@@ -151,7 +154,7 @@ class ClubController extends Controller
                                     $query->where('home_team_id', $club->id)
                                     ->orwhere('away_team_id', $club->id);
                             })->limit(1)->get();
-        return view('clubs.pageClub', compact('activities','club', 'matchs','user','nbrFavoris', 'nbrPlayers', 'nbrStaffs', 'matchsR1','matchsR2', 'matchsR3', 'matchsCF', 'matchsBZH', 'matchsCoupeDep', 'matchsD1', 'matchsD2', 'matchsD3', 'matchsD4'));
+        return view('clubs.pageClub', compact('teams','activities','club', 'matchs','user','nbrFavoris', 'nbrPlayers', 'nbrStaffs', 'matchsR1','matchsR2', 'matchsR3', 'matchsCF', 'matchsBZH', 'matchsCoupeDep', 'matchsD1', 'matchsD2', 'matchsD3', 'matchsD4'));
     }
 
     /**

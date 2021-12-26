@@ -1,10 +1,12 @@
 <?php
 
+use App\Models\CategoryTeam;
+use App\Models\Club;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCategoryArticleTable extends Migration
+class CreateTeamsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +15,10 @@ class CreateCategoryArticleTable extends Migration
      */
     public function up()
     {
-        Schema::create('category_articles', function (Blueprint $table) {
+        Schema::create('teams', function (Blueprint $table) {
             $table->id();
-            $table->string('title')->unique();
-            $table->string('slug')->unique();
+            $table->foreignIdFor(Club::class)->constrained();
+            $table->foreignIdFor(CategoryTeam::class)->constrained();
         });
     }
 
@@ -27,6 +29,6 @@ class CreateCategoryArticleTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('category_articles');
+        Schema::dropIfExists('teams');
     }
 }
