@@ -43,14 +43,8 @@
                         class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
                         placeholder="lien unsplash" value="{{ $article->image }}">
                 </div>
-                <div>
-                    <label for="body" class="block text-sm font-medium text-white">texte</label>
-                    <div class="mt-1">
-                        <textarea rows="4" name="body" id="body"
-                            class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md">
-                        {!! $article->body !!}
-                        </textarea>
-                    </div>
+                <div class="mt-6">
+                    <x-forms.tinymce-editor name="body">{{ $article->body }}</x-forms.tinymce-editor>
                 </div>
 
             </div>

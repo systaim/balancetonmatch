@@ -26,6 +26,9 @@
     <link rel="stylesheet" href="{{ mix('css/styles.css') }}" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
+    <!-- Tinymce -->
+    <x-head.tinymce-config />
+
     <!-- FontAwesome -->
     {{-- <script src="https://kit.fontawesome.com/c03c2336c3.js" crossorigin="anonymous" defer></script> --}}
 
@@ -51,10 +54,11 @@
     @endif
     @laravelPWA
 
+
 </head>
 
 <body class="">
-    
+
     {{-- preloader --}}
     <div class="preloader">
         <div class="loader"></div>

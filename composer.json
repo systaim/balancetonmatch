@@ -22,7 +22,8 @@
         "laravel/tinker": "^2.0",
         "livewire/livewire": "^2.3",
         "pusher/pusher-php-server": "^7.0",
-        "silviolleite/laravelpwa": "^2.0"
+        "silviolleite/laravelpwa": "^2.0",
+        "tinymce/tinymce": "^5.10"
     },
     "require-dev": {
         "facade/ignition": "^2.3.6",

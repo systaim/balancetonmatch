@@ -15,9 +15,9 @@
         "axios": "^0.21.4",
         "cross-env": "^7.0.3",
         "laravel-echo": "^1.11.2",
-        "laravel-mix": "^5.0.9",
+        "laravel-mix": "^6.0.39",
         "lodash": "^4.17.21",
-        "postcss": "^7.0.39",
+        "postcss": "^8.4.5",
         "postcss-import": "^12.0.1",
         "pusher-js": "^7.0.3",
         "resolve-url-loader": "^3.1.4",
@@ -29,6 +29,7 @@
         "@tailwindcss/aspect-ratio": "^0.3.0",
         "@tailwindcss/forms": "^0.3.4",
         "@tailwindcss/typography": "^0.4.1",
+        "tinymce": "^5.10.2",
         "uikit": "^3.7.3"
     }
 }

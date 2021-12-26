@@ -90,7 +90,7 @@ class ArticleController extends Controller
      */
     public function update(Request $request, Article $article)
     {
-        // dd($request);
+        dd($request);
         $article->title = $request['title'];
         $article->body = $request['body'];
         $article['excerpt'] = Str::substr($request->body, 0, 100);
