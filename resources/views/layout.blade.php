@@ -165,6 +165,20 @@
     @endauth
 
     <script src="{{ mix('js/app.js') }}"></script>
+    <script>
+        window.axeptioSettings = {
+            clientId: "{{ env('AXEPTIO_KEY ') }}",
+            cookiesVersion: "balancetonmatch-base",
+        };
+
+        (function(d, s) {
+            var t = d.getElementsByTagName(s)[0],
+                e = d.createElement(s);
+            e.async = true;
+            e.src = "//static.axept.io/sdk.js";
+            t.parentNode.insertBefore(e, t);
+        })(document, "script");
+    </script>
 
 </body>
 
