@@ -13,6 +13,9 @@
                 <a href="/mentions-legales">Mentions légales</a>
                 <a href="{{ route('politique-de-confidentialite') }}">Politique de confidentialité</a>
                 <a href="/contact">Contact</a>
+                <a href="javascript:openAxeptioCookies()">
+                    Modifier vos préférences en matière de cookies
+                  </a>
             </div>
         </div>
     </div>
