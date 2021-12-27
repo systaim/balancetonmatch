@@ -167,7 +167,7 @@
     <script src="{{ mix('js/app.js') }}"></script>
     <script>
         window.axeptioSettings = {
-            clientId: "{{ env('AXEPTIO_KEY ') }}",
+            clientId: "61ca10780b48d5108f3b2d1c",
             cookiesVersion: "balancetonmatch-base",
         };
 
