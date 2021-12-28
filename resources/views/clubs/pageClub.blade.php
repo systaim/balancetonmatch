@@ -45,11 +45,6 @@
                     </div>
                 </section>
             </div>
-            <div>
-                @foreach ($teams as $team)
-                    <p>{{ $team->category->name }} {{ $team->category->type }}</p>
-                @endforeach
-            </div>
         </aside>
         <main class="lg:col-span-9 xl:col-span-8">
             <div id="infos" class="flex flex-col items-center justify-between">
@@ -121,6 +116,11 @@
                 <h3 class="text-center text-secondary mb-4 text-2xl">Infos du club</h3>
                 @livewire('update-team',['club' => $club])
 
+                <div>
+                    @foreach ($teams as $team)
+                        <p>{{ $team->category->name }} {{ $team->category->type }}</p>
+                    @endforeach
+                </div>
                 <div class="flex flex-col items-center xl:flex-row xl:justify-center mt-3">
                     @if ($nbrPlayers == 0)
                         @auth
@@ -279,6 +279,7 @@
         @else
             <p class="pl-2">Pas d'historique de matchs pour le moment</p>
         @endif
+        {{ $matchs->links() }}
     </div>
 
 @endsection

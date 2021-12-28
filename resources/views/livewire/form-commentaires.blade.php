@@ -209,6 +209,7 @@
                                 wire:model="player"
                                 {{ $type_comments == 'but' || $type_comments == 'carton' ? 'required' : '' }}>
                                 <option value="">Choisis un joueur</option>
+                                <option value="0">CSC</option>
                                 @if ($team_action == 'home')
                                     @foreach ($match->homeClub->players->sortBy('first_name') as $player)
                                         <option value="{{ $player->id }}">{{ $player->first_name }}
