@@ -90,7 +90,7 @@ class ClubController extends Controller
         $nbrPlayers = Player::where('club_id', $club->id)->count();
         $nbrStaffs = Staff::where('club_id', $club->id)->count();
         $nbrFavoris = Favoristeam::where('club_id', $club->id)->count();
-        $matchs = Rencontre::where('home_team_id', $club->id)->orwhere('away_team_id', $club->id)->orderBy('date_match','asc')->simplePaginate(10);
+        $matchs = Rencontre::where('home_team_id', $club->id)->orwhere('away_team_id', $club->id)->orderBy('date_match','desc')->simplePaginate(10);
         $activities = ClubActivity::where('club_id', $club->id)
                                 ->where('created_at', '>', now()->subDays(15))
                                 ->get()->sortByDesc('created_at');
