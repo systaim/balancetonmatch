@@ -1,15 +1,25 @@
 
 
 <div class="relative commentaires minHeight16 h-auto {{ $comment->team_action }}"
+    @if ($comment->team_action == "home")
+    style="border-color: {{ $match->homeClub->primary_color }};"
+    @else
+    style="border-color: {{ $match->awayClub->primary_color }};"
+    @endif
     x-data="{ open: false }">
     <div
-        class="minuteCommentaires w-24 sm:w-32 {{ $comment->team_action }} p-4 flex flex-col items-center">
+        class="minuteCommentaires w-24 sm:w-32 {{ $comment->team_action }} p-4 flex flex-col items-center"
+        @if ($comment->team_action == "home")
+        style="background-color: {{ $match->homeClub->primary_color }}; color:{{ $match->homeClub->secondary_color == $match->homeClub->primary_color ? '#cdfb0a' : $match->homeClub->secondary_color }}"
+        @else
+        style="background-color: {{ $match->awayClub->primary_color }}; color:{{ $match->awayClub->secondary_color == $match->awayClub->primary_color ? '#cdfb0a' : $match->awayClub->secondary_color }}"
+        @endif>
         <div>
             <p class="mb-4">{{ $comment->minute }}'</p>
         </div>
         @if ($comment->team_action == 'home')
             <div class="logo h-12 w-12 cursor-pointer">
-                @if ($match->homeClub->logo_path)
+                @if ($match->awayClub->logo_path)
                     <img class="object-contain" src="{{ asset($match->homeClub->logo_path) }}"
                         alt="Logo de {{ $match->homeClub->name }}">
                 @else

@@ -41,8 +41,8 @@
         <div class="grid grid-cols-12 lg:mx-16 xl:mx-24 mb-2">
             <div class="col-span-5 overflow-hidden">
                 <a href="{{ route('clubs.show', $match->homeClub->id) }}">
-                    <div
-                        class="bg-primary p-2 text-secondary flex flex-col lg:flex-row lg:items-center lg:rounded-l-full">
+                    <div class="bg-primary p-2 text-secondary flex flex-col lg:flex-row lg:items-center lg:rounded-l-full"
+                    style="background-color: {{ $match->homeClub->primary_color }}; color:{{ $match->homeClub->secondary_color == $match->homeClub->primary_color ? '#cdfb0a' : $match->homeClub->secondary_color }}">
 
                         <div class="relative flex justify-center">
                             <div class="logo h-16 w-16 sm:h-20 sm:w-20 lg:h-32 lg:w-32 cursor-pointer lg:mr-1 xl:mr-4">
@@ -69,8 +69,9 @@
                     </div>
                 </a>
             </div>
-            <div
-                class="relative col-span-2 bg-gradient-to-r from-primary to-secondary flex flex-col justify-center items-center">
+            <div class="relative col-span-2 bg-gradient-to-r from-primary to-secondary flex flex-col justify-center items-center"
+                style="background: rgb(2,0,36);
+                background: linear-gradient(90deg, {{ $match->homeClub->primary_color }} 0%, {{ $match->awayClub->primary_color }} 100%);">
                 <div class="flex justify-center mt-2">
                     <div class="z-10">
                         @if (!$open_btn_score)
@@ -127,8 +128,8 @@
             </div>
             <div class="col-span-5 overflow-hidden z-0">
                 <a href="{{ route('clubs.show', $match->awayClub->id) }}">
-                    <div
-                        class="bg-secondary p-2 text-primary flex flex-col-reverse lg:flex-row lg:items-center lg:justify-end lg:rounded-r-full">
+                    <div class="bg-secondary p-2 text-primary flex flex-col-reverse lg:flex-row lg:items-center lg:justify-end lg:rounded-r-full"
+                        style="background-color: {{ $match->awayClub->primary_color }}; color:{{ $match->awayClub->secondary_color == $match->awayClub->primary_color ? '#cdfb0a' : $match->awayClub->secondary_color }}">
                         <div>
                             <p class="truncate text-center lg:text-left sm:font-bold lg:text-2xl">
                                 {{ $match->awayClub->name }}
@@ -162,7 +163,8 @@
                         @if ($comment->team_action == 'home' && $comment->type_action == 'goal')
                             <div class="flex flex-row justify-end items-center m-auto overflow-hidden mx-1">
                                 <div
-                                    class="bg-primary text-secondary font-bold px-2 py-1 flex justify-end items-center w-full sm:w-48 rounded-lg mb-1">
+                                    class="bg-primary text-secondary font-bold px-2 py-1 flex justify-end items-center w-full sm:w-48 rounded-lg mb-1"
+                                    style="background-color: {{ $match->homeClub->primary_color }}; color:{{ $match->homeClub->secondary_color == $match->homeClub->primary_color ? '#cdfb0a' : $match->homeClub->secondary_color }}">
                                     <p class="text-xs md:text-sm px-2 truncate">
                                         {{ substr($comment->statistic->player->first_name, 0, 1) }}.
                                         {{ $comment->statistic->player->last_name }}
@@ -193,7 +195,8 @@
                     @if ($comment->team_action == 'away' && $comment->type_action == 'goal')
                         <div class="flex flex-row justify-start items-center m-auto overflow-hidden mx-1">
                             <div
-                                class="bg-secondary text-primary font-bold px-2 py-1 flex flex-row-reverse justify-end items-center w-full sm:w-48 rounded-lg mb-1">
+                                class="bg-secondary text-primary font-bold px-2 py-1 flex flex-row-reverse justify-end items-center w-full sm:w-48 rounded-lg mb-1"
+                                style="background-color: {{ $match->awayClub->primary_color }}; color:{{ $match->awayClub->secondary_color == $match->awayClub->primary_color ? '#cdfb0a' : $match->awayClub->secondary_color }}">
                                 <p class="text-xs md:text-sm px-2 truncate">
                                     {{ substr($comment->statistic->player->first_name, 0, 1) }}.
                                     {{ $comment->statistic->player->last_name }}
@@ -241,8 +244,9 @@
     <div class="bg-gray-900 px-8 py-2 text-white grid grid-cols-3 gap-0">
         <div class="flex items-center">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
-              </svg>
+                <path
+                    d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
+            </svg>
             <p class="ml-2 font-bold">{{ count($visitors) }}</p>
         </div>
         <div class="col-span-2">
