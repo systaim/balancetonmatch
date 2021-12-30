@@ -21,11 +21,9 @@
                 </svg>
             @else
                 @if ($comment->minute > 90)
-                <div class="flex items-start">
-                    <p class="mb-4">90 <span class="text-xs">+{{ $comment->minute - 90 }}</span>'</p>
-                </div>
+                    <p class="mb-4">90<span class="text-xs">+{{ $comment->minute - 90 }}</span>'</p>
                 @else
-                <p class="mb-4">{{ $comment->minute }}'</p>
+                    <p class="mb-4">{{ $comment->minute }}'</p>
                 @endif
             @endif
         </div>
