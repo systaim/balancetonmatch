@@ -15,7 +15,6 @@
         <div>
             <p class="mb-4">{{ $comment->minute }}'</p>
         </div>
-        @dump($match->homeClub->logo_path)
         @if ($comment->team_action == 'home')
             <div class="logo h-12 w-12 cursor-pointer">
                 @if ($match->homeClub->logo_path)
