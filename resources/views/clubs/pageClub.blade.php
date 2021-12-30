@@ -279,7 +279,7 @@
         @else
             <p class="pl-2">Pas d'historique de matchs pour le moment</p>
         @endif
-        {{ $matchs->links() }}
+        {{-- {{ $matchs->links() }} --}}
     </div>
 
 @endsection
