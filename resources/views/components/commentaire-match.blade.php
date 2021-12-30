@@ -3,7 +3,7 @@
 <div class="relative commentaires minHeight16 h-auto {{ $comment->team_action }}"
     @if ($comment->team_action == "home")
     style="border-color: {{ $match->homeClub->primary_color }};"
-    @else
+    @elseif ($comment->team_action == "away")
     style="border-color: {{ $match->awayClub->primary_color }};"
     @endif
     x-data="{ open: false }">
@@ -11,7 +11,7 @@
         class="minuteCommentaires w-24 sm:w-32 {{ $comment->team_action }} p-4 flex flex-col items-center"
         @if ($comment->team_action == "home")
         style="background-color: {{ $match->homeClub->primary_color }}; color:{{ $match->homeClub->secondary_color == $match->homeClub->primary_color ? '#cdfb0a' : $match->homeClub->secondary_color }}"
-        @else
+        @elseif ($comment->team_action == "away")
         style="background-color: {{ $match->awayClub->primary_color }}; color:{{ $match->awayClub->secondary_color == $match->awayClub->primary_color ? '#cdfb0a' : $match->awayClub->secondary_color }}"
         @endif>
         <div>
