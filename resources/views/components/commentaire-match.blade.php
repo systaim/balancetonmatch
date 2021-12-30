@@ -8,12 +8,12 @@
         @if ($comment->team_action == 'home')
         style="background-color: {{ $match->homeClub->primary_color }};
         color:{{ $match->homeClub->secondary_color == $match->homeClub->primary_color ? '#cdfb0a' : $match->homeClub->secondary_color }}"
-    @elseif ($comment->team_action == "away")
+        @elseif ($comment->team_action == "away")
         style="background-color: {{ $match->awayClub->primary_color }};
         color:{{ $match->awayClub->secondary_color == $match->awayClub->primary_color ? '#cdfb0a' : $match->awayClub->secondary_color }}"
         @endif>
         <div>
-            <p class="mb-4">{{ $comment->minute }}'</p>
+            <p class="mb-4">{{ $match->type_comments == "FIN DU MATCH !!!" ? "90" : $comment->minute }}'</p>
         </div>
         @if ($comment->team_action == 'home')
             <div class="logo h-12 w-12 cursor-pointer">

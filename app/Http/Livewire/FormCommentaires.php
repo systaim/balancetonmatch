@@ -700,7 +700,7 @@ class FormCommentaires extends Component
         $this->nbrFavoris = 0;
 
         $commentData['type_comments'] = "FIN DU MATCH !!!";
-        $commentData['minute'] = 90;
+        $commentData['minute'] = 99;
         $commentData['team_action'] = 'match';
         $commentData['commentator_id'] = $this->match->commentateur->id;
 
