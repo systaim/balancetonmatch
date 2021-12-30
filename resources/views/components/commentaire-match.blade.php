@@ -13,7 +13,7 @@
         color:{{ $match->awayClub->secondary_color == $match->awayClub->primary_color ? '#cdfb0a' : $match->awayClub->secondary_color }}"
         @endif>
         <div>
-            <p class="mb-4">{{ $match->type_comments == "FIN DU MATCH !!!" ? "90" : $comment->minute }}'</p>
+            <p class="mb-4">{{ $comment->type_comments == "FIN DU MATCH !!!" ? "90" : $comment->minute }}'</p>
         </div>
         @if ($comment->team_action == 'home')
             <div class="logo h-12 w-12 cursor-pointer">
