@@ -21,7 +21,7 @@
                 </svg>
             @else
                 @if ($comment->minute > 90)
-                    <p class="mb-4">90 <span class="ordinal">{{ $comment->minute - 90 }}</span>'</p>
+                    <p class="mb-4 ordinal">90+{{ $comment->minute - 90 }}'</p>
                 @else
                     <p class="mb-4">{{ $comment->minute }}'</p>
                 @endif
