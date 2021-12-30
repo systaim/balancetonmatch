@@ -8,12 +8,24 @@
         @if ($comment->team_action == 'home')
         style="background-color: {{ $match->homeClub->primary_color }};
         color:{{ $match->homeClub->secondary_color == $match->homeClub->primary_color ? '#cdfb0a' : $match->homeClub->secondary_color }}"
-        @elseif ($comment->team_action == "away")
+    @elseif ($comment->team_action == "away")
         style="background-color: {{ $match->awayClub->primary_color }};
         color:{{ $match->awayClub->secondary_color == $match->awayClub->primary_color ? '#cdfb0a' : $match->awayClub->secondary_color }}"
         @endif>
         <div>
-            <p class="mb-4">{{ $comment->type_comments == "FIN DU MATCH !!!" ? "90" : $comment->minute }}'</p>
+            @if ($comment->team_action == 'match')
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+            @else
+                @if ($comment->minute > 90)
+                    <p class="mb-4">90 <span class="ordinal">{{ $comment->minute - 90 }}</span>'</p>
+                @else
+                    <p class="mb-4">{{ $comment->minute }}'</p>
+                @endif
+            @endif
         </div>
         @if ($comment->team_action == 'home')
             <div class="logo h-12 w-12 cursor-pointer">
