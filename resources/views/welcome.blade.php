@@ -26,13 +26,13 @@
                         <p class="compteur text-xl">{{ count($clubs) }}</p>
                         <p class="text-xs lg:text-base">clubs</p>
                     </div>
-                    <div
+                    {{-- <div
                         class="flex flex-col items-center justify-center text-white my-2 mx-1 p-4">
                         <p class="compteur text-xl">{{ count($players) + count($staffs) }}</p>
                         <p class="text-xs lg:text-base">joueurs</p>
-                    </div>
+                    </div> --}}
                 </div>
-                <div class="flex justify-between">
+                {{-- <div class="flex justify-between">
                     <div
                         class="flex flex-col items-center justify-center text-white my-2 mx-1 p-4">
                         <p class="compteur text-xl">{{ count($goals) }}</p>
@@ -52,7 +52,7 @@
                         <p class="text-xs lg:text-base">
                             {{ count($yellowCards) + count($redCards) <= 1 ? 'cartons' : 'cartons' }}</p>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>
