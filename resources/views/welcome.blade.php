@@ -6,12 +6,54 @@
             <img class="w-full h-full object-cover" src="{{ asset('images/home-preview.jpg') }}" alt="">
             <div class="absolute inset-0 bg-gray-800 mix-blend-multiply" aria-hidden="true"></div>
         </div>
-        <div class="relative max-w-7xl mx-auto py-8 px-4 sm:py-32 sm:px-6 lg:px-8">
+        <div class="relative max-w-7xl mx-auto px-4 sm:py-32 sm:px-6 lg:px-8">
             <h1 class="text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl">Bienvenue</h1>
             <p class="mt-6 text-xl text-indigo-100 max-w-3xl">BalanceTonMatch.com a pour but de rassembler les passionnés du
                 ballon rond AMATEUR. Vous pourrez suivre les matchs en <span
                     class="uppercase text-primary font-bold bg-secondary px-2 rounded-sm">live</span> soit en tant que
                 commentateur soit en tant que spectateur</p>
+        </div>
+        <div class="relative w-full">
+            <div class="flex flex-wrap justify-around">
+                <div class="flex justify-between">
+                    <div
+                        class="flex flex-col items-center justify-center text-white my-2 mx-1 p-4">
+                        <p class="compteur text-xl">{{ count($matches) }}</p>
+                        <p class="text-xs lg:text-base">{{ count($matches) <= 1 ? 'matchs' : 'matchs' }}</p>
+                    </div>
+                    <div
+                        class="flex flex-col items-center justify-center text-white my-2 mx-1 p-4">
+                        <p class="compteur text-xl">{{ count($clubs) }}</p>
+                        <p class="text-xs lg:text-base">clubs</p>
+                    </div>
+                    <div
+                        class="flex flex-col items-center justify-center text-white my-2 mx-1 p-4">
+                        <p class="compteur text-xl">{{ count($players) + count($staffs) }}</p>
+                        <p class="text-xs lg:text-base">joueurs</p>
+                    </div>
+                </div>
+                <div class="flex justify-between">
+                    <div
+                        class="flex flex-col items-center justify-center text-white my-2 mx-1 p-4">
+                        <p class="compteur text-xl">{{ count($goals) }}</p>
+                        <p class="text-xs lg:text-base">{{ count($goals) <= 1 ? 'but' : 'buts' }}</p>
+                    </div>
+                    <div
+                        class="flex flex-col items-center justify-center text-white my-2 mx-1 p-4">
+                        <p class="compteur text-xl">{{ count($all_commentators) }}</p>
+                        <p class="text-xxs lg:text-base">
+                            {{ count($commentators) <= 1 ? 'commentateurs' : 'commentateurs' }}
+                        </p>
+                    </div>
+                    <div
+                        class="flex flex-col items-center justify-center text-white my-2 mx-1 p-4">
+                        <p class="compteur text-xl">{{ count($yellowCards) + count($redCards) }}
+                        </p>
+                        <p class="text-xs lg:text-base">
+                            {{ count($yellowCards) + count($redCards) <= 1 ? 'cartons' : 'cartons' }}</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
