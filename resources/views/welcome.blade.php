@@ -659,7 +659,7 @@
             </div>
         </div>
     </section>
-    <section>
+    {{-- <section>
         <div class="py-6">
             <div class="flex justify-center">
                 <h3 class="p-2 text-primary text-2xl">La saison 2021/2022 c'est : </h3>
@@ -705,7 +705,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 
 
 @endsection
