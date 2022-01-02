@@ -1,7 +1,7 @@
 @extends('layout')
 @section('content')
     <!-- This example requires Tailwind CSS v2.0+ -->
-    <div id="slideHome" class="relative bg-gray-800">
+    <div id="slideHome" class="relative bg-gray-800 p-4">
         <div class="absolute inset-0">
             <img class="w-full h-full object-cover" src="{{ asset('images/home-preview.jpg') }}" alt="">
             <div class="absolute inset-0 bg-gray-800 mix-blend-multiply" aria-hidden="true"></div>
