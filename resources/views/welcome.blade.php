@@ -6,7 +6,7 @@
             <img class="w-full h-full object-cover" src="{{ asset('images/home-preview.jpg') }}" alt="">
             <div class="absolute inset-0 bg-gray-800 mix-blend-multiply" aria-hidden="true"></div>
         </div>
-        <div class="relative max-w-7xl mx-auto py-24 px-4 sm:py-32 sm:px-6 lg:px-8">
+        <div class="relative max-w-7xl mx-auto py-8 px-4 sm:py-32 sm:px-6 lg:px-8">
             <h1 class="text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl">Bienvenue</h1>
             <p class="mt-6 text-xl text-indigo-100 max-w-3xl">BalanceTonMatch.com a pour but de rassembler les passionnés du
                 ballon rond AMATEUR. Vous pourrez suivre les matchs en <span
