@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Club;
 use App\Models\Competition;
+use App\Models\Department;
 use App\Models\Region;
 use App\Models\Rencontre;
 use Carbon\Carbon;
@@ -51,14 +52,16 @@ class RegionController extends Controller
      */
     public function show(Region $region)
     {
-        $clubs = Club::all();
-        $user = Auth::user();
-        $regionDeFrance = Region::find($region->id);
+        // $departements = Department::where('region_id', $region->id)->get();
+        // foreach ($departements as $departement) {
+        //     $clubs = Club::where('zip_code', 'like', $departement->id.'%',)->get();
+        // }
+        // $regionDeFrance = Region::find($region->id);
         // dd($region->name);
         // $matchesByRegion = Rencontre::where('region_id', $region->id)->where('date_match','>=', Carbon::now()->subHours(12))->paginate(10);
         // $competitions = Competition::find($matchesByRegion->keys());
 
-        return view('regions.show', compact('region','user', 'clubs'));
+        return view('regions.show', compact('region'));
     }
 
     /**

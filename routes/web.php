@@ -194,10 +194,20 @@ Route::resource('matches', RencontreController::class);
 Route::resource('commentaires', CommentaireController::class);
 Route::resource('clubs.players', PlayerController::class);
 Route::resource('clubs.staffs', StaffController::class);
-// Route::resource('regions', RegionController::class);
+Route::resource('regions', RegionController::class)->parameters([
+    'regions' => 'region:slug'
+]);
 Route::resource('competitions', CompetitionController::class);
 // Route::resource('competitions.division_region.groups', Group::class)->only('show');
+// Route::get('regions/{region:slug}', function (Region $region) {
+//     $clubs = Club::where('region_id', $region->id)->get();
+//     // $regionDeFrance = Region::find($region->id);
+//     // dd($region->name);
+//     // $matchesByRegion = Rencontre::where('region_id', $region->id)->where('date_match','>=', Carbon::now()->subHours(12))->paginate(10);
+//     // $competitions = Competition::find($matchesByRegion->keys());
 
+//     return view('regions.show', compact('region', 'clubs'));
+// });
 
 Route::resource('admin/users', 'App\Http\Controllers\UserController')->middleware('auth');
 Route::resource('admin', AdminController::class)->middleware('auth');

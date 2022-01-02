@@ -57,7 +57,7 @@
 
 </head>
 
-<body class="">
+<body class="relative">
 
     {{-- preloader --}}
     <div class="preloader">
@@ -83,7 +83,7 @@
         @endforeach
     @endauth
     <div id="container">
-        <header id="header" class="relative top-O right-0 left-0 lg:relative bg-white xl:h-auto z-50 lg:mt-0">
+        <header id="header" class="top-O right-0 left-0 bg-white xl:h-auto z-50 lg:mt-0">
             <div id="burger"
                 class="hidden absolute cursor-pointer top-5 left-3 justify-center items-center h-12 w-12 bg-primary z-50">
                 <div class="open-main-nav flex justify-center">
@@ -127,6 +127,31 @@
                             </div>
                         </a>
                     </div>
+                    <script>
+                        (function() {
+                            // on cible l'objet nav
+                            let header = document.getElementById('header');
+                            console.log(header.clientHeight);
+                            // on mémorise la position de nav
+                            let memoPositionNav = header.offsetTop;
+
+                            function sticky() {
+                                // position du curseur au scroll
+                                var posCurseur = this.pageYOffset;
+                                // je teste la différence de distance entre le scroll et nav
+                                if (memoPositionNav - posCurseur < 1) {
+                                    header.style.position = "fixed";
+                                    header.style.top = 0;
+                                    header.style.zIndex = 999;
+                                }
+                                if (posCurseur < header.clientHeight) {
+                                    header.style.position = "relative";
+                                }
+                            }
+                            // evenement
+                            window.addEventListener("scroll", sticky);
+                        })()
+                    </script>
                 </div>
                 @include('menu')
             </div>
@@ -167,7 +192,7 @@
     <script src="{{ mix('js/app.js') }}"></script>
     <script>
         window.axeptioSettings = {
-            clientId: "61ca10780b48d5108f3b2d1c",
+            clientId: "{{ env('AXEPTIO_KEY ') }}",
             cookiesVersion: "balancetonmatch-base",
         };
 
