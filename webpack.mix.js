@@ -1,4 +1,4 @@
-const { copyDirectory } = require("laravel-mix");
+// const { copyDirectory } = require("laravel-mix");
 const mix = require("laravel-mix");
 
 /*
