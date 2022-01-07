@@ -130,7 +130,7 @@
                             </div>
                             <div class="order-2 flex-shrink-0 sm:order-3 sm:ml-2">
                                 <button type="button" onclick="closeWindow()"
-                                    class="-mr-1 flex p-2 rounded-md hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-white">
+                                    class="-mr-1 flex p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-white">
                                     <span class="sr-only">Dismiss</span>
                                     <!-- Heroicon name: outline/x -->
                                     <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
