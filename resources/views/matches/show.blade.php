@@ -122,7 +122,7 @@
                     </div>
                     <div class="order-3 mt-2 flex-shrink-0 w-full sm:order-2 sm:mt-0 sm:w-auto">
                         <a href="{{ route('matches.edit', ['match' => $match]) }}"
-                            class="flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-blue-800 bg-white hover:bg-blue-900">
+                            class="flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-blue-800 bg-white">
                             Modifier l'heure
                         </a>
                     </div>
