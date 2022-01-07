@@ -2142,8 +2142,6 @@ matchs.addEventListener("click", function () {
 
 var compteurs = document.querySelectorAll(".compteur");
 compteurs.forEach(function (compteur) {
-  console.log(compteur);
-
   function animateValue(obj, start, end, duration) {
     var startTimestamp = null;
 

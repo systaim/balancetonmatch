@@ -134,7 +134,6 @@
                         (function() {
                             // on cible l'objet nav
                             let header = document.getElementById('header');
-                            console.log(header.clientHeight);
                             // on mémorise la position de nav
                             let memoPositionNav = header.offsetTop;
 

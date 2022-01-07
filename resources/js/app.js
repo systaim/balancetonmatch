@@ -82,7 +82,6 @@ matchs.addEventListener("click", function() {
 let compteurs = document.querySelectorAll(".compteur");
 
 compteurs.forEach(compteur => {
-    console.log(compteur);
     function animateValue(obj, start, end, duration) {
         let startTimestamp = null;
         const step = timestamp => {
