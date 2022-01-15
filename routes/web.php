@@ -239,3 +239,7 @@ Route::get('/offline', function () {
 Route::get('/politique-de-confidentialite', function () {
     return view('politique-de-confidentialite');
 })->name('politique-de-confidentialite');
+
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+    Route::get('recup-matchs', 'App\Http\Controllers\RecupMatchController@getMatches')->name('recup-matchs');
+});
