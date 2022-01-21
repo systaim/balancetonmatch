@@ -48,6 +48,902 @@
                     }
                 }
             }
+        },
+        "/clubs": {
+            "put": {
+                "tags": [
+                    "club"
+                ],
+                "summary": "Update an existing club",
+                "operationId": "updateClub",
+                "requestBody": {
+                    "$ref": "http://127.0.0.1:8000/components/requestBodies/Club"
+                },
+                "responses": {
+                    "400": {
+                        "description": "Invalid ID supplied"
+                    },
+                    "404": {
+                        "description": "Club not found"
+                    },
+                    "405": {
+                        "description": "Validation exception"
+                    }
+                },
+                "security": [
+                    {
+                        "clubstore_auth": [
+                            "write:clubs",
+                            "read:clubs"
+                        ]
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "club"
+                ],
+                "summary": "Add a new club to the store",
+                "operationId": "addClub",
+                "parameters": [
+                    {
+                        "name": "abbreviation",
+                        "in": "path",
+                        "description": "Abbreviation du club",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "$ref": "http://127.0.0.1:8000/components/requestBodies/Club"
+                },
+                "responses": {
+                    "405": {
+                        "description": "Invalid input"
+                    }
+                },
+                "security": [
+                    {
+                        "clubstore_auth": [
+                            "write:clubs",
+                            "read:clubs"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/clubs/{clubId}": {
+            "get": {
+                "tags": [
+                    "club"
+                ],
+                "summary": "Find club by ID",
+                "description": "Returns a single club",
+                "operationId": "getClubById",
+                "parameters": [
+                    {
+                        "name": "clubId",
+                        "in": "path",
+                        "description": "ID of club to return",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "http://127.0.0.1:8000/components/schemas/Club"
+                                }
+                            },
+                            "application/xml": {
+                                "schema": {
+                                    "$ref": "http://127.0.0.1:8000/components/schemas/Club"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid ID supplier"
+                    },
+                    "404": {
+                        "description": "Club not found"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "club"
+                ],
+                "summary": "Updates a club in the store with form data",
+                "operationId": "updateClubWithForm",
+                "parameters": [
+                    {
+                        "name": "clubId",
+                        "in": "path",
+                        "description": "ID of club that needs to be updated",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Input data format",
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "description": "Updated name of the club",
+                                        "type": "string"
+                                    },
+                                    "status": {
+                                        "description": "Updated status of the club",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "405": {
+                        "description": "Invalid input"
+                    }
+                },
+                "security": [
+                    {
+                        "clubstore_auth": [
+                            "write:clubs",
+                            "read:clubs"
+                        ]
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "club"
+                ],
+                "summary": "Deletes a club",
+                "operationId": "deleteClub",
+                "parameters": [
+                    {
+                        "name": "api_key",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "clubId",
+                        "in": "path",
+                        "description": "Club id to delete",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Invalid ID supplied"
+                    },
+                    "404": {
+                        "description": "Club not found"
+                    }
+                },
+                "security": [
+                    {
+                        "clubstore_auth": [
+                            "write:clubs",
+                            "read:clubs"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/clubs/{clubId}/uploadImage": {
+            "post": {
+                "tags": [
+                    "club"
+                ],
+                "summary": "uploads an image",
+                "operationId": "uploadFile",
+                "parameters": [
+                    {
+                        "name": "clubId",
+                        "in": "path",
+                        "description": "ID of club to update",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64",
+                            "example": 1
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Upload images request body",
+                    "content": {
+                        "application/octet-stream": {
+                            "schema": {
+                                "type": "string",
+                                "format": "binary"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "http://127.0.0.1:8000/components/schemas/ApiResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "clubstore_auth": [
+                            "write:pets",
+                            "read:pets"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/comments": {
+            "put": {
+                "tags": [
+                    "comment"
+                ],
+                "summary": "Update an existing comment",
+                "operationId": "updateComment",
+                "requestBody": {
+                    "$ref": "http://127.0.0.1:8000/components/requestBodies/Comment"
+                },
+                "responses": {
+                    "400": {
+                        "description": "Invalid ID supplied"
+                    },
+                    "404": {
+                        "description": "Comment not found"
+                    },
+                    "405": {
+                        "description": "Validation exception"
+                    }
+                },
+                "security": [
+                    {
+                        "commentstore_auth": [
+                            "write:comments",
+                            "read:comments"
+                        ]
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "comment"
+                ],
+                "summary": "Add a new comment to the store",
+                "operationId": "addComment",
+                "requestBody": {
+                    "$ref": "http://127.0.0.1:8000/components/requestBodies/Comment"
+                },
+                "responses": {
+                    "405": {
+                        "description": "Invalid input"
+                    }
+                },
+                "security": [
+                    {
+                        "commentstore_auth": [
+                            "write:comments",
+                            "read:comments"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/comments/{commentId}": {
+            "get": {
+                "tags": [
+                    "comment"
+                ],
+                "summary": "Find comment by ID",
+                "description": "Returns a single comment",
+                "operationId": "getCommentById",
+                "parameters": [
+                    {
+                        "name": "commentId",
+                        "in": "path",
+                        "description": "ID of comment to return",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "http://127.0.0.1:8000/components/schemas/Comment"
+                                }
+                            },
+                            "application/xml": {
+                                "schema": {
+                                    "$ref": "http://127.0.0.1:8000/components/schemas/Comment"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid ID supplier"
+                    },
+                    "404": {
+                        "description": "Comment not found"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/comment/{commentId}": {
+            "post": {
+                "tags": [
+                    "comment"
+                ],
+                "summary": "Updates a comment in the store with form data",
+                "operationId": "updateCommentWithForm",
+                "parameters": [
+                    {
+                        "name": "commentId",
+                        "in": "path",
+                        "description": "ID of comment that needs to be updated",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Input data format",
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "description": "Updated name of the comment",
+                                        "type": "string"
+                                    },
+                                    "status": {
+                                        "description": "Updated status of the comment",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "405": {
+                        "description": "Invalid input"
+                    }
+                },
+                "security": [
+                    {
+                        "commentstore_auth": [
+                            "write:comments",
+                            "read:comments"
+                        ]
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "comment"
+                ],
+                "summary": "Deletes a comment",
+                "operationId": "deleteComment",
+                "parameters": [
+                    {
+                        "name": "api_key",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "commentId",
+                        "in": "path",
+                        "description": "Comment id to delete",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Invalid ID supplied"
+                    },
+                    "404": {
+                        "description": "Comment not found"
+                    }
+                },
+                "security": [
+                    {
+                        "commentstore_auth": [
+                            "write:comments",
+                            "read:comments"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/comment/{commentId}/uploadImage": {
+            "post": {
+                "tags": [
+                    "comment"
+                ],
+                "summary": "uploads an image",
+                "operationId": "uploadFile",
+                "parameters": [
+                    {
+                        "name": "commentId",
+                        "in": "path",
+                        "description": "ID of comment to update",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64",
+                            "example": 1
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Upload images request body",
+                    "content": {
+                        "application/octet-stream": {
+                            "schema": {
+                                "type": "string",
+                                "format": "binary"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "http://127.0.0.1:8000/components/schemas/ApiResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "commentstore_auth": [
+                            "write:pets",
+                            "read:pets"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/user": {
+            "post": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "Add a new user to the store",
+                "operationId": "addUser",
+                "requestBody": {
+                    "$ref": "http://127.0.0.1:8000/components/requestBodies/User"
+                },
+                "responses": {
+                    "405": {
+                        "description": "Invalid input"
+                    }
+                },
+                "security": [
+                    {
+                        "userstore_auth": [
+                            "write:users",
+                            "read:users"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/users": {
+            "put": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "Update an existing user",
+                "operationId": "updateUser",
+                "requestBody": {
+                    "$ref": "http://127.0.0.1:8000/components/requestBodies/User"
+                },
+                "responses": {
+                    "400": {
+                        "description": "Invalid ID supplied"
+                    },
+                    "404": {
+                        "description": "User not found"
+                    },
+                    "405": {
+                        "description": "Validation exception"
+                    }
+                },
+                "security": [
+                    {
+                        "userstore_auth": [
+                            "write:users",
+                            "read:users"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/user/findByStatus": {
+            "get": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "Finds Users by status",
+                "description": "Multiple status values can be provided with comma separated string",
+                "operationId": "findUsersByStatus",
+                "parameters": [
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "description": "Status values that needed to be considered for filter",
+                        "required": true,
+                        "explode": true,
+                        "schema": {
+                            "type": "string",
+                            "default": "available",
+                            "enum": [
+                                "available",
+                                "pending",
+                                "sold"
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "http://127.0.0.1:8000/components/schemas/User"
+                                    }
+                                }
+                            },
+                            "application/xml": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "http://127.0.0.1:8000/components/schemas/User"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value"
+                    }
+                },
+                "deprecated": true,
+                "security": [
+                    {
+                        "userstore_auth": [
+                            "write:users",
+                            "read:users"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/user/findByTags": {
+            "get": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "Finds Users by tags",
+                "description": "Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.",
+                "operationId": "findByTags",
+                "parameters": [
+                    {
+                        "name": "tags",
+                        "in": "query",
+                        "description": "Tags to filter by",
+                        "required": true,
+                        "explode": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "http://127.0.0.1:8000/components/schemas/User"
+                                    }
+                                }
+                            },
+                            "application/xml": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "http://127.0.0.1:8000/components/schemas/User"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value"
+                    }
+                },
+                "security": [
+                    {
+                        "userstore_auth": [
+                            "write:users",
+                            "read:users"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/users/{userId}": {
+            "get": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "Find user by ID",
+                "description": "Returns a single user",
+                "operationId": "getUserById",
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "description": "ID of user to return",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "http://127.0.0.1:8000/components/schemas/User"
+                                }
+                            },
+                            "application/xml": {
+                                "schema": {
+                                    "$ref": "http://127.0.0.1:8000/components/schemas/User"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid ID supplier"
+                    },
+                    "404": {
+                        "description": "User not found"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/user/{userId}": {
+            "post": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "Updates a user in the store with form data",
+                "operationId": "updateUserWithForm",
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "description": "ID of user that needs to be updated",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Input data format",
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "description": "Updated name of the user",
+                                        "type": "string"
+                                    },
+                                    "status": {
+                                        "description": "Updated status of the user",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "405": {
+                        "description": "Invalid input"
+                    }
+                },
+                "security": [
+                    {
+                        "userstore_auth": [
+                            "write:users",
+                            "read:users"
+                        ]
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "Deletes a user",
+                "operationId": "deleteUser",
+                "parameters": [
+                    {
+                        "name": "api_key",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "description": "User id to delete",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Invalid ID supplied"
+                    },
+                    "404": {
+                        "description": "User not found"
+                    }
+                },
+                "security": [
+                    {
+                        "userstore_auth": [
+                            "write:users",
+                            "read:users"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/user/{userId}/uploadImage": {
+            "post": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "uploads an image",
+                "operationId": "uploadFile",
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "description": "ID of user to update",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64",
+                            "example": 1
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Upload images request body",
+                    "content": {
+                        "application/octet-stream": {
+                            "schema": {
+                                "type": "string",
+                                "format": "binary"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "http://127.0.0.1:8000/components/schemas/ApiResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "userstore_auth": [
+                            "write:pets",
+                            "read:pets"
+                        ]
+                    }
+                ]
+            }
         }
     },
     "security": [

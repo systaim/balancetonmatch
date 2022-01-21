@@ -72,7 +72,7 @@ Route::get('/competitions/coupe-ange-lemee-2021-2022', function () {
     return view('competitions.coupeAngeLemee', compact('matchs', 'user', 'title'));
 });
 
-Route::get('/competitions/coupe-du-departement/region/{region}/departement/{departement}', function (Region $region, Department $departement) {
+Route::get('/competitions/coupe-du-departement/region/{region:slug}/departement/{departement}', function (Region $region, Department $departement) {
 
     $matchs = Rencontre::where('competition_id', 7)->where('date_match', '>=', Carbon::now()->subDays(5))->where('region_id', $region->id)->where('department_id', $departement->id)->orderBy('date_match', 'asc')->get();
     $user = Auth::user();
@@ -81,7 +81,7 @@ Route::get('/competitions/coupe-du-departement/region/{region}/departement/{depa
     return view('competitions.coupeDuDepartement', compact('departement', 'matchs', 'user', 'title'));
 });
 
-Route::get('region/{region}/regional/{division}/groupe/{groupe}', function (Region $region, DivisionsRegion $division, Group $groupe) {
+Route::get('region/{region:slug}/regional/{division}/groupe/{groupe}', function (Region $region, DivisionsRegion $division, Group $groupe) {
 
     $matchs = Rencontre::where('region_id', $region->id)->where('date_match', '>=', Carbon::now()->subDays(5))->where('division_region_id', $division->id)->where('group_id', $groupe->id)->get()->groupBy('journee_id');
     $journees = Journee::find($matchs->keys());
@@ -90,7 +90,7 @@ Route::get('region/{region}/regional/{division}/groupe/{groupe}', function (Regi
 })->name('competition.regionale');
 
 
-Route::get('region/{region}/departement/{departement}/district/{division}/groupe/{groupe}', function (Region $region, Department $departement, Competition $competition, DivisionsDepartment $division, Group $groupe) {
+Route::get('region/{region:slug}/departement/{departement}/district/{division}/groupe/{groupe}', function (Region $region, Department $departement, Competition $competition, DivisionsDepartment $division, Group $groupe) {
 
     $matchs = Rencontre::where('region_id', $region->id)->where('date_match', '>=', Carbon::now()->subDays(5))->where('department_id', $departement->id)->where('division_department_id', $division->id)->where('group_id', $groupe->id)->get()->groupBy('journee_id');
     $journees = Journee::find($matchs->keys());

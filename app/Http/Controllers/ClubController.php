@@ -157,4 +157,242 @@ class ClubController extends Controller
         return view('clubs.pageClub', compact('teams','activities','club', 'matchs','user','nbrFavoris', 'nbrPlayers', 'nbrStaffs', 'matchsR1','matchsR2', 'matchsR3', 'matchsCF', 'matchsBZH', 'matchsCoupeDep', 'matchsD1', 'matchsD2', 'matchsD3', 'matchsD4'));
     }
 
+    /**
+     * Add a new club to the store
+     * 
+     * @OA\Post(
+     *     path="/clubs",
+     *     tags={"club"},
+     *     operationId="addClub",
+     *     @OA\Response(
+     *         response=405,
+     *         description="Invalid input"
+     *     ),
+     *     @OA\Parameter(
+     *         name="club_id",
+     *         in="path",
+     *         description="ID of club to return",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         ),
+     *         name="abbreviation",
+     *         in="path",
+     *         description="Abbreviation du club",
+     *         required=false,
+     *         @OA\Schema(
+     *             type="string",
+     *         )
+     *     ),
+     *     security={
+     *         {"clubstore_auth": {"write:clubs", "read:clubs"}}
+     *     },
+     *     requestBody={"$ref": "http://127.0.0.1:8000/components/requestBodies/Club"}
+     * )
+     */
+    public function addClub()
+    {
+    }
+
+    /**
+     * Update an existing club
+     *
+     * @OA\Put(
+     *     path="/clubs",
+     *     tags={"club"},
+     *     operationId="updateClub",
+     *     @OA\Response(
+     *         response=400,
+     *         description="Invalid ID supplied"
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Club not found"
+     *     ),
+     *     @OA\Response(
+     *         response=405,
+     *         description="Validation exception"
+     *     ),
+     *     security={
+     *         {"clubstore_auth": {"write:clubs", "read:clubs"}}
+     *     },
+     *     requestBody={"$ref": "http://127.0.0.1:8000/components/requestBodies/Club"}
+     * )
+     */
+    public function updateClub()
+    {
+    }
+
+    /**
+     * @OA\Get(
+     *     path="/clubs/{clubId}",
+     *     tags={"club"},
+     *     summary="Find club by ID",
+     *     description="Returns a single club",
+     *     operationId="getClubById",
+     *     @OA\Parameter(
+     *         name="clubId",
+     *         in="path",
+     *         description="ID of club to return",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="successful operation",
+     *         @OA\JsonContent(ref="http://127.0.0.1:8000/components/schemas/Club"),
+     *         @OA\XmlContent(ref="http://127.0.0.1:8000/components/schemas/Club"),
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Invalid ID supplier"
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Club not found"
+     *     ),
+     *     security={
+     *         {"api_key": {}}
+     *     }
+     * )
+     *
+     * @param int $id
+     */
+    public function getClubById($id)
+    {
+    }
+
+    /**
+     * @OA\Post(
+     *     path="/clubs/{clubId}",
+     *     tags={"club"},
+     *     summary="Updates a club in the store with form data",
+     *     operationId="updateClubWithForm",
+     *     @OA\Parameter(
+     *         name="clubId",
+     *         in="path",
+     *         description="ID of club that needs to be updated",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=405,
+     *         description="Invalid input"
+     *     ),
+     *     security={
+     *         {"clubstore_auth": {"write:clubs", "read:clubs"}}
+     *     },
+     *     @OA\RequestBody(
+     *         description="Input data format",
+     *         @OA\MediaType(
+     *             mediaType="application/x-www-form-urlencoded",
+     *             @OA\Schema(
+     *                 type="object",
+     *                 @OA\Property(
+     *                     property="name",
+     *                     description="Updated name of the club",
+     *                     type="string",
+     *                 ),
+     *                 @OA\Property(
+     *                     property="status",
+     *                     description="Updated status of the club",
+     *                     type="string"
+     *                 )
+     *             )
+     *         )
+     *     )
+     * )
+     */
+    public function updateClubWithForm()
+    {
+    }
+
+    /**
+     * @OA\Delete(
+     *     path="/clubs/{clubId}",
+     *     tags={"club"},
+     *     summary="Deletes a club",
+     *     operationId="deleteClub",
+     *     @OA\Parameter(
+     *         name="api_key",
+     *         in="header",
+     *         required=false,
+     *         @OA\Schema(
+     *             type="string"
+     *         )
+     *     ),
+     *     @OA\Parameter(
+     *         name="clubId",
+     *         in="path",
+     *         description="Club id to delete",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         ),
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Invalid ID supplied",
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Club not found",
+     *     ),
+     *     security={
+     *         {"clubstore_auth": {"write:clubs", "read:clubs"}}
+     *     },
+     * )
+     */
+    public function deleteClub()
+    {
+    }
+
+    /**
+     * @OA\Post(
+     *     path="/clubs/{clubId}/uploadImage",
+     *     tags={"club"},
+     *     summary="uploads an image",
+     *     operationId="uploadFile",
+     *     @OA\Parameter(
+     *         name="clubId",
+     *         in="path",
+     *         description="ID of club to update",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *             example=1
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="successful operation",
+     *         @OA\JsonContent(ref="http://127.0.0.1:8000/components/schemas/ApiResponse")
+     *     ),
+     *     security={
+     *         {"clubstore_auth": {"write:pets", "read:pets"}}
+     *     },
+     *     @OA\RequestBody(
+     *         description="Upload images request body",
+     *         @OA\MediaType(
+     *             mediaType="application/octet-stream",
+     *             @OA\Schema(
+     *                 type="string",
+     *                 format="binary"
+     *             )
+     *         )
+     *     )
+     * )
+     */
+    public function uploadFile()
+    {
+    }
 }

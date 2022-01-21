@@ -16,17 +16,17 @@
                                 <option>Groupes</option>
                                 <option value="#">R1</option>
                                 @for ($i = 1; $i <= 3; $i++)
-                                    <option value="region/3/regional/1/groupe/{{ $i }}">Groupe
+                                    <option value="region/bretagne/regional/1/groupe/{{ $i }}">Groupe
                                         {{ $chiffreEnLettre[$i] }}</option>
                                 @endfor
                                 <option value="#">R2</option>
                                 @for ($i = 1; $i <= 6; $i++)
-                                    <option value="region/3/regional/2/groupe/{{ $i }}">Groupe
+                                    <option value="region/bretagne/regional/2/groupe/{{ $i }}">Groupe
                                         {{ $chiffreEnLettre[$i] }}</option>
                                 @endfor
                                 <option value="#">R3</option>
                                 @for ($i = 1; $i <= 14; $i++)
-                                    <option value="region/3/regional/3/groupe/{{ $i }}">Groupe
+                                    <option value="region/bretagne/regional/3/groupe/{{ $i }}">Groupe
                                         {{ $chiffreEnLettre[$i] }}</option>
                                 @endfor
                             </select>
@@ -52,19 +52,19 @@
                                     <option>Groupes</option>
                                     <option value="#">D1</option>
                                     @for ($i = 1; $i <= 5; $i++)
-                                        <option value="region/3/departement/22/district/1/groupe/{{ $i }}">
+                                        <option value="region/bretagne/departement/22/district/1/groupe/{{ $i }}">
                                             Groupe {{ $chiffreEnLettre[$i] }}
                                         </option>
                                     @endfor
                                     <option value="#">D2</option>
                                     @for ($i = 1; $i <= 8; $i++)
-                                        <option value="region/3/departement/22/district/2/groupe/{{ $i }}">
+                                        <option value="region/bretagne/departement/22/district/2/groupe/{{ $i }}">
                                             Groupe {{ $chiffreEnLettre[$i] }}
                                         </option>
                                     @endfor
                                     <option value="#">D3</option>
                                     @for ($i = 1; $i <= 8; $i++)
-                                        <option value="region/3/departement/22/district/3/groupe/{{ $i }}">
+                                        <option value="region/bretagne/departement/22/district/3/groupe/{{ $i }}">
                                             Groupe {{ $chiffreEnLettre[$i] }}
                                         </option>
                                     @endfor
@@ -75,19 +75,19 @@
                                     <option>Groupes</option>
                                     <option value="#">D1</option>
                                     @for ($i = 1; $i <= 6; $i++)
-                                        <option value="region/3/departement/56/district/1/groupe/{{ $i }}">
+                                        <option value="region/bretagne/departement/56/district/1/groupe/{{ $i }}">
                                             Groupe {{ $chiffreEnLettre[$i] }}
                                         </option>
                                     @endfor
                                     <option value="#">D2</option>
                                     @for ($i = 1; $i <= 10; $i++)
-                                        <option value="region/3/departement/56/district/2/groupe/{{ $i }}">
+                                        <option value="region/bretagne/departement/56/district/2/groupe/{{ $i }}">
                                             Groupe {{ $chiffreEnLettre[$i] }}
                                         </option>
                                     @endfor
                                     <option value="#">D3</option>
                                     @for ($i = 1; $i <= 11; $i++)
-                                        <option value="region/3/departement/56/district/3/groupe/{{ $i }}">
+                                        <option value="region/bretagne/departement/56/district/3/groupe/{{ $i }}">
                                             Groupe {{ $chiffreEnLettre[$i] }}
                                         </option>
                                     @endfor
@@ -98,19 +98,19 @@
                                     <option>Groupes</option>
                                     <option value="#">D1</option>
                                     @for ($i = 1; $i <= 7; $i++)
-                                        <option value="region/3/departement/29/district/1/groupe/{{ $i }}">
+                                        <option value="region/bretagne/departement/29/district/1/groupe/{{ $i }}">
                                             Groupe {{ $chiffreEnLettre[$i] }}
                                         </option>
                                     @endfor
                                     <option value="#">D2</option>
                                     @for ($i = 1; $i <= 10; $i++)
-                                        <option value="region/3/departement/29/district/2/groupe/{{ $i }}">
+                                        <option value="region/bretagne/departement/29/district/2/groupe/{{ $i }}">
                                             Groupe {{ $chiffreEnLettre[$i] }}
                                         </option>
                                     @endfor
                                     <option value="#">D3</option>
                                     @for ($i = 1; $i <= 12; $i++)
-                                        <option value="region/3/departement/29/district/3/groupe/{{ $i }}">
+                                        <option value="region/bretagne/departement/29/district/3/groupe/{{ $i }}">
                                             Groupe {{ $chiffreEnLettre[$i] }}
                                         </option>
                                     @endfor
@@ -121,13 +121,13 @@
                                     <option>Groupes</option>
                                     <option value="#">D1</option>
                                     @for ($i = 1; $i <= 7; $i++)
-                                        <option value="region/3/departement/35/district/1/groupe/{{ $i }}">
+                                        <option value="region/bretagne/departement/35/district/1/groupe/{{ $i }}">
                                             Groupe {{ $chiffreEnLettre[$i] }}
                                         </option>
                                     @endfor
                                     <option value="#">D2</option>
                                     @for ($i = 1; $i <= 9; $i++)
-                                        <option value="region/3/departement/35/district/2/groupe/{{ $i }}">
+                                        <option value="region/bretagne/departement/35/district/2/groupe/{{ $i }}">
                                             Groupe {{ $chiffreEnLettre[$i] }}
                                         </option>
                                     @endfor
@@ -178,7 +178,7 @@
                             <select class="mr-3" name="cpeDepartement" id="cpeDepartement" onchange="location = this.value;">
                                 <option>Départements</option>
                                 @foreach ($departements as $departement)
-                                    <option value="competitions/coupe-du-departement/region/3/departement/{{ $departement->id }}">{{ $departement->name }}</option>
+                                    <option value="competitions/coupe-du-departement/region/bretagne/departement/{{ $departement->id }}">{{ $departement->name }}</option>
                                 @endforeach
                             </select>
                         </div>

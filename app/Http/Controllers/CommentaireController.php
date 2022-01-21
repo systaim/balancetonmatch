@@ -124,4 +124,226 @@ class CommentaireController extends Controller
         $commentaire->delete();
         return back();
     }
+
+    /**
+     * Add a new comment to the store
+     * 
+     * @OA\Post(
+     *     path="/comments",
+     *     tags={"comment"},
+     *     operationId="addComment",
+     *     @OA\Response(
+     *         response=405,
+     *         description="Invalid input"
+     *     ),
+     *     security={
+     *         {"commentstore_auth": {"write:comments", "read:comments"}}
+     *     },
+     *     requestBody={"$ref": "http://127.0.0.1:8000/components/requestBodies/Comment"}
+     * )
+     */
+    public function addComment()
+    {
+    }
+
+    /**
+     * Update an existing comment
+     *
+     * @OA\Put(
+     *     path="/comments",
+     *     tags={"comment"},
+     *     operationId="updateComment",
+     *     @OA\Response(
+     *         response=400,
+     *         description="Invalid ID supplied"
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Comment not found"
+     *     ),
+     *     @OA\Response(
+     *         response=405,
+     *         description="Validation exception"
+     *     ),
+     *     security={
+     *         {"commentstore_auth": {"write:comments", "read:comments"}}
+     *     },
+     *     requestBody={"$ref": "http://127.0.0.1:8000/components/requestBodies/Comment"}
+     * )
+     */
+    public function updateComment()
+    {
+    }
+
+    /**
+     * @OA\Get(
+     *     path="/comments/{commentId}",
+     *     tags={"comment"},
+     *     summary="Find comment by ID",
+     *     description="Returns a single comment",
+     *     operationId="getCommentById",
+     *     @OA\Parameter(
+     *         name="commentId",
+     *         in="path",
+     *         description="ID of comment to return",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="successful operation",
+     *         @OA\JsonContent(ref="http://127.0.0.1:8000/components/schemas/Comment"),
+     *         @OA\XmlContent(ref="http://127.0.0.1:8000/components/schemas/Comment"),
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Invalid ID supplier"
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Comment not found"
+     *     ),
+     *     security={
+     *         {"api_key": {}}
+     *     }
+     * )
+     *
+     * @param int $id
+     */
+    public function getCommentById($id)
+    {
+    }
+
+    /**
+     * @OA\Post(
+     *     path="/comment/{commentId}",
+     *     tags={"comment"},
+     *     summary="Updates a comment in the store with form data",
+     *     operationId="updateCommentWithForm",
+     *     @OA\Parameter(
+     *         name="commentId",
+     *         in="path",
+     *         description="ID of comment that needs to be updated",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=405,
+     *         description="Invalid input"
+     *     ),
+     *     security={
+     *         {"commentstore_auth": {"write:comments", "read:comments"}}
+     *     },
+     *     @OA\RequestBody(
+     *         description="Input data format",
+     *         @OA\MediaType(
+     *             mediaType="application/x-www-form-urlencoded",
+     *             @OA\Schema(
+     *                 type="object",
+     *                 @OA\Property(
+     *                     property="name",
+     *                     description="Updated name of the comment",
+     *                     type="string",
+     *                 ),
+     *                 @OA\Property(
+     *                     property="status",
+     *                     description="Updated status of the comment",
+     *                     type="string"
+     *                 )
+     *             )
+     *         )
+     *     )
+     * )
+     */
+    public function updateCommentWithForm()
+    {
+    }
+
+    /**
+     * @OA\Delete(
+     *     path="/comment/{commentId}",
+     *     tags={"comment"},
+     *     summary="Deletes a comment",
+     *     operationId="deleteComment",
+     *     @OA\Parameter(
+     *         name="api_key",
+     *         in="header",
+     *         required=false,
+     *         @OA\Schema(
+     *             type="string"
+     *         )
+     *     ),
+     *     @OA\Parameter(
+     *         name="commentId",
+     *         in="path",
+     *         description="Comment id to delete",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         ),
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Invalid ID supplied",
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Comment not found",
+     *     ),
+     *     security={
+     *         {"commentstore_auth": {"write:comments", "read:comments"}}
+     *     },
+     * )
+     */
+    public function deleteComment()
+    {
+    }
+
+    /**
+     * @OA\Post(
+     *     path="/comment/{commentId}/uploadImage",
+     *     tags={"comment"},
+     *     summary="uploads an image",
+     *     operationId="uploadFile",
+     *     @OA\Parameter(
+     *         name="commentId",
+     *         in="path",
+     *         description="ID of comment to update",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *             example=1
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="successful operation",
+     *         @OA\JsonContent(ref="http://127.0.0.1:8000/components/schemas/ApiResponse")
+     *     ),
+     *     security={
+     *         {"commentstore_auth": {"write:pets", "read:pets"}}
+     *     },
+     *     @OA\RequestBody(
+     *         description="Upload images request body",
+     *         @OA\MediaType(
+     *             mediaType="application/octet-stream",
+     *             @OA\Schema(
+     *                 type="string",
+     *                 format="binary"
+     *             )
+     *         )
+     *     )
+     * )
+     */
+    public function uploadFile()
+    {
+    }
 }

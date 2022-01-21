@@ -33,7 +33,7 @@ Route::apiResource('clubs', ClubController::class, [
 Route::apiResource('matchs', RencontreController::class, [
     'as' => 'api'
 ]);
-Route::apiResource('commentaires', CommentaireController::class, [
+Route::apiResource('comments', CommentaireController::class, [
     'as' => 'api'
 ]);
 Route::apiResource('commentators', CommentatorController::class, [
@@ -42,6 +42,7 @@ Route::apiResource('commentators', CommentatorController::class, [
 Route::apiResource('users', UserController::class, [
     'as' => 'api'
 ]);
+
 
 
 // Route::get('/users', function () {

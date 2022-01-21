@@ -103,29 +103,29 @@ class RecupMatchController extends Controller
             $home_team = Club::where('numAffiliation', $matches[6][$i])->first();
             $away_team = Club::where('numAffiliation', $matches[9][$i])->first();
 
-            // echo "<pre>";
-            // dump($home_team->id);
-            // dump($t11 . "-vs-" . $t22 . "-" . $matches[1][$i] . "-" . $mois . "-" . $matches[3][$i]);
-            // // dump($matches[7][$i]);
-            // dump($away_team->id);
-            // // dump($matches[8][$i]);
-            // dump($date);
-            // echo "</pre>";
+            echo "<pre>";
+            dump($home_team->id);
+            dump($t11 . "-vs-" . $t22 . "-" . $matches[1][$i] . "-" . $mois . "-" . $matches[3][$i]);
+            // dump($matches[7][$i]);
+            dump($away_team->id);
+            // dump($matches[8][$i]);
+            dump($date);
+            echo "</pre>";
 
-            Rencontre::upsert(
-                [
-                    'slug' => $t11 . "-vs-" . $t22 . "-" . $matches[1][$i] . "-" . $mois . "-" . $matches[3][$i],
-                    'home_team_id' => $home_team->id,
-                    'away_team_id' => $away_team->id,
-                    'date_match' => $date,
-                    'competition_id' => 3,
-                    'region_id' => 3,
-                    'user_id' => 11,
-                ],
-                [
-                    'slug', 'home_team_id', 'away_team_id', 'date_match', 'competition_id', 'region_id', 'user_id'
-                ]
-            );
+            // Rencontre::upsert(
+            //     [
+            //         'slug' => $t11 . "-vs-" . $t22 . "-" . $matches[1][$i] . "-" . $mois . "-" . $matches[3][$i],
+            //         'home_team_id' => $home_team->id,
+            //         'away_team_id' => $away_team->id,
+            //         'date_match' => $date,
+            //         'competition_id' => 3,
+            //         'region_id' => 3,
+            //         'user_id' => 11,
+            //     ],
+            //     [
+            //         'slug', 'home_team_id', 'away_team_id', 'date_match', 'competition_id', 'region_id', 'user_id'
+            //     ]
+            // );
 
             // $stm->execute([
             //     ':live' => "attente",

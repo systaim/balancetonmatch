@@ -622,7 +622,7 @@
                             var splide = new Splide('.splide', {
                                 type: 'loop',
                                 perMove: 1,
-                                // height: '14rem',
+                                arrows: false,
                                 focus: 'start',
                                 padding: '20%',
                                 trimSpace: false,
