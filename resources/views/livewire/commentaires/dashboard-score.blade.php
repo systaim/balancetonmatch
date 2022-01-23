@@ -42,7 +42,7 @@
             <div class="col-span-5 overflow-hidden">
                 <a href="{{ route('clubs.show', $match->homeClub->id) }}">
                     <div class="bg-primary p-2 text-secondary flex flex-col lg:flex-row lg:items-center lg:rounded-l-full"
-                    style="background-color: {{ $match->homeClub->primary_color }}; color:{{ $match->homeClub->secondary_color == $match->homeClub->primary_color ? '#cdfb0a' : $match->homeClub->secondary_color }}">
+                        style="background-color: {{ $match->homeClub->primary_color }}; color:{{ $match->homeClub->secondary_color == $match->homeClub->primary_color ? '#cdfb0a' : $match->homeClub->secondary_color }}">
 
                         <div class="relative flex justify-center">
                             <div class="logo h-16 w-16 sm:h-20 sm:w-20 lg:h-32 lg:w-32 cursor-pointer lg:mr-1 xl:mr-4">
@@ -101,22 +101,31 @@
                 </div>
                 @if ($open_btn_score)
                     <div class="flex my-1">
-                        <button class="px-3 py-2 bg-yellow-200 text-black rounded-sm mr-1 shadow-xl" type="button"
-                            wire:click="openBtnScore">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-800" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M11 17l-5-5m0 0l5-5m-5 5h12" />
-                            </svg>
-                        </button>
-                        <button class="px-3 py-2 bg-green-200 rounded-sm shadow-xl" type="button"
-                            wire:click="updateScore">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-800" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M5 13l4 4L19 7" />
-                            </svg>
-                        </button>
+                        <div>
+                            <button class="px-3 py-2 bg-yellow-200 text-black rounded-sm mr-1 shadow-xl" type="button"
+                                wire:click="openBtnScore">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-800" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M11 17l-5-5m0 0l5-5m-5 5h12" />
+                                </svg>
+                            </button>
+                            {{-- <div>
+                                @foreach ($match->homeClub->players as $player)
+                                <p class="text-white text-xs">{{ $player->first_name }} {{ $player->last_name }}</p>
+                                @endforeach
+                            </div> --}}
+                        </div>
+                        <div>
+                            <button class="px-3 py-2 bg-green-200 rounded-sm shadow-xl" type="button"
+                                wire:click="updateScore">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-800" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M5 13l4 4L19 7" />
+                                </svg>
+                            </button>
+                        </div>
                     </div>
                 @endif
                 @if (count($tabHome) != 0 && count($tabAway) != 0)
@@ -162,8 +171,7 @@
                     @if ($comment->statistic)
                         @if ($comment->team_action == 'home' && $comment->type_action == 'goal')
                             <div class="flex flex-row justify-end items-center m-auto overflow-hidden mx-1">
-                                <div
-                                    class="bg-primary text-secondary font-bold px-2 py-1 flex justify-end items-center w-full sm:w-48 rounded-lg mb-1"
+                                <div class="bg-primary text-secondary font-bold px-2 py-1 flex justify-end items-center w-full sm:w-48 rounded-lg mb-1"
                                     style="background-color: {{ $match->homeClub->primary_color }}; color:{{ $match->homeClub->secondary_color == $match->homeClub->primary_color ? '#cdfb0a' : $match->homeClub->secondary_color }}">
                                     <p class="text-xs md:text-sm px-2 truncate">
                                         {{ substr($comment->statistic->player->first_name, 0, 1) }}.
@@ -194,8 +202,7 @@
                 @foreach ($commentsMatch->sortBy('minute') as $comment)
                     @if ($comment->team_action == 'away' && $comment->type_action == 'goal')
                         <div class="flex flex-row justify-start items-center m-auto overflow-hidden mx-1">
-                            <div
-                                class="bg-secondary text-primary font-bold px-2 py-1 flex flex-row-reverse justify-end items-center w-full sm:w-48 rounded-lg mb-1"
+                            <div class="bg-secondary text-primary font-bold px-2 py-1 flex flex-row-reverse justify-end items-center w-full sm:w-48 rounded-lg mb-1"
                                 style="background-color: {{ $match->awayClub->primary_color }}; color:{{ $match->awayClub->secondary_color == $match->awayClub->primary_color ? '#cdfb0a' : $match->awayClub->secondary_color }}">
                                 <p class="text-xs md:text-sm px-2 truncate">
                                     {{ substr($comment->statistic->player->first_name, 0, 1) }}.

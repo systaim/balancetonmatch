@@ -71,11 +71,6 @@ class FormCommentaires extends Component
         'Tout le monde à la buv... euuuh aux vestiaires !'
     ];
 
-    public function render()
-    {
-        return view('livewire.form-commentaires');
-    }
-
     public function mount()
     {
 
@@ -150,6 +145,11 @@ class FormCommentaires extends Component
         $this->miseAJourPenalty();
         $this->countVisitor();
         $this->miseAjourTemps();
+    }
+
+    public function render()
+    {
+        return view('livewire.form-commentaires');
     }
 
     public function openBtnScore()

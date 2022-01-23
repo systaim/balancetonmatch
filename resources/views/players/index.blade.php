@@ -35,14 +35,14 @@
                 </a>
             @endforeach
             @auth
-                @if (Auth::user()->club_id == $club->id)
+                {{-- @if (Auth::user()->club_id == $club->id) --}}
                     <a href="{{ route('clubs.players.create', $club) }}">
                         <div
                             class="fixed z-50 bottom-20 lg:bottom-10 right-4 lg:right-10 h-16 w-16 bg-secondary border shadow-xl rounded-full flex items-center justify-center">
                             <p class="text-6xl text-primary">+</p>
                         </div>
                     </a>
-                @endif
+                {{-- @endif --}}
             @endauth
         </div>
     </div>

@@ -59,7 +59,7 @@ class PlayerController extends Controller
     {
 
         $user = Auth::user();
-        dd($request);
+        // dd($request);
         $dataPlayer = $request->validate([
             'last_name' => 'required|string|max:50|min:2',
             'first_name' => 'required|string|max:50|min:2',

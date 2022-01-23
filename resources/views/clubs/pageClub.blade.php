@@ -124,13 +124,19 @@
                 <div class="flex flex-col items-center xl:flex-row xl:justify-center mt-3">
                     @if ($nbrPlayers == 0)
                         @auth
-                            @if (Auth::user()->club_id == $club->id)
-                                <a href="{{ route('clubs.players.create', $club) }}">
-                                    <button class="btn btnSecondary">
-                                        Créer un joueur
-                                    </button>
-                                </a>
-                            @endif
+                            {{-- @if (Auth::user()->club_id == $club->id) --}}
+                            <a href="{{ route('clubs.players.create', $club) }}">
+                                <button class="btn btnSecondary">
+                                    Créer un joueur
+                                </button>
+                            </a>
+                            {{-- @endif --}}
+                        @else
+                            <a href="/login">
+                                <button class="btn btnSecondary">
+                                    Je me connecte pour créer un joueur
+                                </button>
+                            </a>
                         @endauth
                     @else
                         <a href="{{ route('clubs.players.index', $club) }}">
@@ -145,13 +151,13 @@
                     @endif
                     @if ($nbrStaffs == 0)
                         @auth
-                            @if (Auth::user()->club_id == $club->id)
-                                <a href="{{ route('clubs.staffs.create', $club) }}">
-                                    <button class="btn btnSecondary">
-                                        Créer un dirigeant
-                                    </button>
-                                </a>
-                            @endif
+                            {{-- @if (Auth::user()->club_id == $club->id) --}}
+                            <a href="{{ route('clubs.staffs.create', $club) }}">
+                                <button class="btn btnSecondary">
+                                    Créer un dirigeant
+                                </button>
+                            </a>
+                            {{-- @endif --}}
                         @endauth
                     @else
                         <a href="{{ route('clubs.staffs.index', $club) }}">
