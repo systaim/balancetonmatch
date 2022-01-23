@@ -69,7 +69,7 @@
                     </span>
                     <p class="ml-3 font-medium  truncate">
                         <span class="inline">
-                            La cration de joueurs est de nouveau opérationnel ! N'hésitez pas à créer les joueurs de votre club
+                            La création de joueurs est de nouveau opérationnel ! N'hésitez pas à créer les joueurs de votre club
                         </span>
                     </p>
                 </div>
