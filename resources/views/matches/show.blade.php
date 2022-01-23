@@ -95,7 +95,7 @@
         <div class="loader"></div>
     </div>
 
-    @auth
+    {{-- @auth
         @if ($match->live == 'attente')
             <div id="annonce" class="fixed bottom-16 inset-x-0 pb-2 sm:pb-5 z-50">
                 <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
@@ -148,7 +148,7 @@
                 </script>
             </div>
         @endif
-    @endauth
+    @endauth --}}
 
 
     <div id="container">

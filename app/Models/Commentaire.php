@@ -12,7 +12,17 @@ class Commentaire extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable = ['commentator_id','type_action','player_id','match_id','type_comments', 'comments','minute','team_action','images'];
+    protected $fillable = [
+        'commentator_id',
+        'type_action',
+        'player_id',
+        'match_id',
+        'type_comments',
+        'comments',
+        'minute',
+        'team_action',
+        'images'
+    ];
 
     protected $hidden = ['id', 'created_at', 'updated_at', 'deleted_at'];
 
@@ -27,17 +37,18 @@ class Commentaire extends Model
         return $this->belongsTo(Commentator::class);
     }
 
-    public function statistic(){
+    public function statistic()
+    {
         return $this->hasOne(Statistic::class);
     }
 
-    public function player(){
+    public function player()
+    {
         return $this->hasOneThrough(Player::class, Statistic::class);
     }
 
-    public function reactions(){
+    public function reactions()
+    {
         return $this->belongsToMany(Reaction::class);
     }
-
-    
 }

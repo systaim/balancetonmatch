@@ -10,7 +10,15 @@ class Statistic extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['action','commentaire_id','player_id'];
+    protected $fillable = [
+        'action',
+        'commentaire_id',
+        'player_id', 
+        'user_id', 
+        'rencontre_id',
+        'numero_but',
+        'team_id'
+    ];
 
     public function player(){
         return $this->belongsTo(Player::class);

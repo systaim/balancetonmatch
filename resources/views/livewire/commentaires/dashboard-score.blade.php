@@ -278,3 +278,63 @@
         </div>
     @endif
 </div>
+{{-- @if ($match->home_score && $match->live == 'attente')
+    <div class="relative sm:py-16 py-4">
+        <div class="mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8">
+            <div
+                class="relative rounded-2xl px-6 py-10 bg-primary overflow-hidden shadow-xl sm:px-12 sm:py-20 text-white">
+                <div class="relative">
+                    <div class="text-center">
+                        <h2 class="text-3xl font-extrabold tracking-tight sm:text-4xl">
+                            Tu connais les buteurs ?
+                        </h2>
+                        <p class="mt-2 mx-auto max-w-2xl">
+                            Tu peux les ajouter
+                        </p>
+                    </div>
+                </div>
+                <div class="flex flex-col lg:flex-row lg:justify-around">
+                    <div class="mt-4">
+                        <h3>{{ $match->homeClub->name }}</h3>
+                        @for ($i = 1; $i <= $match->home_score; $i++)
+                            <label for="player_dom{{ $i }}" class="block text-sm font-medium">Buteur
+                                n°{{ $i }}</label>
+                            <select id="player_dom{{ $i }}" name="player_dom{{ $i }}"
+                                wire:model="input_buteur_dom.{{ $i }}"
+                                class="mt-1 block pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none text-black sm:text-sm rounded-md">
+                                <option>Sélectionne un joueur</option>
+                                @foreach ($match->homeCLub->players as $player)
+                                    <option value="{{ $player->id }}">
+                                        {{ $player->first_name }} {{ $player->last_name }}
+                                    </option>
+                                @endforeach
+                                <option value="no_player_dom">Il n'est pas dans la liste</option>
+                            </select>
+                        @endfor
+                    </div>
+                    <div class="mt-4">
+                        <h3>{{ $match->awayClub->name }}</h3>
+                        @for ($i = 1; $i <= $match->away_score; $i++)
+                            <label for="player_ext{{ $i }}" class="block text-sm font-medium">Buteur
+                                n°{{ $i }}</label>
+                            <select id="player_ext{{ $i }}" name="player_ext{{ $i }}"
+                                class="mt-1 block pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none text-black sm:text-sm rounded-md">
+                                <option>Sélectionne un joueur</option>
+                                @foreach ($match->awayCLub->players as $player)
+                                    <option value="{{ $player->id }}">{{ $player->first_name }}
+                                        {{ $player->last_name }}</option>
+                                @endforeach
+                            </select>
+                        @endfor
+                    </div>
+                </div>
+
+                <div class="mt-4 text-center">
+                    <button type="button" class="btn btnSecondary" wire:click="storeButeursDuMatch">
+                        Valider
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+@endif --}}

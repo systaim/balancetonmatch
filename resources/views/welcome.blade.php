@@ -3,7 +3,7 @@
     <!-- This example requires Tailwind CSS v2.0+ -->
     <div id="slideHome" class="relative bg-gray-800 p-4">
         <div class="absolute inset-0">
-            <img class="w-full h-full object-cover" src="{{ asset('images/home-preview.jpg') }}" alt="">
+            <img class="w-full h-full object-cover" src="{{ asset('images/home-preview.jpg') }}" alt="" loading="lazy">
             <div class="absolute inset-0 bg-gray-800 mix-blend-multiply" aria-hidden="true"></div>
         </div>
         <div class="relative max-w-7xl mx-auto px-4 sm:py-32 sm:px-6 lg:px-8">
@@ -320,7 +320,7 @@
         <div class="flex-1 w-full">
             <a href="{{ route('competitions.index') }}">
                 <div class="shadow-white-xl rounded-2xl w-5/6 p-4 bg-primary relative overflow-hidden mx-auto">
-                    <img alt="competitions" src="{{ asset('images/ball-fire-water.png') }}"
+                    <img alt="competitions" src="{{ asset('images/ball-fire-water.png') }}" loading="lazy"
                         class="absolute -right-16 -bottom-8 h-40 w-40 mb-4" />
                     <div class="w-5/6">
                         <p class="text-gray-200 text-lg font-medium mb-2">
@@ -362,7 +362,7 @@
             </a>
             <a href="/live">
                 <div class="shadow-white-xl rounded-2xl w-5/6 p-4 bg-primary relative overflow-hidden mx-auto mt-6">
-                    <img alt="live" src="{{ asset('images/micro.png') }}"
+                    <img alt="live" src="{{ asset('images/micro.png') }}" loading="lazy"
                         class="absolute -right-24 -bottom-16 h-48 w-48 mb-4" />
                     <div class="w-5/6">
                         <p class="text-gray-200 text-lg font-medium mb-2">
@@ -498,22 +498,22 @@
                                     <a href="{{ route('matches.show', [$com->match->id]) }}">
                                         <div class="absolute -top-3 -left-3 logo h-20 w-20 transform -rotate-12">
                                             @if ($com->match->homeClub->logo_path != null)
-                                                <img class="object-contain"
+                                                <img class="object-contain" loading="lazy"
                                                     src="{{ asset($com->match->homeClub->logo_path) }}"
                                                     alt="Logo de {{ $com->match->homeClub->name }}">
                                             @else
-                                                <img class="object-contain"
+                                                <img class="object-contain" loading="lazy"
                                                     src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $com->match->homeClub->numAffiliation }}.jpg"
                                                     alt="Logo de {{ $com->match->homeClub->name }}">
                                             @endif
                                         </div>
                                         <div class="absolute -top-3 -right-3 logo h-20 w-20 transform rotate-12">
                                             @if ($com->match->awayClub->logo_path != null)
-                                                <img class="object-contain"
+                                                <img class="object-contain" loading="lazy"
                                                     src="{{ asset($com->match->awayClub->logo_path) }}"
                                                     alt="Logo de {{ $com->match->awayClub->name }}">
                                             @else
-                                                <img class="object-contain"
+                                                <img class="object-contain" loading="lazy"
                                                     src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $com->match->awayClub->numAffiliation }}.jpg"
                                                     alt="Logo de {{ $com->match->awayClub->name }}">
                                             @endif
@@ -611,7 +611,7 @@
             </div>
         </div>
         <div class="absolute -top-18 lg:-top-20 right-0 lg:right-48 z-10">
-            <img src="{{ asset('images/demo2-min.png') }}" alt="demo" class="h-72 lg:h-96">
+            <img src="{{ asset('images/demo2-min.png') }}" alt="demo" class="h-72 lg:h-96" loading="lazy">
         </div>
     </section>
     <section>
@@ -635,7 +635,7 @@
                         <div class="flex flex-col rounded-lg shadow-lg overflow-hidden">
                             <a href="{{ route('articles.show', $article) }}">
                                 <div class="flex-shrink-0">
-                                    <img class="h-48 w-full object-cover" src="{{ asset($article->image) }}" alt="">
+                                    <img class="h-48 w-full object-cover" src="{{ asset($article->image) }}" alt="" loading="lazy">
                                 </div>
                             </a>
                             <div class="flex-1 bg-white p-6 flex flex-col justify-between">

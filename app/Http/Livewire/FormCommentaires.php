@@ -38,7 +38,7 @@ class FormCommentaires extends Component
     public $type_comments, $type_but = "", $type_carton = "", $type_actionMatch = "", $minute, $team_action = '', $imageAction = '',
         $minuteMatch, $commentPerso = "", $minuteCom, $player, $home_score, $away_score, $stats, $dateMatch, $heureMatch,
         $open_btn_score, $away_score_corrige, $home_score_corrige;
-    public $firstCom;
+    public $firstCom, $input_buteur_dom, $input_buteur_ext, $buteurs_a_domicile;
     public $file;
     public $menuCom;
     public $playerPrenom;
@@ -150,6 +150,36 @@ class FormCommentaires extends Component
     public function render()
     {
         return view('livewire.form-commentaires');
+    }
+
+    public function storeButeursDuMatch()
+    {
+        foreach ($this->input_buteur_dom as $key => $buteur_dom) {
+            $player = Player::find($buteur_dom);
+
+            $buteur_a_domicile = Statistic::where('rencontre_id', $this->match)
+                ->where('team_id', $this->match->homeClub->id)
+                ->where('numero_but', $key)
+                ->first();
+
+            // $commentateur = Commentator::create(['user_id' => Auth::id(), 'rencontre_id' => $this->match->id]);
+
+            // $commentaire = Commentaire::create([
+            //     'commentator_id' => $commentateur->id,
+            //     'type_action' => "goal",
+            //     'type_comments' => "Buteur n° " . $key . " renseigné",
+            //     'team_action' => "home"
+            // ]);
+
+            Statistic::create([
+                'player_id' => $player->id,
+                'action' => 'goal',
+                'rencontre_id' => $this->match->id,
+                'user_id' => Auth::id(),
+                'numero_but' => $key,
+                'team_id' => $this->match->homeClub->id
+            ]);
+        }
     }
 
     public function openBtnScore()
@@ -465,7 +495,7 @@ class FormCommentaires extends Component
             $activite['match_id'] = $this->match->id;
             $activite['type'] = 'create_commentator';
 
-            
+
             $storeActivite = Activity::create($activite);
             $storeActivite->save();
 
@@ -914,5 +944,4 @@ class FormCommentaires extends Component
         $this->type_but = "";
         $this->type_carton = "";
     }
-
 }
