@@ -69,15 +69,23 @@
                     </span>
                     <p class="ml-3 font-medium">
                         <span class="md:inline">
-                            La création de joueurs est de nouveau opérationnel ! N'hésitez pas à créer les joueurs de votre club
+                            La création de joueurs est de nouveau opérationnel ! N'hésitez pas à créer les joueurs de votre
+                            club
                         </span>
                     </p>
                 </div>
-                
+
             </div>
         </div>
     </div>
-
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7237777700901740"
+        crossorigin="anonymous"></script>
+    <!-- top banniere -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7237777700901740" data-ad-slot="1803015183"
+        data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
 
     {{-- affichage mobile --}}
     <section class="py-11 flex flex-col-reverse md:flex-row items-center">
@@ -635,7 +643,8 @@
                         <div class="flex flex-col rounded-lg shadow-lg overflow-hidden">
                             <a href="{{ route('articles.show', $article) }}">
                                 <div class="flex-shrink-0">
-                                    <img class="h-48 w-full object-cover" src="{{ asset($article->image) }}" alt="" loading="lazy">
+                                    <img class="h-48 w-full object-cover" src="{{ asset($article->image) }}" alt=""
+                                        loading="lazy">
                                 </div>
                             </a>
                             <div class="flex-1 bg-white p-6 flex flex-col justify-between">

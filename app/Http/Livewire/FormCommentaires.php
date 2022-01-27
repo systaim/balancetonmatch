@@ -38,7 +38,7 @@ class FormCommentaires extends Component
     public $type_comments, $type_but = "", $type_carton = "", $type_actionMatch = "", $minute, $team_action = '', $imageAction = '',
         $minuteMatch, $commentPerso = "", $minuteCom, $player, $home_score, $away_score, $stats, $dateMatch, $heureMatch,
         $open_btn_score, $away_score_corrige, $home_score_corrige;
-    public $firstCom, $input_buteur_dom, $input_buteur_ext, $buteurs_a_domicile;
+    public $firstCom, $input_buteur_dom, $input_buteur_ext, $buteurs_a_domicile, $buteurs = [];
     public $file;
     public $menuCom;
     public $playerPrenom;
@@ -114,6 +114,16 @@ class FormCommentaires extends Component
         $this->home_score = $this->match->home_score;
         $this->away_score = $this->match->away_score;
 
+        $this->buteurs_a_domicile = Statistic::where('rencontre_id', $this->match->id)
+                ->where('team_id', $this->match->homeClub->id)
+                ->get();
+
+        foreach ($this->buteurs_a_domicile as $key => $buteur) {
+                array_push($this->buteurs, $buteur->player_id);
+        }
+        // dd($this->buteurs);
+        
+
         $this->miseAJourCom();
         $this->miseAJourPenalty();
         $this->countVisitor();
@@ -156,11 +166,6 @@ class FormCommentaires extends Component
     {
         foreach ($this->input_buteur_dom as $key => $buteur_dom) {
             $player = Player::find($buteur_dom);
-
-            $buteur_a_domicile = Statistic::where('rencontre_id', $this->match)
-                ->where('team_id', $this->match->homeClub->id)
-                ->where('numero_but', $key)
-                ->first();
 
             // $commentateur = Commentator::create(['user_id' => Auth::id(), 'rencontre_id' => $this->match->id]);
 

@@ -278,6 +278,17 @@
         </div>
     @endif
 </div>
+<div wire:ignore>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7237777700901740"
+crossorigin="anonymous"></script>
+<!-- top banniere -->
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7237777700901740" data-ad-slot="1803015183"
+    data-ad-format="auto" data-full-width-responsive="true"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+
 {{-- @if ($match->home_score && $match->live == 'attente')
     <div class="relative sm:py-16 py-4">
         <div class="mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8">
@@ -299,12 +310,14 @@
                         @for ($i = 1; $i <= $match->home_score; $i++)
                             <label for="player_dom{{ $i }}" class="block text-sm font-medium">Buteur
                                 n°{{ $i }}</label>
+                            
                             <select id="player_dom{{ $i }}" name="player_dom{{ $i }}"
                                 wire:model="input_buteur_dom.{{ $i }}"
                                 class="mt-1 block pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none text-black sm:text-sm rounded-md">
                                 <option>Sélectionne un joueur</option>
-                                @foreach ($match->homeCLub->players as $player)
-                                    <option value="{{ $player->id }}">
+                                @foreach ($match->homeClub->players as $player)
+                                    <option value="{{ $player->id }}"
+                                        {{ $player->id === $buteurs_a_domicile[$i - 1]->player_id ? 'selected' : '' }}>
                                         {{ $player->first_name }} {{ $player->last_name }}
                                     </option>
                                 @endforeach
