@@ -127,7 +127,7 @@
                             </div>
                         </a>
                     </div>
-                    <script>
+                    {{-- <script>
                         (function() {
                             // on cible l'objet nav
                             let header = document.getElementById('header');
@@ -150,7 +150,7 @@
                             // evenement
                             window.addEventListener("scroll", sticky);
                         })()
-                    </script>
+                    </script> --}}
                 </div>
                 @include('menu')
             </div>
