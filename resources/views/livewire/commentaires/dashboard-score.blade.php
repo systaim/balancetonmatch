@@ -278,7 +278,7 @@
         </div>
     @endif
 </div>
-<div wire:ignore class="flex justify-center">
+<div wire:ignore class="text-center">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7237777700901740"
         crossorigin="anonymous"></script>
     <!-- top banniere -->

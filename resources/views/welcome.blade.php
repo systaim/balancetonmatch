@@ -78,7 +78,7 @@
             </div>
         </div>
     </div>
-    <div class="flex justify-center">
+    <div class="text-center">
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7237777700901740"
                 crossorigin="anonymous"></script>
         <!-- top banniere -->
