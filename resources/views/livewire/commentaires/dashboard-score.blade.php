@@ -278,15 +278,15 @@
         </div>
     @endif
 </div>
-<div wire:ignore>
+<div wire:ignore class="flex justify-center">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7237777700901740"
-crossorigin="anonymous"></script>
-<!-- top banniere -->
-<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7237777700901740" data-ad-slot="1803015183"
-    data-ad-format="auto" data-full-width-responsive="true"></ins>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
+        crossorigin="anonymous"></script>
+    <!-- top banniere -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7237777700901740" data-ad-slot="1803015183"
+        data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
 </div>
 
 {{-- @if ($match->home_score && $match->live == 'attente')
