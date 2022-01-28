@@ -3,7 +3,10 @@
     <!-- This example requires Tailwind CSS v2.0+ -->
     <div id="slideHome" class="relative bg-gray-800 p-4">
         <div class="absolute inset-0">
-            <img class="w-full h-full object-cover" src="{{ asset('images/home-preview.jpg') }}" alt="" loading="lazy">
+            {{-- <img class="w-full h-full object-cover" src="{{ asset('images/home-preview.jpg') }}" alt="" loading="lazy"> --}}
+            <video autoplay muted loop id="myVideo" class="w-full h-full object-cover">
+                <source src="{{ asset('videos/bg-search.mp4') }}" type="video/mp4">
+              </video>
             <div class="absolute inset-0 bg-gray-800 mix-blend-multiply" aria-hidden="true"></div>
         </div>
         <div class="relative max-w-7xl mx-auto px-4 sm:py-32 sm:px-6 lg:px-8">
