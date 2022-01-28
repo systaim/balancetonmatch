@@ -4,7 +4,7 @@
     <div id="slideHome" class="relative bg-gray-800 p-4">
         <div class="absolute inset-0">
             {{-- <img class="w-full h-full object-cover" src="{{ asset('images/home-preview.jpg') }}" alt="" loading="lazy"> --}}
-            <video autoplay muted loop playinline id="myVideo" class="w-full h-full object-cover">
+            <video autoplay muted loop playsinline id="myVideo" class="w-full h-full object-cover">
                 <source src="{{ asset('videos/bg-search.mp4') }}" type="video/mp4">
               </video>
             <div class="absolute inset-0 bg-gray-800 mix-blend-multiply" aria-hidden="true"></div>
