@@ -60,9 +60,9 @@
 <body class="relative">
 
     {{-- preloader --}}
-    <div class="preloader">
+    {{-- <div class="preloader">
         <div class="loader"></div>
-    </div>
+    </div> --}}
     @auth
         @foreach (Auth::user()->commentators as $com)
             @if ($com->match && $com->match['live'] != 'finDeMatch' && $com->created_at > now()->subHours(3))
