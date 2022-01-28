@@ -278,7 +278,7 @@
         </div>
     @endif
 </div>
-<div wire:ignore class="text-center">
+{{-- <div wire:ignore class="text-center">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7237777700901740"
         crossorigin="anonymous"></script>
     <!-- top banniere -->
@@ -287,7 +287,7 @@
     <script>
         (adsbygoogle = window.adsbygoogle || []).push({});
     </script>
-</div>
+</div> --}}
 
 {{-- @if ($match->home_score && $match->live == 'attente')
     <div class="relative sm:py-16 py-4">
