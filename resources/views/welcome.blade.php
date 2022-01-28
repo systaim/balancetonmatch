@@ -81,7 +81,7 @@
             </div>
         </div>
     </div>
-    <div class="text-center">
+    {{-- <div class="text-center">
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7237777700901740"
                 crossorigin="anonymous"></script>
         <!-- top banniere -->
@@ -90,7 +90,7 @@
         <script>
             (adsbygoogle = window.adsbygoogle || []).push({});
         </script>
-    </div>
+    </div> --}}
 
 
     {{-- affichage mobile --}}
