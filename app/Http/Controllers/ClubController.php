@@ -137,7 +137,7 @@ class ClubController extends Controller
                             ->where(function ($query) use ($club){
                                     $query->where('home_team_id', $club->id)
                                     ->orwhere('away_team_id', $club->id);
-                            })->limit(1)->get();
+                            })->limit(1)->orderBy('date_match')->get();
         $matchsD2 = Rencontre::where('division_department_id', 2)->where('date_match','>=', Carbon::now()->subHours(12))
                             ->where(function ($query) use ($club){
                                     $query->where('home_team_id', $club->id)
