@@ -188,7 +188,7 @@ class ClubController extends Controller
      *     security={
      *         {"clubstore_auth": {"write:clubs", "read:clubs"}}
      *     },
-     *     requestBody={"$ref": "http://127.0.0.1:8000/components/requestBodies/Club"}
+     *     requestBody={"$ref": "https://balancetonmatch.com/components/requestBodies/Club"}
      * )
      */
     public function addClub()
@@ -217,7 +217,7 @@ class ClubController extends Controller
      *     security={
      *         {"clubstore_auth": {"write:clubs", "read:clubs"}}
      *     },
-     *     requestBody={"$ref": "http://127.0.0.1:8000/components/requestBodies/Club"}
+     *     requestBody={"$ref": "https://balancetonmatch.com/components/requestBodies/Club"}
      * )
      */
     public function updateClub()
@@ -244,8 +244,8 @@ class ClubController extends Controller
      *     @OA\Response(
      *         response=200,
      *         description="successful operation",
-     *         @OA\JsonContent(ref="http://127.0.0.1:8000/components/schemas/Club"),
-     *         @OA\XmlContent(ref="http://127.0.0.1:8000/components/schemas/Club"),
+     *         @OA\JsonContent(ref="https://balancetonmatch.com/components/schemas/Club"),
+     *         @OA\XmlContent(ref="https://balancetonmatch.com/components/schemas/Club"),
      *     ),
      *     @OA\Response(
      *         response=400,
@@ -375,7 +375,7 @@ class ClubController extends Controller
      *     @OA\Response(
      *         response=200,
      *         description="successful operation",
-     *         @OA\JsonContent(ref="http://127.0.0.1:8000/components/schemas/ApiResponse")
+     *         @OA\JsonContent(ref="https://balancetonmatch.com/components/schemas/ApiResponse")
      *     ),
      *     security={
      *         {"clubstore_auth": {"write:pets", "read:pets"}}
