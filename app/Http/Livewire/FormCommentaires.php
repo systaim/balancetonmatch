@@ -677,10 +677,10 @@ class FormCommentaires extends Component
                     $favori->user->notify(new matchBegin($this->match));
                     $favori->save();
                 }
-                foreach ($this->favoriteam as $favori) {
-                    $favori->user->notify(new matchBegin($this->match));
-                    $favori->save();
-                }
+                // foreach ($this->favoriteam as $favori) {
+                //     $favori->user->notify(new matchBegin($this->match));
+                //     $favori->save();
+                // }
 
 
                 session()->flash('success', 'Bon Match ! ⚽⚽⚽');
@@ -790,10 +790,10 @@ class FormCommentaires extends Component
                 $favori->user->notify(new matchEnd($this->match));
                 $favori->save();
             }
-            foreach ($this->favoriteam as $favori) {
-                $favori->user->notify(new matchEnd($this->match));
-                $favori->save();
-            }
+            // foreach ($this->favoriteam as $favori) {
+            //     $favori->user->notify(new matchEnd($this->match));
+            //     $favori->save();
+            // }
 
             //store commentaire pub
             $pub = '<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7237777700901740"
