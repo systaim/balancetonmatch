@@ -417,7 +417,7 @@
                                                 <p>Démarrer le match ?</p>
                                             </div>
                                         </button>
-                                        <button x-show="open" @click.away="open = false" type="button"
+                                        <button x-show="open" @click.away="open = false" type="button" style="display: none"
                                             class="btn btnDanger" wire:click="timeZero" wire:model="commentator"
                                             x-transition:enter="transition ease-out duration-300"
                                             x-transition:enter-start="opacity-0 transform scale-90"
@@ -441,7 +441,7 @@
                                                 </div>
                                             </div>
                                         </button>
-                                        <button x-show="open" @click.away="open = false" type="button"
+                                        <button x-show="open" @click.away="open = false" type="button" style="display: none"
                                             class="btn btnDanger" wire:click="timeMitemps" wire:model="type_comments"
                                             x-transition:enter="transition ease-out duration-300"
                                             x-transition:enter-start="opacity-0 transform scale-90"
@@ -465,7 +465,7 @@
                                                 </div>
                                             </div>
                                         </button>
-                                        <button x-show="open" @click.away="open = false" type="button"
+                                        <button x-show="open" @click.away="open = false" type="button" style="display: none"
                                             class="btn btnDanger" wire:click="timeReprise" wire:model="type_comments"
                                             x-transition:enter="transition ease-out duration-300"
                                             x-transition:enter-start="opacity-0 transform scale-90"
@@ -490,7 +490,7 @@
                                                 </p>
                                             </div>
                                         </button>
-                                        <button x-show="open" @click.away="open = false" type="button"
+                                        <button x-show="open" @click.away="open = false" type="button" style="display: none"
                                             class="btn btnDanger" wire:click="timeFinDuMatch" wire:model="type_comments"
                                             x-transition:enter="transition ease-out duration-300"
                                             x-transition:enter-start="opacity-0 transform scale-90"
@@ -561,7 +561,7 @@
                                     <p>Je souhaite commenter 😎</p>
                                 </div>
                             </button>
-                            <button x-show="open" @click.away="open = false" type="button" class="btn btnDanger"
+                            <button x-show="open" @click.away="open = false" type="button" class="btn btnDanger" style="display: none"
                                 wire:click="becomeCommentator" wire:model="commentator"
                                 x-transition:enter="transition ease-out duration-300"
                                 x-transition:enter-start="opacity-0 transform scale-90"
