@@ -796,28 +796,28 @@ class FormCommentaires extends Component
             // }
 
             //store commentaire pub
-            $pub = '<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7237777700901740"
-                crossorigin="anonymous"></script>
-                <!-- coup d envoi -->
-                <ins class="adsbygoogle"
-                style="display:block"
-                data-ad-client="ca-pub-7237777700901740"
-                data-ad-slot="9484766910"
-                data-ad-format="auto"
-                data-full-width-responsive="true"></ins>
-                <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>';
+            // $pub = '<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7237777700901740"
+            //     crossorigin="anonymous"></script>
+            //     <!-- coup d envoi -->
+            //     <ins class="adsbygoogle"
+            //     style="display:block"
+            //     data-ad-client="ca-pub-7237777700901740"
+            //     data-ad-slot="9484766910"
+            //     data-ad-format="auto"
+            //     data-full-width-responsive="true"></ins>
+            //     <script>
+            //     (adsbygoogle = window.adsbygoogle || []).push({});
+            //     </script>';
 
-            /*creation second com PUB */
-            $commentData2['type_comments'] = 'Pub';
-            $commentData2['minute'] = 100;
-            $commentData2['team_action'] = 'match';
-            $commentData2['comments'] = $pub;
-            $commentData2['commentator_id'] = $this->match->commentateur->id;
+            // /*creation second com PUB */
+            // $commentData2['type_comments'] = 'Pub';
+            // $commentData2['minute'] = 100;
+            // $commentData2['team_action'] = 'match';
+            // $commentData2['comments'] = $pub;
+            // $commentData2['commentator_id'] = $this->match->commentateur->id;
 
-            $comment2 = Commentaire::create($commentData2);
-            $comment2->save();
+            // $comment2 = Commentaire::create($commentData2);
+            // $comment2->save();
 
             $this->commentsMatch =  $this->match->commentaires()->orderBy('minute', 'desc')->orderBy('updated_at', 'desc')->get();
             session()->flash('success', '😍 MERCI MERCI MERCI 😍');
