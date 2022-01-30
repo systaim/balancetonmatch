@@ -16,6 +16,7 @@ use App\Models\User;
 use App\Notifications\but;
 use App\Notifications\matchBegin;
 use App\Notifications\matchEnd;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
@@ -115,14 +116,14 @@ class FormCommentaires extends Component
         $this->away_score = $this->match->away_score;
 
         $this->buteurs_a_domicile = Statistic::where('rencontre_id', $this->match->id)
-                ->where('team_id', $this->match->homeClub->id)
-                ->get();
+            ->where('team_id', $this->match->homeClub->id)
+            ->get();
 
         foreach ($this->buteurs_a_domicile as $key => $buteur) {
-                array_push($this->buteurs, $buteur->player_id);
+            array_push($this->buteurs, $buteur->player_id);
         }
         // dd($this->buteurs);
-        
+
 
         $this->miseAJourCom();
         $this->miseAJourPenalty();
@@ -632,8 +633,6 @@ class FormCommentaires extends Component
 
             $comment = Commentaire::create($commentData);
 
-
-
             if ($comment) {
 
                 $this->match->live = "debut"; // modification colonne live
@@ -649,6 +648,31 @@ class FormCommentaires extends Component
                 $this->match->save();
                 $comment->save();
 
+                /*creation second com PUB */
+                $pub = '<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7237777700901740"
+                        crossorigin="anonymous"></script>
+                        <!-- coup d envoi -->
+                        <ins class="adsbygoogle"
+                        style="display:block"
+                        data-ad-client="ca-pub-7237777700901740"
+                        data-ad-slot="9484766910"
+                        data-ad-format="auto"
+                        data-full-width-responsive="true"></ins>
+                        <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>';
+
+                /*creation second com PUB */
+                $commentData2['type_comments'] = 'Pub';
+                $commentData2['minute'] = 0;
+                $commentData2['team_action'] = 'match';
+                $commentData2['comments'] = $pub;
+                $commentData2['commentator_id'] = $this->match->commentateur->id;
+                $commentData2['updated_at'] = Carbon::create($comment->updated_at)->subSecond();
+
+                $comment2 = Commentaire::create($commentData2);
+                $comment2->save();
+
                 foreach ($this->favorimatch as $favori) {
                     $favori->user->notify(new matchBegin($this->match));
                     $favori->save();
@@ -658,15 +682,6 @@ class FormCommentaires extends Component
                     $favori->save();
                 }
 
-                // /*creation second com PUB */
-                // $commentData2['type_comments'] = 'Publicité';
-                // $commentData2['minute'] = 0;
-                // $commentData2['team_action'] = 'match';
-                // $commentData2['comments'] = $this->pub;
-                // $commentData2['commentator_id'] = $this->match->commentateur->id;
-
-                // $comment2 = Commentaire::create($commentData2);
-                // $comment2->save();
 
                 session()->flash('success', 'Bon Match ! ⚽⚽⚽');
                 return redirect()->to('matches/' . $this->match->id);
@@ -690,13 +705,36 @@ class FormCommentaires extends Component
         $commentData['commentator_id'] = $this->match->commentateur->id;
         // $commentData['images'] = "images/gifs/lonely-goalie.gif";
 
-
-
         $comment = Commentaire::create($commentData);
 
         if ($comment) {
 
             $comment->save();
+
+            /*creation second com PUB */
+            $pub = '<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7237777700901740"
+                    crossorigin="anonymous"></script>
+                    <!-- coup d envoi -->
+                    <ins class="adsbygoogle"
+                    style="display:block"
+                    data-ad-client="ca-pub-7237777700901740"
+                    data-ad-slot="9484766910"
+                    data-ad-format="auto"
+                    data-full-width-responsive="true"></ins>
+                    <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>';
+
+            /*creation second com PUB */
+            $commentData2['type_comments'] = 'Pub';
+            $commentData2['minute'] = 45;
+            $commentData2['team_action'] = 'match';
+            $commentData2['comments'] = $pub;
+            $commentData2['commentator_id'] = $this->match->commentateur->id;
+            $commentData2['updated_at'] = Carbon::create($comment->updated_at)->addSecond();
+
+            $comment2 = Commentaire::create($commentData2);
+            $comment2->save();
 
             session()->flash('success', 'Mi-temps ! Repos bien mérité... Rendez-vous dans 15 minutes 🍻');
             return redirect()->to('matches/' . $this->match->id);
@@ -756,6 +794,30 @@ class FormCommentaires extends Component
                 $favori->user->notify(new matchEnd($this->match));
                 $favori->save();
             }
+
+            //store commentaire pub
+            $pub = '<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7237777700901740"
+                crossorigin="anonymous"></script>
+                <!-- coup d envoi -->
+                <ins class="adsbygoogle"
+                style="display:block"
+                data-ad-client="ca-pub-7237777700901740"
+                data-ad-slot="9484766910"
+                data-ad-format="auto"
+                data-full-width-responsive="true"></ins>
+                <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>';
+
+            /*creation second com PUB */
+            $commentData2['type_comments'] = 'Pub';
+            $commentData2['minute'] = 100;
+            $commentData2['team_action'] = 'match';
+            $commentData2['comments'] = $pub;
+            $commentData2['commentator_id'] = $this->match->commentateur->id;
+
+            $comment2 = Commentaire::create($commentData2);
+            $comment2->save();
 
             $this->commentsMatch =  $this->match->commentaires()->orderBy('minute', 'desc')->orderBy('updated_at', 'desc')->get();
             session()->flash('success', '😍 MERCI MERCI MERCI 😍');

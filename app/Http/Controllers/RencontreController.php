@@ -45,12 +45,12 @@ class RencontreController extends Controller
         $clubs = Club::all();
         $user = Auth::user();
         $players = Player::all();
-        $matchesByCompet = Rencontre::where('date_match','>=', Carbon::now()->subHours(12))
-        ->orderBy('date_match', 'asc')->get()->groupBy('competition_id');
+        $matchesByCompet = Rencontre::where('date_match', '>=', Carbon::now()->subHours(12))
+            ->orderBy('date_match', 'asc')->get()->groupBy('competition_id');
 
         $competitions = Competition::find($matchesByCompet->keys());
 
-        
+
 
         return view('matches.listMatchs', compact('clubs', 'players', 'matchesByCompet', 'competitions', 'user'));
     }
@@ -114,9 +114,9 @@ class RencontreController extends Controller
     {
         $commentator = Commentator::where('rencontre_id', $match->id)->get();
         $commentsMatch = $match->commentaires()->with(['statistic'])
-                                ->orderBy('minute', 'desc')
-                                ->orderBy('updated_at', 'desc')
-                                ->get();
+            ->orderBy('minute', 'desc')
+            ->orderBy('updated_at', 'desc')
+            ->get();
         $clubHome = $match->homeClub()->get();
         $clubAway = $match->awayClub()->get();
         $stats = Statistic::all();
@@ -124,11 +124,11 @@ class RencontreController extends Controller
         $competitions = $match->competition()->get();
         $tabHome = Tab::where('match_id', $match->id)->where('club_id', $match->homeClub->id)->get();
         $tabAway = Tab::where('match_id', $match->id)->where('club_id', $match->awayClub->id)->get();
-        $user = Auth::user();   
+        $user = Auth::user();
         $favorimatch = Favorismatch::where('match_id', $match->id)->get();
         $favoriteam = Favoristeam::where('club_id', $match->homeClub->id)->orwhere('club_id', $match->awayClub->id)->get();
 
-        return view('matches.show', compact('favorimatch','favoriteam','match', 'commentsMatch', 'clubHome', 'clubAway', 'competitions', 'stats', 'nbrFavoris', 'commentator', 'user', 'tabHome', 'tabAway'));
+        return view('matches.show', compact('favorimatch', 'favoriteam', 'match', 'commentsMatch', 'clubHome', 'clubAway', 'competitions', 'stats', 'nbrFavoris', 'commentator', 'user', 'tabHome', 'tabAway'));
     }
 
     /**
@@ -140,7 +140,7 @@ class RencontreController extends Controller
     public function edit(Rencontre $match)
     {
 
-        $date = explode(" ",$match->date_match);
+        $date = explode(" ", $match->date_match);
         $dateDuMatch = $date[0];
         $heureDuMatch = $date[1];
         return view('matches.edit', compact('match', 'dateDuMatch', 'heureDuMatch'));
@@ -161,12 +161,11 @@ class RencontreController extends Controller
             'location' => 'nullable | string'
         ]);
 
-        $match->date_match = $request->dateMatch. "T" .$request->time;
+        $match->date_match = $request->dateMatch . "T" . $request->time;
         $match->location = $request->location;
         $match->save();
 
-        return redirect('matches/'.$match->id. '?' .$match->slug);
-
+        return redirect('matches/' . $match->id . '?' . $match->slug);
     }
 
     /**
@@ -180,5 +179,276 @@ class RencontreController extends Controller
         $match = Rencontre::find($id);
         $match->delete();
         return back();
+    }
+
+    /**
+     * /**
+     * @OA\Get(
+     *     path="/matchs",
+     *     tags={"matchs"},
+     *     summary="Find match by ID",
+     *     description="Returns all matchs",
+     *     operationId="getMatchs",
+     *     @OA\Response(
+     *         response=200,
+     *         description="successful operation",
+     *         @OA\JsonContent(ref="https://balancetonmatch.com/api/matchs"),
+     *         @OA\XmlContent(ref="https://balancetonmatch.com/api/matchs"),
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Invalid ID supplier"
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Matchs not found"
+     *     ),
+     *     security={
+     *         {"api_key": {}}
+     *     }
+     * )
+     *
+     * @param int $id
+     */
+    public function getMatchs()
+    {
+    }
+    /**
+     * Add a new match to the store
+     * 
+     * @OA\Post(
+     *     path="/matchs",
+     *     tags={"matchs"},
+     *     operationId="addMatch",
+     *     @OA\Response(
+     *         response=405,
+     *         description="Invalid input"
+     *     ),
+     *     @OA\Parameter(
+     *         name="match_id",
+     *         in="path",
+     *         description="ID of match to return",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         ),
+     *         name="abbreviation",
+     *         in="path",
+     *         description="Abbreviation du match",
+     *         required=false,
+     *         @OA\Schema(
+     *             type="string",
+     *         )
+     *     ),
+     *     security={
+     *         {"matchstore_auth": {"write:matchs", "read:matchs"}}
+     *     },
+     *     requestBody={"$ref": "https://balancetonmatch.com/components/requestBodies/Match"}
+     * )
+     */
+    public function addMatch()
+    {
+    }
+
+    /**
+     * Update an existing match
+     *
+     * @OA\Put(
+     *     path="/matchs",
+     *     tags={"matchs"},
+     *     operationId="updateMatch",
+     *     @OA\Response(
+     *         response=400,
+     *         description="Invalid ID supplied"
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Match not found"
+     *     ),
+     *     @OA\Response(
+     *         response=405,
+     *         description="Validation exception"
+     *     ),
+     *     security={
+     *         {"matchstore_auth": {"write:matchs", "read:matchs"}}
+     *     },
+     *     requestBody={"$ref": "https://balancetonmatch.com/components/requestBodies/Match"}
+     * )
+     */
+    public function updateMatch()
+    {
+    }
+
+    /**
+     * @OA\Get(
+     *     path="/matchs/{matchId}",
+     *     tags={"matchs"},
+     *     summary="Find match by ID",
+     *     description="Returns a single match",
+     *     operationId="getMatchById",
+     *     @OA\Parameter(
+     *         name="matchId",
+     *         in="path",
+     *         description="ID of match to return",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="successful operation",
+     *         @OA\JsonContent(ref="https://balancetonmatch.com/api/matchs"),
+     *         @OA\XmlContent(ref="https://balancetonmatch.com/api/matchs"),
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Invalid ID supplier"
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Match not found"
+     *     ),
+     *     security={
+     *         {"api_key": {}}
+     *     }
+     * )
+     *
+     * @param int $id
+     */
+    public function getMatchById($id)
+    {
+    }
+
+    /**
+     * @OA\Post(
+     *     path="/matchs/{matchId}",
+     *     tags={"matchs"},
+     *     summary="Updates a match in the store with form data",
+     *     operationId="updateMatchWithForm",
+     *     @OA\Parameter(
+     *         name="matchId",
+     *         in="path",
+     *         description="ID of match that needs to be updated",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=405,
+     *         description="Invalid input"
+     *     ),
+     *     security={
+     *         {"matchstore_auth": {"write:matchs", "read:matchs"}}
+     *     },
+     *     @OA\RequestBody(
+     *         description="Input data format",
+     *         @OA\MediaType(
+     *             mediaType="application/x-www-form-urlencoded",
+     *             @OA\Schema(
+     *                 type="object",
+     *                 @OA\Property(
+     *                     property="name",
+     *                     description="Updated name of the match",
+     *                     type="string",
+     *                 ),
+     *                 @OA\Property(
+     *                     property="status",
+     *                     description="Updated status of the match",
+     *                     type="string"
+     *                 )
+     *             )
+     *         )
+     *     )
+     * )
+     */
+    public function updateMatchWithForm()
+    {
+    }
+
+    /**
+     * @OA\Delete(
+     *     path="/matchs/{matchId}",
+     *     tags={"matchs"},
+     *     summary="Deletes a match",
+     *     operationId="deleteMatch",
+     *     @OA\Parameter(
+     *         name="api_key",
+     *         in="header",
+     *         required=false,
+     *         @OA\Schema(
+     *             type="string"
+     *         )
+     *     ),
+     *     @OA\Parameter(
+     *         name="matchId",
+     *         in="path",
+     *         description="Match id to delete",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         ),
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Invalid ID supplied",
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Match not found",
+     *     ),
+     *     security={
+     *         {"matchstore_auth": {"write:matchs", "read:matchs"}}
+     *     },
+     * )
+     */
+    public function deleteMatch()
+    {
+    }
+
+    /**
+     * @OA\Post(
+     *     path="/matchs/{matchId}/uploadImage",
+     *     tags={"matchs"},
+     *     summary="uploads an image",
+     *     operationId="uploadFile",
+     *     @OA\Parameter(
+     *         name="matchId",
+     *         in="path",
+     *         description="ID of match to update",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64",
+     *             example=1
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="successful operation",
+     *         @OA\JsonContent(ref="https://balancetonmatch.com/components/schemas/ApiResponse")
+     *     ),
+     *     security={
+     *         {"matchstore_auth": {"write:pets", "read:pets"}}
+     *     },
+     *     @OA\RequestBody(
+     *         description="Upload images request body",
+     *         @OA\MediaType(
+     *             mediaType="application/octet-stream",
+     *             @OA\Schema(
+     *                 type="string",
+     *                 format="binary"
+     *             )
+     *         )
+     *     )
+     * )
+     */
+    public function uploadFile()
+    {
     }
 }

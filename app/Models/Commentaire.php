@@ -21,7 +21,8 @@ class Commentaire extends Model
         'comments',
         'minute',
         'team_action',
-        'images'
+        'images',
+        'updated_at'
     ];
 
     protected $hidden = ['id', 'created_at', 'updated_at', 'deleted_at'];

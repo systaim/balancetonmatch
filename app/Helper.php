@@ -1,6 +1,6 @@
 <?php
 function serviceApi($endpoint){
-    $url="https://api.covid19api.com/$endpoint";
+    $url="http://balancetonmatch/api/$endpoint";
     $crl = curl_init();
 
     curl_setopt($crl, CURLOPT_URL, $url);

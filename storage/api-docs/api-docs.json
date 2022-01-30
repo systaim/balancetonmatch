@@ -14,50 +14,56 @@
     },
     "servers": [
         {
-            "url": "http://127.0.0.1:8000/api",
+            "url": "https://balancetonmatch.com/api",
             "description": "Demo API Server"
         }
     ],
     "paths": {
-        "/v1/countries": {
+        "/clubs": {
             "get": {
                 "tags": [
-                    "Tests"
+                    "clubs"
                 ],
-                "summary": "Get List Of Countries",
-                "description": "Returns all countries and associated provinces. The country_slug variable is used for country specific data",
-                "operationId": "getAllCountrie",
+                "summary": "Find club by ID",
+                "description": "Returns all clubs",
+                "operationId": "getClubs",
                 "responses": {
                     "200": {
-                        "description": "Successful operation",
+                        "description": "successful operation",
                         "content": {
-                            "application/json": {}
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "https://balancetonmatch.com/api/clubs"
+                                }
+                            },
+                            "application/xml": {
+                                "schema": {
+                                    "$ref": "https://balancetonmatch.com/api/clubs"
+                                }
+                            }
                         }
                     },
-                    "401": {
-                        "description": "Unauthenticated"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
                     "400": {
-                        "description": "Bad Request"
+                        "description": "Invalid ID supplier"
                     },
                     "404": {
-                        "description": "not found"
+                        "description": "Clubs not found"
                     }
-                }
-            }
-        },
-        "/clubs": {
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            },
             "put": {
                 "tags": [
-                    "club"
+                    "clubs"
                 ],
                 "summary": "Update an existing club",
                 "operationId": "updateClub",
                 "requestBody": {
-                    "$ref": "http://127.0.0.1:8000/components/requestBodies/Club"
+                    "$ref": "https://balancetonmatch.com/components/requestBodies/Club"
                 },
                 "responses": {
                     "400": {
@@ -81,7 +87,7 @@
             },
             "post": {
                 "tags": [
-                    "club"
+                    "clubs"
                 ],
                 "summary": "Add a new club to the store",
                 "operationId": "addClub",
@@ -98,7 +104,7 @@
                     }
                 ],
                 "requestBody": {
-                    "$ref": "http://127.0.0.1:8000/components/requestBodies/Club"
+                    "$ref": "https://balancetonmatch.com/components/requestBodies/Club"
                 },
                 "responses": {
                     "405": {
@@ -118,7 +124,7 @@
         "/clubs/{clubId}": {
             "get": {
                 "tags": [
-                    "club"
+                    "clubs"
                 ],
                 "summary": "Find club by ID",
                 "description": "Returns a single club",
@@ -141,12 +147,12 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "http://127.0.0.1:8000/components/schemas/Club"
+                                    "$ref": "https://balancetonmatch.com/api/clubs"
                                 }
                             },
                             "application/xml": {
                                 "schema": {
-                                    "$ref": "http://127.0.0.1:8000/components/schemas/Club"
+                                    "$ref": "https://balancetonmatch.com/api/clubs"
                                 }
                             }
                         }
@@ -166,7 +172,7 @@
             },
             "post": {
                 "tags": [
-                    "club"
+                    "clubs"
                 ],
                 "summary": "Updates a club in the store with form data",
                 "operationId": "updateClubWithForm",
@@ -218,7 +224,7 @@
             },
             "delete": {
                 "tags": [
-                    "club"
+                    "clubs"
                 ],
                 "summary": "Deletes a club",
                 "operationId": "deleteClub",
@@ -263,7 +269,7 @@
         "/clubs/{clubId}/uploadImage": {
             "post": {
                 "tags": [
-                    "club"
+                    "clubs"
                 ],
                 "summary": "uploads an image",
                 "operationId": "uploadFile",
@@ -297,7 +303,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "http://127.0.0.1:8000/components/schemas/ApiResponse"
+                                    "$ref": "https://balancetonmatch.com/components/schemas/ApiResponse"
                                 }
                             }
                         }
@@ -560,6 +566,318 @@
                 "security": [
                     {
                         "commentstore_auth": [
+                            "write:pets",
+                            "read:pets"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/matchs": {
+            "get": {
+                "tags": [
+                    "matchs"
+                ],
+                "summary": "Find match by ID",
+                "description": "Returns all matchs",
+                "operationId": "getMatchs",
+                "parameters": [
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Abbreviation du match",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "https://balancetonmatch.com/api/matchs"
+                                }
+                            },
+                            "application/xml": {
+                                "schema": {
+                                    "$ref": "https://balancetonmatch.com/api/matchs"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid ID supplier"
+                    },
+                    "404": {
+                        "description": "Matchs not found"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "matchs"
+                ],
+                "summary": "Update an existing match",
+                "operationId": "updateMatch",
+                "requestBody": {
+                    "$ref": "https://balancetonmatch.com/components/requestBodies/Match"
+                },
+                "responses": {
+                    "400": {
+                        "description": "Invalid ID supplied"
+                    },
+                    "404": {
+                        "description": "Match not found"
+                    },
+                    "405": {
+                        "description": "Validation exception"
+                    }
+                },
+                "security": [
+                    {
+                        "matchstore_auth": [
+                            "write:matchs",
+                            "read:matchs"
+                        ]
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "matchs"
+                ],
+                "summary": "Add a new match to the store",
+                "operationId": "addMatch",
+                "parameters": [
+                    {
+                        "name": "abbreviation",
+                        "in": "path",
+                        "description": "Abbreviation du match",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "$ref": "https://balancetonmatch.com/components/requestBodies/Match"
+                },
+                "responses": {
+                    "405": {
+                        "description": "Invalid input"
+                    }
+                },
+                "security": [
+                    {
+                        "matchstore_auth": [
+                            "write:matchs",
+                            "read:matchs"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/matchs/{matchId}": {
+            "get": {
+                "tags": [
+                    "matchs"
+                ],
+                "summary": "Find match by ID",
+                "description": "Returns a single match",
+                "operationId": "getMatchById",
+                "parameters": [
+                    {
+                        "name": "matchId",
+                        "in": "path",
+                        "description": "ID of match to return",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "https://balancetonmatch.com/api/matchs"
+                                }
+                            },
+                            "application/xml": {
+                                "schema": {
+                                    "$ref": "https://balancetonmatch.com/api/matchs"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid ID supplier"
+                    },
+                    "404": {
+                        "description": "Match not found"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "matchs"
+                ],
+                "summary": "Updates a match in the store with form data",
+                "operationId": "updateMatchWithForm",
+                "parameters": [
+                    {
+                        "name": "matchId",
+                        "in": "path",
+                        "description": "ID of match that needs to be updated",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Input data format",
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "description": "Updated name of the match",
+                                        "type": "string"
+                                    },
+                                    "status": {
+                                        "description": "Updated status of the match",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "405": {
+                        "description": "Invalid input"
+                    }
+                },
+                "security": [
+                    {
+                        "matchstore_auth": [
+                            "write:matchs",
+                            "read:matchs"
+                        ]
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "matchs"
+                ],
+                "summary": "Deletes a match",
+                "operationId": "deleteMatch",
+                "parameters": [
+                    {
+                        "name": "api_key",
+                        "in": "header",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "matchId",
+                        "in": "path",
+                        "description": "Match id to delete",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Invalid ID supplied"
+                    },
+                    "404": {
+                        "description": "Match not found"
+                    }
+                },
+                "security": [
+                    {
+                        "matchstore_auth": [
+                            "write:matchs",
+                            "read:matchs"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/matchs/{matchId}/uploadImage": {
+            "post": {
+                "tags": [
+                    "matchs"
+                ],
+                "summary": "uploads an image",
+                "operationId": "uploadFile",
+                "parameters": [
+                    {
+                        "name": "matchId",
+                        "in": "path",
+                        "description": "ID of match to update",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64",
+                            "example": 1
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Upload images request body",
+                    "content": {
+                        "application/octet-stream": {
+                            "schema": {
+                                "type": "string",
+                                "format": "binary"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "https://balancetonmatch.com/components/schemas/ApiResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "matchstore_auth": [
                             "write:pets",
                             "read:pets"
                         ]

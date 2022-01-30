@@ -39,9 +39,9 @@ Route::apiResource('comments', CommentaireController::class, [
 Route::apiResource('commentators', CommentatorController::class, [
     'as' => 'api'
 ]);
-Route::apiResource('users', UserController::class, [
-    'as' => 'api'
-]);
+// Route::apiResource('users', UserController::class, [
+//     'as' => 'api'
+// ]);
 
 
 

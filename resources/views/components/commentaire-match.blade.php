@@ -1,16 +1,16 @@
 <div class="relative commentaires minHeight16 h-auto {{ $comment->team_action }}" @if ($comment->team_action == 'home')
     style="border-color: {{ $match->homeClub->primary_color }};"
-@elseif ($comment->team_action == "away")
+@elseif ($comment->team_action == 'away')
     style="border-color: {{ $match->awayClub->primary_color }};"
     @endif
     x-data="{ open: false }">
     <div class="minuteCommentaires w-24 sm:w-32 {{ $comment->team_action }} p-4 flex flex-col items-center"
         @if ($comment->team_action == 'home')
         style="background-color: {{ $match->homeClub->primary_color }};
-        color:{{ $match->homeClub->secondary_color == $match->homeClub->primary_color ? '#cdfb0a' : $match->homeClub->secondary_color }}"
-    @elseif ($comment->team_action == "away")
+        color:{{ $match->homeClub->secondary_color == $match->homeClub->primary_color? '#cdfb0a': $match->homeClub->secondary_color }}"
+    @elseif ($comment->team_action == 'away')
         style="background-color: {{ $match->awayClub->primary_color }};
-        color:{{ $match->awayClub->secondary_color == $match->awayClub->primary_color ? '#cdfb0a' : $match->awayClub->secondary_color }}"
+        color:{{ $match->awayClub->secondary_color == $match->awayClub->primary_color? '#cdfb0a': $match->awayClub->secondary_color }}"
         @endif>
         <div>
             @if ($comment->team_action == 'match')
@@ -54,9 +54,13 @@
     </div>
     <div class="relative bg-white w-full p-4 flex flex-col">
         <div class="flex flex-col justify-between">
-            <div>
+            <div {{ $comment->type_comments == 'Pub' ? 'wire:ignore' : '' }}>
                 <p>{{ $comment->type_comments }}</p>
-                <p>{{ $comment->comments }}</p>
+                @if ($comment->type_comments == 'Pub')
+                    <p>{!! $comment->comments !!}</p>
+                @else
+                    <p>{{ $comment->comments }}</p>
+                @endif
                 <div class="flex flex-col items-between">
                     @if ($comment->statistic)
                         @if ($comment->team_action == 'away' || $comment->team_action == 'home')
@@ -198,18 +202,20 @@
     </div>
     @auth
         @if (($match->commentateur->user_id == Auth::user()->id && $match->live != 'finDeMatch') || Auth::user()->role == 'super-admin' || Auth::user()->role == 'admin')
-            <div class="absolute flex justify-center items-center right-1 top-0">
-                <div>
-                    <a class="text-lg text-danger" href="{{ route('supprimer', ['id' => $comment->id]) }}"
-                        onclick="return confirm('Etes vous sûr de vouloir supprimer ce commentaire ?')">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                    </a>
+            @if ($comment->type_comments != 'Pub')
+                <div class="absolute flex justify-center items-center right-1 top-0">
+                    <div>
+                        <a class="text-lg text-danger" href="{{ route('supprimer', ['id' => $comment->id]) }}"
+                            onclick="return confirm('Etes vous sûr de vouloir supprimer ce commentaire ?')">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </a>
+                    </div>
                 </div>
-            </div>
+            @endif
         @endif
     @endauth
 </div>
