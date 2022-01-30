@@ -9,7 +9,7 @@
             @click="open= true">
             <div class="dotMenu"></div>
             <div class="absolute top-0 right-0 w-32 h-auto py-4 pl-6 bg-secondary shadow-xl rounded-lg" x-show="open"
-                @click.away="open = false">
+                @click.away="open = false" style="display: none">
                 <a class="w-full" href="{{ route('matches.edit', ['match' => $match]) }}">modifier</a>
                 @auth
                     @if ((Auth::user() && $match->user_id == Auth::user()->id && $match->live == 'attente') || Auth::user()->role == 'super-admin' || Auth::user()->role == 'admin')
