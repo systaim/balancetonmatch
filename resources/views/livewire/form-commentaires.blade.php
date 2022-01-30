@@ -574,7 +574,7 @@
                         </div>
                     @endif
                 @else
-                    @if (empty($match->commentateur) && $match->date_match > now()->subHours(3))
+                    @if (empty($match->commentateur) || $match->date_match > now()->subHours(3))
                         <div class="flex flex-col items-center my-6">
                             <div class="">
                                 <p class=" py-2 px-3 underline mb-3">En attente d'un
