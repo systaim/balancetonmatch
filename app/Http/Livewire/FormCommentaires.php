@@ -936,10 +936,10 @@ class FormCommentaires extends Component
                     $favori->user->notify(new but($this->match));
                     $favori->save();
                 }
-                foreach ($this->favoriteam as $favori) {
-                    $favori->user->notify(new but($this->match));
-                    $favori->save();
-                }
+                // foreach ($this->favoriteam as $favori) {
+                //     $favori->user->notify(new but($this->match));
+                //     $favori->save();
+                // }
             }
 
             $this->commentsMatch = $this->match->commentaires()->orderBy('minute', 'desc')->orderBy('updated_at', 'desc')->get();
