@@ -1,4 +1,4 @@
-<div class="relative commentaires minHeight16 h-auto {{ $comment->team_action }}" @if ($comment->team_action == 'home')
+<div class="relative commentaires minHeight16 overflow-hidden h-auto {{ $comment->team_action }}" @if ($comment->team_action == 'home')
     style="border-color: {{ $match->homeClub->primary_color }};"
 @elseif ($comment->team_action == 'away')
     style="border-color: {{ $match->awayClub->primary_color }};"
