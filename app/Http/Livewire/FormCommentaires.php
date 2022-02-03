@@ -39,7 +39,7 @@ class FormCommentaires extends Component
     public $type_comments, $type_but = "", $type_carton = "", $type_actionMatch = "", $minute, $team_action = '', $imageAction = '',
         $minuteMatch, $commentPerso = "", $minuteCom, $player, $home_score, $away_score, $stats, $dateMatch, $heureMatch,
         $open_btn_score, $away_score_corrige, $home_score_corrige;
-    public $firstCom, $input_buteur_dom, $input_buteur_ext, $buteurs_a_domicile, $buteurs = [];
+    public $firstCom, $input_buteur_dom, $input_buteur_ext, $buteurs_domicile = [], $buteurs_exterieur = [];
     public $file;
     public $menuCom;
     public $playerPrenom;
@@ -115,12 +115,23 @@ class FormCommentaires extends Component
         $this->home_score = $this->match->home_score;
         $this->away_score = $this->match->away_score;
 
-        $this->buteurs_a_domicile = Statistic::where('rencontre_id', $this->match->id)
+        $buteurs_dom = Statistic::where('rencontre_id', $this->match->id)
             ->where('team_id', $this->match->homeClub->id)
             ->get();
+        // dd($buteurs_a_domicile);
 
-        foreach ($this->buteurs_a_domicile as $key => $buteur) {
-            array_push($this->buteurs, $buteur->player_id);
+        foreach ($buteurs_dom as $key => $buteur) {
+            array_push($this->buteurs_domicile, $buteur->player_id);
+        }
+        // dd($this->buteurs);
+
+        $buteurs_ext = Statistic::where('rencontre_id', $this->match->id)
+            ->where('team_id', $this->match->awayClub->id)
+            ->get();
+        // dd($buteurs_a_domicile);
+
+        foreach ($buteurs_ext as $key => $buteur) {
+            array_push($this->buteurs_exterieur, $buteur->player_id);
         }
         // dd($this->buteurs);
 
@@ -165,27 +176,38 @@ class FormCommentaires extends Component
 
     public function storeButeursDuMatch()
     {
-        foreach ($this->input_buteur_dom as $key => $buteur_dom) {
-            $player = Player::find($buteur_dom);
+        if ($this->input_buteur_dom) {
+            foreach ($this->input_buteur_dom as $key => $buteur_dom) {
+                $player = Player::find($buteur_dom);
 
-            // $commentateur = Commentator::create(['user_id' => Auth::id(), 'rencontre_id' => $this->match->id]);
-
-            // $commentaire = Commentaire::create([
-            //     'commentator_id' => $commentateur->id,
-            //     'type_action' => "goal",
-            //     'type_comments' => "Buteur n° " . $key . " renseigné",
-            //     'team_action' => "home"
-            // ]);
-
-            Statistic::create([
-                'player_id' => $player->id,
-                'action' => 'goal',
-                'rencontre_id' => $this->match->id,
-                'user_id' => Auth::id(),
-                'numero_but' => $key,
-                'team_id' => $this->match->homeClub->id
-            ]);
+                Statistic::create([
+                    'player_id' => $player->id,
+                    'action' => 'goal',
+                    'rencontre_id' => $this->match->id,
+                    'user_id' => Auth::id(),
+                    'numero_but' => $key,
+                    'team_id' => $this->match->homeClub->id
+                ]);
+            }
         }
+
+        if ($this->input_buteur_ext) {
+            foreach ($this->input_buteur_ext as $key => $buteur_ext) {
+                $player = Player::find($buteur_ext);
+
+                Statistic::create([
+                    'player_id' => $player->id,
+                    'action' => 'goal',
+                    'rencontre_id' => $this->match->id,
+                    'user_id' => Auth::id(),
+                    'numero_but' => $key,
+                    'team_id' => $this->match->awayClub->id
+                ]);
+            }
+        }
+
+
+        return redirect()->to('matches/' . $this->match->id)->with('success', 'Merci');
     }
 
     public function openBtnScore()

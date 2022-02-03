@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ClubCollection;
 use App\Models\Club;
 use Illuminate\Http\Request;
 use App\Http\Resources\ClubResource as ClubResource;
@@ -14,9 +15,12 @@ class ClubController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
-        $clubs = Club::paginate(10);
+
+        $clubs = Club::all();
+        
         return ClubResource::collection($clubs);
     }
 

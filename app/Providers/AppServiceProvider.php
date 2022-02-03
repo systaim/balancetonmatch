@@ -2,11 +2,6 @@
 
 namespace App\Providers;
 
-use App\Http\Controllers\Api\RencontreController;
-use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\URL;
-use App\Providers\Schema;
-
 use Illuminate\Support\ServiceProvider;
 use Carbon\Carbon;
 use App\Models\Rencontre;
@@ -32,7 +27,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-
+        // JsonResource::withoutWrapping();
 
         $liveMatchs = Rencontre::where('date_match','>=', Carbon::now()->today())
             ->where(function($query) {

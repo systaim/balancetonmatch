@@ -312,8 +312,8 @@
                 "security": [
                     {
                         "clubstore_auth": [
-                            "write:pets",
-                            "read:pets"
+                            "write:clubs",
+                            "read:clubs"
                         ]
                     }
                 ]
@@ -581,18 +581,6 @@
                 "summary": "Find match by ID",
                 "description": "Returns all matchs",
                 "operationId": "getMatchs",
-                "parameters": [
-                    {
-                        "name": "limit",
-                        "in": "query",
-                        "description": "Abbreviation du match",
-                        "required": false,
-                        "schema": {
-                            "type": "integer",
-                            "format": "int32"
-                        }
-                    }
-                ],
                 "responses": {
                     "200": {
                         "description": "successful operation",

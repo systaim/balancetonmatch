@@ -17,7 +17,9 @@ class RencontreController extends Controller
      */
     public function index()
     {
-        return Rencontre::all();
+        // $matches = Rencontre::paginate(10);
+        $matches = Rencontre::all();
+        return RencontreResource::collection($matches);
     }
 
     /**
@@ -39,7 +41,7 @@ class RencontreController extends Controller
      */
     public function show(Rencontre $rencontre)
     {
-        return new RencontreResource($match);
+        return new RencontreResource($rencontre);
     }
 
     /**
