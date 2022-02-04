@@ -14,21 +14,22 @@ class RencontreResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
-        // return [
-        //     'live' =>$this->live,
-        //     'home_team_id' =>$this->home_team_id,
-        //     'home_score' =>$this->home_score,
-        //     'away_team_id' =>$this->away_team_id,
-        //     'away_score' =>$this->away_score,
-        //     'date_match' =>$this->date_match,
-        //     'location' =>$this->location,
-        //     'competition_id' =>$this->competition_id,
-        //     'region_id' =>$this->region_id,
-        //     'department_id' =>$this->department_id,
-        //     'division_region_id' =>$this->division_region_id,
-        //     'division_department_id' =>$this->division_department_id,
-        //     'group_id' =>$this->group_id,
-        // ];
+        // return parent::toArray($request);
+        return [
+            'id' =>$this->id,
+            'live' =>$this->live,
+            'home_team' =>$this->homeClub,
+            'home_score' =>$this->home_score,
+            'away_team' => $this->awayClub,
+            'away_score' =>$this->away_score,
+            'date_match' =>$this->date_match,
+            'location' =>$this->location,
+            'competition_id' =>$this->competition,
+            'region' =>$this->region,
+            'department' =>$this->department,
+            'division_region' =>$this->division_region,
+            'division_department' =>$this->division_department,
+            'group' =>$this->group,
+        ];
     }
 }
