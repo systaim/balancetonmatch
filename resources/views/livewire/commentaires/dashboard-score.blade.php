@@ -289,7 +289,7 @@
     </script>
 </div> --}}
 
-{{-- @if ($match->home_score && $match->live == 'attente')
+@if ($match->home_score && $match->live == 'attente')
     <div class="relative sm:py-16 py-4">
         <div class="mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8">
             <div
@@ -302,9 +302,12 @@
                         <p class="mt-2 mx-auto max-w-2xl">
                             Tu peux les ajouter
                         </p>
+                        <p class="mt-2 mx-auto max-w-2xl">
+                            Si un joueur n'est pas dans la liste, pense a le créer
+                        </p>
                     </div>
                 </div>
-                <div class="flex flex-col lg:flex-row lg:justify-around" wire:ignore>
+                <div class="flex flex-col lg:flex-row lg:justify-around">
                     @auth
                         <div class="mt-4">
                             <h3 class="m-3 text-xl truncate">{{ $match->homeClub->name }}</h3>
@@ -313,7 +316,7 @@
                                     <label for="player_dom{{ $i }}" class="block text-sm font-medium">Buteur
                                         n°{{ $i }}</label>
                                     @if (!isset($buteurs_domicile[$i - 1]))
-                                        @dump($input_buteur_dom)
+                                        {{-- @dump($buteurs_domicile[$i - 1]) --}}
                                         <select id="player_dom{{ $i }}" name="player_dom{{ $i }}"
                                             wire:model="input_buteur_dom.{{ $i }}"
                                             class="mt-1 block pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none text-black sm:text-sm rounded-md">
@@ -323,11 +326,11 @@
                                                     {{ ucfirst($player->first_name) }} {{ strtoupper($player->last_name) }}
                                                 </option>
                                             @endforeach
-                                            <option value="no_player_dom">Il n'est pas dans la liste</option>
+                                            {{-- <option value="no_player_dom">Il n'est pas dans la liste</option> --}}
                                         </select>
-                                        @if ($buteurs_domicile == 'no_player_dom')
-                                            prout
-                                        @endif
+                                        {{-- @if ($input_buteur_dom.$i == 'no_player_dom')
+                                            OK INPUT
+                                        @endif --}}
                                     @else
                                         @foreach ($match->homeClub->players as $player)
                                             @if ($player->id == $buteurs_domicile[$i - 1])
@@ -337,6 +340,7 @@
                                     @endif
                                 </div>
                             @endfor
+                            
                         </div>
                         <div class="mt-4">
                             <h3 class="m-3 text-xl truncate">{{ $match->awayClub->name }}</h3>
@@ -354,7 +358,7 @@
                                                     {{ ucfirst($player->first_name) }} {{ strtoupper($player->last_name) }}
                                                 </option>
                                             @endforeach
-                                            <option value="no_player_ext">Il n'est pas dans la liste</option>
+                                            {{-- <option value="no_player_ext">Il n'est pas dans la liste</option> --}}
                                         </select>
                                     @else
                                         @foreach ($match->awayClub->players as $player)
@@ -364,7 +368,11 @@
                                         @endforeach
                                     @endif
                                 </div>
+                                @if ($input_buteur_ext == "no_player_ext")
+                                ok
+                            @endif
                             @endfor
+                            
                         </div>
                     </div>
                     <div class="mt-4 text-center">
@@ -380,4 +388,4 @@
             </div>
         </div>
     </div>
-@endif --}}
+@endif

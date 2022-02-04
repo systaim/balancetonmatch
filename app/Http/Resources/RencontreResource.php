@@ -24,11 +24,11 @@ class RencontreResource extends JsonResource
             'away_score' =>$this->away_score,
             'date_match' =>$this->date_match,
             'location' =>$this->location,
-            'competition_id' =>$this->competition,
+            'competition' =>$this->competition,
             'region' =>$this->region,
             'department' =>$this->department,
-            'division_region' =>$this->division_region,
-            'division_department' =>$this->division_department,
+            'division_region' =>$this->divisionRegion,
+            'division_department' =>$this->divisionDepartment,
             'group' =>$this->group,
         ];
     }

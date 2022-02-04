@@ -128,7 +128,7 @@ class FormCommentaires extends Component
         $buteurs_ext = Statistic::where('rencontre_id', $this->match->id)
             ->where('team_id', $this->match->awayClub->id)
             ->get();
-        // dd($buteurs_a_domicile);
+        // dd($this->buteurs_domicile);
 
         foreach ($buteurs_ext as $key => $buteur) {
             array_push($this->buteurs_exterieur, $buteur->player_id);

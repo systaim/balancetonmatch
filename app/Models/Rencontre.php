@@ -69,6 +69,11 @@ class Rencontre extends Model
         return $this->belongsTo(Region::class, 'region_id');
     }
 
+    public function department()
+    {
+        return $this->belongsTo(Department::class, 'department_id');
+    }
+
     public function competition()
     {
         return $this->belongsTo(Competition::class, 'competition_id');

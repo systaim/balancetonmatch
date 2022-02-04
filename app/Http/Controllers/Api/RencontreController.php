@@ -39,10 +39,9 @@ class RencontreController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Rencontre $rencontre)
+    public function show(Rencontre $match)
     {
-        // dd($rencontre);
-        return new RencontreResource($rencontre);
+        return new RencontreResource($match);
     }
 
     /**

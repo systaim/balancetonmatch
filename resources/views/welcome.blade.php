@@ -72,8 +72,8 @@
                     </span>
                     <p class="ml-3 font-medium">
                         <span class="md:inline">
-                            La création de joueurs est de nouveau opérationnel ! N'hésitez pas à créer les joueurs de votre
-                            club
+                            Vous pouvez modifier la date des matchs qui sont reportés ce week-end. Il suffit simplement d'être
+                            connecté
                         </span>
                     </p>
                 </div>

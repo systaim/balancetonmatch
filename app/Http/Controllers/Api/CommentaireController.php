@@ -18,8 +18,9 @@ class CommentaireController extends Controller
      */
     public function index()
     {
-        $commentaires = Commentator::with('commentaires')->get();
-        return $commentaires;
+        // $commentaires = Commentator::with('commentaires')->get();
+        $commentaires = Commentaire::all();
+        return CommentaireResource::collection($commentaires);
     }
 
     /**
@@ -41,6 +42,7 @@ class CommentaireController extends Controller
      */
     public function show(Commentaire $commentaire)
     {
+        dd($commentaire);
         return new CommentaireResource($commentaire);
     }
 

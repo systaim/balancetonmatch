@@ -15,6 +15,7 @@ class CommentaireResource extends JsonResource
     public function toArray($request)
     {
         return [
+            'id' => $this->id,
             'type_action' => $this->type_action,
             'type_comments' => $this->type_comments,
             'comments' => $this->comments,
