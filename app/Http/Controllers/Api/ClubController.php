@@ -20,7 +20,6 @@ class ClubController extends Controller
     {
 
         $clubs = Club::all();
-        
         return ClubResource::collection($clubs);
     }
 

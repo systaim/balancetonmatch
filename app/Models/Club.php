@@ -62,6 +62,16 @@ class Club extends Model
     }
 
     /**
+     * Get the department that owns the Club
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function department(): BelongsTo
+    {
+        return $this->belongsTo(Department::class, 'department_id');
+    }
+
+    /**
      * Get all of the teams for the Club
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

@@ -41,6 +41,7 @@ class RencontreController extends Controller
      */
     public function show(Rencontre $rencontre)
     {
+        // dd($rencontre);
         return new RencontreResource($rencontre);
     }
 
