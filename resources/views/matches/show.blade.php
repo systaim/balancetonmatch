@@ -22,20 +22,20 @@
                 content="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $match->homeClub->numAffiliation }}.jpg" />
         @endif
     @elseif ($match->home_score < $match->away_score)
-            @if ($match->awayClub->logo_path)
-                <meta property="og:image:url" content="{{ asset($match->awayClub->logo_path) }}" />
-            @else
-                <meta property="og:image:url"
-                    content="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $match->awayClub->numAffiliation }}.jpg" />
-            @endif
+        @if ($match->awayClub->logo_path)
+            <meta property="og:image:url" content="{{ asset($match->awayClub->logo_path) }}" />
         @else
-            @if ($match->competition_id == 3)
-                <meta property="og:image:url" content="{{ asset('images/Coupe-de-france.jpg') }}" />
-            @elseif ($match->competition_id == 4)
-                <meta property="og:image:url" content="{{ asset('images/bzh.png') }}" />
-            @else
-                <meta property="og:image:url" content="{{ asset('images/amicaux.jpg') }}" />
-            @endif
+            <meta property="og:image:url"
+                content="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $match->awayClub->numAffiliation }}.jpg" />
+        @endif
+    @else
+        @if ($match->competition_id == 3)
+            <meta property="og:image:url" content="{{ asset('images/Coupe-de-france.jpg') }}" />
+        @elseif ($match->competition_id == 4)
+            <meta property="og:image:url" content="{{ asset('images/bzh.png') }}" />
+        @else
+            <meta property="og:image:url" content="{{ asset('images/amicaux.jpg') }}" />
+        @endif
     @endif
     <!-- Meta du site -->
     <title>Balance ton match ! {{ $match->homeclub->name }}
@@ -82,7 +82,7 @@
 
     <!-- Google Ads-->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7237777700901740"
-     crossorigin="anonymous"></script>
+        crossorigin="anonymous"></script>
 
     {{-- Manifest --}}
     {{-- <link rel="manifest" href="manifest.json"> --}}
@@ -298,6 +298,15 @@
         'favoriteam' => $favoriteam,
         ])
     </div>
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7237777700901740"
+        crossorigin="anonymous"></script>
+    <!-- bas match -->
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7237777700901740" data-ad-slot="7950981944"
+        data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
 
     @include('footer')
 
