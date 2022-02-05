@@ -290,14 +290,19 @@
 </div> --}}
 
 @if ($match->home_score && $match->live == 'attente')
-    <div class="relative sm:py-16 py-4">
+    <div class="relative sm:py-8 py-4">
         <div class="mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8">
             <div
-                class="relative rounded-2xl px-6 py-10 bg-primary overflow-hidden shadow-xl sm:px-12 sm:py-20 text-white">
+                class="relative rounded-2xl px-6 py-10 bg-primary overflow-hidden shadow-xl text-white">
                 <div class="relative">
                     <div class="text-center">
+                        @if ($match->home_score == count($buteurs_domicile) && $match->away_score == count($buteurs_exterieur))
+                            <h2 class="text-3xl font-extrabold tracking-tight sm:text-4xl">
+                                Les <span class="bg-secondary px-1 text-primary">buteurs</span> du match
+                            </h2>
+                        @else
                         <h2 class="text-3xl font-extrabold tracking-tight sm:text-4xl">
-                            Tu connais les buteurs ?
+                            Tu connais les <span class="bg-secondary px-1 text-primary">buteurs</span> ?
                         </h2>
                         <p class="mt-2 mx-auto max-w-2xl">
                             Tu peux les ajouter
@@ -305,12 +310,13 @@
                         <p class="mt-2 mx-auto max-w-2xl">
                             Si un joueur n'est pas dans la liste, pense a le créer
                         </p>
+                        @endif
                     </div>
                 </div>
                 <div class="flex flex-col lg:flex-row lg:justify-around">
                     @auth
                         <div class="mt-4">
-                            <h3 class="m-3 text-xl truncate">{{ $match->homeClub->name }}</h3>
+                            <h3 class="m-3 text-2xl truncate">{{ $match->homeClub->name }}</h3>
                             @for ($i = 1; $i <= $match->home_score; $i++)
                                 <div class="m-3">
                                     <label for="player_dom{{ $i }}" class="block text-sm font-medium">Buteur
@@ -334,7 +340,7 @@
                                     @else
                                         @foreach ($match->homeClub->players as $player)
                                             @if ($player->id == $buteurs_domicile[$i - 1])
-                                                <p>{{ ucfirst($player->first_name) }} {{ strtoupper($player->last_name) }}</p>
+                                                <p class="text-lg">{{ ucfirst($player->first_name) }} {{ strtoupper($player->last_name) }}</p>
                                             @endif
                                         @endforeach
                                     @endif
@@ -343,7 +349,7 @@
                             
                         </div>
                         <div class="mt-4">
-                            <h3 class="m-3 text-xl truncate">{{ $match->awayClub->name }}</h3>
+                            <h3 class="m-3 text-2xl truncate">{{ $match->awayClub->name }}</h3>
                             @for ($i = 1; $i <= $match->away_score; $i++)
                                 <div class="m-3">
                                     <label for="player_ext{{ $i }}" class="block text-sm font-medium">Buteur
@@ -363,7 +369,7 @@
                                     @else
                                         @foreach ($match->awayClub->players as $player)
                                             @if ($player->id == $buteurs_exterieur[$i - 1])
-                                                <p>{{ ucfirst($player->first_name) }} {{ strtoupper($player->last_name) }}</p>
+                                                <p class="text-lg">{{ ucfirst($player->first_name) }} {{ strtoupper($player->last_name) }}</p>
                                             @endif
                                         @endforeach
                                     @endif

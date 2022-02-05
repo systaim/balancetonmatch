@@ -30,10 +30,18 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 // Route::apiResource('clubs', ClubController::class, [
 //     'as' => 'api'
 // ]);
-Route::apiResource('clubs', ClubController::class);
-Route::apiResource('matches', RencontreController::class);
-Route::apiResource('comments', CommentaireController::class,);
-Route::apiResource('commentators', CommentatorController::class);
+Route::apiResource('clubs', ClubController::class, [
+    'as' => 'api'
+]);
+Route::apiResource('matches', RencontreController::class, [
+    'as' => 'api'
+]);
+Route::apiResource('comments', CommentaireController::class, [
+    'as' => 'api'
+]);
+Route::apiResource('commentators', CommentatorController::class, [
+    'as' => 'api'
+]);
 
 // Route::apiResource('users', UserController::class, [
 //     'as' => 'api'
