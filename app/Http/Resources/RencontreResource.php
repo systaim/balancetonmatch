@@ -30,6 +30,7 @@ class RencontreResource extends JsonResource
             'division_region' =>$this->divisionRegion,
             'division_department' =>$this->divisionDepartment,
             'group' =>$this->group,
+            'comments' =>$this->commentaires
         ];
     }
 }

@@ -54,6 +54,23 @@
             <a href="/contact">Contact</a>
         </div>
     </nav>
+    <button @click="openMenuMobile = ! openMenuMobile" class="bg-primary text-white h-12 w-12 flex justify-center items-center rounded-full absolute top-3 left-3">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+    </button>
+    <nav class="hidden fixed transform inset-0 bg-gray-200 bg-opacity-80 z-50" x-show="openMenuMobile"
+        @click.outside="openMenuMobile = false">
+        <div class="w-full h-full flex justify-center items-center">
+            <ul class="text-3xl">
+                <li class="my-2 p-2">Accueil</li>
+                <li class="my-2 p-2">Rechercher un club</li>
+                <li class="my-2 p-2">Liste des matchs</li>
+                <li class="my-2 p-2">Conctact</li>
+            </ul>
+        </div>
+    </nav>
     <div class="absolute right-0 top-0 m-2 text-white hidden lg:block lg:mr-4" x-data="{ open : false }">
         @auth
             <div class="flex items-center">
@@ -74,9 +91,10 @@
                     <img class="rounded-full h-8 w-8 object-cover mr-4 border"
                         src="{{ Auth::user()->profile_photo_url }}">
                     <div id="btnMenu" class="focus:outline-none">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                          </svg>
+                        </svg>
                     </div>
                 </div>
             </div>
