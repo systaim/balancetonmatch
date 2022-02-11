@@ -31,7 +31,7 @@ class RecupMatchController extends Controller
 
         $re = '/"date">\X+?(\d+) (\S+) (\d+) - (\d+)H(\d+)\X+?"equipe1">\X+?phlogos\/BC(\d{6})\X+?name ">\s+(\X+?)\s{2}\X+?"name ">\s+(\X+?)\s{2}\X+?phlogos\/BC(\d{6})/m';
 
-        $str = file_get_contents("https://footbretagne.fff.fr/competitions/?id=390193&poule=1&phase=1&type=cp&tab=resultat");
+        $str = file_get_contents("https://foot22.fff.fr/competitions/?id=385210&poule=1&phase=1&type=cp&tab=resultat");
         preg_match_all($re, $str, $matches);
 
         for ($i = 0; $i < count($matches[0]); $i++) {
@@ -112,20 +112,20 @@ class RecupMatchController extends Controller
             dump($date);
             echo "</pre>";
 
-            // Rencontre::upsert(
-            //     [
-            //         'slug' => $t11 . "-vs-" . $t22 . "-" . $matches[1][$i] . "-" . $mois . "-" . $matches[3][$i],
-            //         'home_team_id' => $home_team->id,
-            //         'away_team_id' => $away_team->id,
-            //         'date_match' => $date,
-            //         'competition_id' => 3,
-            //         'region_id' => 3,
-            //         'user_id' => 11,
-            //     ],
-            //     [
-            //         'slug', 'home_team_id', 'away_team_id', 'date_match', 'competition_id', 'region_id', 'user_id'
-            //     ]
-            // );
+            Rencontre::upsert(
+                [
+                    'slug' => $t11 . "-vs-" . $t22 . "-" . $matches[1][$i] . "-" . $mois . "-" . $matches[3][$i],
+                    'home_team_id' => $home_team->id,
+                    'away_team_id' => $away_team->id,
+                    'date_match' => $date,
+                    'competition_id' => 4,
+                    'region_id' => 3,
+                    'user_id' => 11,
+                ],
+                [
+                    'slug', 'home_team_id', 'away_team_id', 'date_match', 'competition_id', 'region_id', 'user_id'
+                ]
+            );
 
             // $stm->execute([
             //     ':live' => "attente",
