@@ -120,6 +120,7 @@ class RecupMatchController extends Controller
                     'date_match' => $date,
                     'competition_id' => 4,
                     'region_id' => 3,
+                    'department_id' => 22,
                     'user_id' => 11,
                 ],
                 [
