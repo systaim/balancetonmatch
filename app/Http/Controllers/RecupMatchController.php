@@ -118,7 +118,7 @@ class RecupMatchController extends Controller
                     'home_team_id' => $home_team->id,
                     'away_team_id' => $away_team->id,
                     'date_match' => $date,
-                    'competition_id' => 4,
+                    'competition_id' => 5,
                     'region_id' => 3,
                     'department_id' => 22,
                     'user_id' => 11,
