@@ -11,13 +11,13 @@
             <div class="-mt-12 sm:-mt-16 sm:flex sm:items-end sm:space-x-5">
                 <div class="flex">
                     @if ($club->logo_path)
-                    <img class="rounded-full ring-4 ring-white h-32 w-32"
-                    src="{{ asset($club->logo_path) }}" alt="">
+                        <img class="rounded-full ring-4 ring-white h-32 w-32" src="{{ asset($club->logo_path) }}" alt="">
                     @else
-                    <img class="rounded-full ring-4 ring-white h-32 w-32" 
-                    src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $club->numAffiliation }}.jpg" alt="">
+                        <img class="rounded-full ring-4 ring-white h-32 w-32"
+                            src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $club->numAffiliation }}.jpg"
+                            alt="">
                     @endif
-                    
+
                 </div>
                 <div class="mt-6 sm:flex-1 sm:min-w-0 sm:flex sm:items-center sm:justify-end sm:space-x-6 sm:pb-1">
                     <div class="sm:hidden md:block mt-6 min-w-0 flex-1">
@@ -53,7 +53,7 @@
             </div>
             <div class="hidden sm:block md:hidden mt-6 min-w-0 flex-1">
                 <h1 class="text-2xl font-bold text-gray-900 truncate">
-                    Ricardo Cooper
+                    {{-- Ricardo Cooper --}}
                 </h1>
             </div>
         </div>
@@ -81,14 +81,17 @@
                             <p class="absolute bottom-1 right-1 bg-primary text-secondary font-bold py-1 px-2 rounded-lg">
                                 GB</p>
                         @break
+
                         @case('Défenseur')
                             <p class="absolute bottom-1 right-1 bg-primary text-secondary font-bold py-1 px-2 rounded-lg">
                                 DEF</p>
                         @break
+
                         @case('Milieu')
                             <p class="absolute bottom-1 right-1 bg-primary text-secondary font-bold py-1 px-2 rounded-lg">
                                 MIL</p>
                         @break
+
                         @case('Attaquant')
                             <p class="absolute bottom-1 right-1 bg-primary text-secondary font-bold py-1 px-2 rounded-lg">
                                 ATT</p>
@@ -97,8 +100,8 @@
                 </div>
             </div>
             <!-- ***********************
-                                                                                                        Formulaire suppression d'un joueur
-                                                                                                        ************************** -->
+                                                                                                            Formulaire suppression d'un joueur
+                                                                                                            ************************** -->
             <div id="{{ $player->id }}"
                 class="absolute bg-white top-0 left-0 right-0 bottom-0 text-primary z-20 flex flex-col justify-between items-center "
                 x-show="open" x-transition:enter="transition ease-out duration-300"
@@ -127,8 +130,8 @@
             </div>
 
             <!-- ***********************
-                                                                                                        Formulaire modification d'un joueur
-                                                                                                        ************************** -->
+                                                                                                            Formulaire modification d'un joueur
+                                                                                                            ************************** -->
 
             <div id="edition" class="hidden fixed z-50 inset-0 justify-center items-center"
                 style="background-color: rgba(0,0,0,.5);">
@@ -208,7 +211,6 @@
             </div>
         </div>
     </div>
-
 @endsection
 <script>
     function openMenu() {

@@ -15,19 +15,9 @@
     <meta property="og:description"
         content=" {{ 'Match entre ' . $match->homeclub->name . ' et ' . $match->awayclub->name }}" />
     @if ($match->home_score > $match->away_score)
-        @if ($match->homeClub->logo_path)
-            <meta property="og:image:url" content="{{ asset($match->homeClub->logo_path) }}" />
-        @else
-            <meta property="og:image:url"
-                content="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $match->homeClub->numAffiliation }}.jpg" />
-        @endif
+        <meta property="og:image:url" content="{{ asset($match->homeClub->logo) }}" />
     @elseif ($match->home_score < $match->away_score)
-        @if ($match->awayClub->logo_path)
-            <meta property="og:image:url" content="{{ asset($match->awayClub->logo_path) }}" />
-        @else
-            <meta property="og:image:url"
-                content="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $match->awayClub->numAffiliation }}.jpg" />
-        @endif
+        <meta property="og:image:url" content="{{ asset($match->awayClub->logo) }}" />
     @else
         @if ($match->competition_id == 3)
             <meta property="og:image:url" content="{{ asset('images/Coupe-de-france.jpg') }}" />
@@ -41,17 +31,20 @@
     <title>Balance ton match ! {{ $match->homeclub->name }}
         {{ $match->home_score == null ? ' VS ' : $match->home_score . ' - ' . $match->away_score }}
         {{ $match->awayclub->name }}</title>
-    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-    <link rel="stylesheet" href="{{ mix('css/styles.css') }}" />
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}?v=1">
+    <link rel="stylesheet" href="{{ mix('css/styles.css') }}?v=1" />
 
     <!-- AlpineJS -->
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.0/dist/alpine.min.js" defer></script>
 
     <!-- SplideJS -->
-    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@2.4.21/dist/js/splide.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@2.4.21/dist/css/splide.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@3.6.12/dist/js/splide.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@3.6.12/dist/js/splide.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@3.1.9/dist/css/splide-core.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@3.1.9/dist/css/splide.min.css">
 
-
+    <!-- Animate.js-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-MWPW5WC37V"></script>
@@ -86,97 +79,43 @@
 
     {{-- Manifest --}}
     {{-- <link rel="manifest" href="manifest.json"> --}}
+    @livewireStyles
 </head>
 
 <body>
-
-    {{-- preloader --}}
-    <div class="preloader">
-        <div class="loader"></div>
-    </div>
-
-    {{-- @auth
-        @if ($match->live == 'attente')
-            <div id="annonce" class="fixed bottom-16 inset-x-0 pb-2 sm:pb-5 z-50">
-                <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
-                    <div class="p-2 rounded-lg bg-orange-600 shadow-lg sm:p-3">
-                        <div class="flex items-center justify-between flex-wrap">
-                            <div class="w-0 flex-1 flex items-center">
-                                <span class="flex p-2 rounded-lg bg-orange-700">
-                                    <!-- Heroicon name: outline/speakerphone -->
-                                    <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z" />
-                                    </svg>
-                                </span>
-                                <p class="ml-3 font-medium text-white truncate">
-                                    <span class="md:hidden">
-                                        L'heure du match n'est peut être pas bonne
-                                    </span>
-                                    <span class="hidden md:inline">
-                                        Live ! L'heure du match n'est peut être pas bonne
-                                    </span>
-                                </p>
-                            </div>
-                            <div class="order-3 mt-2 flex-shrink-0 w-full sm:order-2 sm:mt-0 sm:w-auto">
-                                <a href="{{ route('matches.edit', ['match' => $match]) }}"
-                                    class="flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-blue-800 bg-white">
-                                    Modifier l'heure
-                                </a>
-                            </div>
-                            <div class="order-2 flex-shrink-0 sm:order-3 sm:ml-2">
-                                <button type="button" onclick="closeWindow()"
-                                    class="-mr-1 flex p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-white">
-                                    <span class="sr-only">Dismiss</span>
-                                    <!-- Heroicon name: outline/x -->
-                                    <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M6 18L18 6M6 6l12 12" />
-                                    </svg>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <script>
-                    function closeWindow() {
-                        let annonce = document.getElementById('annonce')
-                        annonce.style.display = "none"
-                    }
-                </script>
-            </div>
-        @endif
-    @endauth --}}
-
-
-    <div id="container" x-data="{ openMenuMobile: false }">
-        <header class="relative top-O right-0 left-0 bg-white xl:h-auto z-50 lg:mt-0">
-            <div id="burger"
-                class="hidden absolute cursor-pointer top-5 left-3 justify-center items-center h-12 w-12 bg-primary z-50">
-                <div class="open-main-nav flex justify-center">
-                    <span class="burger"></span>
-                </div>
-            </div>
+    <div id="container" x-data="{ openMenuMobile: false, open_menu: false }" @keydown.window.escape="open_menu = false">
+        <div id="container">
+            @include('slide-over-menu')
+        </div>
+        <header id="header" class="top-O right-0 left-0 bg-white xl:h-auto z-50 lg:mt-0">
+            <button @click="open_menu = ! open_menu"
+                class="absolute cursor-pointer top-6 left-5 justify-center items-center z-40">
+                {{-- <div class="open-main-nav flex justify-center">
+            <span class="burger"></span>
+        </div> --}}
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 lg:h-12 w-8 lg:w-12" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
             <div
                 class="relative text-primary flex justify-center lg:justify-between items-center lg:items-between lg:block lg:h-auto shadow-xl">
                 <div class="relative flex justify-start lg:justify-center items-center mx-2 w-full">
-                    <div class="flex items-center">
-                        <div class="mx-auto">
+                    <div class="flex items-center justify-center w-full">
+                        <div class="mx-auto flex items-center">
                             <a href="/">
                                 <img class="w-16 md:w-24 my-2" src="{{ asset('/images/logos/btmLogoJB.png') }}"
                                     alt="logo de BTM">
                             </a>
-                        </div>
-                        <div class="relative h-auto md:diagonale">
-                            <a href="/">
-                                <h1 class="text-xs md:text-3xl">Balance Ton Match</h1>
-                                <p
-                                    class="float-right inline-block text-xs60 sm:text-xs md:text-base px-2 bg-primary rounded-md text-white ">
-                                    Quand la touche part en live...
-                                </p>
-                            </a>
+                            <div class="hidden lg:block relative h-auto md:diagonale">
+                                <a href="/">
+                                    <h1 class="text-xs md:text-3xl">Balance Ton Match</h1>
+                                    <p
+                                        class="float-right inline-block text-xs60 sm:text-xs md:text-base px-2 bg-primary rounded-md text-white ">
+                                        Quand la touche part en live...
+                                    </p>
+                                </a>
+                            </div>
                         </div>
                     </div>
                     <div class="absolute top-3 right-0 lg:hidden">
@@ -196,6 +135,30 @@
                             </div>
                         </a>
                     </div>
+                    {{-- <script>
+                        (function() {
+                            // on cible l'objet nav
+                            let header = document.getElementById('header');
+                            // on mémorise la position de nav
+                            let memoPositionNav = header.offsetTop;
+
+                            function sticky() {
+                                // position du curseur au scroll
+                                var posCurseur = this.pageYOffset;
+                                // je teste la différence de distance entre le scroll et nav
+                                if (memoPositionNav - posCurseur < 1) {
+                                    header.style.position = "fixed";
+                                    header.style.top = 0;
+                                    header.style.zIndex = 999;
+                                }
+                                if (posCurseur < header.clientHeight) {
+                                    header.style.position = "relative";
+                                }
+                            }
+                            // evenement
+                            window.addEventListener("scroll", sticky);
+                        })()
+                    </script> --}}
                 </div>
                 @include('menu')
             </div>
@@ -282,21 +245,26 @@
     </div>
 
     <div class="relative">
-
-        @livewire('form-commentaires', [
-        'commentator'=> $commentator,
-        'nbrFavoris'=> $nbrFavoris,
-        'match' =>$match,
-        'clubHome' => $clubHome,
-        'clubAway' => $clubAway,
-        'commentsMatch' => $commentsMatch,
-        'competitions' => $competitions,
-        'stats' => $stats,
-        'tabHome' => $tabHome,
-        'tabAway' => $tabAway,
-        'favorimatch' => $favorimatch,
-        'favoriteam' => $favoriteam,
-        ])
+        @if ($match->date_match < Carbon\Carbon::create('2022-04-09'))
+            @livewire('form-commentaires', [
+            'commentator'=> $commentator,
+            'nbrFavoris'=> $nbrFavoris,
+            'match' =>$match,
+            'clubHome' => $clubHome,
+            'clubAway' => $clubAway,
+            'commentsMatch' => $commentsMatch,
+            'competitions' => $competitions,
+            'stats' => $stats,
+            'tabHome' => $tabHome,
+            'tabAway' => $tabAway,
+            'favorimatch' => $favorimatch,
+            'favoriteam' => $favoriteam,
+            ])
+        @else
+            @livewire('rencontre.index', [
+            'match' =>$match,
+            ])
+        @endif
     </div>
 
     {{-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7237777700901740"
@@ -309,8 +277,11 @@
     </script> --}}
 
     @include('footer')
+    {{-- <div class="fixed w-full bottom-0  h-14 mx-auto bg-red-600 flex justify-center items-center">
+        <p class="font-bold text-white">PUBLICITE</p>
+    </div> --}}
 
-    <a href=javascript:history.go(-1)>
+    {{-- <a href=javascript:history.go(-1)>
         <div
             class="fixed bottom-16 left-3 lg:hidden shadow-xl flex justify-center items-center rounded-full 
                 h-12 w-12 bg-white z-30 border border-darkSuccess">
@@ -319,7 +290,18 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 17l-5-5m0 0l5-5m-5 5h12" />
             </svg>
         </div>
-    </a>
+    </a> --}}
+    <div class="fixed bottom-0 mx-auto">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7237777700901740"
+                crossorigin="anonymous"></script>
+        <!-- bas de page -->
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7237777700901740"
+            data-ad-slot="8168194089" data-ad-format="auto" data-full-width-responsive="true"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+
 
 </body>
 

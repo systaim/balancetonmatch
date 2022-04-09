@@ -44,6 +44,7 @@ class User extends Authenticatable
         'first_com',
         'is_player',
         'club_id',
+        'nb_commentaires'
     ];
 
     /**
@@ -76,7 +77,8 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
-    public function club(){
+    public function club()
+    {
         return $this->belongsTo(Club::class, 'club_id');
     }
 
@@ -136,5 +138,10 @@ class User extends Authenticatable
     public function articles(): HasMany
     {
         return $this->hasMany(Article::class,);
+    }
+
+    public function getFullNameAttribute()
+    {
+        return "{$this->first_name} {$this->last_name}";
     }
 }

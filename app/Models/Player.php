@@ -37,4 +37,9 @@ class Player extends Model
     public function statistics(){
         return $this->hasManyThrough(Statistic::class, Commentaire::class);
     }
+
+    public function getFullNameAttribute()
+    {
+        return "{$this->first_name} {$this->last_name}";
+    }
 }

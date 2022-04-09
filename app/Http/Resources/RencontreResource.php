@@ -2,6 +2,8 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Commentaire;
+use App\Models\Statistic;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class RencontreResource extends JsonResource
@@ -15,6 +17,9 @@ class RencontreResource extends JsonResource
     public function toArray($request)
     {
         // return parent::toArray($request);
+        // dd(Statistic::where('action', 'goal')->get());
+        // $stat = Statistic::where('action', 'goal')->where('rencontre_id', $this->id);
+        
         return [
             'id' =>$this->id,
             'live' =>$this->live,
@@ -30,7 +35,8 @@ class RencontreResource extends JsonResource
             'division_region' =>$this->divisionRegion,
             'division_department' =>$this->divisionDepartment,
             'group' =>$this->group,
-            'comments' =>$this->commentaires,
+            'comments' =>CommentaireResource::collection($this->commentaires),
+            // 'comments' =>$this->commentaires,
         ];
     }
 }

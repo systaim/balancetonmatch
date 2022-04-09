@@ -1,6 +1,6 @@
-<footer class="bg-gray-900 mb-0 pb-16 md:pb-2 w-full relative bottom-0 h-auto lg:mt-16">
+<footer class="bg-primary mb-0 pb-16 md:pb-2 w-full relative bottom-0 h-auto lg:mt-16">
     <div class="flex flex-col items-center text-white py-3">
-        <div class="flex justify-center p-2 z-20">
+        <div class="flex justify-center p-2">
             <a class="px-4" href="https://www.facebook.com/balancetonmatch" target="_blank"><img
                     src="{{ asset('images/logoFacebook.png') }}" alt="logo Facebook" class="w-10"></a>
             <!-- <a class="px-4" href="http://" target="_blank"><img src="{{ asset('images/logoInsta.png') }}" alt="logo Instagram" class="w-10"></a> -->
@@ -27,7 +27,7 @@
 
     {{-- MENU MOBILE --}}
 
-    <div class="main-menu-mobile lg:hidden fixed right-0 left-0 bottom-0 h-14 bg-white rounded-t-sm z-50 text-primary">
+    {{-- <div class="main-menu-mobile lg:hidden fixed right-0 left-0 bottom-0 h-14 bg-white rounded-t-sm z-50 text-primary">
         <div class="relative flex justify-around items-center h-full">
             <a href="/">
                 <div class="flex flex-col items-center justify-center w-16 h-14">
@@ -145,14 +145,6 @@
     </div>
     <div id="menu-matchs" class="invisible fixed bottom-0 w-full bg-white text-primary py-6 z-40">
         <div class="flex flex-wrap justify-center">
-            {{-- <a href="{{ route('matches.create') }}">
-                <div class="flex flex-col justify-center items-center w-36 m-2 rounded-md">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                    <p class="text-md">Créer un match</p>
-                </div>
-            </a> --}}
             <a href="{{ route('competitions.index') }}">
                 <div class="flex flex-col justify-center items-center w-36 m-2 rounded-md">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24"
@@ -230,5 +222,5 @@
                 </a>
             @endauth
         </div>
-    </div>
+    </div> --}}
 </footer>

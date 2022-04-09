@@ -1,6 +1,6 @@
 <div>
     <!-- NAV DESKTOP -->
-    <nav class="navbar relative hidden xl:flex justify-center mt-4" x-data="{ open: false }">
+    {{-- <nav class="navbar relative hidden xl:flex justify-center mt-4" x-data="{ open: false }">
         <div class="flex items-center">
             <a href="/">Accueil</a>
             <a href="{{ route('clubs.index') }}">Rechercher un club</a>
@@ -8,7 +8,7 @@
             <div class="dropdown">
                 <button class="dropbtn" @click="open = true">Liste des matchs <i
                         class="fa fa-caret-down"></i></button>
-                <div class="dropdown-content" x-show="open" x-transition:enter="transition ease-out duration-300"
+                <div  style="display: none" class="dropdown-content" x-show="open" x-transition:enter="transition ease-out duration-300"
                     x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
                     x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100"
                     x-transition:leave-end="opacity-0 h-0" @click.away="open = false">
@@ -16,7 +16,7 @@
                         <div>
                             <a href="{{ route('competitions.index') }}">Les prochains matchs</a>
                         </div>
-                        {{-- <div>
+                        <div>
                             <a class="cursor-pointer" @click="open = true"
                                 x-transition:enter="transition ease-out duration-300"
                                 x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
@@ -46,21 +46,21 @@
                                 <a href="/regions/18">Réunion</a>
                                 <a href="/regions/19">St Pierre & Miquelon</a>
                             </div>
-                        </div> --}}
+                        </div>
 
                     </div>
                 </div>
             </div>
             <a href="/contact">Contact</a>
         </div>
-    </nav>
+    </nav> --}}
     {{-- <button @click="openMenuMobile = ! openMenuMobile" class="bg-primary text-white h-12 w-12 flex justify-center items-center rounded-full absolute top-3 left-3">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
             stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
         </svg>
     </button> --}}
-    <nav class="hidden fixed transform inset-0 bg-gray-200 bg-opacity-80 z-50" x-show="openMenuMobile"
+    {{-- <nav class="hidden fixed transform inset-0 bg-gray-200 bg-opacity-80 z-50" x-show="openMenuMobile"
         @click.outside="openMenuMobile = false">
         <div class="w-full h-full flex justify-center items-center">
             <ul class="text-3xl">
@@ -70,8 +70,8 @@
                 <li class="my-2 p-2">Conctact</li>
             </ul>
         </div>
-    </nav>
-    <div class="absolute right-0 top-0 m-2 text-white hidden lg:block lg:mr-4" x-data="{ open : false }">
+    </nav> --}}
+    <div class="absolute right-0 top-0 m-2 text-white hidden xl:block lg:mr-4" x-data="{ open : false }">
         @auth
             <div class="flex items-center">
                 <a href="/notifications">
@@ -106,10 +106,10 @@
                 </a>
             </div>
         @endauth
-        <div id="menuUser" class="absolute z-50 border bg-primary rounded-lg shadow-lg overflow-hidden right-4 w-80"
+        <div id="menuUser" class="absolute z-50 border bg-primary rounded-lg shadow-lg overflow-hidden right-4 w-80" 
             x-show="open" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0"
             x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-300"
-            x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0 h-0" @click.away="open = false">
+            x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0 h-0" @click.away="open = false"  style="display: none">
             <div>
                 <a class="px-6 py-4 hover:bg-blue-900 block" href="/user/profile">Mon profil</a>
                 @if (Auth::check() && Auth::user()->club)

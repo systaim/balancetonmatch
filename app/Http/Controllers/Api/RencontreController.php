@@ -18,7 +18,6 @@ class RencontreController extends Controller
     public function index()
     {
         $matches = Rencontre::paginate(10);
-        // $matches = Rencontre::all();
         return RencontreResource::collection($matches);
     }
 

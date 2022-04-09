@@ -81,4 +81,57 @@ class Club extends Model
         return $this->hasMany(Team::class);
     }
 
+    public function getLogoAttribute()
+    {
+        if ($this->logo_path) {
+            return "{$this->logo_path}";
+        } else{
+            return "https://android-apiapp.azureedge.net/common/bib_img/logo/{$this->numAffiliation}.jpg";
+        }
+    }
+
+    public function getInitialAttribute()
+    {
+        if ($this->abbreviation) {
+            return strtoupper("{$this->abbreviation}");
+        } else {
+            $words = explode(" ", "{$this->name}");
+            $name = "";
+            foreach($words as $word){
+                if (is_numeric($word[0])) {
+                    $explode_word = str_split($word);
+                    foreach ($explode_word as $letter) {
+                        $name .= $letter;
+                    }
+                } else {
+                    $name .= $word[0];
+                }
+            }
+
+            return strtoupper($name);
+        }
+    }
+
+    public function composition($match_id)
+    {
+        $composition = [];
+        $match = Rencontre::find($match_id);
+        $club = Club::find($this->id);
+        $compos = Composition::where('club_id', $this->id)->where('rencontre_id', $match_id)->get();
+        foreach ($compos as $compo ) {
+            array_push($composition, $compo->player_id);
+        }
+        return $composition;
+    }
+
+    public function player_of_this_match($match_id, $player_id)
+    {
+        if (in_array($player_id, $this->composition($match_id, $this->id))) {
+            return "disabled";
+        } else {
+            return "{$player_id}";
+        }
+
+    }
+
 }

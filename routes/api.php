@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\ClubController as ClubController;
 use App\Http\Controllers\Api\RencontreController as RencontreController;
 use App\Http\Controllers\Api\CommentaireController as CommentaireController;
 use App\Http\Controllers\Api\CommentatorController as CommentatorController;
+use App\Http\Controllers\Api\StatisticController;
 use App\Http\Controllers\Api\UserController as UserController;
 use App\Http\Resources\ClubResource;
 use App\Http\Resources\UserResource;
@@ -40,6 +41,10 @@ Route::apiResource('comments', CommentaireController::class, [
     'as' => 'api'
 ]);
 Route::apiResource('commentators', CommentatorController::class, [
+    'as' => 'api'
+]);
+
+Route::apiResource('statistics', StatisticController::class, [
     'as' => 'api'
 ]);
 

@@ -49,7 +49,7 @@
                     <div class="col-span-2 flex flex-row justify-center items-center">
                         @if ($match->live == 'attente' && !isset($match->home_score) && !isset($match->away_score))
                             <div class="flex items-center justify-center text-secondary">
-                                <img src="{{ asset('images/vs-secondary.png') }}" alt="versus"
+                                <img src="{{ asset('images/new-vs-secondary.png') }}" alt="versus"
                                     class="h-12 lg:h-24 w-12 lg:w-24">
                             </div>
                         @elseif($match->live != 'reporte' && $match->live != 'attente' && $match->live !=

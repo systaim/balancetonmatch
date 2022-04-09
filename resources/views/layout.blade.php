@@ -22,8 +22,8 @@
     @endisset()
 
     <title>Balance Ton Match</title>
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/styles.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}?v=1">
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}?v=1" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
     <!-- Tinymce -->
@@ -57,12 +57,7 @@
 
 </head>
 
-<body class="relative">
-
-    {{-- preloader --}}
-    {{-- <div class="preloader">
-        <div class="loader"></div>
-    </div> --}}
+<div class="relative" x-data="{ open_menu: false }" @keydown.window.escape="open_menu = false">
     @auth
         @foreach (Auth::user()->commentators as $com)
             @if ($com->match && $com->match['live'] != 'finDeMatch' && $com->created_at > now()->subHours(3))
@@ -78,29 +73,33 @@
                         </div>
                     </a>
                 </div>
-
             @endif
         @endforeach
     @endauth
     <div id="container">
-        <header id="header" class="top-O right-0 left-0 bg-white xl:h-auto z-50 lg:mt-0">
-            <div id="burger"
-                class="hidden absolute cursor-pointer top-5 left-3 justify-center items-center h-12 w-12 bg-primary z-50">
-                <div class="open-main-nav flex justify-center">
-                    <span class="burger"></span>
-                </div>
-            </div>
-            <div
-                class="relative text-primary flex justify-center lg:justify-between items-center lg:items-between lg:block lg:h-auto shadow-xl">
-                <div class="relative flex justify-start lg:justify-center items-center mx-2 w-full">
-                    <div class="flex items-center">
-                        <div class="mx-auto">
-                            <a href="/">
-                                <img class="w-16 md:w-24 my-2" src="{{ asset('/images/logos/btmLogoJB.png') }}"
-                                    alt="logo de BTM">
-                            </a>
-                        </div>
-                        <div class="relative h-auto md:diagonale">
+        @include('slide-over-menu')
+    </div>
+    <header id="header" class="top-O right-0 left-0 bg-white xl:h-auto z-50 lg:mt-0">
+        <button @click="open_menu = ! open_menu"
+            class="absolute cursor-pointer top-6 left-5 justify-center items-center z-40">
+            {{-- <div class="open-main-nav flex justify-center">
+            <span class="burger"></span>
+        </div> --}}
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 lg:h-12 w-8 lg:w-12" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+        </button>
+        <div
+            class="relative text-primary flex justify-center lg:justify-between items-center lg:items-between lg:block lg:h-auto shadow-xl">
+            <div class="relative flex justify-start lg:justify-center items-center mx-2 w-full">
+                <div class="flex items-center justify-center w-full">
+                    <div class="mx-auto flex items-center">
+                        <a href="/">
+                            <img class="w-16 md:w-24 my-2" src="{{ asset('/images/logos/btmLogoJB.png') }}"
+                                alt="logo de BTM">
+                        </a>
+                        <div class="hidden lg:block relative h-auto md:diagonale">
                             <a href="/">
                                 <h1 class="text-xs md:text-3xl">Balance Ton Match</h1>
                                 <p
@@ -110,24 +109,25 @@
                             </a>
                         </div>
                     </div>
-                    <div class="absolute top-3 right-0 lg:hidden">
-                        <a href=" /notifications">
-                            <div
-                                class="relative flex justify-center items-center text-primary border rounded-full h-12 w-12 mr-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-                                </svg>
-                                @auth
-                                    <p id="js-count"
-                                        class="absolute -top-1 right-0 bg-red-500 rounded-full text-xs text-white flex items-center justify-center h-5 w-5">
-                                        {{ Auth::user()->unreadNotifications->count() }}</p>
-                                @endauth
-                            </div>
-                        </a>
-                    </div>
-                    {{-- <script>
+                </div>
+                <div class="absolute top-3 right-0 lg:hidden">
+                    <a href=" /notifications">
+                        <div
+                            class="relative flex justify-center items-center text-primary border rounded-full h-12 w-12 mr-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                            </svg>
+                            @auth
+                                <p id="js-count"
+                                    class="absolute -top-1 right-0 bg-red-500 rounded-full text-xs text-white flex items-center justify-center h-5 w-5">
+                                    {{ Auth::user()->unreadNotifications->count() }}</p>
+                            @endauth
+                        </div>
+                    </a>
+                </div>
+                {{-- <script>
                         (function() {
                             // on cible l'objet nav
                             let header = document.getElementById('header');
@@ -151,58 +151,57 @@
                             window.addEventListener("scroll", sticky);
                         })()
                     </script> --}}
-                </div>
-                @include('menu')
             </div>
-        </header>
-        <div>
-            @include('toast')
-            @yield('content')
-            @include('footer')
+            @include('menu')
         </div>
+    </header>
+    <div>
+        @include('toast')
+        @yield('content')
+        @include('footer')
     </div>
+</div>
 
-    @if (request()->path() != '/')
-        <a href=javascript:history.go(-1)>
-            <div
-                class="fixed bottom-16 left-3 lg:hidden shadow-xl flex justify-center items-center rounded-full 
+@if (request()->path() != '/')
+    <a href=javascript:history.go(-1)>
+        <div
+            class="fixed bottom-16 left-3 lg:hidden shadow-xl flex justify-center items-center rounded-full 
                     h-12 w-12 bg-white z-30 border border-darkSuccess">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M11 17l-5-5m0 0l5-5m-5 5h12" />
-                </svg>
-            </div>
-        </a>
-    @endif
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 17l-5-5m0 0l5-5m-5 5h12" />
+            </svg>
+        </div>
+    </a>
+@endif
 
 
 
-    @livewireScripts
+@livewireScripts
 
-    @auth
-        <script>
-            window.User = {
-                id: {{ optional(auth()->user())->id }}
-            }
-        </script>
-    @endauth
-
-    <script src="{{ mix('js/app.js') }}"></script>
+@auth
     <script>
-        window.axeptioSettings = {
-            clientId: "{{ env('AXEPTIO_KEY ') }}",
-            cookiesVersion: "balancetonmatch-base",
-        };
-
-        (function(d, s) {
-            var t = d.getElementsByTagName(s)[0],
-                e = d.createElement(s);
-            e.async = true;
-            e.src = "//static.axept.io/sdk.js";
-            t.parentNode.insertBefore(e, t);
-        })(document, "script");
+        window.User = {
+            id: {{ optional(auth()->user())->id }}
+        }
     </script>
+@endauth
+
+<script src="{{ mix('js/app.js') }}"></script>
+<script>
+    window.axeptioSettings = {
+        clientId: "{{ env('AXEPTIO_KEY ') }}",
+        cookiesVersion: "balancetonmatch-base",
+    };
+
+    (function(d, s) {
+        var t = d.getElementsByTagName(s)[0],
+            e = d.createElement(s);
+        e.async = true;
+        e.src = "//static.axept.io/sdk.js";
+        t.parentNode.insertBefore(e, t);
+    })(document, "script");
+</script>
 
 </body>
 

@@ -111,7 +111,7 @@ Route::get('/competitions/amicaux-2021-2022', function () {
 Route::get('/contact', function () {
 
     return view('contact');
-});
+})->name('contact');
 
 Route::get('/mentions-legales', function () {
 
@@ -186,7 +186,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::get('/', HomeController::class);
+Route::get('/', HomeController::class)->name('home');
 Route::resource('articles', ArticleController::class);
 Route::resource('clubs', ClubController::class);
 Route::resource('players', PlayerController::class);
@@ -198,6 +198,7 @@ Route::resource('regions', RegionController::class)->parameters([
     'regions' => 'region:slug'
 ]);
 Route::resource('competitions', CompetitionController::class);
+
 // Route::resource('competitions.division_region.groups', Group::class)->only('show');
 // Route::get('regions/{region:slug}', function (Region $region) {
 //     $clubs = Club::where('region_id', $region->id)->get();

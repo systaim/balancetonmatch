@@ -5,6 +5,7 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
 
@@ -16,9 +17,9 @@ class Rencontre extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable = ['slug', 'home_team_id', 'home_score', 'away_team_id', 'away_score', 'date_match', 'time', 'location', 'weather', 'competition_id', 'region_id','live'];
+    protected $fillable = ['slug', 'home_team_id', 'home_score', 'away_team_id', 'away_score', 'date_match', 'time', 'location', 'weather', 'competition_id', 'region_id', 'live', 'validate_score', 'validate_by'];
 
-    protected $dates = ['date_match', 'debut_match_reel', 'fin_match_reel', 'debut_prolongations','fin_prolongations'];
+    protected $dates = ['date_match', 'debut_match_reel', 'fin_match_reel', 'debut_prolongations', 'fin_prolongations'];
 
     protected $table = 'matches';
 
@@ -29,14 +30,19 @@ class Rencontre extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function validate_by_user()
+    {
+        return $this->belongsTo(User::class, 'validate_by');
+    }
+
     public function scopeClub($query, $id, $date = null)
     {
-        if($date == null){
+        if ($date == null) {
             $date = Carbon::now();
         }
-        return $query->where('date_match','>=', $date)
-        ->where('home_team_id', $id)
-        ->orwhere('away_team_id', $id);
+        return $query->where('date_match', '>=', $date)
+            ->where('home_team_id', $id)
+            ->orwhere('away_team_id', $id);
     }
 
     public function favorismatches()
@@ -108,4 +114,7 @@ class Rencontre extends Model
     {
         return $this->HasMany(Gallery::class);
     }
+
+
+
 }

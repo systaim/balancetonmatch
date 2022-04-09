@@ -7,7 +7,7 @@ use App\Models\Commentaire;
 use App\Models\Commentator;
 use Illuminate\Http\Request;
 use App\Http\Resources\CommentaireResource as CommentaireResource;
-
+use App\Models\Rencontre;
 
 class CommentaireController extends Controller
 {
@@ -18,8 +18,8 @@ class CommentaireController extends Controller
      */
     public function index()
     {
-        // $commentaires = Commentator::with('commentaires')->get();
         $commentaires = Commentaire::all();
+        
         return CommentaireResource::collection($commentaires);
     }
 
@@ -42,7 +42,7 @@ class CommentaireController extends Controller
      */
     public function show(Commentaire $commentaire)
     {
-        dd($commentaire);
+        // $commentaires = Commentaire::where('rencontre_id', $rencontre->id)->get();
         return new CommentaireResource($commentaire);
     }
 

@@ -29,14 +29,15 @@ class RecupMatchController extends Controller
 
         ini_set('user_agent', 'My-Application/2.5');
 
-        $re = '/"date">\X+?(\d+) (\S+) (\d+) - (\d+)H(\d+)\X+?"equipe1">\X+?phlogos\/BC(\d{6})\X+?name ">\s+(\X+?)\s{2}\X+?"name ">\s+(\X+?)\s{2}\X+?phlogos\/BC(\d{6})/m';
+        $re = '/"date">\X+?(\d+) (\S+) (\d+) - (\d+)H(\d+)\X+?"equipe1">\X+?phlogos\/BC(\d{6})\X+?name ">\s+(\X+?)\s{2}\X+?equipe2">\X+?nobold">\s+(\X+?)\s{2}\X+?phlogos\/BC(\d{6})\X+?/m';
 
-        $str = file_get_contents("https://foot22.fff.fr/competitions/?id=385210&poule=1&phase=1&type=cp&tab=resultat");
+        $str = file_get_contents("https://foot22.fff.fr/competitions/?id=385122&poule=3&phase=1&type=ch&tab=calendar");
         preg_match_all($re, $str, $matches);
 
+        // dd($matches[0]);
         for ($i = 0; $i < count($matches[0]); $i++) {
 
-            switch ($matches[2][0]) {
+            switch ($matches[2][$i]) {
                 case 'janvier':
                     $mois = "01";
                     break;
@@ -103,14 +104,18 @@ class RecupMatchController extends Controller
             $home_team = Club::where('numAffiliation', $matches[6][$i])->first();
             $away_team = Club::where('numAffiliation', $matches[9][$i])->first();
 
-            echo "<pre>";
-            dump($home_team->id);
-            dump($t11 . "-vs-" . $t22 . "-" . $matches[1][$i] . "-" . $mois . "-" . $matches[3][$i]);
-            // dump($matches[7][$i]);
-            dump($away_team->id);
-            // dump($matches[8][$i]);
-            dump($date);
-            echo "</pre>";
+            // echo "<pre>";
+            // echo($home_team->id ."-". $away_team->id ."|". $date);
+            // echo "</pre>";
+            // echo "<pre>";
+
+            // echo($matches[2][$i]);
+            // echo($t11 . "-vs-" . $t22 . "-" . $matches[1][$i] . "-" . $mois . "-" . $matches[3][$i]);
+            // // echo($matches[7][$i]);
+            // echo($away_team->id);
+            // // echo($matches[8][$i]);
+            // echo($date);
+            // echo "</pre>";
 
             Rencontre::upsert(
                 [
@@ -118,10 +123,15 @@ class RecupMatchController extends Controller
                     'home_team_id' => $home_team->id,
                     'away_team_id' => $away_team->id,
                     'date_match' => $date,
-                    'competition_id' => 5,
+                    'competition_id' => 2,
+                    'division_department_id' => 2,
+                    'group_id' => 3,
                     'region_id' => 3,
                     'department_id' => 22,
                     'user_id' => 11,
+                ],
+                [
+                    'home_team_id', 'away_team_id'
                 ],
                 [
                     'slug', 'home_team_id', 'away_team_id', 'date_match', 'competition_id', 'region_id', 'user_id'

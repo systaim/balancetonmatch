@@ -11,7 +11,7 @@ class Composition extends Model
 
     public $timestamps = false;
 
-    public $fillable =['match_id', 'user_id', 'player_id'];
+    public $fillable =['rencontre_id', 'user_id', 'player_id', 'club_id'];
 
     public function match()
     {
@@ -26,5 +26,10 @@ class Composition extends Model
     public function clubs()
     {
         return $this->hasMany(Club::class);
+    }
+
+    public function player()
+    {
+        return $this->belongsTo(Player::class, 'player_id');
     }
 }
