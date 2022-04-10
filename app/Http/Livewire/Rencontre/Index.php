@@ -22,11 +22,11 @@ class Index extends Component
 
     public $match, $minute, $home_score, $away_score, $team_choisie, $action_choisie, $player1, $player2, $tps_de_jeu, $name_of_periode = '', $periode, $comments, $type_de_but;
     public $new_date_match, $home_score_mis_a_jour, $away_score_mis_a_jour, $visitors, $variable_tps_pour_commenter, $commentaires_match_ouverts = false;
-    public $commentateur, $homeCompo, $awayCompo, $prenom, $nom_de_famille, $joueur_choisi;
+    public $commentateur, $homeCompo, $awayCompo, $prenom, $nom_de_famille, $joueur_choisi, $lieu;
 
     //variables d'affichage
     public $open_menu_comment = false, $open_delete_comment = false, $commentIdToDelete = false, $open_match = true, $open_infos = false, $open_compos = false, $open_share = false;
-    public $selected_compo_id, $open_galerie, $open_store_photo = false, $open_create_player = false, $corriger_le_score;
+    public $selected_compo_id, $open_galerie, $open_store_photo = false, $open_create_player = false, $corriger_le_score = false, $open_store_lieu = false;
 
     //Galerie
     public $photos, $photo_match;
@@ -185,6 +185,18 @@ class Index extends Component
     public function list_commentaires()
     {
         $this->comments = $this->match->commentaires()->orderBy('minute', 'desc')->orderBy('updated_at', 'desc')->get();
+    }
+
+    public function openStoreLieu()
+    {
+        $this->open_store_lieu = true;
+    }
+
+    public function storeLieu()
+    {
+        $this->open_store_lieu = false;
+        $this->match->location = ucfirst($this->lieu);
+        $this->match->save();
     }
 
     public function TexteBoutonPeriodeMatch()

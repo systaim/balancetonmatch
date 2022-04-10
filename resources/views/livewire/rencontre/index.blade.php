@@ -46,11 +46,6 @@
         </form>
     </div>
 
-
-    @if ($open_menu_comment)
-        @include('livewire.rencontre._menu_com')
-    @endif
-
     <div>
         <div class="bg-primary text-secondary px-3 py-1 text-sm flex justify-between">
             <div>
@@ -179,7 +174,7 @@
                     </button>
                     <button type="button" class="w-full py-3 bg-secondary text-center text-gray-900"
                         wire:click="openMenuComment">
-                        {{ $open_menu_comment ? 'Fermer' : 'Je renseigne les infos du match' }}
+                        {{ $open_menu_comment ? 'Fermer' : 'Je renseigne le fil du match' }}
                     </button>
                 @endif
                 @if ($match->live == 'attente' && !$commentateur)
@@ -200,6 +195,9 @@
                 @endif
             </div>
         @endauth
+    @endif
+     @if ($open_menu_comment)
+        @include('livewire.rencontre._menu_com')
     @endif
     @if ($open_match)
         <div>
