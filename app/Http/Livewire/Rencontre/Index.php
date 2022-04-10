@@ -180,6 +180,8 @@ class Index extends Component
     public function corrigerLeScore()
     {
         $this->corriger_le_score = !$this->corriger_le_score;
+        $this->home_score = 0;
+        $this->away_score = 0;
     }
 
     public function list_commentaires()
