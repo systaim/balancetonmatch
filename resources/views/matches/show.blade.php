@@ -291,7 +291,7 @@
             </svg>
         </div>
     </a> --}}
-    <div class="fixed bottom-0 mx-auto w-full">
+    <div class="fixed bottom-0 mx-auto flex justify-center">
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7237777700901740"
                 crossorigin="anonymous"></script>
         <!-- bas de page -->
