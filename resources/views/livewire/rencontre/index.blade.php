@@ -9,9 +9,17 @@
 
     @if (Auth::check() && !$commentateur && $commentaires_match_ouverts)
         <div class="flex flex-col items-center text-sm">
-            <button type="button" class="btn btnPrimary w-2/3" @click="become_commentator = true">
-                <p class="py-3 text-xl animate__animated animate__flipInY"> Je veux commenter 😎</p>
+            <button type="button" class="btn btnPrimary" @click="become_commentator = true">
+                <p class=" animate__animated animate__flipInY"> Je veux commenter 😎</p>
             </button>
+        </div>
+    @elseif(!$commentateur && $commentaires_match_ouverts)
+        <div class="flex flex-col items-center text-sm">
+            <a href="/login">
+                <button type="button" class="btn btnPrimary">
+                    <p class=" animate__animated animate__flipInY"> Je me connecte pour commenter 😎</p>
+                </button>
+            </a>
         </div>
     @endif
     <div x-show="become_commentator" class="mb-12 py-8">
@@ -136,8 +144,8 @@
     @if ($open_match)
         <div>
             @foreach ($comments->sortBy(['type_comments', 'minute']) as $comment)
-                <x-new-commentaire :comment="$comment" :match="$match" :reactions="$reactions"
-                    :commentateurs="$commentateurs" :commentIdToDelete="$commentIdToDelete">
+                <x-new-commentaire :comment="$comment" :match="$match" :reactions="$reactions" :commentateurs="$commentateurs"
+                    :commentIdToDelete="$commentIdToDelete">
                 </x-new-commentaire>
             @endforeach
         </div>

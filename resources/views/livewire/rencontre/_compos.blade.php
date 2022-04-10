@@ -1,7 +1,7 @@
 <div class="flex justify-between my-3 mx-1">
     <div class="flex-1 mx-1">
         <h4 class="bg-primary text-secondary text-center py-2 truncate text-sm">{{ $match->homeClub->name }}</h4>
-        <div class="text-sm">
+        <div class="text-sm flex-1">
             @foreach ($homeCompo as $numero => $compo)
                 <div
                     class="relative flex py-1 px-2 my-1 {{ $compo->id === $selected_compo_id ? 'bg-primary text-secondary mb-0' : '' }}">
@@ -16,7 +16,7 @@
                 </div>
                 @if ($compo->id === $selected_compo_id)
                     <div class="bg-primary p-2 relative">
-                        <button type="button" wire:click="setCompoIdToNull" class="absolute -top-9 right-1">
+                        <button type="button" wire:click.prefetch="setCompoIdToNull" class="absolute -top-9 right-1">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-red-600" viewBox="0 0 20 20"
                                 fill="currentColor">
                                 <path fill-rule="evenodd"

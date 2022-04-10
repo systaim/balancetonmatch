@@ -15,7 +15,6 @@
                 </div>
             </div>
         </a>
-
         <div class="relative border rounded-full h-10 w-10 flex justify-center items-center m-1 shadow-lg" wire:ignore>
             <textarea class="hidden" id="input_copy">{{ request()->url() }}</textarea>
             <button type="button" id="copy">

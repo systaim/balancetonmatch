@@ -4,7 +4,7 @@
     <div class="flex-1 flex justify-center text-sm">
         <button type="button"
             class="mx-1 border {{ $open_share ? 'border-primary bg-secondary text-primary' : '' }} px-2 py-1 mb-1"
-            wire:click="openTab('share')">
+            wire:click.prefetch="openTab('share')">
             
             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd"
@@ -14,22 +14,22 @@
         </button>
         {{-- <button type="button"
             class="mx-1 border {{ $open_galerie ? 'border-primary bg-secondary text-primary' : '' }} px-2 py-1 mb-1"
-            wire:click="openTab('galerie')">
+            wire:click.prefetch="openTab('galerie')">
             Photos
         </button> --}}
         <button type="button"
             class="mx-1 border {{ $open_match ? 'border-primary bg-secondary text-primary' : '' }} px-2 py-1 mb-1"
-            wire:click="openTab('match')">
+            wire:click.prefetch="openTab('match')">
             Match
         </button>
         <button type="button"
             class="mx-1 border {{ $open_infos ? 'border-primary bg-secondary text-primary' : '' }} px-2 py-1 mb-1"
-            wire:click="openTab('infos')">
+            wire:click.prefetch="openTab('infos')">
             Infos
         </button>
         <button type="button"
             class="mx-1 border {{ $open_compos ? 'border-primary bg-secondary text-primary' : '' }} px-2 py-1 mb-1"
-            wire:click="openTab('compos')">
+            wire:click.prefetch="openTab('compos')">
             Compos
         </button>
     </div>
