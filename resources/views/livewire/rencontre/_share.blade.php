@@ -16,7 +16,7 @@
             </div>
         </a>
         <div class="relative border rounded-full h-10 w-10 flex justify-center items-center m-1 shadow-lg" wire:ignore>
-            <textarea class="hidden" id="input_copy">{{ request()->url() }}</textarea>
+            <textarea class="hidden" id="input_copy">htps://balancetonmatch.com/matches/{{ $match->id }}</textarea>
             <button type="button" id="copy">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-secondary" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor">
