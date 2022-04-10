@@ -91,7 +91,7 @@
             <div class="flex text-4xl font-bold">
                 <div class="flex flex-col items-center justify-center">
                     @if ($corriger_le_score)
-                        <button type="button" wire:click="storeScore('home', 'plus')">
+                        <button type="button" wire:click="incrementScore('home')">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
                                 fill="currentColor">
                                 <path fill-rule="evenodd"
@@ -102,7 +102,7 @@
                     @endif
                     <p>{{ $home_score }}</p>
                     @if ($corriger_le_score)
-                        <button type="button" wire:click="storeScore('home', 'moins')">
+                        <button type="button" wire:click="decrementScore('home')">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
                                 fill="currentColor">
                                 <path fill-rule="evenodd"
@@ -115,7 +115,7 @@
                 <div class=" flex flex-col justify-center">-</div>
                 <div class="flex flex-col items-center justify-center">
                     @if ($corriger_le_score)
-                        <button type="button" wire:click="storeScore('away', 'plus')">
+                        <button type="button" wire:click="incrementScore('away')">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
                                 fill="currentColor">
                                 <path fill-rule="evenodd"
@@ -126,7 +126,7 @@
                     @endif
                     <p>{{ $away_score }}</p>
                     @if ($corriger_le_score)
-                        <button type="button" wire:click="storeScore('away', 'moins')">
+                        <button type="button" wire:click="decrementScore('away')">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
                                 fill="currentColor">
                                 <path fill-rule="evenodd"
@@ -138,6 +138,9 @@
                 </div>
             </div>
             <div class="flex flex-col text-sm items-center justify-center">
+                @if ($corriger_le_score)
+                    <button type="button" class="btn btnSecondary" wire:click="storeScore">Valider</button>
+                @endif
                 @if ($match->live == 'attente')
                     <p>En attente</p>
                 @elseif($match->live == 'finDeMatch')
