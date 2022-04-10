@@ -116,6 +116,7 @@ class Index extends Component
             $this->match->{$team . '_score'} -= 1;
         }
         $this->match->live = "finDeMatch";
+        $this->match->validate_score = true;
         $this->match->save();
     }
 
