@@ -291,7 +291,7 @@
             </svg>
         </div>
     </a> --}}
-    <div class="fixed bottom-0 mx-auto">
+    <div class="fixed bottom-0 mx-auto w-full h-auto">
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7237777700901740"
                 crossorigin="anonymous"></script>
         <!-- bas de page -->
@@ -301,6 +301,9 @@
             (adsbygoogle = window.adsbygoogle || []).push({});
         </script>
     </div>
+    {{-- <div class="fixed bottom-0 w-full h-24 bg-green-300">
+        
+    </div> --}}
 
 
 </body>
