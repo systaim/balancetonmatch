@@ -43,6 +43,7 @@
                     <!-- Replace with your content -->
                     <div class="">
                         <ul>
+                            <a href="/">
                             <li class="flex items-center mb-2 py-2 w-full px-6 shadow-lg hover:bg-gray-100">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -50,30 +51,30 @@
                                         d="M13 5l7 7-7 7M5 5l7 7-7 7" />
                                 </svg>
                                 {{-- <a href="{{ route('home') }}"> --}}
-                                <a href="/">
                                     Accueil
-                                </a>
-                            </li>
+                                </li>
+                            </a>
+                            <a href="{{ route('clubs.index') }}">
                             <li class="flex items-center mb-2 py-2 w-full px-6 shadow-lg hover:bg-gray-100">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                     <path stroke-linecap="round" stroke-linejoin="round"
                                         d="M13 5l7 7-7 7M5 5l7 7-7 7" />
                                 </svg>
-                                <a href="{{ route('clubs.index') }}">
                                     Rechercher un club
-                                </a>
-                            </li>
+                                </li>
+                            </a>
+                            <a href="{{ route('competitions.index') }}">
                             <li class="flex items-center mb-2 py-2 w-full px-6 shadow-lg hover:bg-gray-100">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                     <path stroke-linecap="round" stroke-linejoin="round"
                                         d="M13 5l7 7-7 7M5 5l7 7-7 7" />
                                 </svg>
-                                <a href="{{ route('competitions.index') }}">
                                     Liste des competitions
-                                </a>
-                            </li>
+                                </li>
+                            </a>
+                            <a href="/contact">
                             <li class="flex items-center mb-2 py-2 w-full px-6 shadow-lg hover:bg-gray-100">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -81,10 +82,9 @@
                                         d="M13 5l7 7-7 7M5 5l7 7-7 7" />
                                 </svg>
                                 {{-- <a href="{{ route('contact') }}"> --}}
-                                <a href="/contact">
                                     Contact
-                                </a>
-                            </li>
+                                </li>
+                            </a>
                         </ul>
                     </div>
                     <div class="bg-gray-100 p-4">
