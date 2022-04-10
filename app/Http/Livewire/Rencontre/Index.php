@@ -26,7 +26,7 @@ class Index extends Component
 
     //variables d'affichage
     public $open_menu_comment = false, $open_delete_comment = false, $commentIdToDelete = false, $open_match = true, $open_infos = false, $open_compos = false, $open_share = false;
-    public $selected_compo_id, $open_galerie, $open_store_photo = false, $open_create_player = false;
+    public $selected_compo_id, $open_galerie, $open_store_photo = false, $open_create_player = false, $corriger_le_score;
 
     //Galerie
     public $photos, $photo_match;
@@ -106,6 +106,19 @@ class Index extends Component
         }
     }
 
+    public function storeScore($team, $type)
+    {
+        if ($type == 'plus') {
+            $this->{$team . '_score'} += 1;
+            $this->match->{$team . '_score'} += 1;
+        } elseif($type == 'moins' && $this->{$team . '_score'} > 0) {
+            $this->{$team . '_score'} -= 1;
+            $this->match->{$team . '_score'} -= 1;
+        }
+        $this->match->live = "finDeMatch";
+        $this->match->save();
+    }
+
     public function storeCompos()
     {
         // dd($this->awayCompo);
@@ -151,6 +164,11 @@ class Index extends Component
     public function setCompoIdToNull()
     {
         $this->selected_compo_id = null;
+    }
+
+    public function corrigerLeScore()
+    {
+        $this->corriger_le_score = !$this->corriger_le_score;
     }
 
     public function list_commentaires()
@@ -465,9 +483,10 @@ class Index extends Component
                 }
                 $commentaire_data['icon'] = 'images/but.png';
 
-
-                $this->{$this->team_choisie . '_score'} += 1;
-                $this->match->{$this->team_choisie . '_score'} += 1;
+                if ($this->commentaires_match_ouverts) {
+                    $this->{$this->team_choisie . '_score'} += 1;
+                    $this->match->{$this->team_choisie . '_score'} += 1;
+                }
                 if ($this->team_choisie == "home" && !$this->match->away_score) {
                     $this->match->away_score = 0;
                 } elseif ($this->team_choisie == "away" && !$this->match->home_score) {
@@ -557,7 +576,7 @@ class Index extends Component
     {
         $commentaires = Commentaire::where('id', $commentaire_id)->get();
         foreach ($commentaires as $commentaire) {
-            if ($commentaire->type_action == 'goal') {
+            if ($commentaire->type_action == 'goal' && $this->commentaires_match_ouverts) {
                 $this->{$team . '_score'} -= 1;
                 $this->match->{$team . '_score'} -= 1;
                 $this->match->save();
@@ -565,9 +584,11 @@ class Index extends Component
 
             $commentaire->delete();
         }
-        $statistics = Statistic::where('commentaire_id', $commentaire_id)->get();
-        foreach ($statistics as $statistic) {
-            $statistic->delete();
+        if ($this->commentaires_match_ouverts) {
+            $statistics = Statistic::where('commentaire_id', $commentaire_id)->get();
+            foreach ($statistics as $statistic) {
+                $statistic->delete();
+            }
         }
 
         $this->list_commentaires();

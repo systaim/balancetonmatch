@@ -20,7 +20,7 @@
 <div class="flex items-center w-11/12 mx-auto my-1 {{ $comment->team_action == 'away' ? 'flex-row-reverse' : '' }}">
     <div class="flex {{ $comment->team_action == 'away' ? 'flex-row-reverse' : '' }} items-center">
         @if ($comment->type_action != 'substitute' && $comment->team_action != 'match')
-            <p class="text-sm {{ $comment->team_action == 'away' ? 'ml-2 text-right' : 'text-left mr-2' }}">
+            <p class="text-sm font-bold {{ $comment->team_action == 'away' ? 'ml-2 text-right' : 'text-left mr-2' }}">
                 {{ $comment->minute }}'</p>
             <img class="w-4 h-4 mx-1 text-center" src="{{ asset($comment->icon) }}" alt="">
             <p class="text-sm {{ $comment->team_action == 'away' ? 'mr-2' : 'ml-2' }}">
@@ -51,7 +51,7 @@
         class="flex {{ $comment->team_action == 'away' ? 'flex-row-reverse' : '' }} items-center">
 
         @if ($comment->type_action == 'substitute')
-            <p class="text-sm {{ $comment->team_action == 'away' ? 'ml-2 text-right' : 'text-left mr-2' }}">
+            <p class="text-sm font-bold {{ $comment->team_action == 'away' ? 'ml-2 text-right' : 'text-left mr-2' }}">
                 {{ $comment->minute }}'
             </p>
             <img class="w-4 h-4 text-center" src="{{ asset($comment->icon) }}" alt="">

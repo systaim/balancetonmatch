@@ -35,40 +35,6 @@
         </div>
     </div>
 
-    @if (!$match->validate_score)
-        @auth
-            <div class="flex text-sm">
-                @if ($match->live != 'attente' && $match->live != 'mitemps' && $match->live != 'finDeMatch' && $match->date_match->diffInMinutes(now(), false) > -5 && ($commentateur && $commentateur->user_id == Auth::id()) && $match->date_match->diffInMinutes(now(), false) < 60)
-                    <button type="button" class="w-full py-3 bg-secondary text-center text-gray-900"
-                        wire:click="openMenuComment">
-                        {{ $open_menu_comment ? 'Fermer' : 'Je commente' }}
-                    </button>
-                @elseif($match->date_match->diffInMinutes(now(), false) >= 60)
-                    <button type="button" class="w-full py-3 bg-secondary text-center text-gray-900"
-                        wire:click="openMenuComment">
-                        {{ $open_menu_comment ? 'Fermer' : 'Je renseigne les infos du match' }}
-                    </button>
-                @endif
-                @if ($match->live == 'attente' && !$commentateur)
-                    <button type="button" class="w-full py-3 bg-primary text-center text-secondary"
-                        @click="update_datetime_match = !update_datetime_match">
-                        Je modifie la date du match
-                    </button>
-                @endif
-            </div>
-        @else
-            <div class="text-sm w-full bg-primary">
-                @if (!$commentaires_match_ouverts)
-                    <a href="/login">
-                        <button type="button" class="w-full py-3 bg-secondary text-center text-primary px-2">
-                            Je me connecte pour renseigner les infos du match
-                        </button>
-                    </a>
-                @endif
-            </div>
-        @endauth
-    @endif
-
     <div x-show="update_datetime_match" class="flex justify-center flex-col items-center" style="display: none">
         <p class="text-sm">Modifier l'heure et le jour de match</p>
         <form wire:submit.prevent="saveNewDatetime" class="flex flex-col">
@@ -123,9 +89,53 @@
         </div>
         <div class="flex flex-col justify-center items-center flex-1">
             <div class="flex text-4xl font-bold">
-                <div>{{ $home_score }}</div>
-                <div>-</div>
-                <div>{{ $away_score }}</div>
+                <div class="flex flex-col items-center justify-center">
+                    @if ($corriger_le_score)
+                        <button type="button" wire:click="storeScore('home', 'plus')">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
+                                fill="currentColor">
+                                <path fill-rule="evenodd"
+                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                    @endif
+                    <p>{{ $home_score }}</p>
+                    @if ($corriger_le_score)
+                        <button type="button" wire:click="storeScore('home', 'moins')">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
+                                fill="currentColor">
+                                <path fill-rule="evenodd"
+                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 000 2h6a1 1 0 100-2H7z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                    @endif
+                </div>
+                <div class=" flex flex-col justify-center">-</div>
+                <div class="flex flex-col items-center justify-center">
+                    @if ($corriger_le_score)
+                        <button type="button" wire:click="storeScore('away', 'plus')">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
+                                fill="currentColor">
+                                <path fill-rule="evenodd"
+                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                    @endif
+                    <p>{{ $away_score }}</p>
+                    @if ($corriger_le_score)
+                        <button type="button" wire:click="storeScore('away', 'moins')">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
+                                fill="currentColor">
+                                <path fill-rule="evenodd"
+                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 000 2h6a1 1 0 100-2H7z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                    @endif
+                </div>
             </div>
             <div class="flex flex-col text-sm items-center justify-center">
                 @if ($match->live == 'attente')
@@ -151,6 +161,43 @@
         </div>
     </div>
     @include('livewire.rencontre._tabs')
+    @if (!$match->validate_score)
+        @auth
+            <div class="flex text-sm">
+                @if ($match->live != 'attente' && $match->live != 'mitemps' && $match->live != 'finDeMatch' && $match->date_match->diffInMinutes(now(), false) > -5 && ($commentateur && $commentateur->user_id == Auth::id()) && $match->date_match->diffInMinutes(now(), false) < 60)
+                    <button type="button" class="w-full py-3 bg-secondary text-center text-gray-900"
+                        wire:click="openMenuComment">
+                        {{ $open_menu_comment ? 'Fermer' : 'Je commente' }}
+                    </button>
+                @elseif($match->date_match->diffInMinutes(now(), false) >= 60)
+                    <button type="button" class="w-full py-3 bg-primary text-center text-secondary"
+                        wire:click="corrigerLeScore">
+                        {{ $corriger_le_score ? 'Fermer' : 'Je renseigne le score' }}
+                    </button>
+                    <button type="button" class="w-full py-3 bg-secondary text-center text-gray-900"
+                        wire:click="openMenuComment">
+                        {{ $open_menu_comment ? 'Fermer' : 'Je renseigne les infos du match' }}
+                    </button>
+                @endif
+                @if ($match->live == 'attente' && !$commentateur)
+                    <button type="button" class="w-full py-3 bg-primary text-center text-secondary"
+                        @click="update_datetime_match = !update_datetime_match">
+                        Je modifie la date du match
+                    </button>
+                @endif
+            </div>
+        @else
+            <div class="text-sm w-full bg-primary">
+                @if (!$commentaires_match_ouverts)
+                    <a href="/login">
+                        <button type="button" class="w-full py-3 bg-secondary text-center text-primary px-2">
+                            Je me connecte pour renseigner les infos du match
+                        </button>
+                    </a>
+                @endif
+            </div>
+        @endauth
+    @endif
     @if ($open_match)
         <div>
             @foreach ($comments->sortBy(['type_comments', 'minute']) as $comment)
