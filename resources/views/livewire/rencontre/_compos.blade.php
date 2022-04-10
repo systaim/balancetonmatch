@@ -71,7 +71,7 @@
 
                             <div class="border-t flex justify-center">
                                 <button type="button" class="btn btnPrimary text-xs" wire:click="openCreatePlayer">
-                                    Ou je le crée en mode #rapide
+                                    Ou crée le en mode #rapide
                                 </button>
                             </div>
                         @endif
@@ -152,7 +152,7 @@
 
                             <div class="border-t flex justify-center">
                                 <button type="button" class="btn btnPrimary text-xs" wire:click="openCreatePlayer">
-                                    Ou je le crée en mode #rapide
+                                    Ou crée le en mode #rapide
                                 </button>
                             </div>
                         @endif

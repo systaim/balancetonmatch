@@ -100,9 +100,9 @@
             </div>
         @else
             <div class="flex justify-evenly items-center p-4">
-                <a class="text-primary" href="/login">Se connecter</a>
+                <a class="text-primary text-sm" href="/login">Se connecter</a>
                 <a href="/register">
-                    <button class="btn btnPrimary">S'enregistrer</button>
+                    <button class="btn btnPrimary text-sm">S'enregistrer</button>
                 </a>
             </div>
         @endauth
