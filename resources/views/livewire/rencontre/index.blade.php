@@ -56,6 +56,16 @@
                     </button>
                 @endif
             </div>
+        @else
+            <div class="text-sm w-full bg-primary">
+                @if (!$commentaires_match_ouverts)
+                    <a href="/login">
+                        <button type="button" class="w-full py-3 bg-secondary text-center text-primary px-2">
+                            Je me connecte pour renseigner les infos du match
+                        </button>
+                    </a>
+                @endif
+            </div>
         @endauth
     @endif
 
