@@ -511,10 +511,9 @@ class Index extends Component
                 }
                 $commentaire_data['icon'] = 'images/but.png';
 
-                if ($this->commentaires_match_ouverts) {
-                    $this->{$this->team_choisie . '_score'} += 1;
-                    $this->match->{$this->team_choisie . '_score'} += 1;
-                }
+                $this->{$this->team_choisie . '_score'} += 1;
+                $this->match->{$this->team_choisie . '_score'} += 1;
+                
                 if ($this->team_choisie == "home" && !$this->match->away_score) {
                     $this->match->away_score = 0;
                 } elseif ($this->team_choisie == "away" && !$this->match->home_score) {
