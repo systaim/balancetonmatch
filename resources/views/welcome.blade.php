@@ -505,7 +505,7 @@
                                 Les commentateurs du dimanche
                             </h2>
                         </div>
-                        <div class="mt-10 flex flex-wrap w-full">
+                        {{-- <div class="mt-10 flex flex-wrap w-full">
                             @foreach ($commentators as $com)
 
                                 <div class="relative bg-primary rounded-md shadow-xl overflow-hidden text-white w-72 m-2">
@@ -544,7 +544,7 @@
                                     </a>
                                 </div>
                             @endforeach
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
