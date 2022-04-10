@@ -182,6 +182,9 @@ class Index extends Component
         $this->corriger_le_score = !$this->corriger_le_score;
         $this->home_score = 0;
         $this->away_score = 0;
+        $this->match->home_score = 0;
+        $this->match->away_score = 0;
+        $this->match->save();
     }
 
     public function list_commentaires()
