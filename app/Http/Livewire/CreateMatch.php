@@ -177,11 +177,11 @@ class CreateMatch extends Component
                 'user_id' => $match->user_id,
             ];
 
-            $superAdmin = User::where('role', 'super-admin')->get()->pluck('email');
+            // $superAdmin = User::where('role', 'super-admin')->get()->pluck('email');
         // $admins = User::where('role', 'admin')->get()->pluck('email');
 
-            Mail::to($superAdmin)
-                    ->send(new MatchMail($matchCreate));
+            // Mail::to($superAdmin)
+            //         ->send(new MatchMail($matchCreate));
 
         // foreach ($admins as $admin) {
         //     Mail::to($admin)
