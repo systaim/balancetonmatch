@@ -162,14 +162,14 @@
                         <input type="number" class="rounded-md w-24" required wire:model="tps_de_jeu">
                     </div>
                 </div>
-                @if ($match->live == 'finDeMatch')
+                {{-- @if ($match->live == 'finDeMatch') --}}
                     <div class="flex justify-center my-4 text-sm">
                         <div class="flex flex-col items-center">
                             <p class="text-center">Quelle période ?</p>
                             <input type="number" class="rounded-md w-24" required wire:model="periode" min="1" max="2">
                         </div>
                     </div>
-                @endif
+                {{-- @endif --}}
                 <div class="flex justify-center text-sm">
                     <button type="submit" class="btn btnPrimary">Commenter</button>
                 </div>
