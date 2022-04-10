@@ -51,7 +51,9 @@ class HomeController extends Controller
         $commentators = Commentator::where('created_at', '>', Carbon::now()->subDays(5))->get();
         $all_articles= Article::where('active', 1)->take(3)->get()->sortByDesc('created_at');
 
-        $comOfTheWeek = Commentator::whereBetween('created_at',[Carbon::now()->subDays(6), Carbon::now()->addDay(1)])->get() ;
+        $comOfTheWeek = Commentator::whereBetween('created_at',[Carbon::now()->subDays(6), Carbon::now()->addDay(1)])
+        ->where('id', '=!', 0)
+        ->get() ;
 
         
 
