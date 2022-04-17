@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Rencontre;
 
+use App\Models\Activity;
 use App\Models\Club;
 use App\Models\Commentaire;
 use App\Models\Commentator;
@@ -283,6 +284,14 @@ class Index extends Component
             'user_id' => Auth::id(),
             'rencontre_id' => $this->match->id,
         ]);
+
+        $activite['user_id'] = Auth::user()->id;
+        $activite['match_id'] = $this->match->id;
+        $activite['type'] = 'create_commentator';
+
+
+        $storeActivite = Activity::create($activite);
+        $storeActivite->save();
 
         $this->commentateurDuMatch();
     }
