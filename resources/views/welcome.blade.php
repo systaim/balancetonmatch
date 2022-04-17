@@ -19,14 +19,14 @@
         <div class="relative w-full">
             <div class="flex flex-wrap justify-around">
                 <div class="flex justify-between">
-                    <div class="flex flex-col items-center justify-center text-white my-2 mx-1 p-4">
+                    {{-- <div class="flex flex-col items-center justify-center text-white my-2 mx-1 p-4">
                         <p class="compteur text-xl">{{ count($matches) }}</p>
                         <p class="text-xs lg:text-base">{{ count($matches) <= 1 ? 'matchs' : 'matchs' }}</p>
                     </div>
                     <div class="flex flex-col items-center justify-center text-white my-2 mx-1 p-4">
                         <p class="compteur text-xl">{{ count($clubs) }}</p>
                         <p class="text-xs lg:text-base">clubs</p>
-                    </div>
+                    </div> --}}
                     {{-- <div
                         class="flex flex-col items-center justify-center text-white my-2 mx-1 p-4">
                         <p class="compteur text-xl">{{ count($players) + count($staffs) }}</p>

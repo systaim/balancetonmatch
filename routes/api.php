@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\UserController as UserController;
 use App\Http\Resources\ClubResource;
 use App\Http\Resources\UserResource;
 use App\Models\Club;
+use App\Models\Player;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -43,14 +44,15 @@ Route::apiResource('comments', CommentaireController::class, [
 Route::apiResource('commentators', CommentatorController::class, [
     'as' => 'api'
 ]);
-
+Route::apiResource('players', PlayerController::class, [
+    'as' => 'api'
+]);
 Route::apiResource('statistics', StatisticController::class, [
     'as' => 'api'
 ]);
-
-// Route::apiResource('users', UserController::class, [
-//     'as' => 'api'
-// ]);
+Route::apiResource('users', UserController::class, [
+    'as' => 'api'
+]);
 
 
 

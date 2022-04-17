@@ -28,15 +28,15 @@ class HomeController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $matchesToday = Rencontre::whereBetween('date_match', [Carbon::now()
-        ->startOfDay(), Carbon::now()->endOfDay()])->get();
-        $matchesTomorrow = Rencontre::where('date_match', [Carbon::tomorrow()])->get();
-        $futurMatches = Rencontre::where('date_match', '>=', Carbon::now()->subHours(6))
-            ->orderBy('date_match', 'asc')->get();
-        $matches = Rencontre::all();
-        $clubs = Club::all();
-        $staffs = Staff::all();
-        $players = Player::all();
+        // $matchesToday = Rencontre::whereBetween('date_match', [Carbon::now()
+        // ->startOfDay(), Carbon::now()->endOfDay()])->get();
+        // $matchesTomorrow = Rencontre::where('date_match', [Carbon::tomorrow()])->get();
+        // $futurMatches = Rencontre::where('date_match', '>=', Carbon::now()->subHours(6))
+        //     ->orderBy('date_match', 'asc')->get();
+        // $matches = Rencontre::all();
+        // $clubs = Club::all();
+        // $staffs = Staff::all();
+        // $players = Player::all();
         $dateJour = Carbon::now();
         $user = Auth::user();
         $users = User::all();
@@ -47,7 +47,7 @@ class HomeController extends Controller
         $statistics = Statistic::where('action', 'goal')->where('created_at', '>=', now()->subDays(6))->orderBy('created_at', 'desc')->get();
         $stats = $statistics->unique('player_id');
         $activities = Activity::where('created_at', '>', now()->subDays(15))->orderByDesc('created_at')->get();
-        $all_commentators = Commentator::all();
+        // $all_commentators = Commentator::all();
         $commentators = Commentator::where('created_at', '>', Carbon::now()->subDays(5))->where('user_id', '=!', 0)->get();
         $all_articles= Article::where('active', 1)->take(3)->get()->sortByDesc('created_at');
 
@@ -58,13 +58,13 @@ class HomeController extends Controller
         
 
     return view('welcome', compact(
-        'matchesToday', 
-        'matchesTomorrow', 
-        'futurMatches', 
-        'staffs', 
-        'matches', 
-        'clubs', 
-        'players', 
+        // 'matchesToday', 
+        // 'matchesTomorrow', 
+        // 'futurMatches', 
+        // 'staffs', 
+        // 'matches', 
+        // 'clubs', 
+        // 'players', 
         'dateJour', 
         'user', 
         'users',
@@ -77,7 +77,7 @@ class HomeController extends Controller
         'statistics',
         'comOfTheWeek',
         'activities',
-        'all_commentators',
+        // 'all_commentators',
         'all_articles'
     ));
     }

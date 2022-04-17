@@ -31,7 +31,7 @@ class RecupMatchController extends Controller
 
         $re = '/"date">\X+?(\d+) (\S+) (\d+) - (\d+)H(\d+)\X+?"equipe1">\X+?phlogos\/BC(\d{6})\X+?name ">\s+(\X+?)\s{2}\X+?equipe2">\X+?nobold">\s+(\X+?)\s{2}\X+?phlogos\/BC(\d{6})\X+?/m';
 
-        $str = file_get_contents("https://foot22.fff.fr/competitions/?id=385122&poule=3&phase=1&type=ch&tab=calendar");
+        $str = file_get_contents("https://foot22.fff.fr/competitions/?id=385212&poule=1&phase=1&type=cp&tab=resultat");
         preg_match_all($re, $str, $matches);
 
         // dd($matches[0]);
