@@ -84,7 +84,7 @@
             <a target="blank" href="{{ route('clubs.show', $match->homeClub->id) }}">
                 <div class="logo h-16 w-16 sm:h-20 sm:w-20 lg:h-32 lg:w-32 cursor-pointer lg:mr-1 xl:mr-4">
                     <img class="object-contain" src="{{ asset($match->homeClub->logo) }}"
-                        alt="Logo de {{ $match->homeClub->abbreviation }}">
+                        alt="Logo de {{ $match->homeClub->name }}">
                 </div>
             </a>
         </div>
@@ -159,7 +159,7 @@
             <a target="blank" href="{{ route('clubs.show', $match->awayClub->id) }}">
                 <div class="logo h-16 w-16 sm:h-20 sm:w-20 lg:h-32 lg:w-32 cursor-pointer lg:mr-1 xl:mr-4">
                     <img class="object-contain" src="{{ asset($match->awayClub->logo) }}"
-                        alt="Logo de {{ $match->awayClub->abbreviation }}">
+                        alt="Logo de {{ $match->awayClub->name }}">
                 </div>
             </a>
         </div>
