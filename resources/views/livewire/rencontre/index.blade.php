@@ -21,6 +21,12 @@
                 </button>
             </a>
         </div>
+    @else
+        <div class="flex flex-col items-center text-sm my-3">
+            <div class="animate__animated animate__flipInY bg-secondary text-primary px-2 py-1">
+                <p>Revenez avant le match pour commenter 😎</p>
+            </div>
+        </div>
     @endif
     <div x-show="become_commentator" class="mb-12 py-8">
         <p class="text-center text-sm">Accepte tu vraiment la mission ? </p>
@@ -196,7 +202,7 @@
             </div>
         @endauth
     @endif
-     @if ($open_menu_comment)
+    @if ($open_menu_comment)
         @include('livewire.rencontre._menu_com')
     @endif
     @if ($open_match)
