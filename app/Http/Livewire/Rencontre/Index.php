@@ -129,6 +129,13 @@ class Index extends Component
         $this->match->live = "finDeMatch";
         $this->match->validate_score = true;
         $this->match->save();
+
+        $activite['user_id'] = Auth::user()->id;
+        $activite['match_id'] = $this->match->id;
+        $activite['type'] = 'update_score';
+
+        $storeActivite = Activity::create($activite);
+        $storeActivite->save();
     }
 
     public function storeCompos()
