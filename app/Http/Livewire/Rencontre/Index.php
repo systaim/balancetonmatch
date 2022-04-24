@@ -126,8 +126,8 @@ class Index extends Component
     public function storeScore()
     {
         $this->corriger_le_score = false;
-        // $this->match->live = "finDeMatch";
-        // $this->match->validate_score = true;
+        $this->match->live = "finDeMatch";
+        $this->match->validate_score = true;
         $this->match->save();
     }
 
