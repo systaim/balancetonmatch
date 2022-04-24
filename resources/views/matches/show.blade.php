@@ -295,7 +295,7 @@
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7237777700901740"
                 crossorigin="anonymous"></script>
         <!-- bas de page -->
-        <ins class="adsbygoogle" style="display:inline-block;width:80%;height:60px"
+        <ins class="adsbygoogle" style="display:inline-block;height:80px"
             data-ad-client="ca-pub-7237777700901740" data-ad-slot="8168194089"></ins>
         <script>
             (adsbygoogle = window.adsbygoogle || []).push({});
