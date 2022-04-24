@@ -80,11 +80,11 @@
 
     <div class="grid grid-cols-3">
         <div class="flex flex-col items-center justify-center flex-1 py-4 overflow-hidden">
-            <p class="text-center truncate font-bold text-xl">{{ $match->homeClub->initial }}</p>
+            <p class="text-center truncate font-bold text-xl">{{ $match->homeClub->name }}</p>
             <a target="blank" href="{{ route('clubs.show', $match->homeClub->id) }}">
                 <div class="logo h-16 w-16 sm:h-20 sm:w-20 lg:h-32 lg:w-32 cursor-pointer lg:mr-1 xl:mr-4">
                     <img class="object-contain" src="{{ asset($match->homeClub->logo) }}"
-                        alt="Logo de {{ $match->homeClub->name }}">
+                        alt="Logo de {{ $match->homeClub->abbreviation }}">
                 </div>
             </a>
         </div>
@@ -155,11 +155,11 @@
             @endif
         </div>
         <div class="flex flex-col items-center justify-center flex-1 py-4 overflow-hidden">
-            <p class="text-left truncate font-bold text-xl">{{ $match->awayClub->initial }}</p>
+            <p class="text-left truncate font-bold text-xl">{{ $match->awayClub->name }}</p>
             <a target="blank" href="{{ route('clubs.show', $match->awayClub->id) }}">
                 <div class="logo h-16 w-16 sm:h-20 sm:w-20 lg:h-32 lg:w-32 cursor-pointer lg:mr-1 xl:mr-4">
                     <img class="object-contain" src="{{ asset($match->awayClub->logo) }}"
-                        alt="Logo de {{ $match->awayClub->name }}">
+                        alt="Logo de {{ $match->awayClub->abbreviation }}">
                 </div>
             </a>
         </div>
