@@ -12,18 +12,13 @@
         @foreach ($clubs as $key => $club)
             <a href="{{ route('clubs.show', $club) }}">
                 <div class="flex flex-col mb-3 w-full">
-                    <div id="listMatchs" class="relative flex flex-row items-center bg-primary overflow-hidden rounded-lg"
+                    <div id="listMatchs"
+                        class="relative flex flex-row items-center bg-primary overflow-hidden rounded-lg"
                         style="animation-delay: {{ $key }}00ms;">
                         <div class="w-16 m-2 z-10">
                             <div class="logo h-12 w-12">
-                                @if ($club->logo_path)
-                                    <img class="object-contain" src="{{ asset($club->logo_path) }}"
-                                        alt="Logo de {{ $club->name }}">
-                                @else
-                                    <img class="object-contain"
-                                        src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $club->numAffiliation }}.jpg"
-                                        alt="logo">
-                                @endif
+                                <img class="object-contain" src="{{ asset($club->logo) }}"
+                                    alt="Logo de {{ $club->name }}">
                             </div>
                         </div>
                         <div class=" py-2 w-full text-secondary overflow-hidden ml-2 z-10">
@@ -78,8 +73,8 @@
                                 </div>
                                 <div>
                                     <label for="nomClub">Quel est le nom du club ?</label>
-                                    <input class="inputForm focus:outline-none focus:shadow-outline w-full my-1" type="text"
-                                        name="nomClub" id="nomClub" wire:model="nomClub"
+                                    <input class="inputForm focus:outline-none focus:shadow-outline w-full my-1"
+                                        type="text" name="nomClub" id="nomClub" wire:model="nomClub"
                                         placeholder="Essaie d'être précis ;)">
                                 </div>
                                 <div class="float-right">
