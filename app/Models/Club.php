@@ -86,7 +86,7 @@ class Club extends Model
         if ($this->logo_path) {
             return "{$this->logo_path}";
         } else{
-            return "https://android-apiapp.azureedge.net/common/bib_img/logo/{$this->numAffiliation}.jpg";
+            return "https://cdn-transverse.azureedge.net/phlogos/BC{$this->numAffiliation}.jpg";
         }
     }
 
