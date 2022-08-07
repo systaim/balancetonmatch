@@ -21,13 +21,19 @@
         </div>
         <div class="flex justify-center">
             @auth
-                @if (Auth::user()->role == 'super-admin' || Auth::user()->role == 'admin' || ($match->live == 'attente' && $match->date_match < now() && ($match->home_score == null && $match->away_score == null)))
+                @if (Auth::user()->role == 'super-admin' ||
+                    Auth::user()->role == 'admin' ||
+                    ($match->live == 'attente' &&
+                        $match->date_match < now() &&
+                        ($match->home_score == null && $match->away_score == null)))
                     <button class="bg-secondary p-1 m-1 rounded-lg text-sm" type="button" wire:click="openBtnScore">
                         Quel score ?
                     </button>
                 @endif
             @else
-                @if ($match->live == 'attente' && $match->date_match < now() && ($match->home_score == null && $match->away_score == null))
+                @if ($match->live == 'attente' &&
+                    $match->date_match < now() &&
+                    ($match->home_score == null && $match->away_score == null))
                     <a href="/login">
                         <button class="bg-secondary p-1 m-1 rounded-lg text-sm" type="button">
                             Quel score ?
@@ -42,23 +48,12 @@
             <div class="col-span-5 overflow-hidden">
                 <a href="{{ route('clubs.show', $match->homeClub->id) }}">
                     <div class="bg-primary p-2 text-secondary flex flex-col lg:flex-row lg:items-center lg:rounded-l-full"
-                        style="background-color: {{ $match->homeClub->primary_color }}; color:{{ $match->homeClub->secondary_color == $match->homeClub->primary_color? '#cdfb0a': $match->homeClub->secondary_color }}">
+                        style="background-color: {{ $match->homeClub->primary_color }}; color:{{ $match->homeClub->secondary_color == $match->homeClub->primary_color ? '#cdfb0a' : $match->homeClub->secondary_color }}">
 
                         <div class="relative flex justify-center">
                             <div class="logo h-16 w-16 sm:h-20 sm:w-20 lg:h-32 lg:w-32 cursor-pointer lg:mr-1 xl:mr-4">
-                                @if ($match->id == 0)
-                                    <img class="object-contain w-full" src="{{ asset('images/100000.jpg') }}"
-                                        alt="logo">
-                                @else
-                                    @if ($match->homeClub->logo_path)
-                                        <img class="object-contain" src="{{ asset($match->homeClub->logo_path) }}"
-                                            alt="Logo de {{ $match->homeClub->name }}">
-                                    @else
-                                        <img class="object-contain"
-                                            src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $match->homeClub->numAffiliation }}.jpg"
-                                            alt="Logo de {{ $match->homeClub->name }}">
-                                    @endif
-                                @endif
+                                <img class="object-contain" src="{{ asset($match->homeClub->logo) }}"
+                                    alt="Logo de {{ $match->homeClub->name }}">
                             </div>
                         </div>
                         <div>
@@ -95,7 +90,6 @@
                             <input
                                 class="bg-white rounded-sm mr-1 flex justify-center w-16 text-3xl sm:text-5xl text-center font-mono font-bold"
                                 type="number" wire:model="away_score_corrige">
-
                         @endif
                     </div>
                 </div>
@@ -138,7 +132,7 @@
             <div class="col-span-5 overflow-hidden z-0">
                 <a href="{{ route('clubs.show', $match->awayClub->id) }}">
                     <div class="bg-secondary p-2 text-primary flex flex-col-reverse lg:flex-row lg:items-center lg:justify-end lg:rounded-r-full"
-                        style="background-color: {{ $match->awayClub->primary_color }}; color:{{ $match->awayClub->secondary_color == $match->awayClub->primary_color? '#cdfb0a': $match->awayClub->secondary_color }}">
+                        style="background-color: {{ $match->awayClub->primary_color }}; color:{{ $match->awayClub->secondary_color == $match->awayClub->primary_color ? '#cdfb0a' : $match->awayClub->secondary_color }}">
                         <div>
                             <p class="truncate text-center lg:text-left sm:font-bold lg:text-2xl">
                                 {{ $match->awayClub->name }}
@@ -146,19 +140,8 @@
                         </div>
                         <div class="flex justify-center">
                             <div class="logo h-16 w-16 sm:h-20 sm:w-20 lg:h-32 lg:w-32 cursor-pointer lg:ml-1 xl:ml-4">
-                                @if ($match->id == 0)
-                                    <img class="object-contain w-full" src="{{ asset('images/200000.jpg') }}"
-                                        alt="logo">
-                                @else
-                                    @if ($match->awayClub->logo_path)
-                                        <img class="object-contain" src="{{ asset($match->awayClub->logo_path) }}"
-                                            alt="Logo de {{ $match->awayClub->name }}">
-                                    @else
-                                        <img class="object-contain"
-                                            src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $match->awayClub->numAffiliation }}.jpg"
-                                            alt="Logo de {{ $match->awayClub->name }}">
-                                    @endif
-                                @endif
+                                <img class="object-contain" src="{{ asset($match->awayClub->logo) }}"
+                                    alt="Logo de {{ $match->awayClub->name }}">
                             </div>
                         </div>
                     </div>
@@ -172,7 +155,7 @@
                         @if ($comment->team_action == 'home' && $comment->type_action == 'goal')
                             <div class="flex flex-row justify-end items-center m-auto overflow-hidden mx-1">
                                 <div class="bg-primary text-secondary font-bold px-2 py-1 flex justify-end items-center w-full sm:w-48 rounded-lg mb-1"
-                                    style="background-color: {{ $match->homeClub->primary_color }}; color:{{ $match->homeClub->secondary_color == $match->homeClub->primary_color? '#cdfb0a': $match->homeClub->secondary_color }}">
+                                    style="background-color: {{ $match->homeClub->primary_color }}; color:{{ $match->homeClub->secondary_color == $match->homeClub->primary_color ? '#cdfb0a' : $match->homeClub->secondary_color }}">
                                     <p class="text-xs md:text-sm px-2 truncate">
                                         {{ substr($comment->statistic->player->first_name, 0, 1) }}.
                                         {{ $comment->statistic->player->last_name }}
@@ -203,7 +186,7 @@
                     @if ($comment->team_action == 'away' && $comment->type_action == 'goal')
                         <div class="flex flex-row justify-start items-center m-auto overflow-hidden mx-1">
                             <div class="bg-secondary text-primary font-bold px-2 py-1 flex flex-row-reverse justify-end items-center w-full sm:w-48 rounded-lg mb-1"
-                                style="background-color: {{ $match->awayClub->primary_color }}; color:{{ $match->awayClub->secondary_color == $match->awayClub->primary_color? '#cdfb0a': $match->awayClub->secondary_color }}">
+                                style="background-color: {{ $match->awayClub->primary_color }}; color:{{ $match->awayClub->secondary_color == $match->awayClub->primary_color ? '#cdfb0a' : $match->awayClub->secondary_color }}">
                                 <p class="text-xs md:text-sm px-2 truncate">
                                     {{ substr($comment->statistic->player->first_name, 0, 1) }}.
                                     {{ $comment->statistic->player->last_name }}
@@ -259,7 +242,8 @@
         <div class="col-span-2">
             <button @click="open = ! open"
                 class="mr-3 border rounded-full text-sm p-2 flex justify-center items-center shadow-xl">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20"
+                    fill="currentColor">
                     <path
                         d="M15 8a3 3 0 10-2.977-2.63l-4.94 2.47a3 3 0 100 4.319l4.94 2.47a3 3 0 10.895-1.789l-4.94-2.47a3.027 3.027 0 000-.74l4.94-2.47C13.456 7.68 14.19 8 15 8z" />
                 </svg>
@@ -289,11 +273,10 @@
     </script>
 </div> --}}
 
-@if ($match->home_score && $match->live == 'attente')
+{{-- @if ($match->home_score && $match->live == 'finDuMatch')
     <div class="relative sm:py-8 py-4">
         <div class="mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:max-w-7xl lg:px-8">
-            <div
-                class="relative rounded-2xl px-6 py-10 bg-primary overflow-hidden shadow-xl text-white">
+            <div class="relative rounded-2xl px-6 py-10 bg-primary overflow-hidden shadow-xl text-white">
                 <div class="relative">
                     <div class="text-center">
                         @if ($match->home_score == count($buteurs_domicile) && $match->away_score == count($buteurs_exterieur))
@@ -301,15 +284,15 @@
                                 Les <span class="bg-secondary px-1 text-primary">buteurs</span> du match
                             </h2>
                         @else
-                        <h2 class="text-3xl font-extrabold tracking-tight sm:text-4xl">
-                            Tu connais les <span class="bg-secondary px-1 text-primary">buteurs</span> ?
-                        </h2>
-                        <p class="mt-2 mx-auto max-w-2xl">
-                            Tu peux les ajouter
-                        </p>
-                        <p class="mt-2 mx-auto max-w-2xl">
-                            Si un joueur n'est pas dans la liste, pense a le créer
-                        </p>
+                            <h2 class="text-3xl font-extrabold tracking-tight sm:text-4xl">
+                                Tu connais les <span class="bg-secondary px-1 text-primary">buteurs</span> ?
+                            </h2>
+                            <p class="mt-2 mx-auto max-w-2xl">
+                                Tu peux les ajouter
+                            </p>
+                            <p class="mt-2 mx-auto max-w-2xl">
+                                Si un joueur n'est pas dans la liste, pense a le créer
+                            </p>
                         @endif
                     </div>
                 </div>
@@ -322,31 +305,28 @@
                                     <label for="player_dom{{ $i }}" class="block text-sm font-medium">Buteur
                                         n°{{ $i }}</label>
                                     @if (!isset($buteurs_domicile[$i - 1]))
-                                        {{-- @dump($buteurs_domicile[$i - 1]) --}}
                                         <select id="player_dom{{ $i }}" name="player_dom{{ $i }}"
                                             wire:model="input_buteur_dom.{{ $i }}"
                                             class="mt-1 block pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none text-black sm:text-sm rounded-md">
                                             <option>Sélectionne un joueur</option>
                                             @foreach ($match->homeClub->players->sortBy('first_name') as $player)
                                                 <option value="{{ $player->id }}">
-                                                    {{ ucfirst($player->first_name) }} {{ strtoupper($player->last_name) }}
+                                                    {{ ucfirst($player->first_name) }}
+                                                    {{ strtoupper($player->last_name) }}
                                                 </option>
                                             @endforeach
-                                            {{-- <option value="no_player_dom">Il n'est pas dans la liste</option> --}}
                                         </select>
-                                        {{-- @if ($input_buteur_dom.$i == 'no_player_dom')
-                                            OK INPUT
-                                        @endif --}}
                                     @else
                                         @foreach ($match->homeClub->players as $player)
                                             @if ($player->id == $buteurs_domicile[$i - 1])
-                                                <p class="text-lg">{{ ucfirst($player->first_name) }} {{ strtoupper($player->last_name) }}</p>
+                                                <p class="text-lg">{{ ucfirst($player->first_name) }}
+                                                    {{ strtoupper($player->last_name) }}</p>
                                             @endif
                                         @endforeach
                                     @endif
                                 </div>
                             @endfor
-                            
+
                         </div>
                         <div class="mt-4">
                             <h3 class="m-3 text-2xl truncate">{{ $match->awayClub->name }}</h3>
@@ -361,24 +341,24 @@
                                             <option>Sélectionne un joueur</option>
                                             @foreach ($match->awayClub->players as $player)
                                                 <option value="{{ $player->id }}">
-                                                    {{ ucfirst($player->first_name) }} {{ strtoupper($player->last_name) }}
+                                                    {{ ucfirst($player->first_name) }}
+                                                    {{ strtoupper($player->last_name) }}
                                                 </option>
                                             @endforeach
-                                            {{-- <option value="no_player_ext">Il n'est pas dans la liste</option> --}}
                                         </select>
                                     @else
                                         @foreach ($match->awayClub->players as $player)
                                             @if ($player->id == $buteurs_exterieur[$i - 1])
-                                                <p class="text-lg">{{ ucfirst($player->first_name) }} {{ strtoupper($player->last_name) }}</p>
+                                                <p class="text-lg">{{ ucfirst($player->first_name) }}
+                                                    {{ strtoupper($player->last_name) }}</p>
                                             @endif
                                         @endforeach
                                     @endif
                                 </div>
-                                @if ($input_buteur_ext == "no_player_ext")
-                                ok
-                            @endif
+                                @if ($input_buteur_ext == 'no_player_ext')
+                                    ok
+                                @endif
                             @endfor
-                            
                         </div>
                     </div>
                     <div class="mt-4 text-center">
@@ -394,4 +374,4 @@
             </div>
         </div>
     </div>
-@endif
+@endif --}}

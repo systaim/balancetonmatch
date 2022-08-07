@@ -484,7 +484,7 @@
             </div>
         </div>
     </section> --}}
-    @if ($commentators)
+    {{-- @if ($commentators)
         <section>
             <div class="bg-gray-50 overflow-hidden">
                 <div class="relative max-w-7xl mx-auto py-2 px-4 sm:px-6 lg:px-8">
@@ -505,32 +505,18 @@
                                 Les commentateurs du dimanche
                             </h2>
                         </div>
-                        {{-- <div class="mt-10 flex flex-wrap w-full">
+                        <div class="mt-10 flex flex-wrap w-full">
                             @foreach ($commentators as $com)
 
                                 <div class="relative bg-primary rounded-md shadow-xl overflow-hidden text-white w-72 m-2">
                                     <a href="{{ route('matches.show', [$com->match->id]) }}">
                                         <div class="absolute -top-3 -left-3 logo h-20 w-20 transform -rotate-12">
-                                            @if ($com->match->homeClub->logo_path != null)
-                                                <img class="object-contain" loading="lazy"
-                                                    src="{{ asset($com->match->homeClub->logo_path) }}"
-                                                    alt="Logo de {{ $com->match->homeClub->name }}">
-                                            @else
-                                                <img class="object-contain" loading="lazy"
-                                                    src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $com->match->homeClub->numAffiliation }}.jpg"
-                                                    alt="Logo de {{ $com->match->homeClub->name }}">
-                                            @endif
+                                            <img class="object-contain" src="{{ asset($com->match->homeClub->logo) }}"
+                                    alt="Logo de {{ $com->match->homeClub->name }}">
                                         </div>
                                         <div class="absolute -top-3 -right-3 logo h-20 w-20 transform rotate-12">
-                                            @if ($com->match->awayClub->logo_path != null)
-                                                <img class="object-contain" loading="lazy"
-                                                    src="{{ asset($com->match->awayClub->logo_path) }}"
-                                                    alt="Logo de {{ $com->match->awayClub->name }}">
-                                            @else
-                                                <img class="object-contain" loading="lazy"
-                                                    src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $com->match->awayClub->numAffiliation }}.jpg"
-                                                    alt="Logo de {{ $com->match->awayClub->name }}">
-                                            @endif
+                                           <img class="object-contain" src="{{ asset($com->match->homeClub->logo) }}"
+                                    alt="Logo de {{ $com->match->homeClub->name }}">
                                         </div>
                                         <div class="flex justify-center items-start py-3">
                                             <p class="text-sm leading-6 font-medium mr-3">
@@ -544,13 +530,12 @@
                                     </a>
                                 </div>
                             @endforeach
-                        </div> --}}
+                        </div>
                     </div>
                 </div>
             </div>
-
         </section>
-    @endif
+    @endif --}}
 
     {{-- <section class="relative bg-secondary py-8 overflow-x-hidden">
         <div class="-my-4 absolute top-1/2 left-1 z-20">
@@ -604,7 +589,7 @@
             @endforeach
         </div>
     </section> --}}
-    <section class="relative">
+    {{-- <section class="relative">
         <div class="text-gray-200 bg-primary body-font shadow-2xl">
             <div class="container px-5 py-10 lg:py-20 mx-auto moveToLeft">
                 <div
@@ -627,7 +612,7 @@
         <div class="absolute -top-18 lg:-top-20 right-0 lg:right-48 z-10">
             <img src="{{ asset('images/demo2-min.png') }}" alt="demo" class="h-72 lg:h-96" loading="lazy">
         </div>
-    </section>
+    </section> --}}
     <section>
         <!-- This example requires Tailwind CSS v2.0+ -->
         <div class="relative bg-gray-50 pt-16 pb-20 px-4 sm:px-6 lg:pb-28 lg:px-8">

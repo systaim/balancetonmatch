@@ -94,7 +94,7 @@ class CreateMatch extends Component
     {
         // dd($club);
         $this->homeTeam = $club->name;
-        $this->homeTeamLogo = $club->numAffiliation;
+        $this->homeTeamLogo = $club->logo;
         $this->searchHome = "";
         $this->clubsHome = [];
     }
@@ -103,7 +103,7 @@ class CreateMatch extends Component
     {
         // dd($club);
         $this->awayTeam = $club->name;
-        $this->awayTeamLogo = $club->numAffiliation;
+        $this->awayTeamLogo = $club->logo;
         $this->searchAway = "";
         $this->clubsAway = [];
     }

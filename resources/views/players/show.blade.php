@@ -10,13 +10,7 @@
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="-mt-12 sm:-mt-16 sm:flex sm:items-end sm:space-x-5">
                 <div class="flex">
-                    @if ($club->logo_path)
-                        <img class="rounded-full ring-4 ring-white h-32 w-32" src="{{ asset($club->logo_path) }}" alt="">
-                    @else
-                        <img class="rounded-full ring-4 ring-white h-32 w-32"
-                            src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $club->numAffiliation }}.jpg"
-                            alt="">
-                    @endif
+                    <img class="object-contain" src="{{ asset($club->logo) }}" alt="Logo de {{ $club->name }}">
 
                 </div>
                 <div class="mt-6 sm:flex-1 sm:min-w-0 sm:flex sm:items-center sm:justify-end sm:space-x-6 sm:pb-1">
@@ -39,8 +33,8 @@
                                 </button>
                                 <button type="button"
                                     class="inline-flex justify-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-red-700 bg-red-50 hover:bg-red-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="-ml-1 mr-2 h-5 w-5 text-red-700" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="-ml-1 mr-2 h-5 w-5 text-red-700"
+                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
                                     </svg>
@@ -62,13 +56,7 @@
         <div x-data="{ open: false }"
             class="relative w-72 m-4 bg-primary text-white flex flex-col justify-between rounded-lg shadow-2xl overflow-x-hidden">
             <div class="absolute top-2 left-2 logo h-12 w-12 z-10">
-                @if ($club->logo_path)
-                    <img class="object-contain" src="{{ asset($club->logo_path) }}" alt="Logo de {{ $club->name }}">
-                @else
-                    <img class="object-contain"
-                        src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $club->numAffiliation }}.jpg"
-                        alt="logo">
-                @endif
+                <img class="object-contain" src="{{ asset($club->logo) }}" alt="Logo de {{ $club->name }}">
             </div>
             <div>
                 <div class="relative">
@@ -100,8 +88,8 @@
                 </div>
             </div>
             <!-- ***********************
-                                                                                                            Formulaire suppression d'un joueur
-                                                                                                            ************************** -->
+                                                                                                                    Formulaire suppression d'un joueur
+                                                                                                                    ************************** -->
             <div id="{{ $player->id }}"
                 class="absolute bg-white top-0 left-0 right-0 bottom-0 text-primary z-20 flex flex-col justify-between items-center "
                 x-show="open" x-transition:enter="transition ease-out duration-300"
@@ -130,8 +118,8 @@
             </div>
 
             <!-- ***********************
-                                                                                                            Formulaire modification d'un joueur
-                                                                                                            ************************** -->
+                                                                                                                    Formulaire modification d'un joueur
+                                                                                                                    ************************** -->
 
             <div id="edition" class="hidden fixed z-50 inset-0 justify-center items-center"
                 style="background-color: rgba(0,0,0,.5);">
@@ -158,8 +146,8 @@
                             </div>
                             <div>
                                 <label class="flex flex-col" for="first_name">Prénom</label>
-                                <input class="inputForm focus:outline-none focus:shadow-outline w-full my-1" type="text"
-                                    name="first_name" value="{{ $player->first_name }}" id="first_name">
+                                <input class="inputForm focus:outline-none focus:shadow-outline w-full my-1"
+                                    type="text" name="first_name" value="{{ $player->first_name }}" id="first_name">
                                 @error('first_name')
                                     <span class="error">{{ $message }}</span>
                                 @enderror

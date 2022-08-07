@@ -44,14 +44,8 @@
                         name="team_action" value="home">
                     <label for="homeAction">
                         <div class="logo h-20 w-20 shadow-2xl border-2 border-primary">
-                            @if ($match->homeClub->logo_path)
-                                <img class="object-contain" src="{{ asset($match->homeClub->logo_path) }}"
+                            <img class="object-contain" src="{{ asset($match->homeClub->logo) }}"
                                     alt="Logo de {{ $match->homeClub->name }}">
-                            @else
-                                <img class="object-contain"
-                                    src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $match->homeClub->numAffiliation }}.jpg"
-                                    alt="Logo de {{ $match->homeClub->name }}">
-                            @endif
                         </div>
                     </label>
                 </div>
@@ -60,14 +54,8 @@
                         name="team_action" value="away">
                     <label for="awayAction">
                         <div class="logo h-20 w-20 shadow-2xl border-2 border-primary">
-                            @if ($match->awayClub->logo_path)
-                                <img class="object-contain" src="{{ asset($match->awayClub->logo_path) }}"
+                            <img class="object-contain" src="{{ asset($match->awayClub->logo) }}"
                                     alt="Logo de {{ $match->awayClub->name }}">
-                            @else
-                                <img class="object-contain"
-                                    src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $match->awayClub->numAffiliation }}.jpg"
-                                    alt="Logo de {{ $match->awayClub->name }}">
-                            @endif
                         </div>
                     </label>
                 </div>
@@ -138,16 +126,14 @@
                     <div class="flex items-center">
                         @if ($team_action == 'home')
                             <div class="logo h-14 w-14 cursor-pointer m-4 border-2 border-primary">
-                                <img class="object-contain"
-                                    src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $match->homeClub->numAffiliation }}.jpg"
-                                    alt="logo">
+                                <img class="object-contain" src="{{ asset($match->homeClub->logo) }}"
+                                    alt="Logo de {{ $match->homeClub->name }}">
                             </div>
                         @endif
                         @if ($team_action == 'away')
                             <div class="logo h-14 w-14 cursor-pointer m-4 border-2 border-primary">
-                                <img class="object-contain"
-                                    src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $match->awayClub->numAffiliation }}.jpg"
-                                    alt="logo">
+                                <img class="object-contain" src="{{ asset($match->awayClub->logo) }}"
+                                    alt="Logo de {{ $match->awayClub->name }}">
                             </div>
                         @endif
                         <h3 class="text-xl text-center px-2 text-primary bg-gray-200 rounded-lg">
@@ -599,7 +585,7 @@
         </form>
         <!-- fin option commentaires "match" -->
 
-        @if (!empty($photos))
+        {{-- @if (!empty($photos))
             <div class="w-full">
                 <div wire:ignore>
                     <div class="splide">
@@ -702,7 +688,7 @@
                     </form>
                 @endif
             </div>
-        @endif
+        @endif --}}
 
         <!-- Affichage des commentaires -->
         @if ($match->commentateur)

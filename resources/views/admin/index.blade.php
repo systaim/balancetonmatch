@@ -41,46 +41,46 @@
         <!-- Off-canvas menu for mobile, show/hide based on off-canvas menu state. -->
         <div class="fixed inset-0 flex z-40 lg:hidden" role="dialog" aria-modal="true" x-show="open">
             <!--
-                                                Off-canvas menu overlay, show/hide based on off-canvas menu state.
-                                          
-                                                Entering: "transition-opacity ease-linear duration-300"
-                                                  From: "opacity-0"
-                                                  To: "opacity-100"
-                                                Leaving: "transition-opacity ease-linear duration-300"
-                                                  From: "opacity-100"
-                                                  To: "opacity-0"
-                                              -->
+                                                    Off-canvas menu overlay, show/hide based on off-canvas menu state.
+                                              
+                                                    Entering: "transition-opacity ease-linear duration-300"
+                                                      From: "opacity-0"
+                                                      To: "opacity-100"
+                                                    Leaving: "transition-opacity ease-linear duration-300"
+                                                      From: "opacity-100"
+                                                      To: "opacity-0"
+                                                  -->
             <div class="fixed inset-0 bg-gray-600 bg-opacity-75" aria-hidden="true" x-show="open"
                 @click.outside="open = false"></div>
 
             <!--
-                                                Off-canvas menu, show/hide based on off-canvas menu state.
-                                          
-                                                Entering: "transition ease-in-out duration-300 transform"
-                                                  From: "-translate-x-full"
-                                                  To: "translate-x-0"
-                                                Leaving: "transition ease-in-out duration-300 transform"
-                                                  From: "translate-x-0"
-                                                  To: "-translate-x-full"
-                                              -->
+                                                    Off-canvas menu, show/hide based on off-canvas menu state.
+                                              
+                                                    Entering: "transition ease-in-out duration-300 transform"
+                                                      From: "-translate-x-full"
+                                                      To: "translate-x-0"
+                                                    Leaving: "transition ease-in-out duration-300 transform"
+                                                      From: "translate-x-0"
+                                                      To: "-translate-x-full"
+                                                  -->
             <div class="relative flex-1 flex flex-col max-w-xs w-full pt-5 pb-4 bg-primary">
                 <!--
-                                                  Close button, show/hide based on off-canvas menu state.
-                                          
-                                                  Entering: "ease-in-out duration-300"
-                                                    From: "opacity-0"
-                                                    To: "opacity-100"
-                                                  Leaving: "ease-in-out duration-300"
-                                                    From: "opacity-100"
-                                                    To: "opacity-0"
-                                                -->
+                                                      Close button, show/hide based on off-canvas menu state.
+                                              
+                                                      Entering: "ease-in-out duration-300"
+                                                        From: "opacity-0"
+                                                        To: "opacity-100"
+                                                      Leaving: "ease-in-out duration-300"
+                                                        From: "opacity-100"
+                                                        To: "opacity-0"
+                                                    -->
                 <div class="absolute top-0 right-0 -mr-12 pt-2">
                     <button type="button" @click="open = ! open"
                         class="ml-1 flex items-center justify-center h-10 w-10 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                         <span class="sr-only">Close sidebar</span>
                         <!-- Heroicon name: outline/x -->
-                        <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor" aria-hidden="true">
+                        <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M6 18L18 6M6 6l12 12" />
                         </svg>
@@ -282,13 +282,14 @@
                                                             class="text-gray-900 font-medium">{{ $user->club->name }}</span>
                                                     @endif
                                                     <span>{{ $user->role }}</span>
-                                                    <time datetime="{{ $user->created_at }}">Créé le {{ Carbon\Carbon::parse($user->created_at)->format('d-m-y') }}</time>
+                                                    <time datetime="{{ $user->created_at }}">Créé le
+                                                        {{ Carbon\Carbon::parse($user->created_at)->format('d-m-y') }}</time>
                                                 </span>
                                             </span>
                                             <!-- Heroicon name: solid/chevron-right -->
                                             <svg class="flex-shrink-0 h-5 w-5 text-gray-400"
-                                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
-                                                aria-hidden="true">
+                                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                                fill="currentColor" aria-hidden="true">
                                                 <path fill-rule="evenodd"
                                                     d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
                                                     clip-rule="evenodd" />
@@ -350,14 +351,15 @@
                                                             <a href="{{ route('users.show', [$user->id]) }}"
                                                                 class="group inline-flex space-x-2 truncate text-sm">
                                                                 <!-- Heroicon name: solid/cash -->
-                                                                <svg xmlns="http://www.w3.org/2000/svg"
-                                                                    class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6"
+                                                                    fill="none" viewBox="0 0 24 24"
                                                                     stroke="currentColor">
                                                                     <path stroke-linecap="round" stroke-linejoin="round"
                                                                         stroke-width="2"
                                                                         d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                                                                 </svg>
-                                                                <p class="text-gray-500 truncate group-hover:text-gray-900">
+                                                                <p
+                                                                    class="text-gray-500 truncate group-hover:text-gray-900">
                                                                     {{ $user->first_name }}
                                                                     {{ $user->last_name }}
                                                                 </p>
@@ -366,26 +368,22 @@
                                                     </td>
                                                     <td
                                                         class="px-6 py-4 text-right whitespace-nowrap text-sm text-gray-500">
-                                                        <span class="text-gray-900 font-medium">{{ $user->role }} </span>
+                                                        <span class="text-gray-900 font-medium">{{ $user->role }}
+                                                        </span>
                                                     </td>
                                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                                         @if ($user->club)
                                                             <div class="flex-grow-0 logo h-12 w-12">
-                                                                @if ($user->club->logo_path)
-                                                                    <img class="object-contain"
-                                                                        src="{{ asset($user->club->logo_path) }}"
-                                                                        alt="Logo de {{ $user->club->name }}">
-                                                                @else
-                                                                    <img class="object-contain"
-                                                                        src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $user->club->numAffiliation }}.jpg"
-                                                                        alt="logo">
-                                                                @endif
+                                                                <img class="object-contain"
+                                                                    src="{{ asset($user->club->logo) }}"
+                                                                    alt="Logo de {{ $user->club->name }}">
                                                             </div>
                                                         @endif
                                                     </td>
                                                     <td
                                                         class="px-6 py-4 text-right whitespace-nowrap text-sm text-gray-500">
-                                                        <time datetime="{{ $user->created_at }}">{{ Carbon\Carbon::parse($user->created_at)->format('d-m-y') }}</time>
+                                                        <time
+                                                            datetime="{{ $user->created_at }}">{{ Carbon\Carbon::parse($user->created_at)->format('d-m-y') }}</time>
                                                     </td>
                                                 </tr>
                                             @endforeach

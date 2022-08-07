@@ -33,14 +33,8 @@
                 <div class="grid grid-cols-12">
                     <div class="flex flex-col justify-center items-center col-span-5 overflow-hidden">
                         <div class="logo h-12 w-12 lg:h-16 lg:w-16 cursor-pointer">
-                            @if ($match->homeClub->logo_path)
-                                <img class="object-contain" src="{{ asset($match->homeClub->logo_path) }}"
+                            <img class="object-contain" src="{{ asset($match->homeClub->logo) }}"
                                     alt="Logo de {{ $match->homeClub->name }}">
-                            @else
-                                <img class="object-contain"
-                                    src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $match->homeClub->numAffiliation }}.jpg"
-                                    alt="Logo de {{ $match->homeClub->name }}">
-                            @endif
                         </div>
                         <div class="ml-2">
                             <p class="text-xs md:text-base md:font-bold truncate">{{ $match->homeClub->name }}</p>
@@ -78,14 +72,8 @@
                     </div>
                     <div class="flex flex-col justify-center items-center col-span-5 overflow-hidden">
                         <div class="logo h-12 w-12 lg:h-16 lg:w-16 cursor-pointer">
-                            @if ($match->awayClub->logo_path)
-                                <img class="object-contain" src="{{ asset($match->awayClub->logo_path) }}"
+                            <img class="object-contain" src="{{ asset($match->awayClub->logo) }}"
                                     alt="Logo de {{ $match->awayClub->name }}">
-                            @else
-                                <img class="object-contain"
-                                    src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $match->awayClub->numAffiliation }}.jpg"
-                                    alt="Logo de {{ $match->awayClub->name }}">
-                            @endif
                         </div>
                         <div class="ml-2">
                             <p class="text-xs md:text-base md:font-bold truncate">{{ $match->awayClub->name }}</p>

@@ -19,14 +19,8 @@
                 <div x-data="{ open: false }"
                     class="relative w-72 m-4 bg-primary text-white flex flex-col justify-between rounded-lg shadow-2xl overflow-x-hidden">
                     <div class="absolute top-2 left-2 logo h-12 w-12 z-10">
-                        @if ($club->logo_path)
-                            <img class="object-contain" src="{{ asset($club->logo_path) }}"
-                                alt="Logo de {{ $club->name }}">
-                        @else
-                            <img class="object-contain"
-                                src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $club->numAffiliation }}.jpg"
-                                alt="logo">
-                        @endif
+                        <img class="object-contain" src="{{ asset($club->logo) }}"
+                                    alt="Logo de {{ $club->name }}">
                     </div>
                     <div>
                         <div class="relative">

@@ -64,14 +64,8 @@
                         <p class="text-center">Mon club :</p>
                         <div class="flex justify-center items-center">
                             <div class="flex-grow-0 logo h-16 w-16 m-2">
-                                @if (Auth::user()->club->logo_path)
-                                    <img class="object-contain" src="{{ asset(Auth::user()->club->logo_path) }}"
-                                        alt="Logo de {{ Auth::user()->club->name }}">
-                                @else
-                                    <img class="object-contain"
-                                        src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ Auth::user()->club->numAffiliation }}.jpg"
-                                        alt="logo">
-                                @endif
+                                <img class="object-contain" src="{{ asset(Auth::user()->club->logo) }}"
+                                    alt="Logo de {{ Auth::user()->club->name }}">
                             </div>
                             <p class="font-bold">{{ Auth::user()->club->name }}</p>
                         </div>

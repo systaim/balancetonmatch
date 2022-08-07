@@ -245,7 +245,7 @@
     </div>
 
     <div class="relative">
-        @if ($match->date_match < Carbon\Carbon::create('2022-04-09'))
+        {{-- @if ($match->date_match < Carbon\Carbon::create('2022-04-09')) --}}
             @livewire('form-commentaires', [
             'commentator'=> $commentator,
             'nbrFavoris'=> $nbrFavoris,
@@ -260,11 +260,11 @@
             'favorimatch' => $favorimatch,
             'favoriteam' => $favoriteam,
             ])
-        @else
+        {{-- @else
             @livewire('rencontre.index', [
             'match' =>$match,
             ])
-        @endif
+        @endif --}}
     </div>
 
     {{-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7237777700901740"

@@ -33,14 +33,8 @@
                                     wire:click="addHomeTeam({{ $club->id }})" wire:key="{{ $loop->index }}">
                                     <div class="w-16 m-2 z-10">
                                         <div class="logo h-12 w-12 lg:h-16 lg:w-16 cursor-pointer">
-                                            @if ($club->logo_path)
-                                                <img class="object-contain" src="{{ asset($club->logo_path) }}"
-                                                    alt="Logo de {{ $club->name }}">
-                                            @else
-                                                <img class="object-contain"
-                                                    src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $club->numAffiliation }}.jpg"
-                                                    alt="Logo de {{ $club->name }}">
-                                            @endif
+                                            <img class="object-contain" src="{{ asset($club->logo) }}"
+                                    alt="Logo de {{ $club->name }}">
                                         </div>
                                     </div>
                                     <div class="flex items-center py-2 w-full text-secondary overflow-hidden ml-2 z-10">
@@ -61,7 +55,7 @@
                     <div class="relative py-6 px-2 bg-secondary text-primary rounded-md mx-4 w-full shadow-xl">
                         <div class="logo h-28 w-28 m-auto">
                             <img class="object-contain"
-                                src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $homeTeamLogo }}.jpg">
+                                src="{{ $homeTeamLogo }}">
                         </div>
                         <h2 class="text-center text-2xl xl:text-5xl truncate">{{ $homeTeam }}</h2>
                         <span
@@ -103,14 +97,8 @@
                                     wire:click="addAwayTeam({{ $club->id }})" wire:key="{{ $loop->index }}">
                                     <div class="w-16 m-2 z-10">
                                         <div class="logo h-12 w-12 lg:h-16 lg:w-16 cursor-pointer">
-                                            @if ($club->logo_path)
-                                                <img class="object-contain" src="{{ asset($club->logo_path) }}"
-                                                    alt="Logo de {{ $club->name }}">
-                                            @else
-                                                <img class="object-contain"
-                                                    src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $club->numAffiliation }}.jpg"
-                                                    alt="Logo de {{ $club->name }}">
-                                            @endif
+                                            <img class="object-contain" src="{{ asset($club->logo) }}"
+                                    alt="Logo de {{ $club->name }}">
                                         </div>
                                     </div>
                                     <div class="flex items-center py-2 w-full text-secondary overflow-hidden ml-2 z-10">
@@ -131,7 +119,7 @@
                     <div class="relative py-6 px-2 bg-secondary text-primary rounded-md mx-4 w-full shadow-xl">
                         <div class="logo h-28 w-28 m-auto">
                             <img class="object-contain"
-                                src="https://android-apiapp.azureedge.net/common/bib_img/logo/{{ $awayTeamLogo }}.jpg">
+                                src="{{ $awayTeamLogo }}">
                         </div>
                         <h2 class="text-center text-2xl xl:text-5xl truncate">{{ $awayTeam }}</h2>
                         <span
