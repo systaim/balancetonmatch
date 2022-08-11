@@ -11,7 +11,7 @@
         </div>
         <div class="relative max-w-7xl mx-auto px-4 sm:py-32 sm:px-6 lg:px-8">
             <h1 class="text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl">Bienvenue</h1>
-            <p class="mt-6 text-xl text-indigo-100 max-w-3xl">BalanceTonMatch.com a pour but de rassembler les passionnés du
+            <p class="mt-6 text-sm lg:text-xl text-indigo-100 max-w-3xl">BalanceTonMatch.com a pour but de rassembler les passionnés du
                 ballon rond AMATEUR. Vous pourrez suivre les matchs en <span
                     class="uppercase text-primary font-bold bg-secondary px-2 rounded-sm">live</span> soit en tant que
                 commentateur soit en tant que spectateur</p>
@@ -72,12 +72,14 @@
                     </span>
                     <p class="ml-3 font-medium">
                         <span class="md:inline">
-                            Vous pouvez modifier la date des matchs qui sont reportés ce week-end. Il suffit simplement d'être
-                            connecté
+                            Créez vos matchs amicaux pour pouvoir les commenter en direct
                         </span>
                     </p>
                 </div>
-
+                
+            </div>
+            <div class="flex justify-center">
+                <button class="btn btnPrimary" type=button>Je crée un match</button>
             </div>
         </div>
     </div>
@@ -332,7 +334,7 @@
             </div>
         </aside>
         <div class="flex-1 w-full">
-            <a href="{{ route('competitions.index') }}">
+            {{-- <a href="{{ route('competitions.index') }}"> --}}
                 <div class="shadow-white-xl rounded-2xl w-5/6 p-4 bg-primary relative overflow-hidden mx-auto">
                     <img alt="competitions" src="{{ asset('images/ball-fire-water.png') }}" loading="lazy"
                         class="absolute -right-16 -bottom-8 h-40 w-40 mb-4" />
@@ -344,15 +346,16 @@
                             Vous y trouverez les matchs à venir
                         </p>
                         <p class="text-white text-lg font-medium flex items-center mt-2">
-                            J'y vais
+                            {{-- J'y vais
                             <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                 stroke-width="2" class="w-5 h-5 mx-2" viewBox="0 0 24 24">
                                 <path d="M5 12h14M12 5l7 7-7 7"></path>
-                            </svg>
+                            </svg> --}}
+                            En attente des calendriers
                         </p>
                     </div>
                 </div>
-            </a>
+            {{-- </a> --}}
             <a href="/mon-espace/mes-favoris">
                 <div class="shadow-white-xl rounded-2xl w-5/6 p-4 bg-primary relative overflow-hidden mx-auto mt-6">
                     <img alt="favoris" src="{{ asset('images/favoris-mobile.png') }}"
