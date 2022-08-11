@@ -154,7 +154,12 @@ class ClubController extends Controller
                                 $query->where('home_team_id', $club->id)
                                         ->orwhere('away_team_id', $club->id);
                         })->limit(1)->orderBy('date_match')->get();
-                return view('clubs.pageClub', compact('teams', 'activities', 'club', 'matchs', 'user', 'nbrFavoris', 'nbrPlayers', 'nbrStaffs', 'matchsR1', 'matchsR2', 'matchsR3', 'matchsCF', 'matchsBZH', 'matchsCoupeDep', 'matchsD1', 'matchsD2', 'matchsD3', 'matchsD4'));
+                $matchsAmicaux = Rencontre::where('competition_id', 6)->where('date_match', '>=', Carbon::now()->subHours(12))
+                ->where(function ($query) use ($club) {
+                        $query->where('home_team_id', $club->id)
+                        ->orwhere('away_team_id', $club->id);
+                })->limit(1)->orderBy('date_match')->get();
+                return view('clubs.pageClub', compact('teams', 'activities', 'club', 'matchs', 'user', 'nbrFavoris', 'nbrPlayers', 'nbrStaffs', 'matchsR1', 'matchsR2', 'matchsR3', 'matchsCF', 'matchsBZH', 'matchsCoupeDep', 'matchsD1', 'matchsD2', 'matchsD3', 'matchsD4', 'matchsAmicaux'));
         }
 
         /**

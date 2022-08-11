@@ -139,7 +139,7 @@
                     </div>
                 </div>
                 <div class="p-4 w-11/12 lg:w-1/3 h-64 my-2">
-                    <a href="competitions/coupe-de-france-2021-2022">
+                    <a href="competitions/coupe-de-france">
                         <div class="relative h-64 border-2 rounded-lg overflow-hidden shadow-2xl border-none">
                             <img class="w-full object-cover object-center h-full" loading="lazy"
                                 src="{{ asset('images/Coupe-de-france.jpg') }}" alt="Coupe de France">
@@ -150,7 +150,7 @@
                     </a>
                 </div>
                 <div class="p-4 w-11/12 lg:w-1/3 h-64 my-2">
-                    <a href="competitions/coupe-de-bretagne-2021-2022">
+                    <a href="competitions/coupe-de-bretagne">
                         <div class="relative h-64 border-2 rounded-lg overflow-hidden shadow-2xl border-none">
                             <img class="w-full object-cover object-center h-full" src="{{ asset('images/bzh.png') }}"
                                 alt="coupe de Bretagne" loading="lazy">
@@ -161,7 +161,7 @@
                     </a>
                 </div>
                 <div class="p-4 w-11/12 lg:w-1/3 h-64 my-2">
-                    <a href="competitions/coupe-ange-lemee-2021-2022">
+                    <a href="competitions/coupe-ange-lemee">
                         <div class="relative h-64 border-2 rounded-lg overflow-hidden shadow-2xl border-none">
                             <img class="w-full object-cover object-center h-full" src="{{ asset('images/coupe-departement-min.jpeg') }}" 
                             alt="coupe de Bretagne" loading="lazy">
@@ -188,7 +188,7 @@
                     </div>
                 </div>
                 <div class="p-4 w-11/12 lg:w-1/3 h-64 my-2">
-                    <a href="competitions/amicaux-2021-2022">
+                    <a href="competitions/amicaux">
                         <div class="relative h-64 border-2 rounded-lg overflow-hidden shadow-2xl border-none">
                             <img class="w-full object-cover object-center h-full" src="{{ asset('images/amicaux.jpg') }}"
                                 alt="Coupe de France" loading="lazy">

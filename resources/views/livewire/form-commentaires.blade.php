@@ -1,4 +1,4 @@
-<div wire:poll.3s x-data="{ open: false }">
+<div wire:poll.2s x-data="{ open: false }">
     <!----------------------
     Options commentaires "équipe"
     ------------------------->

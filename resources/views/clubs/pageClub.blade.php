@@ -269,6 +269,15 @@
                 @endforeach
             </div>
         @endif
+        @if (collect($matchsAmicaux)->isNotEmpty())
+            <div class="mt-6">
+                <h4 class="inline-block text-xl px-3 text-center bg-secondary text-primary rounded-md shadow-lg ml-2">Amical
+                </h4>
+                @foreach ($matchsAmicaux as $match)
+                    @include('match')
+                @endforeach
+            </div>
+        @endif
         <a class="flex justify-center" href="{{ route('matches.create') }}">
             <button class="btn btnSecondary">Je crée un match</button>
         </a>

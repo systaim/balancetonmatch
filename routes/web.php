@@ -45,7 +45,7 @@ $club = ClubController::class;
 |
 */
 
-Route::get('/competitions/coupe-de-france-2021-2022', function () {
+Route::get('/competitions/coupe-de-france', function () {
 
     $matchs = Rencontre::where('competition_id', 3)->where('date_match', '>=', Carbon::now()->subDays(5))->orderBy('date_match', 'asc')->get();
     $user = Auth::user();
@@ -54,7 +54,7 @@ Route::get('/competitions/coupe-de-france-2021-2022', function () {
     return view('competitions.coupeDeFrance', compact('matchs', 'user', 'title'));
 });
 
-Route::get('/competitions/coupe-de-bretagne-2021-2022', function () {
+Route::get('/competitions/coupe-de-bretagne', function () {
 
     $matchs = Rencontre::where('competition_id', 4)->where('date_match', '>=', Carbon::now()->subDays(5))->where('region_id', 3)->orderBy('date_match', 'asc')->get();
     $user = Auth::user();
@@ -63,7 +63,7 @@ Route::get('/competitions/coupe-de-bretagne-2021-2022', function () {
     return view('competitions.coupeDeBretagne', compact('matchs', 'user', 'title'));
 });
 
-Route::get('/competitions/coupe-ange-lemee-2021-2022', function () {
+Route::get('/competitions/coupe-ange-lemee', function () {
 
     $matchs = Rencontre::where('competition_id', 5)->where('date_match', '>=', Carbon::now()->subDays(5))->where('department_id', 22)->orderBy('date_match', 'asc')->get();
     $user = Auth::user();
@@ -99,7 +99,7 @@ Route::get('region/{region:slug}/departement/{departement}/district/{division}/g
 })->name('competition.district');
 
 
-Route::get('/competitions/amicaux-2021-2022', function () {
+Route::get('/competitions/amicaux', function () {
 
     $matchs = Rencontre::where('competition_id', 6)->where('date_match', '>=', Carbon::now()->subDays(5))->where('date_match', '>=', Carbon::now()->subHours(12))->orderBy('date_match', 'asc')->get();
     $user = Auth::user();

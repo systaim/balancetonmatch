@@ -7,6 +7,9 @@ use App\Models\Department;
 use App\Models\DivisionsDepartment;
 use App\Models\DivisionsRegion;
 use App\Models\Group;
+use App\Models\Journee;
+use App\Models\Region;
+use App\Models\Rencontre;
 use Illuminate\Http\Request;
 
 class CompetitionController extends Controller
@@ -56,15 +59,15 @@ class CompetitionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show(Region $region, DivisionsRegion $division, Group $groupe)
     {
-        // $matchs = Rencontre::where('group_id', $group->id)
-        //             ->orwhere('division_region_id', $regionale->id)
-        //             ->orwhere('division_department_id', $district->id)
+        // $matchs = Rencontre::where('group_id', $groupe->id)
+        //             ->orwhere('division_region_id', $region->id)
         //             ->get()->groupBy('journee_id');
         // $journees = Journee::find($matchs->keys());
 
-        // return view('competitions.show', compact('competition', 'group', 'regionale', 'district', 'matchs', 'journees'));
+        // return view('competitions.show', compact('groupe', 'region', 'matchs', 'journees'));
+
     }
 
     /**

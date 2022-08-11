@@ -1,17 +1,14 @@
-<div class="relative commentaires minHeight16 overflow-hidden h-auto {{ $comment->team_action }}" @if ($comment->team_action == 'home')
-    style="border-color: {{ $match->homeClub->primary_color }};"
+<div class="relative commentaires minHeight16 overflow-hidden h-auto {{ $comment->team_action }}"
+    @if ($comment->team_action == 'home') style="border-color: {{ $match->homeClub->primary_color }};"
 @elseif ($comment->team_action == 'away')
-    style="border-color: {{ $match->awayClub->primary_color }};"
-    @endif
+    style="border-color: {{ $match->awayClub->primary_color }};" @endif
     x-data="{ open: false }">
     <div class="minuteCommentaires w-24 sm:w-32 {{ $comment->team_action }} p-4 flex flex-col items-center"
-        @if ($comment->team_action == 'home')
-        style="background-color: {{ $match->homeClub->primary_color }};
-        color:{{ $match->homeClub->secondary_color == $match->homeClub->primary_color? '#cdfb0a': $match->homeClub->secondary_color }}"
+        @if ($comment->team_action == 'home') style="background-color: {{ $match->homeClub->primary_color }};
+        color:{{ $match->homeClub->secondary_color == $match->homeClub->primary_color ? '#cdfb0a' : $match->homeClub->secondary_color }}"
     @elseif ($comment->team_action == 'away')
         style="background-color: {{ $match->awayClub->primary_color }};
-        color:{{ $match->awayClub->secondary_color == $match->awayClub->primary_color? '#cdfb0a': $match->awayClub->secondary_color }}"
-        @endif>
+        color:{{ $match->awayClub->secondary_color == $match->awayClub->primary_color ? '#cdfb0a' : $match->awayClub->secondary_color }}" @endif>
         <div>
             @if ($comment->team_action == 'match')
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
@@ -30,13 +27,13 @@
         @if ($comment->team_action == 'home')
             <div class="logo h-12 w-12 cursor-pointer">
                 <img class="object-contain" src="{{ asset($match->homeClub->logo) }}"
-                                    alt="Logo de {{ $match->homeClub->name }}">
+                    alt="Logo de {{ $match->homeClub->name }}">
             </div>
         @endif
         @if ($comment->team_action == 'away')
             <div class="logo h-12 w-12 cursor-pointer">
                 <img class="object-contain" src="{{ asset($match->awayClub->logo) }}"
-                                    alt="Logo de {{ $match->awayClub->name }}">
+                    alt="Logo de {{ $match->awayClub->name }}">
             </div>
         @endif
     </div>
@@ -169,7 +166,11 @@
                 @endif
             </div>
         </div>
-        @if ($comment->team_action != 'match' && ($comment->type_comments != 'Carton jaune' && $comment->type_comments != '2e carton jaune' && $comment->type_comments != 'Carton rouge' && $comment->type_comments != 'Carton blanc'))
+        @if ($comment->team_action != 'match' &&
+            ($comment->type_comments != 'Carton jaune' &&
+                $comment->type_comments != '2e carton jaune' &&
+                $comment->type_comments != 'Carton rouge' &&
+                $comment->type_comments != 'Carton blanc'))
             <div class="flex justify-end items-end mx-1 -mb-3 -mr-3">
                 @foreach ($reactions as $reaction)
                     @if (!empty($comment->reactions))
@@ -189,7 +190,9 @@
         @endif
     </div>
     @auth
-        @if (($match->commentateur->user_id == Auth::user()->id && $match->live != 'finDeMatch') || Auth::user()->role == 'super-admin' || Auth::user()->role == 'admin')
+        @if (($match->commentateur->user_id == Auth::user()->id && $match->live != 'finDeMatch') ||
+            Auth::user()->role == 'super-admin' ||
+            Auth::user()->role == 'admin')
             @if ($comment->type_comments != 'Pub')
                 <div class="absolute flex justify-center items-center right-1 top-0">
                     <div>
