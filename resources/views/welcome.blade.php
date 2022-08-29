@@ -79,7 +79,9 @@
                 
             </div>
             <div class="flex justify-center">
-                <button class="btn btnPrimary" type=button>Je crée un match</button>
+                <a href="{{ route('matches.create') }}">
+                    <button class="btn btnPrimary" type=button>Je crée un match</button>
+                </a>
             </div>
         </div>
     </div>

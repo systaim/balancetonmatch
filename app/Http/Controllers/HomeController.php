@@ -28,6 +28,8 @@ class HomeController extends Controller
      */
     public function __invoke(Request $request)
     {
+        $page = file_get_contents('https://foot22.fff.fr/competitions?tab=calendar&id=395659&phase=1&poule=4&type=ch', FILE_USE_INCLUDE_PATH);
+        // dd($page);
         $dateJour = Carbon::now();
         $user = Auth::user();
         $users = User::all();
