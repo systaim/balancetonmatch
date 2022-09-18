@@ -156,7 +156,7 @@ class PlayerController extends Controller
 
 
         $player->first_name = $request->first_name;
-        $player->last_name = $request->last_name;
+        $player->last_name = strtoupper($request->last_name);
         $player->date_of_birth = $request->date_of_birth;
         $player->position = $request->position;
         $player->created_by = $user->id;
