@@ -18,7 +18,7 @@ class Commentaire extends Model
         'rencontre_id',
         'type_action',
         'player_id',
-        'match_id',
+        'renconttre_id',
         'type_comments',
         'comments',
         'minute',
