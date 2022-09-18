@@ -874,6 +874,7 @@ class FormCommentaires extends Component
             'team_action' => $this->team_action,
             'commentator_id' => $this->commentator[0]->id,
             'rencontre_id' => $this->match->id,
+            'player_id' => $this->player
         ];
 
         if ($this->type_comments == "but") {
