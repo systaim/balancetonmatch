@@ -44,7 +44,7 @@
                 @if ($comment->type_comments == 'Pub')
                     <p>{!! $comment->comments !!}</p>
                 @else
-                    <p>{{ $comment->comments }}</p>
+                    {{-- <p>{{ $comment->comments }}</p> --}}
                 @endif
                 <div class="flex flex-col items-between">
                     @if ($comment->statistic)
