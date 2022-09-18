@@ -139,7 +139,7 @@
             </div>
             <!-- FIN menu ajout d'un joueur par utilisateur -->
             <div>
-                @if ($comment->images != null)
+                {{-- @if ($comment->images != null) --}}
                     <div class="flex justify-end pr-8">
                         @if (pathinfo($comment->images)['extension'] == 'mp4' || pathinfo($comment->images)['extension'] == 'mov')
                             <video controls class="max-h-48 w-auto rounded-md shadow-xl">
@@ -154,7 +154,7 @@
                             </a>
                         @endif
                     </div>
-                @else
+                {{-- @else
                     @if ($comment->statistic)
                         @if ($comment->statistic->player->id > 16)
                             <div class="flex justify-center md:justify-end my-4">
@@ -163,7 +163,7 @@
                             </div>
                         @endif
                     @endif
-                @endif
+                @endif --}}
             </div>
         </div>
         @if ($comment->team_action != 'match' &&
