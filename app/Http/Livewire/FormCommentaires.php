@@ -869,8 +869,12 @@ class FormCommentaires extends Component
         ]);
 
 
-        $commentData = ['minute' => $this->minuteCom, 'team_action' => $this->team_action];
-        $commentData['commentator_id'] = $this->commentator[0]->id;
+        $commentData = [
+            'minute' => $this->minuteCom, 
+            'team_action' => $this->team_action,
+            'commentator_id' => $this->commentator[0]->id,
+            'rencontre_id' => $this->match->id,
+        ];
 
         if ($this->type_comments == "but") {
 
