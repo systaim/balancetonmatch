@@ -882,6 +882,7 @@ class FormCommentaires extends Component
             $commentData['type_action'] = "goal";
             $commentData['type_comments'] = $this->listGoal[array_rand($this->listGoal)];
             $commentData['comments'] = $this->type_but;
+            $commentData['comments'] = 'but';
             // if($this->type_but == "perso"){
             //     $commentData['comments'] = $this->commentPerso;
             // } else {
