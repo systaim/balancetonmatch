@@ -17,7 +17,27 @@ class Rencontre extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable = ['slug', 'home_team_id', 'home_score', 'away_team_id', 'away_score', 'date_match', 'time', 'location', 'weather', 'competition_id', 'region_id', 'live', 'validate_score', 'validate_by'];
+    protected $fillable = [
+        'slug',
+        'home_team_id',
+        'home_score',
+        'away_team_id',
+        'away_score',
+        'date_match',
+        'time',
+        'location',
+        'weather',
+        'competition_id',
+        'journee_id',
+        'region_id',
+        'department_id',
+        'division_department_id',
+        'group_id',
+        'live',
+        'validate_score',
+        'validate_by',
+        'user_id'
+    ];
 
     protected $dates = ['date_match', 'debut_match_reel', 'fin_match_reel', 'debut_prolongations', 'fin_prolongations'];
 
@@ -114,7 +134,4 @@ class Rencontre extends Model
     {
         return $this->HasMany(Gallery::class);
     }
-
-
-
 }

@@ -1,17 +1,24 @@
-
 <div class="relative" x-data="{ open: false }">
-    <div class="absolute h-full left-2 sm:left-4 z-40 text-center flex justify-center items-center font-bold">
-        @livewire('favori-match', ['user' => Auth::user(), 'match' => $match])
-    </div>
-    <div class="relative my-2 p-1 bg-primary text-white shadow-lg cursor-pointer rounded-lg mx-1 lg:mx-0">
-        <div class="bg-secondary w-6 h-6 absolute top-2 right-1 flex justify-center items-center rounded-full text-primary z-40"
+    @if ($match->date_match > now())
+        <div class="absolute h-full left-2 sm:left-4 z-40 text-center flex justify-center items-center font-bold">
+            @livewire('favori-match', ['user' => Auth::user(), 'match' => $match])
+        </div>
+    @endif
+    <div class="relative my-2 p-1 cursor-pointer mx-1 lg:mx-0">
+        <div class="w-4 h-4 absolute top-2 right-1 flex justify-center items-center rounded-full text-primary border shadow-lg"
             @click="open= true">
-            <div class="dotMenu"></div>
-            <div class="absolute top-0 right-0 w-32 h-auto py-4 pl-6 bg-secondary shadow-xl rounded-lg" x-show="open"
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="w-4 h-4">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 9h16.5m-16.5 6.75h16.5" />
+            </svg>
+
+            <div class="absolute top-0 right-0 w-32 h-auto py-4 pl-6 bg-secondary shadow-xl rounded-lg z-50" x-show="open"
                 @click.away="open = false" style="display: none">
                 <a class="w-full" href="{{ route('matches.edit', ['match' => $match]) }}">modifier</a>
                 @auth
-                    @if ((Auth::user() && $match->user_id == Auth::user()->id && $match->live == 'attente') || Auth::user()->role == 'super-admin' || Auth::user()->role == 'admin')
+                    @if ((Auth::user() && $match->user_id == Auth::user()->id && $match->live == 'attente') ||
+                        Auth::user()->role == 'super-admin' ||
+                        Auth::user()->role == 'admin')
                         <a class="w-full" href="{{ route('matches.destroy', $match) }}"
                             onclick="event.preventDefault();
                                             document.getElementById('delete-match-{{ $match->id }}').submit();">Effacer</a>
@@ -25,28 +32,34 @@
         </div>
         <a href="{{ route('matches.show', [$match, Str::slug($match->slug, '-')]) }}">
             <div>
-                <div class="text-center flex justify-center mb-2">
-                    <p class="px-4 text-white">{{ $match->date_match->formatLocalized('%d/%m/%y') }}</p>
-                    <p class="px-4 text-white">{{ $match->date_match->formatLocalized('%H:%M') }}</p>
-                </div>
+                {{-- <div class="text-sm text-center flex justify-center mb-2">
+                    <p class="px-4">{{ $match->date_match->formatLocalized('%d/%m/%y') }}</p>
+                    <p class="px-4">{{ $match->date_match->formatLocalized('%H:%M') }}</p>
+                </div> --}}
                 <div class="grid grid-cols-12">
                     <div class="flex flex-col justify-center items-center col-span-5 overflow-hidden">
-                        <div class="logo h-12 w-12 lg:h-16 lg:w-16 cursor-pointer">
+                        <div class="logo h-6 w-6 lg:h-10 lg:w-10 cursor-pointer">
                             <img class="object-contain" src="{{ asset($match->homeClub->logo) }}"
-                                    alt="Logo de {{ $match->homeClub->name }}">
+                                alt="Logo de {{ $match->homeClub->name }}">
                         </div>
                         <div class="ml-2">
-                            <p class="text-xs md:text-base md:font-bold truncate">{{ $match->homeClub->name }}</p>
+                            <p class="text-xs md:font-bold truncate">{{ $match->homeClub->name }}</p>
                         </div>
                     </div>
                     <div class="col-span-2 flex flex-row justify-center items-center">
                         @if ($match->live == 'attente' && !isset($match->home_score) && !isset($match->away_score))
-                            <div class="flex items-center justify-center text-secondary">
-                                <img src="{{ asset('images/new-vs-secondary.png') }}" alt="versus"
-                                    class="h-12 lg:h-24 w-12 lg:w-24">
+                            {{-- <div class="flex items-center justify-center text-secondary">
+                                <img src="{{ asset('images/vs-primary.jpg') }}" alt="versus"
+                                    class="h-6 lg:h-12 w-6 lg:w-12">
+                            </div> --}}
+                            <div class="flex flex-col items-center font-bold text-xs">
+                                <p class="px-4">{{ $match->date_match->formatLocalized('%d/%m/%y') }}</p>
+                                <p class="px-4">{{ $match->date_match->formatLocalized('%H:%M') }}</p>
                             </div>
-                        @elseif($match->live != 'reporte' && $match->live != 'attente' && $match->live !=
-                            'finDeMatch' && now()->between($match->date_match, $match->date_match->addMinutes(240)))
+                        @elseif($match->live != 'reporte' &&
+                            $match->live != 'attente' &&
+                            $match->live != 'finDeMatch' &&
+                            now()->between($match->date_match, $match->date_match->addMinutes(240)))
                             <div
                                 class="relative uppercase inline-block text-primary font-bold bg-secondary px-2 rounded-sm text-xl">
                                 <div
@@ -56,26 +69,26 @@
                             </div>
                         @else
                             <div class="flex justify-center text-black">
-                                <div class="bg-white rounded-sm mr-1 overflow-hidden">
+                                <div class="rounded-sm mr-1 overflow-hidden">
                                     <p
-                                        class="flex justify-center w-4 text-3xl px-4 font-bold {{ $match->home_score > $match->away_score ? 'bg-teal-400' : '' }}">
+                                        class="flex justify-center w-4 text-3xl px-4 font-bold rounded-sm {{ $match->home_score > $match->away_score ? 'bg-secondary' : '' }}">
                                         {{ $match->home_score }}</p>
                                 </div>
-                                <div class="bg-white rounded-sm ml-1 z-10 overflow-hidden">
+                                <div class="rounded-sm ml-1 z-10 overflow-hidden">
                                     <p
-                                        class="flex justify-center w-4 text-3xl px-4 font-bold {{ $match->away_score > $match->home_score ? 'bg-teal-400' : '' }}">
+                                        class="flex justify-center w-4 text-3xl px-4 font-bold rounded-sm {{ $match->away_score > $match->home_score ? 'bg-secondary' : '' }}">
                                         {{ $match->away_score }}</p>
                                 </div>
                             </div>
                         @endif
                     </div>
                     <div class="flex flex-col justify-center items-center col-span-5 overflow-hidden">
-                        <div class="logo h-12 w-12 lg:h-16 lg:w-16 cursor-pointer">
+                        <div class="logo h-6 w-6 lg:h-10 lg:w-10 cursor-pointer">
                             <img class="object-contain" src="{{ asset($match->awayClub->logo) }}"
-                                    alt="Logo de {{ $match->awayClub->name }}">
+                                alt="Logo de {{ $match->awayClub->name }}">
                         </div>
                         <div class="ml-2">
-                            <p class="text-xs md:text-base md:font-bold truncate">{{ $match->awayClub->name }}</p>
+                            <p class="text-xs md:font-bold truncate">{{ $match->awayClub->name }}</p>
                         </div>
                     </div>
                 </div>

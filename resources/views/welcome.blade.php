@@ -336,7 +336,7 @@
             </div>
         </aside>
         <div class="flex-1 w-full">
-            {{-- <a href="{{ route('competitions.index') }}"> --}}
+            <a href="{{ route('competitions.index') }}">
                 <div class="shadow-white-xl rounded-2xl w-5/6 p-4 bg-primary relative overflow-hidden mx-auto">
                     <img alt="competitions" src="{{ asset('images/ball-fire-water.png') }}" loading="lazy"
                         class="absolute -right-16 -bottom-8 h-40 w-40 mb-4" />
@@ -348,16 +348,15 @@
                             Vous y trouverez les matchs à venir
                         </p>
                         <p class="text-white text-lg font-medium flex items-center mt-2">
-                            {{-- J'y vais
+                            J'y vais
                             <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                 stroke-width="2" class="w-5 h-5 mx-2" viewBox="0 0 24 24">
                                 <path d="M5 12h14M12 5l7 7-7 7"></path>
-                            </svg> --}}
-                            En attente des calendriers
+                            </svg>
                         </p>
                     </div>
                 </div>
-            {{-- </a> --}}
+            </a>
             <a href="/mon-espace/mes-favoris">
                 <div class="shadow-white-xl rounded-2xl w-5/6 p-4 bg-primary relative overflow-hidden mx-auto mt-6">
                     <img alt="favoris" src="{{ asset('images/favoris-mobile.png') }}"

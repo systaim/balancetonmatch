@@ -1,20 +1,32 @@
 @extends('layout')
 @section('content')
-
-    <div class="relative w-full py-10 bg-primary text-white  mb-6">
+    <div class="relative w-full py-10 bg-primary text-white mb-6 flex flex-col items-center">
         <h2 class="text-4xl lg:text-6xl text-center">{{ $division->name }}</h2>
         <h3 class="text-xl lg:text-2xl text-center">{{ $groupe->name }}</h3>
+        @can('isSuperAdmin')
+            @livewire('recuperation-matchs', [
+                'groupe' => $groupe,
+                'division' => $division,
+                'region' => $region,
+                'departement' => $departement,
+                'page' => request()->fullUrl(),
+            ])
+        @endcan
     </div>
 
     <div class="relative lg:flex lg:justify-center">
-        <div class="lg:w-9/12">
+        <div class="flex flex-wrap justify-around">
             @foreach ($journees as $journee)
-            <h4 class="inline-block text-xl px-3 text-center bg-secondary text-primary rounded-md shadow-lg ml-2">Journée {{ $journee->name }}</h4>
+                <div class="mt-4 border rounded-md shadow-lg p-3 lg:w-5/12">
+                    <h4 class="inline-block px-3 text-center bg-secondary text-primary rounded-sm shadow-lg">
+                        Journée {{ $journee->name }}
+                    </h4>
                     @foreach ($matchs[$journee->id] as $match)
-                        <div class="rounded-b-md rounded-tr-md">
+                        <div>
                             @include('match')
                         </div>
                     @endforeach
+                </div>
             @endforeach
         </div>
     </div>
@@ -35,5 +47,4 @@
             </div>
         </div>
     </div>
-
 @endsection
