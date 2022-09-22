@@ -9,9 +9,8 @@
         </div>
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="-mt-12 sm:-mt-16 sm:flex sm:items-end sm:space-x-5">
-                <div class="flex">
+                <div class="flex overflow-hidden rounded-full p-3 bg-white">
                     <img class="object-contain" src="{{ asset($club->logo) }}" alt="Logo de {{ $club->name }}">
-
                 </div>
                 <div class="mt-6 sm:flex-1 sm:min-w-0 sm:flex sm:items-center sm:justify-end sm:space-x-6 sm:pb-1">
                     <div class="sm:hidden md:block mt-6 min-w-0 flex-1">
@@ -56,7 +55,7 @@
         <div x-data="{ open: false }"
             class="relative w-72 m-4 bg-primary text-white flex flex-col justify-between rounded-lg shadow-2xl overflow-x-hidden">
             <div class="absolute top-2 left-2 logo h-12 w-12 z-10">
-                <img class="object-contain" src="{{ asset($club->logo) }}" alt="Logo de {{ $club->name }}">
+                {{-- <img class="object-contain" src="{{ asset($club->logo) }}" alt="Logo de {{ $club->name }}"> --}}
             </div>
             <div>
                 <div class="relative">
@@ -88,8 +87,8 @@
                 </div>
             </div>
             <!-- ***********************
-                                                                                                                    Formulaire suppression d'un joueur
-                                                                                                                    ************************** -->
+                                                                                                                        Formulaire suppression d'un joueur
+                                                                                                                        ************************** -->
             <div id="{{ $player->id }}"
                 class="absolute bg-white top-0 left-0 right-0 bottom-0 text-primary z-20 flex flex-col justify-between items-center "
                 x-show="open" x-transition:enter="transition ease-out duration-300"
@@ -118,8 +117,8 @@
             </div>
 
             <!-- ***********************
-                                                                                                                    Formulaire modification d'un joueur
-                                                                                                                    ************************** -->
+                                                                                                                        Formulaire modification d'un joueur
+                                                                                                                        ************************** -->
 
             <div id="edition" class="hidden fixed z-50 inset-0 justify-center items-center"
                 style="background-color: rgba(0,0,0,.5);">
@@ -190,7 +189,7 @@
             </div>
         </div>
         <div class="relative">
-            <img src="{{ asset('images/goalByPlayer.png') }}" alt="" class="absolute -left-8 -top-12">
+            {{-- <img src="{{ asset('images/goalByPlayer.png') }}" alt="" class="absolute -left-8 -top-12"> --}}
 
             <div class=" bg-white p-2 shadow rounded-lg overflow-hidden pl-36 pr-8 py-10 my-8 md:ml-12 z-10">
                 <p class="">Total de buts </p>
