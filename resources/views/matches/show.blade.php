@@ -28,7 +28,7 @@
         @endif
     @endif
     <!-- Meta du site -->
-    <title>Balance ton match ! {{ $match->homeclub->name }}
+    <title>{{ $match->homeclub->name }}
         {{ $match->home_score == null ? ' VS ' : $match->home_score . ' - ' . $match->away_score }}
         {{ $match->awayclub->name }}</title>
     <link rel="stylesheet" href="{{ mix('css/app.css') }}?v=1">

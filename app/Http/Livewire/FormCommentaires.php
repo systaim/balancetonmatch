@@ -756,7 +756,7 @@ class FormCommentaires extends Component
             $commentData2['comments'] = $pub;
             $commentData2['commentator_id'] = $this->match->commentateur->id;
             $commentData2['updated_at'] = Carbon::create($comment->updated_at)->addSecond();
-
+            $commentData2['rencontre_id'] = $this->match->id;
             $comment2 = Commentaire::create($commentData2);
             $comment2->save();
 

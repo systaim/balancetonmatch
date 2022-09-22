@@ -1,12 +1,12 @@
-<div class="relative commentaires minHeight16 overflow-hidden h-auto {{ $comment->team_action }}"
+<div class="relative commentaires overflow-hidden h-auto {{ $comment->team_action }}"
     @if ($comment->team_action == 'home') style="border-color: {{ $match->homeClub->primary_color }};"
-@elseif ($comment->team_action == 'away')
+    @elseif ($comment->team_action == 'away')
     style="border-color: {{ $match->awayClub->primary_color }};" @endif
     x-data="{ open: false }">
     <div class="minuteCommentaires w-24 sm:w-32 {{ $comment->team_action }} p-4 flex flex-col items-center"
         @if ($comment->team_action == 'home') style="background-color: {{ $match->homeClub->primary_color }};
         color:{{ $match->homeClub->secondary_color == $match->homeClub->primary_color ? '#cdfb0a' : $match->homeClub->secondary_color }}"
-    @elseif ($comment->team_action == 'away')
+        @elseif ($comment->team_action == 'away')
         style="background-color: {{ $match->awayClub->primary_color }};
         color:{{ $match->awayClub->secondary_color == $match->awayClub->primary_color ? '#cdfb0a' : $match->awayClub->secondary_color }}" @endif>
         <div>
@@ -37,8 +37,8 @@
             </div>
         @endif
     </div>
-    <div class="relative bg-white w-full p-4 flex flex-col">
-        <div class="flex flex-col justify-between">
+    <div class="relative bg-white w-full p-4 flex justify-between">
+        <div class="flex justify-between">
             <div {{ $comment->type_comments == 'Pub' ? 'wire:ignore' : '' }}>
                 <p>{{ $comment->type_comments }}</p>
                 @if ($comment->type_comments == 'Pub')
@@ -46,7 +46,7 @@
                 @else
                     {{-- <p>{{ $comment->comments }}</p> --}}
                 @endif
-                <div class="flex flex-col items-between">
+                <div class="flex justify-between">
                     @if ($comment->statistic)
                         @if ($comment->team_action == 'away' || $comment->team_action == 'home')
                             <div>

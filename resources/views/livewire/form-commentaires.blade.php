@@ -1,4 +1,4 @@
-<div wire:poll.2s x-data="{ open: false }">
+<div wire:poll.2s x-data="{ open: false }" class="max-w-screen-lg mx-auto">
     <!----------------------
     Options commentaires "équipe"
     ------------------------->
@@ -392,7 +392,7 @@
                         </div>
                     @endif
                     @if ($match->commentateur)
-                        <div class="flex justify-center my-6 w-11/12 m-auto lg:w-8/12">
+                        <div class="flex justify-center my-6 m-auto">
                             @if ($match->commentateur != null && $match->commentateur->user->id == Auth::user()->id)
                                 @if ($match->live == 'attente')
                                     <div x-data="{ open: false }" class="flex flex-col items-center">
@@ -717,19 +717,13 @@
                 </div>
             </div>
         @endif
-        @if ($match->id == 0)
-            <div class="flex flex-col items-center justify-center bg-secondary p-8">
-                <p class="font-semibold uppercase">Ce match est fictif</p>
-                <p class="text-sm">Il sert d'exemple pour découvrir un match commenté</p>
-            </div>
-        @endif
         @if ($infoMatch)
             <div class="flex justify-center">
                 <p class="bg-darkSuccess text-white px-3 py-2 rounded-md">{{ $infoMatch }}</p>
             </div>
         @endif
-        <div class="my-4 w-11/12 m-auto lg:flex lg:justify-around">
-            <div class="m-auto sm:w-10/12 lg:w-8/12">
+        <div class="my-4 m-auto lg:flex lg:justify-around">
+            <div class="w-full">
                 @if ($match->live == 'tab' || (count($tabHome) != 0 && count($tabAway) != 0))
                     <div class="my-10">
                         <h3 class="flex justify-center text-2xl px-2 py-1 bg-primary text-white rounded-lg my-2 ">Tirs

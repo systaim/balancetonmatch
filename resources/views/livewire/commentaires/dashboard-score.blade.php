@@ -1,7 +1,7 @@
 <div x-data="{ open: false }">
-    <div class="backMatch">
-        <div class="py-6">
-            <div class="relative bg-primary text-white m-auto text-center shadow-2xl p-2 max-w-md">
+    <div class="">
+        <div>
+            <div class="relative m-auto text-center p-2">
                 @if ($match->region_id)
                     <h2>{{ $match->region->name }}</h2>
                 @endif
@@ -19,14 +19,14 @@
                 </div>
             </div>
         </div>
-        <div class="flex justify-center">
+        <div class="flex justify-center items-center">
             @auth
                 @if (Auth::user()->role == 'super-admin' ||
                     Auth::user()->role == 'admin' ||
                     ($match->live == 'attente' &&
                         $match->date_match < now() &&
                         ($match->home_score == null && $match->away_score == null)))
-                    <button class="bg-secondary p-1 m-1 rounded-lg text-sm" type="button" wire:click="openBtnScore">
+                    <button class="bg-secondary p-1 m-1 rounded-lg text-sm px-2" type="button" wire:click="openBtnScore">
                         Quel score ?
                     </button>
                 @endif
@@ -35,29 +35,57 @@
                     $match->date_match < now() &&
                     ($match->home_score == null && $match->away_score == null))
                     <a href="/login">
-                        <button class="bg-secondary p-1 m-1 rounded-lg text-sm" type="button">
+                        <button class="bg-secondary p-1 m-1 rounded-lg text-sm px-2" type="button">
                             Quel score ?
                         </button>
                     </a>
                 @endif
-
             @endauth
-
+            <div class="flex px-8 py-2 items-center">
+                <div class="flex items-center mr-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path
+                            d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
+                    </svg>
+                    <p class="ml-2 font-bold">{{ count($visitors) }}</p>
+                </div>
+                <div class="col-span-2">
+                    <button @click="open = ! open"
+                        class="mr-3 border rounded-full text-sm p-2 flex justify-center items-center shadow-xl">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20"
+                            fill="currentColor">
+                            <path
+                                d="M15 8a3 3 0 10-2.977-2.63l-4.94 2.47a3 3 0 100 4.319l4.94 2.47a3 3 0 10.895-1.789l-4.94-2.47a3.027 3.027 0 000-.74l4.94-2.47C13.456 7.68 14.19 8 15 8z" />
+                        </svg>
+                        Partager
+                    </button>
+                    @include('livewire.commentaires._share-match')
+                </div>
+            </div>
+            <div class="flex justify-center">
+                @if ($match->live != 'reporte' && $match->live != 'attente' && $match->live != 'finDeMatch')
+                    <div
+                        class="relative uppercase inline-block text-primary font-bold bg-secondary px-2 rounded-sm text-xl">
+                        <div class="animate-ping absolute -top-0.5 -right-0.5 bg-red-500 h-3 w-3 rounded-full">
+                        </div>
+                        LIVE
+                    </div>
+                @endif
+            </div>
         </div>
-        <div class="grid grid-cols-12 lg:mx-16 xl:mx-24 mb-2">
+        <div class="grid grid-cols-12 mb-2">
             <div class="col-span-5 overflow-hidden">
                 <a href="{{ route('clubs.show', $match->homeClub->id) }}">
-                    <div class="bg-primary p-2 text-secondary flex flex-col lg:flex-row lg:items-center lg:rounded-l-full"
+                    <div class="bg-primary p-4 text-secondary flex flex-col lg:items-center lg:rounded-l-md"
                         style="background-color: {{ $match->homeClub->primary_color }}; color:{{ $match->homeClub->secondary_color == $match->homeClub->primary_color ? '#cdfb0a' : $match->homeClub->secondary_color }}">
-
                         <div class="relative flex justify-center">
-                            <div class="logo h-16 w-16 sm:h-20 sm:w-20 lg:h-32 lg:w-32 cursor-pointer lg:mr-1 xl:mr-4">
+                            <div class="logo h-16 w-16 cursor-pointer lg:mr-1 xl:mr-4">
                                 <img class="object-contain" src="{{ asset($match->homeClub->logo) }}"
                                     alt="Logo de {{ $match->homeClub->name }}">
                             </div>
                         </div>
                         <div>
-                            <p class="truncate text-center sm:font-bold lg:text-2xl">
+                            <p class="truncate text-center sm:font-bold">
                                 {{ $match->homeClub->name }}
                             </p>
                         </div>
@@ -131,15 +159,15 @@
             </div>
             <div class="col-span-5 overflow-hidden z-0">
                 <a href="{{ route('clubs.show', $match->awayClub->id) }}">
-                    <div class="bg-secondary p-2 text-primary flex flex-col-reverse lg:flex-row lg:items-center lg:justify-end lg:rounded-r-full"
+                    <div class="bg-secondary p-4 text-primary flex flex-col-reverse lg:items-center lg:justify-end lg:rounded-r-md"
                         style="background-color: {{ $match->awayClub->primary_color }}; color:{{ $match->awayClub->secondary_color == $match->awayClub->primary_color ? '#cdfb0a' : $match->awayClub->secondary_color }}">
                         <div>
-                            <p class="truncate text-center lg:text-left sm:font-bold lg:text-2xl">
+                            <p class="truncate text-center lg:text-left sm:font-bold">
                                 {{ $match->awayClub->name }}
                             </p>
                         </div>
                         <div class="flex justify-center">
-                            <div class="logo h-16 w-16 sm:h-20 sm:w-20 lg:h-32 lg:w-32 cursor-pointer lg:ml-1 xl:ml-4">
+                            <div class="logo h-16 w-16 cursor-pointer lg:ml-1 xl:ml-4">
                                 <img class="object-contain" src="{{ asset($match->awayClub->logo) }}"
                                     alt="Logo de {{ $match->awayClub->name }}">
                             </div>
@@ -153,7 +181,7 @@
                 @foreach ($commentsMatch->sortBy('minute') as $comment)
                     @if ($comment->statistic)
                         @if ($comment->team_action == 'home' && $comment->type_action == 'goal')
-                            <div class="flex flex-row justify-end items-center m-auto overflow-hidden mx-1">
+                            <div class="flex flex-row justify-start items-center m-auto overflow-hidden mx-1">
                                 <div class="bg-primary text-secondary font-bold px-2 py-1 flex justify-end items-center w-full sm:w-48 rounded-lg mb-1"
                                     style="background-color: {{ $match->homeClub->primary_color }}; color:{{ $match->homeClub->secondary_color == $match->homeClub->primary_color ? '#cdfb0a' : $match->homeClub->secondary_color }}">
                                     <p class="text-xs md:text-sm px-2 truncate">
@@ -170,7 +198,7 @@
             </div>
             <div class="col-span-4 flex flex-col items-center justify-center">
                 <div
-                    class="text-white font-bold text-2xl bg-primary flex justify-center items-center w-20 h-20 my-3 rounded-full border-2 border-secondary">
+                    class="text-white font-bold bg-primary flex justify-center items-center w-12 h-12 my-1 rounded-full border-2 border-secondary">
                     @if ($match->live != 'attente' && $match->live != 'finDeMatch' && $match->live != 'reporte')
                         <p>{{ $minute }}</p>
                     @else
@@ -184,7 +212,7 @@
             <div class="col-span-4">
                 @foreach ($commentsMatch->sortBy('minute') as $comment)
                     @if ($comment->team_action == 'away' && $comment->type_action == 'goal')
-                        <div class="flex flex-row justify-start items-center m-auto overflow-hidden mx-1">
+                        <div class="flex flex-row justify-end items-center m-auto overflow-hidden mx-1">
                             <div class="bg-secondary text-primary font-bold px-2 py-1 flex flex-row-reverse justify-end items-center w-full sm:w-48 rounded-lg mb-1"
                                 style="background-color: {{ $match->awayClub->primary_color }}; color:{{ $match->awayClub->secondary_color == $match->awayClub->primary_color ? '#cdfb0a' : $match->awayClub->secondary_color }}">
                                 <p class="text-xs md:text-sm px-2 truncate">
@@ -200,28 +228,18 @@
             </div>
         </div>
         <div class="flex flex-col items-center justify-center w-full">
-            <div class="flex justify-center">
-                @if ($match->live != 'reporte' && $match->live != 'attente' && $match->live != 'finDeMatch')
-                    <div
-                        class="relative uppercase inline-block text-primary font-bold bg-secondary px-2 rounded-sm text-xl">
-                        <div class="animate-ping absolute -top-0.5 -right-0.5 bg-red-500 h-3 w-3 rounded-full">
-                        </div>
-                        LIVE
-                    </div>
-                @endif
-            </div>
             <div class="flex justify-center items-center">
                 @if ($match->live != 'attente' && $match->live != 'finDeMatch' && $match->live != 'reporte')
                     <div class="text-center flex justify-center font-bold">
-                        <p class="px-4 bg-primary text-secondary rounded-tl-md">
+                        <p class="px-4 bg-primary text-secondary rounded-l-md">
                             {{ $match->date_match->formatLocalized('%d/%m/%y') }}
                         </p>
-                        <p class="px-4 bg-primary text-secondary rounded-tr-md">
+                        <p class="px-4 bg-primary text-secondary rounded-r-md">
                             {{ $match->date_match->formatLocalized('%H:%M') }}
                         </p>
                     </div>
                 @endif
-                @if ($match->live == 'attente')
+                @if ($match->live == 'attente' && !$match->home_score)
                     <button class="btnSecondary rounded-md mb-2 text-sm">
                         <a href="{{ route('matches.edit', ['match' => $match]) }}" class="p-2">
                             Corriger l'heure
@@ -231,27 +249,7 @@
             </div>
         </div>
     </div>
-    <div class="bg-gray-900 px-8 py-2 text-white grid grid-cols-3 gap-0">
-        <div class="flex items-center">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                <path
-                    d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
-            </svg>
-            <p class="ml-2 font-bold">{{ count($visitors) }}</p>
-        </div>
-        <div class="col-span-2">
-            <button @click="open = ! open"
-                class="mr-3 border rounded-full text-sm p-2 flex justify-center items-center shadow-xl">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20"
-                    fill="currentColor">
-                    <path
-                        d="M15 8a3 3 0 10-2.977-2.63l-4.94 2.47a3 3 0 100 4.319l4.94 2.47a3 3 0 10.895-1.789l-4.94-2.47a3.027 3.027 0 000-.74l4.94-2.47C13.456 7.68 14.19 8 15 8z" />
-                </svg>
-                Partager
-            </button>
-            @include('livewire.commentaires._share-match')
-        </div>
-    </div>
+
     @if ($nbrFavoris > 0 && $match->live == 'attente')
         <div class="bg-secondary text-primary rounded-lg relative flex justify-center p-1 shadow-lg m-2">
             @if ($nbrFavoris == 1)
