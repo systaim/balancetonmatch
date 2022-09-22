@@ -10,7 +10,7 @@ use Livewire\Component;
 
 class RecuperationMatchs extends Component
 {
-    public $groupe, $division, $region, $departement, $page;
+    public $groupe, $division, $region, $departement, $page, $competition_id;
 
     public function mount($page)
     {
@@ -28,12 +28,14 @@ class RecuperationMatchs extends Component
         }
         $str = file_get_contents($url);
         preg_match_all($re, $str, $matches, PREG_SET_ORDER, 0);
-
-        // dd(count($matches) / 6);
-        $table = [];
+        if (count($matches) == 182) {
+            $modulo = 7;
+        } else {
+            $modulo = 6;
+        }
         foreach ($matches as $key => $match) {
-            if ($key % 6 != 0) {
-            } elseif ($key != 0 && $key % 6 == 0) {
+            if ($key % $modulo != 0) {
+            } elseif ($key != 0 && $key % $modulo == 0) {
                 $journee++;
             }
             $jour = $match[1];
@@ -90,7 +92,7 @@ class RecuperationMatchs extends Component
                     'slug' => $equipe1->name . '-vs-' . $equipe2->name . '-' . $jour . '-' . $mois . '-' . $annee,
                     'home_team_id' => $equipe1->id,
                     'away_team_id' => $equipe2->id,
-                    'competition_id' => 2,
+                    'competition_id' => $this->competition_id,
                     'division_department_id' => $this->division->id,
                     'department_id' => $this->departement->id ?? NULL,
                     'group_id' => $this->groupe->id,

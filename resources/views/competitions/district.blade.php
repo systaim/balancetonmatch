@@ -9,6 +9,7 @@
                 'division' => $division,
                 'region' => $region,
                 'departement' => $departement,
+                'competition_id' => 2,
                 'page' => request()->fullUrl(),
             ])
         @endcan

@@ -8,7 +8,7 @@
                 'groupe' => $groupe,
                 'division' => $division,
                 'region' => $region,
-                // 'departement' => $departement,
+                'competition_id' => 1,
                 'page' => request()->fullUrl(),
             ])
         @endcan
