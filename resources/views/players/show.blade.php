@@ -8,9 +8,9 @@
                 alt="">
         </div>
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="-mt-12 sm:-mt-16 sm:flex sm:items-end sm:space-x-5">
-                <div class="flex overflow-hidden rounded-full p-3 bg-white">
-                    <img class="object-contain" src="{{ asset($club->logo) }}" alt="Logo de {{ $club->name }}">
+            <div class="-mt-12 sm:-mt-16 sm:flex sm:items-end">
+                <div class="flex overflow-hidden bg-white">
+                    <img class="object-contain rounded-full p-3" src="{{ asset($club->logo) }}" alt="Logo de {{ $club->name }}">
                 </div>
                 <div class="mt-6 sm:flex-1 sm:min-w-0 sm:flex sm:items-center sm:justify-end sm:space-x-6 sm:pb-1">
                     <div class="sm:hidden md:block mt-6 min-w-0 flex-1">
