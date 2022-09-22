@@ -23,8 +23,6 @@ class RecuperationMatchs extends Component
         $re = '/"date">\X+?(\d+) (\S+) (\d+) - (\d+)H(\d+)\X+?"equipe1">\X+?BC(\d{6})\X+?phlogos\/BC(\d{6})\X+?/m';
         if ($this->competition_id == 2) {
             $url = 'https://balancetonmatch.com/recup-matchs/D' . $this->division->id . '-' . $this->groupe->id . '-' . $this->departement->id . '.html';
-        } elseif ($this->competition_id == 1) {
-            $url = 'https://balancetonmatch.com/recup-matchs/R' . $this->division->id . '-' . $this->groupe->id . '.html';
         }
         dd($url);
         $str = file_get_contents($url);
