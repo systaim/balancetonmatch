@@ -15,6 +15,7 @@ class RecuperationMatchs extends Component
     public function mount($page)
     {
         $this->page = $page;
+        dd($this->competition_id);
     }
 
     public function recuperation()
