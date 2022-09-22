@@ -12,7 +12,7 @@
                 <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 9h16.5m-16.5 6.75h16.5" />
             </svg>
 
-            <div class="absolute top-0 right-0 w-32 h-auto py-4 pl-6 bg-secondary shadow-xl rounded-lg z-50" x-show="open"
+            <div class="absolute top-0 right-0 w-32 h-auto py-4 pl-6 bg-secondary shadow-xl rounded-lg z-50 text-sm" x-show="open"
                 @click.away="open = false" style="display: none">
                 <a class="w-full" href="{{ route('matches.edit', ['match' => $match]) }}">modifier</a>
                 @auth

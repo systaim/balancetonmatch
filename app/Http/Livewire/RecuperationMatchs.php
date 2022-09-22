@@ -26,6 +26,7 @@ class RecuperationMatchs extends Component
         } elseif ($this->competition_id == 1) {
             $url = 'https://balancetonmatch.com/recup-matchs/R' . $this->division->id . '-' . $this->groupe->id . '.html';
         }
+        dd($this->competition_id);
         $str = file_get_contents($url);
         preg_match_all($re, $str, $matches, PREG_SET_ORDER, 0);
         if (count($matches) == 182) {
@@ -33,6 +34,7 @@ class RecuperationMatchs extends Component
         } else {
             $modulo = 6;
         }
+        // dd($matches);
         foreach ($matches as $key => $match) {
             if ($key % $modulo != 0) {
             } elseif ($key != 0 && $key % $modulo == 0) {
