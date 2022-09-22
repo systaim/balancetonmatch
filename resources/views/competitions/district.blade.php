@@ -1,7 +1,6 @@
 @extends('layout')
 @section('content')
     <div class="relative w-full py-10 bg-primary text-white mb-6 flex flex-col items-center">
-        foot22
         <h2 class="text-4xl lg:text-6xl text-center">{{ $division->name }}</h2>
         <h3 class="text-xl lg:text-2xl text-center">{{ $groupe->name }}</h3>
         @can('isSuperAdmin')
