@@ -10,7 +10,7 @@
                             RÉGIONALE <span class="pl-4 text-sm">R1 R2 R3</span>
                         </h3>
                         <img class="w-full object-cover object-center h-full"
-                            src="{{ asset('images/terrain.jpg') }}" alt="Coupe de France" loading="lazy">
+                            src="{{ asset('images/terrain2.png') }}" alt="Coupe de France" loading="lazy">
                         <div class="absolute top-12 left-2 text-gray-900">
                             <select name="region" id="region">
                                 <option value="">Bretagne</option>
@@ -43,7 +43,7 @@
                             DISTRICT <span class="pl-4 text-sm">D1 D2 D3</span>
                         </h3>
                         <img class="w-full object-cover object-center h-full"
-                            src="{{ asset('images/terrain2.png') }}" alt="Championnat district" loading="lazy">
+                            src="{{ asset('images/terrain.jpg') }}" alt="Championnat district" loading="lazy">
                         <div class="absolute top-12 left-2 text-gray-900 flex flex-wrap justify-center">
                             <select class="mr-3" name="departement" id="departement"
                                 onchange="choixDep(this.selectedIndex)">
@@ -169,7 +169,7 @@
                             <h3 class="title-font text-lg bg-primary text-white p-1">
                                 COUPE ANGE LEMÉE
                             </h3>
-                            <img class="w-full object-cover object-center h-full" src="{{ asset('images/Capture d’écran 2022-09-22 à 18.28.01.png') }}" 
+                            <img class="w-full object-cover object-center h-full" src="{{ asset('images/Capture1.png') }}" 
                             alt="coupe de Bretagne" loading="lazy">
                         </div>
                     </a>
@@ -180,7 +180,7 @@
                             COUPE DU DÉPARTEMENT
                         </h3>
                         <img class="w-full object-cover object-center h-full"
-                            src="{{ asset('images/Capture d’écran 2022-09-22 à 18.28.35.png') }}" alt="Championnat district" loading="lazy">
+                            src="{{ asset('images/capture2.png') }}" alt="Championnat district" loading="lazy">
                         <div class="absolute top-12 left-2 text-gray-900 flex flex-wrap justify-center">
                             <select class="mr-3" name="cpeDepartement" id="cpeDepartement" onchange="location = this.value;">
                                 <option>Départements</option>
@@ -197,7 +197,7 @@
                             <h3 class="title-font text-lg bg-primary text-white p-1">
                                 Matchs amicaux
                             </h3>
-                            <img class="w-full object-cover object-center h-full" src="{{ asset('images/Capture d’écran 2022-09-22 à 18.29.56.png') }}"
+                            <img class="w-full object-cover object-center h-full" src="{{ asset('images/capture3.png') }}"
                                 alt="Coupe de France" loading="lazy">
                         </div>
                     </a>
