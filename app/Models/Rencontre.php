@@ -32,6 +32,7 @@ class Rencontre extends Model
         'region_id',
         'department_id',
         'division_department_id',
+        'division_region_id',
         'group_id',
         'live',
         'validate_score',

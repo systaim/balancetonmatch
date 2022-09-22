@@ -26,7 +26,7 @@ class RecuperationMatchs extends Component
         } elseif ($this->competition_id == 1) {
             $url = 'https://balancetonmatch.com/recup-matchs/R' . $this->division->id . '-' . $this->groupe->id . '.html';
         }
-        
+
         $str = file_get_contents($url);
         preg_match_all($re, $str, $matches, PREG_SET_ORDER, 0);
         if (count($matches) == 182) {
@@ -34,7 +34,7 @@ class RecuperationMatchs extends Component
         } else {
             $modulo = 6;
         }
-        
+        // dd($matches);
         foreach ($matches as $key => $match) {
             if ($key % $modulo != 0) {
             } elseif ($key != 0 && $key % $modulo == 0) {
@@ -88,24 +88,44 @@ class RecuperationMatchs extends Component
             $minute = $match[5];
             $equipe1 = Club::where('numAffiliation', $match[6])->first();
             $equipe2 = Club::where('numAffiliation', $match[7])->first();
-            Rencontre::updateOrCreate(
-                [
-                    'live' => 'attente',
-                    'slug' => $equipe1->name . '-vs-' . $equipe2->name . '-' . $jour . '-' . $mois . '-' . $annee,
-                    'home_team_id' => $equipe1->id,
-                    'away_team_id' => $equipe2->id,
-                    'competition_id' => $this->competition_id,
-                    'division_department_id' => $this->division->id,
-                    'department_id' => $this->departement->id ?? NULL,
-                    'group_id' => $this->groupe->id,
-                    'region_id' => $this->region->id,
-                    'journee_id' => $journee,
-                    'user_id' => Auth::id(),
-                ],
-                [
-                    'date_match' => $annee . '-' . $mois . '-' . $jour . ' ' . $heure . ':' . $minute . ':00',
-                ]
-            );
+            if ($this->competition_id == 2) {
+                Rencontre::updateOrCreate(
+                    [
+                        'live' => 'attente',
+                        'slug' => $equipe1->name . '-vs-' . $equipe2->name . '-' . $jour . '-' . $mois . '-' . $annee,
+                        'home_team_id' => $equipe1->id,
+                        'away_team_id' => $equipe2->id,
+                        'competition_id' => $this->competition_id,
+                        'division_department_id' => $this->division->id,
+                        'department_id' => $this->departement->id,
+                        'group_id' => $this->groupe->id,
+                        'region_id' => $this->region->id,
+                        'journee_id' => $journee,
+                        'user_id' => Auth::id(),
+                    ],
+                    [
+                        'date_match' => $annee . '-' . $mois . '-' . $jour . ' ' . $heure . ':' . $minute . ':00',
+                    ]
+                );
+            } elseif ($this->competition_id == 1) {
+                Rencontre::updateOrCreate(
+                    [
+                        'live' => 'attente',
+                        'slug' => $equipe1->name . '-vs-' . $equipe2->name . '-' . $jour . '-' . $mois . '-' . $annee,
+                        'home_team_id' => $equipe1->id,
+                        'away_team_id' => $equipe2->id,
+                        'competition_id' => $this->competition_id,
+                        'division_region_id' => $this->division->id,
+                        'group_id' => $this->groupe->id,
+                        'region_id' => $this->region->id,
+                        'journee_id' => $journee,
+                        'user_id' => Auth::id(),
+                    ],
+                    [
+                        'date_match' => $annee . '-' . $mois . '-' . $jour . ' ' . $heure . ':' . $minute . ':00',
+                    ]
+                );
+            }
         }
         return redirect($this->page);
     }
