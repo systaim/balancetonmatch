@@ -1,26 +1,31 @@
 @extends('layout')
 @section('content')
-
-    <div class="relative w-full py-10 bg-primary text-white  mb-6">
+    <div class="relative w-full py-10 bg-primary text-white mb-6 flex flex-col items-center">
         <h2 class="text-4xl lg:text-6xl text-center">{{ $division->name }}</h2>
         <h3 class="text-xl lg:text-2xl text-center">{{ $groupe->name }}</h3>
-        @livewire('recuperation-matchs')
+        @can('isSuperAdmin')
+            @livewire('recuperation-matchs', [
+                'groupe' => $groupe,
+                'division' => $division,
+                'region' => $region,
+                'departement' => $departement,
+                'page' => request()->fullUrl(),
+            ])
+        @endcan
     </div>
 
-    @foreach ($journees as $journee)
-        <div>
-            <p class="text-xl m-5">Journée {{ $journee->name }} </p>
-        </div>
-
-        @foreach ($matchs[$journee->id] as $match)
-            @include('match')
-        @endforeach
-    @endforeach
     <div class="relative lg:flex lg:justify-center">
-        <div class="lg:w-9/12">
-            @foreach ($matchs as $match)
-                <div class="rounded-b-md rounded-tr-md">
-                    @include('match')
+        <div class="flex flex-wrap justify-around">
+            @foreach ($journees as $journee)
+                <div class="mt-4 border rounded-md shadow-lg p-3 lg:w-5/12">
+                    <h4 class="inline-block px-3 text-center bg-secondary text-primary rounded-sm shadow-lg">
+                        Journée {{ $journee->name }}
+                    </h4>
+                    @foreach ($matchs[$journee->id] as $match)
+                        <div>
+                            @include('match')
+                        </div>
+                    @endforeach
                 </div>
             @endforeach
         </div>
@@ -42,5 +47,4 @@
             </div>
         </div>
     </div>
-
 @endsection

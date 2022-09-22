@@ -21,7 +21,11 @@ class RecuperationMatchs extends Component
     {
         $journee = 1;
         $re = '/"date">\X+?(\d+) (\S+) (\d+) - (\d+)H(\d+)\X+?"equipe1">\X+?BC(\d{6})\X+?phlogos\/BC(\d{6})\X+?/m';
-        $url = 'https://balancetonmatch.com/recup-matchs/D' . $this->division->id . '-' . $this->groupe->id . '-' . $this->departement->id . '.html';
+        if ($this->departement) {
+            $url = 'https://balancetonmatch.com/recup-matchs/D' . $this->division->id . '-' . $this->groupe->id . '-' . $this->departement->id . '.html';
+        } else {
+            $url = 'https://balancetonmatch.com/recup-matchs/R' . $this->division->id . '-' . $this->groupe->id . '.html';
+        }
         $str = file_get_contents($url);
         preg_match_all($re, $str, $matches, PREG_SET_ORDER, 0);
 

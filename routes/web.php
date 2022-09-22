@@ -96,7 +96,7 @@ Route::get('region/{region:slug}/departement/{departement}/district/{division}/g
     $matchs = Rencontre::where('region_id', $region->id)->where('date_match', '>=', Carbon::now()->subDays(5))->where('department_id', $departement->id)->where('division_department_id', $division->id)->where('group_id', $groupe->id)->get()->groupBy('journee_id');
     $journees = Journee::find($matchs->keys());
 
-    return view('competitions.regional', compact('region', 'departement', 'matchs', 'journees', 'division', 'groupe'));
+    return view('competitions.district', compact('region', 'departement', 'matchs', 'journees', 'division', 'groupe'));
 })->name('competition.district');
 
 
