@@ -92,7 +92,7 @@ class RecuperationMatchs extends Component
                     'away_team_id' => $equipe2->id,
                     'competition_id' => 2,
                     'division_department_id' => $this->division->id,
-                    'department_id' => $this->departement->id,
+                    'department_id' => $this->departement->id ?? NULL,
                     'group_id' => $this->groupe->id,
                     'region_id' => $this->region->id,
                     'journee_id' => $journee,
