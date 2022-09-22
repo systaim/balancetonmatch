@@ -5,9 +5,9 @@
         <div class="container px-2 lg:py-36 py-4 mx-auto text-white">
             <div class="flex flex-wrap justify-center">
                 <div class="relative p-4 w-11/12 lg:w-1/3 h-64 my-2">
-                    <div class="relative h-64 border-2 rounded-lg overflow-hidden shadow-2xl border-none">
-                        <img class="w-full object-cover object-center h-full"
-                            src="{{ asset('images/championnat-region-min.jpg') }}" alt="Coupe de France" loading="lazy">
+                    <div class="relative h-64 border-2 rounded-sm overflow-hidden shadow-2xl border-none">
+                        {{-- <img class="w-full object-cover object-center h-full"
+                            src="{{ asset('images/championnat-region-min.jpg') }}" alt="Coupe de France" loading="lazy"> --}}
                         <div class="absolute top-12 left-2 text-gray-900">
                             <select name="region" id="region">
                                 <option value="">Bretagne</option>
@@ -31,14 +31,14 @@
                                 @endfor
                             </select>
                         </div>
-                        <h3 class="absolute top-1 left-1 title-font text-lg bg-primary text-white p-1 rounded-lg">
+                        <h3 class="absolute top-1 left-1 title-font text-lg bg-primary text-white p-1">
                             RÉGIONALE <span class="pl-4 text-sm">R1 R2 R3</span></h3>
                     </div>
                 </div>
                 <div class="p-4 w-11/12 lg:w-1/3 h-64 my-2">
-                    <div class="relative h-64 border-2 rounded-lg overflow-hidden shadow-2xl border-none">
-                        <img class="w-full object-cover object-center h-full"
-                            src="{{ asset('images/championnat-district.jpg') }}" alt="Championnat district" loading="lazy">
+                    <div class="relative h-64 border-2 rounded-sm overflow-hidden shadow-2xl border-none">
+                        {{-- <img class="w-full object-cover object-center h-full"
+                            src="{{ asset('images/championnat-district.jpg') }}" alt="Championnat district" loading="lazy"> --}}
                         <div class="absolute top-12 left-2 text-gray-900 flex flex-wrap justify-center">
                             <select class="mr-3" name="departement" id="departement"
                                 onchange="choixDep(this.selectedIndex)">
@@ -134,16 +134,16 @@
                                 </select>
                             </div>
                         </div>
-                        <h3 class="absolute top-1 left-1 title-font text-lg bg-primary text-white p-1 rounded-lg">
+                        <h3 class="absolute top-1 left-1 title-font text-lg bg-primary text-white p-1">
                             DISTRICT <span class="pl-4 text-sm">D1 D2 D3</span></h3>
                     </div>
                 </div>
                 <div class="p-4 w-11/12 lg:w-1/3 h-64 my-2">
                     <a href="competitions/coupe-de-france">
-                        <div class="relative h-64 border-2 rounded-lg overflow-hidden shadow-2xl border-none">
-                            <img class="w-full object-cover object-center h-full" loading="lazy"
-                                src="{{ asset('images/Coupe-de-france.jpg') }}" alt="Coupe de France">
-                            <h3 class="absolute top-1 left-1 title-font text-lg bg-primary text-white p-1 rounded-lg">
+                        <div class="relative h-64 border-2 rounded-sm overflow-hidden shadow-2xl border-none">
+                            {{-- <img class="w-full object-cover object-center h-full" loading="lazy"
+                                src="{{ asset('images/Coupe-de-france.jpg') }}" alt="Coupe de France"> --}}
+                            <h3 class="absolute top-1 left-1 title-font text-lg bg-primary text-white p-1">
                                 COUPE DE FRANCE
                             </h3>
                         </div>
@@ -151,10 +151,10 @@
                 </div>
                 <div class="p-4 w-11/12 lg:w-1/3 h-64 my-2">
                     <a href="competitions/coupe-de-bretagne">
-                        <div class="relative h-64 border-2 rounded-lg overflow-hidden shadow-2xl border-none">
-                            <img class="w-full object-cover object-center h-full" src="{{ asset('images/bzh.png') }}"
-                                alt="coupe de Bretagne" loading="lazy">
-                            <h3 class="absolute top-1 left-1 title-font text-lg bg-primary text-white p-1 rounded-lg">
+                        <div class="relative h-64 border-2 rounded-sm overflow-hidden shadow-2xl border-none">
+                            {{-- <img class="w-full object-cover object-center h-full" src="{{ asset('images/bzh.png') }}"
+                                alt="coupe de Bretagne" loading="lazy"> --}}
+                            <h3 class="absolute top-1 left-1 title-font text-lg bg-primary text-white p-1">
                                 COUPE DE BRETAGNE
                             </h3>
                         </div>
@@ -162,19 +162,19 @@
                 </div>
                 <div class="p-4 w-11/12 lg:w-1/3 h-64 my-2">
                     <a href="competitions/coupe-ange-lemee">
-                        <div class="relative h-64 border-2 rounded-lg overflow-hidden shadow-2xl border-none">
-                            <img class="w-full object-cover object-center h-full" src="{{ asset('images/coupe-departement-min.jpeg') }}" 
-                            alt="coupe de Bretagne" loading="lazy">
-                            <h3 class="absolute top-1 left-1 title-font text-lg bg-primary text-white p-1 rounded-lg">
+                        <div class="relative h-64 border-2 rounded-sm overflow-hidden shadow-2xl border-none">
+                            {{-- <img class="w-full object-cover object-center h-full" src="{{ asset('images/coupe-departement-min.jpeg') }}" 
+                            alt="coupe de Bretagne" loading="lazy"> --}}
+                            <h3 class="absolute top-1 left-1 title-font text-lg bg-primary text-white p-1">
                                 COUPE ANGE LEMÉE
                             </h3>
                         </div>
                     </a>
                 </div>
                 <div class="p-4 w-11/12 lg:w-1/3 h-64 my-2">
-                    <div class="relative h-64 border-2 rounded-lg overflow-hidden shadow-2xl border-none">
-                        <img class="w-full object-cover object-center h-full"
-                            src="{{ asset('images/championnat-district.jpg') }}" alt="Championnat district" loading="lazy">
+                    <div class="relative h-64 border-2 rounded-sm overflow-hidden shadow-2xl border-none">
+                        {{-- <img class="w-full object-cover object-center h-full"
+                            src="{{ asset('images/championnat-district.jpg') }}" alt="Championnat district" loading="lazy"> --}}
                         <div class="absolute top-12 left-2 text-gray-900 flex flex-wrap justify-center">
                             <select class="mr-3" name="cpeDepartement" id="cpeDepartement" onchange="location = this.value;">
                                 <option>Départements</option>
@@ -183,16 +183,16 @@
                                 @endforeach
                             </select>
                         </div>
-                        <h3 class="absolute top-1 left-1 title-font text-lg bg-primary text-white p-1 rounded-lg">
+                        <h3 class="absolute top-1 left-1 title-font text-lg bg-primary text-white p-1">
                             COUPE DU DÉPARTEMENT</h3>
                     </div>
                 </div>
                 <div class="p-4 w-11/12 lg:w-1/3 h-64 my-2">
                     <a href="competitions/amicaux">
-                        <div class="relative h-64 border-2 rounded-lg overflow-hidden shadow-2xl border-none">
-                            <img class="w-full object-cover object-center h-full" src="{{ asset('images/amicaux.jpg') }}"
-                                alt="Coupe de France" loading="lazy">
-                            <h3 class="absolute top-1 left-1 title-font text-lg bg-primary text-white p-1 rounded-lg">
+                        <div class="relative h-64 border-2 rounded-sm overflow-hidden shadow-2xl border-none">
+                            {{-- <img class="w-full object-cover object-center h-full" src="{{ asset('images/amicaux.jpg') }}"
+                                alt="Coupe de France" loading="lazy"> --}}
+                            <h3 class="absolute top-1 left-1 title-font text-lg bg-primary text-white p-1">
                                 Matchs amicaux
                             </h3>
                         </div>
