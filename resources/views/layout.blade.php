@@ -174,9 +174,16 @@
         </div>
     </a>
 @endif
-
-
-
+<div class="fixed bottom-0 mx-auto flex justify-center left-0 right-0 bg-gray-100">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7237777700901740"
+                crossorigin="anonymous"></script>
+        <!-- bas de page -->
+        <ins class="adsbygoogle" style="display:inline-block;width:90%;height:65px"
+            data-ad-client="ca-pub-7237777700901740" data-ad-slot="8168194089"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
 @livewireScripts
 
 @auth

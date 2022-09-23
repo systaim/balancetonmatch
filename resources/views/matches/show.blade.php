@@ -281,7 +281,7 @@
         <p class="font-bold text-white">PUBLICITE</p>
     </div> --}}
 
-    {{-- <a href=javascript:history.go(-1)>
+    <a href=javascript:history.go(-1)>
         <div
             class="fixed bottom-16 left-3 lg:hidden shadow-xl flex justify-center items-center rounded-full 
                 h-12 w-12 bg-white z-30 border border-darkSuccess">
@@ -290,7 +290,7 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 17l-5-5m0 0l5-5m-5 5h12" />
             </svg>
         </div>
-    </a> --}}
+    </a>
     <div class="fixed bottom-0 mx-auto flex justify-center left-0 right-0 bg-gray-100">
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7237777700901740"
                 crossorigin="anonymous"></script>
@@ -301,11 +301,6 @@
             (adsbygoogle = window.adsbygoogle || []).push({});
         </script>
     </div>
-    {{-- <div class="fixed bottom-0 w-full h-24 bg-green-300">
-        
-    </div> --}}
-
-
 </body>
 
 @livewireScripts
