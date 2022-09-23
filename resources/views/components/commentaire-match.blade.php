@@ -1,85 +1,68 @@
-<div class="relative commentaires overflow-hidden h-auto {{ $comment->team_action }}"
-    @if ($comment->team_action == 'home') style="border-color: {{ $match->homeClub->primary_color }};"
-    @elseif ($comment->team_action == 'away')
-    style="border-color: {{ $match->awayClub->primary_color }};" @endif
-    x-data="{ open: false }">
-    <div class="minuteCommentaires w-24 sm:w-32 {{ $comment->team_action }} p-4 flex flex-col items-center"
+<div class="relative commentaires h-auto flex justify-center {{ $comment->team_action }} my-1 border rounded-md shadow-md" x-data="{ open: false }">
+    <div class="rounded-md {{ $comment->team_action }} p-4 flex flex-col items-center"
         @if ($comment->team_action == 'home') style="background-color: {{ $match->homeClub->primary_color }};
         color:{{ $match->homeClub->secondary_color == $match->homeClub->primary_color ? '#cdfb0a' : $match->homeClub->secondary_color }}"
         @elseif ($comment->team_action == 'away')
         style="background-color: {{ $match->awayClub->primary_color }};
         color:{{ $match->awayClub->secondary_color == $match->awayClub->primary_color ? '#cdfb0a' : $match->awayClub->secondary_color }}" @endif>
-        <div>
-            @if ($comment->team_action == 'match')
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-            @else
+        @if ($comment->team_action != 'match')
+            <div>
                 @if ($comment->minute > 90)
                     <p class="mb-4">90<span class="text-xs">+{{ $comment->minute - 90 }}</span>'</p>
                 @else
                     <p class="mb-4">{{ $comment->minute }}'</p>
                 @endif
-            @endif
-        </div>
+            </div>
+        @endif
         @if ($comment->team_action == 'home')
-            <div class="logo h-12 w-12 cursor-pointer">
+            <div class="logo h-8 w-8 cursor-pointer">
                 <img class="object-contain" src="{{ asset($match->homeClub->logo) }}"
                     alt="Logo de {{ $match->homeClub->name }}">
             </div>
         @endif
         @if ($comment->team_action == 'away')
-            <div class="logo h-12 w-12 cursor-pointer">
+            <div class="logo h-8 w-8 cursor-pointer">
                 <img class="object-contain" src="{{ asset($match->awayClub->logo) }}"
                     alt="Logo de {{ $match->awayClub->name }}">
             </div>
         @endif
     </div>
-    <div class="relative bg-white w-full p-4 flex justify-between">
-        <div class="flex justify-between">
+    <div class="relative w-full p-2 flex justify-between">
+        <div class="text-sm w-full">
             <div {{ $comment->type_comments == 'Pub' ? 'wire:ignore' : '' }}>
                 <p>{{ $comment->type_comments }}</p>
                 @if ($comment->type_comments == 'Pub')
                     <p>{!! $comment->comments !!}</p>
-                @else
-                    {{-- <p>{{ $comment->comments }}</p> --}}
                 @endif
                 <div class="flex justify-between">
                     @if ($comment->statistic)
                         @if ($comment->team_action == 'away' || $comment->team_action == 'home')
-                            <div>
-                                @if ($comment->statistic->player)
-                                    <div class="relative flex flex-col">
-                                        <div>
-                                            <div>
-                                                <p>
-                                                    {{ ucfirst($comment->statistic->player->first_name) }}
-                                                    {{ ucfirst($comment->statistic->player->last_name) }}
-                                                </p>
-                                                @if ($comment->statistic->player->id >= 1 && $comment->statistic->player->id <= 16 && $match->id != 0)
-                                                    <button type="button"
-                                                        class="text-xs px-2 bg-primary text-white rounded-md"
-                                                        @click="open = true">
-                                                        Qui est ce ?
-                                                    </button>
-                                                @endif
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endif
-                            </div>
+                            @if ($comment->statistic->player)
+                                <div class="relative flex flex-col">
+                                    <p>
+                                        {{ ucfirst($comment->statistic->player->first_name) }}
+                                        {{ ucfirst($comment->statistic->player->last_name) }}
+                                    </p>
+                                    @if ($comment->statistic->player->id >= 1 && $comment->statistic->player->id <= 16 && $match->id != 0)
+                                        <button type="button" class="text-xs px-2 bg-primary text-white rounded-md"
+                                            @click="open = true">
+                                            Qui est ce ?
+                                        </button>
+                                    @endif
+                                </div>
+                            @endif
                         @endif
                     @endif
-                    <div class="flex justify-start mt-2">
+                    <div class="flex justify-end">
                         @foreach ($comment->reactions->groupBy('emoji') as $type => $reaction)
                             @foreach ($reaction->groupBy('id') as $id => $react)
-                                <div>
-                                    <p class="-pt-1 mx-1 text-sm font-normal">
-                                        {{ $type }}
-                                        <span>{{ count($reaction) }}</span>
-                                    </p>
+                                <div class="flex flex-col items-center">
+                                    <button
+                                        class="border h-10 w-10 m-1 rounded-full shadow-2xl bg-gray-100 flex justify-center items-center"
+                                        wire:click="reaction({{ $id }}, {{ $comment->id }})">
+                                        <p class="border-orange-400 m-1">{{ $type }}</p>
+                                    </button>
+                                    <p>{{ count($reaction) }}</p>
                                 </div>
                             @endforeach
                         @endforeach
@@ -87,7 +70,7 @@
                 </div>
             </div>
             <!-- Menu ajout d'un joueur par utilisateur -->
-            <div class="border-t-2 pt-4 flex flex-col justify-center items-center" x-show="open"
+            <div class="border-t-2 pt-4 flex flex-col justify-center items-center mt-4" x-show="open"
                 @click.away="open = false">
                 <h3 class="text-sm">Tu connais ce joueur ?</h3>
                 <div class="flex flex-col">
@@ -166,28 +149,6 @@
                 @endif
             </div> --}}
         </div>
-        @if ($comment->team_action != 'match' &&
-            ($comment->type_comments != 'Carton jaune' &&
-                $comment->type_comments != '2e carton jaune' &&
-                $comment->type_comments != 'Carton rouge' &&
-                $comment->type_comments != 'Carton blanc'))
-            <div class="flex justify-end items-end mx-1 -mb-3 -mr-3">
-                @foreach ($reactions as $reaction)
-                    @if (!empty($comment->reactions))
-                        <button
-                            class="flex border h-10 w-10 m-1 rounded-full shadow-2xl bg-gray-100 justify-center items-center"
-                            wire:click="reaction({{ $reaction->id }}, {{ $comment->id }})">
-                            <p class="border-orange-400 m-1">{{ $reaction->emoji }}</p>
-                        </button>
-                    @endif
-                @endforeach
-                {{-- <button
-                    class="flex border h-10 w-10 m-1 rounded-full shadow-2xl bg-gray-100 justify-center items-center"
-                    wire:click="">
-                    <p class="border-orange-400 m-1 text-2xl">+</p>
-                </button> --}}
-            </div>
-        @endif
     </div>
     @auth
         @if (($match->commentateur->user_id == Auth::user()->id && $match->live != 'finDeMatch') ||

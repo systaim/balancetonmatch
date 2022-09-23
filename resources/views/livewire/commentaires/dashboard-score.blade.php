@@ -198,9 +198,9 @@
             </div>
             <div class="col-span-4 flex flex-col items-center justify-center">
                 <div
-                    class="text-white font-bold bg-primary flex justify-center items-center w-12 h-12 my-1 rounded-full border-2 border-secondary">
+                    class="text-white font-bold bg-primary flex justify-center items-center w-20 h-20 my-0.5 rounded-full border-2 border-secondary">
                     @if ($match->live != 'attente' && $match->live != 'finDeMatch' && $match->live != 'reporte')
-                        <p>{{ $minute }}</p>
+                        <p class="text-2xl">{{ $minute }}</p>
                     @else
                         <div class="flex flex-col text-sm items-center justify-center">
                             <p>{{ $match->date_match->formatLocalized('%H:%M') }}</p>

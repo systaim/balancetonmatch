@@ -628,6 +628,7 @@ class FormCommentaires extends Component
         $commentData['type_comments'] = "La séance des tirs aux but va commencer.";
         $commentData['minute'] = 120;
         $commentData['team_action'] = 'match';
+        $commentData['rencontre_id'] = $this->match->id;
         $commentData['commentator_id'] = $this->match->commentateur->id;
         // $commentData['images'] = "images/gifs/start.gif";
 

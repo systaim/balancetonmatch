@@ -115,7 +115,6 @@
     <div>
         <form wire:submit.prevent="saveComment">
             @csrf
-
             @include('livewire.commentaires.dashboard-score')
 
             <!-------------------------
@@ -191,7 +190,7 @@
                     @endif
                     @if ($type_comments == 'but' || $type_comments == 'carton')
                         <div class="rounded-lg flex flex-col justify-center items-center p-4 w-full">
-                            <select class="inputForm border border-black text-black" name="player" id="player"
+                            <select class="inputForm border border-black text-black w-64 rounded-md" name="player" id="player"
                                 wire:model="player"
                                 {{ $type_comments == 'but' || $type_comments == 'carton' ? 'required' : '' }}>
                                 <option value="">Choisis un joueur</option>
@@ -217,7 +216,7 @@
                             </select>
                         </div>
                     @endif
-                    <div class="flex items-center text-white m-auto my-4">
+                    {{-- <div class="flex items-center text-white m-auto my-4">
                         <label class="cursor-pointer my-4 btn border border-black text-black" for="file">
                             <div class="flex justify-between">
                                 <div class="hidden" wire:loading wire:target="file">
@@ -237,8 +236,8 @@
                             <input class="hidden" type="file" wire:model="file" name="file" id="file"
                                 accept="jpeg,png,jpg,gif,svg,mp4,mov">
                         </label>
-                    </div>
-                    @error('type_comments')
+                    </div> --}}
+                    {{-- @error('type_comments')
                         <span class="error">{{ $message }}</span>
                     @enderror
                     @if ($file)
@@ -249,10 +248,10 @@
                     @endif
                     @error('file')
                         <span class="alert alert-danger">{{ $message }}</span>
-                    @enderror
-                    <div class="flex flex-row justify-center items-center mt-4">
+                    @enderror --}}
+                    <div class="flex flex-col justify-center items-center mt-4">
                         <label for="minuteCom">Temps de jeu</label>
-                        <input class="border border-black mx-2 py-1 text-center outline-none" type="number"
+                        <input class="w-24 rounded-md" type="number"
                             name="minuteCom" wire:model="minuteCom" min="1" max="125"
                             placeholder="{{ $minute }}">
                         @error('minuteCom')
@@ -311,7 +310,7 @@
                 @endauth
                 @auth
                     @if (Auth::user()->first_com == 1 && $match->commentateur != null && $match->commentateur->user_id == Auth::user()->id)
-                        <div class="bg-cool-gray-800 w-11/12 rounded-lg p-4 text-white m-auto my-2 text-center">
+                        <div class="bg-cool-gray-800 w-11/12 rounded-lg p-4 m-auto my-2 text-center text-sm shadow-lg">
                             <h3 class="text-secondary text-center text-lg mb-4">Commenter facilement</h3>
                             <div class="my-4 mx-6 flex justify-center">
                                 <div class="p-2">
@@ -356,7 +355,6 @@
                                         </figure>
 
                                     </div>
-                                    <p>Tu peux ajouter une photo de l'exploit si tu veux</p>
                                     <p>Valide ! et c'est tout... 😉</p>
                                     {{-- <div class="w-11/12 h-0.5 bg-white my-2"></div>
                                 <div class="my-2">
@@ -392,7 +390,7 @@
                         </div>
                     @endif
                     @if ($match->commentateur)
-                        <div class="flex justify-center my-6 m-auto">
+                        <div class="flex justify-center my-1 m-auto">
                             @if ($match->commentateur != null && $match->commentateur->user->id == Auth::user()->id)
                                 @if ($match->live == 'attente')
                                     <div x-data="{ open: false }" class="flex flex-col items-center">
@@ -525,7 +523,7 @@
                                     </div>
                                 </button>
                             @endif --}}
-                                @if ($match->live == 'finDeMatch' && $match->home_score == $match->away_score && ($match->competition_id >= 3 && $match->competition_id <= 7) && (count($tabHome) == 0 || count($tabAway) == 0))
+                                @if ($match->live == 'finDeMatch' && $match->home_score == $match->away_score && ($match->competition_id >= 3 && $match->competition_id <= 5) && (count($tabHome) == 0 || count($tabAway) == 0))
                                     <button type="button" wire:click="tirsAuBut">
                                         <div
                                             class="bg-primary text-white w-full h-full p-3 flex justify-evenly items-center rounded-lg">
@@ -693,11 +691,11 @@
         <!-- Affichage des commentaires -->
         @if ($match->commentateur)
             <div
-                class="my-2 w-11/12 lg:w-4/12 mx-auto bg-white text-primary rounded-lg shadow-2xl text-sm overflow-hidden">
+                class="w-11/12 lg:w-4/12 mx-auto bg-white text-primary rounded-md shadow-2xl text-sm overflow-hidden">
                 <div>
                     <h3 class="bg-secondary text-center">Le "Thierry Roland" du jour</h3>
                 </div>
-                <div class=" flex justify-around items-center">
+                <div class="p-1 flex justify-around items-center">
                     <div>
                         <div class="flex justify-start items-center">
                             <img class="rounded-full h-8 w-8 object-cover mr-2"
@@ -710,7 +708,7 @@
                     </div>
                     @if ($match->id != 0)
                         <div>
-                            <button class="btn btnPrimary" wire:click="merci">Merci ! <span
+                            <button class="bg-primary text-white px-2 py-1" wire:click="merci">Merci ! <span
                                     class="bg-white px-1 text-primary rounded-sm ml-2">{{ $match->commentateur->merci }}</span></button>
                         </div>
                     @endif
@@ -825,10 +823,12 @@
                         @endif
                     @endif
                 @endauth
-                @foreach ($commentsMatch as $comment)
-                    <x-commentaire-match :comment="$comment" :match="$match" :reactions="$reactions">
-                    </x-commentaire-match>
-                @endforeach
+                <div>
+                    @foreach ($commentsMatch as $comment)
+                        <x-commentaire-match :comment="$comment" :match="$match" :reactions="$reactions">
+                        </x-commentaire-match>
+                    @endforeach
+                </div>
             </div>
         </div>
         <!-- Fin affichage des commentaires -->
