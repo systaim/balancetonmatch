@@ -147,7 +147,22 @@ class RecuperationMatchs extends Component
                         'date_match' => $annee . '-' . $mois . '-' . $jour . ' ' . $heure . ':' . $minute . ':00',
                     ]
                 );
-            } elseif ($this->competition_id >= 4) {
+            } elseif ($this->competition_id == 4) {
+                Rencontre::updateOrCreate(
+                    [
+                        'live' => 'attente',
+                        'slug' => $equipe1->name . '-vs-' . $equipe2->name . '-' . $jour . '-' . $mois . '-' . $annee,
+                        'home_team_id' => $equipe1->id,
+                        'away_team_id' => $equipe2->id,
+                        'competition_id' => $this->competition_id,
+                        'region_id' => $this->region->id,
+                        'user_id' => Auth::id(),
+                    ],
+                    [
+                        'date_match' => $annee . '-' . $mois . '-' . $jour . ' ' . $heure . ':' . $minute . ':00',
+                    ]
+                );
+            } elseif ($this->competition_id >= 5) {
                 Rencontre::updateOrCreate(
                     [
                         'live' => 'attente',
@@ -163,7 +178,6 @@ class RecuperationMatchs extends Component
                         'date_match' => $annee . '-' . $mois . '-' . $jour . ' ' . $heure . ':' . $minute . ':00',
                     ]
                 );
-            }
         }
         return redirect($this->page);
     }
