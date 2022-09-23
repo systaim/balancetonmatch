@@ -71,12 +71,12 @@
                             <div class="flex justify-center text-black">
                                 <div class="rounded-sm mr-1 overflow-hidden">
                                     <p
-                                        class="flex justify-center w-4 text-3xl px-4 font-bold rounded-sm {{ $match->home_score > $match->away_score ? 'bg-secondary' : '' }}">
+                                        class="flex justify-center w-4 text-xl px-4 font-bold rounded-sm {{ $match->home_score > $match->away_score ? 'bg-secondary' : '' }}">
                                         {{ $match->home_score }}</p>
                                 </div>
                                 <div class="rounded-sm ml-1 z-10 overflow-hidden">
                                     <p
-                                        class="flex justify-center w-4 text-3xl px-4 font-bold rounded-sm {{ $match->away_score > $match->home_score ? 'bg-secondary' : '' }}">
+                                        class="flex justify-center w-4 text-xl px-4 font-bold rounded-sm {{ $match->away_score > $match->home_score ? 'bg-secondary' : '' }}">
                                         {{ $match->away_score }}</p>
                                 </div>
                             </div>
