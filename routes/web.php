@@ -60,8 +60,9 @@ Route::get('/competitions/coupe-de-bretagne', function () {
     $matchs = Rencontre::where('competition_id', 4)->where('date_match', '>=', Carbon::now()->subDays(5))->where('region_id', 3)->orderBy('date_match', 'asc')->get();
     $user = Auth::user();
     $title = "coupe de Bretagne";
+    $region = Region::find(3);
 
-    return view('competitions.coupeDeBretagne', compact('matchs', 'user', 'title'));
+    return view('competitions.coupeDeBretagne', compact('matchs', 'user', 'title', 'region'));
 });
 
 Route::get('/competitions/coupe-ange-lemee', function () {
@@ -69,8 +70,10 @@ Route::get('/competitions/coupe-ange-lemee', function () {
     $matchs = Rencontre::where('competition_id', 5)->where('date_match', '>=', Carbon::now()->subDays(5))->where('department_id', 22)->orderBy('date_match', 'asc')->get();
     $user = Auth::user();
     $title = "coupe Ange Lemée";
+    $region = Region::find(3);
+    $departement = Department::find(22);
 
-    return view('competitions.coupeAngeLemee', compact('matchs', 'user', 'title'));
+    return view('competitions.coupeAngeLemee', compact('matchs', 'user', 'title', 'region', 'departement'));
 });
 
 Route::get('/competitions/coupe-du-departement/region/{region:slug}/departement/{departement}', function (Region $region, Department $departement) {
@@ -78,8 +81,10 @@ Route::get('/competitions/coupe-du-departement/region/{region:slug}/departement/
     $matchs = Rencontre::where('competition_id', 7)->where('date_match', '>=', Carbon::now()->subDays(5))->where('region_id', $region->id)->where('department_id', $departement->id)->orderBy('date_match', 'asc')->get();
     $user = Auth::user();
     $title = "Coupe du département";
+    $region = Region::find(3);
+    $departement = Department::find(22);
 
-    return view('competitions.coupeDuDepartement', compact('departement', 'matchs', 'user', 'title'));
+    return view('competitions.coupeDuDepartement', compact('departement', 'matchs', 'user', 'title', 'region', 'departement'));
 });
 
 Route::get('region/{region:slug}/regional/{division}/groupe/{groupe}', function (Region $region, DivisionsRegion $division, Group $groupe) {

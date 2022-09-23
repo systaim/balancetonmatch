@@ -1,13 +1,19 @@
 @extends('layout')
 @section('content')
-
-<div class="relative w-full py-10 bg-primary text-white  mb-6">
-    <h2 class="text-4xl lg:text-6xl text-center">COUPE DE BRETAGNE</h2>
-</div>
-{{-- @livewire('search-match-coupe-de-bretagne') --}}
+    <div class="relative w-full py-10 bg-primary text-white mb-6 flex flex-col items-center">
+        <h2 class="text-4xl lg:text-6xl text-center">COUPE DE BRETAGNE</h2>
+        @can('isSuperAdmin')
+            @livewire('recuperation-matchs', [
+                'competition_id' => 4,
+                'region' => $region,
+                'page' => request()->fullUrl(),
+            ])
+        @endcan
+    </div>
+    {{-- @livewire('search-match-coupe-de-bretagne') --}}
 
     <div class="relative lg:flex lg:justify-center">
-        <div class="lg:w-9/12">            
+        <div class="lg:w-9/12">
             @foreach ($matchs as $match)
                 <div class="rounded-b-md rounded-tr-md">
                     @include('match')
@@ -32,5 +38,4 @@
             </div>
         </div>
     </div>
-
 @endsection
