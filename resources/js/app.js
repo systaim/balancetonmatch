@@ -24,54 +24,54 @@ require("./bootstrap");
  *
  ******************************/
 
-let burger2 = document.getElementById("burger2");
-let menuMobile = document.getElementById("menu-mobile");
-let profile = document.getElementById("profile");
-let menuProfile = document.getElementById("menu-profile");
-let matchs = document.getElementById("matchs");
-let menuMatchs = document.getElementById("menu-matchs");
+// let burger2 = document.getElementById("burger2");
+// let menuMobile = document.getElementById("menu-mobile");
+// let profile = document.getElementById("profile");
+// let menuProfile = document.getElementById("menu-profile");
+// let matchs = document.getElementById("matchs");
+// let menuMatchs = document.getElementById("menu-matchs");
 
-burger2.addEventListener("click", function() {
-    this.classList.toggle("is-open");
-    menuMobile.classList.toggle("is-open");
+// burger2.addEventListener("click", function() {
+//     this.classList.toggle("is-open");
+//     menuMobile.classList.toggle("is-open");
 
-    if (menuProfile.classList.contains("is-open")) {
-        menuProfile.classList.toggle("is-open");
-    }
-    if (menuMatchs.classList.contains("is-open")) {
-        menuMatchs.classList.toggle("is-open");
-    }
-});
+//     if (menuProfile.classList.contains("is-open")) {
+//         menuProfile.classList.toggle("is-open");
+//     }
+//     if (menuMatchs.classList.contains("is-open")) {
+//         menuMatchs.classList.toggle("is-open");
+//     }
+// });
 
-profile.addEventListener("click", function() {
-    this.classList.toggle("is-open");
-    menuProfile.classList.toggle("is-open");
+// profile.addEventListener("click", function() {
+//     this.classList.toggle("is-open");
+//     menuProfile.classList.toggle("is-open");
 
-    if (menuMobile.classList.contains("is-open")) {
-        menuMobile.classList.toggle("is-open");
-    }
-    if (menuMatchs.classList.contains("is-open")) {
-        menuMatchs.classList.toggle("is-open");
-    }
-    if (burger2.classList.contains("is-open")) {
-        burger2.classList.toggle("is-open");
-    }
-});
+//     if (menuMobile.classList.contains("is-open")) {
+//         menuMobile.classList.toggle("is-open");
+//     }
+//     if (menuMatchs.classList.contains("is-open")) {
+//         menuMatchs.classList.toggle("is-open");
+//     }
+//     if (burger2.classList.contains("is-open")) {
+//         burger2.classList.toggle("is-open");
+//     }
+// });
 
-matchs.addEventListener("click", function() {
-    this.classList.toggle("is-open");
-    menuMatchs.classList.toggle("is-open");
+// matchs.addEventListener("click", function() {
+//     this.classList.toggle("is-open");
+//     menuMatchs.classList.toggle("is-open");
 
-    if (menuProfile.classList.contains("is-open")) {
-        menuProfile.classList.toggle("is-open");
-    }
-    if (menuMobile.classList.contains("is-open")) {
-        menuMobile.classList.toggle("is-open");
-    }
-    if (burger2.classList.contains("is-open")) {
-        burger2.classList.toggle("is-open");
-    }
-});
+//     if (menuProfile.classList.contains("is-open")) {
+//         menuProfile.classList.toggle("is-open");
+//     }
+//     if (menuMobile.classList.contains("is-open")) {
+//         menuMobile.classList.toggle("is-open");
+//     }
+//     if (burger2.classList.contains("is-open")) {
+//         burger2.classList.toggle("is-open");
+//     }
+// });
 
 /******************************
  *
@@ -81,10 +81,10 @@ matchs.addEventListener("click", function() {
 
 let compteurs = document.querySelectorAll(".compteur");
 
-compteurs.forEach(compteur => {
+compteurs.forEach((compteur) => {
     function animateValue(obj, start, end, duration) {
         let startTimestamp = null;
-        const step = timestamp => {
+        const step = (timestamp) => {
             if (!startTimestamp) startTimestamp = timestamp;
             const progress = Math.min(
                 (timestamp - startTimestamp) / duration,
@@ -121,7 +121,7 @@ compteurs.forEach(compteur => {
 
 let submitButton = document.querySelector("[type=Submit]");
 if (submitButton != null) {
-    submitButton.addEventListener("load", function() {
+    submitButton.addEventListener("load", function () {
         submitButton.setAttribute("disabled", "disabled");
     });
 }
@@ -179,7 +179,7 @@ function moveTopToBottom(div) {
         }
     }
 }
-window.addEventListener("scroll", function() {
+window.addEventListener("scroll", function () {
     let moveToLeft = document.querySelectorAll(".moveToLeft");
     let moveToRight = document.querySelectorAll(".moveToRight");
     let moveToBottom = document.querySelectorAll(".moveToBottom");
@@ -204,7 +204,7 @@ window.addEventListener("scroll", function() {
 // window.addEventListener("scroll", function() {
 
 //     if (window.scrollY > 60 && screen.width < 640) {
-        
+
 //         header.style.position = "fixed"
 //         header.style.transition = "all 500ms";
 //     } else {
@@ -212,20 +212,3 @@ window.addEventListener("scroll", function() {
 //         header.style.transition = "all 500ms";
 //     }
 // });
-
-/******************************
- *
- * preloader
- *
- ******************************/
-
- window.onload = function(){ document.querySelector(".preloader").style.display = "none"; }
-
- var button = document.getElementById("notifications");
-button.addEventListener('click', function(e) {
-    Notification.requestPermission().then(function(result) {
-        if(result === 'granted') {
-            randomNotification();
-        }
-    });
-});

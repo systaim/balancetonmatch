@@ -2082,63 +2082,55 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); // /*****
  * menu Hamburger bas de page
  *
  ******************************/
+// let burger2 = document.getElementById("burger2");
+// let menuMobile = document.getElementById("menu-mobile");
+// let profile = document.getElementById("profile");
+// let menuProfile = document.getElementById("menu-profile");
+// let matchs = document.getElementById("matchs");
+// let menuMatchs = document.getElementById("menu-matchs");
+// burger2.addEventListener("click", function() {
+//     this.classList.toggle("is-open");
+//     menuMobile.classList.toggle("is-open");
+//     if (menuProfile.classList.contains("is-open")) {
+//         menuProfile.classList.toggle("is-open");
+//     }
+//     if (menuMatchs.classList.contains("is-open")) {
+//         menuMatchs.classList.toggle("is-open");
+//     }
+// });
+// profile.addEventListener("click", function() {
+//     this.classList.toggle("is-open");
+//     menuProfile.classList.toggle("is-open");
+//     if (menuMobile.classList.contains("is-open")) {
+//         menuMobile.classList.toggle("is-open");
+//     }
+//     if (menuMatchs.classList.contains("is-open")) {
+//         menuMatchs.classList.toggle("is-open");
+//     }
+//     if (burger2.classList.contains("is-open")) {
+//         burger2.classList.toggle("is-open");
+//     }
+// });
+// matchs.addEventListener("click", function() {
+//     this.classList.toggle("is-open");
+//     menuMatchs.classList.toggle("is-open");
+//     if (menuProfile.classList.contains("is-open")) {
+//         menuProfile.classList.toggle("is-open");
+//     }
+//     if (menuMobile.classList.contains("is-open")) {
+//         menuMobile.classList.toggle("is-open");
+//     }
+//     if (burger2.classList.contains("is-open")) {
+//         burger2.classList.toggle("is-open");
+//     }
+// });
 
-
-var burger2 = document.getElementById("burger2");
-var menuMobile = document.getElementById("menu-mobile");
-var profile = document.getElementById("profile");
-var menuProfile = document.getElementById("menu-profile");
-var matchs = document.getElementById("matchs");
-var menuMatchs = document.getElementById("menu-matchs");
-burger2.addEventListener("click", function () {
-  this.classList.toggle("is-open");
-  menuMobile.classList.toggle("is-open");
-
-  if (menuProfile.classList.contains("is-open")) {
-    menuProfile.classList.toggle("is-open");
-  }
-
-  if (menuMatchs.classList.contains("is-open")) {
-    menuMatchs.classList.toggle("is-open");
-  }
-});
-profile.addEventListener("click", function () {
-  this.classList.toggle("is-open");
-  menuProfile.classList.toggle("is-open");
-
-  if (menuMobile.classList.contains("is-open")) {
-    menuMobile.classList.toggle("is-open");
-  }
-
-  if (menuMatchs.classList.contains("is-open")) {
-    menuMatchs.classList.toggle("is-open");
-  }
-
-  if (burger2.classList.contains("is-open")) {
-    burger2.classList.toggle("is-open");
-  }
-});
-matchs.addEventListener("click", function () {
-  this.classList.toggle("is-open");
-  menuMatchs.classList.toggle("is-open");
-
-  if (menuProfile.classList.contains("is-open")) {
-    menuProfile.classList.toggle("is-open");
-  }
-
-  if (menuMobile.classList.contains("is-open")) {
-    menuMobile.classList.toggle("is-open");
-  }
-
-  if (burger2.classList.contains("is-open")) {
-    burger2.classList.toggle("is-open");
-  }
-});
 /******************************
  *
  * compteurs animés
  *
  ******************************/
+
 
 var compteurs = document.querySelectorAll(".compteur");
 compteurs.forEach(function (compteur) {
@@ -2253,25 +2245,6 @@ window.addEventListener("scroll", function () {
 //         header.style.transition = "all 500ms";
 //     }
 // });
-
-/******************************
- *
- * preloader
- *
- ******************************/
-
-window.onload = function () {
-  document.querySelector(".preloader").style.display = "none";
-};
-
-var button = document.getElementById("notifications");
-button.addEventListener('click', function (e) {
-  Notification.requestPermission().then(function (result) {
-    if (result === 'granted') {
-      randomNotification();
-    }
-  });
-});
 
 /***/ }),
 
