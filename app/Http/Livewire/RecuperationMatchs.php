@@ -178,6 +178,7 @@ class RecuperationMatchs extends Component
                         'date_match' => $annee . '-' . $mois . '-' . $jour . ' ' . $heure . ':' . $minute . ':00',
                     ]
                 );
+            }
         }
         return redirect($this->page);
     }
