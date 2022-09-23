@@ -571,13 +571,13 @@
                                 </button>
                             </a>
                         </div>
-                    @else
+                    {{-- @else
                         <div class="flex flex-col items-center my-6">
                             <div class="">
                                 <p class=" py-2 px-3 underline mb-3">
                                     Il n'est plus possible de commenter</p>
                             </div>
-                        </div>
+                        </div> --}}
                     @endif
                 @endauth
         </form>
