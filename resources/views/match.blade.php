@@ -6,7 +6,7 @@
     @endif
     <div class="relative my-2 p-1 cursor-pointer mx-1 lg:mx-0">
         @auth
-            <div class="w-4 h-4 absolute top-2 right-1 flex justify-center items-center rounded-full text-primary border shadow-lg z-40"
+            <div class="w-6 h-6 absolute top-2 right-1 flex justify-center items-center rounded-full text-primary border shadow-lg z-40"
                 @click="open= true">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="currentColor" class="w-4 h-4">
