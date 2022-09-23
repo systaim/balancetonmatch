@@ -4,7 +4,12 @@
     ------------------------->
     <div>
         @auth
-            @if (Auth::user()->role == 'super-admin' || ($match->commentateur != null && $match->commentateur->user_id == Auth::user()->id && $match->live != 'attente' && $match->live != 'finDeMatch' && $match->live != 'tab'))
+            @if (Auth::user()->role == 'super-admin' ||
+                ($match->commentateur != null &&
+                    $match->commentateur->user_id == Auth::user()->id &&
+                    $match->live != 'attente' &&
+                    $match->live != 'finDeMatch' &&
+                    $match->live != 'tab'))
                 @if (!$buttonComment)
                     <div class="flex justify-center">
                         <button type="button" wire:click="clickButtonComment" class="fixed bottom-20 z-40">
@@ -12,8 +17,8 @@
                                 class="flex justify-evenly items-center bg-primary text-white px-1 py-2 rounded-full w-48 border-2 border-secondary">
                                 <div
                                     class="animate-pulse h-10 w-10 shadow-2xl border-2 border-secondary bg-primary flex justify-center items-center rounded-full">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                                        stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M4 6h16M4 12h8m-8 6h16" />
                                     </svg>
@@ -40,22 +45,22 @@
             </div>
             <div class="bg-orange-400">
                 <div class="fixed bottom-16 left-2 z-40 ">
-                    <input class="hidden" type="radio" wire:model="team_action" id="homeAction"
-                        name="team_action" value="home">
+                    <input class="hidden" type="radio" wire:model="team_action" id="homeAction" name="team_action"
+                        value="home">
                     <label for="homeAction">
                         <div class="logo h-20 w-20 shadow-2xl border-2 border-primary">
                             <img class="object-contain" src="{{ asset($match->homeClub->logo) }}"
-                                    alt="Logo de {{ $match->homeClub->name }}">
+                                alt="Logo de {{ $match->homeClub->name }}">
                         </div>
                     </label>
                 </div>
                 <div class="fixed bottom-16 right-2 z-40">
-                    <input class="hidden" type="radio" wire:model="team_action" id="awayAction"
-                        name="team_action" value="away">
+                    <input class="hidden" type="radio" wire:model="team_action" id="awayAction" name="team_action"
+                        value="away">
                     <label for="awayAction">
                         <div class="logo h-20 w-20 shadow-2xl border-2 border-primary">
                             <img class="object-contain" src="{{ asset($match->awayClub->logo) }}"
-                                    alt="Logo de {{ $match->awayClub->name }}">
+                                alt="Logo de {{ $match->awayClub->name }}">
                         </div>
                     </label>
                 </div>
@@ -80,7 +85,8 @@
                                 <input class="hidden" type="radio" id="arret" wire:model="type_comments"
                                     name="type_comments" value="arret">
                                 <img class="border-2 border-secondary rounded-full shadow-xl bg-white m-2 p-2"
-                                    src="{{ asset('images/gants.png') }}" width="50px" height="50px" alt="Arret">
+                                    src="{{ asset('images/gants.png') }}" width="50px" height="50px"
+                                    alt="Arret">
                             </label>
                         </div>
                     @endif
@@ -90,21 +96,24 @@
                                 <input class="hidden" type="radio" id="but" wire:model="type_comments"
                                     name="type_comments" value="but">
                                 <img class="border-2 border-secondary rounded-full shadow-xl bg-white m-2 p-2"
-                                    src="{{ asset('images/ball.png') }}" width="50px" height="50px" alt="But !">
+                                    src="{{ asset('images/ball.png') }}" width="50px" height="50px"
+                                    alt="But !">
                             </label>
                             <label style="bottom:6.3rem; right: 4rem;" class="fixed m-3 z-40" for="carton"
                                 class="cursor-pointer" for="carton" class="cursor-pointer">
                                 <input class="hidden" type="radio" id="carton" wire:model="type_comments"
                                     name="type_comments" value="carton">
                                 <img class="border-2 border-secondary rounded-full shadow-xl bg-white m-2 p-2"
-                                    src="{{ asset('images/cards.png') }}" width="50px" height="50px" alt="Carton">
+                                    src="{{ asset('images/cards.png') }}" width="50px" height="50px"
+                                    alt="Carton">
                             </label>
                             <label class="fixed bottom-10 right-20 m-3 z-40" for="arret" class="cursor-pointer"
                                 for="arret" class="cursor-pointer">
                                 <input class="hidden" type="radio" id="arret" wire:model="type_comments"
                                     name="type_comments" value="arret">
                                 <img class="border-2 border-secondary rounded-full shadow-xl bg-white m-2 p-2"
-                                    src="{{ asset('images/gants.png') }}" width="50px" height="50px" alt="Arret">
+                                    src="{{ asset('images/gants.png') }}" width="50px" height="50px"
+                                    alt="Arret">
                             </label>
                         </div>
                     @endif
@@ -118,7 +127,7 @@
             @include('livewire.commentaires.dashboard-score')
 
             <!-------------------------
-                Formulaire d'action équipe 
+                Formulaire d'action équipe
                 ---------------------------->
             <div class="openComment z-50 rounded-t-lg {{ $team_action }} {{ $type_comments }} border-t">
                 <div class="flex flex-col items-center pt-5">
@@ -140,9 +149,11 @@
                                 @case('but')
                                     But !
                                 @break
+
                                 @case('carton')
                                     Carton !
                                 @break
+
                                 @case('arret')
                                     Arrêt du gardien !
                                 @break
@@ -174,8 +185,7 @@
                                 <input class="hidden" type="radio" id="cartonRouge" wire:model="type_carton"
                                     name="type_comments" value="Carton rouge">
                                 <label class="inputAction" for="cartonRouge">
-                                    <img src="{{ asset('images/red-card.png') }}" alt="carton rouge"
-                                        class="h-14">
+                                    <img src="{{ asset('images/red-card.png') }}" alt="carton rouge" class="h-14">
                                 </label>
                             </div>
                             <div class="actionsMatch">
@@ -190,8 +200,8 @@
                     @endif
                     @if ($type_comments == 'but' || $type_comments == 'carton')
                         <div class="rounded-lg flex flex-col justify-center items-center p-4 w-full">
-                            <select class="inputForm border border-black text-black w-64 rounded-md" name="player" id="player"
-                                wire:model="player"
+                            <select class="inputForm border border-black text-black w-64 rounded-md" name="player"
+                                id="player" wire:model="player"
                                 {{ $type_comments == 'but' || $type_comments == 'carton' ? 'required' : '' }}>
                                 <option value="">Choisis un joueur</option>
                                 <option value="0">CSC</option>
@@ -251,19 +261,19 @@
                     @enderror --}}
                     <div class="flex flex-col justify-center items-center mt-4">
                         <label for="minuteCom">Temps de jeu</label>
-                        <input class="w-24 rounded-md" type="number"
-                            name="minuteCom" wire:model="minuteCom" min="1" max="125"
-                            placeholder="{{ $minute }}">
+                        <input class="w-24 rounded-md" type="number" name="minuteCom" wire:model="minuteCom"
+                            min="1" max="125" placeholder="{{ $minute }}">
                         @error('minuteCom')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="mt-6 flex items-center justify-center">
                         <label for="exit" class="mr-6 cursor-pointer" wire:click="retour">Retour</label>
-                        <button wire:loading.attr="disabled" wire:loading.class.remove="btnPrimary" wire:target="file"
-                            class="btn btnPrimary" type="submit" wire:click="$emit('majPage')">Je commente</button>
-                        <input class="hidden" type="radio" id="exit" wire:model="team_action" name="team_action"
-                            value="">
+                        <button wire:loading.attr="disabled" wire:loading.class.remove="btnPrimary"
+                            wire:target="file" class="btn btnPrimary" type="submit"
+                            wire:click="$emit('majPage')">Je commente</button>
+                        <input class="hidden" type="radio" id="exit" wire:model="team_action"
+                            name="team_action" value="">
                     </div>
                 </div>
             </div>
@@ -278,7 +288,7 @@
                                 class="flex justify-start items-center bg-primary text-white px-1 py-2 rounded-lg border-2 border-white my-2">
                                 <div
                                     class="h-12 w-12 shadow-2xl border-2 bg-white flex justify-center items-center rounded-full">
-                                    <livewire:favori-match :match="$match" :user="Auth::user()" :key="time().$match->id" />
+                                    <livewire:favori-match :match="$match" :user="Auth::user()" :key="time() . $match->id" />
                                 </div>
                                 <div>
                                     <p class="px-3 text-xs">Toi aussi tu veux que ce match soit commenté ?</p>
@@ -309,7 +319,9 @@
                     </a>
                 @endauth
                 @auth
-                    @if (Auth::user()->first_com == 1 && $match->commentateur != null && $match->commentateur->user_id == Auth::user()->id)
+                    @if (Auth::user()->first_com == 1 &&
+                        $match->commentateur != null &&
+                        $match->commentateur->user_id == Auth::user()->id)
                         <div class="bg-cool-gray-800 w-11/12 rounded-lg p-4 m-auto my-2 text-center text-sm shadow-lg">
                             <h3 class="text-secondary text-center text-lg mb-4">Commenter facilement</h3>
                             <div class="my-4 mx-6 flex justify-center">
@@ -401,9 +413,9 @@
                                                 <p>Démarrer le match ?</p>
                                             </div>
                                         </button>
-                                        <button x-show="open" @click.away="open = false" type="button" style="display: none"
-                                            class="btn btnDanger" wire:click="timeZero" wire:model="commentator"
-                                            x-transition:enter="transition ease-out duration-300"
+                                        <button x-show="open" @click.away="open = false" type="button"
+                                            style="display: none" class="btn btnDanger" wire:click="timeZero"
+                                            wire:model="commentator" x-transition:enter="transition ease-out duration-300"
                                             x-transition:enter-start="opacity-0 transform scale-90"
                                             x-transition:enter-end="opacity-100 transform scale-100"
                                             x-transition:leave="transition ease-in duration-300"
@@ -412,7 +424,6 @@
                                             GO GO GO !!!
                                         </button>
                                     </div>
-
                                 @endif
                                 @if ($match->live == 'debut')
                                     <div x-data="{ open: false }" class="flex flex-col items-center">
@@ -425,8 +436,9 @@
                                                 </div>
                                             </div>
                                         </button>
-                                        <button x-show="open" @click.away="open = false" type="button" style="display: none"
-                                            class="btn btnDanger" wire:click="timeMitemps" wire:model="type_comments"
+                                        <button x-show="open" @click.away="open = false" type="button"
+                                            style="display: none" class="btn btnDanger" wire:click="timeMitemps"
+                                            wire:model="type_comments"
                                             x-transition:enter="transition ease-out duration-300"
                                             x-transition:enter-start="opacity-0 transform scale-90"
                                             x-transition:enter-end="opacity-100 transform scale-100"
@@ -436,7 +448,6 @@
                                             Go a la buvette !
                                         </button>
                                     </div>
-
                                 @endif
                                 @if ($match->live == 'mitemps')
                                     <div x-data="{ open: false }" class="flex flex-col items-center">
@@ -449,8 +460,9 @@
                                                 </div>
                                             </div>
                                         </button>
-                                        <button x-show="open" @click.away="open = false" type="button" style="display: none"
-                                            class="btn btnDanger" wire:click="timeReprise" wire:model="type_comments"
+                                        <button x-show="open" @click.away="open = false" type="button"
+                                            style="display: none" class="btn btnDanger" wire:click="timeReprise"
+                                            wire:model="type_comments"
                                             x-transition:enter="transition ease-out duration-300"
                                             x-transition:enter-start="opacity-0 transform scale-90"
                                             x-transition:enter-end="opacity-100 transform scale-100"
@@ -460,7 +472,6 @@
                                             Oui
                                         </button>
                                     </div>
-
                                 @endif
                                 @if ($match->live == 'repriseMT')
                                     <div x-data="{ open: false }" class="flex flex-col items-center">
@@ -474,8 +485,9 @@
                                                 </p>
                                             </div>
                                         </button>
-                                        <button x-show="open" @click.away="open = false" type="button" style="display: none"
-                                            class="btn btnDanger" wire:click="timeFinDuMatch" wire:model="type_comments"
+                                        <button x-show="open" @click.away="open = false" type="button"
+                                            style="display: none" class="btn btnDanger" wire:click="timeFinDuMatch"
+                                            wire:model="type_comments"
                                             x-transition:enter="transition ease-out duration-300"
                                             x-transition:enter-start="opacity-0 transform scale-90"
                                             x-transition:enter-end="opacity-100 transform scale-100"
@@ -523,7 +535,10 @@
                                     </div>
                                 </button>
                             @endif --}}
-                                @if ($match->live == 'finDeMatch' && $match->home_score == $match->away_score && ($match->competition_id >= 3 && $match->competition_id <= 5) && (count($tabHome) == 0 || count($tabAway) == 0))
+                                @if ($match->live == 'finDeMatch' &&
+                                    $match->home_score == $match->away_score &&
+                                    ($match->competition_id >= 3 && $match->competition_id <= 5) &&
+                                    (count($tabHome) == 0 || count($tabAway) == 0))
                                     <button type="button" wire:click="tirsAuBut">
                                         <div
                                             class="bg-primary text-white w-full h-full p-3 flex justify-evenly items-center rounded-lg">
@@ -536,7 +551,7 @@
                         </div>
                     @endif
                     @if (empty($match->commentateur) && $match->date_match > now()->subHours(3))
-                        <div x-data="{open: false}" class="flex flex-col justify-center items-center my-2">
+                        <div x-data="{ open: false }" class="flex flex-col justify-center items-center my-2">
                             <p class="py-2 px-3 underline mb-3">En attente d'un commentateur</p>
                             <button type="button" @click="open = true">
                                 <div
@@ -545,8 +560,8 @@
                                     <p>Je souhaite commenter 😎</p>
                                 </div>
                             </button>
-                            <button x-show="open" @click.away="open = false" type="button" class="btn btnDanger" style="display: none"
-                                wire:click="becomeCommentator" wire:model="commentator"
+                            <button x-show="open" @click.away="open = false" type="button" class="btn btnDanger"
+                                style="display: none" wire:click="becomeCommentator" wire:model="commentator"
                                 x-transition:enter="transition ease-out duration-300"
                                 x-transition:enter-start="opacity-0 transform scale-90"
                                 x-transition:enter-end="opacity-100 transform scale-100"
@@ -571,7 +586,7 @@
                                 </button>
                             </a>
                         </div>
-                    {{-- @else
+                        {{-- @else
                         <div class="flex flex-col items-center my-6">
                             <div class="">
                                 <p class=" py-2 px-3 underline mb-3">
@@ -690,8 +705,7 @@
 
         <!-- Affichage des commentaires -->
         @if ($match->commentateur)
-            <div
-                class="w-11/12 lg:w-4/12 mx-auto bg-white text-primary rounded-md shadow-2xl text-sm overflow-hidden">
+            <div class="w-11/12 lg:w-4/12 mx-auto bg-white text-primary rounded-md shadow-2xl text-sm overflow-hidden">
                 <div>
                     <h3 class="bg-secondary text-center">Le "Thierry Roland" du jour</h3>
                 </div>
