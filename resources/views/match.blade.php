@@ -1,5 +1,5 @@
 <div class="relative" x-data="{ open: false }">
-    @if ($match->date_match < now())
+    @if ($match->date_match > now())
         <div class="absolute h-full left-2 sm:left-4 z-40 text-center flex justify-center items-center font-bold">
             @livewire('favori-match', ['user' => Auth::user(), 'match' => $match])
         </div>
