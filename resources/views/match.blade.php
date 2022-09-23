@@ -5,31 +5,33 @@
         </div>
     @endif
     <div class="relative my-2 p-1 cursor-pointer mx-1 lg:mx-0">
-        <div class="w-4 h-4 absolute top-2 right-1 flex justify-center items-center rounded-full text-primary border shadow-lg"
-            @click="open= true">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                stroke="currentColor" class="w-4 h-4">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 9h16.5m-16.5 6.75h16.5" />
-            </svg>
+        @auth
+            <div class="w-4 h-4 absolute top-2 right-1 flex justify-center items-center rounded-full text-primary border shadow-lg z-40"
+                @click="open= true">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-4 h-4">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 9h16.5m-16.5 6.75h16.5" />
+                </svg>
 
-            <div class="absolute top-0 right-0 w-32 h-auto py-4 pl-6 bg-secondary shadow-xl rounded-lg z-50 text-sm" x-show="open"
-                @click.away="open = false" style="display: none">
-                <a class="w-full" href="{{ route('matches.edit', ['match' => $match]) }}">modifier</a>
-                @auth
+                <div class="absolute top-0 right-0 w-32 h-auto py-4 pl-6 bg-secondary shadow-xl rounded-lg z-50 text-sm"
+                    x-show="open" @click.away="open = false" style="display: none">
+                    <a class="w-full" href="{{ route('matches.edit', ['match' => $match]) }}">modifier</a>
                     @if ((Auth::user() && $match->user_id == Auth::user()->id && $match->live == 'attente') ||
                         Auth::user()->role == 'super-admin' ||
                         Auth::user()->role == 'admin')
                         <a class="w-full" href="{{ route('matches.destroy', $match) }}"
                             onclick="event.preventDefault();
-                                            document.getElementById('delete-match-{{ $match->id }}').submit();">Effacer</a>
+                            document.getElementById('delete-match-{{ $match->id }}').submit();">
+                            Effacer
+                        </a>
                     @endif
-                @endauth
+                </div>
+                <form id="delete-match-{{ $match->id }}" action="{{ route('matches.destroy', $match) }}" method="POST">
+                    @method('DELETE')
+                    @csrf
+                </form>
             </div>
-            <form id="delete-match-{{ $match->id }}" action="{{ route('matches.destroy', $match) }}" method="POST">
-                @method('DELETE')
-                @csrf
-            </form>
-        </div>
+        @endauth
         <a href="{{ route('matches.show', [$match, Str::slug($match->slug, '-')]) }}">
             <div>
                 {{-- <div class="text-sm text-center flex justify-center mb-2">
