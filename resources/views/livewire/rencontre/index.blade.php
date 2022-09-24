@@ -53,7 +53,7 @@
     </div>
 
     <div>
-        <div class="bg-primary text-secondary px-3 py-1 text-sm flex justify-between">
+        <div class="bg-primary text-secondary px-3 py-1 text-sm flex justify-between rounded-sm">
             <div>
                 @if ($match->region_id)
                     <h2>{{ $match->region->name }}</h2>
@@ -80,13 +80,13 @@
 
     <div class="grid grid-cols-3">
         <div class="flex flex-col items-center justify-center flex-1 py-4 overflow-hidden">
-            <p class="text-center truncate font-bold text-xl">{{ $match->homeClub->name }}</p>
             <a target="blank" href="{{ route('clubs.show', $match->homeClub->id) }}">
-                <div class="logo h-16 w-16 sm:h-20 sm:w-20 lg:h-32 lg:w-32 cursor-pointer lg:mr-1 xl:mr-4">
+                <div class="logo h-16 w-16 cursor-pointer">
                     <img class="object-contain" src="{{ asset($match->homeClub->logo) }}"
-                        alt="Logo de {{ $match->homeClub->abbreviation }}">
+                    alt="Logo de {{ $match->homeClub->abbreviation }}">
                 </div>
             </a>
+            <p class="text-center truncate">{{ $match->homeClub->name }}</p>
         </div>
         <div class="flex flex-col justify-center items-center flex-1">
             <div class="flex text-4xl font-bold">
@@ -155,25 +155,25 @@
             @endif
         </div>
         <div class="flex flex-col items-center justify-center flex-1 py-4 overflow-hidden">
-            <p class="text-left truncate font-bold text-xl">{{ $match->awayClub->name }}</p>
             <a target="blank" href="{{ route('clubs.show', $match->awayClub->id) }}">
-                <div class="logo h-16 w-16 sm:h-20 sm:w-20 lg:h-32 lg:w-32 cursor-pointer lg:mr-1 xl:mr-4">
+                <div class="logo h-16 w-16 cursor-pointer">
                     <img class="object-contain" src="{{ asset($match->awayClub->logo) }}"
-                        alt="Logo de {{ $match->awayClub->abbreviation }}">
+                    alt="Logo de {{ $match->awayClub->abbreviation }}">
                 </div>
             </a>
+            <p class="text-left truncate">{{ $match->awayClub->name }}</p>
         </div>
     </div>
     @include('livewire.rencontre._tabs')
     @if (!$match->validate_score)
         @auth
             <div class="flex text-sm">
-                @if ($match->live != 'attente' && $match->live != 'mitemps' && $match->live != 'finDeMatch' && $match->date_match->diffInMinutes(now(), false) > -5 && ($commentateur && $commentateur->user_id == Auth::id()) && $match->date_match->diffInMinutes(now(), false) < 60)
-                    <button type="button" class="w-full py-3 bg-secondary text-center text-gray-900"
+                @if ($match->live != 'attente' && $match->live != 'mitemps' && $match->live != 'finDeMatch' && $match->date_match->diffInMinutes(now(), false) > -5 && ($commentateur && $commentateur->user_id == Auth::id()) && $match->date_match->diffInMinutes(now(), false) < 120)
+                    <button type="button" class="w-full py-3 bg-secondary text-center text-gray-900 rounded-sm"
                         wire:click="openMenuComment">
                         {{ $open_menu_comment ? 'Fermer' : 'Je commente' }}
                     </button>
-                @elseif($match->date_match->diffInMinutes(now(), false) >= 60)
+                @elseif($match->date_match->diffInMinutes(now(), false) >= 60 )
                     <button type="button" class="w-full py-3 bg-primary text-center text-secondary"
                         wire:click="corrigerLeScore">
                         {{ $corriger_le_score ? 'Fermer' : 'Je renseigne le score' }}

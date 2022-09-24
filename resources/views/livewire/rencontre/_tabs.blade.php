@@ -3,7 +3,7 @@
     </div>
     <div class="flex-1 flex justify-center text-sm">
         <button type="button"
-            class="mx-1 border {{ $open_share ? 'border-primary bg-secondary text-primary' : '' }} px-2 py-1 mb-1"
+            class="mx-1 border {{ $open_share ? 'border-primary bg-secondary text-primary' : '' }} px-2 py-1 mb-1 rounded-sm shadow-lg"
             wire:click.prefetch="openTab('share')">
             
             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
@@ -13,31 +13,30 @@
             </svg>
         </button>
         {{-- <button type="button"
-            class="mx-1 border {{ $open_galerie ? 'border-primary bg-secondary text-primary' : '' }} px-2 py-1 mb-1"
+            class="mx-1 border {{ $open_galerie ? 'border-primary bg-secondary text-primary' : '' }} px-2 py-1 mb-1 rounded-sm shadow-lg"
             wire:click.prefetch="openTab('galerie')">
             Photos
         </button> --}}
         <button type="button"
-            class="mx-1 border {{ $open_match ? 'border-primary bg-secondary text-primary' : '' }} px-2 py-1 mb-1"
+            class="mx-1 border {{ $open_match ? 'border-primary bg-secondary text-primary' : '' }} px-2 py-1 mb-1 rounded-sm shadow-lg"
             wire:click.prefetch="openTab('match')">
             Match
         </button>
         <button type="button"
-            class="mx-1 border {{ $open_infos ? 'border-primary bg-secondary text-primary' : '' }} px-2 py-1 mb-1"
+            class="mx-1 border {{ $open_infos ? 'border-primary bg-secondary text-primary' : '' }} px-2 py-1 mb-1 rounded-sm shadow-lg"
             wire:click.prefetch="openTab('infos')">
             Infos
         </button>
         <button type="button"
-            class="mx-1 border {{ $open_compos ? 'border-primary bg-secondary text-primary' : '' }} px-2 py-1 mb-1"
+            class="mx-1 border {{ $open_compos ? 'border-primary bg-secondary text-primary' : '' }} px-2 py-1 mb-1 rounded-sm shadow-lg"
             wire:click.prefetch="openTab('compos')">
             Compos
         </button>
     </div>
     <div class="flex items-center justify-end mx-2 flex-1">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-            <path
-                d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
-        </svg>
+        <div>
+            <img src="https://img.icons8.com/external-flaticons-lineal-color-flat-icons/28/000000/external-fans-football-soccer-flaticons-lineal-color-flat-icons-3.png"/>
+        </div>
         <span class="ml-2 font-bold">{{ $visitors }}</span>
     </div>
 </div>

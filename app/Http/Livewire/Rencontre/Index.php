@@ -32,6 +32,8 @@ class Index extends Component
     //Galerie
     public $photos, $photo_match;
 
+    protected $listeners = [];
+
     public function mount($match)
     {
         $this->match = $match;
@@ -502,9 +504,6 @@ class Index extends Component
 
     public function storeAction($type_action)
     {
-
-        // dd($this->type_de_but);
-
         $commentateur = Commentator::firstOrCreate([
             'rencontre_id' => $this->match->id,
             'user_id' => Auth::id(),
@@ -688,6 +687,7 @@ class Index extends Component
             $compo = Composition::find($compo_id);
             $compo->player_id = $this->joueur_choisi;
             $compo->save();
+
         } else {
             $player = Player::create([
                 'last_name' => strtoupper($this->nom_de_famille),

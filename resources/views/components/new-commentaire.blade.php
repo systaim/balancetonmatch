@@ -24,7 +24,7 @@
                 {{ $comment->minute }}'</p>
             <img class="w-4 h-4 mx-1 text-center" src="{{ asset($comment->icon) }}" alt="">
             <p class="text-sm {{ $comment->team_action == 'away' ? 'mr-2' : 'ml-2' }}">
-                {{ $comment->{$comment->type_action}->full_name }}</p>
+                {{ $comment->{$comment->type_action}->player->full_name }}</p>
             @if ($comment->type_action == 'goal' && $comment->passeur_id)
                 <div class="flex items-center">
                     {{-- <img class="w-4 h-4 mx-1 text-center" src="{{ asset('images/passeD.png') }}" alt=""> --}}
@@ -36,7 +36,7 @@
                                 d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
                                 clip-rule="evenodd" />
                         </svg>
-                        {{ $comment->passeur->full_name }}
+                        {{ $comment->passeur->player->full_name }}
                     </p>
                 </div>
             @endif
@@ -63,7 +63,7 @@
                             d="M5.293 9.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 7.414V15a1 1 0 11-2 0V7.414L6.707 9.707a1 1 0 01-1.414 0z"
                             clip-rule="evenodd" />
                     </svg>
-                    {{ $comment->in_substitute->full_name }}
+                    {{ $comment->in_substitute->player->full_name }}
                 </div>
                 <div class="text-sm flex items-center {{ $comment->team_action == 'away' ? 'flex-row-reverse mr-2' : 'ml-2' }}">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-red-600" viewBox="0 0 20 20"
@@ -72,7 +72,7 @@
                             d="M14.707 10.293a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 111.414-1.414L9 12.586V5a1 1 0 012 0v7.586l2.293-2.293a1 1 0 011.414 0z"
                             clip-rule="evenodd" />
                     </svg>
-                    {{ $comment->out_substitute->full_name }}
+                    {{ $comment->out_substitute->player->full_name }}
                 </div>
             </div>
         @endif

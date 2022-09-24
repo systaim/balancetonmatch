@@ -4,13 +4,13 @@
         <P class="text-sm text-center">Clique sur le logo de ton choix</P>
         <div class="flex justify-evenly my-6">
             <button type="button"
-                class="logo h-24 w-24 {{ $team_choisie == 'home' ? 'animate__animated animate__rubberBand animate__infinite animate__slow' : '' }}"
+                class="logo h-20 w-20 ring-2 ring-secondary shadow-lg {{ $team_choisie == 'home' ? 'animate__animated animate__rubberBand animate__infinite animate__slow' : '' }}"
                 wire:click="setTeamChoisie('home')">
                 <img class="object-contain" src="{{ asset($match->homeClub->logo) }}"
                     alt="Logo de {{ $match->homeClub->abbreviation }}">
             </button>
             <button type="button"
-                class="logo h-24 w-24 {{ $team_choisie == 'away' ? 'animate__animated animate__rubberBand animate__infinite animate__slow' : '' }}"
+                class="logo h-20 w-20 ring-2 ring-secondary shadow-lg {{ $team_choisie == 'away' ? 'animate__animated animate__rubberBand animate__infinite animate__slow' : '' }}"
                 wire:click="setTeamChoisie('away')">
                 <img class="object-contain" src="{{ asset($match->awayClub->logo) }}"
                     alt="Logo de {{ $match->awayClub->abbreviation }}">
@@ -73,7 +73,7 @@
                                     <option value="">Choisis un joueur</option>
                                     <option value="0">CSC</option>
                                     @foreach ($team_choisie == 'home' ? $homeCompo->sortBy('first_name') : $awayCompo as $compo)
-                                        <option value="{{ $compo->player->id }}">{{ $compo->player->full_name }}</option>
+                                        <option value="{{ $compo->id }}">{{ $compo->player->full_name }}</option>
                                     @endforeach
                                     {{-- @for ($i = 1; $i <= 16; $i++)
                                         <option value="{{ $i }}">Numéro {{ $i }}</option>
@@ -87,7 +87,7 @@
                                     name="player" id="player" wire:model="player2">
                                     <option value="">Choisis un joueur</option>
                                     @foreach ($team_choisie == 'home' ? $homeCompo->sortBy('first_name') : $awayCompo as $compo)
-                                        <option value="{{ $compo->player->id }}">{{ $compo->player->full_name }}</option>
+                                        <option value="{{ $compo->id }}">{{ $compo->player->full_name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -111,7 +111,7 @@
                                 name="player" id="player" wire:model="player1" required>
                                 <option value="">Choisis un joueur</option>
                                 @foreach ($team_choisie == 'home' ? $homeCompo->sortBy('first_name') : $awayCompo as $compo)
-                                        <option value="{{ $compo->player->id }}">{{ $compo->player->full_name }}</option>
+                                        <option value="{{ $compo->id }}">{{ $compo->player->full_name }}</option>
                                     @endforeach
                             </select>
                         </div>
@@ -125,7 +125,7 @@
                                 name="player" id="player" wire:model="player1" required>
                                 <option value="">Choisis un joueur</option>
                                 @foreach ($team_choisie == 'home' ? $homeCompo->sortBy('first_name') : $awayCompo as $compo)
-                                        <option value="{{ $compo->player->id }}">{{ $compo->player->full_name }}</option>
+                                        <option value="{{ $compo->id }}">{{ $compo->player->full_name }}</option>
                                     @endforeach
                             </select>
                         </div>
@@ -140,7 +140,7 @@
                                 <option value="">Choisis un joueur</option>
                                 <option value="0">CSC</option>
                                 @foreach ($team_choisie == 'home' ? $homeCompo->sortBy('first_name') : $awayCompo as $compo)
-                                        <option value="{{ $compo->player->id }}">{{ $compo->player->full_name }}</option>
+                                        <option value="{{ $compo->id }}">{{ $compo->player->full_name }}</option>
                                     @endforeach
                             </select>
                         </div>
@@ -150,7 +150,7 @@
                                 name="player" id="player" wire:model="player2" required>
                                 <option value="">Choisis un joueur</option>
                                 @foreach ($team_choisie == 'home' ? $homeCompo->sortBy('first_name') : $awayCompo as $compo)
-                                        <option value="{{ $compo->player->id }}">{{ $compo->player->full_name }}</option>
+                                        <option value="{{ $compo->id }}">{{ $compo->player->full_name }}</option>
                                     @endforeach
                             </select>
                         </div>

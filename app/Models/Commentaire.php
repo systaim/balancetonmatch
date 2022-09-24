@@ -70,37 +70,37 @@ class Commentaire extends Model
 
     public function goal()
     {
-        return $this->belongsTo(Player::class, 'buteur_id');
+        return $this->belongsTo(Composition::class, 'buteur_id');
     }
 
     public function passeur()
     {
-        return $this->belongsTo(Player::class, 'passeur_id');
+        return $this->belongsTo(Composition::class, 'passeur_id');
     }
 
     public function blesse()
     {
-        return $this->belongsTo(Player::class, 'injury_id');
+        return $this->belongsTo(Composition::class, 'injury_id');
     }
 
     public function yellow_card()
     {
-        return $this->belongsTo(Player::class, 'yellow_card_id');
+        return $this->belongsTo(Composition::class, 'yellow_card_id');
     }
 
     public function red_card()
     {
-        return $this->belongsTo(Player::class, 'red_card_id');
+        return $this->belongsTo(Composition::class, 'red_card_id');
     }
 
     public function in_substitute()
     {
-        return $this->belongsTo(Player::class, 'in_substitute_id');
+        return $this->belongsTo(Composition::class, 'in_substitute_id');
     }
 
     public function out_substitute()
     {
-        return $this->belongsTo(Player::class, 'out_substitute_id');
+        return $this->belongsTo(Composition::class, 'out_substitute_id');
     }
 
 

@@ -58,7 +58,7 @@
             </div>
         </div>
     </div>
-    <div class="p-3 relative overflow-hidden" style='background-image: url("{{ asset('images/terrain.jpg') }}"); background-size:cover'>
+    <div class="p-3 relative overflow-hidden h-48" style='background-image: url("{{ asset('images/terrain2.png') }}"); background-size:cover'>
         <div class="z-10">
             <h3 class="text-center">Rechercher un club</h3>
             <form action="/clubs" method="GET">
@@ -348,7 +348,7 @@
         </aside>
         <div class="flex-1 w-full">
             <a href="{{ route('competitions.index') }}">
-                <div class="shadow-white-xl rounded-2xl w-5/6 p-4 bg-primary relative overflow-hidden mx-auto">
+                <div class="shadow-white-xl rounded-lg w-5/6 p-4 bg-primary relative overflow-hidden mx-auto">
                     <img alt="competitions" src="{{ asset('images/ball-fire-water.png') }}" loading="lazy"
                         class="absolute -right-16 -bottom-8 h-40 w-40 mb-4" />
                     <div class="w-5/6">
@@ -369,7 +369,7 @@
                 </div>
             </a>
             <a href="/mon-espace/mes-favoris">
-                <div class="shadow-white-xl rounded-2xl w-5/6 p-4 bg-primary relative overflow-hidden mx-auto mt-6">
+                <div class="shadow-white-xl rounded-lg w-5/6 p-4 bg-primary relative overflow-hidden mx-auto mt-6">
                     <img alt="favoris" src="{{ asset('images/favoris-mobile.png') }}"
                         class="absolute -right-14 -bottom-8 h-32 w-32 mb-4" />
                     <div class="w-5/6">
@@ -390,7 +390,7 @@
                 </div>
             </a>
             <a href="/live">
-                <div class="shadow-white-xl rounded-2xl w-5/6 p-4 bg-primary relative overflow-hidden mx-auto mt-6">
+                <div class="shadow-white-xl rounded-lg w-5/6 p-4 bg-primary relative overflow-hidden mx-auto mt-6">
                     <img alt="live" src="{{ asset('images/micro.png') }}" loading="lazy"
                         class="absolute -right-24 -bottom-16 h-48 w-48 mb-4" />
                     <div class="w-5/6">
@@ -627,7 +627,7 @@
             <img src="{{ asset('images/demo2-min.png') }}" alt="demo" class="h-72 lg:h-96" loading="lazy">
         </div>
     </section> --}}
-    <section>
+    {{-- <section>
         <!-- This example requires Tailwind CSS v2.0+ -->
         <div class="relative bg-gray-50 pt-16 pb-20 px-4 sm:px-6 lg:pb-28 lg:px-8">
             <div class="absolute inset-0">
@@ -693,7 +693,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
     {{-- <section>
         <div class="py-6">
             <div class="flex justify-center">
