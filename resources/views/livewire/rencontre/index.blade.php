@@ -173,7 +173,7 @@
                         wire:click="openMenuComment">
                         {{ $open_menu_comment ? 'Fermer' : 'Je commente' }}
                     </button>
-                @elseif($match->date_match->diffInMinutes(now(), false) >= 60 )
+                @elseif($match->date_match->diffInMinutes(now(), false) >= 120 )
                     <button type="button" class="w-full py-3 bg-primary text-center text-secondary"
                         wire:click="corrigerLeScore">
                         {{ $corriger_le_score ? 'Fermer' : 'Je renseigne le score' }}
