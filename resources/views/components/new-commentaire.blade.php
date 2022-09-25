@@ -18,7 +18,7 @@
     </div>
 @endif
 <div class="flex items-center w-11/12 mx-auto my-1 {{ $comment->team_action == 'away' ? 'flex-row-reverse' : '' }}">
-    <div class="flex {{ $comment->team_action == 'away' ? 'flex-row-reverse' : '' }} items-center">
+    <div class="flex {{ $comment->team_action == 'away' ? 'flex-row-reverse' : '' }} items-center {{ $comment->team_action != 'match' ? 'border rounded-md shadow-lg px-2 py-1 my-1' : '' }}">
         @if ($comment->type_action != 'substitute' && $comment->team_action != 'match')
             <p class="text-sm font-bold {{ $comment->team_action == 'away' ? 'ml-2 text-right' : 'text-left mr-2' }}">
                 {{ $comment->minute }}'</p>
