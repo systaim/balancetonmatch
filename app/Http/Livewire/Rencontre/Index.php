@@ -55,7 +55,6 @@ class Index extends Component
     public function hydrate()
     {
         $this->miseAjourTemps();
-        $this->miseAJourScore();
         $this->countVisitor();
         $this->TexteBoutonPeriodeMatch();
         $this->clotureMatchAuto();
@@ -112,16 +111,12 @@ class Index extends Component
     public function incrementScore($team)
     {
         $this->{$team . '_score'} += 1;
-        $this->match->{$team . '_score'} += 1;
-        $this->match->save();
     }
 
     public function decrementScore($team)
     {
-        if ($this->match->{$team . '_score'} > 0) {
+        if ($this->{$team . '_score'} > 0) {
             $this->{$team . '_score'} -= 1;
-            $this->match->{$team . '_score'} -= 1;
-            $this->match->save();
         }
     }
 
@@ -129,6 +124,8 @@ class Index extends Component
     {
         $this->corriger_le_score = false;
         $this->match->live = "finDeMatch";
+        $this->match->home_score = $this->home_score;
+        $this->match->away_score = $this->away_score;
         $this->match->validate_score = true;
         $this->match->save();
 
@@ -190,11 +187,15 @@ class Index extends Component
     public function corrigerLeScore()
     {
         $this->corriger_le_score = !$this->corriger_le_score;
-        $this->home_score = 0;
-        $this->away_score = 0;
-        $this->match->home_score = 0;
-        $this->match->away_score = 0;
-        $this->match->save();
+        $this->home_score = $this->match->home_score ?? 0;
+        $this->away_score = $this->match->away_score ?? 0;
+        if ($this->corriger_le_score) {
+            $this->home_score = $this->match->home_score;
+            $this->away_score = $this->match->away_score;
+        }
+        // $this->match->home_score = 0;
+        // $this->match->away_score = 0;
+        // $this->match->save();
     }
 
     public function list_commentaires()
@@ -277,6 +278,13 @@ class Index extends Component
     public function validateScoreMatch()
     {
         $this->match->validate_score = 1;
+        $this->match->validate_by = Auth::id();
+        $this->match->save();
+    }
+
+    public function validateFilMatch()
+    {
+        $this->match->validate_fil_match = 1;
         $this->match->validate_by = Auth::id();
         $this->match->save();
     }
@@ -447,12 +455,6 @@ class Index extends Component
         }
     }
 
-    public function scoreValide()
-    {
-        $this->match->validate_score = 1;
-        $this->match->save();
-    }
-
     public function saveNewDatetime($start_match = null)
     {
         if ($start_match == 'start_match') {
@@ -528,7 +530,7 @@ class Index extends Component
 
                 $this->{$this->team_choisie . '_score'} += 1;
                 $this->match->{$this->team_choisie . '_score'} += 1;
-                
+
                 if ($this->team_choisie == "home" && !$this->match->away_score) {
                     $this->match->away_score = 0;
                 } elseif ($this->team_choisie == "away" && !$this->match->home_score) {
@@ -589,6 +591,7 @@ class Index extends Component
         $this->player1 = null;
         $this->player2 = null;
         $this->type_de_but = null;
+        $this->miseAJourScore();
     }
 
 
@@ -618,7 +621,7 @@ class Index extends Component
     {
         $commentaires = Commentaire::where('id', $commentaire_id)->get();
         foreach ($commentaires as $commentaire) {
-            if ($commentaire->type_action == 'goal' && $this->commentaires_match_ouverts) {
+            if ($commentaire->type_action == 'goal') {
                 $this->{$team . '_score'} -= 1;
                 $this->match->{$team . '_score'} -= 1;
                 $this->match->save();
@@ -626,11 +629,9 @@ class Index extends Component
 
             $commentaire->delete();
         }
-        if ($this->commentaires_match_ouverts) {
-            $statistics = Statistic::where('commentaire_id', $commentaire_id)->get();
-            foreach ($statistics as $statistic) {
-                $statistic->delete();
-            }
+        $statistics = Statistic::where('commentaire_id', $commentaire_id)->get();
+        foreach ($statistics as $statistic) {
+            $statistic->delete();
         }
 
         $this->list_commentaires();
@@ -687,7 +688,6 @@ class Index extends Component
             $compo = Composition::find($compo_id);
             $compo->player_id = $this->joueur_choisi;
             $compo->save();
-
         } else {
             $player = Player::create([
                 'last_name' => strtoupper($this->nom_de_famille),

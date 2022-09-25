@@ -36,6 +36,7 @@ class Rencontre extends Model
         'group_id',
         'live',
         'validate_score',
+        'validate_fil_match',
         'validate_by',
         'user_id'
     ];

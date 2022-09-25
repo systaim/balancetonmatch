@@ -81,7 +81,7 @@
     <div class="grid grid-cols-3">
         <div class="flex flex-col items-center justify-center flex-1 py-4 overflow-hidden">
             <a target="blank" href="{{ route('clubs.show', $match->homeClub->id) }}">
-                <div class="logo h-16 w-16 cursor-pointer">
+                <div class="logo h-16 w-16 cursor-pointer shadow-lg">
                     <img class="object-contain" src="{{ asset($match->homeClub->logo) }}"
                     alt="Logo de {{ $match->homeClub->abbreviation }}">
                 </div>
@@ -156,7 +156,7 @@
         </div>
         <div class="flex flex-col items-center justify-center flex-1 py-4 overflow-hidden">
             <a target="blank" href="{{ route('clubs.show', $match->awayClub->id) }}">
-                <div class="logo h-16 w-16 cursor-pointer">
+                <div class="logo h-16 w-16 cursor-pointer shadow-lg">
                     <img class="object-contain" src="{{ asset($match->awayClub->logo) }}"
                     alt="Logo de {{ $match->awayClub->abbreviation }}">
                 </div>
@@ -167,7 +167,7 @@
     @include('livewire.rencontre._tabs')
     @if (!$match->validate_score)
         @auth
-            <div class="flex text-sm">
+            <div class="flex text-sm rounded-sm overflow-hidden">
                 @if ($match->live != 'attente' && $match->live != 'mitemps' && $match->live != 'finDeMatch' && $match->date_match->diffInMinutes(now(), false) > -5 && ($commentateur && $commentateur->user_id == Auth::id()) && $match->date_match->diffInMinutes(now(), false) < 120)
                     <button type="button" class="w-full py-3 bg-secondary text-center text-gray-900 rounded-sm"
                         wire:click="openMenuComment">
@@ -180,7 +180,7 @@
                     </button>
                     <button type="button" class="w-full py-3 bg-secondary text-center text-gray-900"
                         wire:click="openMenuComment">
-                        {{ $open_menu_comment ? 'Fermer' : 'Je renseigne le fil du match' }}
+                        {{ $open_menu_comment ? 'Fermer' : 'Ou je renseigne le fil du match' }}
                     </button>
                 @endif
                 @if ($match->live == 'attente' && !$commentateur)
