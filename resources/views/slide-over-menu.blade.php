@@ -10,13 +10,13 @@
         x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0"
         x-transition:leave="transform transition ease-in-out duration-500 sm:duration-700"
         x-transition:leave-start="translate-x-0" x-transition:leave-end="translate-x-full"></div>
-    <div class="fixed inset-y-0 right-0 pl-10 max-w-full flex z-50">
+    <div class="fixed inset-y-0 right-0 max-w-full flex z-50">
 
         <div x-show="open_menu" style="display: none"
             x-transition:enter="transform transition ease-in-out duration-500 sm:duration-700"
-            x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0"
+            x-transition:enter-start="-translate-x-full" x-transition:enter-end="-translate-x-0"
             x-transition:leave="transform transition ease-in-out duration-500 sm:duration-700"
-            x-transition:leave-start="translate-x-0" x-transition:leave-end="translate-x-full" class="w-screen max-w-md"
+            x-transition:leave-start="-translate-x-0" x-transition:leave-end="-translate-x-full" class="w-screen max-w-md"
             x-description="Slide-over panel, show/hide based on slide-over state.">
             <div class="h-full flex flex-col py-6 bg-white shadow-xl overflow-y-scroll">
                 <div class="px-4 sm:px-6">
