@@ -1,5 +1,5 @@
 <div class="flex justify-between my-3 mx-1">
-    <div class="flex-1 mx-1">
+    <div class="flex-1 mx-1 w-full">
         <h4 class="bg-primary text-secondary text-center py-2 truncate text-sm">{{ $match->homeClub->name }}</h4>
         <div class="text-sm flex-1">
             @foreach ($homeCompo as $numero => $compo)
@@ -80,7 +80,7 @@
             @endforeach
         </div>
     </div>
-    <div class="flex-1 mx-1">
+    <div class="flex-1 mx-1 w-full">
         <h4 class="bg-primary text-secondary text-center py-2 truncate text-sm">{{ $match->awayClub->name }}</h4>
         <div class="text-sm p-2 ml-3 text-right">
             @foreach ($awayCompo as $numero => $compo)
