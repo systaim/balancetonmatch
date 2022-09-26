@@ -27,7 +27,7 @@
                 <div class="flex items-center">
                     <img class="w-4 h-4 mx-2 text-center" src="{{ asset($comment->icon) }}" alt="">
                     <p class="text-sm {{ $comment->team_action == 'away' ? 'mr-2' : 'ml-2' }}">
-                        {{ $comment->{$comment->type_action}->player->full_name }}
+                        {{ $comment->{$comment->type_action}->player->full_name ?? "NULL" }}
                     </p>
                 </div>
                 @if ($comment->type_action == 'goal' && $comment->passeur_id)
@@ -36,7 +36,7 @@
                         <p
                             class="flex items-center text-xs {{ $comment->team_action == 'away' ? 'flex-row-reverse' : '' }}">
 
-                            {{ $comment->passeur->player->full_name }}
+                            {{ $comment->passeur->player->full_name ?? "NULL" }}
                         </p>
                     </div>
                 @endif

@@ -1206,3 +1206,29 @@ input:checked + .inputAction {
   }
 }
 
+.offline {
+  width: 28px;
+  height: 20px;
+  -webkit-mask: linear-gradient(90deg,#000 70%,#0000 0) 0% 100% / 20% 20%,
+          linear-gradient(90deg,#000 70%,#0000 0) 25% 100% / 20% 40%,
+          linear-gradient(90deg,#000 70%,#0000 0) 50% 100% / 20% 60%,
+          linear-gradient(90deg,#000 70%,#0000 0) 75% 100% / 20% 80%,
+          linear-gradient(90deg,#000 70%,#0000 0) 100% 100% / 20% 100%;
+  -webkit-mask-repeat: no-repeat;
+  background: linear-gradient(var(--primary-color) 0 0) left/0% 100% no-repeat #dbdcef;
+  -webkit-animation: progress-0beb2c 2s infinite steps(6);
+          animation: progress-0beb2c 2s infinite steps(6);
+}
+
+@-webkit-keyframes progress-0beb2c {
+  100% {
+    background-size: 120% 100%;
+  }
+}
+
+@keyframes progress-0beb2c {
+  100% {
+    background-size: 120% 100%;
+  }
+}
+

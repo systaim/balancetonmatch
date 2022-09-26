@@ -6,6 +6,20 @@
     become_commentator: false
 
 }">
+    <div wire:offline>
+        <div class="bg-orange-600 text-white py-2 flex justify-center items-center w-full">
+            {{-- <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="w-6 h-6 mr-2">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M3 3l8.735 8.735m0 0a.374.374 0 11.53.53m-.53-.53l.53.53m0 0L21 21M14.652 9.348a3.75 3.75 0 010 5.304m2.121-7.425a6.75 6.75 0 010 9.546m2.121-11.667c3.808 3.807 3.808 9.98 0 13.788m-9.546-4.242a3.733 3.733 0 01-1.06-2.122m-1.061 4.243a6.75 6.75 0 01-1.625-6.929m-.496 9.05c-3.068-3.067-3.664-7.67-1.79-11.334M12 12h.008v.008H12V12z" />
+            </svg> --}}
+            <div class="offline"></div>
+            <div class="ml-2 text-sm">
+                <p>Vous êtes hors ligne...</p>
+                <p>En attente de reconnexion</p>
+            </div>
+        </div>
+    </div>
 
     @if (Auth::check() && !$commentateur && $commentaires_match_ouverts)
         <div class="flex flex-col items-center text-sm">
@@ -21,7 +35,7 @@
                 </button>
             </a>
         </div>
-    {{-- @else
+        {{-- @else
         <div class="flex flex-col items-center text-sm my-3">
             <div class="animate__animated animate__flipInY bg-secondary text-primary px-2 py-1">
                 <p>Revenez avant le match pour commenter 😎</p>
@@ -83,7 +97,7 @@
             <a target="blank" href="{{ route('clubs.show', $match->homeClub->id) }}">
                 <div class="logo h-16 w-16 cursor-pointer shadow-lg">
                     <img class="object-contain" src="{{ asset($match->homeClub->logo) }}"
-                    alt="Logo de {{ $match->homeClub->abbreviation }}">
+                        alt="Logo de {{ $match->homeClub->abbreviation }}">
                 </div>
             </a>
             <p class="text-center truncate">{{ $match->homeClub->name }}</p>
@@ -150,7 +164,11 @@
                     <p class="text-xl animate__animated animate__heartBeat animate__infinite">{{ $minute }}'</p>
                 @endif
             </div>
-            @if (Auth::check() && $commentateur && $commentateur->user_id == Auth::id() && $commentaires_match_ouverts && $variable_tps_pour_commenter)
+            @if (Auth::check() &&
+                $commentateur &&
+                $commentateur->user_id == Auth::id() &&
+                $commentaires_match_ouverts &&
+                $variable_tps_pour_commenter)
                 @include('livewire.rencontre._mise_a_jour_tps_de_jeu')
             @endif
         </div>
@@ -158,7 +176,7 @@
             <a target="blank" href="{{ route('clubs.show', $match->awayClub->id) }}">
                 <div class="logo h-16 w-16 cursor-pointer shadow-lg">
                     <img class="object-contain" src="{{ asset($match->awayClub->logo) }}"
-                    alt="Logo de {{ $match->awayClub->abbreviation }}">
+                        alt="Logo de {{ $match->awayClub->abbreviation }}">
                 </div>
             </a>
             <p class="text-left truncate">{{ $match->awayClub->name }}</p>
@@ -168,12 +186,17 @@
     @if (!$match->validate_score)
         @auth
             <div class="flex text-sm rounded-sm overflow-hidden">
-                @if ($match->live != 'attente' && $match->live != 'mitemps' && $match->live != 'finDeMatch' && $match->date_match->diffInMinutes(now(), false) > -5 && ($commentateur && $commentateur->user_id == Auth::id()) && $match->date_match->diffInMinutes(now(), false) < 120)
+                @if ($match->live != 'attente' &&
+                    $match->live != 'mitemps' &&
+                    $match->live != 'finDeMatch' &&
+                    $match->date_match->diffInMinutes(now(), false) > -5 &&
+                    ($commentateur && $commentateur->user_id == Auth::id()) &&
+                    $match->date_match->diffInMinutes(now(), false) < 120)
                     <button type="button" class="w-full py-3 bg-secondary text-center text-gray-900 rounded-sm"
                         wire:click="openMenuComment">
                         {{ $open_menu_comment ? 'Fermer' : 'Je commente' }}
                     </button>
-                @elseif($match->date_match->diffInMinutes(now(), false) >= 120 )
+                @elseif($match->date_match->diffInMinutes(now(), false) >= 120)
                     <button type="button" class="w-full py-3 bg-primary text-center text-secondary"
                         wire:click="corrigerLeScore">
                         {{ $corriger_le_score ? 'Fermer' : 'Je renseigne le score' }}

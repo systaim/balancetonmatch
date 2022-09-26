@@ -72,12 +72,10 @@
             alert(JSON.stringify(data));
         });
     </script>
-    @production
         <!-- Google Ads-->
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7237777700901740"
             crossorigin="anonymous">
         </script>
-    @endproduction
 
     {{-- Manifest --}}
     {{-- <link rel="manifest" href="manifest.json"> --}}
