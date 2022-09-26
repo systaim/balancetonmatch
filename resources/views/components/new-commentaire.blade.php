@@ -78,11 +78,6 @@
     </div>
     @if ($comment->type_action == 'goal')
         <div class="flex items-center">
-            {{-- @foreach ($reactions as $reaction)
-                <button type="button" class="flex items-center border bg-primary mx-0.5 px-2 rounded-md">
-                    {{ $reaction->emoji }}
-                </button>
-            @endforeach --}}
             @foreach ($comment->reactions->groupBy('emoji') as $emoji => $reaction)
                 @foreach ($reaction->groupBy('id') as $id => $react)
                     <div class="flex flex-col items-center">

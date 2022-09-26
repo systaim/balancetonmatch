@@ -24,7 +24,7 @@ class Index extends Component
 
     public $match, $minute, $home_score, $away_score, $team_choisie, $action_choisie, $player1, $player2, $tps_de_jeu, $name_of_periode = '', $periode, $comments, $type_de_but;
     public $new_date_match, $home_score_mis_a_jour, $away_score_mis_a_jour, $visitors, $variable_tps_pour_commenter, $commentaires_match_ouverts = false;
-    public $commentateur, $homeCompo, $awayCompo, $prenom, $nom_de_famille, $joueur_choisi, $lieu, $reactions;
+    public $commentateur, $homeCompo, $awayCompo, $prenom, $nom_de_famille, $joueur_choisi, $lieu, $reactions, $merci = 0;
 
     //variables d'affichage
     public $open_menu_comment = false, $open_delete_comment = false, $commentIdToDelete = false, $open_match = true, $open_infos = false, $open_compos = false, $open_share = false;
@@ -611,6 +611,16 @@ class Index extends Component
         ]);
     }
 
+    public function merci()
+    {
+        // dd(request()->user());
+        $this->merci += 1;
+        $this->match->commentateur->merci += 1;
+        $this->match->commentateur->save();
+
+        // $this->sommeMerci += 1;
+    }
+
     public function countVisitor()
     {
 
@@ -727,6 +737,11 @@ class Index extends Component
 
     public function render()
     {
+        $matchsCommentes = Commentator::where('id', $this->match->commentateur->id)
+            ->where('user_id', '!=', 0)
+            ->get();
+        // dd($matchsCommentes);
+
         return view('livewire.rencontre.index', [
             'commentateurs' => Commentator::where('rencontre_id', $this->match->id)
                 ->where('user_id', '!=', 0)

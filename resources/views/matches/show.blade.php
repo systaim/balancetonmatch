@@ -72,10 +72,12 @@
             alert(JSON.stringify(data));
         });
     </script>
-
-    <!-- Google Ads-->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7237777700901740"
-        crossorigin="anonymous"></script>
+    @production
+        <!-- Google Ads-->
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7237777700901740"
+            crossorigin="anonymous">
+        </script>
+    @endproduction
 
     {{-- Manifest --}}
     {{-- <link rel="manifest" href="manifest.json"> --}}
@@ -93,8 +95,8 @@
                 {{-- <div class="open-main-nav flex justify-center">
             <span class="burger"></span>
         </div> --}}
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 lg:h-12 w-8 lg:w-12" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor" stroke-width="2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 lg:h-12 w-8 lg:w-12" fill="none"
+                    viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
             </button>
@@ -246,7 +248,7 @@
 
     <div class="relative">
         {{-- @if ($match->date_match < Carbon\Carbon::create('2022-04-09')) --}}
-            {{-- @livewire('form-commentaires', [
+        {{-- @livewire('form-commentaires', [
             'commentator'=> $commentator,
             'nbrFavoris'=> $nbrFavoris,
             'match' =>$match,
@@ -266,8 +268,8 @@
             ])
         @endif --}}
         @livewire('rencontre.index', [
-            'match' =>$match,
-            ])
+            'match' => $match,
+        ])
     </div>
 
 
@@ -291,13 +293,14 @@
                 h-12 w-12 bg-white z-30 border border-darkSuccess">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary" fill="none" viewBox="0 0 24 24"
                 stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 17l-5-5m0 0l5-5m-5 5h12" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M11 17l-5-5m0 0l5-5m-5 5h12" />
             </svg>
         </div>
     </a>
     <div class="fixed bottom-0 mx-auto flex justify-center left-0 right-0 bg-gray-100">
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7237777700901740"
-                crossorigin="anonymous"></script>
+            crossorigin="anonymous"></script>
         <!-- bas de page -->
         <ins class="adsbygoogle" style="display:inline-block;width:90%;height:65px"
             data-ad-client="ca-pub-7237777700901740" data-ad-slot="8168194089"></ins>

@@ -1,15 +1,17 @@
 {{-- @if ($commentateur) --}}
 <div class="flex text-sm">
     <div class="my-3 bg-primary p-2 text-secondary flex-1 m-2 w-1/2">
-        <h4 class="mb-2">Commenté en direct par</h4>
-        <p>
-            {{ $commentateur ? $commentateur->user->pseudo : 'Non commenté' }}
-            @if ($commentateur)
-                <span
-                    class=" bg-secondary text-primary px-1 rounded shadow-sm">{{ $commentateur->user->nb_commentaires }}
-                </span>
-            @endif
-        </p>
+        <h4 class="mb-2">Commenté par</h4>
+        @foreach ($commentateurs as $commentateur)
+            <p>
+                {{ $commentateur ? $commentateur->user->pseudo : 'Non commenté' }}
+                @if ($commentateur)
+                    <span
+                        class=" bg-secondary text-primary px-1 rounded shadow-sm">{{ $commentateur->user->nb_commentaires }}
+                    </span>
+                @endif
+            </p>
+        @endforeach
     </div>
     <div class="my-3 bg-primary p-2 text-secondary flex-1 m-2 w-1/2">
         <div class="flex items-center mb-2">
