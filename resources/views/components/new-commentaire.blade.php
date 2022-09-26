@@ -16,7 +16,7 @@
         @endif
     </div>
 @endif
-<div class="flex items-center w-11/12 mx-auto my-1 {{ $comment->team_action == 'away' ? 'flex-row-reverse' : '' }}">
+<div class="flex items-center justify-between mx-2 my-1 {{ $comment->team_action == 'away' ? 'flex-row-reverse' : '' }}">
     <div
         class="flex {{ $comment->team_action == 'away' ? 'flex-row-reverse' : '' }} items-center {{ $comment->team_action != 'match' ? 'border rounded-md shadow-lg px-2 py-1 my-1' : '' }}">
         @if ($comment->type_action != 'substitute' && $comment->team_action != 'match')
@@ -41,18 +41,11 @@
                     </div>
                 @endif
             </div>
-            <div class="flex items-center">
-                @foreach ($reactions as $reaction)
-                    <button type="button" class=" h-8 w-8 flex justify-center items-center">
-                        {{ $reaction->emoji }}
-                    </button>
-                @endforeach
-            </div>
-            @if (isset($comment->comments))
+            {{-- @if (isset($comment->comments))
                 <p class="text-xs {{ $comment->team_action == 'away' ? 'mr-2' : 'ml-2' }}">
                     {{ '(' . $comment->comments . ')' }}
                 </p>
-            @endif
+            @endif --}}
         @endif
         @if ($comment->type_action == 'substitute')
             <p class="text-sm font-bold {{ $comment->team_action == 'away' ? 'ml-2 text-right' : 'text-left mr-2' }}">
@@ -83,6 +76,29 @@
             </div>
         @endif
     </div>
+    @if ($comment->type_action == 'goal')
+        <div class="flex items-center">
+            {{-- @foreach ($reactions as $reaction)
+                <button type="button" class="flex items-center border bg-primary mx-0.5 px-2 rounded-md">
+                    {{ $reaction->emoji }}
+                </button>
+            @endforeach --}}
+            @foreach ($comment->reactions->groupBy('emoji') as $emoji => $reaction)
+                @foreach ($reaction->groupBy('id') as $id => $react)
+                    <div class="flex flex-col items-center">
+                        <button
+                            class="border mx-1 rounded-md shadow-lg bg-primary flex justify-center items-center px-1"
+                            wire:click="reaction({{ $id }}, {{ $comment->id }})">
+                            <p class="">{{ $emoji }}</p>
+                            @if (count($reaction) > 1)
+                                <p class="text-xs ml-2 text-secondary">{{ count($reaction) - 1 }}</p>
+                            @endif
+                        </button>
+                    </div>
+                @endforeach
+            @endforeach
+        </div>
+    @endif
     <div class="flex {{ $comment->team_action == 'away' ? 'flex-row-reverse' : '' }} items-center">
 
         @if ($comment->commentator->user_id == Auth::id() && $comment->team_action != 'match')

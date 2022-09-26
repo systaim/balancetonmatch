@@ -14,6 +14,7 @@ use App\Models\Reaction;
 use App\Models\Statistic;
 use GuzzleHttp\Promise\Create;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -23,7 +24,7 @@ class Index extends Component
 
     public $match, $minute, $home_score, $away_score, $team_choisie, $action_choisie, $player1, $player2, $tps_de_jeu, $name_of_periode = '', $periode, $comments, $type_de_but;
     public $new_date_match, $home_score_mis_a_jour, $away_score_mis_a_jour, $visitors, $variable_tps_pour_commenter, $commentaires_match_ouverts = false;
-    public $commentateur, $homeCompo, $awayCompo, $prenom, $nom_de_famille, $joueur_choisi, $lieu;
+    public $commentateur, $homeCompo, $awayCompo, $prenom, $nom_de_famille, $joueur_choisi, $lieu, $reactions;
 
     //variables d'affichage
     public $open_menu_comment = false, $open_delete_comment = false, $commentIdToDelete = false, $open_match = true, $open_infos = false, $open_compos = false, $open_share = false;
@@ -49,6 +50,7 @@ class Index extends Component
         $this->homeCompo();
         $this->awayCompo();
         $this->storeCompos();
+        $this->reactions = Reaction::all();
         // dd($this->match->homeClub->composition($this->match->id, $this->match->homeClub->id));
     }
 
@@ -541,7 +543,6 @@ class Index extends Component
                     $commentaire_data['passeur_id'] = $this->player2;
                     $commentaire = Commentaire::create($commentaire_data);
 
-
                     Statistic::create([
                         'action' => 'passeD',
                         'commentaire_id' => $commentaire->id,
@@ -549,6 +550,12 @@ class Index extends Component
                     ]);
                 } else {
                     $commentaire = Commentaire::create($commentaire_data);
+                }
+                foreach ($this->reactions as $reaction) {
+                    DB::table('commentaire_reaction')->insert([
+                        'commentaire_id' => $commentaire->id,
+                        'reaction_id' => $reaction->id,
+                    ]);
                 }
 
                 $this->match->save();
@@ -594,6 +601,15 @@ class Index extends Component
         $this->miseAJourScore();
     }
 
+    public function reaction($emoji, $commentaire)
+    {
+
+        DB::table('commentaire_reaction')->insert([
+            'commentaire_id' => $commentaire,
+            'reaction_id' => $emoji,
+            // ['ip-address' => request()->ip()],
+        ]);
+    }
 
     public function countVisitor()
     {
@@ -712,7 +728,6 @@ class Index extends Component
     public function render()
     {
         return view('livewire.rencontre.index', [
-            'reactions' => Reaction::all(),
             'commentateurs' => Commentator::where('rencontre_id', $this->match->id)
                 ->where('user_id', '!=', 0)
                 ->get(),
