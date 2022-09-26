@@ -5,8 +5,14 @@
                 src="https://img.icons8.com/external-flaticons-lineal-color-flat-icons/32/000000/external-fans-football-soccer-flaticons-lineal-color-flat-icons-3.png" /> --}}
             <p>Spectateurs : <span class="ml-1 font-bold">{{ $visitors }}</span></p>
         </div>
-        <button type="button" wire:click='merci' class="text-xs border rounded-sm p-1 shadow-md bg-primary text-secondary">
-            <p><span class="mr-1 py-0.5 px-1 rounded-sm bg-secondary text-primary"> {{ $match->commentateur->merci }}</span> "Merci"<span class="ml-1"> 🎉</span></p>
+        <button type="button" wire:click='merci'
+            class="text-xs border rounded-sm p-1 shadow-md bg-primary text-secondary">
+            <p>
+                <span class="mr-1 py-0.5 px-1 rounded-sm bg-secondary text-primary">
+                    {{ $match->commentateur->merci }}</span>
+                "Merci"
+                <span class="ml-1"> 🎉</span>
+            </p>
         </button>
     </div>
     <div class="flex justify-between">
