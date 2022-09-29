@@ -95,7 +95,23 @@ class RecuperationMatchs extends Component
             $heure = $match[4];
             $minute = $match[5];
             $equipe1 = Club::where('numAffiliation', $match[6])->first();
+            if (!$equipe1) {
+                $equipe1 = Club::create([
+                    'numAffiliation' => $match[6],
+                    'name' => 'Nom GÉNÉRIQUE',
+                    'primary_color' => '#FFFFFF',
+                    'secondary_color' => '#FFFFFF',
+                ]);
+            }
             $equipe2 = Club::where('numAffiliation', $match[7])->first();
+            if (!$equipe2) {
+                $equipe2 = Club::create([
+                    'numAffiliation' => $match[6],
+                    'name' => 'Nom à modifier',
+                    'primary_color' => '#FFFFFF',
+                    'secondary_color' => '#FFFFFF',
+                ]);
+            }
             if ($this->competition_id == 2) {
                 Rencontre::updateOrCreate(
                     [
