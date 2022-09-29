@@ -98,7 +98,7 @@ class RecuperationMatchs extends Component
             if (!$equipe1) {
                 $equipe1 = Club::create([
                     'numAffiliation' => $match[6],
-                    'name' => 'Nom GÉNÉRIQUE',
+                    'name' => 'NOM GÉNÉRIQUE',
                     'primary_color' => '#FFFFFF',
                     'secondary_color' => '#FFFFFF',
                 ]);
