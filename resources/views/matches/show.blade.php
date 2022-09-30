@@ -31,8 +31,8 @@
     <title>{{ $match->homeclub->name }}
         {{ $match->home_score == null ? ' VS ' : $match->home_score . ' - ' . $match->away_score }}
         {{ $match->awayclub->name }}</title>
-    <link rel="stylesheet" href="{{ mix('css/app.css') }}?v=1">
-    <link rel="stylesheet" href="{{ mix('css/styles.css') }}?v=1" />
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}?v=1.1">
+    <link rel="stylesheet" href="{{ mix('css/styles.css') }}?v=1.1" />
 
     <!-- AlpineJS -->
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.0/dist/alpine.min.js" defer></script>
