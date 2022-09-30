@@ -1,8 +1,8 @@
 @extends('layout')
 @section('content')
-    <div class="relative w-full py-10 bg-primary text-white mb-6 flex flex-col items-center">
-        <h2 class="text-4xl lg:text-6xl text-center">{{ $division->name }}</h2>
-        <h3 class="text-xl lg:text-2xl text-center">{{ $groupe->name }}</h3>
+    <div class="relative w-full py-10 bg-primary text-white mb-6 flex flex-col items-center -intro-y">
+        <h2 class="text-4xl lg:text-6xl text-center">{{ $departement->name }}</h2>
+        <h3 class="text-xl lg:text-2xl text-center">{{ $division->name }} {{ $groupe->name }}</h3>
         @can('isSuperAdmin')
             @livewire('recuperation-matchs', [
                 'groupe' => $groupe,

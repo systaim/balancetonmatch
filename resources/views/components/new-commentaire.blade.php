@@ -16,7 +16,7 @@
         @endif
     </div>
 @endif
-<div class="flex items-center justify-between mx-2 my-1 {{ $comment->team_action == 'away' ? 'flex-row-reverse' : '' }}">
+<div class="commentaires {{ $comment->team_action }} flex items-center mx-2 my-1 {{ $comment->team_action == 'away' ? 'flex-row-reverse' : '' }}">
     <div
         class="flex {{ $comment->team_action == 'away' ? 'flex-row-reverse' : '' }} items-center {{ $comment->team_action != 'match' ? 'border rounded-md shadow-lg px-2 py-1 my-1' : '' }}">
         @if ($comment->type_action != 'substitute' && $comment->team_action != 'match')

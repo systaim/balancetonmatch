@@ -4,7 +4,7 @@
     <section class="body-font">
         <div class="container px-2 lg:py-36 py-4 mx-auto text-white">
             <div class="flex flex-wrap justify-center">
-                <div class="relative p-4 w-11/12 lg:w-1/3 h-64 my-2">
+                <div class="relative p-4 w-11/12 lg:w-1/3 h-64 my-2 -intro-x">
                     <div class="relative h-64 border-2 rounded-sm overflow-hidden shadow-2xl border-none">
                         <h3 class="title-font text-lg bg-primary text-white p-1">
                             RÉGIONALE <span class="pl-4 text-sm">R1 R2 R3</span>
@@ -37,7 +37,7 @@
                         
                     </div>
                 </div>
-                <div class="p-4 w-11/12 lg:w-1/3 h-64 my-2">
+                <div class="p-4 w-11/12 lg:w-1/3 h-64 my-2 -intro-y">
                     <div class="relative h-64 border-2 rounded-sm overflow-hidden shadow-2xl border-none">
                         <h3 class="title-font text-lg bg-primary text-white p-1">
                             DISTRICT <span class="pl-4 text-sm">D1 D2 D3</span>
@@ -141,7 +141,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="p-4 w-11/12 lg:w-1/3 h-64 my-2">
+                <div class="p-4 w-11/12 lg:w-1/3 h-64 my-2 intro-x">
                     <a href="competitions/coupe-de-france">
                         <div class="relative h-64 border-2 rounded-sm overflow-hidden shadow-2xl border-none">
                             <h3 class="title-font text-lg bg-primary text-white p-1">
@@ -152,7 +152,7 @@
                         </div>
                     </a>
                 </div>
-                <div class="p-4 w-11/12 lg:w-1/3 h-64 my-2">
+                <div class="p-4 w-11/12 lg:w-1/3 h-64 my-2 -intro-x">
                     <a href="competitions/coupe-de-bretagne">
                         <div class="relative h-64 border-2 rounded-sm overflow-hidden shadow-2xl border-none">
                             <h3 class="title-font text-lg bg-primary text-white p-1">
@@ -163,7 +163,7 @@
                         </div>
                     </a>
                 </div>
-                <div class="p-4 w-11/12 lg:w-1/3 h-64 my-2">
+                <div class="p-4 w-11/12 lg:w-1/3 h-64 my-2 intro-y">
                     <a href="competitions/coupe-ange-lemee">
                         <div class="relative h-64 border-2 rounded-sm overflow-hidden shadow-2xl border-none">
                             <h3 class="title-font text-lg bg-primary text-white p-1">
@@ -174,7 +174,7 @@
                         </div>
                     </a>
                 </div>
-                <div class="p-4 w-11/12 lg:w-1/3 h-64 my-2">
+                <div class="p-4 w-11/12 lg:w-1/3 h-64 my-2 intro-x">
                     <div class="relative h-64 border-2 rounded-sm overflow-hidden shadow-2xl border-none">
                         <h3 class="title-font text-lg bg-primary text-white p-1">
                             COUPE DU DÉPARTEMENT
@@ -191,7 +191,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="p-4 w-11/12 lg:w-1/3 h-64 my-2">
+                <div class="p-4 w-11/12 lg:w-1/3 h-64 my-2 intro-y">
                     <a href="competitions/amicaux">
                         <div class="relative h-64 border-2 rounded-sm overflow-hidden shadow-2xl border-none">
                             <h3 class="title-font text-lg bg-primary text-white p-1">

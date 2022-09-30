@@ -10,7 +10,7 @@
 
     <div class="m-auto my-2 w-11/12 sm:w-9/12 md:w-7/12 lg:w-7/12 text-sm text-primary">
         @foreach ($clubs as $key => $club)
-            <a href="{{ route('clubs.show', $club) }}">
+            <a href="{{ route('clubs.show', $club) }}" class="-intro-y">
                 <div class="flex flex-col mb-1 w-full border rounded-md shadow-md">
                     <div
                         class="relative flex flex-row items-center overflow-hidden rounded-lg"

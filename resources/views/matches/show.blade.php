@@ -72,10 +72,9 @@
             alert(JSON.stringify(data));
         });
     </script>
-        <!-- Google Ads-->
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7237777700901740"
-            crossorigin="anonymous">
-        </script>
+    <!-- Google Ads-->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7237777700901740"
+        crossorigin="anonymous"></script>
 
     {{-- Manifest --}}
     {{-- <link rel="manifest" href="manifest.json"> --}}
@@ -269,6 +268,33 @@
             'match' => $match,
         ])
     </div>
+
+    <div id="loaderPage" class="fixed inset-0 bg-primary bg-opacity-100 z-9999 flex justify-center items-center">
+        <div class="flex flex-col items-center">
+            <div class="flex justify-center items-baseline">
+                <img src="{{ asset('images/favoris-mobile.png') }}" alt="" class="h-48">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-14 h-14 text-secondary animate-spin">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+                </svg>
+            </div>
+            <div class="text-white">
+                Chargement...
+            </div>
+        </div>
+    </div>
+    <script>
+        document.onreadystatechange = function() {
+            if (document.readyState != "complete") {
+                document.querySelector("body").style.visibility = "hidden";
+                document.querySelector("#loaderPage").style.visibility = "visible";
+            } else {
+                document.querySelector("#loaderPage").style.display = "none";
+                document.querySelector("body").style.visibility = "visible";
+            }
+        }
+    </script>
 
 
     {{-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7237777700901740"

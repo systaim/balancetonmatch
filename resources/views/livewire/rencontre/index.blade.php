@@ -1,4 +1,6 @@
-<div class="min-h-screen sm:w-10/12 md:w-9/12 lg:w-6/12 mx-auto mt-2" wire:poll.3s x-data="{
+<div class="min-h-screen sm:w-10/12 md:w-9/12 lg:w-6/12 mx-auto mt-2" 
+wire:poll.3s 
+x-data="{
     tps_de_jeu: false,
     modif_debut_de_match: false,
     update_datetime_match: false,

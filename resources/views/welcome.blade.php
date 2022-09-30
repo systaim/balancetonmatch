@@ -63,13 +63,13 @@
             <h3 class="text-center">Rechercher un club</h3>
             <form action="/clubs" method="GET">
                 <div class="flex flex-col justify-center items-center">
-                    <input type="search" name="search" id="search" class="border rounded-md shadow-lg">
+                    <input type="search" name="search" id="search" class="border rounded-md shadow-lg w-10/12 lg:w-6/12">
                     <button type="submit" class="btn btnPrimary">Va chercher</button>
                 </div>
             </form>
         </div>
     </div>
-    <div class="bg-secondary text-primary">
+    {{-- <div class="bg-secondary text-primary">
         <div class="max-w-7xl mx-auto py-3 px-3 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between flex-wrap">
                 <div class="flex justify-center items-center w-full">
@@ -92,7 +92,7 @@
                 </a>
             </div>
         </div>
-    </div>
+    </div> --}}
     {{-- <div class="text-center">
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7237777700901740"
                 crossorigin="anonymous"></script>

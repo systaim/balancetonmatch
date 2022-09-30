@@ -1,12 +1,12 @@
 <div class="flex flex-col items-center justify-center">
     <div class="flex items-center justify-end mx-2 flex-1 mb-2">
-        <div class="text-xs border rounded-sm p-1 shadow-md mr-2 bg-secondary text-primary">
+        <div class="text-xs border rounded-sm p-2 shadow-md mr-2 bg-secondary text-primary">
             {{-- <img
                 src="https://img.icons8.com/external-flaticons-lineal-color-flat-icons/32/000000/external-fans-football-soccer-flaticons-lineal-color-flat-icons-3.png" /> --}}
             <p>Spectateurs : <span class="ml-1 font-bold">{{ $visitors }}</span></p>
         </div>
         <button type="button" wire:click='merci'
-            class="text-xs border rounded-sm p-1 shadow-md bg-primary text-secondary">
+            class="text-xs border rounded-sm p-2 shadow-md bg-primary text-secondary">
             <p>
                 <span class="mr-1 py-0.5 px-1 rounded-sm bg-secondary text-primary">
                     {{ $match->commentateur->merci }}</span>
@@ -16,8 +16,6 @@
         </button>
     </div>
     <div class="flex justify-between">
-        <div class="flex-1">
-        </div>
         <div class="flex-1 flex justify-center text-sm">
             <button type="button"
                 class="mx-1 border {{ $open_share ? 'border-primary bg-secondary text-primary' : '' }} px-2 py-1 mb-1 rounded-sm shadow-lg"

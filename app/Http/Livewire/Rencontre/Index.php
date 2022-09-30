@@ -625,7 +625,7 @@ class Index extends Component
     {
 
         $visitor = Counter::where('ip-address', request()->ip())->first();
-
+        
         if (!$visitor) {
             $visitor = new Counter();
             $visitor['ip-address'] = request()->ip();

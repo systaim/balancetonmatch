@@ -161,7 +161,7 @@
     </div>
 </div>
 
-<div id="loaderPage" class="fixed inset-0 bg-primary bg-opacity-100 z-9999 flex justify-center items-center">
+{{-- <div id="loaderPage" class="fixed inset-0 bg-primary bg-opacity-100 z-9999 flex justify-center items-center">
     <div class="flex flex-col items-center">
         <div class="flex justify-center items-baseline">
             <img src="{{ asset('images/favoris-mobile.png') }}" alt="" class="h-48">
@@ -175,8 +175,8 @@
             Chargement...
         </div>
     </div>
-</div>
-<script>
+</div> --}}
+{{-- <script>
     document.onreadystatechange = function() {
         if (document.readyState != "complete") {
             document.querySelector("body").style.visibility = "hidden";
@@ -186,7 +186,7 @@
             document.querySelector("body").style.visibility = "visible";
         }
     }
-</script>
+</script> --}}
 
 @if (request()->path() != '/')
     <a href=javascript:history.go(-1)>
