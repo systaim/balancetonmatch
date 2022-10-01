@@ -56,6 +56,7 @@ class Index extends Component
 
     public function hydrate()
     {
+        $this->miseAJourScore();
         $this->miseAjourTemps();
         $this->countVisitor();
         $this->TexteBoutonPeriodeMatch();

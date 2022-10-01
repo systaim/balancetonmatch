@@ -28,6 +28,7 @@
                     <img class="w-4 h-4 mx-2 text-center" src="{{ asset($comment->icon) }}" alt="">
                     <p class="text-sm {{ $comment->team_action == 'away' ? 'mr-2' : 'ml-2' }}">
                         {{ $comment->{$comment->type_action}->player->full_name ?? "NULL" }}
+                        <span class="text-xxs">{{ $comment->comments ?? "" }}</span>
                     </p>
                 </div>
                 @if ($comment->type_action == 'goal' && $comment->passeur_id)
