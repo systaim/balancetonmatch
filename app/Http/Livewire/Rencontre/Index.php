@@ -124,10 +124,16 @@ class Index extends Component
 
     public function storeScore()
     {
+
+        Commentator::create([
+            'rencontre_id' => $this->match->id,
+            'user_id' => Auth::id(),
+        ]);
+
         $this->corriger_le_score = false;
         $this->match->live = "finDeMatch";
-        $this->match->home_score = $this->home_score;
-        $this->match->away_score = $this->away_score;
+        $this->match->home_score = $this->home_score ?? 0;
+        $this->match->away_score = $this->away_score ?? 0;
         $this->match->validate_score = true;
         $this->match->save();
 
@@ -191,13 +197,6 @@ class Index extends Component
         $this->corriger_le_score = !$this->corriger_le_score;
         $this->home_score = $this->match->home_score ?? 0;
         $this->away_score = $this->match->away_score ?? 0;
-        if ($this->corriger_le_score) {
-            $this->home_score = $this->match->home_score;
-            $this->away_score = $this->match->away_score;
-        }
-        // $this->match->home_score = 0;
-        // $this->match->away_score = 0;
-        // $this->match->save();
     }
 
     public function list_commentaires()

@@ -28,8 +28,9 @@ class SearchMatchCoupeDeFrance extends Component
         $this->matchs = [];
     }
 
-    public function updatedSearch()
+    public function updatedSearch($value)
     {
+        dd($value);
         if (strlen($this->search) >= 3) {
             $club = Club::where('name', 'like', '%' . $this->search . '%')
                 ->orwhere('zip_code', 'like', '%' . $this->search . '%')
@@ -38,7 +39,7 @@ class SearchMatchCoupeDeFrance extends Component
                 ->get()
                 ->pluck('id');
             $this->matchs = Rencontre::where('date_match', '>=', Carbon::now()->subHours(12))
-                ->where('competition_id', 3)
+                ->where('competition_id', $value)
                 ->where(function ($query) use ($club) {
                     $query->whereIn('home_team_id', $club)
                         ->orwhereIn('away_team_id', $club);

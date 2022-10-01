@@ -17,7 +17,7 @@
     <div class="relative lg:flex lg:justify-center">
         <div class="flex flex-wrap justify-around">
             @foreach ($journees as $journee)
-                <div class="mt-4 border rounded-md shadow-lg p-3 lg:w-5/12">
+                <div class="mt-4 border rounded-md shadow-lg p-3 lg:w-5/12 intro-y">
                     <h4 class="inline-block px-3 text-center bg-secondary text-primary rounded-sm shadow-lg">
                         Journée {{ $journee->name }}
                     </h4>

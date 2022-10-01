@@ -15,7 +15,7 @@
     <div class="relative lg:flex lg:justify-center">
         <div class="lg:w-9/12">
             @foreach ($matchs as $match)
-                <div class="rounded-b-md rounded-tr-md">
+                <div class="rounded-b-md rounded-tr-md intro-y">
                     @include('match')
                 </div>
             @endforeach
