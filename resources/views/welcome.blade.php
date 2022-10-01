@@ -395,18 +395,18 @@
                         class="absolute -right-24 -bottom-16 h-48 w-48 mb-4" />
                     <div class="w-5/6">
                         <p class="text-gray-200 text-lg font-medium mb-2">
-                            Les lives
+                            Les lives du jour
                         </p>
                         @if (count($liveMatches) == 0)
                             <p class="text-gray-300 text-xs">Pas de matchs en ce moment</p>
                         @else
-                            <div class="flex">
+                            <div class="flex items-center">
                                 <p
                                     class="mr-1 text-xs flex items-center justify-center rounded-full text-primary h-5 w-5 bg-secondary">
                                     {{ count($liveMatches) }}
                                 </p>
                                 <p class="text-gray-400 text-xs">
-                                    {{ count($liveMatches) == 1 ? 'match' : 'matchs' }} en cours
+                                    {{ count($liveMatches) == 1 ? 'match commenté' : 'matchs commentés' }}
                                 </p>
                             </div>
                         @endif
