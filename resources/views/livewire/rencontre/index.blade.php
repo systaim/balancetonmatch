@@ -1,13 +1,12 @@
-<div class="min-h-screen sm:w-10/12 md:w-9/12 lg:w-6/12 mx-auto mt-2" 
-{{ $match->live != "attente" ? 'wire:poll.3s' : ""  }}
-x-data="{
-    tps_de_jeu: false,
-    modif_debut_de_match: false,
-    update_datetime_match: false,
-    open_update_score: false,
-    become_commentator: false
-
-}">
+<div class="min-h-screen sm:w-10/12 md:w-9/12 lg:w-6/12 mx-auto mt-2"
+    {{ $match->live != 'attente' ? 'wire:poll.3s' : '' }} x-data="{
+        tps_de_jeu: false,
+        modif_debut_de_match: false,
+        update_datetime_match: false,
+        open_update_score: false,
+        become_commentator: false
+    
+    }">
     <div wire:offline class="w-full">
         <div class="bg-orange-600 text-white py-2 flex justify-center items-center w-full">
             {{-- <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -108,49 +107,21 @@ x-data="{
             <div class="flex text-4xl font-bold">
                 <div class="flex flex-col items-center justify-center">
                     @if ($corriger_le_score)
-                        <button type="button" wire:click="incrementScore('home')">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
-                                fill="currentColor">
-                                <path fill-rule="evenodd"
-                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z"
-                                    clip-rule="evenodd" />
-                            </svg>
-                        </button>
-                    @endif
-                    <p>{{ $home_score }}</p>
-                    @if ($corriger_le_score)
-                        <button type="button" wire:click="decrementScore('home')">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
-                                fill="currentColor">
-                                <path fill-rule="evenodd"
-                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 000 2h6a1 1 0 100-2H7z"
-                                    clip-rule="evenodd" />
-                            </svg>
-                        </button>
+                        <label for="inputHomeScore" class="sr-only">Score à domicile</label>
+                        <input type="text" name="inputHomeScore" id="inputHomeScore" wire:model="inputHomeScore"
+                            class="w-8 p-0 text-center text-4xl">
+                    @else
+                        <p>{{ $home_score }}</p>
                     @endif
                 </div>
                 <div class=" flex flex-col justify-center">-</div>
                 <div class="flex flex-col items-center justify-center">
                     @if ($corriger_le_score)
-                        <button type="button" wire:click="incrementScore('away')">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
-                                fill="currentColor">
-                                <path fill-rule="evenodd"
-                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z"
-                                    clip-rule="evenodd" />
-                            </svg>
-                        </button>
-                    @endif
-                    <p>{{ $away_score }}</p>
-                    @if ($corriger_le_score)
-                        <button type="button" wire:click="decrementScore('away')">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
-                                fill="currentColor">
-                                <path fill-rule="evenodd"
-                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 000 2h6a1 1 0 100-2H7z"
-                                    clip-rule="evenodd" />
-                            </svg>
-                        </button>
+                        <label for="inputAwayScore" class="sr-only">Score à l'extérieur</label>
+                        <input type="text" name="inputAwayScore" id="inputAwayScore" wire:model="inputAwayScore"
+                            class="w-8 p-0 text-center text-4xl">
+                    @else
+                        <p>{{ $away_score }}</p>
                     @endif
                 </div>
             </div>

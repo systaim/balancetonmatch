@@ -24,7 +24,7 @@ class Index extends Component
 
     public $match, $minute, $home_score, $away_score, $team_choisie, $action_choisie, $player1, $player2, $tps_de_jeu, $name_of_periode = '', $periode, $comments, $type_de_but;
     public $new_date_match, $home_score_mis_a_jour, $away_score_mis_a_jour, $visitors, $variable_tps_pour_commenter, $commentaires_match_ouverts = false;
-    public $commentateur, $homeCompo, $awayCompo, $prenom, $nom_de_famille, $joueur_choisi, $lieu, $reactions, $merci = 0;
+    public $commentateur, $homeCompo, $awayCompo, $prenom, $nom_de_famille, $joueur_choisi, $lieu, $reactions, $merci = 0, $inputHomeScore, $inputAwayScore;
 
     //variables d'affichage
     public $open_menu_comment = false, $open_delete_comment = false, $commentIdToDelete = false, $open_match = true, $open_infos = false, $open_compos = false, $open_share = false;
@@ -133,8 +133,8 @@ class Index extends Component
 
         $this->corriger_le_score = false;
         $this->match->live = "finDeMatch";
-        $this->match->home_score = $this->home_score ?? 0;
-        $this->match->away_score = $this->away_score ?? 0;
+        $this->match->home_score = $this->inputHomeScore ?? 0;
+        $this->match->away_score = $this->inputAwayScore ?? 0;
         $this->match->validate_score = true;
         $this->match->save();
 
