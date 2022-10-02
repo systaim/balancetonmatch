@@ -45,7 +45,7 @@
                                 alt="Logo de {{ $match->homeClub->name }}">
                         </div>
                         <div class="ml-2">
-                            <p class="text-xs md:font-bold truncate">{{ $match->homeClub->name }}</p>
+                            <p class="text-xs md:font-bold truncate">{{ $match->homeClub->initial }}</p>
                         </div>
                     </div>
                     <div class="col-span-2 flex flex-row justify-center items-center">
@@ -90,7 +90,7 @@
                                 alt="Logo de {{ $match->awayClub->name }}">
                         </div>
                         <div class="ml-2">
-                            <p class="text-xs md:font-bold truncate">{{ $match->awayClub->name }}</p>
+                            <p class="text-xs md:font-bold truncate">{{ $match->awayClub->initial }}</p>
                         </div>
                     </div>
                 </div>
