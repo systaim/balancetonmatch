@@ -103,10 +103,10 @@ class PlayerController extends Controller
             'creator_id' => $player->created_by,
         ];
 
-        $superAdmin = User::where('role', 'super-admin')->get()->pluck('email');
+        // $superAdmin = User::where('role', 'super-admin')->get()->pluck('email');
 
-        Mail::to($superAdmin)
-            ->send(new PlayerMail($playerCreate));
+        // Mail::to($superAdmin)
+        //     ->send(new PlayerMail($playerCreate));
 
         return redirect('clubs/' . $club->id . '/players')->with('success', $player->first_name . ' a été créé avec succes !');
     }
