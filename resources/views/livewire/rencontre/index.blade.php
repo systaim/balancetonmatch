@@ -1,5 +1,5 @@
 <div class="min-h-screen sm:w-10/12 md:w-9/12 lg:w-6/12 mx-auto mt-2" 
-wire:poll.3s 
+{{ $match->live != "attente" ? 'wire:poll.3s' : ""  }}
 x-data="{
     tps_de_jeu: false,
     modif_debut_de_match: false,
@@ -105,7 +105,7 @@ x-data="{
             <p class="text-center truncate">{{ $match->homeClub->initial }}</p>
         </div>
         <div class="flex flex-col justify-center items-center flex-1">
-            <div class="flex text-4xl font-bold" wire:ignore>
+            <div class="flex text-4xl font-bold">
                 <div class="flex flex-col items-center justify-center">
                     @if ($corriger_le_score)
                         <button type="button" wire:click="incrementScore('home')">
