@@ -102,7 +102,7 @@ x-data="{
                         alt="Logo de {{ $match->homeClub->abbreviation }}">
                 </div>
             </a>
-            <p class="text-center truncate">{{ $match->homeClub->name }}</p>
+            <p class="text-center truncate">{{ $match->homeClub->initial }}</p>
         </div>
         <div class="flex flex-col justify-center items-center flex-1">
             <div class="flex text-4xl font-bold">
@@ -181,7 +181,7 @@ x-data="{
                         alt="Logo de {{ $match->awayClub->abbreviation }}">
                 </div>
             </a>
-            <p class="text-left truncate">{{ $match->awayClub->name }}</p>
+            <p class="text-left truncate">{{ $match->awayClub->initial }}</p>
         </div>
     </div>
     @include('livewire.rencontre._tabs')

@@ -95,14 +95,14 @@
                 <div class="flex items-center justify-center w-full">
                     <div class="mx-auto flex items-center">
                         <a href="/">
-                            <img class="w-16 md:w-24 my-2" src="{{ asset('/images/logos/btmLogoJB.png') }}"
+                            <img class="w-16 md:w-24 my-2" src="{{ asset('/images/logos/btmLogoRose.png') }}"
                                 alt="logo de BTM">
                         </a>
                         <div class="hidden lg:block relative h-auto md:diagonale">
                             <a href="/">
-                                <h1 class="text-xs md:text-3xl">Balance Ton Match</h1>
+                                <h1 class="text-xs md:text-3xl text-rose-normal">Balance Ton Match</h1>
                                 <p
-                                    class="float-right inline-block text-xs60 sm:text-xs md:text-base px-2 bg-primary rounded-md text-white ">
+                                    class="float-right inline-block text-xs60 sm:text-xs md:text-base px-2 bg-rose-normal rounded-sm text-white ">
                                     Quand la touche part en live...
                                 </p>
                             </a>

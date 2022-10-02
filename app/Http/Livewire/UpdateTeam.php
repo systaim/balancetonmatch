@@ -10,27 +10,18 @@ class UpdateTeam extends Component
 {
     use WithFileUploads;
 
-    public $club;
-    public $city;
-    public $inputCity;
-    public $inputZip;
-    public $inputLogo;
-    public $inputAddress;
-    public $buttonCity;
-    public $inputPrimaryColor;
-    public $inputSecondaryColor;
-    public $nbrTeams;
-    public $inputNbrTeams;
-    public $buttonNbrTeams;
-    public $inputAbbreviation;
+    public $club, $city, $inputCity, $inputZip, $inputLogo, $inputAddress, $club_name, $inputTeamName;
+    public $buttonCity, $inputPrimaryColor, $inputSecondaryColor, $nbrTeams, $inputNbrTeams, $buttonNbrTeams, $inputAbbreviation;
 
     public function mount()
     {
 
         // dd($this->club->primary_color);
+        $this->club_name = $this->club->name;
         $this->inputCity = $this->club->city;
         $this->inputZip = $this->club->zip_code;
         $this->inputAddress = $this->club->address;
+        $this->inputTeamName = $this->club->name;
         $this->inputPrimaryColor = $this->club->primary_color;
         $this->inputSecondaryColor = $this->club->secondary_color;
         $this->inputNbrTeams = $this->club->number_teams;
@@ -49,7 +40,8 @@ class UpdateTeam extends Component
     public function citySave()
     {
 
-        $this->club->city = $this->inputCity;
+        $this->club->city = strtoupper($this->inputCity);
+        $this->club->name = strtoupper($this->inputTeamName);
         $this->club->zip_code = $this->inputZip;
         $this->club->address = $this->inputAddress;
 
@@ -60,6 +52,7 @@ class UpdateTeam extends Component
         $this->club->abbreviation = $this->inputAbbreviation;
 
         $this->validate([
+            'inputTeamName' => 'required|string|min:2',
             'inputAbbreviation' => 'nullable|string|max:6',
             'inputAddress' => 'nullable|string|max:255',
             'inputCity' => 'nullable|string|min:2|max:255',

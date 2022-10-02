@@ -2,12 +2,14 @@
     <div class="hidden" style="display:{{ $buttonCity == 1 ? 'block' : '' }}">
         <div class="my-4">
             <div class="flex justify-center">
-                <label for="inputLogo" class="btn btnSecondary my-4 border border-black">Changer le logo du club
-                    📷</label>
+                <label for="inputLogo" class="btn btnSecondary my-4 border border-black">
+                    Changer le logo du club 📷
+                </label>
                 <input class="hidden" type="file" name="inputLogo" id="inputLogo" wire:model="inputLogo">
                 <button class="btn btnDanger" wire:click="deleteLogo"
-                    onclick="confirm('Etes vous sûr de vouloir rétablir le logo par défaut ?')">Supprimer le
-                    logo</button>
+                    onclick="confirm('Etes vous sûr de vouloir rétablir le logo par défaut ?')">
+                    Supprimer le logo
+                </button>
             </div>
             <div class="hidden font-bold py-1 px-2 bg-primary text-white rounded-md" wire:loading
                 wire:target="inputLogo">
@@ -22,6 +24,14 @@
                 <span class="error">
                     {{ $message }}
                 </span>
+            @enderror
+        </div>
+        <div>
+            <label class="sr-only" for="inputTeamName">Nom du club</label>
+            <input class="inputForm mb-2 w-full uppercase" placeholder="Nom du club" type="text" name="inputTeamName" id="inputTeamName"
+                wire:model="inputTeamName">
+            @error('inputTeamName')
+                <div class="alert alert-danger">{{ $message }}</div>
             @enderror
         </div>
         <div>
@@ -89,6 +99,9 @@
         </div>
     </div>
     <div class="block" style="display:{{ $buttonCity == 1 ? 'none' : '' }}">
+        <div class="flex justify-center">
+                <h3>{{ $club_name }}</h3>
+            </div>
         <div class="flex justify-center items-start">
             <div class="mr-2">
                 <p>Adresse du siège : </p>

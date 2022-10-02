@@ -95,20 +95,20 @@ class Club extends Model
         if ($this->abbreviation) {
             return strtoupper("{$this->abbreviation}");
         } else {
-            $words = explode(" ", "{$this->name}");
-            $name = "";
-            foreach($words as $word){
-                if (is_numeric($word[0])) {
-                    $explode_word = str_split($word);
-                    foreach ($explode_word as $letter) {
-                        $name .= $letter;
-                    }
-                } else {
-                    $name .= $word[0];
-                }
-            }
+            // $words = explode(" ", "{$this->name}");
+            // $name = "";
+            // foreach($words as $word){
+            //     if (is_numeric($word[0])) {
+            //         $explode_word = str_split($word);
+            //         foreach ($explode_word as $letter) {
+            //             $name .= $letter;
+            //         }
+            //     } else {
+            //         $name .= $word[0];
+            //     }
+            // }
 
-            return strtoupper($name);
+            return strtoupper($this->name);
         }
     }
 
