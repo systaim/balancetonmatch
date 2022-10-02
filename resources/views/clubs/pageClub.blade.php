@@ -180,7 +180,7 @@
     <div class="sm:w-11/12 md:w-9/12 xl:w-7/12 mx-auto my-10">
         <h3 class="text-2xl text-center my-4 border-b-2 border-darkGray">Prochain(s) match(s)</h3>
         @if (collect($matchsCF)->isNotEmpty())
-            <div class="mt-6">
+            <div class="mt-6 border p-1 rounded-md shadow-lg">
                 <h4 class="inline-block text-xl px-3 text-center bg-secondary text-primary rounded-md shadow-lg ml-2">Coupe
                     de France</h4>
                 @foreach ($matchsCF as $match)
@@ -189,7 +189,7 @@
             </div>
         @endif
         @if (collect($matchsBZH)->isNotEmpty())
-            <div class="mt-6">
+            <div class="mt-6 border p-1 rounded-md shadow-lg">
                 <h4 class="inline-block text-xl px-3 text-center bg-secondary text-primary rounded-md shadow-lg ml-2">Coupe
                     de Bretagne</h4>
                 @foreach ($matchsBZH as $match)
@@ -198,7 +198,7 @@
             </div>
         @endif
         @if (collect($matchsCoupeDep)->isNotEmpty())
-            <div class="mt-6">
+            <div class="mt-6 border p-1 rounded-md shadow-lg">
                 <h4 class="inline-block text-xl px-3 text-center bg-secondary text-primary rounded-md shadow-lg ml-2">Coupe
                     Ange Lemée</h4>
                 @foreach ($matchsCoupeDep as $match)
@@ -207,7 +207,7 @@
             </div>
         @endif
         @if (collect($matchsR1)->isNotEmpty())
-            <div class="mt-6">
+            <div class="mt-6 border p-1 rounded-md shadow-lg">
                 <h4 class="inline-block text-xl px-3 text-center bg-secondary text-primary rounded-md shadow-lg ml-2">R1
                 </h4>
                 @foreach ($matchsR1 as $match)
@@ -216,7 +216,7 @@
             </div>
         @endif
         @if (collect($matchsR2)->isNotEmpty())
-            <div class="mt-6">
+            <div class="mt-6 border p-1 rounded-md shadow-lg">
                 <h4 class="inline-block text-xl px-3 text-center bg-secondary text-primary rounded-md shadow-lg ml-2">R2
                 </h4>
                 @foreach ($matchsR2 as $match)
@@ -225,7 +225,7 @@
             </div>
         @endif
         @if (collect($matchsR3)->isNotEmpty())
-            <div class="mt-6">
+            <div class="mt-6 border p-1 rounded-md shadow-lg">
                 <h4 class="inline-block text-xl px-3 text-center bg-secondary text-primary rounded-md shadow-lg ml-2">R3
                 </h4>
                 @foreach ($matchsR3 as $match)
@@ -234,7 +234,7 @@
             </div>
         @endif
         @if (collect($matchsD1)->isNotEmpty())
-            <div class="mt-6">
+            <div class="mt-6 border p-1 rounded-md shadow-lg">
                 <h4 class="inline-block text-xl px-3 text-center bg-secondary text-primary rounded-md shadow-lg ml-2">D1
                 </h4>
                 @foreach ($matchsD1 as $match)
@@ -243,7 +243,7 @@
             </div>
         @endif
         @if (collect($matchsD2)->isNotEmpty())
-            <div class="mt-6">
+            <div class="mt-6 border p-1 rounded-md shadow-lg">
                 <h4 class="inline-block text-xl px-3 text-center bg-secondary text-primary rounded-md shadow-lg ml-2">D2
                 </h4>
                 @foreach ($matchsD2 as $match)
@@ -252,7 +252,7 @@
             </div>
         @endif
         @if (collect($matchsD3)->isNotEmpty())
-            <div class="mt-6">
+            <div class="mt-6 border p-1 rounded-md shadow-lg">
                 <h4 class="inline-block text-xl px-3 text-center bg-secondary text-primary rounded-md shadow-lg ml-2">D3
                 </h4>
                 @foreach ($matchsD3 as $match)
@@ -261,7 +261,7 @@
             </div>
         @endif
         @if (collect($matchsD4)->isNotEmpty())
-            <div class="mt-6">
+            <div class="mt-6 border p-1 rounded-md shadow-lg">
                 <h4 class="inline-block text-xl px-3 text-center bg-secondary text-primary rounded-md shadow-lg ml-2">D4
                 </h4>
                 @foreach ($matchsD4 as $match)
@@ -270,7 +270,7 @@
             </div>
         @endif
         @if (collect($matchsAmicaux)->isNotEmpty())
-            <div class="mt-6">
+            <div class="mt-6 border p-1 rounded-md shadow-lg">
                 <h4 class="inline-block text-xl px-3 text-center bg-secondary text-primary rounded-md shadow-lg ml-2">Amical
                 </h4>
                 @foreach ($matchsAmicaux as $match)
