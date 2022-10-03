@@ -70,13 +70,14 @@ class UpdateTeam extends Component
         }
 
         $this->club->save();
-
-        $activite = new ClubActivity();
-        $activite['user_id'] = Auth::user()->id;
-        $activite['club_id'] = $this->club->id;
-        $activite['type'] = 'update_city';
-        $activite['description'] = 'a modifié les informations du club';
-        $activite->save();
+        if (Auth::user()->role != 'super-admin') {
+            $activite = new ClubActivity();
+            $activite['user_id'] = Auth::user()->id;
+            $activite['club_id'] = $this->club->id;
+            $activite['type'] = 'update_city';
+            $activite['description'] = 'a modifié les informations du club';
+            $activite->save();
+        }
 
         return redirect()->to('clubs/' . $this->club->id);
     }
