@@ -2,6 +2,9 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Activity;
+use App\Models\ClubActivity;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -67,6 +70,13 @@ class UpdateTeam extends Component
         }
 
         $this->club->save();
+
+        $activite = new ClubActivity();
+        $activite['user_id'] = Auth::user()->id;
+        $activite['club_id'] = $this->club->id;
+        $activite['type'] = 'update_city';
+        $activite['description'] = 'a modifié les informations du club';
+        $activite->save();
 
         return redirect()->to('clubs/' . $this->club->id);
     }

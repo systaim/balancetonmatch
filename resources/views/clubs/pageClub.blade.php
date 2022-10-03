@@ -39,6 +39,7 @@
                                             </div>
                                         </li>
                                     @endforeach
+                                    {{-- {{ $activities->links() }} --}}
                                 </ul>
                             </div>
                         </div>
@@ -53,17 +54,9 @@
                     @livewire('my-team', ['user' => $user, 'club' => $club])
                     @livewire('favori-team', ['user' => $user, 'club' => $club,'nbrFavoris' => $nbrFavoris])
                 </div>
-
-                {{-- <div
-                    class="my-2 w-full m-auto bg-primary text-white p-6 shadow-lg rounded-lg flex flex-col md:flex-row justify-around items-center">
-                    <div>
-                        <p>Il manque un joueur ?</p>
-                        <button type="button" class="btn btnSecondary">Je le créé</button>
-                    </div>
-                </div> --}}
             </div>
             <!-- devenir referent-club -->
-            @auth
+            {{-- @auth
                 @if (Auth::user()->club && Auth::user()->role == 'guest' && $club->id == Auth::user()->club_id)
                     <div class="m-auto">
                         <div class="flex items-center justify-around my-2 bg-primary p-4 text-white shadow-xl rounded-lg">
@@ -109,7 +102,7 @@
                         </script>
                     </div>
                 @endif
-            @endauth
+            @endauth --}}
 
             <div class="bg-primary text-white shadow-lg relative my-2 flex flex-col p-4 w-full m-auto rounded-lg">
                 <h4 class="text-center text-6xl">{{ $club->abbreviation }}</h4>

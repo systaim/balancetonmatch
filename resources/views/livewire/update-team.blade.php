@@ -115,7 +115,8 @@
             <p>Nombre d'équipes sénior : {{ $club->number_teams }}</p>
         </div>
     </div>
-    @can('update-club', $club)
+    {{-- @can('update-club', $club) --}}
+    @auth
         <div>
             @if ($buttonCity == 1)
                 <p class="absolute flex justify-center items-center top-2 right-2 bg-danger font-bold text-sm h-10 w-10 rounded-md cursor-pointer"
@@ -137,5 +138,6 @@
                 </p>
             @endif
         </div>
-    @endcan
+    {{-- @endcan --}}
+    @endauth
 </div>
