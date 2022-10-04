@@ -26,7 +26,7 @@ class HomeController extends Component
 
     public function render()
     {
-        $commentators = Commentator::where('created_at', '>', Carbon::now()->subDays(5))->where('user_id', '=!', 0)->get();
+        $commentators = Commentator::where('created_at', '>', Carbon::now()->subDays(5))->where('user_id', '!=', 0)->get();
         $activities = Activity::where('created_at', '>', now()->subDays(15))->orderByDesc('created_at')->get();
 
         return view('livewire.home-controller', [
