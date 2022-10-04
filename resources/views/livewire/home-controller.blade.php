@@ -452,7 +452,7 @@
                                     </div>
                                     <div class="absolute -top-3 -right-3 logo h-20 w-20 transform rotate-12">
                                         <img class="object-contain" src="{{ asset($com->match->homeClub->logo) }}"
-                                            alt="Logo de {{ $com->match->homeClub->name }}">
+                                            alt="Logo de {{ $com->match->awayClub->name }}">
                                     </div>
                                     <div class="flex justify-center items-start py-3">
                                         <p class="text-sm leading-6 font-medium mr-3">
