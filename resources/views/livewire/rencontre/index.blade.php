@@ -70,9 +70,14 @@
     <div>
         <div class="bg-primary text-secondary px-3 py-1 text-sm flex justify-between rounded-sm">
             <div>
-                @if ($match->region_id)
-                    <h2>{{ $match->region->name }}</h2>
-                @endif
+                <div class="flex">
+                    @if ($match->region_id)
+                        <h2>{{ $match->region->name }}</h2>
+                    @endif
+                    @if ($match->departement_id)
+                        <h2 class="ml-1">{{ $match->departement->name }}</h2>
+                    @endif
+                </div>
                 {{ $match->competition->name }}
                 @if ($match->divisionRegion)
                     {{ $match->divisionRegion->name }}

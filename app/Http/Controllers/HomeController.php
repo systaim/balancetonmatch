@@ -28,41 +28,7 @@ class HomeController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $page = file_get_contents('https://foot22.fff.fr/competitions?tab=calendar&id=395659&phase=1&poule=4&type=ch', FILE_USE_INCLUDE_PATH);
-        // dd($page);
-        $dateJour = Carbon::now();
-        $user = Auth::user();
-        $users = User::all();
-        $today = now()->subHours(3);
-        $goals= Statistic::where('action', 'goal')->get();
-        $yellowCards= Statistic::where('action', 'yellow_card')->get();
-        $redCards= Statistic::where('action','red_card')->get();
-        $statistics = Statistic::where('action', 'goal')->where('created_at', '>=', now()->subDays(6))->orderBy('created_at', 'desc')->get();
-        $stats = $statistics->unique('player_id');
-        $activities = Activity::where('created_at', '>', now()->subDays(15))->orderByDesc('created_at')->get();
-        $commentators = Commentator::where('created_at', '>', Carbon::now()->subDays(5))->where('user_id', '=!', 0)->get();
-        $all_articles= Article::where('active', 1)->take(3)->get()->sortByDesc('created_at');
 
-        $comOfTheWeek = Commentator::whereBetween('created_at',[Carbon::now()->subDays(6), Carbon::now()->addDay(1)])
-        ->where('user_id', '=!', 0)
-        ->get() ;
-
-        
-
-    return view('welcome', compact(
-        'dateJour', 
-        'user', 
-        'users',
-        'today',
-        'goals',
-        'yellowCards',
-        'redCards',
-        'commentators',
-        'stats',
-        'statistics',
-        'comOfTheWeek',
-        'activities',
-        'all_articles'
-    ));
+        return view('welcome');
     }
 }
