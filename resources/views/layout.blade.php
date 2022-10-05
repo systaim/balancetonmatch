@@ -109,8 +109,8 @@
                         </div>
                     </div>
                 </div>
-                <div>
-                    {{-- <a href=" /notifications">
+                <div class="absolute top-3 right-0 lg:hidden">
+                    <a href=" /notifications">
                         <div
                             class="relative flex justify-center items-center text-primary border rounded-full h-12 w-12 mr-1">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
@@ -124,15 +124,7 @@
                                     {{ Auth::user()->unreadNotifications->count() }}</p>
                             @endauth
                         </div>
-                    </a> --}}
-                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7237777700901740"
-                        crossorigin="anonymous"></script>
-                    <!-- mitemps1 -->
-                    <ins class="adsbygoogle" style="display:inline-block;width:200px;height:50px"
-                        data-ad-client="ca-pub-7237777700901740" data-ad-slot="1296607207"></ins>
-                    <script>
-                        (adsbygoogle = window.adsbygoogle || []).push({});
-                    </script>
+                    </a>
                 </div>
                 {{-- <script>
                         (function() {
