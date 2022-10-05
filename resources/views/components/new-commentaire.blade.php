@@ -2,11 +2,6 @@
     <div class="text-xs px-3 bg-primary text-secondary py-2 mb-5">
         <div class="flex items-center justify-between text-sm">
             <p>{!! $comment->comments !!} </p>
-            @if ($match->live != 'attente')
-                <div wire:ignore>
-                    
-                </div>
-            @endif
         </div>
         @if ($comment->type_comments == 3 && !$match->validate_score)
             @auth
@@ -84,25 +79,25 @@
                 </div>
             </div>
         @endif
-    </div>
-    @if ($comment->type_action == 'goal')
-        <div class="flex items-center">
-            @foreach ($comment->reactions->groupBy('emoji') as $emoji => $reaction)
-                @foreach ($reaction->groupBy('id') as $id => $react)
-                    <div class="flex flex-col items-center">
-                        <button
-                            class="border mx-1 rounded-md shadow-lg bg-primary flex justify-center items-center px-1"
-                            wire:click="reaction({{ $id }}, {{ $comment->id }})">
-                            <p class="">{{ $emoji }}</p>
-                            @if (count($reaction) > 1)
-                                <p class="text-xs ml-2 text-secondary">{{ count($reaction) - 1 }}</p>
-                            @endif
-                        </button>
-                    </div>
+        @if ($comment->type_action == 'goal')
+            <div class="flex items-center ml-3">
+                @foreach ($comment->reactions->groupBy('emoji') as $emoji => $reaction)
+                    @foreach ($reaction->groupBy('id') as $id => $react)
+                        <div class="flex flex-col items-center">
+                            <button
+                                class="border mx-1 rounded-md shadow-lg bg-primary flex justify-center items-center px-1"
+                                wire:click="reaction({{ $id }}, {{ $comment->id }})">
+                                <p class="">{{ $emoji }}</p>
+                                @if (count($reaction) > 1)
+                                    <p class="text-xs ml-2 text-secondary">{{ count($reaction) - 1 }}</p>
+                                @endif
+                            </button>
+                        </div>
+                    @endforeach
                 @endforeach
-            @endforeach
-        </div>
-    @endif
+            </div>
+        @endif
+    </div>
     <div class="flex {{ $comment->team_action == 'away' ? 'flex-row-reverse' : '' }} items-center">
 
         @if ($comment->commentator->user_id == Auth::id() && $comment->team_action != 'match')
