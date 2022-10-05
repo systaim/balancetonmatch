@@ -4,14 +4,7 @@
             <p>{!! $comment->comments !!} </p>
             @if ($match->live != 'attente')
                 <div wire:ignore>
-                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7237777700901740"
-                        crossorigin="anonymous"></script>
-                    <!-- mitemps1 -->
-                    <ins class="adsbygoogle" style="display:inline-block;width:200px;height:50px"
-                        data-ad-client="ca-pub-7237777700901740" data-ad-slot="1296607207"></ins>
-                    <script>
-                        (adsbygoogle = window.adsbygoogle || []).push({});
-                    </script>
+                    
                 </div>
             @endif
         </div>
