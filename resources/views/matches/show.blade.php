@@ -284,7 +284,7 @@
             </div>
         </div>
         <div>
-            <p class="text-white mx-2 my-1 text-xs">Sponsorisé par :</p>
+            <p class="text-white mx-2 my-1 text-xs">Pub</p>
         </div>
         <div class="bg-secondary">
             <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7237777700901740"
