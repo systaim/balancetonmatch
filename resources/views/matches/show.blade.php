@@ -269,8 +269,8 @@
         ])
     </div>
 
-    <div id="loaderPage" class="fixed inset-0 bg-primary bg-opacity-100 z-9999 flex justify-center items-center">
-        <div class="flex flex-col items-center">
+    <div id="loaderPage" class="fixed inset-0 bg-primary bg-opacity-100 z-9999">
+        <div class="flex flex-col justify-start items-center my-24">
             <div class="flex justify-center items-baseline">
                 <img src="{{ asset('images/favoris-mobile.png') }}" alt="" class="h-48">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -282,6 +282,19 @@
             <div class="text-white">
                 Chargement...
             </div>
+        </div>
+        <div>
+            <p class="text-white mx-2 my-1 text-xs">Sponsorisé par :</p>
+        </div>
+        <div class="bg-secondary">
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7237777700901740"
+                crossorigin="anonymous"></script>
+            <!-- mitemps1 -->
+            <ins class="adsbygoogle" style="display:inline-block;width:300px;height:80px"
+                data-ad-client="ca-pub-7237777700901740" data-ad-slot="1296607207"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
         </div>
     </div>
     <script>
