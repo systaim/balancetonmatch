@@ -98,8 +98,9 @@
         </div>
     </div>
 
-    <div class="grid grid-cols-3">
-        <div class="flex flex-col items-center justify-center flex-1 py-4 overflow-hidden">
+    <div class="grid grid-cols-3 mb-3">
+        <div class="flex flex-col items-center justify-center flex-1 py-4 overflow-hidden"
+            style="background-color: {{ $match->homeClub->primary_color }}; color:{{ $match->homeClub->secondary_color == $match->homeClub->primary_color ? '#011526' : $match->homeClub->secondary_color }}">
             <a target="blank" href="{{ route('clubs.show', $match->homeClub->id) }}">
                 <div class="logo h-16 w-16 cursor-pointer shadow-lg">
                     <img class="object-contain" src="{{ asset($match->homeClub->logo) }}"
@@ -108,7 +109,9 @@
             </a>
             <p class="text-center truncate">{{ $match->homeClub->initial }}</p>
         </div>
-        <div class="flex flex-col justify-center items-center flex-1">
+        <div class="flex flex-col justify-center items-center flex-1"
+            style="background: rgb(2,0,36);
+                background: linear-gradient(90deg, {{ $match->homeClub->primary_color }} 0%, {{ $match->awayClub->primary_color }} 100%);">
             <div class="flex text-4xl font-bold">
                 <div class="flex flex-col items-center justify-center">
                     @if ($corriger_le_score)
@@ -116,21 +119,25 @@
                         <input type="text" name="inputHomeScore" id="inputHomeScore" wire:model="inputHomeScore"
                             class="w-8 p-0 text-center text-4xl">
                     @else
-                        <p>{{ $home_score }}</p>
+                        <div class="rounded-md bg-white p-1 m-1.5 shadow-lg w-10 flex justify-center">
+                            <p id="homescore" class="text-5xl">{{ $home_score }}</p>
+                        </div>
                     @endif
                 </div>
-                <div class=" flex flex-col justify-center">-</div>
+                {{-- <div class=" flex flex-col justify-center">-</div> --}}
                 <div class="flex flex-col items-center justify-center">
                     @if ($corriger_le_score)
                         <label for="inputAwayScore" class="sr-only">Score à l'extérieur</label>
                         <input type="text" name="inputAwayScore" id="inputAwayScore" wire:model="inputAwayScore"
                             class="w-8 p-0 text-center text-4xl">
                     @else
-                        <p>{{ $away_score }}</p>
+                        <div class="rounded-md bg-white p-1 m-1.5 shadow-lg w-10 flex justify-center">
+                            <p class="away-score text-5xl">{{ $away_score }}</p>
+                        </div>
                     @endif
                 </div>
             </div>
-            <div class="flex flex-col text-sm items-center justify-center">
+            <div class="flex flex-col text-sm items-center justify-center bg-white rounded-sm px-1 shadow-lg">
                 @if ($corriger_le_score)
                     <button type="button" class="btn btnSecondary" wire:click="storeScore">Valider</button>
                 @endif
@@ -150,7 +157,8 @@
                 @include('livewire.rencontre._mise_a_jour_tps_de_jeu')
             @endif
         </div>
-        <div class="flex flex-col items-center justify-center flex-1 py-4 overflow-hidden">
+        <div class="flex flex-col items-center justify-center flex-1 py-4 overflow-hidden"
+            style="background-color: {{ $match->awayClub->primary_color }}; color:{{ $match->awayClub->secondary_color == $match->awayClub->primary_color ? '#011526' : $match->awayClub->secondary_color }}">
             <a target="blank" href="{{ route('clubs.show', $match->awayClub->id) }}">
                 <div class="logo h-16 w-16 cursor-pointer shadow-lg">
                     <img class="object-contain" src="{{ asset($match->awayClub->logo) }}"
