@@ -120,7 +120,7 @@
                             class="w-8 p-0 text-center text-4xl">
                     @else
                         <div class="rounded-md bg-white p-1 m-1.5 shadow-lg w-10 flex justify-center">
-                            <p id="homescore" class="text-5xl">{{ $home_score }}</p>
+                            <p id="homescore" class="text-4xl">{{ $home_score }}</p>
                         </div>
                     @endif
                 </div>
@@ -132,7 +132,7 @@
                             class="w-8 p-0 text-center text-4xl">
                     @else
                         <div class="rounded-md bg-white p-1 m-1.5 shadow-lg w-10 flex justify-center">
-                            <p class="away-score text-5xl">{{ $away_score }}</p>
+                            <p class="away-score text-4xl">{{ $away_score }}</p>
                         </div>
                     @endif
                 </div>
