@@ -283,9 +283,6 @@
                 Chargement...
             </div>
         </div>
-        <div>
-            <p class="text-white mx-2 my-1 text-xs">Pub</p>
-        </div>
         <div class="flex justify-center items-center">
             <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7237777700901740"
                 crossorigin="anonymous"></script>
