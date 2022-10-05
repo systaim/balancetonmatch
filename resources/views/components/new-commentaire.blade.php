@@ -1,6 +1,16 @@
 @if ($comment->team_action == 'match')
     <div class="text-xs px-3 bg-primary text-secondary py-2 mb-5">
-        <p>{!! $comment->comments !!} </p>
+        <div class="flex items-center justify-between">
+            <p>{!! $comment->comments !!} </p>
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7237777700901740"
+                crossorigin="anonymous"></script>
+            <!-- mitemps1 -->
+            <ins class="adsbygoogle" style="display:inline-block;width:200px;height:50px"
+                data-ad-client="ca-pub-7237777700901740" data-ad-slot="1296607207"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
         @if ($comment->type_comments == 3 && !$match->validate_score)
             @auth
                 <div class="flex my-3 items-center">
@@ -16,7 +26,8 @@
         @endif
     </div>
 @endif
-<div class="commentaires {{ $comment->team_action }} flex items-center mx-2 my-1 {{ $comment->team_action == 'away' ? 'flex-row-reverse' : '' }}">
+<div
+    class="commentaires {{ $comment->team_action }} flex items-center mx-2 my-1 {{ $comment->team_action == 'away' ? 'flex-row-reverse' : '' }}">
     <div
         class="flex {{ $comment->team_action == 'away' ? 'flex-row-reverse' : '' }} items-center {{ $comment->team_action != 'match' ? 'border rounded-md shadow-lg px-2 py-1 my-1' : '' }}">
         @if ($comment->type_action != 'substitute' && $comment->team_action != 'match')
@@ -27,8 +38,8 @@
                 <div class="flex items-center">
                     <img class="w-4 h-4 mx-2 text-center" src="{{ asset($comment->icon) }}" alt="">
                     <p class="text-sm {{ $comment->team_action == 'away' ? 'mr-2' : 'ml-2' }}">
-                        {{ $comment->{$comment->type_action}->player->full_name ?? "NULL" }}
-                        <span class="text-xxs">{{ $comment->comments ?? "" }}</span>
+                        {{ $comment->{$comment->type_action}->player->full_name ?? 'NULL' }}
+                        <span class="text-xxs">{{ $comment->comments ?? '' }}</span>
                     </p>
                 </div>
                 @if ($comment->type_action == 'goal' && $comment->passeur_id)
@@ -37,7 +48,7 @@
                         <p
                             class="flex items-center text-xs {{ $comment->team_action == 'away' ? 'flex-row-reverse' : '' }}">
 
-                            {{ $comment->passeur->player->full_name ?? "NULL" }}
+                            {{ $comment->passeur->player->full_name ?? 'NULL' }}
                         </p>
                     </div>
                 @endif
