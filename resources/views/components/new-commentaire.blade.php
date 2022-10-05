@@ -1,10 +1,17 @@
 @if ($comment->team_action == 'match')
     <div class="text-xs px-3 bg-primary text-secondary py-2 mb-5">
-        <div class="flex items-center justify-between">
+        <div class="flex items-center justify-between text-sm">
             <p>{!! $comment->comments !!} </p>
             @if ($match->live != 'attente')
                 <div wire:ignore>
-                    {{-- TODO script pub a modifier --}}
+                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7237777700901740"
+                        crossorigin="anonymous"></script>
+                    <!-- mitemps1 -->
+                    <ins class="adsbygoogle" style="display:inline-block;width:200px;height:50px"
+                        data-ad-client="ca-pub-7237777700901740" data-ad-slot="1296607207"></ins>
+                    <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
                 </div>
             @endif
         </div>
