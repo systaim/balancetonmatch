@@ -31,7 +31,7 @@
             @endforeach
         </div>
     </div>
-    <div class="container px-5 mx-auto">
+    <div class="container px-5 mx-auto my-4">
         <div
             class="flex items-center lg:w-3/5 mx-auto border p-10 border-primary sm:flex-row flex-col rounded-lg shadow-2xl">
             <div
