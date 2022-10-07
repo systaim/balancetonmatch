@@ -31,8 +31,8 @@
     <title>{{ $match->homeclub->name }}
         {{ $match->home_score == null ? ' VS ' : $match->home_score . ' - ' . $match->away_score }}
         {{ $match->awayclub->name }}</title>
-    <link rel="stylesheet" href="{{ mix('css/app.css') }}?v=1.2">
-    <link rel="stylesheet" href="{{ mix('css/styles.css') }}?v=1.2" />
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}?v=1.1">
+    <link rel="stylesheet" href="{{ mix('css/styles.css') }}?v=1.1" />
 
     <!-- AlpineJS -->
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.0/dist/alpine.min.js" defer></script>
@@ -273,7 +273,7 @@
         <div class="flex flex-col justify-start items-center my-24">
             <div class="relative">
                 <img src="{{ asset('images/favoris-mobile.png') }}" alt="" class="h-48">
-                <div class="shapes"></div>
+                <img src="{{ asset('images/but.png') }}" alt="" class="animate-spin absolute bottom-4 right-10 w-8">
             </div>
             <div class="text-white flex items-baseline mt-4">
                 Chargement...
