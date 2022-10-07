@@ -2,19 +2,28 @@
     <div class="text-xs px-3 bg-primary text-secondary py-2 mb-5">
         <div class="flex items-center justify-between text-sm">
             <p>{!! $comment->comments !!} </p>
+            <a target="_blank" rel="sponsored noreferrer noopener" class="w-3/5"
+                href="https://www.gambling-affiliation.com/cpc/v=Cn6Hz1gnerPuws1ngRSDWHDNNai7duTdthENAciFWJI_GA7331V2&aff_var_1=">
+                <img src="{{ asset('images/sponsors/vbet.png') }}" alt="">
+            </a>
         </div>
         @if ($comment->type_comments == 3 && !$match->validate_score)
-            @auth
-                <div class="flex my-3 items-center">
-                    <p>Le score est correct ?</p>
-                    <button class="border rounded-sm px-1 border-secondary ml-10" wire:click="validateScoreMatch">Oui</button>
-                </div>
-                <p>Sinon tu peux renseigner les infos supplémentaires</p>
-            @else
-                <a href="/login">Connecte toi pour renseigner les infos supplémentaires</a>
-            @endauth
+            <div class="mt-3">
+                @auth
+                    <div class="flex my-3 items-center">
+                        <p>Le score est correct ?</p>
+                        <button class="border rounded-sm px-1 border-secondary ml-10"
+                            wire:click="validateScoreMatch">Oui</button>
+                    </div>
+                    <p>Sinon tu peux renseigner les infos supplémentaires</p>
+                @else
+                    <a href="/login">Connecte toi pour renseigner les infos supplémentaires</a>
+                @endauth
+            </div>
         @elseif($comment->type_comments == 3)
-            <p>{{ $match->validate_by ? 'Score validé par ' . $match->validate_by_user->pseudo : '' }}</p>
+            <div class="mt-3">
+                <p>{{ $match->validate_by ? 'Score validé par ' . $match->validate_by_user->pseudo : '' }}</p>
+            </div>
         @endif
     </div>
 @endif
