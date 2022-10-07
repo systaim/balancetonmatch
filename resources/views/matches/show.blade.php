@@ -295,7 +295,7 @@
                 setTimeout(() => {
                     document.querySelector("body").style.visibility = "visible";
                     document.querySelector("#loaderPage").style.display = "none";
-                }, 2500);
+                }, 1500);
             }
         }
     </script>
