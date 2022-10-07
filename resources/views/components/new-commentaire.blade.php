@@ -2,10 +2,12 @@
     <div class="text-xs px-3 bg-primary text-secondary py-2 mb-5">
         <div class="flex items-center justify-between text-sm">
             <p>{!! $comment->comments !!} </p>
-            <a target="_blank" rel="sponsored noreferrer noopener" class="w-3/5"
-                href="https://www.gambling-affiliation.com/cpc/v=Cn6Hz1gnerPuws1ngRSDWHDNNai7duTdthENAciFWJI_GA7331V2&aff_var_1=">
-                <img src="{{ asset('images/sponsors/vbet.png') }}" alt="">
-            </a>
+            @if ($match->commentaires->count() > 2 || $match->live != 'attente')
+                <a target="_blank" rel="sponsored noreferrer noopener" class="w-3/5"
+                    href="https://www.gambling-affiliation.com/cpc/v=Cn6Hz1gnerPuws1ngRSDWHDNNai7duTdthENAciFWJI_GA7331V2&aff_var_1=">
+                    <img src="{{ asset('images/sponsors/vbet.png') }}" alt="">
+                </a>
+            @endif
         </div>
         @if ($comment->type_comments == 3 && !$match->validate_score)
             <div class="mt-3">

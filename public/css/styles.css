@@ -1209,13 +1209,14 @@ input:checked + .inputAction {
 .offline {
   width: 28px;
   height: 20px;
-  -webkit-mask: linear-gradient(90deg,#000 70%,#0000 0) 0% 100% / 20% 20%,
-          linear-gradient(90deg,#000 70%,#0000 0) 25% 100% / 20% 40%,
-          linear-gradient(90deg,#000 70%,#0000 0) 50% 100% / 20% 60%,
-          linear-gradient(90deg,#000 70%,#0000 0) 75% 100% / 20% 80%,
-          linear-gradient(90deg,#000 70%,#0000 0) 100% 100% / 20% 100%;
+  -webkit-mask: linear-gradient(90deg, #000 70%, #0000 0) 0% 100% / 20% 20%,
+        linear-gradient(90deg, #000 70%, #0000 0) 25% 100% / 20% 40%,
+        linear-gradient(90deg, #000 70%, #0000 0) 50% 100% / 20% 60%,
+        linear-gradient(90deg, #000 70%, #0000 0) 75% 100% / 20% 80%,
+        linear-gradient(90deg, #000 70%, #0000 0) 100% 100% / 20% 100%;
   -webkit-mask-repeat: no-repeat;
-  background: linear-gradient(var(--primary-color) 0 0) left/0% 100% no-repeat #dbdcef;
+  background: linear-gradient(var(--primary-color) 0 0) left/0% 100% no-repeat
+        #dbdcef;
   -webkit-animation: progress-0beb2c 2s infinite steps(6);
           animation: progress-0beb2c 2s infinite steps(6);
 }
@@ -3478,7 +3479,7 @@ input:checked + .inputAction {
   border: 6.7px solid #011526;
   border-radius: 50%;
   position: absolute;
-  content: '';
+  content: "";
   display: block;
 }
 
@@ -3511,4 +3512,61 @@ input:checked + .inputAction {
   }
 }
 
+.shapes {
+  width: 44.8px;
+  height: 44.8px;
+  color: #ffffff;
+  position: absolute;
+  bottom: 8px;
+  right: 38px;
+  background: radial-gradient(11.2px,currentColor 94%,#0000);
+}
 
+.shapes:before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(10.08px at bottom right,#0000 94%,currentColor) top    left,
+          radial-gradient(10.08px at bottom left ,#0000 94%,currentColor) top    right,
+          radial-gradient(10.08px at top    right,#0000 94%,currentColor) bottom left,
+          radial-gradient(10.08px at top    left ,#0000 94%,currentColor) bottom right;
+  background-size: 22.4px 22.4px;
+  background-repeat: no-repeat;
+  -webkit-animation: shapes-77ngqcmd 1.5s infinite cubic-bezier(0.3,1,0,1);
+          animation: shapes-77ngqcmd 1.5s infinite cubic-bezier(0.3,1,0,1);
+}
+
+@-webkit-keyframes shapes-77ngqcmd {
+  33% {
+    inset: -11.2px;
+    transform: rotate(0deg);
+  }
+
+  66% {
+    inset: -11.2px;
+    transform: rotate(90deg);
+  }
+
+  100% {
+    inset: 0;
+    transform: rotate(90deg);
+  }
+}
+
+@keyframes shapes-77ngqcmd {
+  33% {
+    inset: -11.2px;
+    transform: rotate(0deg);
+  }
+
+  66% {
+    inset: -11.2px;
+    transform: rotate(90deg);
+  }
+
+  100% {
+    inset: 0;
+    transform: rotate(90deg);
+  }
+}

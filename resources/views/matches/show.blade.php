@@ -271,27 +271,19 @@
 
     <div id="loaderPage" class="fixed inset-0 bg-primary bg-opacity-100 z-9999">
         <div class="flex flex-col justify-start items-center my-24">
-            <div class="flex justify-center items-baseline">
+            <div class="relative">
                 <img src="{{ asset('images/favoris-mobile.png') }}" alt="" class="h-48">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                    stroke="currentColor" class="w-14 h-14 text-secondary animate-spin">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                        d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
-                </svg>
+                <div class="shapes"></div>
             </div>
-            <div class="text-white">
+            <div class="text-white flex items-baseline mt-4">
                 Chargement...
             </div>
         </div>
         <div class="flex justify-center items-center">
-            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7237777700901740"
-                crossorigin="anonymous"></script>
-            <!-- chargement match -->
-            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7237777700901740"
-                data-ad-slot="3065533188" data-ad-format="auto" data-full-width-responsive="true"></ins>
-            <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
+            <a target="_blank" rel="sponsored noreferrer noopener"
+                href="https://www.gambling-affiliation.com/cpc/v=Cn6Hz1gnerPuws1ngRSDWHDNNai7duTdthENAciFWJI_GA7331V2&aff_var_1=">
+                <img src="{{ asset('images/sponsors/vbet2.png') }}" alt="">
+            </a>
         </div>
     </div>
     <script>
@@ -300,8 +292,10 @@
                 document.querySelector("body").style.visibility = "hidden";
                 document.querySelector("#loaderPage").style.visibility = "visible";
             } else {
-                document.querySelector("#loaderPage").style.display = "none";
-                document.querySelector("body").style.visibility = "visible";
+                setTimeout(() => {
+                    document.querySelector("body").style.visibility = "visible";
+                    document.querySelector("#loaderPage").style.display = "none";
+                }, 2500);
             }
         }
     </script>
