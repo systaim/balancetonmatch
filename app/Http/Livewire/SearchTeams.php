@@ -33,6 +33,7 @@ class SearchTeams extends Component
         $this->departements = Department::all();
 
         $this->regions = Region::find($this->departements->keys());
+
     }
 
     public function updatedQuery()

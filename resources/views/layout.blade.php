@@ -50,9 +50,9 @@
         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     @endif
     @laravelPWA
-        <!-- Google Ads-->
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7237777700901740"
-            crossorigin="anonymous"></script>
+    <!-- Google Ads-->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7237777700901740"
+        crossorigin="anonymous"></script>
 
 </head>
 
@@ -235,7 +235,7 @@
         t.parentNode.insertBefore(e, t);
     })(document, "script");
 </script>
-
+@livewire('livewire-toast')
 </body>
 
 

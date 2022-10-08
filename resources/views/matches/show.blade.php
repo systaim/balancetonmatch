@@ -336,6 +336,7 @@
             (adsbygoogle = window.adsbygoogle || []).push({});
         </script>
     </div>
+    @livewire('livewire-toast')
 </body>
 
 @livewireScripts

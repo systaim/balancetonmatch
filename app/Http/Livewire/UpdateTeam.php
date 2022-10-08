@@ -2,9 +2,12 @@
 
 namespace App\Http\Livewire;
 
+use App\Mail\PlayerMail;
 use App\Models\Activity;
 use App\Models\ClubActivity;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -78,8 +81,9 @@ class UpdateTeam extends Component
             $activite['description'] = 'a modifié les informations du club';
             $activite->save();
         }
-
-        return redirect()->to('clubs/' . $this->club->id);
+        $this->emitTo('livewire-toast', 'show', ['type' => 'success', 'message' => 'Mise à jour effectuée']); //Can also pass type and message as array
+        $this->clickButtonCity();
+        // return redirect()->to('clubs/' . $this->club->id);
     }
 
     public function nbrTeamsSave()
