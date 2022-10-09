@@ -1,12 +1,11 @@
-<div class="min-h-screen sm:w-10/12 md:w-9/12 lg:w-6/12 mx-auto mt-2"
-    {{ $match->live != 'attente' ? 'wire:poll.3s' : '' }} x-data="{
-        tps_de_jeu: false,
-        modif_debut_de_match: false,
-        update_datetime_match: false,
-        open_update_score: false,
-        become_commentator: false
-    
-    }">
+<div class="min-h-screen sm:w-10/12 md:w-9/12 lg:w-6/12 mx-auto mt-2" wire:poll.3s x-data="{
+    tps_de_jeu: false,
+    modif_debut_de_match: false,
+    update_datetime_match: false,
+    open_update_score: false,
+    become_commentator: false
+
+}">
     <div wire:offline class="w-full">
         <div class="bg-orange-600 text-white py-2 flex justify-center items-center w-full">
             {{-- <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -67,33 +66,31 @@
         </form>
     </div>
 
-    <div>
-        <div class="bg-primary text-secondary px-3 py-1 text-sm flex justify-between rounded-sm">
-            <div>
-                <div class="flex">
-                    @if ($match->region_id)
-                        <h2>{{ $match->region->name }}</h2>
-                    @endif
-                    @if ($match->departement_id)
-                        <h2 class="ml-1">{{ $match->departement->name }}</h2>
-                    @endif
-                </div>
-                {{ $match->competition->name }}
-                @if ($match->divisionRegion)
-                    {{ $match->divisionRegion->name }}
+    <div class="bg-primary text-secondary px-3 py-1 text-sm flex justify-between rounded-sm my-3">
+        <div>
+            <div class="flex">
+                @if ($match->region_id)
+                    <h2>{{ $match->region->name }}</h2>
                 @endif
-                @if ($match->divisionDepartment)
-                    > {{ $match->divisionDepartment->name }}
-                @endif
-                @if ($match->group)
-                    > {{ $match->group->name }}
+                @if ($match->departement_id)
+                    <h2 class="ml-1">{{ $match->departement->name }}</h2>
                 @endif
             </div>
-            <div>
-                <div class="flex">
-                    <p class="mr-2">{{ $match->date_match->formatLocalized('%H:%M') }}</p>
-                    <p>{{ $match->date_match->formatLocalized('%d/%m/%y') }}</p>
-                </div>
+            {{ $match->competition->name }}
+            @if ($match->divisionRegion)
+                {{ $match->divisionRegion->name }}
+            @endif
+            @if ($match->divisionDepartment)
+                > {{ $match->divisionDepartment->name }}
+            @endif
+            @if ($match->group)
+                > {{ $match->group->name }}
+            @endif
+        </div>
+        <div>
+            <div class="flex">
+                <p class="mr-2">{{ $match->date_match->formatLocalized('%H:%M') }}</p>
+                <p>{{ $match->date_match->formatLocalized('%d/%m/%y') }}</p>
             </div>
         </div>
     </div>
@@ -137,7 +134,7 @@
                     @endif
                 </div>
             </div>
-            <div class="flex flex-col text-sm items-center justify-center bg-white rounded-sm px-1 shadow-lg">
+            <div class="flex flex-col text-sm items-center justify-center">
                 @if ($corriger_le_score)
                     <button type="button" class="btn btnSecondary" wire:click="storeScore">Valider</button>
                 @endif
@@ -146,7 +143,8 @@
                 @elseif($match->live == 'finDeMatch')
                     <p>Terminé</p>
                 @else
-                    <p class="text-xl animate__animated animate__heartBeat animate__infinite">{{ $minute }}'</p>
+                    <p class="text-xl animate__animated animate__heartBeat animate__infinite font-bold">
+                        {{ $minute }}'</p>
                 @endif
             </div>
             @if (Auth::check() &&
@@ -171,7 +169,7 @@
     @include('livewire.rencontre._tabs')
     @if (!$match->validate_score)
         @auth
-            <div class="flex text-sm rounded-sm overflow-hidden">
+            <div class="flex text-sm rounded-sm overflow-hidden my-3">
                 @if ($match->live != 'attente' &&
                     $match->live != 'mitemps' &&
                     $match->live != 'finDeMatch' &&
@@ -200,7 +198,7 @@
                 @endif
             </div>
         @else
-            <div class="text-sm w-full bg-primary">
+            <div class="text-sm w-full bg-primary my-3">
                 @if (!$commentaires_match_ouverts)
                     <a href="/login">
                         <button type="button" class="w-full py-3 bg-secondary text-center text-primary px-2">

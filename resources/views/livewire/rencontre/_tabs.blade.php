@@ -35,17 +35,17 @@
             Photos
         </button> --}}
             <button type="button"
-                class="mx-1 border {{ $open_match ? 'border-primary bg-secondary text-primary' : '' }} px-2 py-1 mb-1 rounded-sm shadow-lg"
+                class="mx-1 border {{ $open_match ? 'border-primary bg-secondary text-primary' : '' }} px-2 py-1 mb-1 rounded-md shadow-lg"
                 wire:click.prefetch="openTab('match')">
                 Match
             </button>
             <button type="button"
-                class="mx-1 border {{ $open_infos ? 'border-primary bg-secondary text-primary' : '' }} px-2 py-1 mb-1 rounded-sm shadow-lg"
+                class="mx-1 border {{ $open_infos ? 'border-primary bg-secondary text-primary' : '' }} px-2 py-1 mb-1 rounded-md shadow-lg"
                 wire:click.prefetch="openTab('infos')">
                 Infos
             </button>
             <button type="button"
-                class="mx-1 border {{ $open_compos ? 'border-primary bg-secondary text-primary' : '' }} px-2 py-1 mb-1 rounded-sm shadow-lg"
+                class="mx-1 border {{ $open_compos ? 'border-primary bg-secondary text-primary' : '' }} px-2 py-1 mb-1 rounded-md shadow-lg"
                 wire:click.prefetch="openTab('compos')">
                 Compos
             </button>

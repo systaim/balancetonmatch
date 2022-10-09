@@ -44,9 +44,9 @@ Route::apiResource('comments', CommentaireController::class, [
 Route::apiResource('commentators', CommentatorController::class, [
     'as' => 'api'
 ]);
-Route::apiResource('players', PlayerController::class, [
-    'as' => 'api'
-]);
+// Route::apiResource('players', PlayerController::class, [
+//     'as' => 'api'
+// ]);
 Route::apiResource('statistics', StatisticController::class, [
     'as' => 'api'
 ]);

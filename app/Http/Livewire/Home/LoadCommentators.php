@@ -17,7 +17,6 @@ class LoadCommentators extends Component
 
     public function render()
     {
-
         $commentators = Commentator::where('created_at', '>', Carbon::now()->subDays(5))->where('user_id', '!=', 0)->get();
 
         return view('livewire.home.load-commentators', [

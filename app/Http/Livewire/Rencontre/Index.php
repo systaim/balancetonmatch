@@ -692,13 +692,14 @@ class Index extends Component
         $photoSave = Gallery::create($photo);
 
         // dd($photoSave);
-        $photoSave->save();
+        // $photoSave->save();
 
         // session()->flash('success', 'Photo enregistrée');
 
         $this->store_photo_match = null;
-        $this->photos = Gallery::where('match_id', $this->match->id)->get();
         $this->closeStorePhoto();
+
+        $this->photos = Gallery::where('match_id', $this->match->id)->get();
     }
 
     public function openCreatePlayer()
